@@ -45,4 +45,8 @@ export const menus: MenuType[] = [
       },
     ],
   },
+  {
+    title: "Sign In",
+    url: "/signin",
+  },
 ];

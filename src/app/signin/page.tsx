@@ -1,7 +1,7 @@
-export default function AboutMe() {
+export default function SignIn() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>aboutMe</div>
+      <div>SignIn</div>
     </main>
   );
 }

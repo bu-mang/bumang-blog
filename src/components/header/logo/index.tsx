@@ -4,11 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-interface LogoProps {
-  logoMenu: PathnameNavType;
-}
-
-const Logo = ({ logoMenu }: LogoProps) => {
+const Logo = () => {
   const LINES = [
     "is Reading 아주 희미한 빛으로도",
     "is Obsessed with Jujutsu Kaisen, now",

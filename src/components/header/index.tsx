@@ -14,6 +14,7 @@ const Header = () => {
   const GUESTBOOK = menus[1];
   const WORK = menus[2];
   const GALLERY = menus[3];
+  const SIGNIN = menus[4];
 
   const pathname = usePathname();
 
@@ -33,9 +34,15 @@ const Header = () => {
             <Link href={GALLERY.url}>{GALLERY.title}</Link>
           </div>
           <div className="flex h-full w-1/4 items-center justify-end gap-5 pr-4">
-            <UserIcon color="white" size={22} />
-            <BookIcon color="white" size={20} />
-            <BrightIcon color="white" size={20} />
+            <Link href={GUESTBOOK.url}>
+              <UserIcon color="white" size={22} />
+            </Link>
+            <Link href={SIGNIN.url}>
+              <BookIcon color="white" size={20} />
+            </Link>
+            <button onClick={() => {}}>
+              <BrightIcon color="white" size={20} />
+            </button>
           </div>
         </div>
         {/* Bottom */}

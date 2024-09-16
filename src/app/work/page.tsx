@@ -1,5 +1,5 @@
-const Total = () => {
-  return <div className="flex-1 bg-red">portfolio</div>;
+const Work = () => {
+  return <div className="flex-1 bg-red">Work Total</div>;
 };
 
-export default Total;
+export default Work;
