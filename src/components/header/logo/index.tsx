@@ -1,6 +1,5 @@
 "use client";
 
-import { PathnameNavType } from "@/types/menu";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -42,7 +41,7 @@ const Logo = ({ logoMenu }: LogoProps) => {
 
   return (
     <div
-      className="font-display mb-2 flex w-fit translate-y-0.5 cursor-pointer items-center gap-2"
+      className="mb-2 flex w-fit translate-y-0.5 cursor-pointer items-center gap-2 font-display"
       onMouseOver={handleMouseOver}
     >
       <Link
@@ -52,7 +51,7 @@ const Logo = ({ logoMenu }: LogoProps) => {
       >
         Bumang
       </Link>
-      {isVisible && <span className="text-12 translate-y-0.5">{status}</span>}
+      {isVisible && <span className="translate-y-0.5 text-12">{status}</span>}
     </div>
   );
 };

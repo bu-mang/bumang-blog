@@ -1,5 +1,5 @@
-const Total = () => {
-  return <div></div>;
+const Graphic = () => {
+  return <div className="h-full w-full bg-red">Graphic</div>;
 };
 
-export default Total;
+export default Graphic;
