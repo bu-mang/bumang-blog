@@ -1,11 +1,13 @@
-"use client";
+import { StickyToolbar } from "@/components";
+import ItemListDeck from "@/components/lists";
 
-import { useParams } from "next/navigation";
-
-const Category = () => {
-  const params = useParams()["category"];
-
-  return <div className="flex-1 bg-red">{params}</div>;
+const WorkCategory = () => {
+  return (
+    <div className="mt-8 h-[500px] w-full bg-red">
+      <StickyToolbar></StickyToolbar>
+      <ItemListDeck />
+    </div>
+  );
 };
 
-export default Category;
+export default WorkCategory;

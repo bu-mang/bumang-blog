@@ -1,5 +1,6 @@
 "use client";
 
+import usePathProps from "@/hooks/usePathProps";
 import { MenuType } from "@/types/menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -11,7 +12,7 @@ interface TabProps {
   isFocused: boolean;
 }
 
-const Tab = ({ children, url, pageUrl, isFocused }: TabProps) => {
+const Category = ({ children, url, pageUrl, isFocused }: TabProps) => {
   const focusStyle = isFocused && "bg-gray-500";
 
   return (
@@ -30,23 +31,23 @@ interface DeckProps {
   subMenu: MenuType[];
 }
 
-const TabbarDeck = ({ subMenu, page, pageUrl }: DeckProps) => {
-  let subtractedUrl = usePathname().split(pageUrl)[1] || "/";
+const CategorybarDeck = ({ subMenu, page, pageUrl }: DeckProps) => {
+  const { majorPathname, minorPathname } = usePathProps();
 
   return (
     <div className="flex h-[60px] w-full gap-3">
-      {subMenu.map((tab) => (
-        <Tab
-          key={tab.title}
-          url={tab.url}
+      {subMenu.map((category) => (
+        <Category
+          key={category.title}
+          url={category.url}
           pageUrl={pageUrl}
-          isFocused={subtractedUrl === tab.url}
+          isFocused={minorPathname === category.url}
         >
-          {tab.title}
-        </Tab>
+          {category.title}
+        </Category>
       ))}
     </div>
   );
 };
 
-export default TabbarDeck;
+export default CategorybarDeck;

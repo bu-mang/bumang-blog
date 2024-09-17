@@ -1,6 +1,3 @@
-"use client";
-
-import { usePathname } from "next/navigation";
 import { menus } from "@/constants/menuTree";
 import { IoIosMenu as MenuIcon } from "react-icons/io";
 import { TbUser as UserIcon } from "react-icons/tb";
@@ -16,14 +13,12 @@ const Header = () => {
   const GALLERY = menus[3];
   const SIGNIN = menus[4];
 
-  const pathname = usePathname();
-
   return (
     <div className="fixed top-0 z-10 flex w-screen flex-col px-layout pt-layout">
       <div className="flex h-header w-full justify-center rounded-12 bg-gray-700">
         {/* Upper */}
         <div className="flex h-header w-full items-center">
-          <div className="flex h-full w-1/4 items-center justify-start pl-4">
+          <div className="pl-header-margin flex h-full w-1/4 items-center justify-start">
             <MenuIcon color="white" size={24} />
           </div>
           <div className="flex w-1/2 justify-between text-14 text-white">
@@ -33,14 +28,14 @@ const Header = () => {
             </Link>
             <Link href={GALLERY.url}>{GALLERY.title}</Link>
           </div>
-          <div className="flex h-full w-1/4 items-center justify-end gap-5 pr-4">
+          <div className="pr-header-margin flex h-full w-1/4 items-center justify-end gap-5">
             <Link href={GUESTBOOK.url}>
               <UserIcon color="white" size={22} />
             </Link>
             <Link href={SIGNIN.url}>
               <BookIcon color="white" size={20} />
             </Link>
-            <button onClick={() => {}}>
+            <button>
               <BrightIcon color="white" size={20} />
             </button>
           </div>

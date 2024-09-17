@@ -1,11 +1,13 @@
-"use client";
-
-import { useParams } from "next/navigation";
+import { StickyToolbar } from "@/components";
+import ItemListDeck from "@/components/lists";
 
 const GalleryCategory = () => {
-  const params = useParams()["category"];
-
-  return <div className="flex-1 bg-red">{params}</div>;
+  return (
+    <div className="mt-8 h-[1500px] w-full">
+      <StickyToolbar />
+      <ItemListDeck />
+    </div>
+  );
 };
 
 export default GalleryCategory;

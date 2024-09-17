@@ -1,5 +1,13 @@
+import { StickyToolbar } from "@/components";
+import ItemListDeck from "@/components/lists";
+
 const Work = () => {
-  return <div className="">WORK TOTAL</div>;
+  return (
+    <div className="mt-8 h-[1500px] w-full">
+      <StickyToolbar />
+      <ItemListDeck />
+    </div>
+  );
 };
 
 export default Work;
