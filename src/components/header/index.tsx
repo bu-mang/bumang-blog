@@ -19,10 +19,10 @@ const Header = () => {
   const pathname = usePathname();
 
   return (
-    <div className="fixed z-10 flex w-screen flex-col px-layout pt-layout">
-      <div className="h-header flex w-full justify-center rounded-12 bg-gray-700">
+    <div className="fixed top-0 z-10 flex w-screen flex-col px-layout pt-layout">
+      <div className="flex h-header w-full justify-center rounded-12 bg-gray-700">
         {/* Upper */}
-        <div className="h-header flex w-full items-center">
+        <div className="flex h-header w-full items-center">
           <div className="flex h-full w-1/4 items-center justify-start pl-4">
             <MenuIcon color="white" size={24} />
           </div>

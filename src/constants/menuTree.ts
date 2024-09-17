@@ -8,6 +8,10 @@ export const menus: MenuType[] = [
     url: "/work",
     subMenu: [
       {
+        title: "All",
+        url: "/",
+      },
+      {
         title: "Portfolio",
         url: "/portfolio",
       },
@@ -36,6 +40,10 @@ export const menus: MenuType[] = [
     url: "/gallery",
     subMenu: [
       {
+        title: "All",
+        url: "/",
+      },
+      {
         title: "Drawing",
         url: "/drawing",
       },
@@ -49,4 +57,4 @@ export const menus: MenuType[] = [
     title: "Sign In",
     url: "/signin",
   },
-];
+] as const;

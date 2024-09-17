@@ -1,5 +1,5 @@
 const Work = () => {
-  return <div className="flex-1 bg-red">Work Total</div>;
+  return <div className="">WORK TOTAL</div>;
 };
 
 export default Work;

@@ -24,9 +24,11 @@ html {
 
 *,
 *::before,
-*::after {
+*::after,
+body {
   box-sizing: border-box;
 }
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
