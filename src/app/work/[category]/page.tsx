@@ -4,7 +4,7 @@ import ItemListDeck from "@/components/lists";
 const WorkCategory = () => {
   return (
     <div className="mt-8 h-[500px] w-full bg-red">
-      <StickyToolbar></StickyToolbar>
+      <StickyToolbar />
       <ItemListDeck />
     </div>
   );

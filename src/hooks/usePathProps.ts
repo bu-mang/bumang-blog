@@ -2,10 +2,11 @@ import { menus } from "@/constants/menuTree";
 import { usePathname } from "next/navigation";
 
 const usePathProps = (minorUrl?: string) => {
-  const pathname = usePathname().split("/");
+  const fullPathname = usePathname();
+  const splitted = fullPathname.split("/");
 
-  const majorPathname = "/" + pathname[1];
-  const minorPathname = pathname[2] ? "/" + pathname[2] : "/";
+  const majorPathname = "/" + splitted[1];
+  const minorPathname = splitted[2] ? "/" + splitted[2] : "/";
 
   const majorPathInfo = menus.find((item) => item.url === majorPathname);
   const minorPathInfo = majorPathInfo?.subMenu?.find(
@@ -18,6 +19,7 @@ const usePathProps = (minorUrl?: string) => {
   }
 
   return {
+    fullPathname,
     majorPathname,
     minorPathname,
     majorPathInfo,

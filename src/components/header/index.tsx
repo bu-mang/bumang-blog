@@ -1,10 +1,16 @@
+"use client";
+
 import { menus } from "@/constants/menuTree";
+
+// 아이콘
 import { IoIosMenu as MenuIcon } from "react-icons/io";
 import { TbUser as UserIcon } from "react-icons/tb";
 import { TbBrightnessFilled as BrightIcon } from "react-icons/tb";
 import { FiBookOpen as BookIcon } from "react-icons/fi";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { HEADER_SCROLL } from "@/constants/scroll";
 
 const Header = () => {
   const LOGOMENU = menus[0];
@@ -13,9 +19,31 @@ const Header = () => {
   const GALLERY = menus[3];
   const SIGNIN = menus[4];
 
+  const [headerHeight, setHeaderHeight] = useState<"44px" | "88px">("44px");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > HEADER_SCROLL) {
+        setHeaderHeight("88px");
+      } else {
+        setHeaderHeight("44px");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // 컴포넌트가 언마운트될 때 스크롤 이벤트 제거
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div className="fixed top-0 z-10 flex w-screen flex-col px-layout pt-layout">
-      <div className="flex h-header w-full justify-center rounded-12 bg-gray-700">
+      <div
+        className="flex w-full justify-center rounded-12 bg-gray-700 transition-all"
+        style={{ height: headerHeight }}
+      >
         {/* Upper */}
         <div className="flex h-header w-full items-center">
           <div className="pl-header-margin flex h-full w-1/4 items-center justify-start">
