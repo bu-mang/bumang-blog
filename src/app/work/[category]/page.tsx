@@ -1,13 +1,13 @@
 import { StickyToolbar } from "@/components";
 import ItemListDeck from "@/components/lists";
 
-const Gallery = () => {
+const WorkCategory = () => {
   return (
-    <div className="mt-8 h-[1500px] w-full">
+    <div className="mt-8 h-[500px] w-full bg-red">
       <StickyToolbar />
       <ItemListDeck />
     </div>
   );
 };
 
-export default Gallery;
+export default WorkCategory;

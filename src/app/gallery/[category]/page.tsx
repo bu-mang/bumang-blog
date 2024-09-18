@@ -1,7 +1,7 @@
 import { StickyToolbar } from "@/components";
 import ItemListDeck from "@/components/lists";
 
-const Gallery = () => {
+const GalleryCategory = () => {
   return (
     <div className="mt-8 h-[1500px] w-full">
       <StickyToolbar />
@@ -10,4 +10,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default GalleryCategory;
