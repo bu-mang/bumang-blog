@@ -44,7 +44,10 @@ const config: Config = {
         noSpacing: "0em",
       },
       spacing: {
-        layout: "104px",
+        layout: "12px",
+        header: "44px",
+        "header-2": "88px",
+        "header-margin": "16px",
       },
       borderRadius: {
         2: "2px",

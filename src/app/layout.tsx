@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Header, Toggle } from "@/components";
+import { Header } from "@/components";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body className="w-full bg-gray-1">
+      <body className="h-screen w-screen bg-gray-900">
         <Header />
         {children}
       </body>
