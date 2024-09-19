@@ -81,6 +81,7 @@ const StickyToolbar = () => {
         {majorPathInfo?.subMenu?.map((item) => (
           <Link
             key={item.title}
+            prefetch={true}
             className={twMerge(
               "text-14",
               item.url === minorPathname ? "text-white" : "text-gray-400",

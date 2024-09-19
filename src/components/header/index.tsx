@@ -11,6 +11,8 @@ import { FiBookOpen as BookIcon } from "react-icons/fi";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { HEADER_SCROLL } from "@/constants/scroll";
+import { twMerge } from "tailwind-merge";
+import usePathProps from "@/hooks/usePathProps";
 
 const Header = () => {
   const LOGOMENU = menus[0];
@@ -20,6 +22,7 @@ const Header = () => {
   const SIGNIN = menus[4];
 
   const [headerHeight, setHeaderHeight] = useState<"44px" | "88px">("44px");
+  const { majorPathname } = usePathProps();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,21 +49,41 @@ const Header = () => {
       >
         {/* Upper */}
         <div className="flex h-header w-full items-center">
-          <div className="pl-header-margin flex h-full w-1/4 items-center justify-start">
+          <div className="flex h-full w-1/4 items-center justify-start pl-header-margin">
             <MenuIcon color="white" size={24} />
           </div>
-          <div className="flex w-1/2 justify-between text-14 text-white">
-            <Link href={WORK.url}>{WORK.title}</Link>
-            <Link href={LOGOMENU.url} className="font-semibold">
+          <div className="flex w-1/2 justify-between text-14">
+            <Link
+              prefetch={true}
+              href={WORK.url}
+              className={
+                majorPathname === WORK.url ? "text-white" : "text-gray-400"
+              }
+            >
+              {WORK.title}
+            </Link>
+            <Link
+              prefetch={true}
+              href={LOGOMENU.url}
+              className="font-semibold text-white"
+            >
               {LOGOMENU.as}
             </Link>
-            <Link href={GALLERY.url}>{GALLERY.title}</Link>
+            <Link //
+              prefetch={true}
+              href={GALLERY.url}
+              className={
+                majorPathname === GALLERY.url ? "text-white" : "text-gray-400"
+              }
+            >
+              {GALLERY.title}
+            </Link>
           </div>
-          <div className="pr-header-margin flex h-full w-1/4 items-center justify-end gap-5">
-            <Link href={GUESTBOOK.url}>
+          <div className="flex h-full w-1/4 items-center justify-end gap-5 pr-header-margin">
+            <Link prefetch={true} href={GUESTBOOK.url}>
               <UserIcon color="white" size={22} />
             </Link>
-            <Link href={SIGNIN.url}>
+            <Link prefetch={true} href={SIGNIN.url}>
               <BookIcon color="white" size={20} />
             </Link>
             <button>
