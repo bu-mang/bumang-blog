@@ -1,32 +1,19 @@
 "use client";
 
-import { ListType, SortType } from "@/types/item";
-import { useState } from "react";
+import ListItemView from "./itemList/listItemView";
+import GridItemView from "./itemList/gridItemView";
 
-export const ListItemView = () => {
-  return <div></div>;
-};
-
-export const GridItemView = () => {
-  return <div></div>;
-};
+import useQueryProps from "@/hooks/useQueryProps";
 
 const ItemListDeck = () => {
-  const [view, setView] = useState<ListType>("List");
-  const [sort, setSort] = useState<SortType>("Recent");
+  const { list } = useQueryProps();
 
-  const handleView = (to: ListType) => {
-    setView(to);
-  };
-
-  const handleSort = (to: SortType) => {
-    setSort(to);
-  };
+  console.log(list, "list????");
 
   return (
     <div className="">
-      {view === "List" && <ListItemView />}
-      {view === "Grid" && <GridItemView />}
+      {(list === "list" || !list) && <ListItemView />}
+      {list === "grid" && <GridItemView />}
     </div>
   );
 };

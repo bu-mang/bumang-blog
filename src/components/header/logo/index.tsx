@@ -37,17 +37,19 @@ const Logo = () => {
 
   return (
     <div
-      className="mb-2 flex w-fit translate-y-0.5 cursor-pointer items-center gap-2 font-display"
+      className="flex w-fit cursor-pointer items-center gap-2"
       onMouseOver={handleMouseOver}
     >
       <Link
         href="/"
         onClick={() => router.push("/")}
-        className="text-24 font-bold"
+        className="font-semibold text-white"
       >
         Bumang
       </Link>
-      {isVisible && <span className="translate-y-0.5 text-12">{status}</span>}
+      {isVisible && (
+        <span className="translate-y-0.5 text-12 text-white">{status}</span>
+      )}
     </div>
   );
 };
