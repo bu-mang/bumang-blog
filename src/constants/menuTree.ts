@@ -4,6 +4,10 @@ export const menus: MenuType[] = [
   { title: "Landing", url: "/", as: "Bumang" },
   { title: "Guest Book", url: "/guest-book" },
   {
+    title: "Sign In",
+    url: "/signin",
+  },
+  {
     title: "Work",
     url: "/work",
     subMenu: [
@@ -18,20 +22,6 @@ export const menus: MenuType[] = [
       {
         title: "Playground",
         url: "/playground",
-      },
-      {
-        title: "log",
-        url: "/log",
-        subMenu: [
-          {
-            title: "Life",
-            url: "/life",
-          },
-          {
-            title: "Dev",
-            url: "/dev",
-          },
-        ],
       },
     ],
   },
@@ -54,7 +44,21 @@ export const menus: MenuType[] = [
     ],
   },
   {
-    title: "Sign In",
-    url: "/signin",
+    title: "Log",
+    url: "/log",
+    subMenu: [
+      {
+        title: "All",
+        url: "/",
+      },
+      {
+        title: "Dev",
+        url: "/dev",
+      },
+      {
+        title: "Life",
+        url: "/life",
+      },
+    ],
   },
 ] as const;

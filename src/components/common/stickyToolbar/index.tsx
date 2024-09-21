@@ -8,19 +8,16 @@ import { HEADER_SCROLL } from "@/constants/scroll";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { twMerge } from "tailwind-merge";
+import useQueryProps from "@/hooks/useQueryProps";
 
 const StickyToolbar = () => {
   const { majorPathInfo, fullPathname, minorPathname } = usePathProps();
+  const { list, sort } = useQueryProps();
+
   const router = useRouter();
   const handleNavigation = (path: string) => {
     router.push(path);
   };
-
-  const searchParams = useSearchParams();
-  const list = searchParams.get("list");
-  const sort = searchParams.get("sort");
-
-  console.log(list, "list");
 
   const listViewStyle =
     list === "list" || !list ? "text-white" : "text-gray-400";

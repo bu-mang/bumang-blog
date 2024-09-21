@@ -11,15 +11,17 @@ import { FiBookOpen as BookIcon } from "react-icons/fi";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { HEADER_SCROLL } from "@/constants/scroll";
-import { twMerge } from "tailwind-merge";
 import usePathProps from "@/hooks/usePathProps";
+import Logo from "./logo";
+import { twMerge } from "tailwind-merge";
 
 const Header = () => {
   const LOGOMENU = menus[0];
   const GUESTBOOK = menus[1];
-  const WORK = menus[2];
-  const GALLERY = menus[3];
-  const SIGNIN = menus[4];
+  const SIGNIN = menus[2];
+  const WORK = menus[3];
+  const GALLERY = menus[4];
+  const LOG = menus[5];
 
   const [headerHeight, setHeaderHeight] = useState<"44px" | "88px">("44px");
   const { majorPathname } = usePathProps();
@@ -43,43 +45,49 @@ const Header = () => {
 
   return (
     <div className="fixed top-0 z-10 flex w-screen flex-col px-layout pt-layout">
+      {/* Actual Contaniner Below */}
       <div
         className="flex w-full justify-center rounded-12 bg-gray-700 transition-all"
         style={{ height: headerHeight }}
       >
-        {/* Upper */}
         <div className="flex h-header w-full items-center">
-          <div className="flex h-full w-1/4 items-center justify-start pl-header-margin">
+          <div className="flex h-full w-2/5 flex-1 items-center justify-start gap-4 pl-header-margin">
             <MenuIcon color="white" size={24} />
+            <Logo />
           </div>
-          <div className="flex w-1/2 justify-between text-14">
+          <div className="flex w-[300px] justify-between text-14">
             <Link
               prefetch={true}
               href={WORK.url}
-              className={
-                majorPathname === WORK.url ? "text-white" : "text-gray-400"
-              }
+              className={twMerge(
+                "w-20",
+                majorPathname === WORK.url ? "text-white" : "text-gray-400",
+              )}
             >
               {WORK.title}
-            </Link>
-            <Link
-              prefetch={true}
-              href={LOGOMENU.url}
-              className="font-semibold text-white"
-            >
-              {LOGOMENU.as}
             </Link>
             <Link //
               prefetch={true}
               href={GALLERY.url}
-              className={
-                majorPathname === GALLERY.url ? "text-white" : "text-gray-400"
-              }
+              className={twMerge(
+                "flex w-20 justify-center",
+                majorPathname === GALLERY.url ? "text-white" : "text-gray-400",
+              )}
             >
               {GALLERY.title}
             </Link>
+            <Link //
+              prefetch={true}
+              href={LOG.url}
+              className={twMerge(
+                "flex w-20 justify-end",
+                majorPathname === LOG.url ? "text-white" : "text-gray-400",
+              )}
+            >
+              {LOG.title}
+            </Link>
           </div>
-          <div className="flex h-full w-1/4 items-center justify-end gap-5 pr-header-margin">
+          <div className="flex h-full flex-1 items-center justify-end gap-5 pr-header-margin">
             <Link prefetch={true} href={GUESTBOOK.url}>
               <UserIcon color="white" size={22} />
             </Link>
@@ -91,8 +99,6 @@ const Header = () => {
             </button>
           </div>
         </div>
-        {/* Bottom */}
-        <div></div>
       </div>
     </div>
   );
