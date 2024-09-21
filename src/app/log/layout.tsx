@@ -1,4 +1,4 @@
-import TabbarDeck from "@/components/common/tabbar";
+import { Tabbar } from "@/components";
 import { menus } from "@/constants/menuTree";
 
 interface TabLayoutProps {
@@ -6,15 +6,11 @@ interface TabLayoutProps {
 }
 
 const TabLayout = ({ children }: TabLayoutProps) => {
-  const GALLERY = menus[4];
+  const LOG = menus[5];
 
   return (
     <div className="mt-16 h-full w-full flex-1 px-layout">
-      <TabbarDeck
-        page={GALLERY.title}
-        pageUrl={GALLERY.url}
-        subMenu={GALLERY.subMenu ?? []}
-      />
+      <Tabbar page={LOG.title} pageUrl={LOG.url} subMenu={LOG.subMenu ?? []} />
       {children}
     </div>
   );

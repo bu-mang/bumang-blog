@@ -18,7 +18,7 @@ const Category = ({ children, url, pageUrl, isFocused }: TabProps) => {
   return (
     <Link
       href={pageUrl + url}
-      className={`flex h-full flex-grow items-center justify-center rounded-12 border border-gray-400 text-14 text-white ${focusStyle}`}
+      className={`flex h-full flex-1 items-center justify-center rounded-12 border border-gray-400 text-14 text-white ${focusStyle}`}
     >
       {children}
     </Link>
