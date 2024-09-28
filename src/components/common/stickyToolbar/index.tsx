@@ -38,6 +38,7 @@ const StickyToolbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
     // 컴포넌트가 언마운트될 때 스크롤 이벤트 제거
     return () => {
@@ -47,7 +48,7 @@ const StickyToolbar = () => {
 
   return (
     <div className="sticky top-[56px] z-50 mt-4 flex h-header w-full px-4">
-      <div className="flex h-full w-1/4 items-center gap-6">
+      <div className="flex h-full w-1/4 items-center gap-6 text-14">
         <Button
           onClick={() =>
             handleNavigation(
@@ -72,7 +73,7 @@ const StickyToolbar = () => {
         </Button>
       </div>
       <div
-        className="flex h-full flex-1 items-center justify-center gap-8"
+        className="flex h-full flex-1 items-center justify-center gap-6 text-14"
         style={{ visibility }}
       >
         {majorPathInfo?.subMenu?.map((item) => (
@@ -80,7 +81,7 @@ const StickyToolbar = () => {
             key={item.title}
             prefetch={true}
             className={twMerge(
-              "text-14",
+              "flex w-20 justify-center",
               item.url === minorPathname ? "text-white" : "text-gray-400",
             )}
             href={majorPathInfo.url + item.url}
@@ -89,7 +90,7 @@ const StickyToolbar = () => {
           </Link>
         ))}
       </div>
-      <div className="flex h-full w-1/4 items-center justify-end gap-6">
+      <div className="flex h-full w-1/4 items-center justify-end gap-6 text-14">
         <span className="text-gray-400">Sort by: </span>
         <Button
           classname={recentSortStyle}

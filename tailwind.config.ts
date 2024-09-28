@@ -96,6 +96,21 @@ const config: Config = {
           dark: "#B91C1C", // 어두운 빨간색
         },
       },
+      animation: {
+        arrow: "arrow 1s ease-out infinite",
+        "slide-up": "slide-up 0.2s ease-out",
+      },
+      keyframes: {
+        arrow: {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        "slide-up": {
+          "0%": { transform: "translateY(50%)", opacity: "0" },
+          "100%": { transform: "translateY(0%)", opacity: "1" },
+        },
+        blink: {},
+      },
     },
   },
   plugins: [],
