@@ -38,6 +38,7 @@ const config: Config = {
         40: ["2.5rem", { lineHeight: "3.5rem", letterSpacing: "-0.05em" }], // 36px font size, 40px line-height
         48: ["3rem", { lineHeight: "4.25rem", letterSpacing: "-0.05em" }], // 48px font size, 1 (unitless) line-height
         80: ["5rem", { lineHeight: "7rem", letterSpacing: "-0.06em" }], // 48px font size, 1 (unitless) line-height
+        120: ["7.5rem", { lineHeight: "10.25rem", letterSpacing: "-0.06em" }], // 48px font size, 1 (unitless) line-height
       },
       letterSpacing: {
         looser: "-0.02em",
@@ -95,6 +96,21 @@ const config: Config = {
           DEFAULT: "#EF4444", // 기본 빨간색
           dark: "#B91C1C", // 어두운 빨간색
         },
+      },
+      animation: {
+        arrow: "arrow 1s ease-out infinite",
+        "slide-up": "slide-up 0.3s ease-in-out",
+      },
+      keyframes: {
+        arrow: {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        "slide-up": {
+          "0%": { transform: "translateY(40px)", opacity: "0" },
+          "100%": { transform: "translateY(0%)", opacity: "1" },
+        },
+        blink: {},
       },
     },
   },
