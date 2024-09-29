@@ -16,7 +16,6 @@ import Logo from "./logo";
 import { twMerge } from "tailwind-merge";
 
 const Header = () => {
-  const LOGOMENU = menus[0];
   const GUESTBOOK = menus[1];
   const SIGNIN = menus[2];
   const WORK = menus[3];
@@ -36,6 +35,7 @@ const Header = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
     // 컴포넌트가 언마운트될 때 스크롤 이벤트 제거
     return () => {

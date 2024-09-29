@@ -32,7 +32,7 @@ interface DeckProps {
 }
 
 const CategorybarDeck = ({ subMenu, page, pageUrl }: DeckProps) => {
-  const { majorPathname, minorPathname } = usePathProps();
+  const { minorPathname } = usePathProps();
 
   return (
     <div className="flex h-[60px] w-full gap-3">
