@@ -98,7 +98,7 @@ const config: Config = {
       },
       animation: {
         arrow: "arrow 1s ease-out infinite",
-        "slide-up": "slide-up 0.2s ease-out",
+        "slide-up": "slide-up 0.3s ease-in-out",
       },
       keyframes: {
         arrow: {
@@ -106,7 +106,7 @@ const config: Config = {
           "100%": { transform: "translateX(0)" },
         },
         "slide-up": {
-          "0%": { transform: "translateY(50%)", opacity: "0" },
+          "0%": { transform: "translateY(40px)", opacity: "0" },
           "100%": { transform: "translateY(0%)", opacity: "1" },
         },
         blink: {},

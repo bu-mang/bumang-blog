@@ -7,6 +7,8 @@ export interface WorkItem {
   id: string;
   title: string; // 제목
   bgImage: string; // 배경
+  desc?: string;
+  categoryType: "portfolio" | "playground";
   bgColor: string; // 배경의 주요 색상
   platform: string[]; // WEB, MOBILE
   date: {

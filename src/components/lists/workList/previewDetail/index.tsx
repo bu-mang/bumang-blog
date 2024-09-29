@@ -4,6 +4,7 @@ import ClickToDetail from "../clockToDetail";
 interface Props {
   id: string;
   title: string; // 제목
+  desc?: string;
   bgColor: string;
   date: {
     startDate: Date;
@@ -29,6 +30,7 @@ interface Props {
 const PreviewDetail = ({
   id,
   title,
+  desc,
   bgColor,
   date,
   roleMain,
@@ -40,14 +42,29 @@ const PreviewDetail = ({
   admin,
 }: Props) => {
   return (
-    <div className="animate-slide-up flex h-full w-full flex-col border p-8 text-white">
-      <div className="mb-4 w-full border-b border-white pb-4 text-32 font-semibold">
+    <div
+      className="flex h-full w-full flex-col p-8 text-white"
+      style={{ backgroundColor: bgColor }}
+    >
+      <div className="mb-4 w-full animate-slide-up border-b pb-4 text-32 font-semibold">
         {title}
       </div>
-      {/* TODO: DateFNS */}
-      <div className="flex">
-        <div>{date.startDate.toDateString()}</div>
-        <div>{date.endDate?.toDateString()}</div>
+      <div className="animate-slide-up delay-100">
+        {/* TODO: DateFNS */}
+        <div>{desc}</div>
+        <div>
+          {platform.map((pl) => (
+            <span key={pl}>{pl}</span>
+          ))}
+        </div>
+        <div>
+          {participants} | {roleMain}
+        </div>
+        <div className="flex">
+          <div>{date.startDate.toDateString()}</div>
+          <div>-</div>
+          <div>{date.endDate?.toDateString()}</div>
+        </div>
       </div>
       <ClickToDetail />
     </div>

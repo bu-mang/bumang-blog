@@ -10,6 +10,8 @@ const mockWorkItems: WorkItem[] = [
   {
     id: "1",
     title: "Link Sorter",
+    desc: "The Most Compact Way to Manage Your Links across your Devices",
+    categoryType: "portfolio",
     bgImage: "https://example.com/portfolio-bg.jpg",
     bgColor: "#222222",
     platform: ["WEB", "MOBILE"],
@@ -43,8 +45,10 @@ const mockWorkItems: WorkItem[] = [
   {
     id: "2",
     title: "Yin Tarot",
+    desc: "The Most Compact Way to Manage Your Links across your Devices",
+    categoryType: "portfolio",
     bgImage: "https://example.com/ecommerce-bg.jpg",
-    bgColor: "#222222",
+    bgColor: "blue",
     platform: ["WEB", "MOBILE"],
     date: {
       startDate: new Date("2022-08-01"),
@@ -72,8 +76,10 @@ const mockWorkItems: WorkItem[] = [
   {
     id: "3",
     title: "Chat",
+    desc: "The Most Compact Way to Manage Your Links across your Devices",
+    categoryType: "playground",
     bgImage: "https://example.com/chatapp-bg.jpg",
-    bgColor: "#222222",
+    bgColor: "#985742",
     platform: ["WEB", "MOBILE"],
     date: {
       startDate: new Date("2022-08-01"),
@@ -112,11 +118,13 @@ const ItemListDeck = () => {
       {(list === "list" || !list) &&
         mockWorkItems.map((item) => (
           <ListItemView //
+            categoryType={item.categoryType}
             bgColor={item.bgColor}
             platform={item.platform}
             key={item.id}
             id={item.id}
             title={item.title}
+            desc={item.desc}
             bgImage={item.bgImage}
             date={item.date}
             createAt={item.createAt}
