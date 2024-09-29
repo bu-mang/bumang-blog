@@ -38,6 +38,7 @@ const config: Config = {
         40: ["2.5rem", { lineHeight: "3.5rem", letterSpacing: "-0.05em" }], // 36px font size, 40px line-height
         48: ["3rem", { lineHeight: "4.25rem", letterSpacing: "-0.05em" }], // 48px font size, 1 (unitless) line-height
         80: ["5rem", { lineHeight: "7rem", letterSpacing: "-0.06em" }], // 48px font size, 1 (unitless) line-height
+        120: ["7.5rem", { lineHeight: "10.25rem", letterSpacing: "-0.06em" }], // 48px font size, 1 (unitless) line-height
       },
       letterSpacing: {
         looser: "-0.02em",

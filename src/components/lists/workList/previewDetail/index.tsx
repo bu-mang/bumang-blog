@@ -1,5 +1,18 @@
 import { StackTree } from "@/types/item";
 import ClickToDetail from "../clockToDetail";
+import { dateFormat } from "@/util/dateFormat";
+
+const Title = ({ children }: { children: React.ReactNode }) => {
+  return <div className="mb-2 flex text-14 font-bold">{children}</div>;
+};
+
+const Tag = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="flex w-fit rounded-4 border border-white px-2 py-1 text-14">
+      {children}
+    </div>
+  );
+};
 
 interface Props {
   id: string;
@@ -13,7 +26,10 @@ interface Props {
   roleMain: "FullStack" | "Front" | "Back";
   roleDetail: string[];
   stack: StackTree[];
-  participants: "Solo" | "Team";
+  participants:
+    | "Solo Project"
+    | "Team Project - Teammate"
+    | "Team Project - Leader";
   platform: string[];
 
   link: {
@@ -43,30 +59,45 @@ const PreviewDetail = ({
 }: Props) => {
   return (
     <div
-      className="flex h-full w-full flex-col p-8 text-white"
+      className="flex h-full w-full flex-col px-12 py-4 text-white"
       style={{ backgroundColor: bgColor }}
     >
-      <div className="mb-4 w-full animate-slide-up border-b pb-4 text-32 font-semibold">
-        {title}
+      <div className="mb-14 flex w-full animate-slide-up items-center justify-between text-48 font-semibold">
+        <span>{title}</span>
+        <ClickToDetail rest="translate-y-3" />
       </div>
-      <div className="animate-slide-up delay-100">
-        {/* TODO: DateFNS */}
-        <div>{desc}</div>
-        <div>
-          {platform.map((pl) => (
-            <span key={pl}>{pl}</span>
-          ))}
-        </div>
-        <div>
-          {participants} | {roleMain}
-        </div>
-        <div className="flex">
-          <div>{date.startDate.toDateString()}</div>
-          <div>-</div>
-          <div>{date.endDate?.toDateString()}</div>
+
+      <div className="animate-slide-up">
+        <div className="mb-2 h-[1px] w-full bg-white" />
+        <div className="mb-8 text-14">{desc}</div>
+        <div className="flex gap-8">
+          <div>
+            <Title>Platform</Title>
+            <div className="flex gap-2">
+              {platform.map((pl) => (
+                <Tag key={pl}>{pl}</Tag>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <Title>Role & Position</Title>
+            <div className="flex gap-2">
+              <Tag>{participants}</Tag>
+              <Tag>{roleMain}</Tag>
+            </div>
+          </div>
+
+          <div>
+            <Title>Date</Title>
+            <div className="flex gap-2">
+              <Tag>
+                {dateFormat(date.startDate)} - {dateFormat(date?.endDate)}
+              </Tag>
+            </div>
+          </div>
         </div>
       </div>
-      <ClickToDetail />
     </div>
   );
 };

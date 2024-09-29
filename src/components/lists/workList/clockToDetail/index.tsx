@@ -1,12 +1,23 @@
 import { BsArrowRight as ArrowRightIcon } from "react-icons/bs";
 
-const ClickToDetail = () => {
+interface Props {
+  style?: React.CSSProperties;
+  rest: string;
+}
+
+const ClickToDetail = ({ style, rest }: Props) => {
   return (
-    <div className="absolute bottom-8 left-[50%] flex translate-x-[-50%] items-center gap-3 text-gray-200 opacity-0 group-hover:opacity-100">
+    <div
+      className={
+        "flex items-center gap-3 text-14 text-white opacity-0 group-hover:opacity-100 " +
+        rest
+      }
+      style={style}
+    >
       <span>Click to Detail</span>
       <ArrowRightIcon
         size={12}
-        className="animate-arrow infinite translate-y-2"
+        className="infinite translate-y-2 animate-arrow"
       />
     </div>
   );

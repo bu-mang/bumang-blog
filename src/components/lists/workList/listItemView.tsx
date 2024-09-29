@@ -20,7 +20,10 @@ interface ListItemProps {
   roleMain: "FullStack" | "Front" | "Back";
   roleDetail: string[];
   stack: StackTree[];
-  participants: "Solo" | "Team";
+  participants:
+    | "Solo Project"
+    | "Team Project - Teammate"
+    | "Team Project - Leader";
   platform: string[];
 
   link: {
@@ -66,8 +69,6 @@ const ListItemView = ({
     setHalftoneScale(1);
   };
 
-  // const asd = useAnimationProp()
-
   return (
     <Link
       href={`/work/${categoryType}/` + title.split(" ").join("")}
@@ -86,11 +87,11 @@ const ListItemView = ({
       />
       <div
         className={twMerge(
-          "relative flex w-fit flex-col items-center justify-center transition-all group-hover:w-2/5",
+          "relative flex w-fit flex-col items-center justify-center transition-all group-hover:w-3/5",
         )}
       >
         {!isHover && (
-          <div className="flex h-full w-full items-center justify-center text-center text-80 font-semibold text-white">
+          <div className="text-120 flex h-full w-full items-center justify-center text-center font-semibold text-white">
             {title}
           </div>
         )}

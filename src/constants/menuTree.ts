@@ -16,12 +16,12 @@ export const menus: MenuType[] = [
         url: "/",
       },
       {
-        title: "Portfolio",
-        url: "/portfolio",
+        title: "Main",
+        url: "/main-project",
       },
       {
-        title: "Playground",
-        url: "/playground",
+        title: "Toy",
+        url: "/toy-project",
       },
     ],
   },

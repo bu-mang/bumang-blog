@@ -8,7 +8,7 @@ export interface WorkItem {
   title: string; // 제목
   bgImage: string; // 배경
   desc?: string;
-  categoryType: "portfolio" | "playground";
+  categoryType: "main-project" | "toy-project";
   bgColor: string; // 배경의 주요 색상
   platform: string[]; // WEB, MOBILE
   date: {
@@ -19,7 +19,10 @@ export interface WorkItem {
   roleMain: "FullStack" | "Front" | "Back";
   roleDetail: string[];
   stack: StackTree[];
-  participants: "Solo" | "Team";
+  participants:
+    | "Solo Project"
+    | "Team Project - Teammate"
+    | "Team Project - Leader";
 
   link: {
     github: string;
@@ -50,7 +53,10 @@ export interface GalleryItem {
   tag: ArtworkType[];
   roleDetail: string[];
   stack: StackTree[];
-  participants: "Solo" | "Team";
+  participants:
+    | "Solo Project"
+    | "Team Project - Teammate"
+    | "Team Project - Team Leader";
   detailContent?: boolean;
 
   link: {
