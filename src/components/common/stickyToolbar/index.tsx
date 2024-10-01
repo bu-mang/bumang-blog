@@ -47,7 +47,7 @@ const StickyToolbar = () => {
   }, []);
 
   return (
-    <div className="sticky top-[56px] z-50 mt-4 flex h-header w-full px-4">
+    <div className="sticky top-[54px] z-[100] mt-4 flex h-header w-full px-5">
       <div className="flex h-full w-1/4 items-center gap-6 text-14">
         <Button
           onClick={() =>
@@ -73,7 +73,7 @@ const StickyToolbar = () => {
         </Button>
       </div>
       <div
-        className="flex h-full flex-1 items-center justify-center gap-6 text-14"
+        className="flex h-full flex-1 items-center justify-center gap-2 rounded-4 text-14"
         style={{ visibility }}
       >
         {majorPathInfo?.subMenu?.map((item) => (
@@ -81,8 +81,10 @@ const StickyToolbar = () => {
             key={item.title}
             prefetch={true}
             className={twMerge(
-              "flex w-20 justify-center",
-              item.url === minorPathname ? "text-white" : "text-gray-400",
+              "flex w-20 justify-center rounded-4 py-1 hover:bg-gray-500 hover:text-white",
+              item.url === minorPathname
+                ? "bg-gray-600 text-white"
+                : "text-gray-400",
             )}
             href={majorPathInfo.url + item.url}
           >
