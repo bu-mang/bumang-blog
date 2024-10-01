@@ -16,7 +16,7 @@ export interface WorkItem {
     endDate?: Date;
   };
   createAt: Date;
-  roleMain: "FullStack" | "Front" | "Back";
+  roleMain: "FullStack" | "Frontend" | "Backend";
   roleDetail: string[];
   stack: StackTree[];
   participants: "Solo Project" | "Team Project";
@@ -50,10 +50,7 @@ export interface GalleryItem {
   tag: ArtworkType[];
   roleDetail: string[];
   stack: StackTree[];
-  participants:
-    | "Solo Project"
-    | "Team Project - Teammate"
-    | "Team Project - Team Leader";
+  participants: "Solo Project" | "Team Project";
   detailContent?: boolean;
 
   link: {

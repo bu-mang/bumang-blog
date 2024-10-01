@@ -1,9 +1,9 @@
 import { StackTree } from "@/types/item";
-import ClickToDetail from "../clockToDetail";
+import ClickToDetail from "../clickToDetail";
 import { dateFormat } from "@/util/dateFormat";
 
 const Title = ({ children }: { children: React.ReactNode }) => {
-  return <div className="mb-1 flex text-14 font-semibold">{children}</div>;
+  return <div className="mb-1 flex text-14 font-medium">{children}</div>;
 };
 
 const Tag = ({ children }: { children: React.ReactNode }) => {
@@ -23,13 +23,10 @@ interface Props {
     startDate: Date;
     endDate?: Date;
   };
-  roleMain: "FullStack" | "Front" | "Back";
+  roleMain: "FullStack" | "Frontend" | "Backend";
   roleDetail: string[];
   stack: StackTree[];
-  participants:
-    | "Solo Project"
-    | "Team Project - Teammate"
-    | "Team Project - Leader";
+  participants: "Solo Project" | "Team Project";
   platform: string[];
 
   link: {
@@ -59,18 +56,16 @@ const PreviewDetail = ({
 }: Props) => {
   return (
     <div
-      className="relative z-10 flex h-full w-full flex-col px-12 py-4 text-white"
+      className="relative z-10 flex h-full w-full flex-col px-12 py-12 text-white"
       style={{ backgroundColor: bgColor }}
     >
       <div className="mb-14 w-full animate-slide-up items-center justify-between">
-        <span className="text-shadow relative right-1 mb-0 text-48 font-semibold">
-          {title}
-        </span>
-        <div className="text-20">{desc}</div>
+        <span className="relative right-1 text-48 font-semibold">{title}</span>
+        <div className="relative top-2 text-20 font-light">{desc}</div>
       </div>
 
-      <div className="absolute bottom-8 left-0 right-0 animate-slide-up px-12">
-        <div className="mb-4 h-[1px] w-full bg-white" />
+      <div className="absolute bottom-14 left-0 right-0 animate-slide-up px-12">
+        <div className="mb-8 h-[1px] w-full bg-gray-200" />
         <div className="flex gap-12">
           <div>
             <Title>Platform</Title>
@@ -98,7 +93,6 @@ const PreviewDetail = ({
             </div>
           </div>
         </div>
-        {/* <ClickToDetail /> */}
       </div>
     </div>
   );

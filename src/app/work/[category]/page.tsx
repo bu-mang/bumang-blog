@@ -1,10 +1,11 @@
-import { ItemListDeck, StickyToolbar } from "@/components";
+import { StickyToolbar } from "@/components";
+import { WorkItemListDeck } from "@/components/lists";
 
 const WorkCategory = () => {
   return (
     <div className="mt-8 h-[1500px] w-full">
       <StickyToolbar />
-      <ItemListDeck />
+      <WorkItemListDeck />
     </div>
   );
 };
