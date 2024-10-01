@@ -44,7 +44,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 z-50 flex w-screen flex-col px-layout pt-layout">
+    <div className="fixed top-0 z-[100] flex w-screen flex-col px-layout pt-layout">
       {/* Actual Contaniner Below */}
       <div
         className="flex w-full justify-center rounded-12 bg-gray-700 transition-all"
@@ -55,7 +55,7 @@ const Header = () => {
             <MenuIcon color="white" size={24} />
             <Logo />
           </div>
-          <div className="flex w-[300px] justify-between text-14">
+          <div className="flex w-[300px] justify-between text-14 font-semibold">
             <Link
               prefetch={true}
               href={WORK.url}
