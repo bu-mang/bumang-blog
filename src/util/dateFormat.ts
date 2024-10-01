@@ -1,9 +1,19 @@
 import { format } from "date-fns";
 
-export const dateFormat = (date?: Date) => {
-  if (date) {
+export const dateFormat = (date?: Date, form = "full") => {
+  if (!date) {
+    return "";
+  }
+
+  if (form === "full") {
     return format(date, "yyyy. MM. dd.");
   }
 
-  return "";
+  if (form === "year") {
+    return format(date, "yyyy");
+  }
+
+  if (form === "year month") {
+    return format(date, "yyyy. MM");
+  }
 };

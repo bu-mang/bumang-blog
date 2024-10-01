@@ -58,7 +58,7 @@ const mockWorkItems: WorkItem[] = [
       endDate: new Date("2022-12-01"),
     },
     createAt: new Date("2022-12-05"),
-    roleMain: "Front",
+    roleMain: "Frontend",
     roleDetail: ["UI/UX Design", "Frontend Development", "API Integration"],
     stack: [
       {
@@ -90,7 +90,7 @@ const mockWorkItems: WorkItem[] = [
       endDate: new Date("2022-12-01"),
     },
     createAt: new Date("2021-06-01"),
-    roleMain: "Back",
+    roleMain: "Backend",
     roleDetail: [
       "Backend Development",
       "Real-time Features",
@@ -114,10 +114,11 @@ const mockWorkItems: WorkItem[] = [
   },
 ];
 
-const ItemListDeck = () => {
+export const WorkItemListDeck = () => {
   const { list } = useQueryProps();
   const { minorPathname } = usePathProps();
 
+  // minorPathname이 존재하면...
   if (minorPathname.length > 1) {
     const pathname = minorPathname.split("/").join("");
 
@@ -152,6 +153,7 @@ const ItemListDeck = () => {
     );
   }
 
+  // 모든 아이템 렌더
   return (
     <div className="flex flex-col gap-4">
       {(list === "list" || !list) &&
@@ -179,5 +181,3 @@ const ItemListDeck = () => {
     </div>
   );
 };
-
-export default ItemListDeck;
