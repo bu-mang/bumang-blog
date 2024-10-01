@@ -2,14 +2,14 @@ import { BsArrowRight as ArrowRightIcon } from "react-icons/bs";
 
 interface Props {
   style?: React.CSSProperties;
-  rest: string;
+  rest?: string;
 }
 
 const ClickToDetail = ({ style, rest }: Props) => {
   return (
     <div
       className={
-        "flex items-center gap-3 text-14 text-white opacity-0 group-hover:opacity-100 " +
+        "flex items-center gap-3 text-14 text-gray-200 opacity-0 group-hover:opacity-100 " +
         rest
       }
       style={style}
