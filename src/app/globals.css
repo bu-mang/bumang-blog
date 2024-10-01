@@ -82,6 +82,10 @@ body {
       box-shadow: 0 2.5em 0 0;
     }
   }
+
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 그림자 효과 */
+  }
 }
 
 /* .sticky {
