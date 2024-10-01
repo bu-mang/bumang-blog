@@ -19,10 +19,7 @@ export interface WorkItem {
   roleMain: "FullStack" | "Front" | "Back";
   roleDetail: string[];
   stack: StackTree[];
-  participants:
-    | "Solo Project"
-    | "Team Project - Teammate"
-    | "Team Project - Leader";
+  participants: "Solo Project" | "Team Project";
 
   link: {
     github: string;
