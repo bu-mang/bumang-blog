@@ -1,6 +1,5 @@
 import { type Metadata } from "next";
 import "./globals.css";
-import { Nunito_Sans } from "next/font/google";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,12 +11,6 @@ export const metadata: Metadata = {
   description: "Bumang Portfolio & Blog",
 };
 
-const nunitoSans = Nunito_Sans({
-  subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800", "900", "1000"],
-  display: "swap",
-});
-
 gsap.registerPlugin(ScrollTrigger);
 
 export default function RootLayout({
@@ -26,6 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // <html suppressHydrationWarning>
     <html suppressHydrationWarning>
       <head>
         <link
@@ -35,7 +29,7 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
         />
       </head>
-      <body className={`${nunitoSans.className} font-sans`}>
+      <body className="flex-1">
         <Provider>
           <Navigator />
           {children}
