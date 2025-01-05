@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Nunito Sans", "Pretendard Variable", "sans-serif"], // 기본 폰트
+        sans: ["Pretendard Variable", "sans-serif"], // 기본 폰트
       },
       fontSize: {
         10: ["0.725rem", { lineHeight: "1rem", letterSpacing: "-0.04em" }], // 10px font size, 16px line-height
