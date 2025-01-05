@@ -10,17 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        body: [
-          "Work Sans",
-          "system-ui", // 시스템 UI 폰트
-          "-apple-system", // macOS 및 iOS 기본 폰트
-          "BlinkMacSystemFont", // macOS 기본 폰트
-          '"Segoe UI"', // Windows 기본 폰트
-          "Helvetica", // macOS 기본 폰트
-          "Arial", // 표준 폰트
-          "sans-serif", // 기본 sans-serif 폰트
-        ],
-        display: ["Sora", "sans-serif"], // 디스플레이 폰트
+        sans: ["Nunito Sans", "Pretendard Variable", "sans-serif"], // 기본 폰트
       },
       fontSize: {
         10: ["0.725rem", { lineHeight: "1rem", letterSpacing: "-0.04em" }], // 10px font size, 16px line-height
@@ -39,16 +29,7 @@ const config: Config = {
         48: ["3rem", { lineHeight: "4.25rem", letterSpacing: "-0.05em" }], // 48px font size, 1 (unitless) line-height
         80: ["5rem", { lineHeight: "7rem", letterSpacing: "-0.06em" }], // 48px font size, 1 (unitless) line-height
         120: ["7.5rem", { lineHeight: "10.25rem", letterSpacing: "-0.06em" }], // 48px font size, 1 (unitless) line-height
-      },
-      letterSpacing: {
-        looser: "-0.02em",
-        noSpacing: "0em",
-      },
-      spacing: {
-        layout: "12px",
-        header: "44px",
-        "header-2": "88px",
-        "header-margin": "16px",
+        180: ["11.25rem", { lineHeight: "10.25rem", letterSpacing: "-0.06em" }], // 48px font size, 1 (unitless) line-height
       },
       borderRadius: {
         2: "2px",
@@ -67,6 +48,16 @@ const config: Config = {
         28: "28px",
         30: "30px",
         32: "32px",
+      },
+      letterSpacing: {
+        looser: "-0.02em",
+        noSpacing: "0em",
+      },
+      spacing: {
+        layout: "12px",
+        header: "100px",
+        "header-2": "88px",
+        "header-margin": "40px",
       },
       colors: {
         gray: {
