@@ -2,18 +2,19 @@
 
 import clsx from "clsx";
 import Link from "next/link";
-import { LAYOUT_PADDING } from "@/app/_constants/layout";
+import { LAYOUT_NAV_HEIGHT, LAYOUT_PADDING } from "@/app/_constants/layout";
 import { ButtonBase as Button } from "./common/button";
 
 import { Avatar } from "@/components/ui/avatar";
-import { LuGlobe as GlobeIcon, LuMoon, LuSun } from "react-icons/lu";
+import { LuGlobe as GlobeIcon } from "react-icons/lu";
 import Switch from "./switch";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 
 const Navigator = () => {
   const navClass = clsx(
-    "w-full flex h-16 flex-1 fixed bg-white",
+    "w-full flex flex-1 fixed top-0 bg-white",
+    LAYOUT_NAV_HEIGHT,
     LAYOUT_PADDING,
   );
 
@@ -25,6 +26,7 @@ const Navigator = () => {
 
   const fixedClass =
     "rounded-full px-2 text-16 font-bold border-2 transition-all";
+
   const workClass = clsx(
     fixedClass,
     "/" === currentPathname ? "border-black" : "border-white",

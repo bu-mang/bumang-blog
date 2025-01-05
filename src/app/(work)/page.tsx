@@ -1,6 +1,22 @@
+"use client";
+
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import clsx from "clsx";
+
 export default function Main() {
+  const height = 200 * 1.5;
+  const width = 700 * 1.5;
+
+  // const proportionClass = clsx(`h-${height}`, `w-${width}`);
+
   return (
-    <main className="">
+    <main className="flex flex-1 flex-col items-center justify-center">
+      <DotLottieReact
+        src="/bumangtm.lottie"
+        autoplay
+        speed={1.8}
+        style={{ height, width }}
+      />
       <div>main</div>
     </main>
   );
