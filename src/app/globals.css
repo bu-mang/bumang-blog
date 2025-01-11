@@ -7,6 +7,7 @@
 *::after,
 body {
   box-sizing: border-box;
+  font-family: "Pretendard", sans-serif;
 }
 
 article,
@@ -46,6 +47,11 @@ q:after {
     text-wrap: balance;
   }
 
+  .en-text {
+    font-family: "Poppins", sans-serif; /* 영어에만 Poppins 적용 */
+  }
+
+  /* truncate로 대체 가능? */
   .single-line-text {
     white-space: nowrap; /* 줄바꿈 없이 한 줄로 */
     overflow: hidden; /* 넘치는 텍스트 숨김 */
