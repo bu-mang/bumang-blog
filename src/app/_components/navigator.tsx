@@ -13,7 +13,7 @@ import { usePathname } from "next/navigation";
 
 const Navigator = () => {
   const navClass = clsx(
-    "w-full flex flex-1 fixed top-0 bg-white",
+    "w-full flex flex-1 fixed top-0 bg-white en-text",
     LAYOUT_NAV_HEIGHT,
     LAYOUT_PADDING,
   );

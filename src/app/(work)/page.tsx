@@ -17,7 +17,7 @@ export default function Main() {
         speed={1.8}
         style={{ height, width }}
       />
-      <div>main</div>
+      <div>프레텐다드.</div>
     </main>
   );
 }
