@@ -1,9 +1,8 @@
 "use client";
 
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import clsx from "clsx";
 
-export default function Main() {
+export default function Work() {
   const height = 200 * 1.5;
   const width = 700 * 1.5;
 
