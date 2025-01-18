@@ -22,7 +22,7 @@ import {
 
 import { CONTAINER, LETTERS } from "../../_constants/headerRatio";
 
-const HomeBanner = () => {
+const NavBanner = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [subTextAnimated, setSubTextAnimated] = useState(false);
   const [widthRatio, setWidthRatio] = useState(1);
@@ -76,11 +76,11 @@ const HomeBanner = () => {
   return (
     <Link
       href="#"
-      className="relative flex aspect-[864/83] h-full w-full gap-[3vw] overflow-hidden px-[1vw]"
+      className="bg- relative flex aspect-[864/83] h-full w-full gap-[5vw] px-[1vw]"
       onMouseEnter={() => handleVisibility("show")}
       onMouseLeave={() => handleVisibility("hide")}
     >
-      <div className="BUMANG relative flex flex-1 items-center justify-start">
+      <div className="BUMANG relative flex flex-1 items-center justify-start overflow-hidden">
         <B
           className="B main LETTER"
           width={LETTERS.B.width * widthRatio}
@@ -125,7 +125,7 @@ const HomeBanner = () => {
         />
       </div>
       <div
-        className="ROUTE53 relative flex flex-1 items-center justify-start"
+        className="ROUTE53 relative flex flex-1 items-center justify-start overflow-hidden"
         ref={containerRef}
         // onClick={() => setSubTextAnimated((prev) => !prev)}
       >
@@ -200,4 +200,4 @@ const HomeBanner = () => {
   );
 };
 
-export default HomeBanner;
+export default NavBanner;
