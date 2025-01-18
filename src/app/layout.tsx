@@ -2,8 +2,10 @@ import "./globals.css";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Navigator from "./_components/navigator";
 import { Provider } from "@/components/ui/provider";
+
+import HomeBanner from "./_components/navigator/navBanner";
+import NavBar from "./_components/navigator/navBar";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,7 +35,8 @@ export default function RootLayout({
       </head>
       <body className="flex-1">
         <Provider>
-          <Navigator />
+          <HomeBanner />
+          <NavBar />
           {children}
         </Provider>
       </body>
