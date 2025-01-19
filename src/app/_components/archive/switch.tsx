@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { ButtonBase } from "./common/button";
+import { ButtonBase } from "../common/button";
 import { LuMoon, LuSun } from "react-icons/lu";
 
 interface SwitchProps {
