@@ -1,11 +1,13 @@
-import NavBanner from "./navBanner";
+import NavBanner from "./navLogo";
 import NavBar from "./navBar";
 
 const Navigator = () => {
   return (
-    <div>
-      <NavBanner></NavBanner>
+    <div className="fixed w-full bg-white">
+      <NavBanner />
       <NavBar />
     </div>
   );
 };
+
+export default Navigator;

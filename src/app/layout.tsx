@@ -1,19 +1,15 @@
 import "./globals.css";
-
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Provider } from "@/components/ui/provider";
-
-import HomeBanner from "./_components/navigator/navBanner";
-import NavBar from "./_components/navigator/navBar";
-
-gsap.registerPlugin(ScrollTrigger);
+import Navigator from "./_components/navigator";
+import Grid from "./_components/grid";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isGridOn = false;
+
   return (
     <html suppressHydrationWarning lang="ko">
       <head>
@@ -33,10 +29,10 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css"
         />
       </head>
-      <body className="flex-1">
+      <body className="h-[1500px] flex-1">
         <Provider>
-          <HomeBanner />
-          <NavBar />
+          {isGridOn && <Grid />}
+          <Navigator />
           {children}
         </Provider>
       </body>
