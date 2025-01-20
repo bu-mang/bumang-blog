@@ -54,7 +54,7 @@ const NavBar = () => {
         let isAmPm = "am";
         let hours: number | string = new Date().getHours();
 
-        if (hours > 12) {
+        if (hours >= 12) {
           hours = String(hours % 12).padStart(2, "0");
           isAmPm = "pm";
         } else if (hours === 0) {
