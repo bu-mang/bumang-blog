@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Provider } from "@/components/ui/provider";
-import Navigator from "./_components/navigator";
-import Grid from "./_components/grid";
+import Navigator from "../components/navigator";
+import Grid from "../components/grid";
 
 export default function RootLayout({
   children,
