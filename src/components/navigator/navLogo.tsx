@@ -6,11 +6,17 @@ import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import { Bumang, Route53 } from "../../_assets";
+import { Bumang, Route53 } from "../../assets";
+import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const NavLogo = () => {
+  const router = useRouter();
+  const handleRouter = () => {
+    router.push("/");
+  };
+
   const handleScrollTriggeredSize = () => {
     gsap.to(".BUMANG, .ROUTE53", {
       width: 80,
@@ -45,22 +51,20 @@ const NavLogo = () => {
       onMouseLeave={() => handleSwitchVisibility("hide")}
     >
       <div className="relative flex h-fit flex-1 items-center justify-start">
-        <Link href="#">
-          <Bumang
-            className="BUMANG h-auto w-auto"
-            viewBox="0 0 802 140"
-            preserveAspectRatio="xMinYMin meet"
-          />
-        </Link>
+        <Bumang
+          className="BUMANG h-auto w-auto cursor-pointer"
+          viewBox="0 0 802 140"
+          preserveAspectRatio="xMinYMin meet"
+          onClick={handleRouter}
+        />
       </div>
       <div className="relative flex h-fit flex-1 items-center justify-start">
-        <Link href="#">
-          <Route53
-            className="ROUTE53 h-auto w-auto"
-            viewBox="0 0 802 140"
-            preserveAspectRatio="xMinYMin meet"
-          />
-        </Link>
+        <Route53
+          className="ROUTE53 h-auto w-auto cursor-pointer"
+          viewBox="0 0 802 140"
+          preserveAspectRatio="xMinYMin meet"
+          onClick={handleRouter}
+        />
       </div>
     </div>
   );
