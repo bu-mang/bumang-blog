@@ -1,12 +1,10 @@
-import { LAYOUT_NAV_HEIGHT_MARGIN } from "../_constants/layout";
-
-export default function MainLayout({
+export default function PlayLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <section className={LAYOUT_NAV_HEIGHT_MARGIN}>
+    <section className="">
       <div className="">{children}</div>
     </section>
   );
