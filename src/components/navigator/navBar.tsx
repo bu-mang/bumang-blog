@@ -145,7 +145,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className="NAVBAR_CONTAINER w-full">
+    <div className="NAVBAR_CONTAINER relative z-50 w-full">
       <div className="NAVBAR_BORDERBOX mx-[1vw] grid grid-cols-4 gap-[5vw] border-b-[1px] border-t-[1px] border-b-white py-1 pb-3 text-xs text-gray-200">
         <div className="NAVBAR_SWITCHING_PANEL relative grid grid-cols-2 gap-[1vw]">
           <Link href="/login" className={linkHoverStyle}>
