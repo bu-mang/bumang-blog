@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import { Bumang, Route53 } from "../../_assets";
+import { Bumang, Route53 } from "../../assets";
 import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -52,7 +52,7 @@ const NavLogo = () => {
     >
       <div className="relative flex h-fit flex-1 items-center justify-start">
         <Bumang
-          className="BUMANG h-auto w-auto"
+          className="BUMANG h-auto w-auto cursor-pointer"
           viewBox="0 0 802 140"
           preserveAspectRatio="xMinYMin meet"
           onClick={handleRouter}
@@ -60,7 +60,7 @@ const NavLogo = () => {
       </div>
       <div className="relative flex h-fit flex-1 items-center justify-start">
         <Route53
-          className="ROUTE53 h-auto w-auto"
+          className="ROUTE53 h-auto w-auto cursor-pointer"
           viewBox="0 0 802 140"
           preserveAspectRatio="xMinYMin meet"
           onClick={handleRouter}
