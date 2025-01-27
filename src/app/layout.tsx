@@ -33,7 +33,7 @@ export default function RootLayout({
         <Provider>
           {isGridOn && <Grid />}
           <Navigator />
-          <div className="mt-[240px] h-full w-screen">{children}</div>
+          <div className="h-full w-screen pt-[20vw]">{children}</div>
         </Provider>
       </body>
     </html>

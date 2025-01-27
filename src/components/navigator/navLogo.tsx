@@ -22,7 +22,7 @@ const NavLogo = () => {
       scrollTrigger: {
         trigger: ".LETTER_CONTAINER",
         start: "top top", // 스크롤이 바로 시작되도록 설정
-        end: "100px top",
+        end: "200px top",
 
         scrub: true,
         markers: true,
@@ -45,7 +45,7 @@ const NavLogo = () => {
 
   return (
     <div
-      className="LETTER_CONTAINER top-0 grid w-full grid-cols-2 gap-[5vw] overflow-hidden px-[1vw] py-3"
+      className="LETTER_CONTAINER top-0 grid w-full grid-cols-2 gap-[1vw] overflow-hidden bg-white px-[3vw] py-3"
       onMouseEnter={() => handleSwitchVisibility("show")}
       onMouseLeave={() => handleSwitchVisibility("hide")}
     >

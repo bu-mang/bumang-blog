@@ -8,7 +8,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { LuGlobe, LuLayers2, LuMoonStar } from "react-icons/lu";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -113,11 +113,15 @@ const NavBar = () => {
   /**
    * @CurrentOS
    */
-  const userAgent = navigator.userAgent;
-  const currentOs =
-    userAgent.match(
-      /(Windows NT|Mac OS|Linux|Android|iPhone OS|iPad OS)/,
-    )?.[0] || "Unknown";
+  const [currentOs, setCurrentOs] = useState("");
+  useEffect(() => {
+    const userAgent = navigator?.userAgent;
+    const targetOs =
+      userAgent.match(
+        /(Windows NT|Mac OS|Linux|Android|iPhone OS|iPad OS)/,
+      )?.[0] || "Unknown";
+    setCurrentOs(targetOs);
+  }, []);
 
   /**
    * @PATHLOGIC
@@ -144,8 +148,8 @@ const NavBar = () => {
   };
 
   return (
-    <div className="NAVBAR_CONTAINER w-full">
-      <div className="NAVBAR_BORDERBOX mx-[1vw] grid grid-cols-4 gap-[5vw] border-b-[1px] border-t-[1px] border-b-white py-1 pb-3 text-xs text-gray-200">
+    <div className="NAVBAR_CONTAINER w-full bg-white">
+      <div className="NAVBAR_BORDERBOX mx-[3vw] grid grid-cols-4 gap-[1vw] border-b-[1px] border-t-[1px] border-b-white py-1 pb-3 text-xs text-gray-200">
         <div className="NAVBAR_SWITCHING_PANEL relative grid grid-cols-2 gap-[1vw]">
           <Link href="/login" className={linkHoverStyle}>
             Login
