@@ -3,7 +3,7 @@ import NavBar from "./navBar";
 
 const Navigator = () => {
   return (
-    <div className="fixed w-full bg-white">
+    <div className="fixed top-0 h-fit w-full">
       <NavBanner />
       <NavBar />
     </div>

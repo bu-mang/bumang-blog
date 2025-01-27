@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect } from "react";
 
 import gsap from "gsap";
@@ -20,10 +19,10 @@ const NavLogo = () => {
   const handleScrollTriggeredSize = () => {
     gsap.to(".BUMANG, .ROUTE53", {
       width: 80,
-      transformOrigin: "left top", // 좌측 상단 기준
       scrollTrigger: {
-        start: "50px top",
-        end: "300px top",
+        trigger: ".LETTER_CONTAINER",
+        start: "top top", // 스크롤이 바로 시작되도록 설정
+        end: "200px top",
 
         scrub: true,
         markers: true,
@@ -46,21 +45,21 @@ const NavLogo = () => {
 
   return (
     <div
-      className="LETTER_CONTAINER relative top-0 z-50 grid w-full grid-cols-2 gap-[5vw] overflow-hidden px-[1vw] py-3"
+      className="LETTER_CONTAINER top-0 grid w-full grid-cols-2 gap-[1vw] overflow-hidden bg-white px-[3vw] py-3"
       onMouseEnter={() => handleSwitchVisibility("show")}
       onMouseLeave={() => handleSwitchVisibility("hide")}
     >
-      <div className="relative flex h-fit flex-1 items-center justify-start">
+      <div className="flex h-fit flex-1 items-center justify-start">
         <Bumang
-          className="BUMANG h-auto w-auto cursor-pointer"
+          className="BUMANG relative z-50 h-auto w-auto cursor-pointer"
           viewBox="0 0 802 140"
           preserveAspectRatio="xMinYMin meet"
           onClick={handleRouter}
         />
       </div>
-      <div className="relative flex h-fit flex-1 items-center justify-start">
+      <div className="flex h-fit flex-1 items-center justify-start">
         <Route53
-          className="ROUTE53 h-auto w-auto cursor-pointer"
+          className="ROUTE53 relative z-50 h-auto w-auto cursor-pointer"
           viewBox="0 0 802 140"
           preserveAspectRatio="xMinYMin meet"
           onClick={handleRouter}
