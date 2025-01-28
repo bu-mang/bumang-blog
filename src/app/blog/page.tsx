@@ -86,8 +86,11 @@ const blogItems = [
 export default function Blog() {
   return (
     <main>
-      <header className="mx-[3vw] mb-4 flex justify-between font-semibold">
-        <span>All Posts</span>
+      <header className="mx-[3vw] mb-4 flex flex-col gap-1 border-t-[1px] text-xs">
+        <span className="text-gray-200">All</span>
+        <span className="text-gray-200">Dev</span>
+        <span className="pl-4 text-gray-200">ReactNative</span>
+        <span className="text-gray-200">Life</span>
       </header>
       <div className="grid h-fit w-full grid-cols-4 gap-x-[1vw] gap-y-[2vw] px-[3vw]">
         {blogItems.map(({ id, title, category, tags, date, imageUrl }) => (
