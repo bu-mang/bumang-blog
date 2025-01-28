@@ -38,7 +38,9 @@ const BlogItem = ({
         <div className="flex w-full -translate-y-6 items-center justify-between text-xs text-gray-200 transition-all duration-500 group-hover:-translate-y-0">
           <div className="flex gap-1">
             {tags.map((tag) => (
-              <span className="rounded-2 bg-gray-1 p-1">{tag}</span>
+              <span key={tag} className="h-fit rounded-2 bg-gray-1 p-1">
+                {tag}
+              </span>
             ))}
           </div>
           <div>{date.toLocaleDateString("ko-kr")}</div>
