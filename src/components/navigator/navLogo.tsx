@@ -26,6 +26,15 @@ const NavLogo = () => {
 
         scrub: true,
         markers: true,
+        invalidateOnRefresh: true, // 새로고침 시 상태 초기화
+        refreshPriority: 1, // 다른 트리거보다 우선 실행
+
+        onRefresh: (self) => {
+          console.log(self, "onRefresh");
+          const progress = Math.min(scrollY / 200, 1); // 새로고침 시 진행률 계산
+          const width = 574 - (574 - 80) * progress;
+          gsap.set(".BUMANG, .ROUTE53", { width });
+        },
       },
     });
   };
@@ -39,6 +48,9 @@ const NavLogo = () => {
   };
 
   useEffect(() => {
+    // 새로고침 시 스크롤 상태를 반영
+    ScrollTrigger.refresh();
+
     handleSwitchVisibility("hide");
     handleScrollTriggeredSize();
   }, []);
