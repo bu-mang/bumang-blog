@@ -26,10 +26,8 @@ const NavLogo = () => {
 
         scrub: true,
         markers: true,
-        invalidateOnRefresh: true, // 새로고침 시 상태 초기화
-        refreshPriority: 1, // 다른 트리거보다 우선 실행
 
-        onRefresh: (self) => {
+        onRefresh: () => {
           const progress = Math.min(window.scrollY / 200, 1);
           const moduleWidth = (window.innerWidth * 0.94) / 2;
           const width = moduleWidth - (moduleWidth - 80) * progress;
