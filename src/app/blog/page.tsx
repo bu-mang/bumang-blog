@@ -1,4 +1,5 @@
 import BlogItem from "@/components/blogItem";
+import { LuCheck } from "react-icons/lu";
 
 const blogItems = [
   {
@@ -86,11 +87,24 @@ const blogItems = [
 export default function Blog() {
   return (
     <main>
-      <header className="mx-[3vw] mb-4 flex flex-col gap-1 border-t-[1px] text-xs">
+      <header className="mx-[3vw] mb-4 flex flex-col gap-1 border-t-[1px] border-gray-10 pt-2 text-xs">
         <span className="text-gray-200">All</span>
+        <LuCheck />
         <span className="text-gray-200">Dev</span>
-        <span className="pl-4 text-gray-200">ReactNative</span>
+        <span className="pl-4 text-gray-200">projects</span>
+        <span className="pl-4 text-gray-200">Front-end</span>
+        <span className="pl-8 text-gray-200">HTML/CSS</span>
+        <span className="pl-8 text-gray-200">JS/TS</span>
+        <span className="pl-8 text-gray-200">React</span>
+        <span className="pl-8 text-gray-200">ReactNative</span>
+        <span className="pl-8 text-gray-200">Next.js</span>
+        <span className="pl-4 text-gray-200">Back-end</span>
+        <span className="pl-8 text-gray-200">Node.js</span>
+        <span className="pl-8 text-gray-200">Nest.js</span>
+        <span className="pl-8 text-gray-200">PostgresQL</span>
         <span className="text-gray-200">Life</span>
+        <span className="pl-4 text-gray-200">Drawing</span>
+        <span className="pl-4 text-gray-200">Stuff</span>
       </header>
       <div className="grid h-fit w-full grid-cols-4 gap-x-[1vw] gap-y-[2vw] px-[3vw]">
         {blogItems.map(({ id, title, category, tags, date, imageUrl }) => (

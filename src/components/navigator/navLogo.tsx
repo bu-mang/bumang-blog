@@ -30,9 +30,9 @@ const NavLogo = () => {
         refreshPriority: 1, // 다른 트리거보다 우선 실행
 
         onRefresh: (self) => {
-          console.log(self, "onRefresh");
-          const progress = Math.min(scrollY / 200, 1); // 새로고침 시 진행률 계산
-          const width = 574 - (574 - 80) * progress;
+          const progress = Math.min(window.scrollY / 200, 1);
+          const moduleWidth = (window.innerWidth * 0.94) / 2;
+          const width = moduleWidth - (moduleWidth - 80) * progress;
           gsap.set(".BUMANG, .ROUTE53", { width });
         },
       },
