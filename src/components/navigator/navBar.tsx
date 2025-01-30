@@ -23,7 +23,7 @@ const NavBar = () => {
       y: -32,
       scrollTrigger: {
         start: "top top",
-        end: "500px top",
+        end: "200px top",
 
         scrub: true,
         markers: true,
@@ -34,7 +34,7 @@ const NavBar = () => {
       borderBottomColor: "#d9d9d9", // text-gray-50
       scrollTrigger: {
         start: "top top",
-        end: "500px top",
+        end: "200px top",
 
         scrub: true,
         markers: true,
@@ -44,7 +44,7 @@ const NavBar = () => {
       x: 88,
       scrollTrigger: {
         start: "top top",
-        end: "500px top",
+        end: "200px top",
 
         scrub: true,
         markers: true,

@@ -1,9 +1,8 @@
-import FilterBar from "@/components/filterBar";
+import FilterBar from "@/components/tabFilterBar";
 
 export default function Dev() {
   return (
     <main className="">
-      <FilterBar />
       <div>blog</div>
     </main>
   );

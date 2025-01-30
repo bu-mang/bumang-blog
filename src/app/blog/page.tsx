@@ -1,5 +1,4 @@
 import BlogItem from "@/components/blogItem";
-import FilterBar from "@/components/filterBar";
 import { useState } from "react";
 import { LuCheck } from "react-icons/lu";
 
@@ -89,7 +88,6 @@ const blogItems = [
 export default function Blog() {
   return (
     <main>
-      <FilterBar />
       <div className="grid h-fit w-full grid-cols-4 gap-x-[1vw] gap-y-[2vw] px-[3vw]">
         {blogItems.map(({ id, title, category, tags, date, imageUrl }) => (
           <BlogItem
