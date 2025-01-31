@@ -31,7 +31,7 @@ const NavBar = () => {
     });
     gsap.to(".NAVBAR_BORDERBOX", {
       borderTopColor: "white",
-      borderBottomColor: "#d9d9d9", // text-gray-50
+      borderBottomColor: "#ede5e5", // text-gray-10
       scrollTrigger: {
         start: "top top",
         end: "200px top",
@@ -149,7 +149,7 @@ const NavBar = () => {
 
   return (
     <div className="NAVBAR_CONTAINER w-full cursor-default bg-white font-medium">
-      <div className="NAVBAR_BORDERBOX mx-[3vw] grid grid-cols-4 gap-[1vw] border-b-[1px] border-t-[1px] border-b-white border-t-gray-50 py-1 pb-3 text-xs text-gray-200">
+      <div className="NAVBAR_BORDERBOX mx-[3vw] grid grid-cols-4 gap-[1vw] border-b-[1px] border-t-[1px] border-b-white border-t-gray-10 py-1 pb-3 text-xs text-gray-200">
         <div className="NAVBAR_SWITCHING_PANEL relative grid grid-cols-2 gap-[1vw]">
           <Link href="/login" className={linkHoverStyle}>
             Login
