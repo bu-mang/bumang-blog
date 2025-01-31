@@ -1,8 +1,8 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/utils/cn";
 import { createContext, useContext, useState } from "react";
 import { RiArrowDownSFill } from "react-icons/ri";
+import { ButtonBase } from "../button";
 
 interface DropDownOuterProps {
   children: React.ReactNode;
@@ -72,15 +72,21 @@ const DropDown = ({
 const Trigger = ({ className }: { className?: string }) => {
   const context = useContext(DropDownContext);
   const triggerClass = cn(
-    "flex h-fit min-w-20 justify-between gap-1 rounded-8 bg-gray-1 px-2.5 py-1 text-sm text-gray-200",
+    "flex min-w-20 h-7 justify-between gap-1 rounded-8 bg-gray-1 px-2.5 text-sm text-gray-200 items-center border-[1px] border-transparent truncate",
+    {
+      ["border-gray-300"]: context?.isOpen,
+    },
     className,
   );
+  const iconClass = cn("transition-all duration-200", {
+    ["rotate-180 translate-y-0.5"]: context?.isOpen,
+  });
 
   return (
-    <Button onClick={context?.toggleDropdown} className={triggerClass}>
+    <ButtonBase onClick={context?.toggleDropdown} className={triggerClass}>
       {context?.selected}
-      <RiArrowDownSFill className="text-xs" />
-    </Button>
+      <RiArrowDownSFill size={20} className={iconClass} />
+    </ButtonBase>
   );
 };
 
@@ -119,12 +125,12 @@ export const Option = ({
   const context = useContext(DropDownContext);
 
   return (
-    <button
+    <ButtonBase
       className="cursor-pointer px-2.5 py-1 text-sm text-gray-700 hover:bg-gray-1"
       onClick={() => context?.handleSelected(target)}
     >
       {children}
-    </button>
+    </ButtonBase>
   );
 };
 
