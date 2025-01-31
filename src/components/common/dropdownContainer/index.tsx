@@ -72,14 +72,15 @@ const DropDown = ({
 const Trigger = ({ className }: { className?: string }) => {
   const context = useContext(DropDownContext);
   const triggerClass = cn(
-    "flex min-w-20 h-7 justify-between gap-1 rounded-8 bg-gray-1 px-2.5 text-sm text-gray-200 items-center border-[1px] border-transparent truncate",
+    "flex min-w-20 h-7 justify-between gap-1 rounded-8 bg-gray-1 pl-2 pr-1 text-sm text-gray-200 items-center border-[1px] border-transparent truncate translate-all duration-200 hover:bg-gray-5",
     {
-      ["border-gray-300"]: context?.isOpen,
+      ["border-gray-700 text-gray-700"]:
+        context?.isOpen || context?.selected !== context?.options[0],
     },
     className,
   );
   const iconClass = cn("transition-all duration-200", {
-    ["rotate-180 translate-y-0.5"]: context?.isOpen,
+    ["rotate-180 translate-y-0.5 translate-x-0.5"]: context?.isOpen,
   });
 
   return (
