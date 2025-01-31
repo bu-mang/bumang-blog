@@ -28,8 +28,8 @@ const FilterBar = () => {
           options={options}
           onSelect={onSelect}
         >
-          <DropDown.Trigger className="w-32" />
-          <DropDown.Menu className="w-32">
+          <DropDown.Trigger className="w-28" />
+          <DropDown.Menu className="w-28">
             {options.map((option) => (
               <DropDown.Option key={option} target={option}>
                 {option}
