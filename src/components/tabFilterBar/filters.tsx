@@ -2,26 +2,43 @@ import { LuChevronRight } from "react-icons/lu";
 import DropDown from "../common/dropdownContainer";
 import Tag from "../common/tags";
 import useOverflow from "@/hooks/useOverflow";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const FilterBar = () => {
+  /**
+   * Tag Width Size Logic
+   */
   const tagsRef = useRef<HTMLDivElement | null>(null);
   const isOverflowing = useOverflow(tagsRef);
-
   console.log(isOverflowing, "isOverflowing");
+
+  // 드롭다운 밖에서 관리하는 값.
+  const options = ["All of Devs", "Frontend", "Backend", "CI/CD"];
+  const [selected, setSelected] = useState(options[0]);
+  const onSelect = (target: string) => {
+    setSelected(target);
+  };
 
   return (
     <div className="flex min-h-0 w-full items-center gap-2">
       <div className="relative z-10 flex items-center gap-2 bg-white">
-        <DropDown position="bottom" onChangeSelect={() => {}}>
-          <DropDown.DefaultTriggerUi title="All of Devs" />
-          <DropDown.Menu>
-            <DropDown.Item>가1</DropDown.Item>
-            <DropDown.Item>나</DropDown.Item>
-            <DropDown.Item>다</DropDown.Item>
-            <DropDown.Item>라</DropDown.Item>
+        <DropDown
+          position="bottom"
+          selected={selected}
+          options={options}
+          onSelect={onSelect}
+        >
+          <DropDown.Trigger className="w-32" />
+          <DropDown.Menu className="w-32">
+            {options.map((option) => (
+              <DropDown.Option key={option} target={option}>
+                {option}
+              </DropDown.Option>
+            ))}
           </DropDown.Menu>
         </DropDown>
+
+        {/* Divider */}
         <div className="h-3 w-[1px] bg-gray-50" />
       </div>
       <div className="flex flex-1 gap-2 overflow-x-hidden pr-8" ref={tagsRef}>
