@@ -29,9 +29,11 @@ const Tag = ({
   const tagClass = clsx(
     "h-fit rounded-8 bg-gray-1 px-2 py-1 text-sm text-gray-200 transition-all",
     {
-      ["bg-gray-700 text-white"]: isActivated && layout !== "label",
+      ["bg-gray-700 text-white hover:bg-gray-500"]:
+        isActivated && layout !== "label",
       ["text-gray-900"]: isActivated && layout === "label",
       ["bg-transparent"]: layout === "label",
+      ["hover:bg-gray-5"]: layout !== "label",
     },
     className,
   );
