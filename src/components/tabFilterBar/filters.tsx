@@ -12,12 +12,14 @@ const FilterBar = () => {
   const isOverflowing = useOverflow(tagsRef);
   console.log(isOverflowing, "isOverflowing");
 
-  // 드롭다운 밖에서 관리하는 값.
+  // 드롭다운 state
   const options = ["All of Devs", "Frontend", "Backend", "CI/CD"];
   const [selected, setSelected] = useState(options[0]);
   const onSelect = (target: string) => {
     setSelected(target);
   };
+  // 태그 State
+  // ...
 
   return (
     <div className="flex min-h-0 w-full items-center gap-2">
