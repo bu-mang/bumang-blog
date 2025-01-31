@@ -20,11 +20,11 @@ const Footer = () => {
             </Link>
             ,{" "}
             <Link href="#" className={linkClass}>
-              Portfolio
+              Notion
             </Link>
             ,{" "}
             <Link href="#" className={linkClass}>
-              Tistory
+              Old Blog
             </Link>
             ,{" "}
             <Link href="#" className={linkClass}>
