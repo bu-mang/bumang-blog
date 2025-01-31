@@ -4,6 +4,9 @@ import { createContext, useContext, useState } from "react";
 import { RiArrowDownSFill } from "react-icons/ri";
 import { ButtonBase } from "../button";
 
+/**
+ * @TYPE
+ */
 interface DropDownOuterProps {
   children: React.ReactNode;
   position?: "top" | "bottom" | "left" | "right";
@@ -20,11 +23,17 @@ interface DropDownInnerProps {
   handleSelected: (title: string) => void;
 }
 
+/**
+ * @CONTEXT_API
+ */
 const DropDownContext = createContext<
   | (Omit<DropDownOuterProps, "children" | "onSelect"> & DropDownInnerProps)
   | null
 >(null);
 
+/**
+ * @DROPDOWN_WRAPPER
+ */
 const DropDown = ({
   children,
   position,
@@ -69,6 +78,9 @@ const DropDown = ({
   );
 };
 
+/**
+ * @TriggerButton
+ */
 const Trigger = ({ className }: { className?: string }) => {
   const context = useContext(DropDownContext);
   const triggerClass = cn(
@@ -91,6 +103,9 @@ const Trigger = ({ className }: { className?: string }) => {
   );
 };
 
+/**
+ * @Option을_감싸는Menu
+ */
 export const Menu = ({
   children,
   className,
@@ -116,6 +131,9 @@ export const Menu = ({
   return <div className={menuClass}>{children}</div>;
 };
 
+/**
+ * @Option
+ */
 export const Option = ({
   children,
   target,
@@ -136,7 +154,7 @@ export const Option = ({
 };
 
 DropDown.Trigger = Trigger;
-DropDown.Option = Option;
 DropDown.Menu = Menu;
+DropDown.Option = Option;
 
 export default DropDown;
