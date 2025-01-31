@@ -1,7 +1,7 @@
 import NavBanner from "./navLogo";
 import NavBar from "./navBar";
 
-const Navigator = () => {
+const Header = () => {
   return (
     <div className="fixed top-0 z-[100] h-fit w-full">
       <NavBanner />
@@ -10,4 +10,4 @@ const Navigator = () => {
   );
 };
 
-export default Navigator;
+export default Header;
