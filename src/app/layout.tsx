@@ -1,7 +1,8 @@
 import "./globals.css";
 import { Provider } from "@/components/ui/provider";
-import Navigator from "../components/navigator";
+import Header from "../components/header";
 import Grid from "../components/grid";
+import Footer from "@/components/footer";
 
 export default function RootLayout({
   children,
@@ -32,8 +33,9 @@ export default function RootLayout({
       <body className="h-[1500px] flex-1">
         <Provider>
           {isGridOn && <Grid />}
-          <Navigator />
-          <div className="h-full w-screen pt-[20vw]">{children}</div>
+          <Header />
+          <div className="h-fit w-screen pt-[20vw]">{children}</div>
+          <Footer />
         </Provider>
       </body>
     </html>
