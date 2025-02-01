@@ -1,6 +1,4 @@
 import BlogItem from "@/components/blogItem";
-import { useState } from "react";
-import { LuCheck } from "react-icons/lu";
 
 const blogItems = [
   {
