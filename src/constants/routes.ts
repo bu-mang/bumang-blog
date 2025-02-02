@@ -15,23 +15,6 @@ export const ROUTES: MenuType[] = [
     title: "Work",
     url: "/work",
     group: "NAVIGATOR",
-    sub: [
-      {
-        title: "All",
-        url: "/",
-        parents: ["/work"],
-      },
-      {
-        title: "Dev",
-        url: "/dev",
-        parents: ["/work"],
-      },
-      {
-        title: "Design",
-        url: "/design",
-        parents: ["/work"],
-      },
-    ],
   },
   {
     title: "Blog",
