@@ -78,6 +78,8 @@ const WorkCard = ({ imgSrc, imgAlt, onClick, children }: WorkCardProps) => {
         // 마우스가 떠나면 원래 위치로 복귀
         setRotateY(0);
         setRotateX(0);
+        setDegree(0);
+        setOpacity(0);
       });
     }
   }, [cardRef]);
@@ -90,20 +92,24 @@ const WorkCard = ({ imgSrc, imgAlt, onClick, children }: WorkCardProps) => {
       <ButtonBase
         ref={cardRef}
         onClick={onClick}
-        style={{
-          transform: `perspective(1500px) rotate3d(${-rotateX}, ${rotateY}, 0, ${degree}deg)`,
-        }}
-        className="card-tilt relative col-start-2 col-end-8 flex aspect-video items-center justify-center overflow-hidden rounded-xl bg-emerald-300"
+        className="col-start-2 col-end-8"
       >
-        {/* GLOSS */}
         <div
-          className="absolute z-10 h-full w-full rounded-full bg-[radial-gradient(circle,rgba(255,255,255,1)_0%,rgba(255,255,255,0)_50%,rgba(255,255,255,0)_100%)] opacity-0"
           style={{
-            transform: `translate(${-rotateY * 100}%, ${-rotateX * 100}%) scale(2.4)`,
-            opacity,
+            transform: `perspective(1500px) rotate3d(${-rotateX}, ${rotateY}, 0, ${degree}deg)`,
           }}
-        />
-        <Image src={"/next.svg"} fill alt={imgAlt} />
+          className="card-tilt relative flex aspect-video items-center justify-center overflow-hidden rounded-xl bg-emerald-300"
+        >
+          {/* GLOSS */}
+          <div
+            className="absolute z-10 h-full w-full rounded-full bg-[radial-gradient(circle,rgba(255,255,255,1)_0%,rgba(255,255,255,0)_50%,rgba(255,255,255,0)_100%)] opacity-0"
+            style={{
+              transform: `translate(${-rotateY * 100}%, ${-rotateX * 100}%) scale(2.4)`,
+              opacity,
+            }}
+          />
+          <Image src={"/next.svg"} fill alt={imgAlt} />
+        </div>
       </ButtonBase>
       {children}
     </div>
