@@ -1,7 +1,9 @@
 "use client";
 import Image from "next/image";
 import { ButtonBase } from "../common/button";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { cn } from "@/utils/cn";
+import gsap from "gsap";
 
 interface WorkCardProps {
   children?: React.ReactNode;
@@ -23,6 +25,12 @@ function mapNumberRange(
 
 const WorkCard = ({ imgSrc, imgAlt, onClick, children }: WorkCardProps) => {
   const cardRef = useRef<HTMLButtonElement | null>(null);
+  const [coordX, setCoordX] = useState(0);
+  const [coordY, setCoordY] = useState(0);
+
+  /**
+   * CARD_FLIP_LOGIC
+   */
   const [rotateY, setRotateY] = useState(0);
   const [rotateX, setRotateX] = useState(0);
   const [degree, setDegree] = useState(0);
@@ -30,13 +38,6 @@ const WorkCard = ({ imgSrc, imgAlt, onClick, children }: WorkCardProps) => {
   useEffect(() => {
     if (cardRef.current) {
       const el = cardRef.current;
-
-      // const cardContent =
-      // card.querySelector(".card__content");
-      // const gloss = card.querySelector(".card__gloss");
-      // requestAnimationFrame(() => {
-      //   gloss.classList.add("card__gloss--animatable");
-      // });
 
       el.addEventListener("mousemove", (e) => {
         // 카드 내부에서의 마우스 좌표 (0,0은 카드의 좌측 상단)
@@ -70,7 +71,6 @@ const WorkCard = ({ imgSrc, imgAlt, onClick, children }: WorkCardProps) => {
         setRotateX(rx);
         setRotateY(ry);
         setDegree(degree);
-
         setOpacity(mapNumberRange(distanceToCenter, 0, maxDistance, 0, 0.6));
       });
 
@@ -84,15 +84,88 @@ const WorkCard = ({ imgSrc, imgAlt, onClick, children }: WorkCardProps) => {
     }
   }, [cardRef]);
 
-  console.log(rotateY, "rotateY");
-  console.log(rotateX, "rotateX");
+  /**
+   * HOVER_ITEM_LOGIC
+   */
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const hoverItemRef = useRef<HTMLDivElement | null>(null);
+  useLayoutEffect(() => {
+    if (containerRef.current && hoverItemRef.current) {
+      const containerEl = containerRef.current;
+      const hoverEl = hoverItemRef.current;
+
+      containerEl.addEventListener("mousemove", (e) => {
+        const containerRect = containerEl.getBoundingClientRect();
+        const hoverRect = hoverEl.getBoundingClientRect();
+        const x = e.clientX - containerRect.left - hoverRect.width / 2;
+        const y = e.pageY - (containerRect.top + window.scrollY);
+        setCoordX(x);
+        setCoordY(y);
+      });
+    }
+  }, []);
+
+  const hoverItemClass = cn(
+    "flex absolute z-50 h-40 w-40 bg-red-500 pointer-events-none justify-center items-center",
+    opacity ? "opacity-100" : "opacity-0",
+  );
+
+  useEffect(() => {
+    if (hoverItemRef.current && containerRef.current) {
+      const hoverEl = hoverItemRef.current;
+      containerRef.current.addEventListener("mouseenter", () => {
+        gsap
+          .fromTo(
+            hoverEl,
+            {
+              width: 0,
+              color: "transparent",
+              ease: "power2.out",
+            },
+            {
+              width: 200,
+              color: "black",
+              duration: 0.5,
+              ease: "power2.out",
+            },
+          )
+          .restart();
+      });
+
+      containerRef.current.addEventListener("mouseleave", () => {
+        gsap.fromTo(
+          hoverEl,
+          {
+            width: 200,
+            ease: "power2.out",
+          },
+          {
+            width: 0,
+            duration: 0.5,
+            ease: "power2.out",
+          },
+        );
+      });
+    }
+  }, [hoverItemRef, containerRef]);
 
   return (
-    <div className="relative grid w-full flex-1 grid-cols-8 gap-[1vw] py-40">
+    <div
+      className="relative grid w-full flex-1 grid-cols-8 gap-[1vw] py-40"
+      ref={containerRef}
+    >
+      <div
+        className={hoverItemClass}
+        style={{ translate: `${coordX}px ${coordY}px` }}
+        ref={hoverItemRef}
+      >
+        A Test Text...
+      </div>
+
       <ButtonBase
         ref={cardRef}
         onClick={onClick}
-        className="col-start-2 col-end-8"
+        className="relative col-start-2 col-end-8 cursor-none"
       >
         <div
           style={{
@@ -110,8 +183,8 @@ const WorkCard = ({ imgSrc, imgAlt, onClick, children }: WorkCardProps) => {
           />
           <Image src={"/next.svg"} fill alt={imgAlt} />
         </div>
+        {children}
       </ButtonBase>
-      {children}
     </div>
   );
 };

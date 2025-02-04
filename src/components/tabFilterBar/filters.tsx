@@ -1,5 +1,5 @@
 import { LuChevronRight } from "react-icons/lu";
-import DropDown from "../common/dropdownContainer";
+import DropDown from "../common/dropdown";
 import Tag from "../common/tags";
 import useOverflow from "@/hooks/useOverflow";
 import { useRef, useState } from "react";
