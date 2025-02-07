@@ -24,7 +24,7 @@ const NavBar = () => {
   /**
    * @HeaderAnimation
    */
-  useLayoutEffect(() => {
+  useEffect(() => {
     // 타임라인으로 통함??
     gsap.to(".NAVBAR_CONTAINER", {
       y: -32,
