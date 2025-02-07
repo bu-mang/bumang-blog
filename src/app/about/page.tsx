@@ -12,7 +12,9 @@ export default function Blog() {
 
       {/* INTRODUCE */}
       <SectionBox>
-        <div className="col-span-3 text-6xl font-semibold">Hello!</div>
+        <div className="sticky top-16 col-span-3 h-32 text-6xl font-semibold">
+          Hello!
+        </div>
         <div className="col-span-1 translate-y-1.5 font-semibold">I AM</div>
         <div className="col-span-4 mb-6 grid grid-cols-4">
           <span className="col-span-4 mb-1 text-6xl font-semibold">
@@ -68,7 +70,9 @@ export default function Blog() {
 
       {/* AWARDS */}
       <SectionBox>
-        <div className="col-span-3 text-6xl font-semibold">Awards</div>
+        <div className="sticky top-16 col-span-3 h-32 text-6xl font-semibold">
+          Awards
+        </div>
         <div className="col-start-4 col-end-9 -translate-y-3">
           <SubBox className="border-none">
             <div className="col-span-1 font-semibold">2023</div>
@@ -113,7 +117,7 @@ export default function Blog() {
 
       {/* MAIN TECHSTACK */}
       <SectionBox>
-        <div className="col-span-3 flex flex-col gap-2 text-6xl font-semibold">
+        <div className="sticky top-16 col-span-3 flex h-48 flex-col gap-2 text-6xl font-semibold">
           <span>Main</span>
           <span>TechStack</span>
         </div>
@@ -261,7 +265,7 @@ export default function Blog() {
 
       {/* BASIC LEVEL SKILLS */}
       <SectionBox>
-        <div className="col-span-3 flex flex-col text-6xl font-semibold">
+        <div className="sticky top-16 col-span-3 flex h-32 flex-col text-6xl font-semibold">
           <span>Basic</span>
           <span>Level in</span>
         </div>
@@ -288,7 +292,7 @@ export default function Blog() {
           </SubBox>
           {/* DESIGN */}
           <SubBox className="gap-y-8 text-sm">
-            <div className="col-span-1 row-span-3 pr-2 font-semibold">
+            <div className="sticky top-16 col-span-1 row-span-3 pr-2 font-semibold">
               Design
             </div>
             <div className="col-start-2 col-end-4 flex flex-col">
@@ -303,11 +307,3 @@ export default function Blog() {
 }
 
 // "디자인을 전공하고 UX 디자이너로 일하다가, 지금은 프론트엔드 개발자로 활동하고 있습니다. 예술을 좋아하고, 그림 그리기를 취미로 삼고 있습니다. 웹에서 2D/3D 인터랙티브 콘텐츠를 구현하는 것에 흥미가 많으며, WebGL과 Canvas를 탐구하고 있습니다. 풀스택 개발자로 성장하는 것을 목표로 하며, 1인 개발과 다양한 기술 실험을 즐깁니다. 재미있는 사이드 프로젝트 제안은 언제든 환영합니다!"
-
-//
-
-//
-
-//
-
-//
