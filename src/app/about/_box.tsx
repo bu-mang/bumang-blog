@@ -17,7 +17,7 @@ const SectionBox = ({ children }: SectionBoxProps) => {
 
 const SubBox = ({ children, className, ...props }: SectionBoxProps) => {
   const subBoxClass = cn(
-    "grid grid-cols-5 border-t-[1px] border-gray-10 py-8",
+    "grid grid-cols-5 border-t-[1px] border-gray-10 py-8 gap-y-8",
     className,
   );
 

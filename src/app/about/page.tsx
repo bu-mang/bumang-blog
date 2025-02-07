@@ -9,6 +9,8 @@ export default function Blog() {
         <div className="col-start-5 col-end-9 row-start-1 row-end-6 bg-gray-50"></div>
         <div className="col-start-3 col-end-4 row-start-6 row-end-9 bg-gray-50"></div>
       </div>
+
+      {/* INTRODUCE */}
       <SectionBox>
         <div className="col-span-3 text-6xl font-semibold">Hello!</div>
         <div className="col-span-1 translate-y-1.5 font-semibold">I AM</div>
@@ -63,6 +65,8 @@ export default function Blog() {
           </SubBox>
         </div>
       </SectionBox>
+
+      {/* AWARDS */}
       <SectionBox>
         <div className="col-span-3 text-6xl font-semibold">Awards</div>
         <div className="col-start-4 col-end-9 -translate-y-3">
@@ -106,94 +110,190 @@ export default function Blog() {
           </SubBox>
         </div>
       </SectionBox>
+
+      {/* MAIN TECHSTACK */}
       <SectionBox>
         <div className="col-span-3 flex flex-col gap-2 text-6xl font-semibold">
           <span>Main</span>
           <span>TechStack</span>
         </div>
         <div className="col-start-4 col-end-9 -translate-y-3">
-          <SubBox className="border-none">
-            <div className="col-span-1 font-semibold">2023</div>
-            <div className="col-span-4 flex flex-col">
-              <span className="font-semibold">
-                Yanolja X Fast Campus Frontend Tech School
-              </span>
-              <span className="text-gray-300">Outstanding Graduate</span>
+          {/* WEB */}
+          <SubBox className="gap-y-8 border-none text-sm">
+            <div className="col-span-1 row-span-3 pr-2 font-semibold">
+              Web Frontend
+            </div>
+            <div className="col-start-2 col-end-4 flex flex-col">
+              <span className="font-semibold">React/Next.js(App)</span>
+              <span className="text-gray-300">SPA Library/Framework</span>
+            </div>
+            <div className="col-start-4 col-end-6 flex flex-col pl-2">
+              <span className="font-semibold">Tailwind, StyledComponent</span>
+              <span className="text-gray-300">CSS Styling</span>
+            </div>
+            <div className="col-start-2 col-end-4 flex flex-col">
+              <span className="font-semibold">React-Hook-Form, Zod</span>
+              <span className="text-gray-300">Validation</span>
+            </div>
+            <div className="col-start-4 col-end-6 flex flex-col pl-2">
+              <span className="font-semibold">Axios, TanstackQuery</span>
+              <span className="text-gray-300">Server Fetching</span>
+            </div>
+            <div className="col-start-2 col-end-4 flex flex-col">
+              <span className="font-semibold">Zustand, ReduxToolkit</span>
+              <span className="text-gray-300">Global State Management</span>
+            </div>
+            <div className="col-start-4 col-end-6 flex flex-col pl-2">
+              <span className="font-semibold">Gsap, Three.js, Motion</span>
+              <span className="text-gray-300">Interactive Development</span>
             </div>
           </SubBox>
-          <SubBox>
-            <div className="col-span-1 font-semibold">2022</div>
-            <div className="col-span-4 flex flex-col">
-              <span className="font-semibold">
-                Naver Boostcourse Python Coaching Study
-              </span>
-              <span className="text-gray-300">Lead Booster</span>
+          {/* MOBILE */}
+          <SubBox className="gap-y-8 text-sm">
+            <div className="col-span-1 row-span-3 pr-2 font-semibold">
+              Mobile Frontend
+            </div>
+            <div className="col-start-2 col-end-4 flex flex-col">
+              <span className="font-semibold">React Native</span>
+              <span className="text-gray-300">Cross Platform</span>
+            </div>
+            <div className="col-start-4 col-end-6 flex flex-col pl-2">
+              <span className="font-semibold">StyleSheet</span>
+              <span className="text-gray-300">CSS Styling</span>
+            </div>
+            <div className="col-start-2 col-end-4 flex flex-col">
+              <span className="font-semibold">React Native Codepush</span>
+              <span className="text-gray-300">Instant Deploy</span>
+            </div>
+            <div className="col-start-4 col-end-6 flex flex-col pl-2">
+              <span className="font-semibold">React Native Firebase FCM</span>
+              <span className="text-gray-300">Push Notification</span>
+            </div>
+            <div className="col-start-2 col-end-4 flex flex-col">
+              <span className="font-semibold">React Native Reanimated</span>
+              <span className="text-gray-300">Animation</span>
+            </div>
+            <div className="col-start-4 col-end-6 flex flex-col pl-2">
+              <span className="font-semibold">iOS/Android Store Review</span>
+              <span className="text-gray-300">Market Deploy Experience</span>
             </div>
           </SubBox>
-          <SubBox>
-            <div className="col-span-1 font-semibold">2021</div>
-            <div className="col-span-4 flex flex-col">
-              <span className="font-semibold">
-                Kakao x Korea Tourism Organization Travel Data Contest
-              </span>
+          {/* BACKEND */}
+          <SubBox className="gap-y-8 text-sm">
+            <div className="col-span-1 row-span-3 pr-2 font-semibold">
+              Backend
+            </div>
+            <div className="col-start-2 col-end-4 flex flex-col">
+              <span className="font-semibold">express.js, Nest.js</span>
+              <span className="text-gray-300">Backend Frameworks</span>
+            </div>
+            <div className="col-start-4 col-end-6 flex flex-col pl-2">
+              <span className="font-semibold">Firebase</span>
+              <span className="text-gray-300">Backend as a Service</span>
+            </div>
+            <div className="col-start-2 col-end-4 flex flex-col">
+              <span className="font-semibold">Google Cloud Platform</span>
+              <span className="text-gray-300">Instant Deploy</span>
+            </div>
+            <div className="col-start-4 col-end-6 flex flex-col pl-2">
+              <span className="font-semibold">PostgresQL, MongoDB</span>
+              <span className="text-gray-300">Database</span>
+            </div>
+            <div className="col-start-2 col-end-4 flex flex-col">
+              <span className="font-semibold">Prisma</span>
+              <span className="text-gray-300">ORM</span>
+            </div>
+            {/* <div className="col-start-4 col-end-6 flex flex-col pl-2">
+              <span className="font-semibold">Supabase</span>
+              <span className="text-gray-300">Backend as a Service</span>
+            </div> */}
+          </SubBox>
+          {/* CI/CD */}
+          <SubBox className="gap-y-8 text-sm">
+            <div className="col-span-1 row-span-3 pr-2 font-semibold">
+              CI/CD
+            </div>
+            <div className="col-start-2 col-end-4 flex flex-col">
+              <span className="font-semibold">Git, Github</span>
               <span className="text-gray-300">
-                Grand Prize - Participated as a UX Designer
+                Version Control & Collaboration
+              </span>
+            </div>
+            <div className="col-start-4 col-end-6 flex flex-col pl-2">
+              <span className="font-semibold">Github Action</span>
+              <span className="text-gray-300">CI/CD & Automation</span>
+            </div>
+            <div className="col-start-2 col-end-4 flex flex-col">
+              <span className="font-semibold">Docker, DockerCompose</span>
+              <span className="text-gray-300">
+                Containerization & Orchestration
               </span>
             </div>
           </SubBox>
-          <SubBox>
-            <div className="col-span-1 font-semibold">2019</div>
-            <div className="col-span-4 flex flex-col">
-              <span className="font-semibold">
-                University of Seoul Jangsangotmae Mascot Graphic Design Contest
-              </span>
-              <span className="text-gray-300">Second Prize</span>
+          {/* DESIGN */}
+          <SubBox className="gap-y-8 text-sm">
+            <div className="col-span-1 row-span-3 pr-2 font-semibold">
+              Design
+            </div>
+            <div className="col-start-2 col-end-4 flex flex-col">
+              <span className="font-semibold">Figma</span>
+              <span className="text-gray-300">UX/UI</span>
+            </div>
+            <div className="col-start-4 col-end-6 flex flex-col pl-2">
+              <span className="font-semibold">Photoshop, Illustration</span>
+              <span className="text-gray-300">Graphic Design</span>
+            </div>
+            <div className="col-start-2 col-end-4 flex flex-col">
+              <span className="font-semibold">After Effect</span>
+              <span className="text-gray-300">Motion Graphic</span>
+            </div>
+            <div className="col-start-4 col-end-6 flex flex-col pl-2">
+              <span className="font-semibold">UG NX, Keyshot</span>
+              <span className="text-gray-300">3D Modeling & Rendering</span>
+            </div>
+            <div className="col-start-2 col-end-4 flex flex-col">
+              <span className="font-semibold">ClipStudio, ProCreate(iPad)</span>
+              <span className="text-gray-300">Art & Illustration</span>
             </div>
           </SubBox>
         </div>
       </SectionBox>
+
+      {/* BASIC LEVEL SKILLS */}
       <SectionBox>
         <div className="col-span-3 flex flex-col text-6xl font-semibold">
           <span>Basic</span>
           <span>Level in</span>
         </div>
         <div className="col-start-4 col-end-9 -translate-y-3">
-          <SubBox className="border-none">
-            <div className="col-span-1 font-semibold">2023</div>
-            <div className="col-span-4 flex flex-col">
-              <span className="font-semibold">
-                Yanolja X Fast Campus Frontend Tech School
-              </span>
-              <span className="text-gray-300">Outstanding Graduate</span>
+          {/* DEV */}
+          <SubBox className="gap-y-8 border-none text-sm">
+            <div className="col-span-1 row-span-3 pr-2 font-semibold">Dev</div>
+            <div className="col-start-2 col-end-4 flex flex-col">
+              <span className="font-semibold">SCSS</span>
+              <span className="text-gray-300">CSS Styling</span>
+            </div>
+            <div className="col-start-4 col-end-6 flex flex-col pl-2">
+              <span className="font-semibold">Redux-Tookit, Jotai</span>
+              <span className="text-gray-300">Global State Management</span>
+            </div>
+            <div className="col-start-2 col-end-4 flex flex-col">
+              <span className="font-semibold">P5.js, Phaser3.js</span>
+              <span className="text-gray-300">Interactive</span>
+            </div>
+            <div className="col-start-4 col-end-6 flex flex-col pl-2">
+              <span className="font-semibold">Amazon Web Services</span>
+              <span className="text-gray-300">Cloud Infrastructure</span>
             </div>
           </SubBox>
-          <SubBox>
-            <div className="col-span-1 font-semibold">2022</div>
-            <div className="col-span-4 flex flex-col">
-              <span className="font-semibold">
-                Naver Boostcourse Python Coaching Study
-              </span>
-              <span className="text-gray-300">Lead Booster</span>
+          {/* DESIGN */}
+          <SubBox className="gap-y-8 text-sm">
+            <div className="col-span-1 row-span-3 pr-2 font-semibold">
+              Design
             </div>
-          </SubBox>
-          <SubBox>
-            <div className="col-span-1 font-semibold">2021</div>
-            <div className="col-span-4 flex flex-col">
-              <span className="font-semibold">
-                Kakao x Korea Tourism Organization Travel Data Contest
-              </span>
-              <span className="text-gray-300">
-                Grand Prize - Participated as a UX Designer
-              </span>
-            </div>
-          </SubBox>
-          <SubBox>
-            <div className="col-span-1 font-semibold">2019</div>
-            <div className="col-span-4 flex flex-col">
-              <span className="font-semibold">
-                University of Seoul Jangsangotmae Mascot Graphic Design Contest
-              </span>
-              <span className="text-gray-300">Second Prize</span>
+            <div className="col-start-2 col-end-4 flex flex-col">
+              <span className="font-semibold">Blender, Cinema4D</span>
+              <span className="text-gray-300">3D Modeling & Motion</span>
             </div>
           </SubBox>
         </div>
