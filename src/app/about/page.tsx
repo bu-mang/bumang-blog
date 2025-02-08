@@ -1,19 +1,55 @@
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useRef } from "react";
+
+import gsap from "gsap/all";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import { SectionBox, SubBox } from "./_box";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Blog() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const fadeInElems =
+        containerRef.current.querySelectorAll(".fade-in-mount");
+
+      fadeInElems.forEach((el) => {
+        gsap.to(el, {
+          scrollTrigger: {
+            trigger: el,
+            start: "top 66%",
+            toggleActions: "play none none none",
+          },
+          duration: 1,
+          opacity: 1,
+          y: -10,
+          ease: "power2.out",
+        });
+      });
+    }
+  }, [containerRef]);
+
   return (
-    <main className="">
+    <main className="" ref={containerRef}>
       {/* IMAGES */}
-      <div className="mb-[4vw] grid h-fit w-full auto-rows-[4vw] grid-cols-8 gap-x-[1vw] gap-y-[1vw] px-[3vw]">
-        <div className="col-start-1 col-end-3 row-start-1 row-end-4 bg-gray-50"></div>
-        <div className="col-start-5 col-end-9 row-start-1 row-end-6 bg-gray-50"></div>
-        <div className="col-start-3 col-end-4 row-start-6 row-end-9 bg-gray-50"></div>
+      <div className="fade-in-mount relative mx-[3vw] mb-6 h-96">
+        <Image
+          src="/star.webp"
+          alt="profileImage"
+          className="object-cover"
+          fill
+        />
       </div>
 
       {/* INTRODUCE */}
-      <SectionBox>
-        <div className="sticky top-16 col-span-3 h-32 text-6xl font-semibold">
+      <SectionBox className="fade-in-mount">
+        <div className="sticky top-20 col-span-3 mb-20 h-32 text-6xl font-semibold">
           Hello!
         </div>
         <div className="col-span-1 translate-y-1.5 font-semibold">I AM</div>
@@ -70,8 +106,8 @@ export default function Blog() {
       </SectionBox>
 
       {/* AWARDS */}
-      <SectionBox>
-        <div className="sticky top-16 col-span-3 h-32 text-6xl font-semibold">
+      <SectionBox className="fade-in-mount">
+        <div className="sticky top-20 col-span-3 mb-20 h-32 text-6xl font-semibold">
           Awards
         </div>
         <div className="col-start-4 col-end-9 -translate-y-3">
@@ -117,8 +153,8 @@ export default function Blog() {
       </SectionBox>
 
       {/* MAIN TECHSTACK */}
-      <SectionBox>
-        <div className="sticky top-16 col-span-3 flex h-48 flex-col gap-2 text-6xl font-semibold">
+      <SectionBox className="fade-in-mount">
+        <div className="sticky top-20 col-span-3 mb-20 flex h-48 flex-col gap-2 text-6xl font-semibold">
           <span>Main</span>
           <span>TechStack</span>
         </div>
@@ -265,8 +301,8 @@ export default function Blog() {
       </SectionBox>
 
       {/* BASIC LEVEL SKILLS */}
-      <SectionBox>
-        <div className="sticky top-16 col-span-3 flex h-32 flex-col text-6xl font-semibold">
+      <SectionBox className="fade-in-mount">
+        <div className="sticky top-20 col-span-3 mb-20 flex h-32 flex-col text-6xl font-semibold">
           <span>Basic</span>
           <span>Level in</span>
         </div>
@@ -293,7 +329,7 @@ export default function Blog() {
           </SubBox>
           {/* DESIGN */}
           <SubBox className="gap-y-8 text-sm">
-            <div className="sticky top-16 col-span-1 row-span-3 pr-2 font-semibold">
+            <div className="sticky top-20 col-span-1 row-span-3 mb-20 pr-2 font-semibold">
               Design
             </div>
             <div className="col-start-2 col-end-4 flex flex-col">
