@@ -4,6 +4,7 @@ import { SectionBox, SubBox } from "./_box";
 export default function Blog() {
   return (
     <main className="">
+      {/* IMAGES */}
       <div className="mb-[4vw] grid h-fit w-full auto-rows-[4vw] grid-cols-8 gap-x-[1vw] gap-y-[1vw] px-[3vw]">
         <div className="col-start-1 col-end-3 row-start-1 row-end-4 bg-gray-50"></div>
         <div className="col-start-5 col-end-9 row-start-1 row-end-6 bg-gray-50"></div>
