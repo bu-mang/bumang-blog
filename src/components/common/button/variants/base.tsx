@@ -27,4 +27,5 @@ const ButtonBase = forwardRef<HTMLButtonElement, ButtonProps>(
   },
 );
 
+ButtonBase.displayName = "ButtonBase";
 export default ButtonBase;

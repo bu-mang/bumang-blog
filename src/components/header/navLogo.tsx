@@ -55,7 +55,7 @@ const NavLogo = () => {
 
   return (
     <div
-      className="LETTER_CONTAINER top-0 grid w-full grid-cols-2 gap-[1vw] overflow-hidden bg-white px-[3vw] py-3"
+      className="LETTER_CONTAINER top-0 grid w-full grid-cols-2 gap-[1.5vw] overflow-hidden bg-white px-[3vw] py-3"
       onMouseEnter={() => handleSwitchVisibility("show")}
       onMouseLeave={() => handleSwitchVisibility("hide")}
     >
