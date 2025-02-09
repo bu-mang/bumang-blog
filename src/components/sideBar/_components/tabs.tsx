@@ -5,9 +5,10 @@ import { usePathname } from "next/navigation";
 import { useLayoutEffect, useRef, useState } from "react";
 import clsx from "clsx";
 
-const TabBar = () => {
-  const [indicatorX, setIndicatorX] = useState(0);
-  const [indicatorWidth, setIndicatorWidth] = useState(0);
+const Tabs = () => {
+  /**
+   * TAB INDICATOR 스타일
+   */
   const pathnames = usePathname()
     .split("/")
     .filter((item) => item !== "");
@@ -18,6 +19,11 @@ const TabBar = () => {
       pathnames[1] === undefined && target === "All" && "text-black",
     );
 
+  /**
+   * TAB INDICATOR 애니메이션 로직
+   */
+  const [indicatorX, setIndicatorX] = useState(0);
+  const [indicatorWidth, setIndicatorWidth] = useState(0);
   const allRef = useRef<HTMLAnchorElement | null>(null);
   const devRef = useRef<HTMLAnchorElement | null>(null);
   const lifeRef = useRef<HTMLAnchorElement | null>(null);
@@ -34,36 +40,47 @@ const TabBar = () => {
         return (acc += cur.current?.getBoundingClientRect().width ?? 0);
       }, 0);
 
-      const gaps = 8 * selectedIndex;
+      const gaps = 16 * selectedIndex;
       setIndicatorX(mapped + gaps);
       setIndicatorWidth(rectWidth);
     }
   }, [allRef, devRef, lifeRef, pathnames]);
 
-  const indicatorClass = clsx("absolute h-0.5 bg-black transition-all");
+  const indicatorClass = clsx(
+    "bottom-0 absolute h-0.5 bg-gray-700 transition-all",
+  );
 
   return (
-    <div className="relative border-t-[1px] border-gray-10">
-      <div
-        className={indicatorClass}
-        style={{
-          transform: `translateX(${indicatorX}px)`,
-          width: indicatorWidth,
-        }}
-      />
-      <div className="mb-2 flex w-full gap-2 py-2">
-        <Link href={"/blog"} className={getTabStyle("All")} ref={allRef}>
-          All
-        </Link>
-        <Link href={"/blog/dev"} className={getTabStyle("Dev")} ref={devRef}>
-          Dev
-        </Link>
-        <Link href={"/blog/life"} className={getTabStyle("Life")} ref={lifeRef}>
-          Life
-        </Link>
+    <div className="flex rounded-lg px-2">
+      <div className="relative flex h-full w-full border-b-[1px] py-1">
+        {/* TAB INDICATOR */}
+        <div
+          className={indicatorClass}
+          style={{
+            transform: `translateX(${indicatorX}px)`,
+            width: indicatorWidth,
+          }}
+        />
+
+        {/* TABS */}
+        <div className="flex h-full w-full gap-4">
+          <Link href={"/blog"} className={getTabStyle("All")} ref={allRef}>
+            All
+          </Link>
+          <Link href={"/blog/dev"} className={getTabStyle("Dev")} ref={devRef}>
+            Dev
+          </Link>
+          <Link
+            href={"/blog/life"}
+            className={getTabStyle("Life")}
+            ref={lifeRef}
+          >
+            Life
+          </Link>
+        </div>
       </div>
     </div>
   );
 };
 
-export default TabBar;
+export default Tabs;
