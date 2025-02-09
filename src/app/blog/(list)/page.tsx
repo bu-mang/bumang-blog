@@ -1,4 +1,7 @@
 import BlogItem from "@/components/blogItem";
+import { FillButton } from "@/components/common/button";
+import Pagenation from "@/components/common/pagenation";
+import Title from "@/components/common/title";
 import {
   Pagination,
   PaginationContent,
@@ -8,6 +11,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { LuPlus } from "react-icons/lu";
 
 const blogItems = [
   {
@@ -105,11 +109,7 @@ const blogItems = [
 export default function Blog() {
   return (
     <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw]">
-      <div className="col-span-3 mb-5 flex h-10 w-full items-center gap-2 text-xl font-semibold">
-        {/* {pageTitle} */}
-        <span>PageTitle</span>
-        <span className="text-sm text-gray-200">28</span>
-      </div>
+      <Title />
       <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw] gap-y-[4.5vw]">
         {/* BLOGITEMS */}
         {blogItems.map(
@@ -128,30 +128,7 @@ export default function Blog() {
         )}
         {/* PAGE-NATION */}
         <div className="col-span-3">
-          <Pagination>
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious href="#" />
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#">1</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#" isActive>
-                  2
-                </PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#">3</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationNext href="#" />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
+          <Pagenation />
         </div>
       </div>
     </div>

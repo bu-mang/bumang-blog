@@ -1,4 +1,6 @@
 import BlogItem from "@/components/blogItem";
+import Pagenation from "@/components/common/pagenation";
+import Title from "@/components/common/title";
 
 const blogItems = [
   {
@@ -95,21 +97,29 @@ const blogItems = [
 
 export default function BlogDev() {
   return (
-    <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw] gap-y-[4.5vw]">
-      {blogItems.map(
-        ({ id, title, content, category, tags, date, imageUrl }) => (
-          <BlogItem
-            key={id}
-            id={id}
-            title={title}
-            content={content}
-            category={category}
-            tags={tags}
-            date={date}
-            imageUrl={imageUrl}
-          />
-        ),
-      )}
+    <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw]">
+      <Title />
+      <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw] gap-y-[4.5vw]">
+        {/* BLOGITEMS */}
+        {blogItems.map(
+          ({ id, title, content, category, tags, date, imageUrl }) => (
+            <BlogItem
+              key={id}
+              id={id}
+              title={title}
+              content={content}
+              category={category}
+              tags={tags}
+              date={date}
+              imageUrl={imageUrl}
+            />
+          ),
+        )}
+        {/* PAGE-NATION */}
+        <div className="col-span-3">
+          <Pagenation />
+        </div>
+      </div>
     </div>
   );
 }
