@@ -143,7 +143,7 @@ const NavBar = () => {
    * @LINKHOVERSTYLE
    */
   const linkHoverStyle =
-    "transition-colors duration-300 ease-in-out text-gray-200 hover:text-black cursor-pointer";
+    "relative z-50 transition-colors duration-300 ease-in-out text-gray-200 hover:text-black cursor-pointer";
   const navStyleManager = (subItem: MenuType) => {
     return cn(
       linkHoverStyle,
@@ -155,15 +155,15 @@ const NavBar = () => {
   };
 
   return (
-    <div className="NAVBAR_CONTAINER w-full cursor-default bg-white font-medium">
-      <div className="NAVBAR_BORDERBOX mx-[3vw] grid grid-cols-4 gap-[1vw] border-b-[1px] border-t-[1px] border-b-white border-t-gray-10 py-1 pb-3 text-xs text-gray-200">
-        <div className="NAVBAR_SWITCHING_PANEL relative grid grid-cols-2 gap-[1vw]">
-          <Link href="/login" className={linkHoverStyle}>
+    <div className="NAVBAR_CONTAINER relative w-full cursor-default bg-white font-medium">
+      <div className="NAVBAR_BORDERBOX mx-[3vw] grid grid-cols-4 gap-[1.5vw] border-b-[1px] border-t-[1px] border-b-white border-t-gray-10 py-1 pb-3 text-xs text-gray-200">
+        <div className="NAVBAR_SWITCHING_PANEL relative grid grid-cols-2 gap-[1.5vw]">
+          {/* <Link href="/login" className={linkHoverStyle}>
             Login
           </Link>
-          <div className="relative transition-all"></div>
+          <div className="relative transition-all"></div> */}
         </div>
-        <div className="grid grid-cols-2 gap-[1vw]">
+        <div className="grid grid-cols-2 gap-[1.5vw]">
           <div className="">
             <div className="flex gap-1">
               {ROUTES.filter((item) => item.group === "NAVIGATOR").map(
@@ -195,7 +195,7 @@ const NavBar = () => {
           </div>
           <div className=""></div>
         </div>
-        <div className="NAVBAR_SWITCHING_PANEL grid grid-cols-2 gap-[1vw]">
+        <div className="NAVBAR_SWITCHING_PANEL grid grid-cols-2 gap-[1.5vw]">
           <div className="flex gap-1">
             <LuGlobe className={cn(linkHoverStyle, "text-base")} />
             <LuMoonStar className={cn(linkHoverStyle, "text-base")} />
@@ -203,9 +203,9 @@ const NavBar = () => {
           </div>
           <div className=""></div>
         </div>
-        <div className="grid grid-cols-2 gap-[1vw]">
+        <div className="grid grid-cols-2 gap-[1.5vw]">
           <div className=""></div>
-          <div className="grid grid-cols-1 gap-[1vw] whitespace-nowrap lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-[1.5vw] whitespace-nowrap lg:grid-cols-2">
             <div className="absolute hidden flex-col lg:relative lg:flex">
               <span>{currentTimeZone}</span>
               <span>{clock}</span>

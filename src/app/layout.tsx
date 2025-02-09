@@ -1,5 +1,4 @@
 import "./globals.css";
-import { Provider } from "@/components/ui/provider";
 import Header from "../components/header";
 import Grid from "../components/grid";
 import Footer from "@/components/footer";
@@ -31,12 +30,10 @@ export default function RootLayout({
         />
       </head>
       <body className="h-[1500px] flex-1">
-        <Provider>
-          {isGridOn && <Grid />}
-          <Header />
-          <div className="h-fit w-screen pt-[20vw]">{children}</div>
-          <Footer />
-        </Provider>
+        {isGridOn && <Grid />}
+        <Header />
+        <div className="h-fit w-screen pt-[20vw]">{children}</div>
+        <Footer />
       </body>
     </html>
   );
