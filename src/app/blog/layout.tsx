@@ -1,14 +1,23 @@
-import FilterBar from "@/components/tabFilterBar";
+import SideBar from "@/components/sideBar";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
-export default function PlayLayout({
+export default function BlogLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <section className="">
-      <FilterBar />
-      <div className="">{children}</div>
+    <section className="grid grid-cols-4 gap-x-[1.5vw] px-[3vw]">
+      {children}
+      <SideBar />
     </section>
   );
 }

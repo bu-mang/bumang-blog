@@ -10,7 +10,7 @@ const SectionBox = ({ children, className, ...props }: SectionBoxProps) => {
 
   return (
     <div className={sectionBoxClass} {...props}>
-      <div className="auto-rows-[minmax(auto, max-content)] relative grid w-full grid-cols-8 gap-x-[1vw] gap-y-[1vw] border-t-[1px] border-gray-10 pt-3">
+      <div className="auto-rows-[minmax(auto, max-content)] relative grid w-full grid-cols-8 gap-x-[1.5vw] gap-y-[1.5vw] border-t-[1px] border-gray-10 pt-3">
         {children}
       </div>
     </div>

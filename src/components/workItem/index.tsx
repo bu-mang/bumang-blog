@@ -151,7 +151,7 @@ const WorkCard = ({ imgSrc, imgAlt, onClick, children }: WorkCardProps) => {
 
   return (
     <div
-      className="relative grid w-full flex-1 grid-cols-8 gap-[1vw] py-40"
+      className="relative grid w-full flex-1 grid-cols-8 gap-[1.5vw] py-40"
       ref={containerRef}
     >
       <div
