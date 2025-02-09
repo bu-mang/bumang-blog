@@ -95,7 +95,7 @@ const blogItems = [
 
 export default function BlogDev() {
   return (
-    <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw] gap-y-[3vw]">
+    <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw] gap-y-[4.5vw]">
       {blogItems.map(
         ({ id, title, content, category, tags, date, imageUrl }) => (
           <BlogItem

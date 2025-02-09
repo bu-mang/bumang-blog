@@ -37,7 +37,7 @@ export default function Blog() {
   return (
     <main className="" ref={containerRef}>
       {/* IMAGES */}
-      <div className="fade-in-mount relative mx-[3vw] mb-6 h-96">
+      <div className="fade-in-mount relative mx-[10vw] mb-6 h-96">
         <Image
           src="/star.webp"
           alt="profileImage"

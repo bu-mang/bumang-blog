@@ -6,7 +6,7 @@ interface SectionBoxProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const SectionBox = ({ children, className, ...props }: SectionBoxProps) => {
-  const sectionBoxClass = cn("w-full px-[3vw] opacity-0", className);
+  const sectionBoxClass = cn("w-full px-[10vw] opacity-0", className);
 
   return (
     <div className={sectionBoxClass} {...props}>

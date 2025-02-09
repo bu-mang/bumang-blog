@@ -104,48 +104,55 @@ const blogItems = [
 
 export default function Blog() {
   return (
-    <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw] gap-y-[3vw]">
-      {/* BLOGITEMS */}
-      {blogItems.map(
-        ({ id, title, content, category, tags, date, imageUrl }) => (
-          <BlogItem
-            key={id}
-            id={id}
-            title={title}
-            content={content}
-            category={category}
-            tags={tags}
-            date={date}
-            imageUrl={imageUrl}
-          />
-        ),
-      )}
-      {/* PAGE-NATION */}
-      <div className="col-span-3">
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#" />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">1</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#" isActive>
-                2
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">3</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href="#" />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+    <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw]">
+      <div className="col-span-3 mb-5 flex h-10 w-full items-center gap-2 text-xl font-semibold">
+        {/* {pageTitle} */}
+        <span>PageTitle</span>
+        <span className="text-sm text-gray-200">28</span>
+      </div>
+      <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw] gap-y-[4.5vw]">
+        {/* BLOGITEMS */}
+        {blogItems.map(
+          ({ id, title, content, category, tags, date, imageUrl }) => (
+            <BlogItem
+              key={id}
+              id={id}
+              title={title}
+              content={content}
+              category={category}
+              tags={tags}
+              date={date}
+              imageUrl={imageUrl}
+            />
+          ),
+        )}
+        {/* PAGE-NATION */}
+        <div className="col-span-3">
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious href="#" />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">1</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#" isActive>
+                  2
+                </PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">3</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationEllipsis />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationNext href="#" />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
       </div>
     </div>
   );
