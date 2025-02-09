@@ -51,7 +51,7 @@ const Tabs = () => {
   );
 
   return (
-    <div className="flex rounded-lg px-2">
+    <div className="flex h-10 items-center rounded-lg px-2">
       <div className="relative flex h-full w-full border-b-[1px] py-1">
         {/* TAB INDICATOR */}
         <div
