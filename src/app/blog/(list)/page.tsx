@@ -1,4 +1,7 @@
 import BlogItem from "@/components/blogItem";
+import { FillButton } from "@/components/common/button";
+import Pagenation from "@/components/common/pagenation";
+import Title from "@/components/common/title";
 import {
   Pagination,
   PaginationContent,
@@ -8,6 +11,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { LuPlus } from "react-icons/lu";
 
 const blogItems = [
   {
@@ -104,48 +108,28 @@ const blogItems = [
 
 export default function Blog() {
   return (
-    <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw] gap-y-[3vw]">
-      {/* BLOGITEMS */}
-      {blogItems.map(
-        ({ id, title, content, category, tags, date, imageUrl }) => (
-          <BlogItem
-            key={id}
-            id={id}
-            title={title}
-            content={content}
-            category={category}
-            tags={tags}
-            date={date}
-            imageUrl={imageUrl}
-          />
-        ),
-      )}
-      {/* PAGE-NATION */}
-      <div className="col-span-3">
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#" />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">1</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#" isActive>
-                2
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">3</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href="#" />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+    <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw]">
+      <Title />
+      <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw] gap-y-[4.5vw]">
+        {/* BLOGITEMS */}
+        {blogItems.map(
+          ({ id, title, content, category, tags, date, imageUrl }) => (
+            <BlogItem
+              key={id}
+              id={id}
+              title={title}
+              content={content}
+              category={category}
+              tags={tags}
+              date={date}
+              imageUrl={imageUrl}
+            />
+          ),
+        )}
+        {/* PAGE-NATION */}
+        <div className="col-span-3">
+          <Pagenation />
+        </div>
       </div>
     </div>
   );
