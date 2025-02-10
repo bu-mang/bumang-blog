@@ -1,6 +1,6 @@
 import ButtonBase from "./base";
 import { ButtonProps } from "../types";
-import clsx from "clsx";
+import { cn } from "@/utils/cn";
 
 const FillButton: React.FC<ButtonProps> = ({
   isLoading = false,
@@ -10,10 +10,10 @@ const FillButton: React.FC<ButtonProps> = ({
   className = "",
   ...props
 }) => {
-  const buttonClass = clsx(
+  const buttonClass = cn(
     "px-4 py-2 rounded-md text-white transition-colors",
     {
-      "bg-blue-500 hover:bg-blue-600": !disabled && !isLoading,
+      "bg-gray-500 hover:bg-gray-600": !disabled && !isLoading,
       "cursor-not-allowed opacity-50": disabled,
       "cursor-wait": isLoading,
     },
@@ -28,7 +28,7 @@ const FillButton: React.FC<ButtonProps> = ({
       disabled={disabled}
       {...props}
     >
-      children
+      {children}
     </ButtonBase>
   );
 };
