@@ -8,141 +8,184 @@ const config: Config = {
   ],
   darkMode: ["class", "class"], // 다크 모드를 class 기반으로 설정
   theme: {
-  	extend: {
-  		fontFamily: {
-  			sans: [
-  				'Wanted Sans Variable',
-  				'Wanted Sans',
-  				'sans-serif'
-  			]
-  		},
-  		borderRadius: {
-  			'2': '2px',
-  			'4': '4px',
-  			'6': '6px',
-  			'8': '8px',
-  			'10': '10px',
-  			'12': '12px',
-  			'14': '14px',
-  			'16': '16px',
-  			'18': '18px',
-  			'20': '20px',
-  			'22': '22px',
-  			'24': '24px',
-  			'26': '26px',
-  			'28': '28px',
-  			'30': '30px',
-  			'32': '32px',
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
-  		},
-  		letterSpacing: {
-  			looser: '-0.02em',
-  			noSpacing: '0em'
-  		},
-  		spacing: {
-  			layout: '12px',
-  			header: '100px',
-  			'header-2': '88px',
-  			'header-margin': '40px'
-  		},
-  		colors: {
-  			gray: {
-  				'0': '#FFFFFF',
-  				'1': '#F8F8F8',
-  				'5': '#EDEDED',
-  				'10': '#EDE5E5',
-  				'50': '#D9D9D9',
-  				'100': '#B4B4B4',
-  				'200': '#999999',
-  				'300': '#818181',
-  				'400': '#616161',
-  				'500': '#4D4D4D',
-  				'600': '#373737',
-  				'700': '#2C2C2C',
-  				'800': '#1D1D1D',
-  				'900': '#141414',
-  				'1000': '#121212'
-  			},
-  			blue: {
-  				light: '#3B82F6',
-  				DEFAULT: '#1D4ED8',
-  				dark: '#1E40AF'
-  			},
-  			red: {
-  				light: '#F87171',
-  				DEFAULT: '#EF4444',
-  				dark: '#B91C1C'
-  			},
-  			background: 'hsl(var(--background))',
-  			foreground: 'hsl(var(--foreground))',
-  			card: {
-  				DEFAULT: 'hsl(var(--card))',
-  				foreground: 'hsl(var(--card-foreground))'
-  			},
-  			popover: {
-  				DEFAULT: 'hsl(var(--popover))',
-  				foreground: 'hsl(var(--popover-foreground))'
-  			},
-  			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
-  			},
-  			secondary: {
-  				DEFAULT: 'hsl(var(--secondary))',
-  				foreground: 'hsl(var(--secondary-foreground))'
-  			},
-  			muted: {
-  				DEFAULT: 'hsl(var(--muted))',
-  				foreground: 'hsl(var(--muted-foreground))'
-  			},
-  			accent: {
-  				DEFAULT: 'hsl(var(--accent))',
-  				foreground: 'hsl(var(--accent-foreground))'
-  			},
-  			destructive: {
-  				DEFAULT: 'hsl(var(--destructive))',
-  				foreground: 'hsl(var(--destructive-foreground))'
-  			},
-  			border: 'hsl(var(--border))',
-  			input: 'hsl(var(--input))',
-  			ring: 'hsl(var(--ring))',
-  			chart: {
-  				'1': 'hsl(var(--chart-1))',
-  				'2': 'hsl(var(--chart-2))',
-  				'3': 'hsl(var(--chart-3))',
-  				'4': 'hsl(var(--chart-4))',
-  				'5': 'hsl(var(--chart-5))'
-  			}
-  		},
-  		animation: {
-  			arrow: 'arrow 1s ease-out infinite',
-  			'slide-up': 'slide-up 0.3s ease-in-out'
-  		},
-  		keyframes: {
-  			arrow: {
-  				'0%': {
-  					transform: 'translateX(-50%)'
-  				},
-  				'100%': {
-  					transform: 'translateX(0)'
-  				}
-  			},
-  			'slide-up': {
-  				'0%': {
-  					transform: 'translateY(40px)',
-  					opacity: '0'
-  				},
-  				'100%': {
-  					transform: 'translateY(0%)',
-  					opacity: '1'
-  				}
-  			},
-  			blink: {}
-  		}
-  	}
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            p: {
+              marginTop: "0.5em",
+              marginBottom: "0.5em",
+            },
+            h1: {
+              fontSize: "2rem",
+              fontWeight: "bold",
+            },
+            h2: {
+              fontSize: "1.5rem",
+              fontWeight: "bold",
+            },
+            blockquote: {
+              fontStyle: "italic",
+              borderLeftWidth: "4px",
+              borderColor: "#ccc",
+            },
+            ol: {
+              marginTop: "0.125em",
+              marginBottom: "0.125em",
+              paddingLeft: "1.25em", // 들여쓰기
+            },
+            ul: {
+              marginTop: "-4px",
+              marginBottom: "-4px",
+              paddingTop: "-4px",
+              paddingBottom: "-4px",
+              paddingLeft: "1.25em", // 들여쓰기
+              listStylePosition: "outside", // 기본값 유지
+            },
+            li: {
+              marginTop: "-4px",
+              marginBottom: "-4px",
+            },
+
+            ".prose ul > li::marker": {
+              color: "#B4B4B4" /* 불렛 색상을 빨간색으로 변경 (Tomato 색상) */,
+            },
+            ".prose ol > li::marker": {
+              color: "#B4B4B4" /* 불렛 색상을 빨간색으로 변경 (Tomato 색상) */,
+            },
+          },
+        },
+      },
+      fontFamily: {
+        sans: ["Wanted Sans Variable", "Wanted Sans", "sans-serif"],
+      },
+      borderRadius: {
+        "2": "2px",
+        "4": "4px",
+        "6": "6px",
+        "8": "8px",
+        "10": "10px",
+        "12": "12px",
+        "14": "14px",
+        "16": "16px",
+        "18": "18px",
+        "20": "20px",
+        "22": "22px",
+        "24": "24px",
+        "26": "26px",
+        "28": "28px",
+        "30": "30px",
+        "32": "32px",
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      letterSpacing: {
+        looser: "-0.02em",
+        noSpacing: "0em",
+      },
+      spacing: {
+        layout: "12px",
+        header: "100px",
+        "header-2": "88px",
+        "header-margin": "40px",
+      },
+      colors: {
+        gray: {
+          "0": "#FFFFFF",
+          "1": "#F8F8F8",
+          "5": "#EDEDED",
+          "10": "#EDE5E5",
+          "50": "#D9D9D9",
+          "100": "#B4B4B4",
+          "200": "#999999",
+          "300": "#818181",
+          "400": "#616161",
+          "500": "#4D4D4D",
+          "600": "#373737",
+          "700": "#2C2C2C",
+          "800": "#1D1D1D",
+          "900": "#141414",
+          "1000": "#121212",
+        },
+        blue: {
+          light: "#3B82F6",
+          DEFAULT: "#1D4ED8",
+          dark: "#1E40AF",
+        },
+        red: {
+          light: "#F87171",
+          DEFAULT: "#EF4444",
+          dark: "#B91C1C",
+        },
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        chart: {
+          "1": "hsl(var(--chart-1))",
+          "2": "hsl(var(--chart-2))",
+          "3": "hsl(var(--chart-3))",
+          "4": "hsl(var(--chart-4))",
+          "5": "hsl(var(--chart-5))",
+        },
+      },
+      animation: {
+        arrow: "arrow 1s ease-out infinite",
+        "slide-up": "slide-up 0.3s ease-in-out",
+      },
+      keyframes: {
+        arrow: {
+          "0%": {
+            transform: "translateX(-50%)",
+          },
+          "100%": {
+            transform: "translateX(0)",
+          },
+        },
+        "slide-up": {
+          "0%": {
+            transform: "translateY(40px)",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "translateY(0%)",
+            opacity: "1",
+          },
+        },
+        blink: {},
+      },
+    },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 };
 export default config;
