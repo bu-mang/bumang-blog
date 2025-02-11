@@ -1,6 +1,7 @@
 "use client";
 
 import { useEditor, EditorContent } from "@tiptap/react";
+import "highlight.js/styles/panda-syntax-dark.css";
 
 /**
  * MARKS
@@ -19,9 +20,7 @@ import TextStyle from "@tiptap/extension-text-style";
  */
 import Blockquote from "@tiptap/extension-blockquote";
 import BulletList from "@tiptap/extension-bullet-list";
-import CodeBlock from "@tiptap/extension-code-block";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
-import { all, createLowlight } from "lowlight";
 import Heading from "@tiptap/extension-heading";
 import HorizontalRule from "@tiptap/extension-horizontal-rule";
 import Image from "@tiptap/extension-image";
@@ -52,13 +51,16 @@ import { Color } from "@tiptap/extension-color";
 import { FontFamily } from "@tiptap/extension-font-family";
 import TextAlign from "@tiptap/extension-text-align";
 import Typography from "@tiptap/extension-typography";
-import History from "@tiptap/extension-history";
 
+import { all, createLowlight } from "lowlight";
+
+// create a lowlight instance with all languages loaded
 const lowlight = createLowlight(all);
 
 export default function BlogEdit() {
   const editor = useEditor({
     extensions: [
+      StarterKit,
       /**
        * MARK
        */
@@ -87,7 +89,7 @@ export default function BlogEdit() {
        */
       Blockquote,
       BulletList,
-      CodeBlock,
+      // CodeBlock,
       CodeBlockLowlight.configure({
         lowlight,
         defaultLanguage: "typescript",
@@ -95,7 +97,7 @@ export default function BlogEdit() {
 
       Document,
       Heading.configure({
-        levels: [1, 2, 3],
+        levels: [1, 2, 3, 4, 5],
       }),
       HorizontalRule,
       Image.configure({
@@ -133,12 +135,10 @@ export default function BlogEdit() {
         types: ["heading", "paragraph"],
       }),
       Typography,
-      History,
     ],
     editorProps: {
       attributes: {
-        class:
-          "prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl m-5 focus:outline-none",
+        class: "prose m-5 focus:outline-none leading-normal",
       },
     },
   });
