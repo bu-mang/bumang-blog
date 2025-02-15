@@ -96,17 +96,7 @@ q:after {
     /* 부드러운 애니메이션 */
     transition: transform 0.1s ease;
   }
-
-  .heading {
-    font-size: 20px;
-  }
 }
-
-/* .sticky {
-  position: sticky;
-  top: 0;  화면 상단에서 0px 떨어진 위치에 고정
-  z-index: 1000; 다른 요소 위에 표시되도록 설정 (필요 시)
-} */
 
 @layer base {
   :root {
@@ -162,13 +152,19 @@ q:after {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  .tiptap p.is-editor-empty:first-child::before {
+    color: #adb5bd;
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
   }
 }
