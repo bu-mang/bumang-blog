@@ -7,9 +7,6 @@ const useOverflow = (ref: React.RefObject<HTMLElement>) => {
   useEffect(() => {
     const checkOverflow = () => {
       if (ref.current) {
-        // console.log(ref.current.scrollWidth, "scrollWidth");
-        // console.log(ref.current.clientWidth, "clientWidth");
-
         setIsOverflow(ref.current.scrollWidth > ref.current.clientWidth);
       }
     };
