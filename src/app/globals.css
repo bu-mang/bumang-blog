@@ -167,4 +167,12 @@ q:after {
     height: 0;
     pointer-events: none;
   }
+
+  li .line-menu {
+    display: none;
+  }
 }
+
+/* p .line-menu {
+  display: none;
+} */
