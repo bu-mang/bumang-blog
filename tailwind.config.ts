@@ -9,53 +9,6 @@ const config: Config = {
   darkMode: ["class", "class"], // 다크 모드를 class 기반으로 설정
   theme: {
     extend: {
-      typography: {
-        DEFAULT: {
-          css: {
-            p: {
-              marginTop: "0.5em",
-              marginBottom: "0.5em",
-            },
-            h1: {
-              fontSize: "2rem",
-              fontWeight: "bold",
-            },
-            h2: {
-              fontSize: "1.5rem",
-              fontWeight: "bold",
-            },
-            blockquote: {
-              fontStyle: "italic",
-              borderLeftWidth: "4px",
-              borderColor: "#ccc",
-            },
-            ol: {
-              marginTop: "0.125em",
-              marginBottom: "0.125em",
-              paddingLeft: "1.25em", // 들여쓰기
-            },
-            ul: {
-              marginTop: "-4px",
-              marginBottom: "-4px",
-              paddingTop: "-4px",
-              paddingBottom: "-4px",
-              paddingLeft: "1.25em", // 들여쓰기
-              listStylePosition: "outside", // 기본값 유지
-            },
-            li: {
-              marginTop: "-4px",
-              marginBottom: "-4px",
-            },
-
-            ".prose ul > li::marker": {
-              color: "#B4B4B4" /* 불렛 색상을 빨간색으로 변경 (Tomato 색상) */,
-            },
-            ".prose ol > li::marker": {
-              color: "#B4B4B4" /* 불렛 색상을 빨간색으로 변경 (Tomato 색상) */,
-            },
-          },
-        },
-      },
       fontFamily: {
         sans: ["Wanted Sans Variable", "Wanted Sans", "sans-serif"],
       },
