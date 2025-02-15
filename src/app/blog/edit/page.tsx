@@ -81,7 +81,7 @@ interface DragHandleProps {
   lineContainerClass?: string;
 }
 
-const HANDLE_WITDH = 52;
+const HANDLE_WITDH = 32;
 const MENU_LINE_GAP_WIDTH = 12;
 
 const LineMenu = ({
@@ -112,7 +112,7 @@ const LineMenu = ({
   return (
     <div
       className={cn(
-        `flex justify-between bg-red py-3`,
+        `line-menu flex justify-between py-3`,
         `w-[${HANDLE_WITDH}px]`,
         lineContainerClass,
       )}
@@ -132,13 +132,14 @@ const DraggableNodeView: React.FC<NodeViewProps> = ({ node }) => {
     lineDragHandleClass, // 드래그 핸들메뉴 클래스
     lineAddHandleClass, // 추가 핸들메뉴 클래스
 
-    translateXValue = HANDLE_WITDH + MENU_LINE_GAP_WIDTH,
+    // translateXValue = HANDLE_WITDH + MENU_LINE_GAP_WIDTH,
     level, // Heading의 경우
   } = node.attrs;
 
+  // -translate-x-[${translateXValue}px]
   return (
     <NodeViewWrapper
-      className={`draggable-item flex -translate-x-[${translateXValue}px] gap-3 ${NodeViewWrapperClass}`}
+      className={`draggable-item flex gap-3 ${NodeViewWrapperClass}`}
     >
       <LineMenu
         lineDragHandleClass={lineDragHandleClass}
@@ -207,6 +208,37 @@ const CustomBulletList = BulletList.extend({
   },
 });
 
+const DraggableListView: React.FC<NodeViewProps> = ({
+  node,
+  editor,
+  getPos,
+}) => {
+  const {
+    NodeViewWrapperClass, // 전체 컨테이너 클래스
+    nodeViewClass, // 실제 컨텐츠 클래스
+
+    lineContainerClass, // 메뉴 컨테이너 클래스
+    lineDragHandleClass, // 드래그 핸들메뉴 클래스
+    lineAddHandleClass, // 추가 핸들메뉴 클래스
+  } = node.attrs;
+  const parentNode = editor.state.doc.resolve(getPos()).node(-1); // 부모 노드
+
+  return (
+    <NodeViewWrapper
+      className={`draggable-item flex gap-3 ${NodeViewWrapperClass}`}
+    >
+      <LineMenu
+        lineDragHandleClass={lineDragHandleClass}
+        lineAddHandleClass={lineAddHandleClass}
+        lineContainerClass={lineContainerClass}
+      />
+
+      {parentNode.type.name === "bulletList" && <span className="">•</span>}
+      {parentNode.type.name === "orderedList" && <span className="">111.</span>}
+      <NodeViewContent className="flex-grow" />
+    </NodeViewWrapper>
+  );
+};
 const CustomListItemView = () => {
   return (
     <NodeViewWrapper as="li" className="flex gap-2">
@@ -216,7 +248,7 @@ const CustomListItemView = () => {
   );
 };
 export const CustomListItem = ListItem.extend({
-  renderHTML({ HTMLAttributes }) {
+  renderHTML({ HTMLAttributes, node }) {
     return [
       "li",
       { ...HTMLAttributes, class: "custom-list-item flex items-center gap-2" },
@@ -301,6 +333,40 @@ const CustomPlaceholder = Placeholder.configure({
   emptyEditorClass: "is-editor-empty", // @Base에서 해당 class에 대한 기본 css 적용
 });
 
+const DraggableHorizontalRuleView: React.FC<NodeViewProps> = ({ node }) => {
+  const {
+    NodeViewWrapperClass, // Wrapper 클래스
+    lineContainerClass, // 핸들 컨테이너 클래스
+    lineDragHandleClass, // 드래그 핸들 클래스
+    lineAddHandleClass, // 추가 핸들 클래스
+  } = node.attrs;
+
+  return (
+    <NodeViewWrapper
+      className={`draggable-item flex items-center gap-3 ${NodeViewWrapperClass}`}
+    >
+      {/* 핸들 메뉴 */}
+      <LineMenu
+        lineContainerClass={lineContainerClass}
+        lineDragHandleClass={lineDragHandleClass}
+        lineAddHandleClass={lineAddHandleClass}
+      />
+
+      {/* 실제 수평선 */}
+      <hr className="h-0.25 w-full bg-gray-50" />
+    </NodeViewWrapper>
+  );
+};
+const CustomHorizontalRule = HorizontalRule.configure({
+  HTMLAttributes: {
+    class: "bg-blue h-2 w-5",
+  },
+}).extend({
+  addNodeView() {
+    return ReactNodeViewRenderer(DraggableHorizontalRuleView);
+  },
+});
+
 const TableComponents = [
   Table.configure({
     resizable: true,
@@ -309,6 +375,16 @@ const TableComponents = [
   TableHeader,
   TableCell,
 ];
+
+const CustomParagraph = Paragraph.configure({
+  HTMLAttributes: {
+    class: "-translate-y-px m-0",
+  },
+}).extend({
+  addNodeView() {
+    return ReactNodeViewRenderer(DraggableNodeView);
+  },
+});
 
 export default function BlogEdit() {
   const editor = useEditor({
@@ -335,7 +411,6 @@ export default function BlogEdit() {
       OrderedList,
 
       Document,
-      HorizontalRule,
       CustomImage,
       CustomHeading,
       CustomTaskList,
@@ -344,17 +419,14 @@ export default function BlogEdit() {
       CustomPlaceholder,
       CustomBulletList,
       CustomListItem,
+      CustomHorizontalRule,
+      CustomParagraph,
 
       ...TableComponents,
 
       Youtube,
 
       Text,
-      Paragraph.configure({
-        HTMLAttributes: {
-          class: "-translate-y-px m-0",
-        },
-      }),
 
       /**
        * FUNCTIONS
