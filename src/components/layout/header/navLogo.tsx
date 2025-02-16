@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import { Bumang, Route53 } from "../../assets";
+import { Bumang, Route53 } from "@/assets";
 import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);

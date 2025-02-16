@@ -6,7 +6,7 @@ import { cn } from "@/utils/cn";
 import { combinePaths } from "@/utils/combinePaths";
 
 import resolveConfig from "tailwindcss/resolveConfig";
-import tailwindConfig from "../../../tailwind.config";
+import tailwindConfig from "../../../../tailwind.config";
 
 const fullConfig = resolveConfig(tailwindConfig);
 const gray = fullConfig.theme.colors.gray as Record<string, string>;
@@ -22,7 +22,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const NavBar = () => {
   /**
-   * @HeaderAnimation
+   * @HEADER_ANIMATION
    */
   useEffect(() => {
     // 타임라인으로 통함??
@@ -60,7 +60,7 @@ const NavBar = () => {
   }, []);
 
   /**
-   * @Clock
+   * @CLOCK_LOGIC
    */
   const [clock, setClock] = useState("00:00");
   useLayoutEffect(() => {
@@ -95,7 +95,7 @@ const NavBar = () => {
   }, []);
 
   /**
-   * @screen_widthHeight
+   * @SCREEN_WIDTH_HEIGHT_RESIZING
    */
   const [innerWidth, setInnerWidth] = useState(0);
   const [innerHeight, setInnerHeight] = useState(0);
@@ -112,7 +112,7 @@ const NavBar = () => {
   }, []);
 
   /**
-   * @CurrentTimeZone
+   * @CURRENT_TIMEZONE
    */
   const currentTimeZone = Intl.DateTimeFormat()
     .resolvedOptions()
