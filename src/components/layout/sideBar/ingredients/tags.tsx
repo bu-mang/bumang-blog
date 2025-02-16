@@ -1,8 +1,4 @@
-// import { LuChevronRight } from "react-icons/lu";
-// import DropDown from "../common/dropdown";
-// import useOverflow from "@/hooks/useOverflow";
-// import { useRef, useState } from "react";
-import Tag from "../../common/tags";
+import Tag from "@/components/common/tags";
 
 const Tags = () => {
   return (

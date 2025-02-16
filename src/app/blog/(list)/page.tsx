@@ -2,16 +2,6 @@ import BlogItem from "@/components/blogItem";
 import { FillButton } from "@/components/common/button";
 import Pagenation from "@/components/common/pagenation";
 import Title from "@/components/common/title";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
-import { LuPlus } from "react-icons/lu";
 
 const blogItems = [
   {

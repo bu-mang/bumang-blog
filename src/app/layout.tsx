@@ -1,7 +1,7 @@
 import "./globals.css";
-import Header from "../components/header";
+import Header from "@/components/layout/header";
 import Grid from "../components/grid";
-import Footer from "@/components/footer";
+import Footer from "@/components/layout/footer";
 
 export default function RootLayout({
   children,
@@ -32,7 +32,7 @@ export default function RootLayout({
       <body className="h-[1500px] flex-1">
         {isGridOn && <Grid />}
         <Header />
-        <div className="h-fit w-screen pt-[20vw]">{children}</div>
+        <div className="h-fit w-screen">{children}</div>
         <Footer />
       </body>
     </html>
