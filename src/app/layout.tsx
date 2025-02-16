@@ -1,6 +1,6 @@
 import "./globals.css";
 import Header from "@/components/layout/header";
-import Grid from "../components/grid";
+import Grid from "../components/layout/grid";
 import Footer from "@/components/layout/footer";
 
 export default function RootLayout({

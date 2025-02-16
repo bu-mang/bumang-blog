@@ -1,5 +1,4 @@
-import BlogItem from "@/components/blogItem";
-import { FillButton } from "@/components/common/button";
+import BlogItem from "@/components/pages/blog/blogItem";
 import Pagenation from "@/components/common/pagenation";
 import Title from "@/components/common/title";
 

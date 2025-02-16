@@ -1,8 +1,6 @@
 "use client";
-// import TiptapEditor from "@/components/tiptapEditor";
-// <TiptapEditor />
 
-import { useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import YooptaEditor, {
   createYooptaEditor,
   SlateElement,
@@ -177,6 +175,7 @@ export default function BlogEdit() {
   return (
     <main className="grid grid-cols-8 gap-x-[1.5vw] bg-red px-[10vw]">
       <div className="col-start-2 col-end-8 grid h-fit grid-cols-6 gap-x-[1.5vw] border">
+        <></>
         <div className="col-start-2 col-end-6 grid grid-cols-1 border">
           <button onClick={deserializeHTML} className="bg-blue">
             Deserialize from html to content

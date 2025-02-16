@@ -6,7 +6,7 @@ export default function BlogLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const aboutPageClass = cn(LAYOUT_PADDING_TOP);
+  // const aboutPageClass = cn(LAYOUT_PADDING_TOP);
 
-  return <section className={aboutPageClass}>{children}</section>;
+  return <section className={LAYOUT_PADDING_TOP}>{children}</section>;
 }

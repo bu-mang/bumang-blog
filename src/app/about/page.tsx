@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 import gsap from "gsap/all";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SectionBox, SubBox } from "@/components/aboutSection";
+import { SectionBox, SubBox } from "@/components/pages/about/aboutSection";
 
 gsap.registerPlugin(ScrollTrigger);
 
