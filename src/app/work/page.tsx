@@ -1,6 +1,6 @@
 "use client";
 
-import WorkCard from "@/components/workItem";
+import WorkCard from "@/components/pages/work/workItem";
 
 export default function Work() {
   return (

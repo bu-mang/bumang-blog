@@ -1,4 +1,4 @@
-import BlogItem from "@/components/blogItem";
+import BlogItem from "@/components/pages/blog/blogItem";
 import Pagenation from "@/components/common/pagenation";
 import Title from "@/components/common/title";
 
