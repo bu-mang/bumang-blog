@@ -1,10 +1,10 @@
 import { LAYOUT_PADDING_TOP } from "@/constants/layout";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 export default function BlogLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <section className={LAYOUT_PADDING_TOP}>{children}</section>;
+  return <section className={cn(LAYOUT_PADDING_TOP)}>{children}</section>;
 }

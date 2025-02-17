@@ -25,7 +25,7 @@ const NavLogo = () => {
         end: "200px top",
 
         scrub: true,
-        markers: true,
+        // markers: true,,
 
         onRefresh: () => {
           const progress = Math.min(window.scrollY / 200, 1);
