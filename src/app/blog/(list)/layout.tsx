@@ -7,13 +7,13 @@ export default function BlogLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const blogPageClass = cn(
-    "grid grid-cols-4 gap-x-[1.5vw] px-[10vw]",
-    LAYOUT_PADDING_TOP,
-  );
-
   return (
-    <section className={blogPageClass}>
+    <section
+      className={cn(
+        "grid h-fit min-h-full grid-cols-4 gap-x-[1.5vw] px-[10vw]",
+        LAYOUT_PADDING_TOP,
+      )}
+    >
       {children}
       <SideBar />
     </section>

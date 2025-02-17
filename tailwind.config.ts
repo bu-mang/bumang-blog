@@ -140,5 +140,6 @@ const config: Config = {
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  safelist: ["pt-64"],
 };
 export default config;

@@ -33,7 +33,7 @@ const NavBar = () => {
         end: "200px top",
 
         scrub: true,
-        markers: true,
+        // markers: true,,
       },
     });
     gsap.to(".NAVBAR_BORDERBOX", {
@@ -44,7 +44,7 @@ const NavBar = () => {
         end: "200px top",
 
         scrub: true,
-        markers: true,
+        // markers: true,,
       },
     });
     gsap.to(".NAVBAR_SWITCHING_PANEL", {
@@ -54,7 +54,7 @@ const NavBar = () => {
         end: "200px top",
 
         scrub: true,
-        markers: true,
+        // markers: true,,
       },
     });
   }, []);

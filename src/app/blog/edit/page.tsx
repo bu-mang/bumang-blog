@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import YooptaEditor, {
   createYooptaEditor,
   SlateElement,
@@ -39,7 +39,7 @@ import LinkTool, { DefaultLinkToolRender } from "@yoopta/link-tool";
 import { html } from "@yoopta/exports";
 
 import BlogEditorToolBar from "@/components/pages/blog/blogEditToolBar";
-import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
 
 const plugins = [
   Paragraph,
@@ -154,12 +154,12 @@ export default function BlogEdit() {
   };
 
   // from html to @yoopta content
-  const deserializeHTML = () => {
-    const htmlString = "<h1>First title</h1>";
-    const content = html.deserialize(editor, htmlString);
+  // const deserializeHTML = () => {
+  //   const htmlString = "<h1>First title</h1>";
+  //   const content = html.deserialize(editor, htmlString);
 
-    editor.setEditorValue(content);
-  };
+  //   editor.setEditorValue(content);
+  // };
 
   // from @yoopta content to html string
   const serializeHTML = () => {
@@ -171,37 +171,60 @@ export default function BlogEdit() {
     }
   };
 
-  useEffect(() => {
-    deserializeHTML();
-    // eslint-disable-next-line
-  }, []);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
+  const [title, setTitle] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setTitle(e.target.value);
+    const target = e.target as HTMLTextAreaElement;
+    target.style.height = "auto"; // 높이를 초기화한 후
+    target.style.height = `${target.scrollHeight}px`;
+  };
 
   return (
     <main className="min-h-full w-full">
       <BlogEditorToolBar />
-      <div className="mt-14 grid grid-cols-8 gap-x-[1.5vw] bg-red px-[10vw]">
-        <div className="col-start-2 col-end-8 grid h-fit grid-cols-6 gap-x-[1.5vw] border">
-          <div className="col-start-2 col-end-6 grid grid-cols-1 border">
-            <button onClick={deserializeHTML} className="bg-blue">
+      <div className="h-min-screen flex w-full justify-center px-[10vw] pt-24">
+        <form
+          className="h-full w-[720px] bg-white"
+          onSubmit={(e) => handleSubmit(e)}
+        >
+          {/* <button onClick={deserializeHTML} className="bg-blue">
               Deserialize from html to content
             </button>
             <button onClick={serializeHTML} className="bg-red">
               Serialize from content to html
-            </button>
-            <YooptaEditor
-              width="100%"
-              className="p-2"
-              editor={editor}
-              plugins={plugins}
-              placeholder="Type Something Cool...!"
-              value={value}
-              onChange={onChange}
-              tools={TOOLS}
-              marks={MARKS}
-              autoFocus
-            />
-          </div>
-        </div>
+            </button> */}
+
+          {/* INPUT */}
+          <textarea
+            className="flex h-auto min-h-20 w-full resize-none flex-wrap overflow-hidden rounded-md border-none bg-transparent px-2 py-4 text-5xl font-semibold leading-normal outline-none transition-colors placeholder:text-gray-100 hover:bg-gray-1 disabled:cursor-not-allowed disabled:opacity-50"
+            placeholder="A Legend has said that..."
+            tabIndex={1}
+            value={title}
+            maxLength={48}
+            onChange={handleChange}
+          />
+
+          {/* DIVIDER */}
+          <div className="h-[1px] w-full bg-gray-5" />
+
+          <YooptaEditor
+            width="100%"
+            className="min-h-96 p-2"
+            editor={editor}
+            plugins={plugins}
+            placeholder="Type Something Cool...!"
+            value={value}
+            onChange={onChange}
+            tools={TOOLS}
+            marks={MARKS}
+            autoFocus
+          />
+        </form>
       </div>
     </main>
   );

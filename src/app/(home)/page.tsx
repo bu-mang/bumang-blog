@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export default function Main() {
   const mainPageClass = cn(
-    "flex flex-1 flex-col items-center justify-center",
+    "flex flex-1 flex-col items-center justify-center h-fit min-h-full w-full",
     LAYOUT_PADDING_TOP,
   );
 

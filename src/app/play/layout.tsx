@@ -4,7 +4,7 @@ export default function PlayLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="">
+    <section className="h-fit min-h-full w-full">
       <div className="">{children}</div>
     </section>
   );
