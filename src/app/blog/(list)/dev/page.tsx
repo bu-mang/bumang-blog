@@ -1,6 +1,6 @@
 import BlogItem from "@/components/pages/blog/blogItem";
-import Pagenation from "@/components/common/pagenation";
-import Title from "@/components/common/title";
+import Pagenation from "@/components/common/pageNation";
+import BlogTitle from "@/components/pages/blog/blogTitle";
 
 const blogItems = [
   {
@@ -98,7 +98,7 @@ const blogItems = [
 export default function BlogDev() {
   return (
     <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw]">
-      <Title />
+      <BlogTitle />
       <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw] gap-y-[4.5vw]">
         {/* BLOGITEMS */}
         {blogItems.map(

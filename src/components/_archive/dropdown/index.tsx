@@ -2,7 +2,7 @@
 import { cn } from "@/utils/cn";
 import { createContext, useContext, useState } from "react";
 import { RiArrowDownSFill } from "react-icons/ri";
-import { ButtonBase } from "../button";
+import { ButtonBase } from "../../common/button";
 
 /**
  * @TYPE
