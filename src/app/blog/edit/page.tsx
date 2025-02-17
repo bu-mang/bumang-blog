@@ -38,6 +38,9 @@ import Toolbar, { DefaultToolbarRender } from "@yoopta/toolbar";
 import LinkTool, { DefaultLinkToolRender } from "@yoopta/link-tool";
 import { html } from "@yoopta/exports";
 
+import BlogEditorToolBar from "@/components/pages/blog/blogEditToolBar";
+import { cn } from "@/lib/utils";
+
 const plugins = [
   Paragraph,
   Table,
@@ -170,31 +173,34 @@ export default function BlogEdit() {
 
   useEffect(() => {
     deserializeHTML();
+    // eslint-disable-next-line
   }, []);
 
   return (
-    <main className="grid grid-cols-8 gap-x-[1.5vw] bg-red px-[10vw]">
-      <div className="col-start-2 col-end-8 grid h-fit grid-cols-6 gap-x-[1.5vw] border">
-        <></>
-        <div className="col-start-2 col-end-6 grid grid-cols-1 border">
-          <button onClick={deserializeHTML} className="bg-blue">
-            Deserialize from html to content
-          </button>
-          <button onClick={serializeHTML} className="bg-red">
-            Serialize from content to html
-          </button>
-          <YooptaEditor
-            width="100%"
-            className="p-2"
-            editor={editor}
-            plugins={plugins}
-            placeholder="Type Something Cool...!"
-            value={value}
-            onChange={onChange}
-            tools={TOOLS}
-            marks={MARKS}
-            autoFocus
-          />
+    <main className="min-h-full w-full">
+      <BlogEditorToolBar />
+      <div className="mt-14 grid grid-cols-8 gap-x-[1.5vw] bg-red px-[10vw]">
+        <div className="col-start-2 col-end-8 grid h-fit grid-cols-6 gap-x-[1.5vw] border">
+          <div className="col-start-2 col-end-6 grid grid-cols-1 border">
+            <button onClick={deserializeHTML} className="bg-blue">
+              Deserialize from html to content
+            </button>
+            <button onClick={serializeHTML} className="bg-red">
+              Serialize from content to html
+            </button>
+            <YooptaEditor
+              width="100%"
+              className="p-2"
+              editor={editor}
+              plugins={plugins}
+              placeholder="Type Something Cool...!"
+              value={value}
+              onChange={onChange}
+              tools={TOOLS}
+              marks={MARKS}
+              autoFocus
+            />
+          </div>
         </div>
       </div>
     </main>
