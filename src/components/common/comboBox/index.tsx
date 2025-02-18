@@ -18,69 +18,67 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { CategoryNode } from "./type";
 
-const frameworks = [
-  {
-    value: "next.js",
-    label: "Next.js",
-  },
-  {
-    value: "sveltekit",
-    label: "SvelteKit",
-  },
-  {
-    value: "nuxt.js",
-    label: "Nuxt.js",
-  },
-  {
-    value: "remix",
-    label: "Remix",
-  },
-  {
-    value: "astro",
-    label: "Astro",
-  },
-];
+interface ComboBoxProps {
+  isOpen: boolean;
+  selectedValue: string | null;
 
-export function ComboboxDemo() {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+  comboBoxlist: CategoryNode[];
 
+  handleIsOpen: (v: boolean) => void;
+  handleSelectedValue: (v: string) => void;
+}
+
+function ComboBox({
+  isOpen,
+  handleIsOpen,
+
+  comboBoxlist,
+
+  selectedValue,
+  handleSelectedValue,
+}: ComboBoxProps) {
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={isOpen} onOpenChange={handleIsOpen}>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
           role="combobox"
-          aria-expanded={open}
+          aria-expanded={isOpen}
           className="w-[200px] justify-between"
         >
-          {value
-            ? frameworks.find((framework) => framework.value === value)?.label
-            : "Select framework..."}
+          {selectedValue
+            ? comboBoxlist.find((listItem) => listItem.value === selectedValue)
+                ?.label
+            : "Select listItem..."}
           <ChevronsUpDown className="opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Search framework..." className="h-9" />
+          <CommandInput placeholder="Search Category..." className="h-9" />
           <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandEmpty>No listItem found.</CommandEmpty>
             <CommandGroup>
-              {frameworks.map((framework) => (
+              {comboBoxlist.map((listItem) => (
                 <CommandItem
-                  key={framework.value}
-                  value={framework.value}
+                  key={listItem.value}
+                  value={listItem.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
-                    setOpen(false);
+                    handleSelectedValue(
+                      currentValue === selectedValue ? "" : currentValue,
+                    );
+                    handleIsOpen(false);
                   }}
                 >
-                  {framework.label}
+                  {listItem.label}
                   <Check
                     className={cn(
                       "ml-auto",
-                      value === framework.value ? "opacity-100" : "opacity-0",
+                      selectedValue === listItem.value
+                        ? "opacity-100"
+                        : "opacity-0",
                     )}
                   />
                 </CommandItem>
@@ -92,3 +90,5 @@ export function ComboboxDemo() {
     </Popover>
   );
 }
+
+export default ComboBox;

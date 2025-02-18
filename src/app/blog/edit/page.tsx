@@ -39,7 +39,6 @@ import LinkTool, { DefaultLinkToolRender } from "@yoopta/link-tool";
 import { html } from "@yoopta/exports";
 
 import BlogEditorToolBar from "@/components/pages/blog/blogEditToolBar";
-import { Input } from "@/components/ui/input";
 
 const plugins = [
   Paragraph,
@@ -154,12 +153,15 @@ export default function BlogEdit() {
   };
 
   // from html to @yoopta content
-  // const deserializeHTML = () => {
-  //   const htmlString = "<h1>First title</h1>";
-  //   const content = html.deserialize(editor, htmlString);
+  const deserializeHTML = () => {
+    const htmlString = "<h1>First title</h1>";
+    const content = html.deserialize(editor, htmlString);
 
-  //   editor.setEditorValue(content);
-  // };
+    editor.setEditorValue(content);
+  };
+  useEffect(() => {
+    deserializeHTML();
+  }, []);
 
   // from @yoopta content to html string
   const serializeHTML = () => {

@@ -8,6 +8,7 @@ const FillButton: React.FC<ButtonProps> = ({
   onClick,
   children,
   className = "",
+  colorTheme = "dark",
   ...props
 }) => {
   const buttonClass = cn(
