@@ -5,28 +5,28 @@ const Tags = () => {
     <div className="mt-8 flex w-full flex-col gap-2 px-2">
       <h4 className="text-lg font-semibold">Tags</h4>
       <div className="flex w-full flex-1 flex-wrap gap-2 pr-8">
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
-        <Tag title={"asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
+        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
       </div>
     </div>
   );
