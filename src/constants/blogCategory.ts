@@ -1,4 +1,4 @@
-import { CategoryNode } from "@/components/common/comboBox/type";
+import type { CategoryNode } from "@/types/category";
 
 /**
  * @THIS_IS_BLOG_MENU_LISTS

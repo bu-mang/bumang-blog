@@ -1,3 +1,5 @@
+"use client";
+
 import clsx from "clsx";
 import Link from "next/link";
 import { useState } from "react";
@@ -9,16 +11,18 @@ interface TagProps {
   onClick?: () => void;
   type?: "link" | "button";
   className?: string;
-  layout?: "default" | "label";
+  background?: boolean;
+  size?: "sm" | "lg";
 }
 
 const Tag = ({
   title,
   url,
   onClick,
-  type = "link",
   className,
-  layout = "default",
+  type = "link",
+  background = true,
+  size = "lg",
 }: TagProps) => {
   const [isActivated, setIsActivated] = useState(false);
 
@@ -29,22 +33,26 @@ const Tag = ({
   };
 
   const tagClass = clsx(
-    "flex gap-2 items-center h-fit rounded-8 bg-gray-1 px-2 py-1 text-sm text-gray-200 transition-all",
+    "flex gap-2 items-center h-fit bg-gray-1 text-gray-200 transition-all",
     {
-      ["bg-gray-700 text-white hover:bg-gray-500"]:
-        isActivated && layout === "default",
-      ["text-gray-900"]: isActivated && layout === "label",
-      ["bg-transparent"]: layout === "label",
-      ["hover:bg-gray-5"]: layout !== "label",
+      // SIZE
+      ["rounded-8 px-2 py-1 text-sm"]: size === "lg",
+      ["rounded-2 p-1 text-xs"]: size === "sm",
+
+      // BACKGROUND & ISACTIVE
+      ["bg-gray-700 text-white hover:bg-gray-500"]: isActivated && !!background,
+      ["text-gray-900"]: isActivated && !background,
+      ["bg-transparent"]: !background,
+      ["hover:bg-gray-5"]: !!background,
     },
     className,
   );
 
   if (type === "link") {
     return (
-      <Link href={url ?? ""} className={tagClass}>
+      <Link href={url ?? "#"} className={tagClass}>
         <span>{title}</span>
-        {isActivated && layout === "default" && <CloseIcon />}
+        {isActivated && !!background && <CloseIcon />}
       </Link>
     );
   }
@@ -53,7 +61,7 @@ const Tag = ({
     return (
       <button onClick={handleClick} className={tagClass}>
         {title}
-        {isActivated && layout === "default" && <CloseIcon />}
+        {isActivated && !!background && <CloseIcon />}
       </button>
     );
   }

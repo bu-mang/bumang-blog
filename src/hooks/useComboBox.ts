@@ -1,4 +1,3 @@
-import { CategoryNode } from "@/components/common/comboBox/type";
 import { useState } from "react";
 
 interface ComboBoxProps {

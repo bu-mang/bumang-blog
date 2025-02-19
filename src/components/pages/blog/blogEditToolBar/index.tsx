@@ -75,7 +75,9 @@ const BlogEditorToolBar = () => {
   const categoryRef = useRef<HTMLButtonElement>(null);
   const subjectRef = useRef<HTMLButtonElement>(null);
   const tagsRef = useRef<HTMLButtonElement>(null);
-  useEffect(() => {}, []);
+  useEffect(() => {
+    //
+  }, []);
 
   /**
    * @BUTTON_STYLE_MANAGER
