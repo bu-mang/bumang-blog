@@ -15,6 +15,7 @@ import {
   ComboBox,
   FillButton,
 } from "@/components/common";
+import { useRouter } from "next/navigation";
 
 const mainCatogories = CATEGORIES.filter((item) => item.parent === null);
 const subCategories = CATEGORIES.filter((item) => item.parent !== null);
@@ -75,7 +76,9 @@ const BlogEditorToolBar = () => {
   const categoryRef = useRef<HTMLButtonElement>(null);
   const subjectRef = useRef<HTMLButtonElement>(null);
   const tagsRef = useRef<HTMLButtonElement>(null);
-  useEffect(() => {}, []);
+  useEffect(() => {
+    //
+  }, []);
 
   /**
    * @BUTTON_STYLE_MANAGER
@@ -85,11 +88,26 @@ const BlogEditorToolBar = () => {
   const { fillStyle: DarkFillStyle, textStyle: DarkTextStyle } =
     getButtonColorStyle("dark");
 
+  /**
+   * @HANDLECLICK
+   */
+  const router = useRouter();
+  const handleGoBack = () => {
+    if (window.history.length > 1) {
+      router.back(); // 이전 페이지가 있으면 뒤로 가기
+    } else {
+      router.push("/"); // 없으면 홈으로 이동
+    }
+  };
+
   return (
     <div className="fixed left-0 top-0 z-10 flex h-14 w-full border-b-[1px] border-gray-5 bg-white shadow-sm">
       {/* LEFT MODULE */}
       <div className="flex flex-1 items-center pl-4">
-        <FillButton className={cn("px-4", LightFillStyle)}>
+        <FillButton
+          className={cn("px-4", LightFillStyle)}
+          onClick={handleGoBack}
+        >
           <div className="flex -translate-x-1 items-center gap-1.5">
             <ChevronLeftIcon className={LightTextStyle} />
             <span className={LightTextStyle}>Back to List</span>
@@ -128,7 +146,7 @@ const BlogEditorToolBar = () => {
         <TagCombobox
           isOpen={isOpen}
           handleIsOpen={handleIsOpen}
-          tagList={subs.slice(1)}
+          tagList={subs}
           selectedValues={[selectedSubValue]}
           handleSelectedValue={handleSelectedSubValue}
         />

@@ -1,7 +1,7 @@
 "use client";
 
+import type { MenuType } from "@/types/routes";
 import { ROUTES } from "@/constants/routes";
-import { MenuType } from "@/types/routes";
 import { cn } from "@/utils/cn";
 import { combinePaths } from "@/utils/combinePaths";
 

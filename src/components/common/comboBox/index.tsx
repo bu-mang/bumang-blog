@@ -20,7 +20,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { CategoryNode } from "./type";
+import type { CategoryNode } from "@/types/category";
 import { ButtonBase } from "../button";
 
 interface ComboBoxProps {
