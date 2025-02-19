@@ -7,6 +7,7 @@ import YooptaEditor, {
   YooptaContentValue,
   YooptaOnChangeOptions,
   YooptaPlugin,
+  Blocks,
 } from "@yoopta/editor";
 
 import Paragraph from "@yoopta/paragraph";
@@ -186,13 +187,42 @@ export default function BlogEdit() {
     target.style.height = `${target.scrollHeight}px`;
   };
 
+  const selectionRef = useRef<HTMLDivElement>(null);
+
+  const addBlockData = (index: number, focus = true) => {
+    const blockData = Blocks.buildBlockData();
+    const insertBlockOptions = {
+      blockData,
+      at: index,
+      focus,
+    };
+    const insertedId = editor.insertBlock("HeadingOne", insertBlockOptions);
+
+    return insertedId;
+  };
+
+  const handleEditorFocus = () => {
+    if (selectionRef.current) {
+      if (editor.isEmpty()) {
+        // 블록이 아무것도 없을 때 클릭하면 라인 추가 후 포커스
+        addBlockData(0, true);
+      } else {
+        // 20줄 이하일 때 영역을 클릭하면 라인 추가
+        const length = Object.keys(editor.getEditorValue()).length;
+        if (length <= 20) {
+          addBlockData(length, false);
+        }
+      }
+    }
+  };
+
   return (
-    <main className="min-h-full w-full">
+    <main className="flex min-h-screen w-full flex-col">
       <BlogEditorToolBar />
-      <div className="h-min-screen flex w-full justify-center px-[10vw] pt-24">
+      <div className="flex w-full flex-1 justify-center px-[10vw] pt-24">
         <form
-          className="h-full w-[720px] bg-white"
-          onSubmit={(e) => handleSubmit(e)}
+          className="flex w-[720px] flex-col"
+          // onSubmit={(e) => handleSubmit(e)}
         >
           {/* <button onClick={deserializeHTML} className="bg-blue">
               Deserialize from html to content
@@ -213,19 +243,25 @@ export default function BlogEdit() {
 
           {/* DIVIDER */}
           <div className="h-[1px] w-full bg-gray-5" />
-
-          <YooptaEditor
-            width="100%"
-            className="min-h-96 p-2"
-            editor={editor}
-            plugins={plugins}
-            placeholder="Type Something Cool...!"
-            value={value}
-            onChange={onChange}
-            tools={TOOLS}
-            marks={MARKS}
-            autoFocus
-          />
+          <div
+            className="flex flex-1 flex-col"
+            ref={selectionRef}
+            onClick={handleEditorFocus}
+          >
+            <YooptaEditor
+              width="100%"
+              className="flex-1 p-2"
+              editor={editor}
+              plugins={plugins}
+              placeholder="Type Something Cool...!"
+              value={value}
+              onChange={onChange}
+              selectionBoxRoot={selectionRef}
+              tools={TOOLS}
+              marks={MARKS}
+              autoFocus
+            />
+          </div>
         </form>
       </div>
     </main>
