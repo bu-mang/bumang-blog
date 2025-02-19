@@ -2,7 +2,7 @@
 import { cn } from "@/utils/cn";
 import { createContext, useContext, useState } from "react";
 import { RiArrowDownSFill } from "react-icons/ri";
-import { ButtonBase } from "../button";
+import { ButtonBase } from "../../common/button";
 
 /**
  * @TYPE
@@ -13,7 +13,7 @@ interface DropDownOuterProps {
   alignCentered?: boolean;
 
   options: string[];
-  selected: string;
+  selectedValue: string;
   onSelect: (selected: string) => void;
 }
 
@@ -34,13 +34,13 @@ const DropDownContext = createContext<
 /**
  * @DROPDOWN_WRAPPER
  */
-const DropDown = ({
+const Context = ({
   children,
   position,
   alignCentered,
 
   options,
-  selected,
+  selectedValue,
   onSelect,
 }: DropDownOuterProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -65,7 +65,7 @@ const DropDown = ({
         position,
         alignCentered,
         options,
-        selected,
+        selectedValue,
 
         // InnerProps
         isOpen,
@@ -87,7 +87,7 @@ const Trigger = ({ className }: { className?: string }) => {
     "flex min-w-20 h-7 justify-between gap-1 rounded-8 bg-gray-1 pl-2 pr-1 text-sm text-gray-200 items-center border-[1px] border-transparent truncate translate-all duration-200 hover:bg-gray-5",
     {
       ["border-gray-700 text-gray-700"]:
-        context?.isOpen || context?.selected !== context?.options[0],
+        context?.isOpen || context?.selectedValue !== context?.options[0],
     },
     className,
   );
@@ -97,7 +97,7 @@ const Trigger = ({ className }: { className?: string }) => {
 
   return (
     <ButtonBase onClick={context?.toggleDropdown} className={triggerClass}>
-      {context?.selected}
+      {context?.selectedValue}
       <RiArrowDownSFill size={20} className={iconClass} />
     </ButtonBase>
   );
@@ -153,8 +153,11 @@ export const Option = ({
   );
 };
 
-DropDown.Trigger = Trigger;
-DropDown.Menu = Menu;
-DropDown.Option = Option;
+const DropDown = {
+  Context,
+  Trigger,
+  Menu,
+  Option,
+};
 
 export default DropDown;

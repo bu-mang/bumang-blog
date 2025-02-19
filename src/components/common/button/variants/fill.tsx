@@ -8,12 +8,13 @@ const FillButton: React.FC<ButtonProps> = ({
   onClick,
   children,
   className = "",
+  colorTheme = "dark",
   ...props
 }) => {
   const buttonClass = cn(
-    "px-4 py-2 rounded-md text-white transition-colors",
+    "px-4 h-8 rounded-md text-white transition-colors",
     {
-      "bg-gray-500 hover:bg-gray-600": !disabled && !isLoading,
+      "bg-gray-600 hover:bg-gray-800": !disabled && !isLoading,
       "cursor-not-allowed opacity-50": disabled,
       "cursor-wait": isLoading,
     },

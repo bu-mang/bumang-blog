@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { ButtonBase } from "../common/button";
+import { ButtonBase } from "@/components/common/button";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { cn } from "@/utils/cn";
 import gsap from "gsap";
