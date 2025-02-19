@@ -45,9 +45,9 @@ const BlogItem = ({
 
       {/* TAGS */}
       <div className="flex w-full items-center gap-2 transition-all duration-500">
-        <div className="gap-1ew flex flex-wrap">
+        <div className="flex flex-wrap gap-1">
           {tags.map((tag) => (
-            <Tag key={tag} title={tag} size="sm" type="button" />
+            <Tag key={tag} value={tag} size="sm" type="button" />
           ))}
         </div>
 

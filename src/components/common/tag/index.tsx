@@ -6,7 +6,9 @@ import { useState } from "react";
 import { LuX as CloseIcon } from "react-icons/lu";
 
 interface TagProps {
-  title: string;
+  value: string;
+  label: string;
+
   url?: string;
   onClick?: () => void;
   type?: "link" | "button";
@@ -16,7 +18,8 @@ interface TagProps {
 }
 
 const Tag = ({
-  title,
+  value,
+  label,
   url,
   onClick,
   className,
@@ -33,7 +36,7 @@ const Tag = ({
   };
 
   const tagClass = clsx(
-    "flex gap-2 items-center h-fit bg-gray-1 text-gray-200 transition-all",
+    "flex gap-2 items-center h-fit bg-gray-1 text-gray-200 transition-all truncate",
     {
       // SIZE
       ["rounded-8 px-2 py-1 text-sm"]: size === "lg",
@@ -51,7 +54,7 @@ const Tag = ({
   if (type === "link") {
     return (
       <Link href={url ?? "#"} className={tagClass}>
-        <span>{title}</span>
+        <span>{value}</span>
         {isActivated && !!background && <CloseIcon />}
       </Link>
     );
@@ -60,7 +63,7 @@ const Tag = ({
   if (type === "button") {
     return (
       <button onClick={handleClick} className={tagClass}>
-        {title}
+        {label}
         {isActivated && !!background && <CloseIcon />}
       </button>
     );
