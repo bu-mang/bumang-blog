@@ -1,4 +1,4 @@
-import { ButtonColorType } from "@/components/common/button/types";
+import type { ButtonColorType } from "@/types/button";
 
 const getButtonColorStyle = (fillColor: ButtonColorType) => {
   let textStyle: string;

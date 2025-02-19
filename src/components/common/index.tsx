@@ -3,7 +3,7 @@ import ComboBox from "./comboBox";
 import Divider from "./divider";
 import Pagenation from "./pageNation";
 import TagCombobox from "./tagComboBox";
-import Tag from "./tags";
+import Tag from "./tag";
 
 export {
   /**

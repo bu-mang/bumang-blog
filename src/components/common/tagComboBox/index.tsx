@@ -13,8 +13,8 @@ import {
 } from "@/components/ui/command";
 
 import { LuPlus } from "react-icons/lu";
-import { IndicatorValues } from "@/components/common/type";
 import { Divider } from "@/components/common";
+import type { IndicatorValues } from "@/types/category";
 
 interface TagBoxProps {
   isOpen: boolean;
@@ -37,6 +37,7 @@ const TagCombobox = ({
 }: TagBoxProps) => {
   return (
     <Popover open={isOpen} onOpenChange={handleIsOpen}>
+      {/* TRIGGER */}
       <PopoverTrigger asChild>
         <div className="group flex h-10 min-w-40 cursor-pointer items-center justify-center gap-2 rounded-md transition-all hover:bg-gray-5">
           <div className="flex items-center gap-1.5">
@@ -50,9 +51,12 @@ const TagCombobox = ({
           </div>
         </div>
       </PopoverTrigger>
+      {/* CONTENT */}
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput></CommandInput>
+          {/* INPUT */}
+          <CommandInput />
+          <CommandInput />
           <CommandList>
             <CommandEmpty>No Tag found.</CommandEmpty>
             <CommandGroup>

@@ -1,3 +1,4 @@
+import { Tag } from "@/components/common";
 import Image from "next/image";
 import Link from "next/link";
 import { LuMoveRight } from "react-icons/lu";
@@ -35,22 +36,28 @@ const BlogItem = ({
           </div>
           <LuMoveRight className="animate-arrow text-gray-200 opacity-0 transition-all duration-500 group-hover:opacity-100" />
         </div>
+
         {/* CONTENT */}
         <div className="flex-1 flex-nowrap truncate text-ellipsis text-sm">
           {content}
         </div>
       </div>
+
       {/* TAGS */}
-      <div className="flex w-full items-center gap-2 text-xs text-gray-200 transition-all duration-500">
-        <div className="flex gap-1">
+      <div className="flex w-full items-center gap-2 transition-all duration-500">
+        <div className="gap-1ew flex flex-wrap">
           {tags.map((tag) => (
-            <span key={tag} className="rounded-2 bg-gray-1 p-1">
-              {tag}
-            </span>
+            <Tag key={tag} title={tag} size="sm" type="button" />
           ))}
         </div>
+
+        {/* DIVIDER */}
         <div className="h-3 w-[1px] bg-gray-50" />
-        <div className="">{date.toLocaleDateString("ko-kr")}</div>
+
+        {/* DATE */}
+        <div className="text-xs text-gray-200">
+          {date.toLocaleDateString("ko-kr")}
+        </div>
       </div>
     </Link>
   );

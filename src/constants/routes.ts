@@ -1,4 +1,4 @@
-import { MenuType } from "@/types/routes";
+import type { MenuType } from "@/types/routes";
 
 export const ROUTES: MenuType[] = [
   { title: "HOME", url: "/" },

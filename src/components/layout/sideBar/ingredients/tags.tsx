@@ -1,4 +1,4 @@
-import Tag from "@/components/common/tags";
+import Tag from "@/components/common/tag";
 
 const Tags = () => {
   return (
