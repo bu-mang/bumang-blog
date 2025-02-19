@@ -1,13 +1,16 @@
 "use client";
 
-export default function Main() {
-  const height = 200 * 1.5;
-  const width = 700 * 1.5;
+import { LAYOUT_PADDING_TOP } from "@/constants/layout";
+import { cn } from "@/lib/utils";
 
-  // const proportionClass = clsx(`h-${height}`, `w-${width}`);
+export default function Main() {
+  const mainPageClass = cn(
+    "flex flex-1 flex-col items-center justify-center h-fit min-h-full w-full",
+    LAYOUT_PADDING_TOP,
+  );
 
   return (
-    <main className="flex flex-1 flex-col items-center justify-center">
+    <main className={mainPageClass}>
       <div>프레텐다드</div>
     </main>
   );

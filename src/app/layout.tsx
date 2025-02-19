@@ -1,7 +1,7 @@
 import "./globals.css";
-import Header from "../components/header";
-import Grid from "../components/grid";
-import Footer from "@/components/footer";
+import Header from "@/components/layout/header";
+import Grid from "../components/layout/gridView";
+import Footer from "@/components/layout/footer";
 
 export default function RootLayout({
   children,
@@ -29,10 +29,10 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css"
         />
       </head>
-      <body className="h-[1500px] flex-1">
+      <body className="flex-1">
         {isGridOn && <Grid />}
         <Header />
-        <div className="h-fit w-screen pt-[20vw]">{children}</div>
+        <div className="h-fit w-screen">{children}</div>
         <Footer />
       </body>
     </html>
