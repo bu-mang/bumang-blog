@@ -1,10 +1,10 @@
-import Tag from "@/components/common/tag";
+import { Tag, TagWrapper } from "@/components/common";
 
 const Tags = () => {
   return (
     <div className="mt-8 flex w-full flex-col gap-2 px-2">
       <h4 className="text-lg font-semibold">Tags</h4>
-      <div className="flex w-full flex-1 flex-wrap gap-2 pr-8">
+      <TagWrapper className="pr-8">
         <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
         <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
         <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
@@ -27,7 +27,7 @@ const Tags = () => {
         <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
         <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
         <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-      </div>
+      </TagWrapper>
     </div>
   );
 };

@@ -6,6 +6,7 @@ import type { CategoryNode } from "@/types/category";
 
 const LIFE_LIST: CategoryNode[] = [
   {
+    id: Math.random().toString(),
     value: "life",
     label: "Life",
     parent: null,
@@ -13,6 +14,7 @@ const LIFE_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "diary",
     label: "Diary",
     parent: "life",
@@ -20,6 +22,7 @@ const LIFE_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "art",
     label: "Art",
     parent: "life",
@@ -27,6 +30,7 @@ const LIFE_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "memo",
     label: "Memo",
     parent: "life",
@@ -37,6 +41,7 @@ const LIFE_LIST: CategoryNode[] = [
 
 const PROJECTS_LIST: CategoryNode[] = [
   {
+    id: Math.random().toString(),
     value: "projects",
     label: "Projects",
     parent: null,
@@ -44,6 +49,7 @@ const PROJECTS_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "linkSnap",
     label: "Link Snap",
     parent: "projects",
@@ -51,6 +57,7 @@ const PROJECTS_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "yinTarot",
     label: "Yin Tarot",
     parent: "projects",
@@ -58,6 +65,7 @@ const PROJECTS_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "bumangRoute53",
     label: "Bumang Route53",
     parent: "projects",
@@ -65,6 +73,7 @@ const PROJECTS_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "yanoljaProjects",
     label: "Yanolja Projects",
     parent: "projects",
@@ -72,6 +81,7 @@ const PROJECTS_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "projectEtc",
     label: "Project etc",
     parent: "projects",
@@ -82,6 +92,7 @@ const PROJECTS_LIST: CategoryNode[] = [
 
 const FRONTEND_LIST: CategoryNode[] = [
   {
+    id: Math.random().toString(),
     value: "frontend",
     label: "Frontend",
     parent: null,
@@ -89,6 +100,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "htmlCss",
     label: "html & CSS",
     parent: "frontend",
@@ -96,6 +108,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "jsTs",
     label: "JS/TS",
     parent: "frontend",
@@ -103,6 +116,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "ReactNext",
     label: "React / Next.js",
     parent: "frontend",
@@ -110,6 +124,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "reactNative",
     label: "React Native",
     parent: "frontend",
@@ -117,6 +132,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "browserOptimization",
     label: "Browser Optimization",
     parent: "frontend",
@@ -124,6 +140,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "frontendEtc",
     label: "Frontend etc",
     parent: "frontend",
@@ -131,6 +148,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "errorHandling",
     label: "Error Handling",
     parent: "frontend",
@@ -141,6 +159,7 @@ const FRONTEND_LIST: CategoryNode[] = [
 
 const BACKEND_LIST: CategoryNode[] = [
   {
+    id: Math.random().toString(),
     value: "backend",
     label: "Backend",
     parent: null,
@@ -148,6 +167,7 @@ const BACKEND_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "nodeJs",
     label: "Node.js",
     parent: "backend",
@@ -155,6 +175,7 @@ const BACKEND_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "nestJs",
     label: "Nest.js",
     parent: "backend",
@@ -162,6 +183,7 @@ const BACKEND_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "db",
     label: "DB",
     parent: "backend",
@@ -172,6 +194,7 @@ const BACKEND_LIST: CategoryNode[] = [
 
 const COMPUTER_SCIENCE_LIST: CategoryNode[] = [
   {
+    id: Math.random().toString(),
     value: "computerScience",
     label: "Computer Science",
     parent: null,
@@ -179,6 +202,7 @@ const COMPUTER_SCIENCE_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "network",
     label: "Network",
     parent: "computerScience",
@@ -186,6 +210,7 @@ const COMPUTER_SCIENCE_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "designPattern",
     label: "Design Pattern",
     parent: "computerScience",
@@ -193,6 +218,7 @@ const COMPUTER_SCIENCE_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "os",
     label: "OS",
     parent: "computerScience",
@@ -203,6 +229,7 @@ const COMPUTER_SCIENCE_LIST: CategoryNode[] = [
 
 const ALGORITHM_LIST: CategoryNode[] = [
   {
+    id: Math.random().toString(),
     value: "algorithm",
     label: "Algorithm",
     parent: null,
@@ -210,6 +237,7 @@ const ALGORITHM_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "problemSolving",
     label: "ProblemSolving",
     parent: "algorithm",
@@ -217,6 +245,7 @@ const ALGORITHM_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "dataStructure",
     label: "Data Structure",
     parent: "algorithm",
@@ -227,6 +256,7 @@ const ALGORITHM_LIST: CategoryNode[] = [
 
 const INTERACTIVES_LIST: CategoryNode[] = [
   {
+    id: Math.random().toString(),
     value: "interactives",
     label: "Interactives",
     parent: null,
@@ -234,6 +264,7 @@ const INTERACTIVES_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "canvasP5jsPixiJs",
     label: "canvas ・ P5.js ・ Pixi.js",
     parent: "interactives",
@@ -241,6 +272,7 @@ const INTERACTIVES_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "threeJsUnityGame",
     label: "Three.js ・ Unity ・ Game",
     parent: "interactives",
@@ -251,6 +283,7 @@ const INTERACTIVES_LIST: CategoryNode[] = [
 
 const NOTES_LIST: CategoryNode[] = [
   {
+    id: Math.random().toString(),
     value: "notes",
     label: "Notes",
     parent: null,
@@ -258,6 +291,7 @@ const NOTES_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "gitGithub",
     label: "Git ・ Github",
     parent: "notes",
@@ -265,6 +299,7 @@ const NOTES_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "math",
     label: "Math",
     parent: "notes",
@@ -272,6 +307,7 @@ const NOTES_LIST: CategoryNode[] = [
     permissions: ["public", "host", "member", "admin"],
   },
   {
+    id: Math.random().toString(),
     value: "etc",
     label: "etc",
     parent: "notes",
