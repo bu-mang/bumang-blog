@@ -7,21 +7,23 @@ import Link from "next/link";
 import { LuX as CloseIcon } from "react-icons/lu";
 
 const Tag = ({
+  id,
   value,
   label,
+
   url,
   onClick,
   className,
   size = "lg",
   type = "link",
   hasBackground = true,
-
   isActivated = false,
   setIsActivated,
 }: TagProps) => {
   const handleClick = () => {
-    if (!onClick) return;
+    console.log("onClick");
     if (setIsActivated) setIsActivated();
+    if (!onClick) return;
     onClick();
   };
 
@@ -47,7 +49,7 @@ const Tag = ({
   if (type === "link") {
     return (
       <Link href={url ?? "#"} className={tagClass}>
-        <span>{value}</span>
+        <span>{label}</span>
         {isActivated && !!hasBackground && <CloseIcon />}
       </Link>
     );

@@ -9,7 +9,7 @@ const SideBar = () => {
     <div className="relative mb-8 flex flex-col gap-4 px-4">
       <Tabs />
       <Menus />
-      <Tag id="" s />
+      <Tags />
     </div>
   );
 };
