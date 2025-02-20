@@ -1,29 +1,31 @@
-import type { UserRole } from "@/types/user";
-import type { DateNode } from "@/types/date";
+import type { UserRole, DateType } from "@/types";
+import { IndicatorValues } from "./indicatorValue";
 
-/**
- * @USED_WITH_TAG_AND_CATEGORY
- */
-export interface IndicatorValues {
-  value: string;
-  label: string;
-}
-
-/**
- * @CATEGORY
- */
 export interface CategoryNode extends IndicatorValues {
+  /** 아이디 */
   id: string;
+
+  /** 상위카테고리, (null이면 상위카테고리) */
   parent: string | null;
+
+  /** 노출여부 */
   isVisible: boolean;
+
+  /** 유저 권한 별 노출 여부 - "public" | "member" | "admin" | "host" */
   permissions: UserRole[];
 }
-export interface CategoryWithDate extends CategoryNode, DateNode {}
 
 /**
- * @TAG
+ * @CATEGORY_WITH_DATE
+ * @value string (실제 비교값)
+ * @label string (렌더 시 표시값)
+ *
+ * @id string (태그아이디)
+ * @parent string | null (상위카테고리, null이면 상위카테고리);
+ * @isVisible boolean (노출여부)
+ * @permmision UserRole[] - ("public" | "member" | "admin" | "host")
+ *
+ * @createdAt Date (생성일)
+ * @updatedAt Date (수정일)
  */
-export interface TagNode extends IndicatorValues {
-  id: string;
-}
-export interface TagWithDate extends TagNode, DateNode {}
+export interface CategoryWithDate extends CategoryNode, DateType {}

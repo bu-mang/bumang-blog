@@ -1,33 +1,189 @@
-import Tag from "@/components/common/tag";
+"use client";
+
+import { Tag, TagWrapper } from "@/components/common";
 
 const Tags = () => {
   return (
     <div className="mt-8 flex w-full flex-col gap-2 px-2">
       <h4 className="text-lg font-semibold">Tags</h4>
-      <div className="flex w-full flex-1 flex-wrap gap-2 pr-8">
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-        <Tag value={"asd"} label={"Asd"} type="button" onClick={() => {}} />
-      </div>
+      <TagWrapper className="pr-8">
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+        <Tag
+          id=""
+          value={"asd"}
+          label={"Asd"}
+          type="button"
+          onClick={() => {}}
+          isActivated={false}
+        />
+      </TagWrapper>
     </div>
   );
 };

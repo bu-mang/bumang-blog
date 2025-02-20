@@ -58,7 +58,7 @@ import { Color } from "@tiptap/extension-color";
 import Typography from "@tiptap/extension-typography";
 import BubbleMenu from "@tiptap/extension-bubble-menu";
 import Placeholder from "@tiptap/extension-placeholder";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 import {
   LuGripVertical as HandleIcon,
   LuPlus as PlusIcon,
