@@ -1,26 +1,10 @@
 "use client";
 
+import { TagProps } from "@/types";
 import { cn } from "@/utils/cn";
 import clsx from "clsx";
 import Link from "next/link";
 import { LuX as CloseIcon } from "react-icons/lu";
-
-interface TagProps {
-  value: string;
-  label: string;
-
-  url?: string;
-  onClick?: () => void;
-  type?: "link" | "button";
-  size?: "sm" | "lg";
-
-  className?: string;
-  hasBackground?: boolean;
-  fixedBgColor?: "dark" | "lightGray";
-
-  isActivated: boolean;
-  setIsActivated: (v?: boolean) => void;
-}
 
 const Tag = ({
   value,

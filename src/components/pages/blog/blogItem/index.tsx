@@ -48,13 +48,13 @@ const BlogItem = ({
         <div className="flex flex-wrap gap-1">
           {tags.map((tag) => (
             <Tag
+              id=""
               key={tag}
               value={tag}
               label={tag}
               size="sm"
               type="button"
               isActivated={false}
-              setIsActivated={() => {}}
             />
           ))}
         </div>
