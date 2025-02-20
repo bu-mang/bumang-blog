@@ -62,7 +62,7 @@ function ComboBox({
             {iconType === "menu" && (
               <Menu size="16" className="text-gray-100" />
             )}
-            <span className="">
+            <span className="text-sm">
               {selectedValue
                 ? comboBoxlist.find(
                     (listItem) => listItem.value === selectedValue,
@@ -81,6 +81,7 @@ function ComboBox({
             <CommandGroup>
               {comboBoxlist.map((listItem) => (
                 <CommandItem
+                  className="text-sm"
                   key={listItem.value}
                   value={listItem.value}
                   onSelect={(currentValue) => {
