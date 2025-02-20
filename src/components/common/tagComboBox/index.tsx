@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Popover,
   PopoverContent,
@@ -13,8 +15,9 @@ import {
 } from "@/components/ui/command";
 
 import { LuPlus } from "react-icons/lu";
-import { Divider } from "@/components/common";
+import { Divider, Tag, TagWrapper } from "@/components/common";
 import type { IndicatorValues } from "@/types/category";
+import { useState } from "react";
 
 interface TagBoxProps {
   isOpen: boolean;
@@ -35,6 +38,12 @@ const TagCombobox = ({
   selectedValues,
   handleSelectedValue,
 }: TagBoxProps) => {
+  //
+  const [tagAStatus, setTagAStatus] = useState(true);
+  const [tagBStatus, setTagBStatus] = useState(true);
+  const [tagCStatus, setTagCStatus] = useState(true);
+  const [tagDStatus, setTagDStatus] = useState(true);
+
   return (
     <Popover open={isOpen} onOpenChange={handleIsOpen}>
       {/* TRIGGER */}
@@ -52,11 +61,59 @@ const TagCombobox = ({
         </div>
       </PopoverTrigger>
       {/* CONTENT */}
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="w-[320px] p-0">
         <Command>
+          {/* TagSelected */}
+          <div className="flex flex-col gap-1 border-b-[1px] p-2.5">
+            <span className="text-xs text-gray-200">Selected Tags</span>
+            <TagWrapper className="min-h-8 items-center rounded-sm bg-gray-1 p-2">
+              <Tag
+                value="asd"
+                label="Asd"
+                fixedBgColor="dark"
+                isActivated={tagAStatus}
+                setIsActivated={() => setTagAStatus((prev) => !prev)}
+              />
+              <Tag
+                value="asd"
+                label="Asd"
+                fixedBgColor="dark"
+                isActivated={tagAStatus}
+                setIsActivated={() => setTagAStatus((prev) => !prev)}
+              />
+              <Tag
+                value="asd"
+                label="Asd"
+                fixedBgColor="dark"
+                isActivated={tagAStatus}
+                setIsActivated={() => setTagAStatus((prev) => !prev)}
+              />
+              <Tag
+                value="asd"
+                label="Asd"
+                fixedBgColor="dark"
+                isActivated={tagBStatus}
+                setIsActivated={() => setTagBStatus((prev) => !prev)}
+              />
+              <Tag
+                value="asd"
+                label="Asd"
+                fixedBgColor="dark"
+                isActivated={tagCStatus}
+                setIsActivated={() => setTagCStatus((prev) => !prev)}
+              />
+              <Tag
+                value="asd"
+                label="Asd"
+                fixedBgColor="dark"
+                isActivated={tagDStatus}
+                setIsActivated={() => setTagDStatus((prev) => !prev)}
+              />
+            </TagWrapper>
+          </div>
           {/* INPUT */}
           <CommandInput />
-          <CommandInput />
+          {/* COMMAND_LIST */}
           <CommandList>
             <CommandEmpty>No Tag found.</CommandEmpty>
             <CommandGroup>

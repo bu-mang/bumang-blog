@@ -1,8 +1,8 @@
 "use client";
 
+import { cn } from "@/utils/cn";
 import clsx from "clsx";
 import Link from "next/link";
-import { useState } from "react";
 import { LuX as CloseIcon } from "react-icons/lu";
 
 interface TagProps {
@@ -12,9 +12,14 @@ interface TagProps {
   url?: string;
   onClick?: () => void;
   type?: "link" | "button";
-  className?: string;
-  background?: boolean;
   size?: "sm" | "lg";
+
+  className?: string;
+  hasBackground?: boolean;
+  fixedBgColor?: "dark" | "lightGray";
+
+  isActivated: boolean;
+  setIsActivated: (v?: boolean) => void;
 }
 
 const Tag = ({
@@ -23,30 +28,34 @@ const Tag = ({
   url,
   onClick,
   className,
-  type = "link",
-  background = true,
   size = "lg",
-}: TagProps) => {
-  const [isActivated, setIsActivated] = useState(false);
+  type = "link",
+  hasBackground = true,
 
+  isActivated = false,
+  setIsActivated,
+}: TagProps) => {
   const handleClick = () => {
     if (!onClick) return;
-    setIsActivated((prev) => !prev);
+    if (setIsActivated) setIsActivated();
     onClick();
   };
 
   const tagClass = clsx(
-    "flex gap-2 items-center h-fit bg-gray-1 text-gray-200 transition-all truncate",
+    "flex gap-2 items-center h-fit bg-gray-1 text-gray-200 transition-all truncate shadow-sm",
     {
       // SIZE
       ["rounded-8 px-2 py-1 text-sm"]: size === "lg",
       ["rounded-2 p-1 text-xs"]: size === "sm",
 
-      // BACKGROUND & ISACTIVE
-      ["bg-gray-700 text-white hover:bg-gray-500"]: isActivated && !!background,
-      ["text-gray-900"]: isActivated && !background,
-      ["bg-transparent"]: !background,
-      ["hover:bg-gray-5"]: !!background,
+      // BACKGROUND
+      ["bg-gray-700 text-white hover:bg-gray-500"]:
+        isActivated && !!hasBackground,
+      ["text-gray-900"]: isActivated && !hasBackground,
+
+      // ISACTIVE
+      ["bg-transparent"]: !hasBackground,
+      ["hover:bg-gray-5"]: !!hasBackground,
     },
     className,
   );
@@ -55,7 +64,7 @@ const Tag = ({
     return (
       <Link href={url ?? "#"} className={tagClass}>
         <span>{value}</span>
-        {isActivated && !!background && <CloseIcon />}
+        {isActivated && !!hasBackground && <CloseIcon />}
       </Link>
     );
   }
@@ -64,10 +73,21 @@ const Tag = ({
     return (
       <button onClick={handleClick} className={tagClass}>
         {label}
-        {isActivated && !!background && <CloseIcon />}
+        {isActivated && !!hasBackground && <CloseIcon />}
       </button>
     );
   }
+};
+
+interface TagWrapperProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const TagWrapper = ({ children, className }: TagWrapperProps) => {
+  const wrapperClass = cn("flex w-full flex-1 flex-wrap gap-2", className);
+
+  return <div className={wrapperClass}>{children}</div>;
 };
 
 export default Tag;
