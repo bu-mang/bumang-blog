@@ -5,7 +5,7 @@ import { Check, ChevronDown } from "lucide-react";
 import { FaFolder as Folder } from "react-icons/fa";
 import { IoMenu as Menu } from "react-icons/io5";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 import {
   Command,
@@ -20,7 +20,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import type { CategoryNode } from "@/types/category";
+import type { CategoryNode } from "@/types";
 import { ButtonBase } from "../button";
 
 interface ComboBoxProps {

@@ -68,7 +68,7 @@ const BlogEditorToolBar = () => {
   }, [selectedMainValue]);
 
   /**
-   * @ADJUST_ORDER
+   * @ADJUST_ORDER___TODO
    * 1. 만약 카테고리 선택이 안 되어있을 시 서브젝트 비활성화
    * 2. 카테고리 선택이 안 되어있을 때 서브젝트를 누르면 오히려 카테고리가 open
    * 3. 태그는 독립적으로 기능
@@ -147,8 +147,10 @@ const BlogEditorToolBar = () => {
           isOpen={isOpen}
           handleIsOpen={handleIsOpen}
           tagList={subs}
-          selectedValues={[selectedSubValue]}
-          handleSelectedValue={handleSelectedSubValue}
+          setTagList={handleTagList}
+          selectedValues={[]}
+          unselectedValues={[]}
+          handleSelectedValue={}
         />
         {/* TODO: ADJUST COMMAND TO TAG BOX... */}
       </div>

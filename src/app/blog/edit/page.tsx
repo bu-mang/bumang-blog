@@ -143,6 +143,21 @@ const TOOLS = {
 };
 
 export default function BlogEdit() {
+  /**
+   * @TITLE_LOGIC
+   */
+  const [title, setTitle] = useState("");
+
+  const handleChangeTitle = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setTitle(e.target.value);
+    const target = e.target as HTMLTextAreaElement;
+    target.style.height = "auto"; // 높이를 초기화한 후
+    target.style.height = `${target.scrollHeight}px`;
+  };
+
+  /**
+   * @EDITOR_LOGIC
+   */
   const editor = useMemo(() => createYooptaEditor(), []);
   const [value, setValue] = useState<YooptaContentValue>();
 
@@ -162,6 +177,7 @@ export default function BlogEdit() {
   };
   useEffect(() => {
     deserializeHTML();
+    // eslint-disable-next-line
   }, []);
 
   // from @yoopta content to html string
@@ -176,15 +192,6 @@ export default function BlogEdit() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  };
-
-  const [title, setTitle] = useState("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setTitle(e.target.value);
-    const target = e.target as HTMLTextAreaElement;
-    target.style.height = "auto"; // 높이를 초기화한 후
-    target.style.height = `${target.scrollHeight}px`;
   };
 
   const selectionRef = useRef<HTMLDivElement>(null);
@@ -238,7 +245,7 @@ export default function BlogEdit() {
             tabIndex={1}
             value={title}
             maxLength={48}
-            onChange={handleChange}
+            onChange={handleChangeTitle}
           />
 
           {/* DIVIDER */}

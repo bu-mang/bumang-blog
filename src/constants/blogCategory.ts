@@ -1,7 +1,7 @@
-import type { CategoryNode } from "@/types/category";
+import { CategoryNode } from "@/types";
 
 /**
- * @THIS_IS_BLOG_MENU_LISTS
+ * @THESE_ARE_BLOG_MENU_LISTS
  */
 
 const LIFE_LIST: CategoryNode[] = [

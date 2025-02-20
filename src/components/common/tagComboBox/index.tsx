@@ -16,33 +16,38 @@ import {
 
 import { LuPlus } from "react-icons/lu";
 import { Divider, Tag, TagWrapper } from "@/components/common";
-import type { IndicatorValues } from "@/types/category";
-import { useState } from "react";
+import type { TagProps } from "@/types";
 
 interface TagBoxProps {
   isOpen: boolean;
   handleIsOpen: (v: boolean) => void;
 
-  tagList: IndicatorValues[];
+  handleSwitch: (props: {
+    target: TagProps;
+    from: TagProps[];
+    to: TagProps[];
+  }) => void;
 
-  selectedValues: string[];
-  handleSelectedValue: (v: string) => void;
+  selected: TagProps[];
+  unselected: TagProps[];
 }
 
 const TagCombobox = ({
   isOpen,
   handleIsOpen,
 
-  tagList,
+  handleSwitch,
 
-  selectedValues,
-  handleSelectedValue,
+  selected,
+  unselected,
 }: TagBoxProps) => {
-  //
-  const [tagAStatus, setTagAStatus] = useState(true);
-  const [tagBStatus, setTagBStatus] = useState(true);
-  const [tagCStatus, setTagCStatus] = useState(true);
-  const [tagDStatus, setTagDStatus] = useState(true);
+  // const [layeredTagLists, setLayeredTagLists] = useState<{
+  //   selected: TagProps[];
+  //   unselected: TagProps[];
+  // }>({
+  //   selected: [],
+  //   unselected: [],
+  // });
 
   return (
     <Popover open={isOpen} onOpenChange={handleIsOpen}>
@@ -60,76 +65,58 @@ const TagCombobox = ({
           </div>
         </div>
       </PopoverTrigger>
+
       {/* CONTENT */}
       <PopoverContent className="w-[320px] p-0">
         <Command>
-          {/* TagSelected */}
+          {/* SELECTED_LIST */}
           <div className="flex flex-col gap-1 border-b-[1px] p-2.5">
             <span className="text-xs text-gray-200">Selected Tags</span>
             <TagWrapper className="min-h-8 items-center rounded-sm bg-gray-1 p-2">
-              <Tag
-                value="asd"
-                label="Asd"
-                fixedBgColor="dark"
-                isActivated={tagAStatus}
-                setIsActivated={() => setTagAStatus((prev) => !prev)}
-              />
-              <Tag
-                value="asd"
-                label="Asd"
-                fixedBgColor="dark"
-                isActivated={tagAStatus}
-                setIsActivated={() => setTagAStatus((prev) => !prev)}
-              />
-              <Tag
-                value="asd"
-                label="Asd"
-                fixedBgColor="dark"
-                isActivated={tagAStatus}
-                setIsActivated={() => setTagAStatus((prev) => !prev)}
-              />
-              <Tag
-                value="asd"
-                label="Asd"
-                fixedBgColor="dark"
-                isActivated={tagBStatus}
-                setIsActivated={() => setTagBStatus((prev) => !prev)}
-              />
-              <Tag
-                value="asd"
-                label="Asd"
-                fixedBgColor="dark"
-                isActivated={tagCStatus}
-                setIsActivated={() => setTagCStatus((prev) => !prev)}
-              />
-              <Tag
-                value="asd"
-                label="Asd"
-                fixedBgColor="dark"
-                isActivated={tagDStatus}
-                setIsActivated={() => setTagDStatus((prev) => !prev)}
-              />
+              {unselected.map((tagItem) => (
+                <Tag
+                  key={tagItem.id}
+                  id={tagItem.id}
+                  value="asd"
+                  label="Asd"
+                  fixedBgColor="dark"
+                  isActivated={true}
+                />
+              ))}
             </TagWrapper>
           </div>
+
           {/* INPUT */}
           <CommandInput />
+
           {/* COMMAND_LIST */}
           <CommandList>
             <CommandEmpty>No Tag found.</CommandEmpty>
+
+            {/* UNSELECTED_LIST */}
             <CommandGroup>
-              {tagList.map((listItem) => (
-                <CommandItem
-                  key={listItem.value}
-                  value={listItem.value}
-                  onSelect={(currentValue) => {
-                    handleSelectedValue(
-                      selectedValues.includes(currentValue) ? "" : currentValue,
-                    );
-                    handleIsOpen(false);
-                  }}
-                >
-                  {listItem.label}
-                </CommandItem>
+              {selected.map((listItem) => (
+                // <ButtonBase
+                //   key={listItem.value}
+                //   // value={listItem.value}
+                //   onClick={(currentValue) => {
+                //     handleSwitch(
+                //       selectedValues.includes(currentValue) ? "" : currentValue,
+                //     );
+                //     handleIsOpen(false);
+                //   }}
+                // >
+                //   {listItem.label}
+                // </ButtonBase>
+                <div key={listItem.id} className="h-12 w-full">
+                  <Tag
+                    id={listItem.id}
+                    value={listItem.value}
+                    label={listItem.label}
+                    fixedBgColor={listItem.fixedBgColor}
+                    isActivated={false}
+                  />
+                </div>
               ))}
             </CommandGroup>
           </CommandList>
