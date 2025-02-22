@@ -16,6 +16,8 @@ import {
 } from "@/components/common";
 import { useRouter } from "next/navigation";
 import { TagProps } from "@/types";
+import DraftController from "../draftController";
+import { YooptaContentValue } from "@yoopta/editor";
 
 const mainCatogories = CATEGORIES.filter((item) => item.parent === null);
 const subCategories = CATEGORIES.filter((item) => item.parent !== null);
@@ -45,6 +47,11 @@ interface BlogEditorToolBarProps {
   }) => void;
   selectedTags: TagProps[];
   unslectedTag: TagProps[];
+
+  // Draft
+  isDraftOpen: boolean;
+  handleDraftOpen: () => void;
+  handleEditorValue: (title: string, content: YooptaContentValue) => void;
 }
 
 const BlogEditorToolBar = ({
@@ -66,6 +73,11 @@ const BlogEditorToolBar = ({
   handleSwitchTag,
   selectedTags,
   unslectedTag,
+
+  // Draft
+  isDraftOpen,
+  handleDraftOpen,
+  handleEditorValue,
 }: BlogEditorToolBarProps) => {
   /**
    * @CHANGE_SUBS_WHEN_MAIN_CHANGED
@@ -168,7 +180,19 @@ const BlogEditorToolBar = ({
 
       {/* RIGHT MODULE */}
       <div className="flex flex-1 items-center justify-end pr-4">
-        <FillButton className={cn("px-4", DarkFillStyle)}>
+        {
+          <span className="pointer-events-none text-sm text-gray-300">
+            saving...
+          </span>
+        }
+        <DraftController
+          isDraftOpen={isDraftOpen}
+          handleDraftOpen={handleDraftOpen}
+          handleEditorValue={handleEditorValue}
+          className="ml-2"
+        />
+        <Divider className="ml-3" />
+        <FillButton className={cn("ml-6 px-4", DarkFillStyle)}>
           <div className="flex items-center gap-2">
             <PublishPlaneIcon className={DarkTextStyle} />
             <span className={DarkTextStyle}>Publish</span>

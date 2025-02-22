@@ -10,13 +10,13 @@ export default function Blog() {
       <div className="col-span-3 grid grid-cols-3 gap-x-[1.5vw] gap-y-[4.5vw]">
         {/* BLOGITEMS */}
         {blogItems.map(
-          ({ id, title, content, category, tags, date, imageUrl }) => (
+          ({ id, title, content, categoryValue, tags, date, imageUrl }) => (
             <BlogItem
               key={id}
               id={id}
               title={title}
               content={content}
-              category={category}
+              categoryValue={categoryValue}
               tags={tags}
               date={date}
               imageUrl={imageUrl}

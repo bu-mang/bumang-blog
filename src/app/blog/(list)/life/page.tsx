@@ -16,7 +16,7 @@ export default function BlogLife() {
               id={id}
               title={title}
               content={content}
-              category={categoryValue}
+              categoryValue={categoryValue}
               tags={tags}
               date={date}
               imageUrl={imageUrl}

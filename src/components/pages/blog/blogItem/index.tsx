@@ -7,7 +7,7 @@ import { LuMoveRight } from "react-icons/lu";
 interface BlogItemProps {
   title: string;
   content: string;
-  category: string;
+  categoryValue: string;
   tags: TagType[];
   date: Date;
   id: number;
@@ -17,7 +17,7 @@ interface BlogItemProps {
 const BlogItem = ({
   title,
   content,
-  category,
+  categoryValue,
   tags,
   date,
   id,

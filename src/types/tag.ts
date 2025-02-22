@@ -26,6 +26,7 @@ export interface TagCompType {
   hasBackground: boolean;
   fixedBgColor: "dark" | "lightGray";
 
+  hasXButton: boolean;
   isActivated: boolean;
   setIsActivated: (v?: boolean) => void; // 단순 Label로 쓸 경우 불필요하기 때문에 Optional
 }
