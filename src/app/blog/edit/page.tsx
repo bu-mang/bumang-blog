@@ -39,6 +39,7 @@ import Toolbar, { DefaultToolbarRender } from "@yoopta/toolbar";
 import LinkTool, { DefaultLinkToolRender } from "@yoopta/link-tool";
 import { html } from "@yoopta/exports";
 
+import { Divider as DividerComp } from "@/components/common";
 import BlogEditorToolBar from "@/components/pages/blog/blogEditToolBar";
 import useComboBox from "@/hooks/useComboBox";
 import useTagComboBox from "@/hooks/useTagComboBox";
@@ -204,6 +205,7 @@ export default function BlogEdit() {
     { id: "d12", value: "qnd", label: "qnd" },
     { id: "d13", value: "poo", label: "poo" },
   ];
+
   const {
     isOpen: isTagOpen,
     handleIsOpen: handleIsTagOpen,
@@ -215,6 +217,15 @@ export default function BlogEdit() {
     selectedArr,
     unselectedArr,
   });
+
+  /**
+   * @DRAFT
+   */
+  const [isDraftOpen, setIsDraftOpen] = useState(false);
+  const handleDraftOpen = () => setIsDraftOpen((prev) => !prev);
+  const handleEditorValue = (title: string, content: YooptaContentValue) => {
+    console.log(title, content);
+  };
 
   /**
    * @TITLE_LOGIC
@@ -315,7 +326,12 @@ export default function BlogEdit() {
         handleSwitchTag={handleSwitchTag}
         selectedTags={selectedTags}
         unslectedTag={unslectedTag}
+        // Draft
+        isDraftOpen={isDraftOpen}
+        handleDraftOpen={handleDraftOpen}
+        handleEditorValue={handleEditorValue}
       />
+
       <div className="flex w-full flex-1 justify-center px-[10vw] pt-24">
         <form
           className="flex w-[720px] flex-col"
@@ -339,7 +355,9 @@ export default function BlogEdit() {
           />
 
           {/* DIVIDER */}
-          <div className="h-[1px] w-full bg-gray-5" />
+          <DividerComp direction="horizontal" className={"w-full bg-gray-5"} />
+
+          {/* EDITOR */}
           <div
             className="flex flex-1 flex-col"
             ref={selectionRef}
