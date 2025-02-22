@@ -110,8 +110,11 @@ const BlogEditorToolBar = ({
    */
   const { fillStyle: LightFillStyle, textStyle: LightTextStyle } =
     getButtonColorStyle("light");
-  const { fillStyle: DarkFillStyle, textStyle: DarkTextStyle } =
-    getButtonColorStyle("dark");
+  const {
+    fillStyle: DarkFillStyle,
+    textStyle: DarkTextStyle,
+    flexBoxClass,
+  } = getButtonColorStyle("dark");
 
   /**
    * @HANDLECLICK
@@ -129,11 +132,8 @@ const BlogEditorToolBar = ({
     <div className="fixed left-0 top-0 z-10 flex h-14 w-full border-b-[1px] border-gray-5 bg-white shadow-sm">
       {/* LEFT MODULE */}
       <div className="flex flex-1 items-center pl-4">
-        <FillButton
-          className={cn("px-4", LightFillStyle)}
-          onClick={handleGoBack}
-        >
-          <div className="flex -translate-x-1 items-center gap-1.5">
+        <FillButton className={LightFillStyle} onClick={handleGoBack}>
+          <div className={cn(flexBoxClass, "-translate-x-1")}>
             <ChevronLeftIcon className={LightTextStyle} />
             <span className={LightTextStyle}>Back to List</span>
           </div>
@@ -193,7 +193,7 @@ const BlogEditorToolBar = ({
         />
         <Divider className="ml-3" />
         <FillButton className={cn("ml-6 px-4", DarkFillStyle)}>
-          <div className="flex items-center gap-2">
+          <div className={flexBoxClass}>
             <PublishPlaneIcon className={DarkTextStyle} />
             <span className={DarkTextStyle}>Publish</span>
           </div>
