@@ -1,4 +1,5 @@
 import { Tag } from "@/components/common";
+import { TagType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { LuMoveRight } from "react-icons/lu";
@@ -7,7 +8,7 @@ interface BlogItemProps {
   title: string;
   content: string;
   category: string;
-  tags: string[];
+  tags: TagType[];
   date: Date;
   id: number;
   imageUrl: string;
@@ -48,10 +49,10 @@ const BlogItem = ({
         <div className="flex flex-wrap gap-1">
           {tags.map((tag) => (
             <Tag
-              id=""
-              key={tag}
-              value={tag}
-              label={tag}
+              id={tag.id}
+              key={tag.id}
+              value={tag.value}
+              label={tag.label}
               size="sm"
               type="button"
               isActivated={false}

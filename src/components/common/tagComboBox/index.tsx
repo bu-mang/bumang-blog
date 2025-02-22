@@ -41,6 +41,9 @@ const TagCombobox = ({
   selected,
   unselected,
 }: TagBoxProps) => {
+  const selectedLength = selected.length;
+  const totalLength = unselected.length + selectedLength;
+
   return (
     <Popover open={isOpen} onOpenChange={handleIsOpen}>
       {/* TRIGGER */}
@@ -52,9 +55,9 @@ const TagCombobox = ({
             <span>Add Tag</span>
           </div>
           <div className="flex min-w-10 items-center justify-evenly gap-1 rounded-full bg-gray-5 px-2 py-0.5 group-hover:bg-gray-50">
-            <span className="text-xs">1</span>
+            <span className="text-xs">{selectedLength}</span>
             <Divider size={16} direction="vertical" />
-            <span className="text-xs">3</span>
+            <span className="text-xs">{totalLength}</span>
           </div>
         </div>
       </PopoverTrigger>
