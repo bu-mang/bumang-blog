@@ -4,7 +4,6 @@ import {
   LuPlaneTakeoff as PublishPlaneIcon,
 } from "react-icons/lu";
 
-import useComboBox from "@/hooks/useComboBox";
 import { CATEGORIES } from "@/constants/blogCategory";
 import { getButtonColorStyle } from "@/utils/styles/filButtonManager";
 import { cn } from "@/utils/cn";
@@ -16,78 +15,70 @@ import {
   FillButton,
 } from "@/components/common";
 import { useRouter } from "next/navigation";
-import useTagComboBox from "@/hooks/useTagComboBox";
-import { TagType } from "@/types";
+import { TagProps } from "@/types";
+import DraftController from "../draftController";
+import { YooptaContentValue } from "@yoopta/editor";
 
 const mainCatogories = CATEGORIES.filter((item) => item.parent === null);
 const subCategories = CATEGORIES.filter((item) => item.parent !== null);
 
-const BlogEditorToolBar = () => {
-  /**
-   * @MAIN_CATEGORIES
-   */
-  const {
-    isOpen: isMainOpen,
-    handleIsOpen: handleMainOpen,
-    selectedValue: selectedMainValue,
-    handleSelectedValue: handleSelectedMainValue,
-  } = useComboBox({
-    _name: "mainCategories",
-  });
+interface BlogEditorToolBarProps {
+  // MainCategory
+  isMainOpen: boolean;
+  handleMainOpen: (v?: boolean) => void;
+  selectedMainValue: string;
+  handleSelectedMainValue: (v: string) => void;
 
-  /**
-   * @SUB_SUBJECT
-   */
-  const {
-    isOpen: isSubOpen,
-    handleIsOpen: handleSubOpen,
-    selectedValue: selectedSubValue,
-    handleSelectedValue: handleSelectedSubValue,
-  } = useComboBox({
-    _name: "subCategories",
-  });
+  // SubCategory
+  isSubOpen: boolean;
+  handleSubOpen: (v?: boolean) => void;
+  selectedSubValue: string;
+  handleSelectedSubValue: (v: string) => void;
 
-  /**
-   * @TAGS
-   * TODO: 태그 여러 개 선택으로 개선하기
-   */
-  const selectedArr: TagType[] = [
-    { id: "a1", value: "abc1", label: "Abc1" },
-    { id: "a2", value: "abc2", label: "Abc2" },
-    { id: "a3", value: "abc3", label: "Abc3" },
-    { id: "a4", value: "abc4", label: "Abc4" },
-    { id: "a5", value: "abc5", label: "Abc5" },
-    { id: "a6", value: "abc6", label: "Abc6" },
-    { id: "a7", value: "abc7", label: "Abc7" },
-    { id: "a8", value: "abc8", label: "Abc8" },
-    { id: "a9", value: "abc9", label: "Abc9" },
-    { id: "a0", value: "abc0", label: "Abc0" },
-    { id: "a11", value: "abc11", label: "Abc11" },
-    { id: "a12", value: "abc12", label: "Abc12" },
-    { id: "a13", value: "abc13", label: "Abc13" },
-  ];
-  const unselectedArr: TagType[] = [
-    { id: "d1", value: "def1", label: "def1" },
-    { id: "d2", value: "def2", label: "def2" },
-    { id: "d3", value: "def3", label: "def3" },
-    { id: "d4", value: "def4", label: "def4" },
-    { id: "d5", value: "def5", label: "def5" },
-    { id: "d6", value: "def6", label: "def6" },
-    { id: "d7", value: "def7", label: "def7" },
-    { id: "d8", value: "def8", label: "def8" },
-    { id: "d9", value: "def9", label: "def9" },
-    { id: "d0", value: "def0", label: "def0" },
-    { id: "d11", value: "def11", label: "def11" },
-    { id: "d12", value: "def12", label: "def12" },
-    { id: "d13", value: "def13", label: "def13" },
-  ];
-  const { isOpen, handleIsOpen, handleSwitch, selected, unselected } =
-    useTagComboBox({
-      _name: "tags",
-      selectedArr,
-      unselectedArr,
-    });
+  // Tag
+  isTagOpen: boolean;
+  handleIsTagOpen: () => void;
+  handleSwitchTag: ({
+    targetId,
+    from,
+  }: {
+    targetId: string;
+    from: "selected" | "unselected";
+  }) => void;
+  selectedTags: TagProps[];
+  unslectedTag: TagProps[];
 
+  // Draft
+  isDraftOpen: boolean;
+  handleDraftOpen: () => void;
+  handleEditorValue: (title: string, content: YooptaContentValue) => void;
+}
+
+const BlogEditorToolBar = ({
+  // MainCategory
+  isMainOpen,
+  handleMainOpen,
+  selectedMainValue,
+  handleSelectedMainValue,
+
+  // SubCategory
+  isSubOpen,
+  handleSubOpen,
+  selectedSubValue,
+  handleSelectedSubValue,
+
+  // Tag
+  isTagOpen,
+  handleIsTagOpen,
+  handleSwitchTag,
+  selectedTags,
+  unslectedTag,
+
+  // Draft
+  isDraftOpen,
+  handleDraftOpen,
+  handleEditorValue,
+}: BlogEditorToolBarProps) => {
   /**
    * @CHANGE_SUBS_WHEN_MAIN_CHANGED
    */
@@ -178,18 +169,30 @@ const BlogEditorToolBar = () => {
 
         {/* TAG BOX */}
         <TagCombobox
-          isOpen={isOpen}
-          handleIsOpen={handleIsOpen}
-          handleSwitch={handleSwitch}
-          selected={selected}
-          unselected={unselected}
+          isOpen={isTagOpen}
+          handleIsOpen={handleIsTagOpen}
+          handleSwitch={handleSwitchTag}
+          selected={selectedTags}
+          unselected={unslectedTag}
         />
         {/* TODO: ADJUST COMMAND TO TAG BOX... */}
       </div>
 
       {/* RIGHT MODULE */}
       <div className="flex flex-1 items-center justify-end pr-4">
-        <FillButton className={cn("px-4", DarkFillStyle)}>
+        {
+          <span className="pointer-events-none text-sm text-gray-300">
+            saving...
+          </span>
+        }
+        <DraftController
+          isDraftOpen={isDraftOpen}
+          handleDraftOpen={handleDraftOpen}
+          handleEditorValue={handleEditorValue}
+          className="ml-2"
+        />
+        <Divider className="ml-3" />
+        <FillButton className={cn("ml-6 px-4", DarkFillStyle)}>
           <div className="flex items-center gap-2">
             <PublishPlaneIcon className={DarkTextStyle} />
             <span className={DarkTextStyle}>Publish</span>

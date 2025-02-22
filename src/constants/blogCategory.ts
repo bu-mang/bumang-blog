@@ -10,7 +10,7 @@ const LIFE_LIST: CategoryNode[] = [
     value: "life",
     label: "Life",
     parent: null,
-    isVisible: true,
+    // isVisible: true, // 나중에 백엔드에서 isVisible: true인 것만 내려주기.
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -18,7 +18,7 @@ const LIFE_LIST: CategoryNode[] = [
     value: "diary",
     label: "Diary",
     parent: "life",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -26,7 +26,7 @@ const LIFE_LIST: CategoryNode[] = [
     value: "art",
     label: "Art",
     parent: "life",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -34,7 +34,7 @@ const LIFE_LIST: CategoryNode[] = [
     value: "memo",
     label: "Memo",
     parent: "life",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
 ];
@@ -45,7 +45,7 @@ const PROJECTS_LIST: CategoryNode[] = [
     value: "projects",
     label: "Projects",
     parent: null,
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -53,7 +53,7 @@ const PROJECTS_LIST: CategoryNode[] = [
     value: "linkSnap",
     label: "Link Snap",
     parent: "projects",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -61,7 +61,7 @@ const PROJECTS_LIST: CategoryNode[] = [
     value: "yinTarot",
     label: "Yin Tarot",
     parent: "projects",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -69,7 +69,7 @@ const PROJECTS_LIST: CategoryNode[] = [
     value: "bumangRoute53",
     label: "Bumang Route53",
     parent: "projects",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -77,7 +77,7 @@ const PROJECTS_LIST: CategoryNode[] = [
     value: "yanoljaProjects",
     label: "Yanolja Projects",
     parent: "projects",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -85,7 +85,7 @@ const PROJECTS_LIST: CategoryNode[] = [
     value: "projectEtc",
     label: "Project etc",
     parent: "projects",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
 ];
@@ -96,7 +96,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     value: "frontend",
     label: "Frontend",
     parent: null,
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -104,7 +104,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     value: "htmlCss",
     label: "html & CSS",
     parent: "frontend",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -112,7 +112,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     value: "jsTs",
     label: "JS/TS",
     parent: "frontend",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -120,7 +120,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     value: "ReactNext",
     label: "React / Next.js",
     parent: "frontend",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -128,7 +128,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     value: "reactNative",
     label: "React Native",
     parent: "frontend",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -136,7 +136,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     value: "browserOptimization",
     label: "Browser Optimization",
     parent: "frontend",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -144,7 +144,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     value: "frontendEtc",
     label: "Frontend etc",
     parent: "frontend",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -152,7 +152,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     value: "errorHandling",
     label: "Error Handling",
     parent: "frontend",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
 ];
@@ -163,7 +163,7 @@ const BACKEND_LIST: CategoryNode[] = [
     value: "backend",
     label: "Backend",
     parent: null,
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -171,7 +171,7 @@ const BACKEND_LIST: CategoryNode[] = [
     value: "nodeJs",
     label: "Node.js",
     parent: "backend",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -179,7 +179,7 @@ const BACKEND_LIST: CategoryNode[] = [
     value: "nestJs",
     label: "Nest.js",
     parent: "backend",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -187,7 +187,7 @@ const BACKEND_LIST: CategoryNode[] = [
     value: "db",
     label: "DB",
     parent: "backend",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
 ];
@@ -198,7 +198,7 @@ const COMPUTER_SCIENCE_LIST: CategoryNode[] = [
     value: "computerScience",
     label: "Computer Science",
     parent: null,
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -206,7 +206,7 @@ const COMPUTER_SCIENCE_LIST: CategoryNode[] = [
     value: "network",
     label: "Network",
     parent: "computerScience",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -214,7 +214,7 @@ const COMPUTER_SCIENCE_LIST: CategoryNode[] = [
     value: "designPattern",
     label: "Design Pattern",
     parent: "computerScience",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -222,7 +222,7 @@ const COMPUTER_SCIENCE_LIST: CategoryNode[] = [
     value: "os",
     label: "OS",
     parent: "computerScience",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
 ];
@@ -233,7 +233,7 @@ const ALGORITHM_LIST: CategoryNode[] = [
     value: "algorithm",
     label: "Algorithm",
     parent: null,
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -241,7 +241,7 @@ const ALGORITHM_LIST: CategoryNode[] = [
     value: "problemSolving",
     label: "ProblemSolving",
     parent: "algorithm",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -249,7 +249,7 @@ const ALGORITHM_LIST: CategoryNode[] = [
     value: "dataStructure",
     label: "Data Structure",
     parent: "algorithm",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
 ];
@@ -260,7 +260,7 @@ const INTERACTIVES_LIST: CategoryNode[] = [
     value: "interactives",
     label: "Interactives",
     parent: null,
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -268,7 +268,7 @@ const INTERACTIVES_LIST: CategoryNode[] = [
     value: "canvasP5jsPixiJs",
     label: "canvas ・ P5.js ・ Pixi.js",
     parent: "interactives",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -276,7 +276,7 @@ const INTERACTIVES_LIST: CategoryNode[] = [
     value: "threeJsUnityGame",
     label: "Three.js ・ Unity ・ Game",
     parent: "interactives",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
 ];
@@ -287,7 +287,7 @@ const NOTES_LIST: CategoryNode[] = [
     value: "notes",
     label: "Notes",
     parent: null,
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -295,7 +295,7 @@ const NOTES_LIST: CategoryNode[] = [
     value: "gitGithub",
     label: "Git ・ Github",
     parent: "notes",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -303,7 +303,7 @@ const NOTES_LIST: CategoryNode[] = [
     value: "math",
     label: "Math",
     parent: "notes",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
   {
@@ -311,7 +311,7 @@ const NOTES_LIST: CategoryNode[] = [
     value: "etc",
     label: "etc",
     parent: "notes",
-    isVisible: true,
+    // isVisible: true,
     permissions: ["public", "host", "member", "admin"],
   },
 ];

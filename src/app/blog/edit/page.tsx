@@ -39,7 +39,11 @@ import Toolbar, { DefaultToolbarRender } from "@yoopta/toolbar";
 import LinkTool, { DefaultLinkToolRender } from "@yoopta/link-tool";
 import { html } from "@yoopta/exports";
 
+import { Divider as DividerComp } from "@/components/common";
 import BlogEditorToolBar from "@/components/pages/blog/blogEditToolBar";
+import useComboBox from "@/hooks/useComboBox";
+import useTagComboBox from "@/hooks/useTagComboBox";
+import { TagType } from "@/types";
 
 const plugins = [
   Paragraph,
@@ -143,6 +147,86 @@ const TOOLS = {
 };
 
 export default function BlogEdit() {
+  const editor = useMemo(() => createYooptaEditor(), []);
+  /**
+   * @MAIN_CATEGORIES
+   */
+  const {
+    isOpen: isMainOpen,
+    handleIsOpen: handleMainOpen,
+    selectedValue: selectedMainValue,
+    handleSelectedValue: handleSelectedMainValue,
+  } = useComboBox({
+    _name: "mainCategories",
+  });
+
+  /**
+   * @SUB_SUBJECT
+   */
+  const {
+    isOpen: isSubOpen,
+    handleIsOpen: handleSubOpen,
+    selectedValue: selectedSubValue,
+    handleSelectedValue: handleSelectedSubValue,
+  } = useComboBox({
+    _name: "subCategories",
+  });
+
+  /**
+   * @TAGS
+   */
+  const selectedArr: TagType[] = [
+    { id: "a1", value: "abc", label: "abc" },
+    { id: "a2", value: "def", label: "def" },
+    { id: "a3", value: "ghi", label: "ghi" },
+    { id: "a4", value: "www", label: "www" },
+    { id: "a5", value: "eee", label: "eee" },
+    { id: "a6", value: "aaa", label: "aaa" },
+    { id: "a7", value: "bbb", label: "bbb" },
+    { id: "a8", value: "ccc", label: "ccc" },
+    { id: "a9", value: "dsd", label: "dsd" },
+    { id: "a0", value: "nds", label: "nds" },
+    { id: "a11", value: "psx", label: "psx" },
+    { id: "a12", value: "tsn", label: "tsn" },
+    { id: "a13", value: "vnf", label: "vnf" },
+  ];
+  const unselectedArr: TagType[] = [
+    { id: "d1", value: "anf", label: "anf" },
+    { id: "d2", value: "wmf", label: "wmf" },
+    { id: "d3", value: "enf", label: "enf" },
+    { id: "d4", value: "snd", label: "snd" },
+    { id: "d5", value: "zkj", label: "zkj" },
+    { id: "d6", value: "qna", label: "qna" },
+    { id: "d7", value: "dmk", label: "dmk" },
+    { id: "d8", value: "gka", label: "gka" },
+    { id: "d9", value: "gka", label: "gka" },
+    { id: "d0", value: "1ks", label: "1ks" },
+    { id: "d11", value: "3ms", label: "3ms" },
+    { id: "d12", value: "qnd", label: "qnd" },
+    { id: "d13", value: "poo", label: "poo" },
+  ];
+
+  const {
+    isOpen: isTagOpen,
+    handleIsOpen: handleIsTagOpen,
+    handleSwitch: handleSwitchTag,
+    selected: selectedTags,
+    unselected: unslectedTag,
+  } = useTagComboBox({
+    _name: "tags",
+    selectedArr,
+    unselectedArr,
+  });
+
+  /**
+   * @DRAFT
+   */
+  const [isDraftOpen, setIsDraftOpen] = useState(false);
+  const handleDraftOpen = () => setIsDraftOpen((prev) => !prev);
+  const handleEditorValue = (title: string, content: YooptaContentValue) => {
+    console.log(title, content);
+  };
+
   /**
    * @TITLE_LOGIC
    */
@@ -158,7 +242,6 @@ export default function BlogEdit() {
   /**
    * @EDITOR_LOGIC
    */
-  const editor = useMemo(() => createYooptaEditor(), []);
   const [value, setValue] = useState<YooptaContentValue>();
 
   const onChange = (
@@ -225,7 +308,30 @@ export default function BlogEdit() {
 
   return (
     <main className="flex min-h-screen w-full flex-col">
-      <BlogEditorToolBar />
+      {/* TOOLBAR */}
+      <BlogEditorToolBar
+        // MainCategory
+        isMainOpen={isMainOpen}
+        handleMainOpen={handleMainOpen}
+        selectedMainValue={selectedMainValue}
+        handleSelectedMainValue={handleSelectedMainValue}
+        // SubCategory
+        isSubOpen={isSubOpen}
+        handleSubOpen={handleSubOpen}
+        selectedSubValue={selectedSubValue}
+        handleSelectedSubValue={handleSelectedSubValue}
+        // Tags
+        isTagOpen={isTagOpen}
+        handleIsTagOpen={handleIsTagOpen}
+        handleSwitchTag={handleSwitchTag}
+        selectedTags={selectedTags}
+        unslectedTag={unslectedTag}
+        // Draft
+        isDraftOpen={isDraftOpen}
+        handleDraftOpen={handleDraftOpen}
+        handleEditorValue={handleEditorValue}
+      />
+
       <div className="flex w-full flex-1 justify-center px-[10vw] pt-24">
         <form
           className="flex w-[720px] flex-col"
@@ -249,7 +355,9 @@ export default function BlogEdit() {
           />
 
           {/* DIVIDER */}
-          <div className="h-[1px] w-full bg-gray-5" />
+          <DividerComp direction="horizontal" className={"w-full bg-gray-5"} />
+
+          {/* EDITOR */}
           <div
             className="flex flex-1 flex-col"
             ref={selectionRef}
