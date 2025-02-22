@@ -1,5 +1,5 @@
 /**
- * value: string, label: string
+ * used in Tag, Category, Button
  */
 export interface IndicatorValues {
   value: string;

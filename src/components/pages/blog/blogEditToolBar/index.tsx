@@ -49,37 +49,36 @@ const BlogEditorToolBar = () => {
 
   /**
    * @TAGS
-   * TODO: 태그 여러 개 선택으로 개선하기
    */
   const selectedArr: TagType[] = [
-    { id: "a1", value: "abc1", label: "Abc1" },
-    { id: "a2", value: "abc2", label: "Abc2" },
-    { id: "a3", value: "abc3", label: "Abc3" },
-    { id: "a4", value: "abc4", label: "Abc4" },
-    { id: "a5", value: "abc5", label: "Abc5" },
-    { id: "a6", value: "abc6", label: "Abc6" },
-    { id: "a7", value: "abc7", label: "Abc7" },
-    { id: "a8", value: "abc8", label: "Abc8" },
-    { id: "a9", value: "abc9", label: "Abc9" },
-    { id: "a0", value: "abc0", label: "Abc0" },
-    { id: "a11", value: "abc11", label: "Abc11" },
-    { id: "a12", value: "abc12", label: "Abc12" },
-    { id: "a13", value: "abc13", label: "Abc13" },
+    { id: "a1", value: "abc", label: "abc" },
+    { id: "a2", value: "def", label: "def" },
+    { id: "a3", value: "ghi", label: "ghi" },
+    { id: "a4", value: "www", label: "www" },
+    { id: "a5", value: "eee", label: "eee" },
+    { id: "a6", value: "aaa", label: "aaa" },
+    { id: "a7", value: "bbb", label: "bbb" },
+    { id: "a8", value: "ccc", label: "ccc" },
+    { id: "a9", value: "dsd", label: "dsd" },
+    { id: "a0", value: "nds", label: "nds" },
+    { id: "a11", value: "psx", label: "psx" },
+    { id: "a12", value: "tsn", label: "tsn" },
+    { id: "a13", value: "vnf", label: "vnf" },
   ];
   const unselectedArr: TagType[] = [
-    { id: "d1", value: "def1", label: "def1" },
-    { id: "d2", value: "def2", label: "def2" },
-    { id: "d3", value: "def3", label: "def3" },
-    { id: "d4", value: "def4", label: "def4" },
-    { id: "d5", value: "def5", label: "def5" },
-    { id: "d6", value: "def6", label: "def6" },
-    { id: "d7", value: "def7", label: "def7" },
-    { id: "d8", value: "def8", label: "def8" },
-    { id: "d9", value: "def9", label: "def9" },
-    { id: "d0", value: "def0", label: "def0" },
-    { id: "d11", value: "def11", label: "def11" },
-    { id: "d12", value: "def12", label: "def12" },
-    { id: "d13", value: "def13", label: "def13" },
+    { id: "d1", value: "anf", label: "anf" },
+    { id: "d2", value: "wmf", label: "wmf" },
+    { id: "d3", value: "enf", label: "enf" },
+    { id: "d4", value: "snd", label: "snd" },
+    { id: "d5", value: "zkj", label: "zkj" },
+    { id: "d6", value: "qna", label: "qna" },
+    { id: "d7", value: "dmk", label: "dmk" },
+    { id: "d8", value: "gka", label: "gka" },
+    { id: "d9", value: "gka", label: "gka" },
+    { id: "d0", value: "1ks", label: "1ks" },
+    { id: "d11", value: "3ms", label: "3ms" },
+    { id: "d12", value: "qnd", label: "qnd" },
+    { id: "d13", value: "poo", label: "poo" },
   ];
   const { isOpen, handleIsOpen, handleSwitch, selected, unselected } =
     useTagComboBox({

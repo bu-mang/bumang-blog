@@ -1,5 +1,6 @@
 "use client";
 import { TagProps } from "@/types";
+import { sortTagOrder } from "@/utils/sortTagOrder";
 import { useState } from "react";
 
 interface TagComboBoxProps {
@@ -26,13 +27,12 @@ const useTagComboBox = ({
     targetId: string;
     from: "selected" | "unselected";
   }) => {
-    console.log("clicked at least???");
     // 선택된 배열에서 시작
     if (from === "selected") {
       const foundIndex = selected.findIndex((item) => item.id === targetId);
       if (foundIndex === -1) return;
 
-      const newTo = [selected[foundIndex], ...unselected];
+      const newTo = sortTagOrder([selected[foundIndex], ...unselected]);
       const newFrom = [...selected].filter(
         (item) => item.id !== selected[foundIndex].id,
       );
@@ -51,7 +51,7 @@ const useTagComboBox = ({
       );
 
       setSelected(newTo);
-      setUnselected(newFrom);
+      setUnselected(sortTagOrder(newFrom, "label"));
     }
   };
 
