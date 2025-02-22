@@ -1,10 +1,10 @@
 import { LuPlus } from "react-icons/lu";
 import Link from "next/link";
 
-const Title = () => {
+const BlogTitle = () => {
   return (
     <div className="col-span-3 mb-5 flex h-10 w-full items-center justify-between font-semibold">
-      {/* PAGE TITLE */}
+      {/* PAGE BlogTITLE */}
       <div className="flex items-center gap-2">
         <span className="text-xl">PageTitle</span>
         <span className="text-sm text-gray-200">28</span>
@@ -21,4 +21,4 @@ const Title = () => {
   );
 };
 
-export default Title;
+export default BlogTitle;

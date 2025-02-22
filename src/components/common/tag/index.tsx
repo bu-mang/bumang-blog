@@ -16,6 +16,7 @@ const Tag = ({
   className,
   size = "lg",
   type = "link",
+  hasXButton = true,
   hasBackground = true,
   isActivated = false,
   setIsActivated,
@@ -50,7 +51,7 @@ const Tag = ({
     return (
       <Link href={url ?? "#"} className={tagClass}>
         <span>{label}</span>
-        {isActivated && !!hasBackground && <CloseIcon />}
+        {isActivated && !!hasBackground && !!hasXButton && <CloseIcon />}
       </Link>
     );
   }
@@ -59,7 +60,7 @@ const Tag = ({
     return (
       <button onClick={handleClick} className={tagClass}>
         {label}
-        {isActivated && !!hasBackground && <CloseIcon />}
+        {isActivated && !!hasBackground && !!hasXButton && <CloseIcon />}
       </button>
     );
   }
