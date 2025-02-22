@@ -4,7 +4,6 @@ import {
   LuPlaneTakeoff as PublishPlaneIcon,
 } from "react-icons/lu";
 
-import useComboBox from "@/hooks/useComboBox";
 import { CATEGORIES } from "@/constants/blogCategory";
 import { getButtonColorStyle } from "@/utils/styles/filButtonManager";
 import { cn } from "@/utils/cn";
@@ -16,77 +15,58 @@ import {
   FillButton,
 } from "@/components/common";
 import { useRouter } from "next/navigation";
-import useTagComboBox from "@/hooks/useTagComboBox";
-import { TagType } from "@/types";
+import { TagProps } from "@/types";
 
 const mainCatogories = CATEGORIES.filter((item) => item.parent === null);
 const subCategories = CATEGORIES.filter((item) => item.parent !== null);
 
-const BlogEditorToolBar = () => {
-  /**
-   * @MAIN_CATEGORIES
-   */
-  const {
-    isOpen: isMainOpen,
-    handleIsOpen: handleMainOpen,
-    selectedValue: selectedMainValue,
-    handleSelectedValue: handleSelectedMainValue,
-  } = useComboBox({
-    _name: "mainCategories",
-  });
+interface BlogEditorToolBarProps {
+  // MainCategory
+  isMainOpen: boolean;
+  handleMainOpen: (v?: boolean) => void;
+  selectedMainValue: string;
+  handleSelectedMainValue: (v: string) => void;
 
-  /**
-   * @SUB_SUBJECT
-   */
-  const {
-    isOpen: isSubOpen,
-    handleIsOpen: handleSubOpen,
-    selectedValue: selectedSubValue,
-    handleSelectedValue: handleSelectedSubValue,
-  } = useComboBox({
-    _name: "subCategories",
-  });
+  // SubCategory
+  isSubOpen: boolean;
+  handleSubOpen: (v?: boolean) => void;
+  selectedSubValue: string;
+  handleSelectedSubValue: (v: string) => void;
 
-  /**
-   * @TAGS
-   */
-  const selectedArr: TagType[] = [
-    { id: "a1", value: "abc", label: "abc" },
-    { id: "a2", value: "def", label: "def" },
-    { id: "a3", value: "ghi", label: "ghi" },
-    { id: "a4", value: "www", label: "www" },
-    { id: "a5", value: "eee", label: "eee" },
-    { id: "a6", value: "aaa", label: "aaa" },
-    { id: "a7", value: "bbb", label: "bbb" },
-    { id: "a8", value: "ccc", label: "ccc" },
-    { id: "a9", value: "dsd", label: "dsd" },
-    { id: "a0", value: "nds", label: "nds" },
-    { id: "a11", value: "psx", label: "psx" },
-    { id: "a12", value: "tsn", label: "tsn" },
-    { id: "a13", value: "vnf", label: "vnf" },
-  ];
-  const unselectedArr: TagType[] = [
-    { id: "d1", value: "anf", label: "anf" },
-    { id: "d2", value: "wmf", label: "wmf" },
-    { id: "d3", value: "enf", label: "enf" },
-    { id: "d4", value: "snd", label: "snd" },
-    { id: "d5", value: "zkj", label: "zkj" },
-    { id: "d6", value: "qna", label: "qna" },
-    { id: "d7", value: "dmk", label: "dmk" },
-    { id: "d8", value: "gka", label: "gka" },
-    { id: "d9", value: "gka", label: "gka" },
-    { id: "d0", value: "1ks", label: "1ks" },
-    { id: "d11", value: "3ms", label: "3ms" },
-    { id: "d12", value: "qnd", label: "qnd" },
-    { id: "d13", value: "poo", label: "poo" },
-  ];
-  const { isOpen, handleIsOpen, handleSwitch, selected, unselected } =
-    useTagComboBox({
-      _name: "tags",
-      selectedArr,
-      unselectedArr,
-    });
+  // Tag
+  isTagOpen: boolean;
+  handleIsTagOpen: () => void;
+  handleSwitchTag: ({
+    targetId,
+    from,
+  }: {
+    targetId: string;
+    from: "selected" | "unselected";
+  }) => void;
+  selectedTags: TagProps[];
+  unslectedTag: TagProps[];
+}
 
+const BlogEditorToolBar = ({
+  // MainCategory
+  isMainOpen,
+  handleMainOpen,
+  selectedMainValue,
+  handleSelectedMainValue,
+
+  // SubCategory
+  isSubOpen,
+  handleSubOpen,
+  selectedSubValue,
+  handleSelectedSubValue,
+
+  // Tag
+  isTagOpen,
+  handleIsTagOpen,
+  handleSwitchTag,
+  selectedTags,
+  unslectedTag,
+}: BlogEditorToolBarProps) => {
   /**
    * @CHANGE_SUBS_WHEN_MAIN_CHANGED
    */
@@ -177,11 +157,11 @@ const BlogEditorToolBar = () => {
 
         {/* TAG BOX */}
         <TagCombobox
-          isOpen={isOpen}
-          handleIsOpen={handleIsOpen}
-          handleSwitch={handleSwitch}
-          selected={selected}
-          unselected={unselected}
+          isOpen={isTagOpen}
+          handleIsOpen={handleIsTagOpen}
+          handleSwitch={handleSwitchTag}
+          selected={selectedTags}
+          unselected={unslectedTag}
         />
         {/* TODO: ADJUST COMMAND TO TAG BOX... */}
       </div>
