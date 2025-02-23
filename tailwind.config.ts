@@ -6,7 +6,7 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: ["class", "class"], // 다크 모드를 class 기반으로 설정
+  darkMode: ["class"], // 다크 모드를 class 기반으로 설정
   theme: {
     extend: {
       fontFamily: {

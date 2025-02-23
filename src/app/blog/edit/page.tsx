@@ -44,8 +44,7 @@ import { BlogPublishingView } from "@/components/pages";
 import BlogEditorToolBar from "@/components/pages/blog/blogEditToolBar";
 import useComboBox from "@/hooks/useComboBox";
 import useTagComboBox from "@/hooks/useTagComboBox";
-import { TagType } from "@/types";
-import { SelectSingleEventHandler } from "react-day-picker";
+import { BlogStep, TagType } from "@/types";
 import { SelectedDateType } from "@/types/date";
 
 const plugins = [
@@ -149,16 +148,12 @@ const TOOLS = {
   },
 };
 
-enum Step {
-  EDITTING = "EDITTING",
-  PUBLISHING = "PUBLISHING",
-}
-
 export default function BlogEdit() {
   /**
    * @FUNNEL
    */
-  const [step, setStep] = useState(Step.EDITTING);
+  const [step, setStep] = useState(BlogStep.EDITTING);
+  const handleStep = (v: BlogStep) => setStep(v);
 
   const editor = useMemo(() => createYooptaEditor(), []);
 
@@ -338,12 +333,12 @@ export default function BlogEdit() {
 
   // Step Changing
   useEffect(() => {
-    setTimeout(() => setStep(Step.PUBLISHING), 2000);
+    setTimeout(() => setStep(BlogStep.PUBLISHING), 2000);
   }, []);
 
   return (
     <main className="flex min-h-screen w-full flex-col">
-      {step === Step.EDITTING && (
+      {step === BlogStep.EDITTING && (
         <>
           {/* TOOLBAR */}
           <BlogEditorToolBar
@@ -421,13 +416,14 @@ export default function BlogEdit() {
           </div>
         </>
       )}
-      {step === Step.PUBLISHING && (
+      {step === BlogStep.PUBLISHING && (
         <BlogPublishingView
           selectedTags={selectedTags}
           selectedDateType={selectedDateType}
           onChangeSelectedDateType={handleSelectedDateType}
           publishingDate={publishingDate}
           onChangePublishingDate={setPublishingDate}
+          onChangeStep={handleStep}
         />
       )}
     </main>
