@@ -5,6 +5,7 @@ import Pagenation from "./pageNation";
 import Tag, { TagWrapper } from "./tag";
 import TagCombobox from "./tagComboBox";
 import Divider from "./divider";
+import SectionLabel from "./sectionLabel";
 
 export {
   /**
@@ -25,4 +26,8 @@ export {
    * @DATE_PICKER
    */
   DatePicker,
+  /**
+   * @SECTION_LABEL
+   */
+  SectionLabel,
 };
