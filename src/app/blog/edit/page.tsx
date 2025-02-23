@@ -40,10 +40,12 @@ import LinkTool, { DefaultLinkToolRender } from "@yoopta/link-tool";
 import { html } from "@yoopta/exports";
 
 import { Divider as DividerComp } from "@/components/common";
+import { BlogPublishingView } from "@/components/pages";
 import BlogEditorToolBar from "@/components/pages/blog/blogEditToolBar";
 import useComboBox from "@/hooks/useComboBox";
 import useTagComboBox from "@/hooks/useTagComboBox";
-import { TagType } from "@/types";
+import { BlogStep, TagType } from "@/types";
+import { SelectedDateType } from "@/types/date";
 
 const plugins = [
   Paragraph,
@@ -147,7 +149,14 @@ const TOOLS = {
 };
 
 export default function BlogEdit() {
+  /**
+   * @FUNNEL
+   */
+  const [step, setStep] = useState(BlogStep.EDITTING);
+  const handleStep = (v: BlogStep) => setStep(v);
+
   const editor = useMemo(() => createYooptaEditor(), []);
+
   /**
    * @MAIN_CATEGORIES
    */
@@ -306,79 +315,117 @@ export default function BlogEdit() {
     }
   };
 
+  /**
+   * @DATE_LOGIC
+   */
+  const [publishingDate, setPublishingDate] = useState<Date | undefined>(
+    new Date(),
+  );
+  const [selectedDateType, setSelectedDateType] = useState<SelectedDateType>(
+    SelectedDateType.rightNow,
+  );
+  const handleSelectedDateType = (v: SelectedDateType) =>
+    setSelectedDateType(v);
+
+  useEffect(() => {
+    console.log(selectedDateType, "selectedDateType");
+  }, [selectedDateType]);
+
+  // Step Changing
+  useEffect(() => {
+    setTimeout(() => setStep(BlogStep.PUBLISHING), 2000);
+  }, []);
+
   return (
     <main className="flex min-h-screen w-full flex-col">
-      {/* TOOLBAR */}
-      <BlogEditorToolBar
-        // MainCategory
-        isMainOpen={isMainOpen}
-        handleMainOpen={handleMainOpen}
-        selectedMainValue={selectedMainValue}
-        handleSelectedMainValue={handleSelectedMainValue}
-        // SubCategory
-        isSubOpen={isSubOpen}
-        handleSubOpen={handleSubOpen}
-        selectedSubValue={selectedSubValue}
-        handleSelectedSubValue={handleSelectedSubValue}
-        // Tags
-        isTagOpen={isTagOpen}
-        handleIsTagOpen={handleIsTagOpen}
-        handleSwitchTag={handleSwitchTag}
-        selectedTags={selectedTags}
-        unslectedTag={unslectedTag}
-        // Draft
-        isDraftOpen={isDraftOpen}
-        handleDraftOpen={handleDraftOpen}
-        handleEditorValue={handleEditorValue}
-      />
+      {step === BlogStep.EDITTING && (
+        <>
+          {/* TOOLBAR */}
+          <BlogEditorToolBar
+            // MainCategory
+            isMainOpen={isMainOpen}
+            handleMainOpen={handleMainOpen}
+            selectedMainValue={selectedMainValue}
+            handleSelectedMainValue={handleSelectedMainValue}
+            // SubCategory
+            isSubOpen={isSubOpen}
+            handleSubOpen={handleSubOpen}
+            selectedSubValue={selectedSubValue}
+            handleSelectedSubValue={handleSelectedSubValue}
+            // Tags
+            isTagOpen={isTagOpen}
+            handleIsTagOpen={handleIsTagOpen}
+            handleSwitchTag={handleSwitchTag}
+            selectedTags={selectedTags}
+            unslectedTag={unslectedTag}
+            // Draft
+            isDraftOpen={isDraftOpen}
+            handleDraftOpen={handleDraftOpen}
+            handleEditorValue={handleEditorValue}
+          />
 
-      <div className="flex w-full flex-1 justify-center px-[10vw] pt-24">
-        <form
-          className="flex w-[720px] flex-col"
-          // onSubmit={(e) => handleSubmit(e)}
-        >
-          {/* <button onClick={deserializeHTML} className="bg-blue">
+          <div className="flex w-full flex-1 justify-center px-[10vw] pt-24">
+            <form
+              className="flex w-[720px] flex-col"
+              // onSubmit={(e) => handleSubmit(e)}
+            >
+              {/* <button onClick={deserializeHTML} className="bg-blue">
               Deserialize from html to content
             </button>
             <button onClick={serializeHTML} className="bg-red">
               Serialize from content to html
             </button> */}
 
-          {/* INPUT */}
-          <textarea
-            className="flex h-auto min-h-20 w-full resize-none flex-wrap overflow-hidden rounded-md border-none bg-transparent px-2 py-4 text-5xl font-semibold leading-normal outline-none transition-colors placeholder:text-gray-100 hover:bg-gray-1 disabled:cursor-not-allowed disabled:opacity-50"
-            placeholder="A Legend has said that..."
-            tabIndex={1}
-            value={title}
-            maxLength={48}
-            onChange={handleChangeTitle}
-          />
+              {/* INPUT */}
+              <textarea
+                className="flex h-auto min-h-20 w-full resize-none flex-wrap overflow-hidden rounded-md border-none bg-transparent px-2 py-4 text-5xl font-semibold leading-normal outline-none transition-colors placeholder:text-gray-100 hover:bg-gray-1 disabled:cursor-not-allowed disabled:opacity-50"
+                placeholder="A Legend has said that..."
+                tabIndex={1}
+                value={title}
+                maxLength={48}
+                onChange={handleChangeTitle}
+              />
 
-          {/* DIVIDER */}
-          <DividerComp direction="horizontal" className={"w-full bg-gray-5"} />
+              {/* DIVIDER */}
+              <DividerComp
+                direction="horizontal"
+                className={"w-full bg-gray-5"}
+              />
 
-          {/* EDITOR */}
-          <div
-            className="flex flex-1 flex-col"
-            ref={selectionRef}
-            onClick={handleEditorFocus}
-          >
-            <YooptaEditor
-              width="100%"
-              className="flex-1 p-2"
-              editor={editor}
-              plugins={plugins}
-              placeholder="Type Something Cool...!"
-              value={value}
-              onChange={onChange}
-              selectionBoxRoot={selectionRef}
-              tools={TOOLS}
-              marks={MARKS}
-              autoFocus
-            />
+              {/* EDITOR */}
+              <div
+                className="flex flex-1 flex-col"
+                ref={selectionRef}
+                onClick={handleEditorFocus}
+              >
+                <YooptaEditor
+                  width="100%"
+                  className="flex-1 p-2"
+                  editor={editor}
+                  plugins={plugins}
+                  placeholder="Type Something Cool...!"
+                  value={value}
+                  onChange={onChange}
+                  selectionBoxRoot={selectionRef}
+                  tools={TOOLS}
+                  marks={MARKS}
+                  autoFocus
+                />
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
+        </>
+      )}
+      {step === BlogStep.PUBLISHING && (
+        <BlogPublishingView
+          selectedTags={selectedTags}
+          selectedDateType={selectedDateType}
+          onChangeSelectedDateType={handleSelectedDateType}
+          publishingDate={publishingDate}
+          onChangePublishingDate={setPublishingDate}
+          onChangeStep={handleStep}
+        />
+      )}
     </main>
   );
 }

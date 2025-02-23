@@ -1,5 +1,5 @@
 import ButtonBase from "./base";
-import { ButtonProps } from "../types";
+import { ButtonProps } from "@/types/button";
 import { cn } from "@/utils/cn";
 
 const FillButton: React.FC<ButtonProps> = ({
@@ -11,10 +11,17 @@ const FillButton: React.FC<ButtonProps> = ({
   colorTheme = "dark",
   ...props
 }) => {
-  const buttonClass = cn(
-    "px-4 h-8 rounded-md text-white transition-colors",
+  const darkClass = cn(
+    "bg-gray-600 hover:bg-gray-800 px-4 h-8 rounded-md transition-colors",
     {
-      "bg-gray-600 hover:bg-gray-800": !disabled && !isLoading,
+      "cursor-not-allowed opacity-50": disabled,
+      "cursor-wait": isLoading,
+    },
+    className,
+  );
+  const lightClass = cn(
+    "bg-gray-600 hover:bg-gray-800 px-4 h-8 rounded-md transition-colors",
+    {
       "cursor-not-allowed opacity-50": disabled,
       "cursor-wait": isLoading,
     },
@@ -23,7 +30,7 @@ const FillButton: React.FC<ButtonProps> = ({
 
   return (
     <ButtonBase
-      className={buttonClass}
+      className={colorTheme === "dark" ? darkClass : lightClass}
       onClick={onClick}
       isLoading={isLoading}
       disabled={disabled}
