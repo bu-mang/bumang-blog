@@ -9,3 +9,8 @@ export interface BlogItemType {
   imageUrl: string;
   content: string;
 }
+
+export enum BlogStep {
+  EDITTING = "EDITTING",
+  PUBLISHING = "PUBLISHING",
+}
