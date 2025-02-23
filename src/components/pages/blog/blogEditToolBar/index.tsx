@@ -140,6 +140,7 @@ const BlogEditorToolBar = ({
         </FillButton>
       </div>
 
+      {/* CENTER MODULE */}
       <div className="flex w-7/12 items-center justify-center gap-3">
         {/* CATEGORY BOX */}
         <ComboBox
