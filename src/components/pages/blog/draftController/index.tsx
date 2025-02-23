@@ -61,48 +61,27 @@ const DraftController = ({
             {/* SELECTED_LIST */}
             <div className="flex flex-col gap-1 border-b-[1px] p-2.5">
               <span className="text-xs text-gray-200">Drafts</span>
-              <CommandItem
-                className="text-sm"
-                key={1}
-                value={"draft1"}
-                onSelect={(currentValue) => {
-                  handleSelect();
-                  handleDraftOpen(false);
-                }}
-              >
-                <div>
-                  <h4 className="">2025.02.22.</h4>
-                  <span>타입스크립트 뭐시기...</span>
-                </div>
-              </CommandItem>
-              <CommandItem
-                className="text-sm"
-                key={2}
-                value={"draft2"}
-                onSelect={(currentValue) => {
-                  handleSelect();
-                  handleDraftOpen(false);
-                }}
-              >
-                <div>
-                  <h4 className="">2025.02.22.</h4>
-                  <span>타입스크립트 뭐시기...</span>
-                </div>
-              </CommandItem>
-              <CommandItem
-                className="text-sm"
-                key={3}
-                value={"draft3"}
-                onSelect={(currentValue) => {
-                  handleSelect();
-                  handleDraftOpen(false);
-                }}
-              >
-                <div>
-                  <h4 className="">2025.02.22.</h4>
-                  <span>타입스크립트 뭐시기...</span>
-                </div>
-              </CommandItem>
+              <CommandEmpty>No Draft found.</CommandEmpty>
+              {[1, 2, 3].map((order) => (
+                <CommandItem
+                  className="text-sm"
+                  key={order}
+                  value={`draft${order}`}
+                  onSelect={(currentValue) => {
+                    handleSelect();
+                    handleDraftOpen(false);
+                  }}
+                >
+                  <div>
+                    <h4 className="mb-0.5 text-xs text-gray-200">
+                      2025.02.22.
+                    </h4>
+                    <span className="font-medium">
+                      타입스크립트 뭐시기... {order}
+                    </span>
+                  </div>
+                </CommandItem>
+              ))}
             </div>
           </CommandList>
         </Command>
