@@ -1,12 +1,12 @@
 import BlogItem from "@/components/pages/blog/blogItem";
 import Pagenation from "@/components/common/pageNation";
-import BlogTitle from "@/components/pages/blog/blogTitle";
+import { SectionLabel } from "@/components/common";
 import { blogItems } from "@/constants/blogItems";
 
 export default function Blog() {
   return (
     <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw]">
-      <BlogTitle title="PageTitle" amount={0} isActionButtonOn />
+      <SectionLabel title="PageTitle" amount={0} isActionButtonOn />
       <div className="col-span-3 grid grid-cols-3 gap-x-[1.5vw] gap-y-[4.5vw]">
         {/* BLOGITEMS */}
         {blogItems.map(
