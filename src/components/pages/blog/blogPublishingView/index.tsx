@@ -122,6 +122,7 @@ const BlogPublishingView = ({
             <TagWrapper className="min-h-8 flex-grow-0 items-center rounded-sm bg-gray-1 p-2">
               {selectedTags.map((items) => (
                 <Tag
+                  key={items.id}
                   id={items.id}
                   value={items.value}
                   label={items.label}
@@ -197,7 +198,10 @@ const BlogPublishingView = ({
               </span>
             </div>
             <div className="flex gap-4">
-              <FillButton className={cn("w-fit", lightFillStyle)}>
+              <FillButton
+                className={cn("w-fit", lightFillStyle)}
+                onClick={() => onChangeStep(BlogStep.EDITTING)}
+              >
                 <div className={lightFlexBoxClass}>
                   <GoBackIcon className={lightTextStyle} />
                   <span className={lightTextStyle}>Go Back</span>

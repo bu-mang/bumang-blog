@@ -6,6 +6,7 @@ import Tag, { TagWrapper } from "./tag";
 import TagCombobox from "./tagComboBox";
 import Divider from "./divider";
 import SectionLabel from "./sectionLabel";
+import Editor from "./editor";
 
 export {
   /**
@@ -30,4 +31,8 @@ export {
    * @SECTION_LABEL
    */
   SectionLabel,
+  /**
+   * @EDITOR
+   */
+  Editor,
 };
