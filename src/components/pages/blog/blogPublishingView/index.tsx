@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import BlogTitle from "../blogTitle";
+import { SectionLabel } from "@/components/common";
 import { TagProps } from "@/types";
 import {
   ButtonBase,
@@ -29,7 +29,7 @@ import { BlogStep } from "@/types";
 interface BlogPublishingViewProps {
   selectedTags: TagProps[];
 
-  selectedDateType: string;
+  selectedDateType: SelectedDateType;
   onChangeSelectedDateType: (v: SelectedDateType) => void;
 
   publishingDate: Date | undefined;
@@ -98,7 +98,7 @@ const BlogPublishingView = ({
         <div className="col-span-4 flex w-full flex-col justify-between">
           {/* TITLE */}
           <div>
-            <BlogTitle
+            <SectionLabel
               title="Preview"
               isActionButtonOn={false}
               className="mb-0"
@@ -114,10 +114,15 @@ const BlogPublishingView = ({
         <div className="col-span-4 flex w-full flex-col justify-between">
           <div>
             {/* TAGS */}
-            <BlogTitle title="Tags" isActionButtonOn={false} className="mb-2" />
-            <TagWrapper className="mb-6 min-h-8 flex-grow-0 items-center rounded-sm bg-gray-1 p-2">
+            <SectionLabel
+              title="Tags"
+              isActionButtonOn={false}
+              className="mb-0"
+            />
+            <TagWrapper className="min-h-8 flex-grow-0 items-center rounded-sm bg-gray-1 p-2">
               {selectedTags.map((items) => (
                 <Tag
+                  key={items.id}
                   id={items.id}
                   value={items.value}
                   label={items.label}
@@ -126,9 +131,10 @@ const BlogPublishingView = ({
                 />
               ))}
             </TagWrapper>
-
+          </div>
+          <div className="">
             {/* SCHEDULE */}
-            <BlogTitle
+            <SectionLabel
               title="Schedule"
               isActionButtonOn={false}
               className="mb-0"
@@ -151,9 +157,35 @@ const BlogPublishingView = ({
             </RadioGroup>
 
             <DatePicker
+              selectedDateType={selectedDateType}
               date={publishingDate}
               onChangeDate={onChangePublishingDate}
             />
+          </div>
+
+          <div>
+            {/* AUTHORIZATION */}
+            <SectionLabel
+              title="who can read it?"
+              isActionButtonOn={false}
+              className="mb-0"
+            />
+
+            <RadioGroup
+              value={selectedDateType}
+              defaultValue="rightNow"
+              onValueChange={onChangeSelectedDateType}
+              className="flex py-3"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="custom" id="r2" />
+                <Label htmlFor="r2">All Visitor</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="rightNow" id="r1" />
+                <Label htmlFor="r1">Only Admin</Label>
+              </div>
+            </RadioGroup>
           </div>
 
           {/* BUTTONS */}
@@ -166,7 +198,10 @@ const BlogPublishingView = ({
               </span>
             </div>
             <div className="flex gap-4">
-              <FillButton className={cn("w-fit", lightFillStyle)}>
+              <FillButton
+                className={cn("w-fit", lightFillStyle)}
+                onClick={() => onChangeStep(BlogStep.EDITTING)}
+              >
                 <div className={lightFlexBoxClass}>
                   <GoBackIcon className={lightTextStyle} />
                   <span className={lightTextStyle}>Go Back</span>
