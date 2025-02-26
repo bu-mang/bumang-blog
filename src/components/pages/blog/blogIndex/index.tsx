@@ -49,15 +49,16 @@ const BlogIndex = () => {
   }, [activeId]);
 
   return (
-    <div className="sticky top-[20%] flex w-full flex-col gap-2.5 border-l-[2px] pr-10">
+    <div className="sticky top-[360px] ml-10 flex w-full flex-col gap-2.5 border-l-[2px] pr-10">
       {headings.map((heading) => (
         <ButtonBase
           className={cn(
-            "flex justify-start text-start text-sm text-gray-200 hover:text-gray-700 hover:underline",
+            "flex justify-start text-start text-sm text-gray-200 transition-all hover:text-gray-700 hover:underline",
           )}
           style={{
             paddingLeft: heading.level * 10,
             color: activeId === heading.id ? "#2c2c2c" : "#999999",
+            scale: activeId === heading.id ? 1.03 : 1,
           }}
           onClick={() => handleScrollTo(heading.id)}
         >
