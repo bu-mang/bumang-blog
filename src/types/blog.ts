@@ -1,6 +1,6 @@
 import { TagType } from "./tag";
 
-export interface BlogItemType {
+interface BlogItemType {
   id: number;
   title: string;
   categoryValue: string;
@@ -10,7 +10,22 @@ export interface BlogItemType {
   content: string;
 }
 
-export enum BlogStep {
+enum BlogStep {
   EDITTING = "EDITTING",
   PUBLISHING = "PUBLISHING",
 }
+
+type BlogHeadingType = "h1" | "h2" | "h3";
+
+interface BlogHeadingComponentType {
+  id: string;
+  text: string;
+  level: number;
+}
+
+export {
+  type BlogItemType,
+  type BlogHeadingType,
+  type BlogHeadingComponentType,
+  BlogStep,
+};

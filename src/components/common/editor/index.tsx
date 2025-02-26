@@ -40,7 +40,8 @@ import Code from "@yoopta/code";
 import Table from "@yoopta/table";
 import Divider from "@yoopta/divider";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { html } from "@yoopta/exports";
+import yooptaExports, { html } from "@yoopta/exports";
+import { WITH_BASIC_INIT_VALUE } from "./initValue";
 
 const plugins = [
   Paragraph,
@@ -162,23 +163,23 @@ const Editor = ({
 
   // from html to @yoopta content
   const deserializeHTML = () => {
-    const htmlString = "<div><h1>First title</h1><div>abc</div></div>";
-    const content = html.deserialize(editor, htmlString);
+    const htmlString = "<h1>First title</h1>";
+
+    const content = yooptaExports.html.deserialize(editor, htmlString);
 
     editor.setEditorValue(content);
   };
 
-  useEffect(() => {
-    deserializeHTML();
-    // eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   deserializeHTML();
+  //   // eslint-disable-next-line
+  // }, []);
 
   // from @yoopta content to html string
   const serializeHTML = () => {
     const data = editor.getEditorValue();
-    // const data = value;
     if (data) {
-      const htmlString = html.serialize(editor, data);
+      const htmlString = yooptaExports.html.serialize(editor, data);
       console.log("html string", htmlString);
     }
   };

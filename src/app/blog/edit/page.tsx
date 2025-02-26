@@ -14,6 +14,7 @@ import useComboBox from "@/hooks/useComboBox";
 import useTagComboBox from "@/hooks/useTagComboBox";
 import { BlogStep, TagType } from "@/types";
 import { SelectedDateType } from "@/types/date";
+import { WITH_BASIC_INIT_VALUE } from "@/components/common/editor/initValue";
 
 export default function BlogEdit() {
   /**
@@ -26,7 +27,7 @@ export default function BlogEdit() {
   /**
    * @EDITOR_LOGIC
    */
-  const [value, setValue] = useState<YooptaContentValue>();
+  const [value, setValue] = useState<YooptaContentValue>(WITH_BASIC_INIT_VALUE);
 
   const onChangeEditorValue = (
     value: YooptaContentValue,
@@ -143,9 +144,9 @@ export default function BlogEdit() {
   }, [selectedDateType]);
 
   // Step Changing
-  useEffect(() => {
-    setTimeout(() => setStep(BlogStep.PUBLISHING), 2000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => setStep(BlogStep.PUBLISHING), 2000);
+  // }, []);
 
   return (
     <main className="flex min-h-screen w-full flex-col">
@@ -180,13 +181,6 @@ export default function BlogEdit() {
               className="flex w-[720px] flex-col"
               // onSubmit={(e) => handleSubmit(e)}
             >
-              {/* <button onClick={deserializeHTML} className="bg-blue">
-              Deserialize from html to content
-            </button>
-            <button onClick={serializeHTML} className="bg-red">
-              Serialize from content to html
-            </button> */}
-
               {/* INPUT */}
               <textarea
                 className="flex h-auto min-h-20 w-full resize-none flex-wrap overflow-hidden rounded-md border-none bg-transparent px-2 py-4 text-5xl font-semibold leading-normal outline-none transition-colors placeholder:text-gray-100 hover:bg-gray-1 disabled:cursor-not-allowed disabled:opacity-50"

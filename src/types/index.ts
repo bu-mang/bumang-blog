@@ -7,8 +7,15 @@ import { UserRole } from "@/types/user";
 // CATEGORY
 import { MenuType } from "@/types/routes";
 // BLOG
-import { BlogStep, BlogItemType } from "@/types/blog";
+import {
+  BlogStep,
+  BlogItemType,
+  BlogHeadingType,
+  BlogHeadingComponentType,
+} from "@/types/blog";
+import { AlignType } from "@/types/layout";
 
+// TYPE
 export type {
   // BUTTON
   ButtonColorType,
@@ -37,6 +44,11 @@ export type {
 
   // BLOG
   BlogItemType,
+  BlogHeadingType,
+  BlogHeadingComponentType,
+
+  // LAYOUT
+  AlignType,
 };
 
 // ENUM
