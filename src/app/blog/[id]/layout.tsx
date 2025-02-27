@@ -1,4 +1,3 @@
-import SideBar from "@/components/layout/sideBar";
 import { LAYOUT_PADDING_TOP } from "@/constants/layout";
 import { cn } from "@/utils/cn";
 
