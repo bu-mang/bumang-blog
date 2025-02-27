@@ -1,6 +1,12 @@
 "use client";
 
-import { Divider, Editor, Tag, TagWrapper } from "@/components/common";
+import {
+  ButtonBase,
+  Divider,
+  Editor,
+  Tag,
+  TagWrapper,
+} from "@/components/common";
 import { WITH_BASIC_INIT_VALUE } from "@/components/common/editor/initValue";
 import { BlogIndex } from "@/components/pages";
 
@@ -8,7 +14,9 @@ import { YooptaContentValue, YooptaOnChangeOptions } from "@yoopta/editor";
 import { PiHandsClappingDuotone as Clapping } from "react-icons/pi";
 import {
   ArrowBigLeft,
+  ArrowLeft,
   ArrowLeftFromLine,
+  ArrowRight,
   ArrowRightFromLine,
   Calendar,
   Eye,
@@ -102,19 +110,46 @@ export default function BlogDetail() {
       <BlogComment />
 
       {/* 이전글 읽기 / 다음글 읽기 */}
-      <div className="col-start-3 col-end-9 mt-10 flex">
-        <div className="flex flex-1">
-          <ArrowLeftFromLine />
-          <span>Prev</span>
-        </div>
-        <div className="flex flex-1 justify-end">
-          <span>Next</span>
-          <ArrowRightFromLine />
+      <div className="col-start-1 col-end-12 mt-16 rounded-xl p-9">
+        <div></div>
+        <div className="flex justify-between">
+          <ButtonBase className="group flex flex-col gap-1 font-medium text-gray-400 hover:text-gray-700">
+            <div className="flex items-center gap-1.5">
+              <ArrowLeft size={18} />
+              <span className="text-sm font-semibold">Previous Post</span>
+            </div>
+
+            <span className="max-w-3/4 truncate text-left font-medium group-hover:underline">
+              가나다라마바사
+            </span>
+          </ButtonBase>
+
+          <ButtonBase className="group flex flex-col items-end gap-1 text-gray-400 hover:text-gray-900">
+            <div className="flex items-center gap-1.5">
+              <span className="text-sm font-semibold">Next Post</span>
+              <ArrowRight size={18} />
+            </div>
+
+            <span className="max-w-3/4 flex justify-end truncate font-medium group-hover:underline">
+              가나다라마바사
+            </span>
+          </ButtonBase>
         </div>
       </div>
 
       {/* 이 카테고리의 다른 글 */}
-      <div></div>
+      <div className="col-start-1 col-end-12 grid grid-cols-9 gap-x-[1.5vw]">
+        <div className="col-span-9 flex justify-center gap-2 pb-8 text-2xl font-semibold text-gray-900">
+          <span>More Articles in</span>
+          <ButtonBase className="transition-all hover:underline">
+            React
+          </ButtonBase>
+        </div>
+
+        <div className="col-span-3 aspect-video rounded-lg bg-blue">하하</div>
+        <div className="col-span-3 aspect-video rounded-lg bg-blue">하하</div>
+        <div className="col-span-3 aspect-video rounded-lg bg-blue">하하</div>
+      </div>
     </>
   );
 }
