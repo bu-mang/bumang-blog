@@ -22,7 +22,6 @@ import {
 import { useState } from "react";
 import Image from "next/image";
 import BlogComment from "@/components/pages/blog/blogComment";
-import { LuMoveRight } from "react-icons/lu";
 
 export default function BlogDetail() {
   /**
