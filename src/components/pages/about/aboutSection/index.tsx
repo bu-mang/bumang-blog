@@ -5,6 +5,7 @@ interface SectionBoxProps extends HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
 }
 
+// TODO: 설명 추가하기
 const SectionBox = ({ children, className, ...props }: SectionBoxProps) => {
   const sectionBoxClass = cn("w-full px-[10vw] opacity-0", className);
 
@@ -17,6 +18,7 @@ const SectionBox = ({ children, className, ...props }: SectionBoxProps) => {
   );
 };
 
+// TODO: 설명 추가하기
 const SubBox = ({ children, className, ...props }: SectionBoxProps) => {
   const subBoxClass = cn(
     "relative grid grid-cols-5 border-t-[1px] border-gray-10 py-8 gap-y-8",

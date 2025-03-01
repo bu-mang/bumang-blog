@@ -1,16 +1,4 @@
 "use client";
-
-import {
-  ButtonBase,
-  Divider,
-  Editor,
-  Tag,
-  TagWrapper,
-} from "@/components/common";
-import { WITH_BASIC_INIT_VALUE } from "@/components/common/editor/initValue";
-import { BlogIndex, BlogItem } from "@/components/pages";
-
-import { YooptaContentValue, YooptaOnChangeOptions } from "@yoopta/editor";
 import { PiHandsClappingDuotone as Clapping } from "react-icons/pi";
 import {
   ArrowLeft,
@@ -19,9 +7,21 @@ import {
   Eye,
   MessageCircle,
 } from "lucide-react";
+
+import {
+  ButtonBase,
+  Divider,
+  Editor,
+  Tag,
+  TagWrapper,
+} from "@/components/common";
+import { BlogIndex, BlogItem, BlogComment } from "@/components/pages";
+
+import { WITH_BASIC_INIT_VALUE } from "@/components/common/editor/initValue";
+
+import { YooptaContentValue, YooptaOnChangeOptions } from "@yoopta/editor";
 import { useState } from "react";
 import Image from "next/image";
-import BlogComment from "@/components/pages/blog/blogComment";
 
 export default function BlogDetail() {
   /**
