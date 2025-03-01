@@ -8,16 +8,13 @@ import {
   TagWrapper,
 } from "@/components/common";
 import { WITH_BASIC_INIT_VALUE } from "@/components/common/editor/initValue";
-import { BlogIndex } from "@/components/pages";
+import { BlogIndex, BlogItem } from "@/components/pages";
 
 import { YooptaContentValue, YooptaOnChangeOptions } from "@yoopta/editor";
 import { PiHandsClappingDuotone as Clapping } from "react-icons/pi";
 import {
-  ArrowBigLeft,
   ArrowLeft,
-  ArrowLeftFromLine,
   ArrowRight,
-  ArrowRightFromLine,
   Calendar,
   Eye,
   MessageCircle,
@@ -25,6 +22,7 @@ import {
 import { useState } from "react";
 import Image from "next/image";
 import BlogComment from "@/components/pages/blog/blogComment";
+import { LuMoveRight } from "react-icons/lu";
 
 export default function BlogDetail() {
   /**
@@ -146,9 +144,30 @@ export default function BlogDetail() {
           </ButtonBase>
         </div>
 
-        <div className="col-span-3 aspect-video rounded-lg bg-blue">하하</div>
-        <div className="col-span-3 aspect-video rounded-lg bg-blue">하하</div>
-        <div className="col-span-3 aspect-video rounded-lg bg-blue">하하</div>
+        {[1, 2, 3].map((item) => {
+          return (
+            <div className="group col-span-3" key={item}>
+              <BlogItem
+                title={
+                  "이것은 제목입니다. 리엑트 네이티브에 에러바운더리를 쓰는 방법? 지금 알려드리죠"
+                }
+                content={
+                  "컨텐츠 이것은 제목입니다. 리엑트 네이티브에 에러바운더리를 쓰는 방법? 지금 알려드리죠 이것은 제목입니다. 리엑트 네이티브에 에러바운더리를 쓰는 방법? 지금 알려드리죠"
+                }
+                categoryValue={"프론트엔드"}
+                tags={[
+                  { value: "Value", label: "Label", id: "abc" },
+                  { value: "Value", label: "Label", id: "abc" },
+                  { value: "Value", label: "Label", id: "abc" },
+                ]}
+                date={new Date()}
+                id={10}
+                imageUrl={""}
+                size="lg"
+              />
+            </div>
+          );
+        })}
       </div>
     </>
   );
