@@ -1,7 +1,5 @@
 import "./globals.css";
-import Header from "@/components/layout/header";
-import Grid from "../components/layout/gridView";
-import Footer from "@/components/layout/footer";
+import { Footer, Header, Grid } from "@/components/layout";
 
 export default function RootLayout({
   children,

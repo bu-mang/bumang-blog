@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 import gsap from "gsap/all";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SectionBox, SubBox } from "@/components/pages/about/aboutSection";
+import { SectionBox, SubBox } from "@/components/pages";
 
 gsap.registerPlugin(ScrollTrigger);
 
