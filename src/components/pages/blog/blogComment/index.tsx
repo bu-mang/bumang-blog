@@ -37,6 +37,7 @@ const BlogComment = () => {
     }
 
     setIsLoading(false);
+    // eslint-disable-next-line
   }, []);
 
   // TODO: 로딩바 괜찮은걸로.

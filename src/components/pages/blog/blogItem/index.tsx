@@ -41,7 +41,7 @@ const BlogItem = ({
       </div>
       <div className="my-2">
         {/* TITLE */}
-        <div className="flex items-center hover:text-gray-500">
+        <div className="flex items-center group-hover:text-gray-500">
           <div className={titleStyle}>{title}</div>
           <LuMoveRight className="animate-arrow text-gray-200 opacity-0 transition-all duration-500 group-hover:opacity-100" />
         </div>
