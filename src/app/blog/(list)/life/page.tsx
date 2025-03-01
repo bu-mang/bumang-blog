@@ -1,7 +1,6 @@
-import BlogItem from "@/components/pages/blog/blogItem";
-import Pagenation from "@/components/common/pageNation";
-import { SectionLabel } from "@/components/common";
 import { blogItems } from "@/constants/blogItems";
+import { BlogItem } from "@/components/pages";
+import { Pagenation, SectionLabel } from "@/components/common";
 
 export default function BlogLife() {
   return (
