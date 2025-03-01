@@ -5,7 +5,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { cn } from "@/utils/cn";
 import gsap from "gsap";
 
-interface WorkCardProps {
+interface WorkItemProps {
   children?: React.ReactNode;
   imgSrc: string;
   imgAlt: string;
@@ -23,7 +23,7 @@ function mapNumberRange(
   return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
 }
 
-const WorkCard = ({ imgSrc, imgAlt, onClick, children }: WorkCardProps) => {
+const WorkItem = ({ imgSrc, imgAlt, onClick, children }: WorkItemProps) => {
   const cardRef = useRef<HTMLButtonElement | null>(null);
   const [coordX, setCoordX] = useState(0);
   const [coordY, setCoordY] = useState(0);
@@ -189,4 +189,4 @@ const WorkCard = ({ imgSrc, imgAlt, onClick, children }: WorkCardProps) => {
   );
 };
 
-export default WorkCard;
+export default WorkItem;
