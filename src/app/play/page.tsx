@@ -1,4 +1,4 @@
-import PlayItem from "@/components/pages/play/playItem";
+import { PlayItem } from "@/components/pages";
 
 export default function Play() {
   return (

@@ -1,15 +1,14 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import YooptaEditor, {
+import {
   createYooptaEditor,
   YooptaContentValue,
   YooptaOnChangeOptions,
 } from "@yoopta/editor";
 
 import { Divider as DividerComp, Editor } from "@/components/common";
-import { BlogPublishingView } from "@/components/pages";
-import BlogEditorToolBar from "@/components/pages/blog/blogEditToolBar";
+import { BlogPublishingView, BlogEditorToolBar } from "@/components/pages";
 import useComboBox from "@/hooks/useComboBox";
 import useTagComboBox from "@/hooks/useTagComboBox";
 import { BlogStep, TagType } from "@/types";
