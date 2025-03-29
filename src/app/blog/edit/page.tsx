@@ -142,10 +142,9 @@ export default function BlogEdit() {
     console.log(selectedDateType, "selectedDateType");
   }, [selectedDateType]);
 
-  // Step Changing
-  // useEffect(() => {
-  //   setTimeout(() => setStep(BlogStep.PUBLISHING), 2000);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => setStep(BlogStep.PUBLISHING), 2000);
+  }, []);
 
   return (
     <main className="flex min-h-screen w-full flex-col">
