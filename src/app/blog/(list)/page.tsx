@@ -22,6 +22,7 @@ export default function Blog() {
             />
           ),
         )}
+
         {/* PAGE-NATION */}
         <div className="col-span-3">
           <Pagenation />
