@@ -1,8 +1,5 @@
-"use client";
-
-import { FillButton as Button, Divider } from "@/components/common";
+import LoginForm from "@/components/pages/login/loginForm";
 import { LoginInfoAccordion } from "@/components/pages/login/loginInfoAccordion";
-import { Input } from "@/components/ui/input";
 import {
   LAYOUT_PADDING_ALONGSIDE,
   LAYOUT_PADDING_TOP,
@@ -19,27 +16,15 @@ export default function Blog() {
   return (
     <main className={loginPageClass}>
       <form className="flex w-1/2 flex-col rounded-xl border bg-white px-12 py-8 shadow-md">
-        {/* TITLE */}
+        {/* TITLE & DESC */}
         <span className="mb-2 text-4xl font-bold">Welcome, Friend!</span>
-
-        {/* DESC */}
         <span className="mb-8 text-gray-300">
           Log in and Access all the contents of BUMANG.
         </span>
 
-        {/* ID */}
-        <label htmlFor="username" className="mb-1 text-sm text-gray-300">
-          ID
-        </label>
-        <Input id="username" className="mb-5" />
-
-        {/* PASSWORD */}
-        <label htmlFor="password" className="mb-1 text-sm text-gray-300">
-          Password
-        </label>
-        <Input id="password" className="mb-10" />
-
-        <Button className="mb-6 h-12 text-white">Login</Button>
+        {/* FORM */}
+        <LoginForm />
+        <button type="submit" id="login-submit" hidden />
 
         {/* DIVIDER */}
         <div className="mb-4 h-[1px] w-full bg-gray-50" />
