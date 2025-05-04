@@ -7,6 +7,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { Bumang, Route53 } from "@/assets";
 import { useRouter } from "next/navigation";
+import { cn } from "@/utils/cn";
+import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layout";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,7 +57,10 @@ const NavLogo = () => {
 
   return (
     <div
-      className="LETTER_CONTAINER top-0 grid w-full grid-cols-2 gap-[1.5vw] overflow-hidden bg-white px-[10vw] py-3"
+      className={cn(
+        "LETTER_CONTAINER top-0 grid w-full grid-cols-2 gap-[1.5vw] overflow-hidden bg-white py-3",
+        LAYOUT_PADDING_ALONGSIDE,
+      )}
       onMouseEnter={() => handleSwitchVisibility("show")}
       onMouseLeave={() => handleSwitchVisibility("hide")}
     >
