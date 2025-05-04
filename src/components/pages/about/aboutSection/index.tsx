@@ -1,3 +1,4 @@
+import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layout";
 import { cn } from "@/utils/cn";
 import { HTMLAttributes } from "react";
 
@@ -7,7 +8,11 @@ interface SectionBoxProps extends HTMLAttributes<HTMLDivElement> {
 
 // TODO: 설명 추가하기
 const SectionBox = ({ children, className, ...props }: SectionBoxProps) => {
-  const sectionBoxClass = cn("w-full px-[10vw] opacity-0", className);
+  const sectionBoxClass = cn(
+    "w-full opacity-0",
+    LAYOUT_PADDING_ALONGSIDE,
+    className,
+  );
 
   return (
     <div className={sectionBoxClass} {...props}>

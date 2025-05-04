@@ -1,4 +1,4 @@
-import { LAYOUT_PADDING_TOP } from "@/constants/layout";
+import { LAYOUT_PADDING_TOP_WITH_HEIGHT } from "@/constants/layout";
 import { cn } from "@/utils/cn";
 
 export default function WorkLayout({
@@ -7,7 +7,9 @@ export default function WorkLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className={cn(LAYOUT_PADDING_TOP, "h-fit min-h-full w-full")}>
+    <section
+      className={cn(LAYOUT_PADDING_TOP_WITH_HEIGHT, "h-fit min-h-full w-full")}
+    >
       <div className="">{children}</div>
     </section>
   );
