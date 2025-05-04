@@ -14,6 +14,8 @@ import useTagComboBox from "@/hooks/useTagComboBox";
 import { BlogStep, TagType } from "@/types";
 import { SelectedDateType } from "@/types/date";
 import { WITH_BASIC_INIT_VALUE } from "@/components/common/editor/initValue";
+import { cn } from "@/utils/cn";
+import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layout";
 
 export default function BlogEdit() {
   /**
@@ -22,7 +24,6 @@ export default function BlogEdit() {
   const [step, setStep] = useState(BlogStep.EDITTING);
   const handleStep = (v: BlogStep) => setStep(v);
 
-  const editor = useMemo(() => createYooptaEditor(), []);
   /**
    * @EDITOR_LOGIC
    */
@@ -174,7 +175,12 @@ export default function BlogEdit() {
             handleEditorValue={handleEditorValue}
           />
 
-          <div className="flex w-full flex-1 justify-center px-[10vw] pt-24">
+          <div
+            className={cn(
+              "flex w-full flex-1 justify-center pt-24",
+              LAYOUT_PADDING_ALONGSIDE,
+            )}
+          >
             <form
               className="flex w-[720px] flex-col"
               // onSubmit={(e) => handleSubmit(e)}
