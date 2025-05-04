@@ -16,18 +16,18 @@ export function LoginInfoAccordion() {
           🧩 What are the perks of logging in?
         </AccordionTrigger>
         <AccordionContent>
-          <ul className="list-disc space-y-1 pl-5 text-sm text-muted-foreground">
+          <ul className="mb-3 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
             <li>View BUMANG’s private artworks and writings</li>
             <li>Try writing your own posts on the blog</li>
             <li>Leave comments</li>
-            <li>
-              Your posts are invisible to non-logged-in users and auto-delete
-              after 24 hours.
-              <br />
-              Just a fun way to explore the editor and maybe raise BUMANG’s AWS
-              bill 🫠
-            </li>
           </ul>
+          <div className="rounded-md bg-gray-5 px-5 py-2 text-muted-foreground">
+            Your posts are invisible to non-logged-in users and auto-delete
+            after 24 hours.
+            <br />
+            Just a fun way to explore the editor and maybe raise BUMANG’s AWS
+            bill 🫠
+          </div>
         </AccordionContent>
       </AccordionItem>
 

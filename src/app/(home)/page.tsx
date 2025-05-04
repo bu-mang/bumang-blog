@@ -3,7 +3,6 @@
 import { FillButton as Button, Divider } from "@/components/common";
 import { LoginInfoAccordion } from "@/components/pages/login/loginInfoAccordion";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   LAYOUT_PADDING_ALONGSIDE,
   LAYOUT_PADDING_TOP,
@@ -19,13 +18,13 @@ export default function Main() {
 
   return (
     <main className={mainPageClass}>
-      <form className="flex w-1/2 flex-col rounded-xl border bg-white px-12 py-8">
+      <form className="flex w-1/2 flex-col rounded-xl border bg-white px-12 py-8 shadow-md">
         {/* TITLE */}
         <span className="mb-2 text-4xl font-bold">Welcome, Friend!</span>
 
         {/* DESC */}
         <span className="mb-8 text-gray-300">
-          Sign in and Access all the contents of Bumang.
+          Log in and Access all the contents of BUMANG.
         </span>
 
         {/* ID */}
@@ -40,7 +39,7 @@ export default function Main() {
         </label>
         <Input id="password" className="mb-10" />
 
-        <Button className="mb-6 h-12 text-white">Sign in</Button>
+        <Button className="mb-6 h-12 text-white">Login</Button>
 
         {/* DIVIDER */}
         <div className="mb-4 h-[1px] w-full bg-gray-50" />
