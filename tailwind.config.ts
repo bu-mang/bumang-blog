@@ -115,6 +115,8 @@ const config: Config = {
       animation: {
         arrow: "arrow 1s ease-out infinite",
         "slide-up": "slide-up 0.3s ease-in-out",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
       keyframes: {
         arrow: {
@@ -136,6 +138,22 @@ const config: Config = {
           },
         },
         blink: {},
+        "accordion-down": {
+          from: {
+            height: "0",
+          },
+          to: {
+            height: "var(--radix-accordion-content-height)",
+          },
+        },
+        "accordion-up": {
+          from: {
+            height: "var(--radix-accordion-content-height)",
+          },
+          to: {
+            height: "0",
+          },
+        },
       },
     },
   },

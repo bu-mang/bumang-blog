@@ -58,8 +58,8 @@ const NavLogo = () => {
   return (
     <div
       className={cn(
-        "LETTER_CONTAINER top-0 grid w-full grid-cols-2 gap-[1.5vw] overflow-hidden bg-white py-3",
-        LAYOUT_PADDING_ALONGSIDE,
+        "LETTER_CONTAINER top-0 grid w-full grid-cols-2 gap-[1.5vw] overflow-hidden bg-white px-[10vw] py-3",
+        // LAYOUT_PADDING_ALONGSIDE,
       )}
       onMouseEnter={() => handleSwitchVisibility("show")}
       onMouseLeave={() => handleSwitchVisibility("hide")}
