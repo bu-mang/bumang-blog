@@ -13,6 +13,8 @@ export default function RootLayout({
   const cookieStore = cookies();
   const token = cookieStore.get("accessToken")?.value || null;
 
+  console.log(token, "token!");
+
   // 유저 정보를 프리패칭해올까...
 
   return (

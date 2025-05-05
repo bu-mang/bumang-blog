@@ -1,32 +1,14 @@
-"use client";
+// TANSTACK QUERY CLIENTS
+import {
+  clientQueryClient, // CSR fetching
+  ServerQueryHydrateBoundary, // SSR Prefetching & Hydrating
+} from "./lib/queryClients";
 
-import { QueryClient } from "@tanstack/react-query";
-import { HydrationBoundary, QueryClientProvider } from "@tanstack/react-query";
-import { ReactNode, useState } from "react";
+// Axios Instance
+import API from "./lib/axios";
 
-// CLIENT QUERY CLIENT
-export const clientQueryClient = new QueryClient();
+const API_ROUTES = {
+  POST_LOGIN: "/auth/login",
+} as const;
 
-interface ServerQueryHydrateProps {
-  children: ReactNode;
-  dehydratedState: unknown;
-}
-
-// GENERATE SERVER-SIDE QUERY CLIENT
-export function getServerSideQueryClient() {
-  return new QueryClient();
-}
-
-// SERVER-SIDE QUERY CLIENT
-export function ServerQueryHydrate({
-  children,
-  dehydratedState,
-}: ServerQueryHydrateProps) {
-  const [queryClient] = useState(getServerSideQueryClient());
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <HydrationBoundary state={dehydratedState}>{children}</HydrationBoundary>
-    </QueryClientProvider>
-  );
-}
+export { clientQueryClient, ServerQueryHydrateBoundary, API, API_ROUTES };

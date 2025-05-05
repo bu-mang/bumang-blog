@@ -1,17 +1,20 @@
 "use client";
 
-import { LAYOUT_PADDING_TOP } from "@/constants/layout";
+import { FillButton as Button, Divider } from "@/components/common";
+import { LoginInfoAccordion } from "@/components/pages/login/loginInfoAccordion";
+import { Input } from "@/components/ui/input";
+import {
+  LAYOUT_PADDING_ALONGSIDE,
+  LAYOUT_PADDING_TOP,
+} from "@/constants/layout";
 import { cn } from "@/utils/cn";
 
 export default function Main() {
   const mainPageClass = cn(
-    "flex flex-1 flex-col items-center justify-center w-full bg-red-500",
+    "flex flex-1 gap-[1.5vw] justify-center w-full",
     LAYOUT_PADDING_TOP,
+    LAYOUT_PADDING_ALONGSIDE,
   );
 
-  return (
-    <main className={mainPageClass}>
-      <div className="h-40 w-full bg-blue-500">프레텐다드</div>
-    </main>
-  );
+  return <main className={mainPageClass}>MAIN</main>;
 }
