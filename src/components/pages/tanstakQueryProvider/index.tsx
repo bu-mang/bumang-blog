@@ -1,21 +1,21 @@
 "use client";
 
 import { QueryClientProvider } from "@tanstack/react-query";
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useLayoutEffect } from "react";
 import { useAuthStore } from "@/store/auth";
 import { clientQueryClient } from "@/api/lib/queryClients";
 
 interface Provider {
   children: ReactNode;
-  token: string | null;
+  isAuthenticated: boolean;
 }
 
-export default function Providers({ children, token }: Provider) {
-  const setToken = useAuthStore((state) => state.setToken);
+export default function Providers({ children, isAuthenticated }: Provider) {
+  const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated);
 
-  useEffect(() => {
-    setToken(token);
-  }, [setToken, token]);
+  useLayoutEffect(() => {
+    setIsAuthenticated(isAuthenticated);
+  }, []);
 
   return (
     <QueryClientProvider client={clientQueryClient}>

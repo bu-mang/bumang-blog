@@ -17,10 +17,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { LuGlobe, LuLayers2, LuMoonStar } from "react-icons/lu";
+import { useAuthStore } from "@/store/auth";
+import { ButtonBase as Button } from "@/components/common";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const NavBar = () => {
+interface NavBarProps {
+  isAuthenticated: boolean;
+}
+
+const NavBar = ({ isAuthenticated }: NavBarProps) => {
   /**
    * @HEADER_ANIMATION
    */
@@ -120,7 +126,7 @@ const NavBar = () => {
   /**
    * @CurrentOS
    */
-  const [currentOs, setCurrentOs] = useState("");
+  const [currentOs, setCurrentOs] = useState("OS");
   useEffect(() => {
     const userAgent = navigator?.userAgent;
     const targetOs =
@@ -154,13 +160,23 @@ const NavBar = () => {
     );
   };
 
+  /**
+   * @LOGIN_LOGIC
+   */
+
   return (
     <div className="NAVBAR_CONTAINER relative w-full cursor-default bg-white font-medium">
       <div className="NAVBAR_BORDERBOX mx-[10vw] grid grid-cols-4 gap-[1.5vw] border-b-[1px] border-t-[1px] border-b-white border-t-gray-10 py-1 pb-3 text-xs text-gray-200">
         <div className="NAVBAR_SWITCHING_PANEL relative grid grid-cols-2 gap-[1.5vw]">
-          <Link href="/login" className={linkHoverStyle}>
-            Login
-          </Link>
+          {isAuthenticated ? (
+            <Button className="h-fit w-fit" onClick={() => {}}>
+              <span className={linkHoverStyle}>Logout</span>
+            </Button>
+          ) : (
+            <Link href="/login" className={linkHoverStyle}>
+              Login
+            </Link>
+          )}
         </div>
         <div className="grid grid-cols-2 gap-[1.5vw]">
           <div className="">

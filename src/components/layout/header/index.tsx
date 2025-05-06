@@ -4,7 +4,11 @@ import NavBanner from "./navLogo";
 import NavBar from "./navBar";
 import { usePathname } from "next/navigation";
 
-const Header = () => {
+interface HeaderProps {
+  isAuthenticated: boolean;
+}
+
+const Header = ({ isAuthenticated }: HeaderProps) => {
   /**
    * @FACTORY
    */
@@ -16,7 +20,7 @@ const Header = () => {
       return (
         <div className="fixed top-0 z-[100] h-fit w-full">
           <NavBanner />
-          <NavBar />
+          <NavBar isAuthenticated={isAuthenticated} />
         </div>
       );
   }
