@@ -3,7 +3,7 @@ import { CategoryNode, CategoryWithDate } from "@/types/category";
 import { DateType } from "@/types/date";
 import { IndicatorValues } from "@/types/indicatorValue";
 import { TagType, TagProps } from "@/types/tag";
-import { UserRole } from "@/types/user";
+import { RoleType, UserType } from "@/types/user";
 // CATEGORY
 import { MenuType } from "@/types/routes";
 // BLOG
@@ -37,7 +37,8 @@ export type {
   TagProps,
 
   // USER
-  UserRole,
+  RoleType,
+  UserType,
 
   // INDICATOR(SHARED)
   IndicatorValues,

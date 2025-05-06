@@ -1,4 +1,4 @@
-import type { UserRole, DateType } from "@/types";
+import type { RoleType, DateType } from "@/types";
 import { IndicatorValues } from "./indicatorValue";
 
 export interface CategoryNode extends IndicatorValues {
@@ -12,7 +12,7 @@ export interface CategoryNode extends IndicatorValues {
   // isVisible: boolean;
 
   /** 유저 권한 별 노출 여부 - "public" | "member" | "admin" | "host" */
-  permissions: UserRole[];
+  permissions: RoleType[];
 }
 
 export type CategoryWithDate = DateType & CategoryNode;

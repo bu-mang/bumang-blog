@@ -14,13 +14,12 @@ const API = axios.create({
 // 요청 인터셉터
 API.interceptors.request.use(
   (config) => {
-    console.log("[Request]", config.method?.toUpperCase(), config.url);
-    const { accessToken } = useAuthStore.getState();
+    // const { accessToken } = useAuthStore.getState();
 
-    if (typeof accessToken === "string" && accessToken !== "") {
-      config.headers.Authorization = `Bearer ${accessToken}`;
-      console.log(accessToken, "accessToken");
-    }
+    // if (typeof accessToken === "string" && accessToken !== "") {
+    //   config.headers.Authorization = `Bearer ${accessToken}`;
+    //   console.log(accessToken, "accessToken");
+    // }
 
     return config;
   },
