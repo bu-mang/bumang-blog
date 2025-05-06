@@ -1,6 +1,16 @@
-import { useAuthStore } from "@/store/auth";
 import axios from "axios";
 
+/**
+ * @API_ROUTES_경유용
+ */
+export const API_ROUTES = axios.create({
+  baseURL: "/api",
+  withCredentials: true,
+});
+
+/**
+ * @직접_서버호출용
+ */
 const API = axios.create({
   // baseURL: process.env.NEXT_PUBLIC_API_BASE_URL, // 또는 고정 URL
   baseURL: "http://localhost:3000", // 또는 고정 URL
@@ -11,7 +21,7 @@ const API = axios.create({
   },
 });
 
-// 요청 인터셉터
+// [직접 서버호츌용] 요청 인터셉터
 API.interceptors.request.use(
   (config) => {
     // const { accessToken } = useAuthStore.getState();

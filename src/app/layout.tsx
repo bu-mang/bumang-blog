@@ -1,7 +1,7 @@
 import Providers from "@/components/pages/tanstakQueryProvider";
+import { getAccessTokenFromCookies } from "@/utils/cookies/getAccessTokenFromCookies";
 import { Footer, Header, Grid } from "@/components/layout";
 import "./globals.css";
-import { cookies } from "next/headers";
 
 export default function RootLayout({
   children,
@@ -10,10 +10,8 @@ export default function RootLayout({
 }>) {
   const isGridOn = false;
 
-  const cookieStore = cookies();
-  const token = cookieStore.get("accessToken")?.value || null;
-
-  // 유저 정보를 프리패칭해올까...
+  // 쿠키에서 토큰을 추출해오기
+  const token = getAccessTokenFromCookies("tokenOnly");
 
   return (
     <Providers isAuthenticated={!!token}>
@@ -37,7 +35,7 @@ export default function RootLayout({
         </head>
         <body className="flex-1">
           {isGridOn && <Grid />}
-          <Header isAuthenticated={!!token} />
+          <Header />
           <div className="w-screen">{children}</div>
           <Footer />
         </body>
