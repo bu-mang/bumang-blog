@@ -1,29 +1,10 @@
-"use client";
+import { getAccessTokenFromCookies } from "@/utils/cookies/getAccessTokenFromCookies";
+import HeaderInner from "./headerInner";
 
-import NavBanner from "./navLogo";
-import NavBar from "./navBar";
-import { usePathname } from "next/navigation";
+const Header = () => {
+  const cookie = getAccessTokenFromCookies("tokenOnly");
 
-interface HeaderProps {
-  isAuthenticated: boolean;
-}
-
-const Header = ({ isAuthenticated }: HeaderProps) => {
-  /**
-   * @FACTORY
-   */
-  const pathname = usePathname();
-  switch (pathname) {
-    case "/blog/edit":
-      return null;
-    default:
-      return (
-        <div className="fixed top-0 z-[100] h-fit w-full">
-          <NavBanner />
-          <NavBar isAuthenticated={isAuthenticated} />
-        </div>
-      );
-  }
+  return <HeaderInner isAuthenticated={!!cookie} />;
 };
 
 export default Header;
