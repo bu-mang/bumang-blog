@@ -13,12 +13,10 @@ export default function RootLayout({
   const cookieStore = cookies();
   const token = cookieStore.get("accessToken")?.value || null;
 
-  console.log(token, "token!");
-
   // 유저 정보를 프리패칭해올까...
 
   return (
-    <Providers token={token}>
+    <Providers isAuthenticated={!!token}>
       <html suppressHydrationWarning lang="ko">
         <head>
           <link
@@ -39,7 +37,7 @@ export default function RootLayout({
         </head>
         <body className="flex-1">
           {isGridOn && <Grid />}
-          <Header />
+          <Header isAuthenticated={!!token} />
           <div className="w-screen">{children}</div>
           <Footer />
         </body>
