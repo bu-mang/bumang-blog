@@ -25,12 +25,7 @@ const API = axios.create({
 // [직접 서버호츌용] 요청 인터셉터
 API.interceptors.request.use(
   (config) => {
-    // const { accessToken } = useAuthStore.getState();
-
-    // if (typeof accessToken === "string" && accessToken !== "") {
-    //   config.headers.Authorization = `Bearer ${accessToken}`;
-    //   console.log(accessToken, "accessToken");
-    // }
+    console.log(config.headers.Cookie, "cookies!!!!!!");
 
     return config;
   },
@@ -59,7 +54,12 @@ API.interceptors.response.use(
     if (error.response?.status === 401 && !isRetry) {
       try {
         tokenRefreshMap.set(requestId, true);
-        const newAccessToken = await postRenewAccessToken();
+
+        console.log(error.config.headers?.Cookie, "Cookie in Error");
+
+        const newAccessToken = await postRenewAccessToken(
+          error.config.headers?.Cookie,
+        );
         console.log(newAccessToken, "newAccessToken?");
         // 새 토큰으로 Authorization 헤더 갱신
         const newRequest = {
@@ -75,14 +75,11 @@ API.interceptors.response.use(
       } catch (error) {
         tokenRefreshMap.delete(requestId);
         if (isAxiosError(error) && error.response?.status === 401) {
-          console.log("a");
           return Promise.reject(error);
         }
       } finally {
         // 재시도 후 Map에서 제거
-        setTimeout(() => {
-          tokenRefreshMap.delete(requestId);
-        }, 1000);
+        tokenRefreshMap.delete(requestId);
       }
     }
 

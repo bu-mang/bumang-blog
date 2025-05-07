@@ -27,7 +27,11 @@ export async function postLoginAction(formData: FormData) {
         cookieStr.startsWith("refreshToken="),
       );
 
-      if (accessTokenCookie) {
+      console.log(setCookieHeader, "setCookieHeader");
+
+      console.log(refreshTokenCookie, "refreshTokenCookie");
+
+      if (accessTokenCookie && refreshTokenCookie) {
         const accessTokenValue = accessTokenCookie.split(";")[0].split("=")[1];
         cookies().set("accessToken", accessTokenValue, {
           httpOnly: true,
