@@ -3,7 +3,7 @@
 // import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import API from "../lib/axios";
-import { API_ROUTES } from "..";
+import { END_POINT } from "..";
 import { cookies } from "next/headers";
 
 export async function postLoginAction(formData: FormData) {
@@ -12,7 +12,7 @@ export async function postLoginAction(formData: FormData) {
 
   try {
     // Axios 서버 패칭...
-    const res = await API.post(API_ROUTES.POST_LOGIN, {
+    const res = await API.post(END_POINT.POST_LOGIN, {
       email,
       password,
     });
@@ -23,10 +23,18 @@ export async function postLoginAction(formData: FormData) {
       const accessTokenCookie = setCookieHeader.find((cookieStr) =>
         cookieStr.startsWith("accessToken="),
       );
+      const refreshTokenCookie = setCookieHeader.find((cookieStr) =>
+        cookieStr.startsWith("refreshToken="),
+      );
 
       if (accessTokenCookie) {
-        const tokenValue = accessTokenCookie.split(";")[0].split("=")[1];
-        cookies().set("accessToken", tokenValue, {
+        const accessTokenValue = accessTokenCookie.split(";")[0].split("=")[1];
+        cookies().set("accessToken", accessTokenValue, {
+          httpOnly: true,
+          path: "/",
+        });
+        const refreshTokenValue = accessTokenCookie.split(";")[0].split("=")[1];
+        cookies().set("refreshToken", refreshTokenValue, {
           httpOnly: true,
           path: "/",
         });
