@@ -1,4 +1,5 @@
-import axios from "axios";
+import { postRenewAccessToken } from "@/api/auth";
+import axios, { AxiosRequestConfig, isAxiosError } from "axios";
 
 /**
  * @API_ROUTES_경유용
@@ -38,13 +39,53 @@ API.interceptors.request.use(
   },
 );
 
+interface ExtendedAxiosRequestConfig extends AxiosRequestConfig {
+  _retry?: boolean;
+}
+const tokenRefreshMap = new Map<string, boolean>();
+
 // 응답 인터셉터
 API.interceptors.response.use(
   (response) => {
     return response;
   },
-  (error) => {
+  async (error) => {
     console.error("[Response Error]", error.response?.status);
+
+    // 요청 재시도를 위한 토큰 Map 사용
+    const requestId = error.config.url + error.config.method;
+    const isRetry = tokenRefreshMap.has(requestId);
+
+    if (error.response?.status === 401 && !isRetry) {
+      try {
+        tokenRefreshMap.set(requestId, true);
+        const newAccessToken = await postRenewAccessToken();
+        console.log(newAccessToken, "newAccessToken?");
+        // 새 토큰으로 Authorization 헤더 갱신
+        const newRequest = {
+          ...error.config,
+          headers: {
+            ...error.config.headers,
+            Authorization: `Bearer ${newAccessToken}`,
+          },
+        };
+
+        // 재요청
+        return API(newRequest);
+      } catch (error) {
+        tokenRefreshMap.delete(requestId);
+        if (isAxiosError(error) && error.response?.status === 401) {
+          console.log("a");
+          return Promise.reject(error);
+        }
+      } finally {
+        // 재시도 후 Map에서 제거
+        setTimeout(() => {
+          tokenRefreshMap.delete(requestId);
+        }, 1000);
+      }
+    }
+
     return Promise.reject(error);
   },
 );
