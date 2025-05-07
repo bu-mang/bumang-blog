@@ -1,25 +1,27 @@
-"use client";
+import { getAccessTokenFromCookies } from "@/utils/cookies/getAccessTokenFromCookies";
+import HeaderInner from "./headerInner";
+import { getUserProfile } from "@/api/auth";
+import { isAxiosError } from "axios";
 
-import NavBanner from "./navLogo";
-import NavBar from "./navBar";
-import { usePathname } from "next/navigation";
+// 메인페이지 헤더 컴포넌트의 서버 레이어
+const Header = async () => {
+  const cookie = getAccessTokenFromCookies("tokenOnly");
 
-const Header = () => {
-  /**
-   * @FACTORY
-   */
-  const pathname = usePathname();
-  switch (pathname) {
-    case "/blog/edit":
-      return null;
-    default:
-      return (
-        <div className="fixed top-0 z-[100] h-fit w-full">
-          <NavBanner />
-          <NavBar />
-        </div>
-      );
+  let user;
+
+  try {
+    user = await getUserProfile();
+  } catch (error) {
+    // console.log(error, "error header");
+
+    // 401이면 토큰 제거
+    if (isAxiosError(error) && error.response?.status === 401) {
+      // const cookieStore = await cookies();
+      // cookieStore.delete("accessToken");
+    }
   }
+
+  return <HeaderInner isAuthenticated={!!cookie} />;
 };
 
 export default Header;
