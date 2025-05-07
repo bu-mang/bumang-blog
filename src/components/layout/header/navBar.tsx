@@ -164,7 +164,7 @@ const NavBar = ({ isAuthenticated }: NavBarProps) => {
     <div className="NAVBAR_CONTAINER relative w-full cursor-default bg-white font-medium">
       <div className="NAVBAR_BORDERBOX mx-[10vw] grid grid-cols-4 gap-[1.5vw] border-b-[1px] border-t-[1px] border-b-white border-t-gray-10 py-1 pb-3 text-xs text-gray-200">
         <div className="NAVBAR_SWITCHING_PANEL relative grid grid-cols-2 gap-[1.5vw]">
-          {isAuthenticated ? (
+          {!isAuthenticated ? (
             <div className="flex items-center gap-1.5">
               <span className={linkHoverStyle}>Bumang</span>
               <Divider />
