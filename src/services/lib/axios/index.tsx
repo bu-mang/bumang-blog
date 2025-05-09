@@ -1,4 +1,4 @@
-import { postRenewAccessToken } from "@/api/services/auth";
+import { postRenewAccessToken } from "@/services/api/auth";
 import axios, { AxiosRequestConfig, isAxiosError } from "axios";
 
 /**
