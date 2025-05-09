@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginFormSchema, LoginFormType } from "@/types/schemas";
 
-import { postLogin } from "@/api/services/login";
+import { postLogin } from "@/services/api/login";
 import { isAxiosError } from "axios";
 
 const LoginForm = () => {

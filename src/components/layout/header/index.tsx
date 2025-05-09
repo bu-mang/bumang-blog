@@ -1,5 +1,5 @@
 import HeaderInner from "./headerInner";
-import { getUserProfile } from "@/api/services/auth";
+import { getUserProfile } from "@/services/api/auth";
 import { isAxiosError } from "axios";
 import { getParsedCookie } from "@/utils/cookies/getAccessTokenFromCookies";
 import { UserResponseType } from "@/types/user";

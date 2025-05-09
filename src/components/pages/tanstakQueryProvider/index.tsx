@@ -3,7 +3,7 @@
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactNode, useLayoutEffect } from "react";
 import { useAuthStore } from "@/store/auth";
-import { clientQueryClient } from "@/api/lib/queryClients";
+import { clientQueryClient } from "@/services/lib/queryClients";
 
 interface Provider {
   children: ReactNode;

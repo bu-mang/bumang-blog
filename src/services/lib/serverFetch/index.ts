@@ -1,6 +1,6 @@
 // lib/api/serverApiClient.ts
 // 서버 컴포넌트용 API 클라이언트
-import { END_POINT } from "@/api";
+import { END_POINT } from "@/services";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
