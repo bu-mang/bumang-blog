@@ -1,7 +1,7 @@
 import HeaderInner from "./headerInner";
 import { getUserProfile } from "@/services/api/auth";
 import { isAxiosError } from "axios";
-import { getParsedCookie } from "@/utils/cookies/getAccessTokenFromCookies";
+import { getParsedCookie } from "@/utils/cookies/getCookie";
 import { UserResponseType } from "@/types/user";
 
 // 메인페이지 헤더 컴포넌트의 서버 레이어

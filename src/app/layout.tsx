@@ -1,7 +1,7 @@
 import Providers from "@/components/pages/tanstakQueryProvider";
 import { Footer, Header, Grid } from "@/components/layout";
 import "./globals.css";
-import { getParsedCookie } from "@/utils/cookies/getAccessTokenFromCookies";
+import { getParsedCookie } from "@/utils/cookies/getCookie";
 
 export default function RootLayout({
   children,
