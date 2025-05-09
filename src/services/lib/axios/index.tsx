@@ -1,4 +1,5 @@
-import { postRenewAccessToken } from "@/services/api/auth";
+import { END_POINT } from "@/services/api/endpoint";
+import { UserResponseType } from "@/types/user";
 import axios, { AxiosRequestConfig, isAxiosError } from "axios";
 
 /**
@@ -51,11 +52,9 @@ ClientInstance.interceptors.response.use(
         console.log(error.config.headers?.Cookie, "Cookie Before Renew Token");
 
         // 갱신
-        await postRenewAccessToken(error.config.headers?.Cookie);
-        // const newCookie = cookies()
-        //   .getAll()
-        //   .map((c) => `${c.name}=${c.value}`)
-        //   .join("; ");
+        const userProfileRes = await axios.post<UserResponseType>(
+          process.env.LOCAL_HOST + END_POINT.POST_RENEW_ACCESS_TOKEN,
+        );
 
         // 재요청
         return ClientInstance(error.config);

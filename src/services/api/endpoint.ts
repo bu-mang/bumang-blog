@@ -7,13 +7,3 @@ export const END_POINT = {
   // USER
   GET_USER_PROFILE: "/users/me",
 } as const;
-
-// API의 분류 팩토리
-export const SERVICES = {
-  SERVER: {
-    //
-  },
-  CLIENT: {
-    //
-  },
-};
