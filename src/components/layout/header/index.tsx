@@ -1,27 +1,28 @@
-import { getAccessTokenFromCookies } from "@/utils/cookies/getAccessTokenFromCookies";
 import HeaderInner from "./headerInner";
-import { getUserProfile } from "@/api/auth";
+import { getUserProfile } from "@/api/services/auth";
 import { isAxiosError } from "axios";
+import { getParsedCookie } from "@/utils/cookies/getAccessTokenFromCookies";
+import { UserResponseType } from "@/types/user";
 
 // 메인페이지 헤더 컴포넌트의 서버 레이어
 const Header = async () => {
-  const cookie = getAccessTokenFromCookies("tokenOnly");
-
-  let user;
+  const cookie = getParsedCookie("all");
+  let user: UserResponseType | null = null;
 
   try {
-    user = await getUserProfile();
-  } catch (error) {
-    // console.log(error, "error header");
+    const res = await getUserProfile(cookie ?? "");
 
-    // 401이면 토큰 제거
-    if (isAxiosError(error) && error.response?.status === 401) {
-      // const cookieStore = await cookies();
-      // cookieStore.delete("accessToken");
+    user = res.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.log(error.response?.data, "error header");
     }
+    //
   }
 
-  return <HeaderInner isAuthenticated={!!cookie} />;
+  return (
+    <HeaderInner isAuthenticated={!!cookie} nickname={user?.nickname ?? "-"} />
+  );
 };
 
 export default Header;

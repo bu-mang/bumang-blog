@@ -1,18 +1,10 @@
-import { postRenewAccessToken } from "@/api/auth";
+import { postRenewAccessToken } from "@/api/services/auth";
 import axios, { AxiosRequestConfig, isAxiosError } from "axios";
-
-/**
- * @API_ROUTES_경유용
- */
-export const API_ROUTES = axios.create({
-  baseURL: "/api",
-  withCredentials: true,
-});
 
 /**
  * @직접_서버호출용
  */
-const API = axios.create({
+const ClientInstance = axios.create({
   // baseURL: process.env.NEXT_PUBLIC_API_BASE_URL, // 또는 고정 URL
   baseURL: "http://localhost:3000", // 또는 고정 URL
   timeout: 5000,
@@ -23,14 +15,9 @@ const API = axios.create({
 });
 
 // [직접 서버호츌용] 요청 인터셉터
-API.interceptors.request.use(
+ClientInstance.interceptors.request.use(
   (config) => {
-    // const { accessToken } = useAuthStore.getState();
-
-    // if (typeof accessToken === "string" && accessToken !== "") {
-    //   config.headers.Authorization = `Bearer ${accessToken}`;
-    //   console.log(accessToken, "accessToken");
-    // }
+    console.log(config.headers.Cookie, "cookies!!!!!!");
 
     return config;
   },
@@ -45,7 +32,7 @@ interface ExtendedAxiosRequestConfig extends AxiosRequestConfig {
 const tokenRefreshMap = new Map<string, boolean>();
 
 // 응답 인터셉터
-API.interceptors.response.use(
+ClientInstance.interceptors.response.use(
   (response) => {
     return response;
   },
@@ -55,34 +42,35 @@ API.interceptors.response.use(
     // 요청 재시도를 위한 토큰 Map 사용
     const requestId = error.config.url + error.config.method;
     const isRetry = tokenRefreshMap.has(requestId);
+    const isRefreshRequest = error.config.url?.includes("/auth/refresh");
 
-    if (error.response?.status === 401 && !isRetry) {
+    if (error.response?.status === 401 && !isRetry && !isRefreshRequest) {
       try {
         tokenRefreshMap.set(requestId, true);
-        const newAccessToken = await postRenewAccessToken();
-        console.log(newAccessToken, "newAccessToken?");
-        // 새 토큰으로 Authorization 헤더 갱신
-        const newRequest = {
-          ...error.config,
-          headers: {
-            ...error.config.headers,
-            Authorization: `Bearer ${newAccessToken}`,
-          },
-        };
+
+        console.log(error.config.headers?.Cookie, "Cookie Before Renew Token");
+
+        // 갱신
+        await postRenewAccessToken(error.config.headers?.Cookie);
+        // const newCookie = cookies()
+        //   .getAll()
+        //   .map((c) => `${c.name}=${c.value}`)
+        //   .join("; ");
 
         // 재요청
-        return API(newRequest);
+        return ClientInstance(error.config);
       } catch (error) {
         tokenRefreshMap.delete(requestId);
-        if (isAxiosError(error) && error.response?.status === 401) {
-          console.log("a");
+        if (
+          isAxiosError(error) &&
+          error.response?.data.message === "Invalid Refresh token"
+        ) {
+          console.log(error.config?.data, "error.config?.data");
           return Promise.reject(error);
         }
       } finally {
         // 재시도 후 Map에서 제거
-        setTimeout(() => {
-          tokenRefreshMap.delete(requestId);
-        }, 1000);
+        tokenRefreshMap.delete(requestId);
       }
     }
 
@@ -90,4 +78,4 @@ API.interceptors.response.use(
   },
 );
 
-export default API;
+export default ClientInstance;

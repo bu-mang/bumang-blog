@@ -11,7 +11,7 @@ const LIFE_LIST: CategoryNode[] = [
     label: "Life",
     parent: null,
     // isVisible: true, // 나중에 백엔드에서 isVisible: true인 것만 내려주기.
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -19,7 +19,7 @@ const LIFE_LIST: CategoryNode[] = [
     label: "Diary",
     parent: "life",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -27,7 +27,7 @@ const LIFE_LIST: CategoryNode[] = [
     label: "Art",
     parent: "life",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -35,7 +35,7 @@ const LIFE_LIST: CategoryNode[] = [
     label: "Memo",
     parent: "life",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
 ];
 
@@ -46,7 +46,7 @@ const PROJECTS_LIST: CategoryNode[] = [
     label: "Projects",
     parent: null,
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -54,7 +54,7 @@ const PROJECTS_LIST: CategoryNode[] = [
     label: "Link Snap",
     parent: "projects",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -62,7 +62,7 @@ const PROJECTS_LIST: CategoryNode[] = [
     label: "Yin Tarot",
     parent: "projects",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -70,7 +70,7 @@ const PROJECTS_LIST: CategoryNode[] = [
     label: "Bumang Route53",
     parent: "projects",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -78,7 +78,7 @@ const PROJECTS_LIST: CategoryNode[] = [
     label: "Yanolja Projects",
     parent: "projects",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -86,7 +86,7 @@ const PROJECTS_LIST: CategoryNode[] = [
     label: "Project etc",
     parent: "projects",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
 ];
 
@@ -97,7 +97,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     label: "Frontend",
     parent: null,
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -105,7 +105,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     label: "html & CSS",
     parent: "frontend",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -113,7 +113,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     label: "JS/TS",
     parent: "frontend",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -121,7 +121,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     label: "React / Next.js",
     parent: "frontend",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -129,7 +129,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     label: "React Native",
     parent: "frontend",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -137,7 +137,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     label: "Browser Optimization",
     parent: "frontend",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -145,7 +145,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     label: "Frontend etc",
     parent: "frontend",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -153,7 +153,7 @@ const FRONTEND_LIST: CategoryNode[] = [
     label: "Error Handling",
     parent: "frontend",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
 ];
 
@@ -164,7 +164,7 @@ const BACKEND_LIST: CategoryNode[] = [
     label: "Backend",
     parent: null,
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -172,7 +172,7 @@ const BACKEND_LIST: CategoryNode[] = [
     label: "Node.js",
     parent: "backend",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -180,7 +180,7 @@ const BACKEND_LIST: CategoryNode[] = [
     label: "Nest.js",
     parent: "backend",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -188,7 +188,7 @@ const BACKEND_LIST: CategoryNode[] = [
     label: "DB",
     parent: "backend",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
 ];
 
@@ -199,7 +199,7 @@ const COMPUTER_SCIENCE_LIST: CategoryNode[] = [
     label: "Computer Science",
     parent: null,
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -207,7 +207,7 @@ const COMPUTER_SCIENCE_LIST: CategoryNode[] = [
     label: "Network",
     parent: "computerScience",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -215,7 +215,7 @@ const COMPUTER_SCIENCE_LIST: CategoryNode[] = [
     label: "Design Pattern",
     parent: "computerScience",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -223,7 +223,7 @@ const COMPUTER_SCIENCE_LIST: CategoryNode[] = [
     label: "OS",
     parent: "computerScience",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
 ];
 
@@ -234,7 +234,7 @@ const ALGORITHM_LIST: CategoryNode[] = [
     label: "Algorithm",
     parent: null,
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -242,7 +242,7 @@ const ALGORITHM_LIST: CategoryNode[] = [
     label: "ProblemSolving",
     parent: "algorithm",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -250,7 +250,7 @@ const ALGORITHM_LIST: CategoryNode[] = [
     label: "Data Structure",
     parent: "algorithm",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
 ];
 
@@ -261,7 +261,7 @@ const INTERACTIVES_LIST: CategoryNode[] = [
     label: "Interactives",
     parent: null,
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -269,7 +269,7 @@ const INTERACTIVES_LIST: CategoryNode[] = [
     label: "canvas ・ P5.js ・ Pixi.js",
     parent: "interactives",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -277,7 +277,7 @@ const INTERACTIVES_LIST: CategoryNode[] = [
     label: "Three.js ・ Unity ・ Game",
     parent: "interactives",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
 ];
 
@@ -288,7 +288,7 @@ const NOTES_LIST: CategoryNode[] = [
     label: "Notes",
     parent: null,
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -296,7 +296,7 @@ const NOTES_LIST: CategoryNode[] = [
     label: "Git ・ Github",
     parent: "notes",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -304,7 +304,7 @@ const NOTES_LIST: CategoryNode[] = [
     label: "Math",
     parent: "notes",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
   {
     id: Math.random().toString(),
@@ -312,7 +312,7 @@ const NOTES_LIST: CategoryNode[] = [
     label: "etc",
     parent: "notes",
     // isVisible: true,
-    permissions: ["public", "host", "member", "admin"],
+    permissions: [null, "user", "admin"],
   },
 ];
 
