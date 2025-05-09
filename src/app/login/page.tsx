@@ -1,4 +1,3 @@
-import { postLoginAction } from "@/api/login/actions";
 import LoginForm from "@/components/pages/login/loginForm";
 import { LoginInfoAccordion } from "@/components/pages/login/loginInfoAccordion";
 import {
@@ -16,10 +15,7 @@ export default function Blog() {
 
   return (
     <main className={loginPageClass}>
-      <form
-        className="flex w-1/2 flex-col rounded-xl border bg-white px-12 py-8 shadow-md"
-        action={postLoginAction}
-      >
+      <div className="flex w-1/2 flex-col rounded-xl border bg-white px-12 py-8 shadow-md">
         {/* TITLE & DESC */}
         <span className="mb-2 text-4xl font-bold">Welcome, Friend!</span>
         <span className="mb-8 text-gray-300">
@@ -28,14 +24,13 @@ export default function Blog() {
 
         {/* FORM */}
         <LoginForm />
-        <button type="submit" id="login-submit" hidden />
 
         {/* DIVIDER */}
         <div className="mb-4 h-[1px] w-full bg-gray-50" />
 
         {/* TOOLTIPS */}
         <LoginInfoAccordion />
-      </form>
+      </div>
 
       {/* RIGHT SECTION */}
       <section className="flex w-1/2 flex-col items-center justify-center rounded-xl bg-gray-1 px-12 py-8 text-gray-50">

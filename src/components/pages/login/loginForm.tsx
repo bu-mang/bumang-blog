@@ -8,13 +8,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginFormSchema, LoginFormType } from "@/types/schemas";
 
-/**
- * @FORM_WITH_REACT_HOOK_FORM
- */
+import { postLogin } from "@/api/services/login";
+import { isAxiosError } from "axios";
 
-interface LoginFormProps {}
-
-const LoginForm = ({}: LoginFormProps) => {
+const LoginForm = () => {
   const {
     register,
     handleSubmit,
@@ -26,11 +23,18 @@ const LoginForm = ({}: LoginFormProps) => {
 
   // 유효하면 Server Action Trigger
   const onSubmit = async (formData: LoginFormType) => {
-    document.getElementById("login-submit")?.click();
+    try {
+      await postLogin(formData);
+    } catch (error) {
+      console.error(error);
+      if (isAxiosError(error)) {
+        //
+      }
+    }
   };
 
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       {/* ID */}
       <label htmlFor="username" className="mb-1 text-sm text-gray-300">
         ID
@@ -62,14 +66,13 @@ const LoginForm = ({}: LoginFormProps) => {
         {...register("password")}
         errorHint={errors.password?.message}
         isTouchedField={touchedFields.password}
-        // successHint={"It seems over 4 Charaters"}
       />
 
       {/* SUBMIT BUTTON */}
       <Button onClick={handleSubmit(onSubmit)} className="mb-6 h-12 text-white">
         Login
       </Button>
-    </>
+    </form>
   );
 };
 

@@ -6,9 +6,10 @@ import { usePathname } from "next/navigation";
 
 interface HeaderProps {
   isAuthenticated: boolean;
+  nickname: string;
 }
 
-const HeaderInner = ({ isAuthenticated }: HeaderProps) => {
+const HeaderInner = ({ isAuthenticated, nickname }: HeaderProps) => {
   /**
    * @FACTORY
    */
@@ -20,7 +21,7 @@ const HeaderInner = ({ isAuthenticated }: HeaderProps) => {
       return (
         <div className="fixed top-0 z-[100] h-fit w-full">
           <NavBanner />
-          <NavBar isAuthenticated={isAuthenticated} />
+          <NavBar isAuthenticated={isAuthenticated} nickname={nickname} />
         </div>
       );
   }
