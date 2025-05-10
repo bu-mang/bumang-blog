@@ -1,10 +1,10 @@
 import { UserResponseType } from "@/types/user";
-import { END_POINT, serverFetch } from "../..";
+import { END_POINTS, serverFetch } from "../..";
 
 // 유저 정보 불러오기 (serverFetch)
 export const getUserProfile = async (Cookie: string) => {
   const userProfileRes = await serverFetch<UserResponseType>(
-    process.env.LOCAL_HOST + END_POINT.GET_USER_PROFILE,
+    process.env.LOCAL_HOST + END_POINTS.GET_USER_PROFILE,
     {
       headers: {
         Cookie,
@@ -18,14 +18,14 @@ export const getUserProfile = async (Cookie: string) => {
 // 엑세스 토큰 재발급 (client)
 // export const postRenewAccessToken = async (cookieHeader: string) => {
 //   const userProfileRes = await serverFetch<UserResponseType>(
-//     process.env.LOCAL_HOST + END_POINT.POST_RENEW_ACCESS_TOKEN,
+//     process.env.LOCAL_HOST + END_POINTS.POST_RENEW_ACCESS_TOKEN,
 //     {
 //       method: "POST",
 //     },
 //   );
 
 //   // const res = await axios.post(
-//   //   `http://localhost:3000${END_POINT.POST_RENEW_ACCESS_TOKEN}`,
+//   //   `http://localhost:3000${END_POINTS.POST_RENEW_ACCESS_TOKEN}`,
 //   //   {},
 //   //   {
 //   //     headers: {

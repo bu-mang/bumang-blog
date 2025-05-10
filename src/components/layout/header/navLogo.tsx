@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Bumang, Route53 } from "@/assets";
 import { useRouter } from "next/navigation";
 import { cn } from "@/utils/cn";
-import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layout";
+import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
 
 gsap.registerPlugin(ScrollTrigger);
 

@@ -3,7 +3,7 @@ import { LoginInfoAccordion } from "@/components/pages/login/loginInfoAccordion"
 import {
   LAYOUT_PADDING_ALONGSIDE,
   LAYOUT_PADDING_TOP,
-} from "@/constants/layout";
+} from "@/constants/layouts/layout";
 import { cn } from "@/utils/cn";
 
 export default function Blog() {

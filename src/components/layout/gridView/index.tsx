@@ -1,4 +1,4 @@
-import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layout";
+import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
 import { cn } from "@/utils/cn";
 
 const Grid = () => {

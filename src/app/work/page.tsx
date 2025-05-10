@@ -1,7 +1,7 @@
 "use client";
 
 import { WorkItem } from "@/components/pages";
-import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layout";
+import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
 import { cn } from "@/utils/cn";
 
 export default function Work() {

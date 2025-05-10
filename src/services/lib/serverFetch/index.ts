@@ -1,6 +1,6 @@
 // lib/api/serverApiClient.ts
 // 서버 컴포넌트용 API 클라이언트
-import { END_POINT } from "@/services";
+import { END_POINTS } from "@/services";
 import { relaySetCookiesToBrowser } from "@/utils/cookies/SetCookieHeader";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -75,7 +75,7 @@ export default async function serverFetch<T>(
     }
 
     const refreshResponse = await fetch(
-      process.env.LOCAL_HOST + END_POINT.POST_RENEW_ACCESS_TOKEN,
+      process.env.LOCAL_HOST + END_POINTS.POST_RENEW_ACCESS_TOKEN,
       {
         method: "POST",
         headers: {

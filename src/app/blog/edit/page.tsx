@@ -15,7 +15,7 @@ import { BlogStep, TagType } from "@/types";
 import { SelectedDateType } from "@/types/date";
 import { WITH_BASIC_INIT_VALUE } from "@/components/common/editor/initValue";
 import { cn } from "@/utils/cn";
-import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layout";
+import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
 
 export default function BlogEdit() {
   /**

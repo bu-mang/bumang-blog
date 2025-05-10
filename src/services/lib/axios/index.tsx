@@ -1,4 +1,4 @@
-import { END_POINT } from "@/services/api/endpoint";
+import { END_POINTS } from "@/constants/routes/endpoints";
 import { UserResponseType } from "@/types/user";
 import axios, { AxiosRequestConfig, isAxiosError } from "axios";
 
@@ -53,7 +53,7 @@ ClientInstance.interceptors.response.use(
 
         // 갱신
         const userProfileRes = await axios.post<UserResponseType>(
-          process.env.LOCAL_HOST + END_POINT.POST_RENEW_ACCESS_TOKEN,
+          process.env.LOCAL_HOST + END_POINTS.POST_RENEW_ACCESS_TOKEN,
         );
 
         // 재요청
