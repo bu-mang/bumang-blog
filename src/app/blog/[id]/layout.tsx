@@ -1,7 +1,7 @@
 import {
   LAYOUT_PADDING_ALONGSIDE,
   LAYOUT_PADDING_TOP_WITH_HEIGHT,
-} from "@/constants/layout";
+} from "@/constants/layouts/layout";
 import { cn } from "@/utils/cn";
 
 export default function BlogLayout({

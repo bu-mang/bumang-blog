@@ -3,7 +3,7 @@
  */
 // API CONSTANTS
 import { SERVICES } from "./api";
-import { END_POINT } from "./api/endpoint";
+import { END_POINTS } from "../constants/routes/endpoints";
 
 /**
  * @LIBRARIES
@@ -29,6 +29,6 @@ export {
   serverFetch,
 
   // SERVICES
-  END_POINT,
+  END_POINTS,
   SERVICES,
 };
