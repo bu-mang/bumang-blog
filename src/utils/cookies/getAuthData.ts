@@ -2,7 +2,7 @@ import { getCookie } from "./getCookie";
 
 /**
  * @서버컴포넌트_전용
- * 인증 토큰 쿠키를 추출하는 간편 함수 (getCookie의 래퍼)
+ * 쿠키에서 인증 토큰 추출하는 간편 함수 (getCookie의 래퍼)
  */
 export const getAuthToken = (
   type: "accessToken" | "refreshToken" = "accessToken",
