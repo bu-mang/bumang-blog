@@ -2,9 +2,14 @@ import { UserResponseType } from "@/types/user";
 import { END_POINT, serverFetch } from "../..";
 
 // 유저 정보 불러오기 (serverFetch)
-export const getUserProfile = async () => {
+export const getUserProfile = async (Cookie: string) => {
   const userProfileRes = await serverFetch<UserResponseType>(
     process.env.LOCAL_HOST + END_POINT.GET_USER_PROFILE,
+    {
+      headers: {
+        Cookie,
+      },
+    },
   );
 
   return userProfileRes ?? null;

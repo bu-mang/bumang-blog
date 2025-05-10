@@ -1,7 +1,7 @@
 import Providers from "@/components/pages/tanstakQueryProvider";
 import { Footer, Header, Grid } from "@/components/layout";
 import "./globals.css";
-import { getParsedCookie } from "@/utils/cookies/getCookie";
+import { getCookie } from "@/utils/cookies/getCookie";
 
 export default function RootLayout({
   children,
@@ -11,7 +11,7 @@ export default function RootLayout({
   const isGridOn = false;
 
   // 쿠키에서 토큰을 추출해오기
-  const token = getParsedCookie("accessToken");
+  const token = getCookie({ name: "accessToken" });
 
   return (
     <Providers isAuthenticated={!!token}>
