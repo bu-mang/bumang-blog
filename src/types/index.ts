@@ -2,8 +2,9 @@ import { ButtonColorType, ButtonSizeType, ButtonProps } from "@/types/button";
 import { CategoryNode, CategoryWithDate } from "@/types/category";
 import { DateType } from "@/types/date";
 import { IndicatorValues } from "@/types/indicatorValue";
-import { TagType, TagProps } from "@/types/tag";
+import { TagType } from "@/types/tag";
 import { RoleType, UserType } from "@/types/user";
+
 // CATEGORY
 import { MenuType } from "@/types/routes";
 // BLOG
@@ -34,7 +35,6 @@ export type {
 
   // TAG
   TagType,
-  TagProps,
 
   // USER
   RoleType,
