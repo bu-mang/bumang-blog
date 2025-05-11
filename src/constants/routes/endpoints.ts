@@ -7,4 +7,7 @@ export const END_POINTS = {
 
   // USER
   GET_USER_PROFILE: "/users/me",
+
+  // BLOG
+  GET_GROUP_CATEGORY_MENU_TREE: "/categories/groups/menu",
 } as const;

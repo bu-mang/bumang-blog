@@ -42,6 +42,7 @@ export default async function serverFetch<T>(
     console.log(8, url, "serverFetch");
     // 쿠키 스토어에서 액세스 토큰 가져오기
     const accessToken = cookieStore.get("accessToken")?.value;
+    console.log(accessToken, "accessToken");
 
     // 액세스 토큰이 있는 경우에만 설정
     if (accessToken) {
