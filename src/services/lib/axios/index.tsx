@@ -15,11 +15,9 @@ const ClientInstance = axios.create({
   },
 });
 
-// [직접 서버호츌용] 요청 인터셉터
+// 요청 인터셉터
 ClientInstance.interceptors.request.use(
   (config) => {
-    console.log(config.headers.Cookie, "cookies!!!!!!");
-
     return config;
   },
   (error) => {
@@ -27,9 +25,6 @@ ClientInstance.interceptors.request.use(
   },
 );
 
-interface ExtendedAxiosRequestConfig extends AxiosRequestConfig {
-  _retry?: boolean;
-}
 const tokenRefreshMap = new Map<string, boolean>();
 
 // 응답 인터셉터
@@ -38,41 +33,62 @@ ClientInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
+    console.log(1, "interceptor response");
     console.error("[Response Error]", error.response?.status);
 
-    // 요청 재시도를 위한 토큰 Map 사용
     const requestId = error.config.url + error.config.method;
     const isRetry = tokenRefreshMap.has(requestId);
-    const isRefreshRequest = error.config.url?.includes("/auth/refresh");
 
-    if (error.response?.status === 401 && !isRetry && !isRefreshRequest) {
+    // 토큰 갱신이 필요없는 엔드포인트들
+    const excludedPaths = [
+      END_POINTS.POST_RENEW_ACCESS_TOKEN,
+      END_POINTS.POST_LOGOUT,
+    ];
+
+    const isExcludedPath = excludedPaths.some((path) =>
+      error.config.url?.includes(path),
+    );
+
+    console.log(2, "interceptor response");
+    if (error.response?.status === 401 && !isRetry && !isExcludedPath) {
       try {
+        console.log(3, "interceptor response");
         tokenRefreshMap.set(requestId, true);
 
-        console.log(error.config.headers?.Cookie, "Cookie Before Renew Token");
-
         // 갱신
-        const userProfileRes = await axios.post<UserResponseType>(
-          process.env.LOCAL_HOST + END_POINTS.POST_RENEW_ACCESS_TOKEN,
+        await axios.post<UserResponseType>(
+          "http://localhost:3000" + END_POINTS.POST_RENEW_ACCESS_TOKEN,
+          {},
+          {
+            withCredentials: true,
+          },
         );
 
+        console.log(4, "interceptor response");
         // 재요청
         return ClientInstance(error.config);
-      } catch (error) {
+      } catch (refreshError) {
+        console.log(5, "interceptor response");
         tokenRefreshMap.delete(requestId);
+
+        // refresh token이 만료된 경우
         if (
-          isAxiosError(error) &&
-          error.response?.data.message === "Invalid Refresh token"
+          isAxiosError(refreshError) &&
+          refreshError.response?.data.message === "Invalid Refresh token"
         ) {
-          console.log(error.config?.data, "error.config?.data");
-          return Promise.reject(error);
+          // 로컬 스토리지나 상태 초기화
+          // localStorage.removeItem('user');
+          // window.location.href = '/login'; // 로그인 페이지로 리다이렉트
+          console.log(6, "interceptor response");
+          console.log("Refresh token expired, need to login again");
         }
-      } finally {
-        // 재시도 후 Map에서 제거
-        tokenRefreshMap.delete(requestId);
+
+        console.log(7, "interceptor response");
+        return Promise.reject(error); // 원래 에러 반환
       }
     }
 
+    console.log(8, "interceptor response");
     return Promise.reject(error);
   },
 );

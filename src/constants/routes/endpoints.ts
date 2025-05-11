@@ -2,6 +2,7 @@
 export const END_POINTS = {
   // AUTH
   POST_LOGIN: "/auth/login",
+  POST_LOGOUT: "/auth/logout",
   POST_RENEW_ACCESS_TOKEN: "/auth/refresh",
 
   // USER
