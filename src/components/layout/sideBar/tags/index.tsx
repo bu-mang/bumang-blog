@@ -1,8 +1,9 @@
 import { getAllTags } from "@/services/api/blog/(list)/server";
 import TagWrapperLayer from "./tagWrapper";
+import { TagType } from "@/types";
 
 const Tags = async () => {
-  let tags = null;
+  let tags: TagType[] | null = null;
 
   try {
     const res = await getAllTags();
