@@ -33,63 +33,35 @@ ClientInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
-    console.log(1, "interceptor response");
-    console.error("[Response Error]", error.response?.status);
-
-    const requestId = error.config.url + error.config.method;
-    const isRetry = tokenRefreshMap.has(requestId);
-
-    // 토큰 갱신이 필요없는 엔드포인트들
-    const excludedPaths = [
-      END_POINTS.POST_RENEW_ACCESS_TOKEN,
-      END_POINTS.POST_LOGOUT,
-    ];
-
-    const isExcludedPath = excludedPaths.some((path) =>
-      error.config.url?.includes(path),
-    );
-
-    console.log(2, "interceptor response");
-    if (error.response?.status === 401 && !isRetry && !isExcludedPath) {
-      try {
-        console.log(3, "interceptor response");
-        tokenRefreshMap.set(requestId, true);
-
-        // 갱신
-        await axios.post<UserResponseType>(
-          "http://localhost:3000" + END_POINTS.POST_RENEW_ACCESS_TOKEN,
-          {},
-          {
-            withCredentials: true,
-          },
-        );
-
-        console.log(4, "interceptor response");
-        // 재요청
-        return ClientInstance(error.config);
-      } catch (refreshError) {
-        console.log(5, "interceptor response");
-        tokenRefreshMap.delete(requestId);
-
-        // refresh token이 만료된 경우
-        if (
-          isAxiosError(refreshError) &&
-          refreshError.response?.data.message === "Invalid Refresh token"
-        ) {
-          // 로컬 스토리지나 상태 초기화
-          // localStorage.removeItem('user');
-          // window.location.href = '/login'; // 로그인 페이지로 리다이렉트
-          console.log(6, "interceptor response");
-          console.log("Refresh token expired, need to login again");
-        }
-
-        console.log(7, "interceptor response");
-        return Promise.reject(error); // 원래 에러 반환
-      }
+    if (error.response?.status !== 401) {
+      return Promise.reject(error);
     }
 
-    console.log(8, "interceptor response");
-    return Promise.reject(error);
+    if (error.config._retry) {
+      console.log("토큰 갱신 후에도 401 에러 - 로그인 필요");
+      window.location.href = "/";
+      return Promise.reject(error);
+    }
+
+    try {
+      // 재시도 플래그 설정
+      error.config._retry = true;
+
+      // 토큰 갱신 - 일반 axios 사용
+      await axios.post<UserResponseType>(
+        "http://localhost:3000" + END_POINTS.POST_RENEW_ACCESS_TOKEN,
+        {},
+        {
+          withCredentials: true,
+        },
+      );
+
+      return ClientInstance(error.config);
+    } catch (refreshError) {
+      console.log("토큰 갱신 실패");
+
+      return Promise.reject(error);
+    }
   },
 );
 
