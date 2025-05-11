@@ -1,16 +1,31 @@
 "use client";
 
-import { TagProps } from "@/types";
+import { TagType } from "@/types";
 import clsx from "clsx";
 import Link from "next/link";
 import React from "react";
 import { LuX as CloseIcon } from "react-icons/lu";
-import { AlignType } from "@/types";
+
+export interface TagProps {
+  id: number;
+  title: string;
+  url?: string;
+  onClick?: () => void;
+  type?: "link" | "button";
+  size?: "sm" | "lg";
+
+  className?: string;
+  hasBackground?: boolean;
+  fixedBgColor?: "dark" | "lightGray";
+
+  hasXButton?: boolean;
+  isActivated?: boolean;
+  setIsActivated?: (v?: boolean) => void; // 단순 Label로 쓸 경우 불필요하기 때문에 Optional
+}
 
 const Tag = ({
-  id,
-  value,
-  label,
+  // id,
+  title,
 
   url,
   onClick,
@@ -51,16 +66,15 @@ const Tag = ({
   if (type === "link") {
     return (
       <Link href={url ?? "#"} className={tagClass}>
-        <span>{label}</span>
+        <span>{title}</span>
         {isActivated && !!hasBackground && !!hasXButton && <CloseIcon />}
       </Link>
     );
-  }
-
-  if (type === "button") {
+  } else {
+    // type === "button"
     return (
       <button onClick={handleClick} className={tagClass}>
-        {label}
+        {title}
         {isActivated && !!hasBackground && !!hasXButton && <CloseIcon />}
       </button>
     );

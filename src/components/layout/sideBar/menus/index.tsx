@@ -1,4 +1,4 @@
-import getGroupedCategoryTree from "@/services/api/blog/(list)/server";
+import { getGroupedCategoryTree } from "@/services/api/blog/(list)/server";
 import { GroupType } from "@/types/category";
 import Group from "./group";
 import Category from "./category";

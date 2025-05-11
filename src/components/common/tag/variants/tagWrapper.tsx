@@ -3,7 +3,6 @@
 import { AlignType } from "@/types";
 import { cn } from "@/utils/cn";
 import React from "react";
-import Tag from "./tag";
 import CollapsedTag from "./collapsedTag";
 
 interface TagWrapperProps {
@@ -54,9 +53,6 @@ export const TagWrapper = ({
       )}
     </div>
   );
-
-  // 발생할 확률은 없지만 린트에러 끄기위한 리턴
-  return <></>;
 };
 
 export default TagWrapper;
