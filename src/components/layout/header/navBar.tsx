@@ -20,6 +20,7 @@ import { LuGlobe, LuLayers2, LuMoonStar } from "react-icons/lu";
 import { ButtonBase as Button } from "@/components/common";
 import { useMutation } from "@tanstack/react-query";
 import { postLogout } from "@/services/api/auth/client";
+import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -68,8 +69,12 @@ const NavBar = ({ isAuthenticated, nickname }: NavBarProps) => {
     });
   }, []);
 
+  const router = useRouter();
   const logoutMutation = useMutation({
     mutationFn: postLogout,
+    onSuccess: () => {
+      router.refresh();
+    },
   });
   const handleLogout = async () => {
     try {

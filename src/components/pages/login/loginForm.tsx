@@ -36,6 +36,8 @@ const LoginForm = () => {
       if (isAxiosError(error)) {
         //
       }
+    } finally {
+      setTimeout(() => router.refresh(), 300);
     }
   };
 
