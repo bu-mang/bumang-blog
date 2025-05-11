@@ -17,19 +17,23 @@ const Menus = async () => {
   return (
     <>
       <div className="flex w-full flex-col gap-4">
-        {menus?.map((group) => {
-          return (
-            <div key={group.id} className="flex w-full flex-col">
-              {/* LABEL */}
-              <Group title={group.label} amount={group.totalPostsCount} />
+        {menus && menus.length > 0 ? (
+          menus.map((group) => {
+            return (
+              <div key={group.id} className="flex w-full flex-col">
+                {/* LABEL */}
+                <Group title={group.label} amount={group.totalPostsCount} />
 
-              {/* CATEGORIES */}
-              {group.categories.map((category) => {
-                return <Category key={category.id} title={category.label} />;
-              })}
-            </div>
-          );
-        })}
+                {/* CATEGORIES */}
+                {group.categories.map((category) => {
+                  return <Category key={category.id} title={category.label} />;
+                })}
+              </div>
+            );
+          })
+        ) : (
+          <div>{/* TODO: FALLBACK COMPONENTS 나중에 추가 */}</div>
+        )}
       </div>
     </>
   );
