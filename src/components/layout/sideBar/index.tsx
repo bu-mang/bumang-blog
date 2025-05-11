@@ -1,8 +1,6 @@
-"use client";
-
-import Tabs from "./_ingredients/tabs";
-import Tags from "./_ingredients/tags";
-import Menus from "./_ingredients/menus";
+import Tabs from "./tabs";
+import Tags from "./tags";
+import Menus from "./menus";
 
 const SideBar = () => {
   return (
