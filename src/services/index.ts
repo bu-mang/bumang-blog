@@ -2,7 +2,8 @@
  * @API_CONSTANTS
  */
 // API CONSTANTS
-import { END_POINT, SERVICES } from "./constants";
+
+import { END_POINTS } from "../constants/routes/endpoints";
 
 /**
  * @LIBRARIES
@@ -13,16 +14,17 @@ import {
   ServerQueryHydrateBoundary, // SSR Prefetching & Hydrating
 } from "./lib/queryClients";
 
-// AXIOS INSTANCE
+// CLIENT FETCHING (AXIOS_INSTANCE)
 import ClientInstance from "./lib/axios";
 
 export {
-  // react-query
+  // TANSTACK QUERY
   clientQueryClient,
   ServerQueryHydrateBoundary,
-  // client fetching
+
+  // CLIENT FETCHING
   ClientInstance,
-  // services
-  END_POINT,
-  SERVICES,
+
+  // SERVICES
+  END_POINTS,
 };

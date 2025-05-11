@@ -1,4 +1,5 @@
-import { postRenewAccessToken } from "@/services/api/auth";
+import { END_POINTS } from "@/constants/routes/endpoints";
+import { UserResponseType } from "@/types/user";
 import axios, { AxiosRequestConfig, isAxiosError } from "axios";
 
 /**
@@ -14,11 +15,9 @@ const ClientInstance = axios.create({
   },
 });
 
-// [직접 서버호츌용] 요청 인터셉터
+// 요청 인터셉터
 ClientInstance.interceptors.request.use(
   (config) => {
-    console.log(config.headers.Cookie, "cookies!!!!!!");
-
     return config;
   },
   (error) => {
@@ -26,9 +25,6 @@ ClientInstance.interceptors.request.use(
   },
 );
 
-interface ExtendedAxiosRequestConfig extends AxiosRequestConfig {
-  _retry?: boolean;
-}
 const tokenRefreshMap = new Map<string, boolean>();
 
 // 응답 인터셉터
@@ -37,44 +33,35 @@ ClientInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
-    console.error("[Response Error]", error.response?.status);
-
-    // 요청 재시도를 위한 토큰 Map 사용
-    const requestId = error.config.url + error.config.method;
-    const isRetry = tokenRefreshMap.has(requestId);
-    const isRefreshRequest = error.config.url?.includes("/auth/refresh");
-
-    if (error.response?.status === 401 && !isRetry && !isRefreshRequest) {
-      try {
-        tokenRefreshMap.set(requestId, true);
-
-        console.log(error.config.headers?.Cookie, "Cookie Before Renew Token");
-
-        // 갱신
-        await postRenewAccessToken(error.config.headers?.Cookie);
-        // const newCookie = cookies()
-        //   .getAll()
-        //   .map((c) => `${c.name}=${c.value}`)
-        //   .join("; ");
-
-        // 재요청
-        return ClientInstance(error.config);
-      } catch (error) {
-        tokenRefreshMap.delete(requestId);
-        if (
-          isAxiosError(error) &&
-          error.response?.data.message === "Invalid Refresh token"
-        ) {
-          console.log(error.config?.data, "error.config?.data");
-          return Promise.reject(error);
-        }
-      } finally {
-        // 재시도 후 Map에서 제거
-        tokenRefreshMap.delete(requestId);
-      }
+    if (error.response?.status !== 401) {
+      return Promise.reject(error);
     }
 
-    return Promise.reject(error);
+    if (error.config._retry) {
+      console.log("토큰 갱신 후에도 401 에러 - 로그인 필요");
+      window.location.href = "/";
+      return Promise.reject(error);
+    }
+
+    try {
+      // 재시도 플래그 설정
+      error.config._retry = true;
+
+      // 토큰 갱신 - 일반 axios 사용
+      await axios.post<UserResponseType>(
+        "http://localhost:3000" + END_POINTS.POST_RENEW_ACCESS_TOKEN,
+        {},
+        {
+          withCredentials: true,
+        },
+      );
+
+      return ClientInstance(error.config);
+    } catch (refreshError) {
+      console.log("토큰 갱신 실패");
+
+      return Promise.reject(error);
+    }
   },
 );
 

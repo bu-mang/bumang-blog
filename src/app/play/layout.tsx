@@ -1,4 +1,4 @@
-import { LAYOUT_PADDING_TOP_WITH_HEIGHT } from "@/constants/layout";
+import { LAYOUT_PADDING_TOP_WITH_HEIGHT } from "@/constants/layouts/layout";
 import { cn } from "@/utils/cn";
 
 export default function PlayLayout({

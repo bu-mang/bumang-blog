@@ -8,8 +8,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginFormSchema, LoginFormType } from "@/types/schemas";
 
-import { postLogin } from "@/services/api/login";
 import { isAxiosError } from "axios";
+import { useRouter } from "next/navigation";
+import { postLogin } from "@/services/api/auth/client";
 
 const LoginForm = () => {
   const {
@@ -21,15 +22,22 @@ const LoginForm = () => {
     mode: "onBlur",
   });
 
+  const router = useRouter();
+
   // 유효하면 Server Action Trigger
   const onSubmit = async (formData: LoginFormType) => {
     try {
       await postLogin(formData);
+
+      // fetching 성공했다면,
+      router.push("/");
     } catch (error) {
       console.error(error);
       if (isAxiosError(error)) {
         //
       }
+    } finally {
+      setTimeout(() => router.refresh(), 300);
     }
   };
 

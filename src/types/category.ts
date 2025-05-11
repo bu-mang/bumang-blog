@@ -13,3 +13,17 @@ export interface CategoryNode extends IndicatorValues {
 }
 
 export type CategoryWithDate = DateType & CategoryNode;
+
+export interface CategoryType {
+  id: number;
+  label: string;
+  order: string;
+}
+
+export interface GroupType {
+  id: number;
+  label: string;
+  categories: CategoryType[];
+
+  totalPostsCount: number;
+}

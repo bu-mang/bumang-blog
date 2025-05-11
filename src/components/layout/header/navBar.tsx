@@ -1,7 +1,7 @@
 "use client";
 
 import type { MenuType } from "@/types";
-import { ROUTES } from "@/constants/routes";
+import { ROUTES } from "@/constants/routes/navBarRoutes";
 import { cn } from "@/utils/cn";
 import { combinePaths } from "@/utils/combinePaths";
 
@@ -18,6 +18,9 @@ import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { LuGlobe, LuLayers2, LuMoonStar } from "react-icons/lu";
 import { ButtonBase as Button } from "@/components/common";
+import { useMutation } from "@tanstack/react-query";
+import { postLogout } from "@/services/api/auth/client";
+import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,6 +29,7 @@ interface NavBarProps {
   nickname: string;
 }
 
+// TODO: 사분면 마다 코드스플리팅 할까..
 const NavBar = ({ isAuthenticated, nickname }: NavBarProps) => {
   /**
    * @HEADER_ANIMATION
@@ -64,6 +68,49 @@ const NavBar = ({ isAuthenticated, nickname }: NavBarProps) => {
       },
     });
   }, []);
+
+  const router = useRouter();
+  const logoutMutation = useMutation({
+    mutationFn: postLogout,
+    onSuccess: () => {
+      router.refresh();
+    },
+  });
+  const handleLogout = async () => {
+    try {
+      await logoutMutation.mutateAsync();
+    } catch (err) {
+      console.log(err, "logged out");
+    }
+  };
+
+  // ---------------- 제 2사분면 로직 ----------------
+
+  /**
+   * @PATHLOGIC
+   */
+  const pathname = usePathname();
+  const paths = pathname.split("/").filter((item) => item !== "");
+  const currentRoute = ROUTES.filter(
+    (item) => item.sub !== undefined && item.url.startsWith(`/${paths[0]}`),
+  )[0];
+
+  /**
+   * @LINKHOVERSTYLE
+   */
+  const linkHoverStyle =
+    "relative z-50 transition-colors duration-300 ease-in-out text-gray-200 hover:text-black cursor-pointer";
+  const navStyleManager = (subItem: MenuType) => {
+    return cn(
+      linkHoverStyle,
+      `/${pathname.split("/")[2]}` === subItem.url && "text-black",
+      pathname.split("/")[2] === undefined &&
+        subItem.url === "/" &&
+        "text-black",
+    );
+  };
+
+  // ---------------- 제 4사분면 로직 ----------------
 
   /**
    * @CLOCK_LOGIC
@@ -136,39 +183,18 @@ const NavBar = ({ isAuthenticated, nickname }: NavBarProps) => {
     setCurrentOs(targetOs);
   }, []);
 
-  /**
-   * @PATHLOGIC
-   */
-  const pathname = usePathname();
-  const paths = pathname.split("/").filter((item) => item !== "");
-  const currentRoute = ROUTES.filter(
-    (item) => item.sub !== undefined && item.url.startsWith(`/${paths[0]}`),
-  )[0];
-
-  /**
-   * @LINKHOVERSTYLE
-   */
-  const linkHoverStyle =
-    "relative z-50 transition-colors duration-300 ease-in-out text-gray-200 hover:text-black cursor-pointer";
-  const navStyleManager = (subItem: MenuType) => {
-    return cn(
-      linkHoverStyle,
-      `/${pathname.split("/")[2]}` === subItem.url && "text-black",
-      pathname.split("/")[2] === undefined &&
-        subItem.url === "/" &&
-        "text-black",
-    );
-  };
-
   return (
     <div className="NAVBAR_CONTAINER relative w-full cursor-default bg-white font-medium">
       <div className="NAVBAR_BORDERBOX mx-[10vw] grid grid-cols-4 gap-[1.5vw] border-b-[1px] border-t-[1px] border-b-white border-t-gray-10 py-1 pb-3 text-xs text-gray-200">
+        {/* 1사분면 (로그인 / 인증 정보) */}
         <div className="NAVBAR_SWITCHING_PANEL relative grid grid-cols-2 gap-[1.5vw]">
           {isAuthenticated ? (
             <div className="flex h-fit items-center gap-1.5">
-              <span className={linkHoverStyle}>{nickname}</span>
+              <Button className={linkHoverStyle}>{nickname}</Button>
+
               <div className="h-2 w-[1px] bg-gray-100" />
-              <Button className="h-fit w-fit" onClick={() => {}}>
+
+              <Button className="h-fit w-fit" onClick={handleLogout}>
                 <span className={linkHoverStyle}>Logout</span>
               </Button>
             </div>
@@ -178,8 +204,10 @@ const NavBar = ({ isAuthenticated, nickname }: NavBarProps) => {
             </Link>
           )}
         </div>
+
+        {/* 2사분면 (메뉴) */}
         <div className="grid grid-cols-2 gap-[1.5vw]">
-          <div className="">
+          <div className="col-start-1 col-end-3">
             <div className="flex gap-1">
               {ROUTES.filter((item) => item.group === "NAVIGATOR").map(
                 (item) => (
@@ -208,19 +236,20 @@ const NavBar = ({ isAuthenticated, nickname }: NavBarProps) => {
               ))}
             </div>
           </div>
-          <div className=""></div>
         </div>
+
+        {/* 3사분면 (아이콘) */}
         <div className="NAVBAR_SWITCHING_PANEL grid grid-cols-2 gap-[1.5vw]">
-          <div className="flex gap-1">
+          <div className="col-start-1 col-end-2 flex gap-1">
             <LuGlobe className={cn(linkHoverStyle, "text-base")} />
             <LuMoonStar className={cn(linkHoverStyle, "text-base")} />
             <LuLayers2 className={cn(linkHoverStyle, "text-base")} />
           </div>
-          <div className=""></div>
         </div>
+
+        {/* 4사분면 (타임존 / 해상도) */}
         <div className="grid grid-cols-2 gap-[1.5vw]">
-          <div className=""></div>
-          <div className="grid grid-cols-1 gap-[1.5vw] whitespace-nowrap lg:grid-cols-2">
+          <div className="col-start-2 col-end-3 grid gap-[1.5vw] whitespace-nowrap lg:grid-cols-2">
             <div className="absolute hidden flex-col lg:relative lg:flex">
               <span>{currentTimeZone}</span>
               <span>{clock}</span>
