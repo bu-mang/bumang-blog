@@ -15,6 +15,7 @@ export const getCookie = (
     all?: boolean; // 모든 쿠키를 문자열로 반환할지 여부 (기본값: false)
     filter?: string[]; // 'all' 사용 시 포함할 쿠키 이름 필터 (기본값: undefined)
     decode?: boolean; // 쿠키 값을 디코딩할지 여부 (기본값: false)
+    includeExpired?: boolean; // 만료된 토큰도 포함할지 여부
   } = {},
 ): string | null => {
   const {
@@ -23,6 +24,7 @@ export const getCookie = (
     all = false,
     filter,
     decode = false,
+    includeExpired = true, // 기본적으로 만료된 것도 포함
   } = options;
 
   try {
