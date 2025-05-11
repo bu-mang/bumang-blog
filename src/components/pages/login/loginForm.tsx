@@ -9,8 +9,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginFormSchema, LoginFormType } from "@/types/schemas";
 
 import { isAxiosError } from "axios";
-import { SERVICES } from "@/services";
 import { useRouter } from "next/navigation";
+import { postLogin } from "@/services/api/auth/client";
 
 const LoginForm = () => {
   const {
@@ -27,7 +27,7 @@ const LoginForm = () => {
   // 유효하면 Server Action Trigger
   const onSubmit = async (formData: LoginFormType) => {
     try {
-      await SERVICES.CLIENT.postLogin(formData);
+      await postLogin(formData);
 
       // fetching 성공했다면,
       router.push("/");

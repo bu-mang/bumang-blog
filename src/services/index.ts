@@ -2,7 +2,7 @@
  * @API_CONSTANTS
  */
 // API CONSTANTS
-import { SERVICES } from "./api";
+
 import { END_POINTS } from "../constants/routes/endpoints";
 
 /**
@@ -16,8 +16,6 @@ import {
 
 // CLIENT FETCHING (AXIOS_INSTANCE)
 import ClientInstance from "./lib/axios";
-// SERVER FETCING (SERVERFETCH)
-import serverFetch from "./lib/serverFetch";
 
 export {
   // TANSTACK QUERY
@@ -26,9 +24,7 @@ export {
 
   // CLIENT FETCHING
   ClientInstance,
-  serverFetch,
 
   // SERVICES
   END_POINTS,
-  SERVICES,
 };
