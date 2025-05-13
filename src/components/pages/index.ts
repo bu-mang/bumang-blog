@@ -1,11 +1,11 @@
 import { SectionBox, SubBox } from "./about/aboutSection";
 
-import BlogEditorToolBar from "./blog/blogEditToolBar";
-import BlogPublishingView from "./blog/blogPublishingView";
-import BlogItem from "./blog/blogItem";
-import BlogIndex from "./blog/blogIndex";
-import BlogComment from "./blog/blogComment";
-import DraftController from "./blog/draftController";
+import BlogEditorToolBar from "./blog/edit/blogEditToolBar";
+import BlogPublishingView from "./blog/edit/blogPublishingView";
+import BlogItem from "./blog/(list)/blogItem";
+import BlogIndex from "./blog/(list)/blogIndex";
+import BlogComment from "./blog/[id]/blogComment";
+import DraftController from "./blog/edit/draftController";
 
 import PlayItem from "./play/playItem";
 

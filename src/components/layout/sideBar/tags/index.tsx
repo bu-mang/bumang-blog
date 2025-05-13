@@ -7,7 +7,6 @@ const Tags = async () => {
 
   try {
     const res = await getAllTags();
-    console.log(res, "getAllTags");
 
     tags = res;
   } catch (err) {}
