@@ -114,44 +114,43 @@ const TagCombobox = ({
 
       {/* CONTENT */}
       <PopoverContent className="w-[320px] p-0">
+        {/* SELECTED_LIST */}
+        <div className="flex flex-col gap-1 border-b-[1px] p-2.5">
+          <span className="text-xs text-gray-200">Selected Tags</span>
+          <TagWrapper className="min-h-8 items-center rounded-sm bg-gray-1 p-2">
+            {selectedTags.length > 0 &&
+              selectedTags.map((tagItem) => (
+                <Tag
+                  key={tagItem.id}
+                  id={tagItem.id}
+                  title={tagItem.title}
+                  fixedBgColor="dark"
+                  isActivated={true}
+                  type="button"
+                  onClick={() => {
+                    handleSwitchTags({
+                      targetId: tagItem.id,
+                      from: "selectedTags",
+                    });
+                  }}
+                />
+              ))}
+          </TagWrapper>
+        </div>
         <Command>
-          {/* SELECTED_LIST */}
-          <div className="flex flex-col gap-1 border-b-[1px] p-2.5">
-            <span className="text-xs text-gray-200">Selected Tags</span>
-            <TagWrapper className="min-h-8 items-center rounded-sm bg-gray-1 p-2">
-              {selectedTags.length > 0 &&
-                selectedTags.map((tagItem) => (
-                  <CommandItem key={tagItem.id}>
-                    <Tag
-                      key={tagItem.id}
-                      id={tagItem.id}
-                      title={tagItem.title}
-                      fixedBgColor="dark"
-                      isActivated={true}
-                      type="button"
-                      onClick={() => {
-                        handleSwitchTags({
-                          targetId: tagItem.id,
-                          from: "selectedTags",
-                        });
-                      }}
-                    />
-                  </CommandItem>
-                ))}
-            </TagWrapper>
-          </div>
-
           {/* INPUT */}
           <CommandInput />
 
           {/* COMMAND_LIST */}
           <CommandList>
-            <CommandEmpty>No Tag found.</CommandEmpty>
+            <CommandEmpty className="flex h-8 items-end justify-center rounded-sm text-sm text-gray-100">
+              All available tags used
+            </CommandEmpty>
 
             {/* UNSELECTED_LIST */}
             <CommandGroup className="flex">
               <div className="flex flex-wrap gap-2 p-1">
-                {unselectedTags.length > 0 ? (
+                {unselectedTags.length > 0 &&
                   unselectedTags.map((tagItem) => (
                     <CommandItem className="flex w-fit" key={tagItem.id}>
                       <Tag
@@ -169,12 +168,7 @@ const TagCombobox = ({
                         }
                       />
                     </CommandItem>
-                  ))
-                ) : (
-                  <div className="flex h-8 w-[304px] items-center justify-center rounded-sm text-sm text-gray-100">
-                    All available tags used
-                  </div>
-                )}
+                  ))}
               </div>
             </CommandGroup>
           </CommandList>
