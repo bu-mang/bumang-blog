@@ -1,11 +1,8 @@
-import { TagProps } from "@/types";
+import { TagType } from "@/types";
 
 /**
  * 태그 순서 정렬
  */
-export const sortTagOrder = (
-  targetArr: TagProps[],
-  std: "label" | "value" = "label",
-) => {
-  return targetArr.sort((a, b) => a[std].localeCompare(b[std], ["en", "ko"]));
+export const sortStringOrder = (targetArr: TagType[]) => {
+  return targetArr.sort((a, b) => a.title.localeCompare(b.title, ["en", "ko"]));
 };

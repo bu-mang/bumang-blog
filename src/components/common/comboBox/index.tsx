@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { Check, ChevronDown } from "lucide-react";
 import { FaFolder as Folder } from "react-icons/fa";
 import { IoMenu as Menu } from "react-icons/io5";
@@ -20,40 +19,69 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import type { CategoryNode } from "@/types";
+import type { CategoryType, GroupType } from "@/types";
 import { ButtonBase } from "../button";
+import { useCallback, useState } from "react";
 
-interface ComboBoxProps {
-  isOpen: boolean;
-  selectedValue: string | null;
+interface ComboBoxProps<T extends (GroupType | CategoryType) | null> {
+  isOpen?: boolean;
+  handleChangeIsOpen?: (v: boolean) => void;
 
-  comboBoxlist: CategoryNode[];
+  selectedValue: T | null;
+  handleChangeSelectedValue: (v: T) => void;
+
+  selectingList: T[];
   placeholder?: string;
   iconType?: "folder" | "menu";
-
-  handleIsOpen: (v: boolean) => void;
-  handleSelectedValue: (v: string) => void;
 }
 
-function ComboBox({
+function ComboBox<T extends (GroupType | CategoryType) | null>({
   isOpen,
-  handleIsOpen,
+  handleChangeIsOpen,
 
-  comboBoxlist,
+  selectingList,
   iconType = "folder",
 
   selectedValue,
-  handleSelectedValue,
+  handleChangeSelectedValue,
 
   placeholder,
-}: ComboBoxProps) {
+}: ComboBoxProps<T>) {
+  // 내부 상태 (외부에서 'open' prop이 제공되지 않을 때만 사용)
+  const [internalOpen, setInternalOpen] = useState(false);
+
+  // isOpen을 내부에서 처리할지 외부에서 처리할지 (외부 제어 우선)
+  const isOpenControlled = isOpen !== undefined;
+  const isAdjustedOpen = isOpenControlled ? isOpen : internalOpen;
+
+  // 외부에서 isOpen을 제어할 때 vs 내부에서 isOpen으로 제어할 때 스위칭해주는 함수
+  const handleChangeAdjustedIsOpen = useCallback(
+    (value: boolean) => {
+      if (!isOpenControlled) {
+        setInternalOpen(value);
+      }
+
+      handleChangeIsOpen?.(value);
+    },
+    [isOpenControlled, handleChangeIsOpen],
+  );
+
+  // 태그 리스트에서 태그 선택할 때
+  const onSelectTag = (currentValue: string) => {
+    const target = selectingList.find((item) => item?.label === currentValue);
+    if (target) {
+      handleChangeSelectedValue(target);
+    }
+    handleChangeAdjustedIsOpen(false);
+  };
+
   return (
-    <Popover open={isOpen} onOpenChange={handleIsOpen}>
+    <Popover open={isAdjustedOpen} onOpenChange={handleChangeAdjustedIsOpen}>
       <PopoverTrigger asChild>
         <ButtonBase
           role="combobox"
           aria-expanded={isOpen}
-          className="flex min-w-40 items-center justify-between gap-3 rounded-md p-2 transition-all hover:bg-gray-5"
+          className="flex min-w-40 items-center justify-between gap-3 rounded-md p-2 hover:bg-gray-5"
         >
           <div className="flex items-center gap-1.5">
             {iconType === "folder" && (
@@ -64,8 +92,8 @@ function ComboBox({
             )}
             <span className="text-sm">
               {selectedValue
-                ? comboBoxlist.find(
-                    (listItem) => listItem.value === selectedValue,
+                ? selectingList.find(
+                    (listItem) => listItem?.label === selectedValue?.label,
                   )?.label
                 : (placeholder ?? "Select listItem...")}
             </span>
@@ -73,29 +101,26 @@ function ComboBox({
           <ChevronDown size="16" className="text-gray-500 opacity-50" />
         </ButtonBase>
       </PopoverTrigger>
+
+      {/* 컨텐츠 */}
       <PopoverContent className="w-[200px] p-0">
         <Command>
           <CommandInput placeholder="Search Category..." className="h-9" />
           <CommandList>
             <CommandEmpty>No listItem found.</CommandEmpty>
             <CommandGroup>
-              {comboBoxlist.map((listItem) => (
+              {selectingList.map((listItem) => (
                 <CommandItem
                   className="text-sm"
-                  key={listItem.value}
-                  value={listItem.value}
-                  onSelect={(currentValue) => {
-                    handleSelectedValue(
-                      currentValue === selectedValue ? "" : currentValue,
-                    );
-                    handleIsOpen(false);
-                  }}
+                  key={listItem?.label}
+                  value={listItem?.label}
+                  onSelect={onSelectTag}
                 >
-                  {listItem.label}
+                  {listItem?.label}
                   <Check
                     className={cn(
                       "ml-auto",
-                      selectedValue === listItem.value
+                      selectedValue?.label === listItem?.label
                         ? "opacity-100"
                         : "opacity-0",
                     )}

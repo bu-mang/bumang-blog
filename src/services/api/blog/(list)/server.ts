@@ -1,5 +1,6 @@
 import { END_POINTS } from "@/constants/routes/endpoints";
 import serverFetch from "@/services/lib/serverFetch";
+import { TagType } from "@/types";
 import { GroupType } from "@/types/category";
 
 // Group & Category 트리 조회 (ServerFetch)
@@ -13,7 +14,7 @@ export const getGroupedCategoryTree = async () => {
 
 // TAG 모두 조회 (ServerFetch)
 export const getAllTags = async () => {
-  const res = await serverFetch<GroupType[]>(
+  const res = await serverFetch<TagType[]>(
     process.env.LOCAL_HOST + END_POINTS.GET_ALL_TAGS,
   );
 

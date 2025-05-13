@@ -1,66 +1,71 @@
 "use client";
-import { TagProps } from "@/types";
-import { sortTagOrder } from "@/utils/sortTagOrder";
+import { TagType } from "@/types";
+import { sortStringOrder } from "@/utils/sortTagOrder";
 import { useState } from "react";
 
 interface TagComboBoxProps {
-  selectedArr: TagProps[];
-  unselectedArr: TagProps[];
+  tags: TagType[];
   _name: string;
 }
 
-const useTagComboBox = ({
-  _name,
-  selectedArr,
-  unselectedArr,
-}: TagComboBoxProps) => {
+const useTagComboBox = ({ _name, tags }: TagComboBoxProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<TagProps[]>(selectedArr);
-  const [unselected, setUnselected] = useState<TagProps[]>(unselectedArr);
+  const [selectedTags, setSelectedTags] = useState<TagType[]>([]);
+  const [unselectedTags, setUnselectedTags] = useState<TagType[]>(tags);
 
   const handleIsOpen = () => setIsOpen((prev) => !prev);
 
-  const handleSwitch = ({
+  const handleSwitchTags = ({
     targetId,
     from,
   }: {
-    targetId: string;
-    from: "selected" | "unselected";
+    targetId: number;
+    from: "selectedTags" | "unselectedTags";
   }) => {
-    // 선택된 배열에서 시작
-    if (from === "selected") {
-      const foundIndex = selected.findIndex((item) => item.id === targetId);
+    // 선택된 배얄에서 선택 안 된 배열로 보내기
+    if (from === "selectedTags") {
+      const foundIndex = selectedTags.findIndex((item) => item.id === targetId);
       if (foundIndex === -1) return;
 
-      const newTo = sortTagOrder([selected[foundIndex], ...unselected]);
-      const newFrom = [...selected].filter(
-        (item) => item.id !== selected[foundIndex].id,
+      const newUnselectedTags = sortStringOrder([
+        selectedTags[foundIndex],
+        ...unselectedTags,
+      ]);
+      const newSelectedTags = [...selectedTags].filter(
+        (item) => item.id !== selectedTags[foundIndex].id,
       );
 
-      setSelected(newFrom);
-      setUnselected(newTo);
+      setSelectedTags(newSelectedTags);
+      setUnselectedTags(newUnselectedTags);
 
-      // 선택되지 않은 배얄에서 시작
-    } else if (from === "unselected") {
-      const foundIndex = unselected.findIndex((item) => item.id === targetId);
+      // 선택되지 않은 배얄에서 선택된 배열로 보내기
+    } else if (from === "unselectedTags") {
+      const foundIndex = unselectedTags.findIndex(
+        (item) => item.id === targetId,
+      );
       if (foundIndex === -1) return;
 
-      const newTo = [unselected[foundIndex], ...selected];
-      const newFrom = [...unselected].filter(
-        (item) => item.id !== unselected[foundIndex].id,
+      const newSelectedTags = [unselectedTags[foundIndex], ...selectedTags];
+      const newUnselectedTags = [...unselectedTags].filter(
+        (item) => item.id !== unselectedTags[foundIndex].id,
       );
 
-      setSelected(newTo);
-      setUnselected(sortTagOrder(newFrom, "label"));
+      setSelectedTags(newSelectedTags);
+      setUnselectedTags(sortStringOrder(newUnselectedTags));
     }
   };
 
   return {
+    // 열림 여부
     isOpen,
     handleIsOpen,
-    handleSwitch,
-    selected,
-    unselected,
+
+    // 스위칭 함수
+    handleSwitchTags,
+
+    // 결과
+    selectedTags,
+    unselectedTags,
   };
 };
 
