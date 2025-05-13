@@ -16,39 +16,36 @@ import {
 
 import { LuPlus } from "react-icons/lu";
 import { Divider, Tag, TagWrapper } from "@/components/common";
-import type { TagProps } from "@/types";
+import type { TagType } from "@/types";
 import { CommandItem } from "cmdk";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import { CalendarIcon } from "lucide-react";
 
 interface TagBoxProps {
-  isOpen: boolean;
-  handleIsOpen: (v: boolean) => void;
+  isOpen?: boolean;
+  handleIsOpen?: (v: boolean) => void;
 
-  handleSwitch: (props: {
-    targetId: string;
-    from: "selected" | "unselected";
+  selectedTags: TagType[];
+  unselectedTags: TagType[];
+  handleSwitchTags: (v: {
+    targetId: number;
+    from: "selectedTags" | "unselectedTags";
   }) => void;
-
-  selected: TagProps[];
-  unselected: TagProps[];
 }
 
 const TagCombobox = ({
   isOpen,
   handleIsOpen,
 
-  handleSwitch,
-
-  selected,
-  unselected,
+  selectedTags,
+  unselectedTags,
+  handleSwitchTags,
 }: TagBoxProps) => {
-  const selectedLength = selected.length;
-  const totalLength = unselected.length + selectedLength;
+  const selectedLength = selectedTags.length;
+  const totalLength = unselectedTags.length + selectedLength;
 
   // TODO: BOUNCE ANIMATION
 
@@ -84,39 +81,26 @@ const TagCombobox = ({
                 </span>
               </div>
             </HoverCardTrigger>
+
+            {/* CONTENT */}
             <HoverCardContent className="pointer-events-none w-80">
-              {/* <div className="flex justify-between space-x-4">
-                <div className="space-y-1">
-                  <h4 className="text-sm font-semibold">@nextjs</h4>
-                  <p className="text-sm">
-                    The React Framework – created and maintained by @vercel.
-                  </p>
-                  <div className="flex items-center pt-2">
-                    <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />{" "}
-                    <span className="text-xs text-muted-foreground">
-                      Joined December 2021
-                    </span>
-                  </div>
-                </div>
-              </div> */}
               <div className="flex flex-col gap-1">
                 <span className="text-xs text-gray-200">Selected Tags</span>
                 <TagWrapper className="min-h-8 items-center rounded-sm bg-gray-1 p-2">
-                  {selected.length > 0 &&
-                    selected.map((tagItem) => (
+                  {selectedTags.length > 0 &&
+                    selectedTags.map((tagItem) => (
                       <Tag
                         key={tagItem.id}
                         id={tagItem.id}
-                        value={tagItem.value}
-                        label={tagItem.label}
+                        title={tagItem.title}
                         fixedBgColor="dark"
                         isActivated={true}
                         type="button"
                         hasXButton={false}
                         onClick={() => {
-                          handleSwitch({
+                          handleSwitchTags({
                             targetId: tagItem.id,
-                            from: "selected",
+                            from: "selectedTags",
                           });
                         }}
                       />
@@ -135,21 +119,20 @@ const TagCombobox = ({
           <div className="flex flex-col gap-1 border-b-[1px] p-2.5">
             <span className="text-xs text-gray-200">Selected Tags</span>
             <TagWrapper className="min-h-8 items-center rounded-sm bg-gray-1 p-2">
-              {selected.length > 0 &&
-                selected.map((tagItem) => (
+              {selectedTags.length > 0 &&
+                selectedTags.map((tagItem) => (
                   <CommandItem key={tagItem.id}>
                     <Tag
                       key={tagItem.id}
                       id={tagItem.id}
-                      value={tagItem.value}
-                      label={tagItem.label}
+                      title={tagItem.title}
                       fixedBgColor="dark"
                       isActivated={true}
                       type="button"
                       onClick={() => {
-                        handleSwitch({
+                        handleSwitchTags({
                           targetId: tagItem.id,
-                          from: "selected",
+                          from: "selectedTags",
                         });
                       }}
                     />
@@ -168,26 +151,30 @@ const TagCombobox = ({
             {/* UNSELECTED_LIST */}
             <CommandGroup className="flex">
               <div className="flex flex-wrap gap-2 p-1">
-                {unselected.length > 0 &&
-                  unselected.map((tagItem) => (
+                {unselectedTags.length > 0 ? (
+                  unselectedTags.map((tagItem) => (
                     <CommandItem className="flex w-fit" key={tagItem.id}>
                       <Tag
                         key={tagItem.id}
                         id={tagItem.id}
-                        value={tagItem.value}
-                        label={tagItem.label}
+                        title={tagItem.title}
                         fixedBgColor={"lightGray"}
                         isActivated={false}
                         type="button"
                         onClick={() =>
-                          handleSwitch({
+                          handleSwitchTags({
                             targetId: tagItem.id,
-                            from: "unselected",
+                            from: "unselectedTags",
                           })
                         }
                       />
                     </CommandItem>
-                  ))}
+                  ))
+                ) : (
+                  <div className="flex h-8 w-[304px] items-center justify-center rounded-sm text-sm text-gray-100">
+                    All available tags used
+                  </div>
+                )}
               </div>
             </CommandGroup>
           </CommandList>

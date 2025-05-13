@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   LuChevronLeft as ChevronLeftIcon,
   LuPlaneTakeoff as PublishPlaneIcon,
 } from "react-icons/lu";
 
-import { CATEGORIES } from "@/constants/blogCategory";
 import { getButtonColorStyle } from "@/utils/styles/filButtonManager";
 import { cn } from "@/utils/cn";
 
@@ -17,38 +16,28 @@ import {
   FillButton,
 } from "@/components/common";
 import { useRouter } from "next/navigation";
-import { TagProps } from "@/types";
+import { TagType, GroupType, CategoryType } from "@/types";
 import DraftController from "../draftController";
 import { YooptaContentValue } from "@yoopta/editor";
 
-const mainCatogories = CATEGORIES.filter((item) => item.parent === null);
-const subCategories = CATEGORIES.filter((item) => item.parent !== null);
-
 interface BlogEditorToolBarProps {
-  // MainCategory
-  isMainOpen: boolean;
-  handleMainOpen: (v?: boolean) => void;
-  selectedMainValue: string;
-  handleSelectedMainValue: (v: string) => void;
+  // List
+  groupLists: GroupType[];
 
-  // SubCategory
-  isSubOpen: boolean;
-  handleSubOpen: (v?: boolean) => void;
-  selectedSubValue: string;
-  handleSelectedSubValue: (v: string) => void;
+  // Group
+  selectedGroup: GroupType | null;
+  onChangeSelectedGroup: (v: GroupType) => void;
 
-  // Tag
-  isTagOpen: boolean;
-  handleIsTagOpen: () => void;
-  handleSwitchTag: ({
-    targetId,
-    from,
-  }: {
-    targetId: string;
-    from: "selected" | "unselected";
+  // Category
+  selectedCategory: CategoryType | null;
+  onChangeSelectedCategory: (v: CategoryType) => void;
+
+  selectedTags: TagType[];
+  unselectedTags: TagType[];
+  handleSwitchTags: (v: {
+    targetId: number;
+    from: "selectedTags" | "unselectedTags";
   }) => void;
-  selectedTags: TagProps[];
-  unslectedTag: TagProps[];
 
   // Draft
   isDraftOpen: boolean;
@@ -57,24 +46,19 @@ interface BlogEditorToolBarProps {
 }
 
 const BlogEditorToolBar = ({
-  // MainCategory
-  isMainOpen,
-  handleMainOpen,
-  selectedMainValue,
-  handleSelectedMainValue,
+  groupLists,
 
-  // SubCategory
-  isSubOpen,
-  handleSubOpen,
-  selectedSubValue,
-  handleSelectedSubValue,
+  //
+  selectedGroup,
+  onChangeSelectedGroup,
 
-  // Tag
-  isTagOpen,
-  handleIsTagOpen,
-  handleSwitchTag,
+  //
+  selectedCategory,
+  onChangeSelectedCategory,
+
   selectedTags,
-  unslectedTag,
+  unselectedTags,
+  handleSwitchTags,
 
   // Draft
   isDraftOpen,
@@ -82,33 +66,18 @@ const BlogEditorToolBar = ({
   handleEditorValue,
 }: BlogEditorToolBarProps) => {
   /**
-   * @CHANGE_SUBS_WHEN_MAIN_CHANGED
+   * @그룹_변경_시_카테고리_전환
    */
-  const [subs, setSubs] = useState(subCategories);
   useEffect(() => {
-    const changed = subCategories.filter(
-      (item) => item.parent === selectedMainValue,
-    );
-    setSubs(changed);
-    handleSelectedSubValue("");
+    const CategoriesInSelectedGroup = selectedGroup?.categories;
+    if (CategoriesInSelectedGroup) {
+      onChangeSelectedCategory(CategoriesInSelectedGroup[0]);
+    }
     // eslint-disable-next-line
-  }, [selectedMainValue]);
+  }, [selectedGroup]);
 
   /**
-   * @ADJUST_ORDER___TODO
-   * 1. 만약 카테고리 선택이 안 되어있을 시 서브젝트 비활성화
-   * 2. 카테고리 선택이 안 되어있을 때 서브젝트를 누르면 오히려 카테고리가 open
-   * 3. 태그는 독립적으로 기능
-   */
-  const categoryRef = useRef<HTMLButtonElement>(null);
-  const subjectRef = useRef<HTMLButtonElement>(null);
-  const tagsRef = useRef<HTMLButtonElement>(null);
-  useEffect(() => {
-    //
-  }, []);
-
-  /**
-   * @BUTTON_STYLE_MANAGER
+   * @버튼_스타일
    */
   const { fillStyle: LightFillStyle, textStyle: LightTextStyle } =
     getButtonColorStyle("light");
@@ -119,7 +88,7 @@ const BlogEditorToolBar = ({
   } = getButtonColorStyle("dark");
 
   /**
-   * @HANDLECLICK
+   * @뒤로가기_로직
    */
   const router = useRouter();
   const handleGoBack = () => {
@@ -144,26 +113,24 @@ const BlogEditorToolBar = ({
 
       {/* CENTER MODULE */}
       <div className="flex w-7/12 items-center justify-center gap-3">
-        {/* CATEGORY BOX */}
-        <ComboBox
-          isOpen={isMainOpen}
-          handleIsOpen={handleMainOpen}
-          selectedValue={selectedMainValue}
-          handleSelectedValue={handleSelectedMainValue}
-          comboBoxlist={mainCatogories}
+        {/* GROUP BOX */}
+        <ComboBox<GroupType>
+          selectedValue={selectedGroup}
+          handleChangeSelectedValue={onChangeSelectedGroup}
+          // 전체 리스트
+          selectingList={groupLists ?? []}
           iconType="folder"
           placeholder={"Select Category..."}
         />
 
         <Divider />
 
-        {/* TOPIC BOX */}
-        <ComboBox
-          isOpen={isSubOpen}
-          handleIsOpen={handleSubOpen}
-          selectedValue={selectedSubValue}
-          handleSelectedValue={handleSelectedSubValue}
-          comboBoxlist={subs}
+        {/* CATEGORY BOX */}
+        <ComboBox<CategoryType>
+          selectedValue={selectedCategory}
+          handleChangeSelectedValue={onChangeSelectedCategory}
+          // 전체 리스트
+          selectingList={selectedGroup?.categories ?? []}
           iconType="menu"
           placeholder={"Select Subject..."}
         />
@@ -172,13 +139,10 @@ const BlogEditorToolBar = ({
 
         {/* TAG BOX */}
         <TagCombobox
-          isOpen={isTagOpen}
-          handleIsOpen={handleIsTagOpen}
-          handleSwitch={handleSwitchTag}
-          selected={selectedTags}
-          unselected={unslectedTag}
+          selectedTags={selectedTags}
+          unselectedTags={unselectedTags}
+          handleSwitchTags={handleSwitchTags}
         />
-        {/* TODO: ADJUST COMMAND TO TAG BOX... */}
       </div>
 
       {/* RIGHT MODULE */}
