@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { YooptaContentValue, YooptaOnChangeOptions } from "@yoopta/editor";
 
-import { Divider as DividerComp, Editor } from "@/components/common";
+import { Divider, Editor } from "@/components/common";
 import { BlogPublishingView, BlogEditorToolBar } from "@/components/pages";
 
 import { BlogStep, CategoryType, GroupType, TagType } from "@/types";
@@ -13,6 +13,9 @@ import { cn } from "@/utils/cn";
 import { WITH_BASIC_INIT_VALUE } from "@/components/common/editor/initValue";
 import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
 import { sortStringOrder } from "@/utils/sortTagOrder";
+import { useMutation } from "@tanstack/react-query";
+import { postCreatePost } from "@/services/api/blog/edit";
+import { CreatePostDto } from "@/types/dto/blog";
 
 interface BlogEditInnerProps {
   tagLists: TagType[];
@@ -29,25 +32,15 @@ export default function BlogEditInner({
   const [step, setStep] = useState(BlogStep.EDITTING);
   const handleStep = (v: BlogStep) => setStep(v);
 
-  /**
-   * @EDITOR_LOGIC
-   */
-  const [value, setValue] = useState<YooptaContentValue>(WITH_BASIC_INIT_VALUE);
+  // ------------- 중앙부 그룹/카테고리/태그 로직 (중앙) -------------
 
-  const onChangeEditorValue = (
-    value: YooptaContentValue,
-    options: YooptaOnChangeOptions,
-  ) => {
-    setValue(value);
-  };
-
-  // ------------- 중앙부 그룹/카테고리/태그 -------------
+  // 그룹
   const [selectedGroup, setSelectedGroup] = useState<GroupType | null>(null);
-
+  // 카테고리
   const [selectedCategory, setSelectedCategory] = useState<CategoryType | null>(
     null,
   );
-
+  // 태그
   const [selectedTags, setSelectedTags] = useState<TagType[]>([]);
   const [unselectedTags, setUnselectedTags] = useState<TagType[]>(tagLists);
 
@@ -100,7 +93,7 @@ export default function BlogEditInner({
     }
   };
 
-  // ------------- 우측 DRAFT 로직 -------------
+  // ------------- 임시저장 DRAFT 로직 (우측) -------------
 
   /**
    * @DRAFT
@@ -126,6 +119,19 @@ export default function BlogEditInner({
   };
 
   /**
+   * @EDITOR_LOGIC
+   */
+  // WITH_BASIC_INIT_VALUE
+  const [value, setValue] = useState<YooptaContentValue>();
+
+  const onChangeEditorValue = (
+    value: YooptaContentValue,
+    options: YooptaOnChangeOptions,
+  ) => {
+    setValue(value);
+  };
+
+  /**
    * @DATE_LOGIC
    */
   const [publishingDate, setPublishingDate] = useState<Date | undefined>(
@@ -137,15 +143,21 @@ export default function BlogEditInner({
   const handleSelectedDateType = (v: SelectedDateType) =>
     setSelectedDateType(v);
 
-  useEffect(() => {
-    setTimeout(() => setStep(BlogStep.PUBLISHING), 2000);
-  }, []);
+  // ------------- 포스트 올리기 로직 -------------
+  const postMutation = useMutation({
+    mutationFn: (dto: CreatePostDto) => postCreatePost(dto),
+  });
+
+  const handleSubmit = () => {
+    // postMutation({
+    // })
+  };
 
   return (
     <main className="flex min-h-screen w-full flex-col">
       {step === BlogStep.EDITTING && (
         <>
-          {/* TOOLBAR */}
+          {/* 상단 헤더 (ToolBar) */}
           <BlogEditorToolBar
             // Group
             selectedGroup={selectedGroup}
@@ -164,6 +176,7 @@ export default function BlogEditInner({
             handleEditorValue={handleEditorValue}
           />
 
+          {/* 본문 영역 */}
           <div
             className={cn(
               "flex w-full flex-1 justify-center pt-24",
@@ -185,10 +198,7 @@ export default function BlogEditInner({
               />
 
               {/* DIVIDER */}
-              <DividerComp
-                direction="horizontal"
-                className={"w-full bg-gray-5"}
-              />
+              <Divider direction="horizontal" className={"w-full bg-gray-5"} />
 
               {/* EDITOR */}
               <Editor value={value} onChangeEditorValue={onChangeEditorValue} />
@@ -201,8 +211,8 @@ export default function BlogEditInner({
         <BlogPublishingView
           selectedTags={selectedTags}
           selectedDateType={selectedDateType}
-          onChangeSelectedDateType={handleSelectedDateType}
           publishingDate={publishingDate}
+          onChangeSelectedDateType={handleSelectedDateType}
           onChangePublishingDate={setPublishingDate}
           onChangeStep={handleStep}
         />

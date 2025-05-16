@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { SectionLabel } from "@/components/common";
-import { TagProps } from "@/types";
+import { TagType } from "@/types";
 import {
   ButtonBase,
   DatePicker,
@@ -27,7 +27,7 @@ import {
 import { BlogStep } from "@/types";
 
 interface BlogPublishingViewProps {
-  selectedTags: TagProps[];
+  selectedTags: TagType[];
 
   selectedDateType: SelectedDateType;
   onChangeSelectedDateType: (v: SelectedDateType) => void;
@@ -61,7 +61,7 @@ const BlogPublishingView = ({
       { opacity: 0, y: 20 },
       { opacity: 1, y: 0, duration: 0.5 },
     );
-  }, [containerRef]);
+  }, []);
 
   const {
     fillStyle: DarkFillStyle,
@@ -124,8 +124,7 @@ const BlogPublishingView = ({
                 <Tag
                   key={items.id}
                   id={items.id}
-                  value={items.value}
-                  label={items.label}
+                  title={items.title}
                   isActivated
                   hasXButton={false}
                 />

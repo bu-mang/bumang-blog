@@ -40,7 +40,8 @@ import Code from "@yoopta/code";
 import Table from "@yoopta/table";
 import Divider from "@yoopta/divider";
 import { useEffect, useMemo, useRef, useState } from "react";
-import yooptaExports, { html } from "@yoopta/exports";
+// import yooptaExports, { html } from "@yoopta/exports";
+import { html } from "@yoopta/exports";
 import { WITH_BASIC_INIT_VALUE } from "./initValue";
 
 const plugins = [
@@ -160,32 +161,30 @@ const Editor = ({
   onChangeEditorValue,
 }: EditorProps) => {
   const editor = useMemo(() => createYooptaEditor(), []);
+  const [tempHTML, setTempHTML] = useState("");
 
-  // from html to @yoopta content
+  // parsing해서 HTML로.
   const deserializeHTML = () => {
-    const htmlString = "<h1>First title</h1>";
-
-    const content = yooptaExports.html.deserialize(editor, htmlString);
+    const content = html.deserialize(editor, tempHTML);
 
     editor.setEditorValue(content);
   };
 
-  // useEffect(() => {
-  //   deserializeHTML();
-  //   // eslint-disable-next-line
-  // }, []);
-
-  // from @yoopta content to html string
+  // string 직렬화해서 서버 패칭
   const serializeHTML = () => {
     const data = editor.getEditorValue();
     if (data) {
-      const htmlString = yooptaExports.html.serialize(editor, data);
-      console.log("html string", htmlString);
+      const htmlString = html.serialize(editor, data);
+      console.log(htmlString);
+      setTempHTML(htmlString);
     }
+
+    editor.setEditorValue(null);
   };
 
   const selectionRef = useRef<HTMLDivElement>(null);
 
+  // 블록 추가
   const addBlockData = (index: number, focus = true) => {
     if (readOnly) return;
 
@@ -195,7 +194,7 @@ const Editor = ({
       at: index,
       focus,
     };
-    const insertedId = editor.insertBlock("HeadingOne", insertBlockOptions);
+    const insertedId = editor.insertBlock("Paragraph", insertBlockOptions);
 
     return insertedId;
   };
@@ -214,18 +213,25 @@ const Editor = ({
       }
     }
   };
+
   return (
     <div
       className="flex flex-1 flex-col"
       ref={selectionRef}
       onClick={handleEditorFocus}
     >
+      <button type="button" className="bg-blue-500" onClick={serializeHTML}>
+        Export anyway
+      </button>
+      <button type="button" className="bg-red-500" onClick={deserializeHTML}>
+        Import anyway
+      </button>
       <YooptaEditor
         width="100%"
         className="flex-1 p-2"
         editor={editor}
         plugins={plugins}
-        placeholder="Type Something Cool...!"
+        placeholder="Type Something Cool..."
         value={value}
         onChange={onChangeEditorValue}
         selectionBoxRoot={selectionRef}

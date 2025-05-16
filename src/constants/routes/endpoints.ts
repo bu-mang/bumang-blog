@@ -11,4 +11,7 @@ export const END_POINTS = {
   // BLOG
   GET_GROUP_CATEGORY_MENU_TREE: "/categories/groups/menu",
   GET_ALL_TAGS: "/tags",
+
+  // BLOG/EDIT
+  POST_CREATE_POST: "/posts",
 } as const;

@@ -32,7 +32,7 @@ export default function Blog() {
         });
       });
     }
-  }, [containerRef]);
+  }, []);
 
   return (
     <main className="" ref={containerRef}>

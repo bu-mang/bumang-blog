@@ -32,9 +32,9 @@ const LoginForm = () => {
       // fetching 성공했다면,
       router.push("/");
     } catch (error) {
-      console.error(error);
       if (isAxiosError(error)) {
-        //
+        console.error(error);
+        console.log(error, "error");
       }
     } finally {
       setTimeout(() => router.refresh(), 300);
