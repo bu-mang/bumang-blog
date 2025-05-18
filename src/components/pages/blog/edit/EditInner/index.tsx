@@ -43,7 +43,7 @@ export default function BlogEditInner({
   const handleStep = (v: BlogStep) => setStep(v);
   const handlePublish = async () => {
     const serializedHTML = getSerializeHTML("html");
-    const previewText = getSerializeHTML("plainText") ?? "";
+    const previewText = (getSerializeHTML("plainText") ?? "").slice(0, 200);
     const categoryId = selectedCategory?.id;
     const tagIds = selectedTags.map((item) => item.id);
     const readPermission = null;

@@ -1,10 +1,8 @@
 "use client";
 
 import YooptaEditor, {
-  createYooptaEditor,
   SlateElement,
   YooptaContentValue,
-  YooptaOnChangeOptions,
   YooptaPlugin,
   Blocks,
   YooEditor,
@@ -40,10 +38,7 @@ import { HeadingOne, HeadingThree, HeadingTwo } from "@yoopta/headings";
 import Code from "@yoopta/code";
 import Table from "@yoopta/table";
 import Divider from "@yoopta/divider";
-import { useEffect, useMemo, useRef, useState } from "react";
-// import yooptaExports, { html } from "@yoopta/exports";
-import { html } from "@yoopta/exports";
-import { WITH_BASIC_INIT_VALUE } from "./initValue";
+import { useRef } from "react";
 
 const plugins = [
   Paragraph,
@@ -80,7 +75,7 @@ const plugins = [
     elementProps: {
       image: (props: ImageElementProps) => ({
         ...props,
-        alt: "ImageExample",
+        alt: "S3",
         fit: "contain",
       }),
     },
@@ -133,13 +128,13 @@ const plugins = [
 const MARKS = [Bold, Italic, CodeMark, Underline, Strike, Highlight];
 
 const TOOLS = {
-  Toolbar: {
-    tool: Toolbar,
-    render: DefaultToolbarRender,
-  },
   ActionMenuList: {
-    tool: ActionMenuList,
     render: DefaultActionMenuRender,
+    tool: ActionMenuList,
+  },
+  Toolbar: {
+    render: DefaultToolbarRender,
+    tool: Toolbar,
   },
   LinkTool: {
     tool: LinkTool,
@@ -199,12 +194,6 @@ const Editor = ({
       ref={selectionRef}
       onClick={handleEditorFocus}
     >
-      {/* <button type="button" className="bg-blue-500" onClick={serializeHTML}>
-        Export anyway
-      </button>
-      <button type="button" className="bg-red-500" onClick={deserializeHTML}>
-        Import anyway
-      </button> */}
       <YooptaEditor
         width="100%"
         className="flex-1 p-2"

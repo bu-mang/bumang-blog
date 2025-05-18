@@ -46,14 +46,14 @@ export default function BlogDetail() {
       {/* 본문 ARTICLE */}
       <div className="col-start-3 col-end-9 mb-10 flex h-fit flex-col justify-center gap-x-[1.5vw]">
         <TagWrapper as="collapsible" align="center">
-          <Tag id="1" value="design" label="Design1" />
-          <Tag id="1" value="design" label="Design2" />
-          <Tag id="1" value="design" label="Design3" />
-          <Tag id="1" value="design" label="Design4" />
-          <Tag id="1" value="design" label="Design5" />
-          <Tag id="1" value="design" label="Design6" />
-          <Tag id="1" value="design" label="Design7" />
-          <Tag id="1" value="design" label="Design8" />
+          <Tag id={1} title="design" />
+          <Tag id={1} title="design" />
+          <Tag id={1} title="design" />
+          <Tag id={1} title="design" />
+          <Tag id={1} title="design" />
+          <Tag id={1} title="design" />
+          <Tag id={1} title="design" />
+          <Tag id={1} title="design" />
         </TagWrapper>
 
         <div className="mt-2 flex text-center text-6xl font-semibold leading-tight">

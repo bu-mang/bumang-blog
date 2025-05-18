@@ -31,20 +31,20 @@ const getButtonColorStyle = (
   // SIZE
   switch (size) {
     case "lg":
-      layoutSizeStyle = "px-8 h-14 rounded-lg";
+      layoutSizeStyle = "px-8 h-14 rounded-lg active:scale-95";
       textSizeStyle = "text-xl font-semibold";
       flexBoxClass = "flex items-center gap-3";
       break;
 
     case "md":
-      layoutSizeStyle = "px-4 h-10 rounded-lg";
+      layoutSizeStyle = "px-4 h-10 rounded-lg active:scale-95";
       textSizeStyle = "text-lg font-medium";
       flexBoxClass = "flex items-center gap-3";
       break;
 
     case "sm":
     default:
-      layoutSizeStyle = "px-4 h-8 rounded-md";
+      layoutSizeStyle = "px-4 h-8 rounded-md active:scale-95";
       textSizeStyle = "text-base font-medium";
       flexBoxClass = "flex items-center gap-2";
       break;

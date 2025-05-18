@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import type { ButtonProps } from "@/types";
+import { cn } from "@/utils/cn";
 
 const ButtonBase = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -17,7 +18,7 @@ const ButtonBase = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         onClick={onClick}
-        className={className}
+        className={cn("active:scale-95", className)}
         disabled={disabled || isLoading}
         {...props}
       >
