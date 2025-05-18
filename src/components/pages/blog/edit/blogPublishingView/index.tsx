@@ -58,12 +58,27 @@ const BlogPublishingView = ({
 
   useEffect(() => {
     if (!containerRef.current) return;
+    const container = containerRef.current;
     gsap.fromTo(
-      containerRef.current,
+      container,
       { opacity: 0, y: 20 },
       { opacity: 1, y: 0, duration: 0.5 },
     );
+
+    return () => {
+      // 진행 중인 모든 GSAP 애니메이션 정리
+      gsap.killTweensOf(container);
+    };
   }, []);
+
+  const handleConvertToEditting = () => {
+    gsap.to(containerRef.current, {
+      opacity: 0,
+      y: 20,
+      duration: 0.1,
+      onComplete: () => onChangeStep(BlogStep.EDITTING),
+    });
+  };
 
   const {
     fillStyle: DarkFillStyle,
@@ -84,7 +99,7 @@ const BlogPublishingView = ({
       <div className="mb-8 w-full">
         {/* GO BACK BUTTON */}
         <ButtonBase
-          onClick={() => onChangeStep(BlogStep.EDITTING)}
+          onClick={handleConvertToEditting}
           className="group -translate-x-1.5 rounded-sm transition-all hover:bg-gray-5"
         >
           <XIcon
@@ -201,14 +216,17 @@ const BlogPublishingView = ({
             <div className="flex gap-4">
               <FillButton
                 className={cn("w-fit", lightFillStyle)}
-                onClick={() => onChangeStep(BlogStep.EDITTING)}
+                onClick={handleConvertToEditting}
               >
                 <div className={lightFlexBoxClass}>
                   <GoBackIcon className={lightTextStyle} />
                   <span className={lightTextStyle}>Go Back</span>
                 </div>
               </FillButton>
-              <FillButton className={cn("w-fit", DarkFillStyle)}>
+              <FillButton
+                className={cn("w-fit", DarkFillStyle)}
+                onClick={onPublishing}
+              >
                 <div className={DarkFlexClass}>
                   <PublishPlaneIcon className={DarkTextStyle} />
                   <span className={DarkTextStyle}>Publish</span>

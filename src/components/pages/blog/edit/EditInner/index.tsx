@@ -19,7 +19,8 @@ import { sortStringOrder } from "@/utils/sortTagOrder";
 import { useMutation } from "@tanstack/react-query";
 import { postCreatePost } from "@/services/api/blog/edit";
 import { CreatePostDto } from "@/types/dto/blog";
-import { html } from "@yoopta/exports";
+import { html, plainText } from "@yoopta/exports";
+import { useRouter } from "next/navigation";
 
 interface BlogEditInnerProps {
   tagLists: TagType[];
@@ -33,9 +34,44 @@ export default function BlogEditInner({
   /**
    * @FUNNEL_LOGIC
    */
+  const router = useRouter();
   const [step, setStep] = useState(BlogStep.EDITTING);
+  const postMutation = useMutation({
+    mutationFn: postCreatePost,
+    onSuccess: () => router.back(),
+  });
   const handleStep = (v: BlogStep) => setStep(v);
-  const handlePublish = () => {};
+  const handlePublish = async () => {
+    const serializedHTML = getSerializeHTML("html");
+    const previewText = getSerializeHTML("plainText") ?? "";
+    const categoryId = selectedCategory?.id;
+    const tagIds = selectedTags.map((item) => item.id);
+    const readPermission = null;
+
+    if (
+      serializedHTML === undefined ||
+      categoryId === undefined ||
+      readPermission === undefined
+    )
+      return;
+
+    console.log("-----");
+    console.log(selectedGroup?.label, "selectedGroup");
+    console.log(selectedCategory?.label, "selectedCategory");
+    console.log(selectedTags, "selectedTags");
+    console.log("-----");
+    console.log(title, "title");
+    console.log(serializedHTML, "getSerializeHTML");
+
+    postMutation.mutateAsync({
+      title,
+      content: serializedHTML,
+      previewText,
+      categoryId,
+      tagIds,
+      readPermission,
+    });
+  };
 
   // ------------- 중앙부 그룹/카테고리/태그 로직 (중앙) -------------
 
@@ -133,22 +169,32 @@ export default function BlogEditInner({
   const editor = useMemo(() => createYooptaEditor(), []);
 
   // parsing해서 HTML로.
-  const deserializeHTML = () => {
+  const getDeserializeHTML = () => {
     const content = html.deserialize(editor, serializedEditorValue);
 
     editor.setEditorValue(content);
   };
 
   // string 직렬화해서 서버 패칭
-  const serializeHTML = () => {
+  const getSerializeHTML = (type: "html" | "plainText" = "html") => {
     const data = editor.getEditorValue();
-    if (data) {
+    if (!data) return;
+
+    if (type === "html") {
       const htmlString = html.serialize(editor, data);
       console.log(htmlString);
-      setSerializedEditorValue(htmlString);
+
+      return htmlString;
     }
 
-    editor.setEditorValue(null);
+    if (type === "plainText") {
+      const plainString = plainText.serialize(editor, data);
+      console.log(plainString);
+
+      return plainString;
+    }
+
+    return;
   };
 
   const onChangeEditorValue = (value: YooptaContentValue) => {
@@ -166,16 +212,6 @@ export default function BlogEditInner({
   );
   const handleSelectedDateType = (v: SelectedDateType) =>
     setSelectedDateType(v);
-
-  // ------------- 포스트 올리기 로직 -------------
-  const postMutation = useMutation({
-    mutationFn: (dto: CreatePostDto) => postCreatePost(dto),
-  });
-
-  const handleSubmit = () => {
-    // postMutation({
-    // })
-  };
 
   return (
     <main className="flex min-h-screen w-full flex-col">
