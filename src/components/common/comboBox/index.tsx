@@ -107,7 +107,7 @@ function ComboBox<T extends (GroupType | CategoryType) | null>({
         <Command>
           <CommandInput placeholder="Search Category..." className="h-9" />
           <CommandList>
-            <CommandEmpty>No listItem found.</CommandEmpty>
+            <CommandEmpty>Select Category first.</CommandEmpty>
             <CommandGroup>
               {selectingList.map((listItem) => (
                 <CommandItem

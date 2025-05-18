@@ -16,7 +16,7 @@ import {
   FillButton,
 } from "@/components/common";
 import { useRouter } from "next/navigation";
-import { TagType, GroupType, CategoryType } from "@/types";
+import { TagType, GroupType, CategoryType, BlogStep } from "@/types";
 import DraftController from "../draftController";
 import { YooptaContentValue } from "@yoopta/editor";
 
@@ -43,6 +43,8 @@ interface BlogEditorToolBarProps {
   isDraftOpen: boolean;
   handleDraftOpen: () => void;
   handleEditorValue: (title: string, content: YooptaContentValue) => void;
+
+  onChangeStep: (v: BlogStep) => void;
 }
 
 const BlogEditorToolBar = ({
@@ -64,6 +66,9 @@ const BlogEditorToolBar = ({
   isDraftOpen,
   handleDraftOpen,
   handleEditorValue,
+
+  // onChangeStep
+  onChangeStep,
 }: BlogEditorToolBarProps) => {
   /**
    * @그룹_변경_시_카테고리_전환
@@ -159,7 +164,10 @@ const BlogEditorToolBar = ({
           className="ml-2"
         />
         <Divider className="ml-3" />
-        <FillButton className={cn("ml-6 px-4", DarkFillStyle)}>
+        <FillButton
+          className={cn("ml-6 px-4", DarkFillStyle)}
+          onClick={() => onChangeStep(BlogStep.PUBLISHING)}
+        >
           <div className={flexBoxClass}>
             <PublishPlaneIcon className={DarkTextStyle} />
             <span className={DarkTextStyle}>Publish</span>

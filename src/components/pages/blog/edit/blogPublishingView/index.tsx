@@ -36,6 +36,7 @@ interface BlogPublishingViewProps {
   onChangePublishingDate: SelectSingleEventHandler;
 
   onChangeStep: (v: BlogStep) => void;
+  onPublishing: () => void;
 }
 
 const BlogPublishingView = ({
@@ -48,6 +49,7 @@ const BlogPublishingView = ({
   onChangePublishingDate,
 
   onChangeStep,
+  onPublishing,
 }: BlogPublishingViewProps) => {
   /**
    * @MOUNT_ANIMATION

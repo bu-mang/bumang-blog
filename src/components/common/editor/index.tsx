@@ -7,6 +7,7 @@ import YooptaEditor, {
   YooptaOnChangeOptions,
   YooptaPlugin,
   Blocks,
+  YooEditor,
 } from "@yoopta/editor";
 
 import {
@@ -147,41 +148,19 @@ const TOOLS = {
 };
 
 interface EditorProps {
-  value: YooptaContentValue | undefined;
-  onChangeEditorValue: (
-    value: YooptaContentValue,
-    options: YooptaOnChangeOptions,
-  ) => void;
+  editor: YooEditor;
+  editorValue: YooptaContentValue | undefined;
+
+  onChangeEditorValue: (value: YooptaContentValue) => void;
   readOnly?: boolean;
 }
 
 const Editor = ({
   readOnly = false,
-  value,
+  editor,
+  editorValue,
   onChangeEditorValue,
 }: EditorProps) => {
-  const editor = useMemo(() => createYooptaEditor(), []);
-  const [tempHTML, setTempHTML] = useState("");
-
-  // parsing해서 HTML로.
-  const deserializeHTML = () => {
-    const content = html.deserialize(editor, tempHTML);
-
-    editor.setEditorValue(content);
-  };
-
-  // string 직렬화해서 서버 패칭
-  const serializeHTML = () => {
-    const data = editor.getEditorValue();
-    if (data) {
-      const htmlString = html.serialize(editor, data);
-      console.log(htmlString);
-      setTempHTML(htmlString);
-    }
-
-    editor.setEditorValue(null);
-  };
-
   const selectionRef = useRef<HTMLDivElement>(null);
 
   // 블록 추가
@@ -220,19 +199,19 @@ const Editor = ({
       ref={selectionRef}
       onClick={handleEditorFocus}
     >
-      <button type="button" className="bg-blue-500" onClick={serializeHTML}>
+      {/* <button type="button" className="bg-blue-500" onClick={serializeHTML}>
         Export anyway
       </button>
       <button type="button" className="bg-red-500" onClick={deserializeHTML}>
         Import anyway
-      </button>
+      </button> */}
       <YooptaEditor
         width="100%"
         className="flex-1 p-2"
         editor={editor}
         plugins={plugins}
         placeholder="Type Something Cool..."
-        value={value}
+        value={editorValue}
         onChange={onChangeEditorValue}
         selectionBoxRoot={selectionRef}
         tools={TOOLS}

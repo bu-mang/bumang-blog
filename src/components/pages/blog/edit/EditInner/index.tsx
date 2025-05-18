@@ -1,7 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { YooptaContentValue, YooptaOnChangeOptions } from "@yoopta/editor";
+import { useMemo, useState } from "react";
+import {
+  createYooptaEditor,
+  YooptaContentValue,
+  YooptaOnChangeOptions,
+} from "@yoopta/editor";
 
 import { Divider, Editor } from "@/components/common";
 import { BlogPublishingView, BlogEditorToolBar } from "@/components/pages";
@@ -10,12 +14,12 @@ import { BlogStep, CategoryType, GroupType, TagType } from "@/types";
 import { SelectedDateType } from "@/types/date";
 import { cn } from "@/utils/cn";
 
-import { WITH_BASIC_INIT_VALUE } from "@/components/common/editor/initValue";
 import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
 import { sortStringOrder } from "@/utils/sortTagOrder";
 import { useMutation } from "@tanstack/react-query";
 import { postCreatePost } from "@/services/api/blog/edit";
 import { CreatePostDto } from "@/types/dto/blog";
+import { html } from "@yoopta/exports";
 
 interface BlogEditInnerProps {
   tagLists: TagType[];
@@ -31,6 +35,7 @@ export default function BlogEditInner({
    */
   const [step, setStep] = useState(BlogStep.EDITTING);
   const handleStep = (v: BlogStep) => setStep(v);
+  const handlePublish = () => {};
 
   // ------------- 중앙부 그룹/카테고리/태그 로직 (중앙) -------------
 
@@ -122,13 +127,32 @@ export default function BlogEditInner({
    * @EDITOR_LOGIC
    */
   // WITH_BASIC_INIT_VALUE
-  const [value, setValue] = useState<YooptaContentValue>();
+  const [editorValue, setEditorValue] = useState<YooptaContentValue>();
+  const [serializedEditorValue, setSerializedEditorValue] = useState("");
 
-  const onChangeEditorValue = (
-    value: YooptaContentValue,
-    options: YooptaOnChangeOptions,
-  ) => {
-    setValue(value);
+  const editor = useMemo(() => createYooptaEditor(), []);
+
+  // parsing해서 HTML로.
+  const deserializeHTML = () => {
+    const content = html.deserialize(editor, serializedEditorValue);
+
+    editor.setEditorValue(content);
+  };
+
+  // string 직렬화해서 서버 패칭
+  const serializeHTML = () => {
+    const data = editor.getEditorValue();
+    if (data) {
+      const htmlString = html.serialize(editor, data);
+      console.log(htmlString);
+      setSerializedEditorValue(htmlString);
+    }
+
+    editor.setEditorValue(null);
+  };
+
+  const onChangeEditorValue = (value: YooptaContentValue) => {
+    setEditorValue(value);
   };
 
   /**
@@ -174,6 +198,8 @@ export default function BlogEditInner({
             isDraftOpen={isDraftOpen}
             handleDraftOpen={handleDraftOpen}
             handleEditorValue={handleEditorValue}
+            // chageStep
+            onChangeStep={handleStep}
           />
 
           {/* 본문 영역 */}
@@ -183,10 +209,7 @@ export default function BlogEditInner({
               LAYOUT_PADDING_ALONGSIDE,
             )}
           >
-            <form
-              className="flex w-[720px] flex-col"
-              // onSubmit={(e) => handleSubmit(e)}
-            >
+            <div className="flex w-[720px] flex-col">
               {/* INPUT */}
               <textarea
                 className="flex h-auto min-h-20 w-full resize-none flex-wrap overflow-hidden rounded-md border-none bg-transparent px-2 py-4 text-5xl font-semibold leading-normal outline-none transition-colors placeholder:text-gray-100 hover:bg-gray-1 disabled:cursor-not-allowed disabled:opacity-50"
@@ -201,8 +224,12 @@ export default function BlogEditInner({
               <Divider direction="horizontal" className={"w-full bg-gray-5"} />
 
               {/* EDITOR */}
-              <Editor value={value} onChangeEditorValue={onChangeEditorValue} />
-            </form>
+              <Editor
+                editor={editor}
+                editorValue={editorValue}
+                onChangeEditorValue={onChangeEditorValue}
+              />
+            </div>
           </div>
         </>
       )}
@@ -212,9 +239,13 @@ export default function BlogEditInner({
           selectedTags={selectedTags}
           selectedDateType={selectedDateType}
           publishingDate={publishingDate}
+          // onChageOptions
           onChangeSelectedDateType={handleSelectedDateType}
           onChangePublishingDate={setPublishingDate}
+          // onChageStep
           onChangeStep={handleStep}
+          // PUBLISH!
+          onPublishing={handlePublish}
         />
       )}
     </main>
