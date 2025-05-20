@@ -8,3 +8,9 @@ export interface CreatePostDto {
   tagIds: number[];
   readPermission: RoleType | null;
 }
+
+export interface CreatePreSignedUrlResponseDto {
+  key: string;
+  publicUrl: string;
+  url: string;
+}

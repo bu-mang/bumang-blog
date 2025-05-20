@@ -39,6 +39,8 @@ import Code from "@yoopta/code";
 import Table from "@yoopta/table";
 import Divider from "@yoopta/divider";
 import { useRef } from "react";
+import { postCreatePreSignedUrl, postS3 } from "@/services/api/blog/edit";
+import { ClientInstance } from "@/services";
 
 const plugins = [
   Paragraph,
@@ -81,15 +83,22 @@ const plugins = [
     },
     options: {
       async onUpload(file) {
-        // const data = await uploadToCloudinary(file, 'image');
-        // return {
-        //   src: data.secure_url,
-        //   alt: "cloudinary",
-        //   sizes: {
-        //     width: data.width,
-        //     height: data.height,
-        //   },
-        // };
+        const preSignedUrl = await postCreatePreSignedUrl(file);
+
+        const { url } = preSignedUrl;
+
+        const res = await postS3(url, file);
+
+        console.log(res, "res!!");
+
+        return {
+          src: res.secure_url,
+          alt: "s3_image",
+          sizes: {
+            width: res.width,
+            height: res.height,
+          },
+        };
         return {};
       },
     },
@@ -176,10 +185,8 @@ const Editor = ({
   const handleEditorFocus = () => {
     if (selectionRef.current) {
       if (editor.isEmpty()) {
-        // 블록이 아무것도 없을 때 클릭하면 라인 추가 후 포커스
         addBlockData(0, true);
       } else {
-        // 20줄 이하일 때 영역을 클릭하면 라인 추가
         const length = Object.keys(editor.getEditorValue()).length;
         if (length <= 20) {
           addBlockData(length, false);
@@ -199,7 +206,7 @@ const Editor = ({
         className="flex-1 p-2"
         editor={editor}
         plugins={plugins}
-        placeholder="Type Something Cool..."
+        placeholder="type '/' to open Menu"
         value={editorValue}
         onChange={onChangeEditorValue}
         selectionBoxRoot={selectionRef}

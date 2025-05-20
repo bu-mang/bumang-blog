@@ -14,4 +14,5 @@ export const END_POINTS = {
 
   // BLOG/EDIT
   POST_CREATE_POST: "/posts",
+  POST_IMAGE_PRESIGNED_URL: "/s3/presigned-url",
 } as const;
