@@ -70,15 +70,18 @@ export default async function serverFetch<T>(
     // 리프레시 토큰으로 새 액세스 토큰 요청
     const refreshToken = cookieStore.get("refreshToken")?.value;
 
+    console.log(refreshToken, "refreshToken 🚨");
+
     // 리프레시 토큰이 없으면 로그인 페이지로 리디렉션
     // 로그인 상태가 완전히 만료되었음을 의미
     if (!refreshToken) {
+      console.log("refreshToken!");
       // Next.js의 redirect 함수 사용 - 서버 렌더링 중 즉시 리디렉션
       redirect("/");
     }
 
     const refreshResponse = await fetch(
-      process.env.LOCAL_HOST + END_POINTS.POST_RENEW_ACCESS_TOKEN,
+      process.env.SERVER_LOCAL_HOST + END_POINTS.POST_RENEW_ACCESS_TOKEN,
       {
         method: "POST",
         headers: {
@@ -88,10 +91,11 @@ export default async function serverFetch<T>(
       },
     );
 
+    console.log(refreshResponse.ok, "refreshResponse");
+
     if (!refreshResponse.ok) {
-      // 리프레시 실패 시 메인 페이지로 리디렉션
-      console.log("🚨 refreshResponse!");
-      redirect("/");
+      console.log("🔴 redirect 실행 전");
+      throw new Error("AUTH_LOGOUT_REQUIRED"); // redirect 대신 특별한 에러
     }
 
     const setCookieHeader = refreshResponse.headers.get("set-cookie");
@@ -111,7 +115,6 @@ export default async function serverFetch<T>(
     });
 
     if (response.status === 401) {
-      console.log(21, url, "serverFetch");
       // 여전히 인증 실패면 루트 페이지로 리디렉션
       redirect("/");
     }

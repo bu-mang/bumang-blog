@@ -2,6 +2,7 @@ import HeaderInner from "./headerInner";
 import { UserResponseType } from "@/types/user";
 import { getCookie } from "@/utils/cookies/getCookie";
 import { getUserProfile } from "@/services/api/auth/server";
+import { redirect } from "next/navigation";
 
 const Header = async () => {
   /**
@@ -23,6 +24,11 @@ const Header = async () => {
   } catch (error) {
     if (error instanceof Error) {
       console.log(error.message, "error message");
+
+      if (error?.message === "AUTH_LOGOUT_REQUIRED") {
+        redirect("/logout"); // 여기서 redirect
+      }
+      throw error; // 다른 에러는 그대로
     }
   }
 
