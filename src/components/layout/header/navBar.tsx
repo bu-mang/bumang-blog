@@ -26,11 +26,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface NavBarProps {
   isAuthenticated: boolean;
-  nickname: string;
+  isLoading?: boolean;
+  nickname?: string;
 }
 
 // TODO: 사분면 마다 코드스플리팅 할까..
-const NavBar = ({ isAuthenticated, nickname }: NavBarProps) => {
+const NavBar = ({ isAuthenticated, isLoading, nickname }: NavBarProps) => {
   /**
    * @HEADER_ANIMATION
    */
@@ -198,6 +199,8 @@ const NavBar = ({ isAuthenticated, nickname }: NavBarProps) => {
                 <span className={linkHoverStyle}>Logout</span>
               </Button>
             </div>
+          ) : isLoading ? (
+            <div className={linkHoverStyle}>loading...</div>
           ) : (
             <Link href="/login" className={linkHoverStyle}>
               Login

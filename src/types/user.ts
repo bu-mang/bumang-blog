@@ -10,4 +10,4 @@ export interface UserResponseType {
   commentsCount: number;
 }
 
-export type UserType = Pick<UserResponseType, "nickname" | "role">;
+export type UserType = Pick<UserResponseType, "nickname" | "role" | "id">;

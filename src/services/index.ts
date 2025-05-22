@@ -3,7 +3,7 @@
  */
 // API CONSTANTS
 
-import { END_POINTS } from "../constants/routes/endpoints";
+import { END_POINTS } from "../constants/api/endpoints";
 
 /**
  * @LIBRARIES

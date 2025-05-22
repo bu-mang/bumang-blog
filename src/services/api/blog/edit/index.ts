@@ -1,4 +1,4 @@
-import { END_POINTS } from "@/constants/routes/endpoints";
+import { END_POINTS } from "@/constants/api/endpoints";
 import ClientInstance from "@/services/lib/axios";
 import {
   CreatePostDto,

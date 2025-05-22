@@ -7,14 +7,15 @@ import { immer } from "zustand/middleware/immer";
 interface AuthState {
   // 쿠키에서 parsing
   isAuthenticated: boolean;
+
   // GET User API
-  user: UserType | null;
+  user: UserType | null; // nickname, role, id
 }
 
 interface AuthAction {
   setIsAuthenticated: (isAuthenticated: boolean) => void;
   setUser: (user: UserType) => void;
-  setAllAuthInfo: (data: AuthState) => void;
+  setUserAndIsAuthenticated: (data: AuthState) => void;
 }
 
 export const useAuthStore = create<AuthState & AuthAction>()(
@@ -30,7 +31,7 @@ export const useAuthStore = create<AuthState & AuthAction>()(
       set((state) => {
         state.user = user;
       }),
-    setAllAuthInfo: (all) =>
+    setUserAndIsAuthenticated: (all) =>
       set((state) => {
         state.isAuthenticated = all.isAuthenticated;
         state.user = all.user;

@@ -1,4 +1,4 @@
-import { END_POINTS } from "@/constants/routes/endpoints";
+import { END_POINTS } from "@/constants/api/endpoints";
 import serverFetch from "@/services/lib/serverFetch";
 import { TagType } from "@/types";
 import { GroupType } from "@/types/category";

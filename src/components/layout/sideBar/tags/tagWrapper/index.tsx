@@ -8,12 +8,10 @@ interface TagWrapperLayerProps {
 }
 
 const TagWrapperLayer = ({ tags }: TagWrapperLayerProps) => {
-  console.log(tags, "tags");
-
   return (
     <TagWrapper className="pr-8">
       {tags?.map((tag) => {
-        return <Tag id={tag.id} title={tag.title} type="button" />;
+        return <Tag key={tag.id} id={tag.id} title={tag.title} type="button" />;
       })}
     </TagWrapper>
   );

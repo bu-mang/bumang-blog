@@ -1,4 +1,4 @@
-import { END_POINTS } from "@/constants/routes/endpoints";
+import { END_POINTS } from "@/constants/api/endpoints";
 import { UserResponseType } from "@/types/user";
 import axios, { AxiosRequestConfig, isAxiosError } from "axios";
 
