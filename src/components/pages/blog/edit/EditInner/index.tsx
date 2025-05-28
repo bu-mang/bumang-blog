@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import {
   createYooptaEditor,
   YooptaContentValue,
-  YooptaOnChangeOptions,
+  // YooptaOnChangeOptions,
 } from "@yoopta/editor";
 
 import { Divider, Editor } from "@/components/common";
