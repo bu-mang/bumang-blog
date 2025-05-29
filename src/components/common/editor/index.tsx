@@ -26,7 +26,7 @@ import LinkTool, { DefaultLinkToolRender } from "@yoopta/link-tool";
 import Paragraph from "@yoopta/paragraph";
 import Blockquote from "@yoopta/blockquote";
 import Embed from "@yoopta/embed";
-import Image, { ImageElementProps } from "@yoopta/image";
+import S3Image, { ImageElementProps } from "@yoopta/image";
 import Link from "@yoopta/link";
 import Callout from "@yoopta/callout";
 import Video from "@yoopta/video";
@@ -39,8 +39,8 @@ import Code from "@yoopta/code";
 import Table from "@yoopta/table";
 import Divider from "@yoopta/divider";
 import { useRef } from "react";
-import { postCreatePreSignedUrl, postS3 } from "@/services/api/blog/edit";
-import { ClientInstance } from "@/services";
+import { postCreatePreSignedUrl, postUploadS3 } from "@/services/api/blog/edit";
+import { getImageDimensions } from "@/utils/getImageDimensions";
 
 const plugins = [
   Paragraph,
@@ -73,7 +73,7 @@ const plugins = [
   }),
   Link,
   Embed,
-  Image.extend({
+  S3Image.extend({
     elementProps: {
       image: (props: ImageElementProps) => ({
         ...props,
@@ -83,55 +83,112 @@ const plugins = [
     },
     options: {
       async onUpload(file) {
-        const preSignedUrl = await postCreatePreSignedUrl(file);
+        const preSignedUrl = await postCreatePreSignedUrl(file.name, file.type);
 
-        const { url } = preSignedUrl;
+        const { url, publicUrl } = preSignedUrl;
 
-        const res = await postS3(url, file);
+        const res = await postUploadS3(url, file);
+        console.log(res, "upload completed 👾");
 
-        console.log(res, "res!!");
+        const { width, height } = await getImageDimensions(file);
 
         return {
-          src: res.secure_url,
+          src: publicUrl,
           alt: "s3_image",
           sizes: {
-            width: res.width,
-            height: res.height,
+            width,
+            height,
           },
         };
-        return {};
       },
     },
   }),
-  Video,
-  // .extend({
-  // options: {
-  //   onUpload: async (file) => {
-  //     const data = await uploadToCloudinary(file, 'video');
-  //     return {
-  //       src: data.secure_url,
-  //       alt: 'cloudinary',
-  //       sizes: {
-  //         width: data.width,
-  //         height: data.height,
-  //       },
-  //     };
+  Video.extend({
+    options: {
+      onUpload: async (file) => {
+        const preSignedUrl = await postCreatePreSignedUrl(file.name, file.type);
+        const { url, publicUrl } = preSignedUrl;
+
+        const res = await postUploadS3(url, file);
+        console.log(res, "upload completed 👾");
+
+        const { width, height } = await getImageDimensions(file);
+
+        return {
+          src: publicUrl,
+          alt: "s3_image",
+          sizes: {
+            width,
+            height,
+          },
+        };
+      },
+      onUploadPoster: async (file) => {
+        const preSignedUrl = await postCreatePreSignedUrl(file.name, file.type);
+        const { url, publicUrl } = preSignedUrl;
+
+        const res = await postUploadS3(url, file);
+        console.log(res, "upload completed 👾");
+
+        return publicUrl;
+      },
+    },
+  }),
+  // File.extend({
+  //   options: {
+  //     onUpload: async (file) => {
+  //       const preSignedUrl = await postCreatePreSignedUrl(file.name, file.type);
+  //       return {
+  //         src: response.secure_url,
+  //         format: response.format,
+  //         name: response.name,
+  //         size: response.bytes,
+  //       };
+  //     },
   //   },
-  //   onUploadPoster: async (file) => {
-  //     const image = await uploadToCloudinary(file, 'image');
-  //     return image.secure_url;
-  //   },
-  // },
-  // })
-  File,
-  // .extend({
-  // options: {
-  //   onUpload: async (file) => {
-  //     const response = await uploadToCloudinary(file, 'auto');
-  //     return { src: response.secure_url, format: response.format, name: response.name, size: response.bytes };
-  //   },
-  // },
   // }),
+  File.extend({
+    options: {
+      onUpload: async (file) => {
+        try {
+          // 파일 크기 제한 (10MB)
+          if (file.size > 10 * 1024 * 1024) {
+            throw new Error("파일 크기는 10MB 이하여야 합니다.");
+          }
+
+          // 허용된 파일 타입 검증
+          const allowedTypes = [
+            "application/pdf",
+            "image/jpeg",
+            "image/png",
+            "text/plain",
+          ];
+          if (!allowedTypes.includes(file.type)) {
+            throw new Error("지원하지 않는 파일 형식입니다.");
+          }
+
+          const preSignedUrl = await postCreatePreSignedUrl(
+            file.name,
+            file.type,
+          );
+          const { url, publicUrl } = preSignedUrl;
+
+          await postUploadS3(url, file);
+
+          return {
+            src: publicUrl,
+            format: file.type,
+            name: file.name,
+            size: file.size,
+          };
+        } catch (error) {
+          console.error("File upload failed:", error);
+          throw new Error("파일 업로드에 실패했습니다.");
+          // 토스트 표출
+        }
+      },
+    },
+  }),
 ] as YooptaPlugin<Record<string, SlateElement>, Record<string, unknown>>[];
 
 const MARKS = [Bold, Italic, CodeMark, Underline, Strike, Highlight];

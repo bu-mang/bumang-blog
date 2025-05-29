@@ -52,6 +52,7 @@ export default function BlogEditInner({
       categoryId === undefined ||
       readPermission === undefined
     )
+      // 토스트 표출
       return;
 
     console.log("-----");
