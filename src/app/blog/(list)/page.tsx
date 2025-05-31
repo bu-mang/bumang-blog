@@ -35,6 +35,7 @@ export default async function Blog({ searchParams }: PageProps) {
             groupLabel,
             tags,
             author,
+            thumbnailUrl,
             readPermisson,
             score,
           }) => (
@@ -49,7 +50,7 @@ export default async function Blog({ searchParams }: PageProps) {
               categoryLabel={categoryLabel}
               tags={tags}
               date={createdAt}
-              imageUrl={""}
+              thumbnailUrl={thumbnailUrl}
               readPermisson={readPermisson}
               itemViewType={itemViewType}
             />

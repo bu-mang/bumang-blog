@@ -18,6 +18,7 @@ export interface PostListItemType {
   groupLabel: string;
   tags: TagCompactType[];
   author: string;
+  thumbnailUrl: string | null;
   readPermisson: RoleType;
   score?: number;
 }

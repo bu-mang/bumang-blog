@@ -6,7 +6,7 @@ import { TagCompactType } from "@/types/tag";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import { LuMoveRight } from "react-icons/lu";
+import { LuLock, LuLockKeyhole, LuLockOpen, LuMoveRight } from "react-icons/lu";
 
 interface BlogItemProps {
   id: number;
@@ -17,7 +17,7 @@ interface BlogItemProps {
   author: string;
   tags: TagCompactType[];
   date: string;
-  imageUrl: string;
+  thumbnailUrl: string | null;
   itemViewType: string;
   size?: "lg" | "sm";
   readPermisson: null | RoleType;
@@ -32,7 +32,7 @@ const BlogItem = ({
   tags,
   date,
   id,
-  imageUrl,
+  thumbnailUrl,
   itemViewType, // thumbnail | list
   size = "sm",
   readPermisson,
@@ -46,13 +46,17 @@ const BlogItem = ({
     <Link href={"/blog/" + id} className="group">
       {/* IMAGE */}
       <div className="relative aspect-video w-full cursor-pointer overflow-hidden rounded-8 bg-gray-50">
-        <Image src={imageUrl} alt="postImage" fill />
+        {thumbnailUrl && <Image src={thumbnailUrl} alt="postImage" fill />}
       </div>
 
       {/* TITLE */}
       <div className="mt-2.5 flex items-center group-hover:text-gray-500">
         <div className={titleStyle}>{title}</div>
-        <LuMoveRight className="animate-arrow text-gray-200 opacity-0 transition-all duration-500 group-hover:opacity-100" />
+        {readPermisson === null ? (
+          <LuMoveRight className="animate-arrow text-gray-200 opacity-0 transition-all duration-500 group-hover:opacity-100" />
+        ) : (
+          <LuLockKeyhole size={14} />
+        )}
       </div>
 
       {/* CONTENT */}
