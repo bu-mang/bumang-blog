@@ -20,6 +20,9 @@ import {
   BlogHeadingType,
   BlogHeadingComponentType,
 } from "@/types/blog";
+
+import { PaginatedResponseDto, PostListItemType } from "@/types/dto/blog";
+
 import { AlignType } from "@/types/layout";
 
 // TYPE
@@ -55,6 +58,10 @@ export type {
   BlogItemType,
   BlogHeadingType,
   BlogHeadingComponentType,
+
+  // BLOG DTO
+  PaginatedResponseDto,
+  PostListItemType,
 
   // LAYOUT
   AlignType,

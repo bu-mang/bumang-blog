@@ -1,12 +1,16 @@
+"use client";
+
 import { LuPlus } from "react-icons/lu";
 import Link from "next/link";
 import { getButtonColorStyle } from "@/utils/styles/filButtonManager";
 import { cn } from "@/utils/cn";
+import { useAuthStore } from "@/store/auth";
+import { useSearchParams } from "next/navigation";
+import { useQueryParams } from "@/hooks/useQueryParams";
 
 interface SectionLabelProps {
   title: string;
   amount?: number;
-  isActionButtonOn?: boolean;
   isDraggable?: boolean;
   className?: string;
 }
@@ -14,7 +18,6 @@ interface SectionLabelProps {
 const SectionLabel = ({
   title = "PageTitle",
   amount,
-  isActionButtonOn = false,
   isDraggable = false,
   className,
 }: SectionLabelProps) => {
@@ -24,6 +27,8 @@ const SectionLabel = ({
     isDraggable && "pointer-events-none",
     className,
   );
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const { updateQuery } = useQueryParams();
 
   return (
     <div className={titleClass}>
@@ -32,13 +37,33 @@ const SectionLabel = ({
         <span className="text-xl">{title}</span>
         <span className="text-sm text-gray-200">{amount}</span>
       </div>
+
       {/* NEW POST */}
-      {isActionButtonOn && (
-        <Link href="/blog/edit" className={cn(flexBoxClass, fillStyle)}>
-          <LuPlus className={textStyle} />
-          <span className={textStyle}>Write</span>
+      <div className="flex items-center gap-2">
+        <Link href={updateQuery({ view: "thumbnail" })}>
+          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gray-5">
+            Th
+          </div>
         </Link>
-      )}
+        <Link href={updateQuery({ view: "list" })}>
+          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gray-5">
+            Li
+          </div>
+        </Link>
+        {isAuthenticated && (
+          <Link
+            href="/blog/edit"
+            className={cn(
+              flexBoxClass,
+              fillStyle,
+              !isAuthenticated && "pointer-events-none opacity-20",
+            )}
+          >
+            <LuPlus className={textStyle} />
+            <span className={textStyle}>Write</span>
+          </Link>
+        )}
+      </div>
     </div>
   );
 };

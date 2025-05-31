@@ -17,3 +17,5 @@ export interface TagType {
     label: string;
   };
 }
+
+export type TagCompactType = Pick<TagType, "title" | "id">;

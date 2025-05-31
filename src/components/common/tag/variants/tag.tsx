@@ -9,6 +9,7 @@ import { LuX as CloseIcon } from "react-icons/lu";
 export interface TagProps {
   id: number;
   title: string;
+
   url?: string;
   onClick?: () => void;
   type?: "link" | "button";
@@ -30,8 +31,10 @@ const Tag = ({
   url,
   onClick,
   className,
+
   size = "lg",
   type = "link",
+
   hasXButton = true,
   hasBackground = true,
   isActivated = false,
