@@ -2,6 +2,7 @@ import { SectionLabel, Pagenation } from "@/components/common";
 import { BlogItem } from "@/components/pages";
 import { getAllPosts } from "@/services/api/blog/(list)/server";
 import { PaginatedResponseDto, PostListItemType } from "@/types";
+import { cn } from "@/utils/cn";
 
 interface PageProps {
   params: { category: string };
@@ -10,7 +11,8 @@ interface PageProps {
 
 export default async function Blog({ searchParams }: PageProps) {
   let allPosts: null | PaginatedResponseDto<PostListItemType> = null;
-  let itemViewType = searchParams.view === "list" ? "list" : "thumbnail";
+  let itemViewType: "list" | "thumbnail" =
+    searchParams.view === "list" ? "list" : "thumbnail";
 
   try {
     allPosts = await getAllPosts();
@@ -22,7 +24,13 @@ export default async function Blog({ searchParams }: PageProps) {
   return (
     <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw]">
       <SectionLabel title="PageTitle" amount={0} />
-      <div className="col-span-3 grid grid-cols-3 gap-x-[1.5vw] gap-y-[4.5vw]">
+      <div
+        className={cn(
+          "col-span-3",
+          itemViewType === "thumbnail" &&
+            "grid grid-cols-3 gap-x-[1.5vw] gap-y-[4.5vw]",
+        )}
+      >
         {/* BLOGITEMS */}
 
         {allPosts?.data?.map(
