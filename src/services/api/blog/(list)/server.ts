@@ -21,12 +21,10 @@ export const getAllTags = async () => {
   return res;
 };
 
-export const getAllPosts = async () => {
+export const getAllPosts = async (pageIndex: number, pageSize: number) => {
   const res = await serverFetch<PaginatedResponseDto<PostListItemType>>(
-    process.env.SERVER_LOCAL_HOST + END_POINTS.GET_ALL_POSTS,
-    {
-      cache: "no-cache",
-    },
+    process.env.SERVER_LOCAL_HOST +
+      END_POINTS.GET_ALL_POSTS(pageIndex, pageSize),
   );
 
   return res;

@@ -41,9 +41,6 @@ const BlogItem = ({
   const titleStyle = "line-clamp-2 flex-1 flex-nowrap font-medium";
   const contentStyle = "line-clamp-1 flex-1 flex-nowrap text-sm text-gray-400";
   const tagWrapperStyle = "flex flex-wrap gap-1 mt-1.5";
-  const dateStyle = "text-xs text-gray-200 mt-1.5";
-  const tagAndDividerAlignStyle =
-    "flex w-full items-center gap-2 transition-all duration-500";
 
   const formattedDate = format(date, "yyyy. MM. dd.");
 
@@ -52,11 +49,11 @@ const BlogItem = ({
       return (
         <Link
           href={"/blog/" + id}
-          className="group flex justify-between gap-6 py-8 lg:gap-28"
+          className="group flex items-center justify-between gap-6 py-8 lg:gap-28"
         >
           <div className="">
             {/* TITLE */}
-            <div className="mt-2.5 flex items-center text-2xl font-semibold group-hover:text-gray-500">
+            <div className="mb-2 mt-2.5 flex items-center text-2xl font-semibold group-hover:text-gray-500">
               <div className={titleStyle}>{title}</div>
               {readPermisson === null ? (
                 <LuMoveRight className="animate-arrow text-gray-200 opacity-0 transition-all duration-500 group-hover:opacity-100" />
@@ -70,8 +67,8 @@ const BlogItem = ({
               {previewText}
             </div>
 
-            <div className="mt-3 flex items-center gap-2">
-              <div className="flex truncate text-ellipsis font-semibold text-gray-100">
+            <div className="mt-4 flex items-center gap-2">
+              <div className="flex truncate text-ellipsis text-sm font-semibold text-gray-100">
                 <ButtonBase onClick={() => {}}>
                   <span className="truncate text-ellipsis">{groupLabel}</span>
                 </ButtonBase>
@@ -83,13 +80,13 @@ const BlogItem = ({
                 </ButtonBase>
               </div>
               <div className="h-2 w-[1px] bg-gray-100" />
-              <span className="truncate font-semibold text-gray-100">
+              <span className="truncate text-sm font-semibold text-gray-100">
                 {formattedDate}
               </span>
             </div>
 
             {/* TAGS */}
-            <div className={tagWrapperStyle}>
+            <div className={cn(tagWrapperStyle, "mt-4 gap-2")}>
               {/* {tags.map((tag) => (
           <Tag
             key={tag.id}
@@ -148,7 +145,7 @@ const BlogItem = ({
 
           {/* GROUP & CATEGORY & DATE */}
           <div className="mt-3 flex items-center gap-2">
-            <div className="flex truncate text-ellipsis font-semibold text-gray-100">
+            <div className="flex truncate text-ellipsis text-xs font-semibold text-gray-100">
               <ButtonBase onClick={() => {}}>
                 <span className="truncate text-ellipsis">{groupLabel}</span>
               </ButtonBase>
@@ -158,7 +155,7 @@ const BlogItem = ({
               </ButtonBase>
             </div>
             <div className="h-2 w-[1px] bg-gray-100" />
-            <span className="truncate font-semibold text-gray-100">
+            <span className="truncate text-xs font-semibold text-gray-100">
               {formattedDate}
             </span>
           </div>

@@ -13,9 +13,11 @@ export default async function Blog({ searchParams }: PageProps) {
   let allPosts: null | PaginatedResponseDto<PostListItemType> = null;
   let itemViewType: "list" | "thumbnail" =
     searchParams.view === "list" ? "list" : "thumbnail";
+  let pageIndex = searchParams.pageIndex ? Number(searchParams.pageIndex) : 1;
+  let pageSize = 12;
 
   try {
-    allPosts = await getAllPosts();
+    allPosts = await getAllPosts(pageIndex, pageSize);
     console.log(allPosts);
   } catch (err) {
     console.log(allPosts, err, "allPost error");
