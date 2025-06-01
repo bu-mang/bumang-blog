@@ -4,6 +4,10 @@ export function useQueryParams() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
+  const getQueryValue = (key: string) => {
+    return searchParams.get(key);
+  };
+
   const updateQuery = (updates: Record<string, string>) => {
     const params = new URLSearchParams(searchParams.toString());
     Object.entries(updates).forEach(([key, value]) => {
@@ -28,5 +32,5 @@ export function useQueryParams() {
     return searchParams.get(key) === expectedValue;
   };
 
-  return { updateQuery, removeQuery, hasQuery, hasQueryValue };
+  return { getQueryValue, updateQuery, removeQuery, hasQuery, hasQueryValue };
 }

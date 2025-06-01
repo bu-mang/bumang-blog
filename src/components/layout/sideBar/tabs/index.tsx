@@ -5,19 +5,19 @@ import { cn } from "@/utils/cn";
 import { usePathname } from "next/navigation";
 import { useLayoutEffect, useRef, useState } from "react";
 import clsx from "clsx";
+import { useQueryParams } from "@/hooks/useQueryParams";
 
 const Tabs = () => {
   /**
    * TAB INDICATOR 스타일
    */
-  const pathnames = usePathname()
-    .split("/")
-    .filter((item) => item !== "");
+  const { getQueryValue, hasQuery, hasQueryValue, updateQuery } =
+    useQueryParams();
   const getTabStyle = (target: string) =>
     cn(
       "text-xl text-gray-300 font-medium",
-      pathnames[1] === target.toLowerCase() && "text-black",
-      pathnames[1] === undefined && target === "All" && "text-black",
+      hasQueryValue("type", target) && "text-black",
+      target === "all" && !hasQuery("type") && "text-black",
     );
 
   /**
@@ -32,8 +32,11 @@ const Tabs = () => {
   useLayoutEffect(() => {
     if (allRef.current && devRef.current && lifeRef.current) {
       const arr = [allRef, devRef, lifeRef];
-      const selectedIndex =
-        pathnames[1] === undefined ? 0 : pathnames[1] === "dev" ? 1 : 2;
+      const selectedIndex = hasQueryValue("type", "dev")
+        ? 1
+        : hasQueryValue("type", "life")
+          ? 2
+          : 0;
       const rectWidth =
         arr[selectedIndex].current?.getBoundingClientRect().width ?? 0;
 
@@ -45,7 +48,7 @@ const Tabs = () => {
       setIndicatorX(mapped + gaps);
       setIndicatorWidth(rectWidth);
     }
-  }, [allRef, devRef, lifeRef, pathnames]);
+  }, [allRef, devRef, lifeRef, getQueryValue("type")]);
 
   const indicatorClass = clsx(
     "bottom-0 absolute h-0.5 bg-gray-700 transition-all",
@@ -58,22 +61,30 @@ const Tabs = () => {
         <div
           className={indicatorClass}
           style={{
-            transform: `translateX(${indicatorX}px)`,
+            transform: `translateX(${indicatorX}px) translateZ(0)`,
             width: indicatorWidth,
           }}
         />
 
         {/* TABS */}
         <div className="flex h-full w-full gap-4">
-          <Link href={"/blog"} className={getTabStyle("All")} ref={allRef}>
+          <Link
+            href={updateQuery({ type: "all" })}
+            className={getTabStyle("all")}
+            ref={allRef}
+          >
             All
           </Link>
-          <Link href={"/blog/dev"} className={getTabStyle("Dev")} ref={devRef}>
+          <Link
+            href={updateQuery({ type: "dev" })}
+            className={getTabStyle("dev")}
+            ref={devRef}
+          >
             Dev
           </Link>
           <Link
-            href={"/blog/life"}
-            className={getTabStyle("Life")}
+            href={updateQuery({ type: "life" })}
+            className={getTabStyle("life")}
             ref={lifeRef}
           >
             Life
