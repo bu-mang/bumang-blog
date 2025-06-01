@@ -23,17 +23,17 @@ export const ROUTES: MenuType[] = [
     sub: [
       {
         title: "All",
-        url: "/",
+        url: "all",
         parents: ["/blog"],
       },
       {
         title: "Dev",
-        url: "/dev",
+        url: "dev",
         parents: ["/blog"],
       },
       {
         title: "Life",
-        url: "/life",
+        url: "life",
         parents: ["/blog"],
       },
     ],

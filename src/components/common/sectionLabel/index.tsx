@@ -1,15 +1,15 @@
 "use client";
 
-import { LuPlus } from "react-icons/lu";
+import { LuLayoutGrid, LuLayoutList, LuPlus } from "react-icons/lu";
 import Link from "next/link";
 import { getButtonColorStyle } from "@/utils/styles/filButtonManager";
 import { cn } from "@/utils/cn";
 import { useAuthStore } from "@/store/auth";
-import { useSearchParams } from "next/navigation";
 import { useQueryParams } from "@/hooks/useQueryParams";
 
 interface SectionLabelProps {
   title: string;
+  itemViewType: "list" | "thumbnail";
   amount?: number;
   isDraggable?: boolean;
   className?: string;
@@ -17,6 +17,7 @@ interface SectionLabelProps {
 
 const SectionLabel = ({
   title = "PageTitle",
+  itemViewType,
   amount,
   isDraggable = false,
   className,
@@ -41,13 +42,23 @@ const SectionLabel = ({
       {/* NEW POST */}
       <div className="flex items-center gap-2">
         <Link href={updateQuery({ view: "thumbnail" })}>
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gray-5">
-            Th
+          <div
+            className={cn(
+              "flex h-8 w-8 items-center justify-center rounded-md transition-all duration-300 hover:bg-gray-5",
+              itemViewType !== "list" && "bg-gray-1",
+            )}
+          >
+            <LuLayoutGrid size={20} />
           </div>
         </Link>
         <Link href={updateQuery({ view: "list" })}>
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gray-5">
-            Li
+          <div
+            className={cn(
+              "flex h-8 w-8 items-center justify-center rounded-md transition-all duration-300 hover:bg-gray-5",
+              itemViewType === "list" && "bg-gray-1",
+            )}
+          >
+            <LuLayoutList size={20} />
           </div>
         </Link>
         {isAuthenticated && (

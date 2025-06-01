@@ -19,5 +19,14 @@ export function useQueryParams() {
     return `${pathname}?${params.toString()}`;
   };
 
-  return { updateQuery, removeQuery };
+  const hasQuery = (key: string) => {
+    const value = searchParams.get(key);
+    return value !== null && value.trim() !== "";
+  };
+
+  const hasQueryValue = (key: string, expectedValue: string) => {
+    return searchParams.get(key) === expectedValue;
+  };
+
+  return { updateQuery, removeQuery, hasQuery, hasQueryValue };
 }

@@ -25,7 +25,7 @@ export default async function Blog({ searchParams }: PageProps) {
 
   return (
     <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw]">
-      <SectionLabel title="PageTitle" amount={0} />
+      <SectionLabel title="PageTitle" amount={0} itemViewType={itemViewType} />
       <div
         className={cn(
           "col-span-3",

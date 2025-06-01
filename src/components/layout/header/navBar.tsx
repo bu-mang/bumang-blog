@@ -21,6 +21,7 @@ import { ButtonBase as Button } from "@/components/common";
 import { useMutation } from "@tanstack/react-query";
 import { postLogout } from "@/services/api/auth/client";
 import { useRouter } from "next/navigation";
+import { useQueryParams } from "@/hooks/useQueryParams";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -99,15 +100,14 @@ const NavBar = ({ isAuthenticated, isLoading, nickname }: NavBarProps) => {
   /**
    * @LINKHOVERSTYLE
    */
+  const { hasQueryValue, hasQuery } = useQueryParams();
   const linkHoverStyle =
     "relative z-50 transition-colors duration-300 ease-in-out text-gray-200 hover:text-black cursor-pointer";
   const navStyleManager = (subItem: MenuType) => {
     return cn(
       linkHoverStyle,
-      `/${pathname.split("/")[2]}` === subItem.url && "text-black",
-      pathname.split("/")[2] === undefined &&
-        subItem.url === "/" &&
-        "text-black",
+      hasQueryValue("type", subItem.url) && "text-black",
+      subItem.url === "all" && !hasQuery("type") && "text-black",
     );
   };
 
@@ -231,7 +231,8 @@ const NavBar = ({ isAuthenticated, isLoading, nickname }: NavBarProps) => {
               {currentRoute?.sub?.map((subItem) => (
                 <Link
                   key={subItem.title}
-                  href={combinePaths(subItem.url, subItem.parents)}
+                  // href={combinePaths(subItem.url, subItem.parents)}
+                  href={subItem?.parents?.[0] + "?type=" + subItem.url}
                   className={navStyleManager(subItem)}
                 >
                   {subItem.title}

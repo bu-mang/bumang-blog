@@ -51,7 +51,7 @@ const BlogItem = ({
           href={"/blog/" + id}
           className="group flex items-center justify-between gap-6 py-8 lg:gap-28"
         >
-          <div className="">
+          <div className="flex-1">
             {/* TITLE */}
             <div className="mb-2 mt-2.5 flex items-center text-2xl font-semibold group-hover:text-gray-500">
               <div className={titleStyle}>{title}</div>
