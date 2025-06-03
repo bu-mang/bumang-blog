@@ -22,7 +22,11 @@ const Menus = async () => {
             return (
               <div key={group.id} className="flex w-full flex-col">
                 {/* LABEL */}
-                <Group title={group.label} amount={group.totalPostsCount} />
+                <Group
+                  title={group.label}
+                  amount={group.totalPostsCount}
+                  groupId={group.id}
+                />
 
                 {/* CATEGORIES */}
                 {group.categories.map((category) => {

@@ -1,9 +1,13 @@
-import { ButtonBase } from "@/components/common";
+"use client";
+
+import { useQueryParams } from "@/hooks/useQueryParams";
+import Link from "next/link";
 import { HTMLAttributes } from "react";
 
 interface GroupProps {
   title: string;
   amount: number;
+  groupId: string | number;
 }
 
 interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
@@ -18,14 +22,18 @@ const Badge = ({ value }: BadgeProps) => {
   );
 };
 
-const Group = ({ title, amount }: GroupProps) => {
+const Group = ({ title, amount, groupId }: GroupProps) => {
+  const { updateQuery } = useQueryParams();
   return (
-    <ButtonBase className="flex items-center gap-0.5 rounded-lg px-2 py-1 text-xs font-medium text-gray-200">
+    <Link
+      href={updateQuery({ groupId: `${groupId}` })}
+      className="flex items-center gap-0.5 rounded-lg px-2 py-1 text-xs font-medium text-gray-200"
+    >
       <span className="truncate transition-all duration-200 hover:underline">
         {title}
       </span>
       <Badge value={amount} />
-    </ButtonBase>
+    </Link>
   );
 };
 
