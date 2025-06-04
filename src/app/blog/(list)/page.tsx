@@ -13,11 +13,20 @@ export default async function Blog({ searchParams }: PageProps) {
   let allPosts: null | PaginatedResponseDto<PostListItemType> = null;
   let itemViewType: "list" | "thumbnail" =
     searchParams.view === "list" ? "list" : "thumbnail";
+  const groupId =
+    typeof searchParams.groupId === "string"
+      ? Number(searchParams.groupId)
+      : undefined;
+  const categoryId =
+    typeof searchParams.categoryId === "string"
+      ? Number(searchParams.categoryId)
+      : undefined;
+
   let pageIndex = searchParams.pageIndex ? Number(searchParams.pageIndex) : 1;
   let pageSize = 12;
 
   try {
-    allPosts = await getAllPosts(pageIndex, pageSize);
+    allPosts = await getAllPosts(pageIndex, pageSize, groupId, categoryId);
     console.log(allPosts);
   } catch (err) {
     console.log(allPosts, err, "allPost error");

@@ -21,10 +21,15 @@ export const getAllTags = async () => {
   return res;
 };
 
-export const getAllPosts = async (pageIndex: number, pageSize: number) => {
+export const getAllPosts = async (
+  pageIndex: number,
+  pageSize: number,
+  groupId?: number,
+  categoryId?: number,
+) => {
   const res = await serverFetch<PaginatedResponseDto<PostListItemType>>(
     process.env.SERVER_LOCAL_HOST +
-      END_POINTS.GET_ALL_POSTS(pageIndex, pageSize),
+      END_POINTS.GET_ALL_POSTS(pageIndex, pageSize, groupId, categoryId),
   );
 
   return res;
