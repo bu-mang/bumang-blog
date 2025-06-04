@@ -3,13 +3,14 @@
 import { useQueryParams } from "@/hooks/useQueryParams";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { HTMLAttributes } from "react";
 
 interface GroupProps {
   title: string;
   amount: number;
   groupId: string | number;
+  currentGroupId?: number;
+  type: "Life" | "Dev";
 }
 
 interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
@@ -24,15 +25,21 @@ const Badge = ({ value }: BadgeProps) => {
   );
 };
 
-const Group = ({ title, amount, groupId }: GroupProps) => {
+const Group = ({
+  title,
+  amount,
+  groupId,
+  currentGroupId,
+  type,
+}: GroupProps) => {
   const { updateQuery } = useQueryParams();
-  const groupParams = useSearchParams().get("groupId");
-  const currentGroupId =
-    typeof groupParams === "string" ? Number(groupParams) : undefined;
 
   return (
     <Link
-      href={updateQuery({ groupId: `${groupId}` }, ["categoryId"])}
+      href={updateQuery(
+        { groupId: `${groupId}` },
+        { type: type === "Life" ? "dev" : "life", categoryId: null },
+      )}
       className={
         "flex items-center gap-0.5 rounded-lg px-2 py-1 text-xs font-medium text-gray-200"
       }
