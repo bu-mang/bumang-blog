@@ -10,7 +10,7 @@ export function useQueryParams() {
 
   const updateQuery = (
     updates: Record<string, string>,
-    removes?: string[] | Record<string, string>,
+    removes?: string[] | Record<string, string | null>,
   ) => {
     const params = new URLSearchParams(searchParams.toString());
     Object.entries(updates).forEach(([key, value]) => {
@@ -26,7 +26,7 @@ export function useQueryParams() {
       } else {
         // 새로운 로직: 값이 일치할 때만 제거
         Object.entries(removes).forEach(([key, value]) => {
-          if (params.get(key) === value) {
+          if (value === null || params.get(key) === value) {
             params.delete(key);
           }
         });

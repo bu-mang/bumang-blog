@@ -1,7 +1,9 @@
 "use client";
 
 import { useQueryParams } from "@/hooks/useQueryParams";
+import { cn } from "@/utils/cn";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { HTMLAttributes } from "react";
 
 interface GroupProps {
@@ -24,12 +26,23 @@ const Badge = ({ value }: BadgeProps) => {
 
 const Group = ({ title, amount, groupId }: GroupProps) => {
   const { updateQuery } = useQueryParams();
+  const groupParams = useSearchParams().get("groupId");
+  const currentGroupId =
+    typeof groupParams === "string" ? Number(groupParams) : undefined;
+
   return (
     <Link
       href={updateQuery({ groupId: `${groupId}` }, ["categoryId"])}
-      className="flex items-center gap-0.5 rounded-lg px-2 py-1 text-xs font-medium text-gray-200"
+      className={
+        "flex items-center gap-0.5 rounded-lg px-2 py-1 text-xs font-medium text-gray-200"
+      }
     >
-      <span className="truncate transition-all duration-200 hover:underline">
+      <span
+        className={cn(
+          "truncate transition-all duration-200 hover:underline",
+          groupId === currentGroupId && "font-bold underline",
+        )}
+      >
         {title}
       </span>
       <Badge value={amount} />

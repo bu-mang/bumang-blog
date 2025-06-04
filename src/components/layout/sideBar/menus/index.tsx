@@ -5,6 +5,7 @@ import Category from "./category";
 
 const Menus = async () => {
   let menus: GroupType[] | null = null;
+
   try {
     const res = await getGroupedCategoryTree();
     if (res) {
@@ -35,6 +36,7 @@ const Menus = async () => {
                       key={category.id}
                       categoryId={category.id}
                       title={category.label}
+                      type={group.label === "Life" ? "Life" : "Dev"}
                     />
                   );
                 })}
