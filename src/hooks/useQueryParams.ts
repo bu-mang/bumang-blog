@@ -8,11 +8,30 @@ export function useQueryParams() {
     return searchParams.get(key);
   };
 
-  const updateQuery = (updates: Record<string, string>) => {
+  const updateQuery = (
+    updates: Record<string, string>,
+    removes?: string[] | Record<string, string>,
+  ) => {
     const params = new URLSearchParams(searchParams.toString());
     Object.entries(updates).forEach(([key, value]) => {
       params.set(key, value);
     });
+
+    if (removes) {
+      if (Array.isArray(removes)) {
+        // 기존 로직: 무조건 제거
+        removes.forEach((item) => {
+          params.delete(item);
+        });
+      } else {
+        // 새로운 로직: 값이 일치할 때만 제거
+        Object.entries(removes).forEach(([key, value]) => {
+          if (params.get(key) === value) {
+            params.delete(key);
+          }
+        });
+      }
+    }
     return `${pathname}?${params.toString()}`;
   };
 

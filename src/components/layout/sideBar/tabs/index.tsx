@@ -28,6 +28,7 @@ const Tabs = () => {
   const allRef = useRef<HTMLAnchorElement | null>(null);
   const devRef = useRef<HTMLAnchorElement | null>(null);
   const lifeRef = useRef<HTMLAnchorElement | null>(null);
+  const typeValue = getQueryValue("type");
 
   useLayoutEffect(() => {
     if (allRef.current && devRef.current && lifeRef.current) {
@@ -48,7 +49,7 @@ const Tabs = () => {
       setIndicatorX(mapped + gaps);
       setIndicatorWidth(rectWidth);
     }
-  }, [allRef, devRef, lifeRef, getQueryValue("type")]);
+  }, [allRef, devRef, lifeRef, hasQueryValue, typeValue]);
 
   const indicatorClass = clsx(
     "bottom-0 absolute h-0.5 bg-gray-700 transition-all",

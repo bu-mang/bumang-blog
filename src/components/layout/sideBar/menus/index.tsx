@@ -30,7 +30,13 @@ const Menus = async () => {
 
                 {/* CATEGORIES */}
                 {group.categories.map((category) => {
-                  return <Category key={category.id} title={category.label} />;
+                  return (
+                    <Category
+                      key={category.id}
+                      categoryId={category.id}
+                      title={category.label}
+                    />
+                  );
                 })}
               </div>
             );

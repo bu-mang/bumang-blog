@@ -26,7 +26,7 @@ const Group = ({ title, amount, groupId }: GroupProps) => {
   const { updateQuery } = useQueryParams();
   return (
     <Link
-      href={updateQuery({ groupId: `${groupId}` })}
+      href={updateQuery({ groupId: `${groupId}` }, ["categoryId"])}
       className="flex items-center gap-0.5 rounded-lg px-2 py-1 text-xs font-medium text-gray-200"
     >
       <span className="truncate transition-all duration-200 hover:underline">

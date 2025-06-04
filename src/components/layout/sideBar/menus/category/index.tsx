@@ -1,16 +1,24 @@
-import { ButtonBase } from "@/components/common";
+"use client";
+
+import { useQueryParams } from "@/hooks/useQueryParams";
+import Link from "next/link";
 
 interface CategoryProps {
   title: string;
+  categoryId: number;
 }
 
-const Category = ({ title }: CategoryProps) => {
+const Category = ({ title, categoryId }: CategoryProps) => {
+  const { updateQuery } = useQueryParams();
   return (
-    <ButtonBase className="group flex items-center justify-between rounded-lg px-2 py-0.5 font-normal text-gray-700 transition-all">
+    <Link
+      href={updateQuery({ categoryId: `${categoryId}` }, ["groupId"])}
+      className="group flex items-center justify-between rounded-lg px-2 py-0.5 font-normal text-gray-700 transition-all"
+    >
       <span className="truncate text-sm transition-all duration-200 group-hover:underline">
         {title}
       </span>
-    </ButtonBase>
+    </Link>
   );
 };
 
