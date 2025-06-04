@@ -6,7 +6,7 @@ import Category from "./category";
 import { useSearchParams } from "next/navigation";
 
 interface MenusProps {
-  menus: GroupType[];
+  menus: GroupType[] | null;
 }
 
 const Menus = ({ menus }: MenusProps) => {
