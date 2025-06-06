@@ -30,6 +30,10 @@ const Menus = ({ menus }: MenusProps) => {
             return null;
           }
 
+          if (typeParam === "life" && group.label !== "Life") {
+            return null;
+          }
+
           return (
             <div key={group.id} className="flex w-full flex-col">
               {/* LABEL */}
