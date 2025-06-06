@@ -1,8 +1,10 @@
 "use client";
 
+import { useQueryParams } from "@/hooks/useQueryParams";
 import { TagType } from "@/types";
 import clsx from "clsx";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { LuX as CloseIcon } from "react-icons/lu";
 
@@ -25,10 +27,9 @@ export interface TagProps {
 }
 
 const Tag = ({
-  // id,
+  id,
   title,
 
-  url,
   onClick,
   className,
 
@@ -40,6 +41,9 @@ const Tag = ({
   isActivated = false,
   setIsActivated,
 }: TagProps) => {
+  const { updateArrayQuery } = useQueryParams();
+  const router = useRouter();
+
   const handleClick = () => {
     console.log("onClick");
     if (setIsActivated) setIsActivated();
@@ -68,9 +72,20 @@ const Tag = ({
 
   if (type === "link") {
     return (
-      <Link href={url ?? "#"} className={tagClass}>
+      <Link
+        href={updateArrayQuery("tagIds", `${id}`, "add")}
+        className={tagClass}
+      >
         <span>{title}</span>
-        {isActivated && !!hasBackground && !!hasXButton && <CloseIcon />}
+        {isActivated && !!hasBackground && !!hasXButton && (
+          <CloseIcon
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              router.push(updateArrayQuery("tagIds", `${id}`, "remove"));
+            }}
+          />
+        )}
       </Link>
     );
   } else {

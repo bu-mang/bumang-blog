@@ -35,6 +35,42 @@ export function useQueryParams() {
     return `${pathname}?${params.toString()}`;
   };
 
+  const updateArrayQuery = (
+    key: string,
+    value: string,
+    action: "add" | "remove" | "toggle" = "toggle",
+  ) => {
+    const params = new URLSearchParams(searchParams.toString());
+    const currentValues = params.getAll(key);
+
+    let newValues: string[];
+
+    switch (action) {
+      case "add":
+        newValues = currentValues.includes(value)
+          ? currentValues
+          : [...currentValues, value];
+        break;
+      case "remove":
+        newValues = currentValues.filter((v) => v !== value);
+        break;
+      case "toggle":
+      default:
+        newValues = currentValues.includes(value)
+          ? currentValues.filter((v) => v !== value) // 제거
+          : [...currentValues, value]; // 추가
+        break;
+    }
+
+    // 기존 값들 모두 제거
+    params.delete(key);
+
+    // 새 값들 추가
+    newValues.forEach((v) => params.append(key, v));
+
+    return `${pathname}?${params.toString()}`;
+  };
+
   const removeQuery = (keys: string | string[]) => {
     const params = new URLSearchParams(searchParams.toString());
     const keysArray = Array.isArray(keys) ? keys : [keys];
@@ -51,5 +87,12 @@ export function useQueryParams() {
     return searchParams.get(key) === expectedValue;
   };
 
-  return { getQueryValue, updateQuery, removeQuery, hasQuery, hasQueryValue };
+  return {
+    getQueryValue,
+    updateQuery,
+    updateArrayQuery,
+    removeQuery,
+    hasQuery,
+    hasQueryValue,
+  };
 }
