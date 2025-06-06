@@ -78,7 +78,11 @@ export default async function Blog({ searchParams }: PageProps) {
 
         {/* PAGE-NATION */}
         <div className="col-span-3">
-          <Pagenation />
+          <Pagenation
+            pageSize={allPosts?.pageSize ?? 12}
+            totalCount={allPosts?.totalCount ?? 1}
+            currentPage={allPosts?.currentPage ?? 1}
+          />
         </div>
       </div>
     </div>
