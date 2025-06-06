@@ -35,6 +35,7 @@ export default async function Blog({ searchParams }: PageProps) {
       groupId,
       categoryId,
       tagIds,
+      postType,
     );
     console.log(allPosts);
   } catch (err) {

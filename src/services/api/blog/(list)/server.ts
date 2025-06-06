@@ -27,6 +27,7 @@ export const getAllPosts = async (
   groupId?: number,
   categoryId?: number,
   tagIds?: string | string[],
+  type?: string,
 ) => {
   const res = await serverFetch<PaginatedResponseDto<PostListItemType>>(
     process.env.SERVER_LOCAL_HOST +
@@ -36,6 +37,7 @@ export const getAllPosts = async (
         groupId,
         categoryId,
         tagIds,
+        type,
       ),
     {
       cache: "no-cache",
