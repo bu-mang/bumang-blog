@@ -21,6 +21,8 @@ export default async function Blog({ searchParams }: PageProps) {
     typeof searchParams.categoryId === "string"
       ? Number(searchParams.categoryId)
       : undefined;
+  const postType =
+    typeof searchParams.type === "string" ? searchParams.type : undefined;
 
   let pageIndex = searchParams.pageIndex ? Number(searchParams.pageIndex) : 1;
   let pageSize = 12;
@@ -34,7 +36,11 @@ export default async function Blog({ searchParams }: PageProps) {
 
   return (
     <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw]">
-      <SectionLabel title="PageTitle" amount={0} itemViewType={itemViewType} />
+      <SectionLabel
+        title={allPosts?.subject ?? postType ?? "All"}
+        amount={allPosts?.totalCount ?? 0}
+        itemViewType={itemViewType}
+      />
       <div
         className={cn(
           "col-span-3",

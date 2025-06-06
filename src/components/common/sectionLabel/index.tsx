@@ -16,7 +16,7 @@ interface SectionLabelProps {
 }
 
 const SectionLabel = ({
-  title = "PageTitle",
+  title = "All",
   itemViewType,
   amount,
   isDraggable = false,
@@ -30,12 +30,13 @@ const SectionLabel = ({
   );
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const { updateQuery } = useQueryParams();
+  const upperCaseCapital = title.charAt(0).toUpperCase() + title.slice(1);
 
   return (
     <div className={titleClass}>
       {/* PAGE Label */}
       <div className="flex items-center gap-2">
-        <span className="text-xl">{title}</span>
+        <span className="text-xl">{upperCaseCapital}</span>
         <span className="text-sm text-gray-200">{amount}</span>
       </div>
 

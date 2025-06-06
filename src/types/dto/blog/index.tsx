@@ -7,6 +7,8 @@ export interface PaginatedResponseDto<T> {
   currentPage: number;
   totalPages: number;
   data: T[];
+
+  subject?: string;
 }
 
 export interface PostListItemType {
