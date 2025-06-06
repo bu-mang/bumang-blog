@@ -38,7 +38,11 @@ const Group = ({
     <Link
       href={updateQuery(
         { groupId: `${groupId}` },
-        { type: type === "Life" ? "dev" : "life", categoryId: null },
+        {
+          type: type === "Life" ? "dev" : "life",
+          categoryId: null,
+          pageIndex: null,
+        },
       )}
       className={
         "flex items-center gap-0.5 rounded-lg px-2 py-1 text-xs font-medium text-gray-200"
