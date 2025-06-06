@@ -27,6 +27,7 @@ const Category = ({
           type: type === "Life" ? "dev" : "life",
           groupId: null,
           pageIndex: null,
+          tagIds: null,
         },
       )}
       className={cn(

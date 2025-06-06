@@ -23,12 +23,19 @@ export default async function Blog({ searchParams }: PageProps) {
       : undefined;
   const postType =
     typeof searchParams.type === "string" ? searchParams.type : undefined;
+  const tagIds = searchParams.tagIds;
 
   let pageIndex = searchParams.pageIndex ? Number(searchParams.pageIndex) : 1;
   let pageSize = 12;
 
   try {
-    allPosts = await getAllPosts(pageIndex, pageSize, groupId, categoryId);
+    allPosts = await getAllPosts(
+      pageIndex,
+      pageSize,
+      groupId,
+      categoryId,
+      tagIds,
+    );
     console.log(allPosts);
   } catch (err) {
     console.log(allPosts, err, "allPost error");
@@ -37,7 +44,12 @@ export default async function Blog({ searchParams }: PageProps) {
   return (
     <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw]">
       <SectionLabel
-        title={allPosts?.subject ?? postType ?? "All"}
+        isTag={typeof tagIds !== "undefined"}
+        title={
+          allPosts?.subject ||
+          postType ||
+          (allPosts?.totalCount ? "All" : "unknown")
+        }
         amount={allPosts?.totalCount ?? 0}
         itemViewType={itemViewType}
       />
@@ -49,7 +61,6 @@ export default async function Blog({ searchParams }: PageProps) {
         )}
       >
         {/* BLOGITEMS */}
-
         {allPosts?.data?.map(
           ({
             id,

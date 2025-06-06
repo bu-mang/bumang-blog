@@ -26,10 +26,21 @@ export const getAllPosts = async (
   pageSize: number,
   groupId?: number,
   categoryId?: number,
+  tagIds?: string | string[],
 ) => {
   const res = await serverFetch<PaginatedResponseDto<PostListItemType>>(
     process.env.SERVER_LOCAL_HOST +
-      END_POINTS.GET_ALL_POSTS(pageIndex, pageSize, groupId, categoryId),
+      END_POINTS.GET_ALL_POSTS(
+        pageIndex,
+        pageSize,
+        groupId,
+        categoryId,
+        tagIds,
+      ),
+    {
+      cache: "no-cache",
+      // next: { tags: [] },
+    },
   );
 
   return res;

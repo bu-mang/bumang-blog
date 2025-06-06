@@ -11,6 +11,7 @@ interface SectionLabelProps {
   title: string;
   itemViewType: "list" | "thumbnail";
   amount?: number;
+  isTag: boolean;
   isDraggable?: boolean;
   className?: string;
 }
@@ -19,6 +20,7 @@ const SectionLabel = ({
   title = "All",
   itemViewType,
   amount,
+  isTag,
   isDraggable = false,
   className,
 }: SectionLabelProps) => {
@@ -36,7 +38,9 @@ const SectionLabel = ({
     <div className={titleClass}>
       {/* PAGE Label */}
       <div className="flex items-center gap-2">
-        <span className="text-xl">{upperCaseCapital}</span>
+        <span className="text-xl">
+          {isTag && "Tag:"} {upperCaseCapital}
+        </span>
         <span className="text-sm text-gray-200">{amount}</span>
       </div>
 

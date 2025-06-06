@@ -42,6 +42,7 @@ const Group = ({
           type: type === "Life" ? "dev" : "life",
           categoryId: null,
           pageIndex: null,
+          tagIds: null,
         },
       )}
       className={

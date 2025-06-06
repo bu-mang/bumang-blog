@@ -16,8 +16,9 @@ export const END_POINTS = {
     pageSize: number,
     groupId?: number,
     categoryId?: number,
+    tagIds?: string | string[],
   ) =>
-    `/posts?pageIndex=${pageIndex}&pageSize=${pageSize}&groupId=${groupId ?? ""}&categoryId=${categoryId ?? ""}`,
+    `/posts?pageIndex=${pageIndex}&pageSize=${pageSize}&groupId=${groupId ?? ""}&categoryId=${categoryId ?? ""}&${typeof tagIds === "string" ? `tagIds=${tagIds}` : tagIds?.map((tag) => `tagIds=${tag}`).join("&")}`,
 
   // BLOG/EDIT
   POST_CREATE_POST: "/posts",
