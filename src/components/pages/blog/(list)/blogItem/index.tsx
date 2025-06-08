@@ -55,7 +55,7 @@ const BlogItem = ({
             {/* TITLE */}
             <div className="mb-2 mt-2.5 flex items-center text-2xl font-semibold group-hover:text-gray-500">
               <div className={titleStyle}>{title}</div>
-              {readPermisson === null ? (
+              {!readPermisson ? (
                 <LuMoveRight className="animate-arrow text-gray-200 opacity-0 transition-all duration-500 group-hover:opacity-100" />
               ) : (
                 <LuLockKeyhole size={14} />
@@ -133,7 +133,7 @@ const BlogItem = ({
           {/* TITLE */}
           <div className="mt-2.5 flex items-center group-hover:text-gray-500">
             <div className={titleStyle}>{title}</div>
-            {readPermisson === null ? (
+            {!readPermisson ? (
               <LuMoveRight className="animate-arrow text-gray-200 opacity-0 transition-all duration-500 group-hover:opacity-100" />
             ) : (
               <LuLockKeyhole size={14} />
