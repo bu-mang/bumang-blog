@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,17 +8,20 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Bumang, Route53 } from "@/assets";
 import { useRouter } from "next/navigation";
 import { cn } from "@/utils/cn";
-import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
+// import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const NavLogo = () => {
   const router = useRouter();
-  const handleRouter = () => {
+  const handleNavigate = () => {
     router.push("/");
   };
 
-  const handleScrollTriggeredSize = () => {
+  const handleScrollTriggeredSize = useCallback(() => {
+    const originalWidth = (window.innerWidth * 0.94) / 2;
+    gsap.set(".BUMANG, .ROUTE53", { width: originalWidth });
+
     gsap.to(".BUMANG, .ROUTE53", {
       width: 80,
       scrollTrigger: {
@@ -27,17 +30,9 @@ const NavLogo = () => {
         end: "200px top",
 
         scrub: true,
-        // markers: true,,
-
-        onRefresh: () => {
-          const progress = Math.min(window.scrollY / 200, 1);
-          const moduleWidth = (window.innerWidth * 0.94) / 2;
-          const width = moduleWidth - (moduleWidth - 80) * progress;
-          gsap.set(".BUMANG, .ROUTE53", { width });
-        },
       },
     });
-  };
+  }, []);
 
   const handleSwitchVisibility = (type: "show" | "hide") => {
     gsap.to(".SUB", {
@@ -48,11 +43,11 @@ const NavLogo = () => {
   };
 
   useEffect(() => {
-    // 새로고침 시 스크롤 상태를 반영
-    ScrollTrigger.refresh();
-
     handleSwitchVisibility("hide");
     handleScrollTriggeredSize();
+
+    // 새로고침 시 스크롤 상태를 반영
+    ScrollTrigger.refresh();
   }, []);
 
   return (
@@ -69,7 +64,7 @@ const NavLogo = () => {
           className="BUMANG relative z-50 h-auto w-auto cursor-pointer"
           viewBox="0 0 802 140"
           preserveAspectRatio="xMinYMin meet"
-          onClick={handleRouter}
+          onClick={handleNavigate}
         />
       </div>
       <div className="flex h-fit flex-1 items-center justify-start">
@@ -77,7 +72,7 @@ const NavLogo = () => {
           className="ROUTE53 relative z-50 h-auto w-auto cursor-pointer"
           viewBox="0 0 802 140"
           preserveAspectRatio="xMinYMin meet"
-          onClick={handleRouter}
+          onClick={handleNavigate}
         />
       </div>
     </div>

@@ -38,7 +38,6 @@ const HeaderInner = () => {
     queryKey: QUERY_KEY.GET_USER_PROFILE,
     queryFn: getUserProfile,
   });
-  console.log(data, "userData");
 
   useEffect(() => {
     if (data) {
