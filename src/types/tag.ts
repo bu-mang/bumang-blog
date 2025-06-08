@@ -11,11 +11,11 @@
  */
 export interface TagType {
   id: number;
-  title: string;
+  label: string;
   group: {
     id: number;
     label: string;
   };
 }
 
-export type TagCompactType = Pick<TagType, "title" | "id">;
+export type TagCompactType = Pick<TagType, "label" | "id">;

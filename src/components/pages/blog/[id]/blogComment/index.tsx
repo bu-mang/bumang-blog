@@ -37,13 +37,11 @@ const BlogComment = () => {
     }
 
     setIsLoading(false);
-    // eslint-disable-next-line
   }, []);
 
-  // TODO: 로딩바 괜찮은걸로.
   return (
     <div
-      className="utterances-frame relative col-start-3 col-end-9 min-h-40 rounded-xl bg-gray-1 py-5"
+      className="utterances-frame relative col-start-3 col-end-9 min-h-40 rounded-xl bg-gray-1"
       id={COMMENTS_ID}
       ref={commentRef}
     >

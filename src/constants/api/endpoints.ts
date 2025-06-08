@@ -24,4 +24,9 @@ export const END_POINTS = {
   // BLOG/EDIT
   POST_CREATE_POST: "/posts",
   POST_IMAGE_PRESIGNED_URL: "/s3/presigned-url",
+
+  // BLOG/[ID]
+  GET_BLOG_DETAIL: (id: number | string) => `/posts/${id}`,
+  GET_RELATED_POSTS: (id: number | string) => `/posts/${id}/related`,
+  GET_ADJACENT_POSTS: (id: number | string) => `/posts/${id}/adjacent`,
 } as const;

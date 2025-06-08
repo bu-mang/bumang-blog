@@ -4,8 +4,8 @@ import BlogEditorToolBar from "./blog/edit/blogEditToolBar";
 import BlogPublishingView from "./blog/edit/blogPublishingView";
 import BlogItem from "./blog/(list)/blogItem";
 import BlogIndex from "./blog/(list)/blogIndex";
-import BlogComment from "./blog/[id]/blogComment";
 import DraftController from "./blog/edit/draftController";
+import BlogComment from "./blog/[id]/blogComment";
 
 import PlayItem from "./play/playItem";
 

@@ -20,6 +20,7 @@ import { useMutation } from "@tanstack/react-query";
 import { postCreatePost } from "@/services/api/blog/edit";
 import { html, plainText } from "@yoopta/exports";
 import { useRouter } from "next/navigation";
+import { PATHNAME } from "@/constants/routes";
 
 interface BlogEditInnerProps {
   tagLists: TagType[];
@@ -37,7 +38,7 @@ export default function BlogEditInner({
   const [step, setStep] = useState(BlogStep.EDITTING);
   const postMutation = useMutation({
     mutationFn: postCreatePost,
-    onSuccess: () => router.back(),
+    onSuccess: () => router.replace(PATHNAME.BLOG),
   });
   const handleStep = (v: BlogStep) => setStep(v);
   const handlePublish = async () => {

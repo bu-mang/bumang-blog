@@ -21,7 +21,10 @@ import {
   BlogHeadingComponentType,
 } from "@/types/blog";
 
-import { PaginatedResponseDto, PostListItemType } from "@/types/dto/blog";
+import {
+  PaginatedResponseDto,
+  PostListItemType,
+} from "@/types/dto/blog/(list)";
 
 import { AlignType } from "@/types/layout";
 
