@@ -19,7 +19,7 @@ const TagWrapperLayer = ({ tags }: TagWrapperLayerProps) => {
           <Tag
             key={tag.id}
             id={tag.id}
-            title={tag.label}
+            title={tag.title}
             type="link"
             isActivated={tagIds.includes(`${tag.id}`)}
             hasXButton

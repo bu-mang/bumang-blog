@@ -7,7 +7,7 @@ import { cn } from "@/utils/cn";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import { LuLock, LuLockKeyhole, LuLockOpen, LuMoveRight } from "react-icons/lu";
+import { LuLockKeyhole, LuMoveRight } from "react-icons/lu";
 
 interface BlogItemProps {
   id: number;
@@ -87,26 +87,12 @@ const BlogItem = ({
 
             {/* TAGS */}
             <div className={cn(tagWrapperStyle, "mt-4 gap-2")}>
-              {/* {tags.map((tag) => (
-          <Tag
-            key={tag.id}
-            id={tag.id}
-            title={tag.title}
-            size={size}
-            type="button"
-            isActivated={false}
-          />
-        ))} */}
-              {[
-                { title: "tag1", id: 1 },
-                { title: "tag2", id: 2 },
-                { title: "tag3", id: 3 },
-              ].map((tag) => (
+              {tags.map((tag) => (
                 <Tag
                   key={tag.id}
                   id={tag.id}
                   title={tag.title}
-                  size={"lg"}
+                  size={size}
                   type="button"
                   isActivated={false}
                 />
@@ -162,21 +148,7 @@ const BlogItem = ({
 
           {/* TAGS */}
           <div className={tagWrapperStyle}>
-            {/* {tags.map((tag) => (
-          <Tag
-            key={tag.id}
-            id={tag.id}
-            title={tag.title}
-            size={size}
-            type="button"
-            isActivated={false}
-          />
-        ))} */}
-            {[
-              { title: "tag1", id: 1 },
-              { title: "tag2", id: 2 },
-              { title: "tag3", id: 3 },
-            ].map((tag) => (
+            {tags.map((tag) => (
               <Tag
                 key={tag.id}
                 id={tag.id}

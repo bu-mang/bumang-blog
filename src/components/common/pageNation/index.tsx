@@ -89,7 +89,7 @@ const Pagenation = ({ totalCount, currentPage, pageSize }: PagenationProps) => {
         )}
 
         {arr.map((page) => (
-          <PaginationItem>
+          <PaginationItem key={page}>
             <PaginationLink
               isActive={page === currentPage}
               href={updateQuery({ pageIndex: `${page}` })}
