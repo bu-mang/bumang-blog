@@ -1,13 +1,19 @@
 "use client";
 
 import { ButtonBase, Tag } from "@/components/common";
+import CustomNotification from "@/components/common/customNotification";
+import { PATHNAME } from "@/constants/routes";
 import { RoleType } from "@/types";
 import { TagCompactType } from "@/types/tag";
+import { useCheckPermission } from "@/utils/canReadArticle";
 import { cn } from "@/utils/cn";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { MouseEventHandler } from "react";
 import { LuLockKeyhole, LuMoveRight } from "react-icons/lu";
+import { toast } from "react-toastify";
 
 interface BlogItemProps {
   id: number;
@@ -41,8 +47,31 @@ const BlogItem = ({
   const titleStyle = "line-clamp-2 flex-1 flex-nowrap font-medium";
   const contentStyle = "line-clamp-1 flex-1 flex-nowrap text-sm text-gray-400";
   const tagWrapperStyle = "flex flex-wrap gap-1 mt-1.5";
-
   const formattedDate = format(date, "yyyy. MM. dd.");
+
+  // 권한 체크 및 네비게이팅 막기
+  const isAuthorized = useCheckPermission(readPermisson);
+  const router = useRouter();
+
+  const handleNavigate: MouseEventHandler<HTMLAnchorElement> = (e) => {
+    if (!isAuthorized) {
+      e.preventDefault();
+
+      // toast.error("로그인이 필요합니다.");
+      // toast.error("Login Needed");
+      toast(CustomNotification, {
+        data: {
+          title: "Oh Snap! It's Private.",
+          content: "You need Login.",
+          onClick: () => router.push(PATHNAME.LOGIN),
+          buttonText: "Go to Login",
+        },
+        ariaLabel: "You need Login.",
+        autoClose: 5000, // false에서 숫자로 변경
+      });
+      return;
+    }
+  };
 
   switch (itemViewType) {
     case "list":
@@ -50,6 +79,7 @@ const BlogItem = ({
         <Link
           href={"/blog/" + id}
           className="group flex items-center justify-between gap-6 py-8 lg:gap-28"
+          onClick={handleNavigate}
         >
           <div className="flex-1">
             {/* TITLE */}
@@ -87,7 +117,7 @@ const BlogItem = ({
 
             {/* TAGS */}
             <div className={cn(tagWrapperStyle, "mt-4 gap-2")}>
-              {tags.map((tag) => (
+              {tags?.map((tag) => (
                 <Tag
                   key={tag.id}
                   id={tag.id}
@@ -110,7 +140,7 @@ const BlogItem = ({
     case "thumbnail":
     default:
       return (
-        <Link href={"/blog/" + id} className="group">
+        <Link href={"/blog/" + id} className="group" onClick={handleNavigate}>
           {/* IMAGE */}
           <div className="relative aspect-video w-full cursor-pointer overflow-hidden rounded-8 bg-gray-50">
             {thumbnailUrl && <Image src={thumbnailUrl} alt="postImage" fill />}
@@ -148,7 +178,7 @@ const BlogItem = ({
 
           {/* TAGS */}
           <div className={tagWrapperStyle}>
-            {tags.map((tag) => (
+            {tags?.map((tag) => (
               <Tag
                 key={tag.id}
                 id={tag.id}

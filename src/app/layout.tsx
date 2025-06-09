@@ -1,5 +1,6 @@
 import Providers from "@/components/tanstackQueryProvider";
 import { Footer, Header, Grid } from "@/components/layout";
+import { ToastContainer } from "react-toastify";
 import "./globals.css";
 
 export default function RootLayout({
@@ -34,6 +35,13 @@ export default function RootLayout({
           <Header />
           <div className="w-screen">{children}</div>
           <Footer />
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            closeOnClick
+            pauseOnHover
+          />
         </body>
       </html>
     </Providers>
