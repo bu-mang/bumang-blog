@@ -1,5 +1,6 @@
 import {
   LAYOUT_PADDING_ALONGSIDE,
+  LAYOUT_PADDING_TOP,
   LAYOUT_PADDING_TOP_WITH_HEIGHT,
 } from "@/constants/layouts/layout";
 import { cn } from "@/utils/cn";
@@ -12,8 +13,8 @@ export default function BlogLayout({
   return (
     <section
       className={cn(
-        "grid h-fit min-h-full grid-cols-10 gap-x-[1.5vw]",
-        LAYOUT_PADDING_TOP_WITH_HEIGHT,
+        "grid h-fit grid-cols-10 gap-x-[1.5vw]",
+        LAYOUT_PADDING_TOP,
         LAYOUT_PADDING_ALONGSIDE,
       )}
     >

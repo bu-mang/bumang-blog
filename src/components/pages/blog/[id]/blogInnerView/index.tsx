@@ -1,0 +1,217 @@
+"use client";
+
+import {
+  ButtonBase,
+  Divider,
+  Editor,
+  FillButton,
+  Tag,
+  TagWrapper,
+} from "@/components/common";
+import { PostDetailResponseDto } from "@/types/dto/blog/[id]";
+import { createYooptaEditor, YooptaContentValue } from "@yoopta/editor";
+import { html } from "@yoopta/exports";
+import { format } from "date-fns";
+import { AlignJustifyIcon, Calendar, FolderIcon } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
+import BlogIndex from "../../(list)/blogIndex";
+import BlogComment from "./blogComment";
+import RelatedAndAdjacentPost from "./relatedPosts";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useRouter } from "next/navigation";
+import { PATHNAME } from "@/constants/routes";
+
+interface BlogDetailInnerProps {
+  post: PostDetailResponseDto;
+}
+
+/**
+ * @BLOG_INNER_VIEW
+ */
+
+export function BlogInnerViewFallback({ isError }: { isError?: boolean }) {
+  const router = useRouter();
+
+  if (isError) {
+    return (
+      <div className="col-span-full flex h-96 flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center">
+          <Image
+            src={"/401.png"}
+            alt="Unauthenticated Error Image"
+            width={324}
+            height={127}
+            className="pointer-events-none"
+          />
+          <div className="mb-5 mt-3 text-xl font-semibold">OopseyDaisies!</div>
+          <div className="text-lg font-medium">This is Private Article.</div>
+          <div className="mb-8">It seems You are not logged in</div>
+        </div>
+        <div className="flex gap-5">
+          <ButtonBase
+            onClick={() => router.push(PATHNAME.HOME)}
+            className="text-gray-500 hover:text-gray-800 hover:underline"
+          >
+            ← Back to Home
+          </ButtonBase>
+          <FillButton
+            className="text-white"
+            onClick={() => router.push(PATHNAME.LOGIN)}
+          >
+            Go To Login
+          </FillButton>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      {/* 본문 ARTICLE */}
+      <div className="col-start-3 col-end-9 mb-10 flex h-fit flex-col justify-center gap-x-[1.5vw]">
+        <TagWrapper as="collapsible" align="center">
+          <Skeleton className="h-8 w-16" />
+          <Skeleton className="h-8 w-16" />
+          <Skeleton className="h-8 w-16" />
+        </TagWrapper>
+
+        <div className="mb-10 mt-4 flex flex-col items-center justify-center gap-4 text-center text-6xl font-semibold leading-tight">
+          <Skeleton className="h-16 w-full max-w-[600px]" />
+          <Skeleton className="h-16 w-full max-w-[1000px]" />
+        </div>
+
+        <div className="mb-12 flex items-center justify-center">
+          <div className="group flex cursor-pointer items-center justify-center gap-2 text-sm text-gray-300 transition-all hover:scale-105">
+            <Skeleton className="h-5 w-5" />
+            <span className="group-hover:text-gray-600">
+              <Skeleton className="h-5 w-24" />
+            </span>
+          </div>
+
+          <span className="mx-2 text-gray-200">•</span>
+
+          <div className="group flex cursor-pointer items-center justify-center gap-2 text-sm text-gray-300 transition-all hover:scale-105">
+            <Skeleton className="h-5 w-5" />
+            <span className="group-hover:text-gray-600">
+              <Skeleton className="h-5 w-24" />
+            </span>
+          </div>
+
+          <Divider className="mx-5" />
+
+          <div className="pointer-events-none flex items-center justify-center gap-2 text-sm text-gray-300">
+            <Skeleton className="h-5 w-5" />
+            <span>
+              <Skeleton className="h-5 w-24" />
+            </span>
+          </div>
+        </div>
+
+        <div className="relative mb-14 aspect-video w-full overflow-hidden rounded-2xl shadow-md">
+          <Skeleton className="h-full w-full" />
+        </div>
+
+        <div className="mb-4 flex">
+          <Skeleton className="mr-4 h-16 w-16 shrink-0 rounded-full" />
+          <Skeleton className="h-24 w-full" />
+        </div>
+      </div>
+
+      {/* <RelatedAndAdjacentPost id={post.id} /> */}
+    </>
+  );
+}
+
+export default function BlogInnerView({ post }: BlogDetailInnerProps) {
+  /**
+   * EDITOR_LOGIC
+   */
+  const editor = useMemo(() => createYooptaEditor(), []);
+  const [editorValue] = useState<YooptaContentValue>();
+
+  // parsing해서 HTML로.
+  const getDeserializeHTML = (text: string) => {
+    const content = html.deserialize(editor, text);
+
+    editor.setEditorValue(content);
+  };
+
+  useEffect(() => {
+    getDeserializeHTML(post.content ?? "내용 없음");
+    // eslint-disable-next-line
+  }, []);
+
+  return (
+    <>
+      {/* 본문 ARTICLE */}
+      <div className="col-start-3 col-end-9 mb-10 flex h-fit flex-col justify-center gap-x-[1.5vw]">
+        <TagWrapper as="collapsible" align="center">
+          {post?.tags.length ? (
+            post.tags.map((tag) => (
+              <Tag id={tag.id} title={tag.label} key={tag.id} />
+            ))
+          ) : (
+            <Tag id={0} title="No Tags" className="pointer-events-none" />
+          )}
+        </TagWrapper>
+
+        <div className="mb-10 mt-4 text-center text-6xl font-semibold leading-tight">
+          {post.title}
+        </div>
+
+        <div className="mb-12 flex items-center justify-center">
+          <div className="group flex cursor-pointer items-center justify-center gap-2 text-sm text-gray-300 transition-all hover:scale-105">
+            <FolderIcon size={18} className="group-hover:text-gray-600" />
+            <span className="group-hover:text-gray-600">
+              {post.group.label ?? "No Group"}
+            </span>
+          </div>
+
+          <span className="mx-2 text-gray-200">•</span>
+
+          <div className="group flex cursor-pointer items-center justify-center gap-2 text-sm text-gray-300 transition-all hover:scale-105">
+            <AlignJustifyIcon size={18} className="group-hover:text-gray-600" />
+            <span className="group-hover:text-gray-600">
+              {post.category.label ?? "No Category"}
+            </span>
+          </div>
+
+          <Divider className="mx-5" />
+
+          <div className="pointer-events-none flex items-center justify-center gap-2 text-sm text-gray-300">
+            <Calendar size={18} />
+            <span>{format(post.createdAt, "yyyy. MM. dd.")}</span>
+          </div>
+        </div>
+
+        <div className="relative mb-14 aspect-video w-full overflow-hidden rounded-2xl shadow-md">
+          <Image
+            alt="Thumnail"
+            src={post?.thumbnailUrl || "/thumbnails/frontendThumbnail1.5.png"}
+            className="bg-gray-100 object-cover"
+            priority
+            fill
+          />
+        </div>
+
+        <Editor
+          editor={editor}
+          editorValue={editorValue}
+          onChangeEditorValue={() => {}}
+          readOnly
+        />
+      </div>
+
+      {/* 목차 */}
+      <div className="col-start-9 col-end-11">
+        <BlogIndex />
+      </div>
+
+      {/* 댓글 */}
+      <BlogComment />
+
+      <RelatedAndAdjacentPost id={post.id} />
+    </>
+  );
+}

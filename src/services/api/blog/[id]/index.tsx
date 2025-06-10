@@ -9,9 +9,22 @@ import { previous } from "slate";
 export const getBlogDetail = async (id: string) => {
   const res = await serverFetch<PostDetailResponseDto>(
     process.env.SERVER_LOCAL_HOST + END_POINTS.GET_BLOG_DETAIL(id),
+    {
+      cache: "no-cache",
+    },
   );
 
+  console.log(res, "Res");
+
   return res;
+};
+
+export const getBlogAuthenticatedDetail = async (id: string) => {
+  const res = await ClientInstance.get<PostDetailResponseDto>(
+    END_POINTS.GET_BLOG_DETAIL(id),
+  );
+
+  return res.data;
 };
 
 export const getRelatedPosts = async (id: number) => {
@@ -24,8 +37,8 @@ export const getRelatedPosts = async (id: number) => {
 
 export const getAdjacentPosts = async (id: number) => {
   const res = await ClientInstance.get<{
-    previous: PostListItemType;
-    next: PostListItemType;
+    previous: PostListItemType | null;
+    next: PostListItemType | null;
   }>(END_POINTS.GET_ADJACENT_POSTS(id));
 
   console.log(res, "res");
