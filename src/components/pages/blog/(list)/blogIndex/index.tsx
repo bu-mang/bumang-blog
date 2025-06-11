@@ -5,7 +5,11 @@ import type { BlogHeadingComponentType, BlogHeadingType } from "@/types";
 import { cn } from "@/utils/cn";
 import { useEffect, useRef, useState } from "react";
 
-const BlogIndex = () => {
+interface BlogIndexProps {
+  onStart: boolean;
+}
+
+const BlogIndex = ({ onStart }: BlogIndexProps) => {
   const [headings, setHeadings] = useState<BlogHeadingComponentType[]>([]);
   const [activeId, setActiveId] = useState<string>();
   const observer = useRef<IntersectionObserver | null>(null);
@@ -15,6 +19,7 @@ const BlogIndex = () => {
       .filter((el) => el.id) // id 없는 요소 제외
       .map((el) => ({
         id: el.id,
+        // text: el.textContent || "",
         text: el.textContent || "",
         level: Number(el.tagName.charAt(1)), // h1, h2, h3 -> 숫자로 변환
       }));
@@ -35,7 +40,7 @@ const BlogIndex = () => {
     setHeadings(headingElements);
 
     return () => observer.current?.disconnect();
-  }, []);
+  }, [onStart]);
 
   const handleScrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -52,6 +57,7 @@ const BlogIndex = () => {
     <div className="sticky top-[360px] ml-10 flex w-full flex-col gap-2.5 border-l-[2px] pr-10">
       {headings.map((heading) => (
         <ButtonBase
+          key={heading.id}
           className={cn(
             "flex justify-start text-start text-sm text-gray-200 transition-all hover:text-gray-700 hover:underline",
           )}

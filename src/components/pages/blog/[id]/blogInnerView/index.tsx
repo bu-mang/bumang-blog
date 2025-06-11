@@ -129,12 +129,14 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
    */
   const editor = useMemo(() => createYooptaEditor(), []);
   const [editorValue] = useState<YooptaContentValue>();
+  const [indexParsed, setIndexParsed] = useState(false);
 
   // parsing해서 HTML로.
   const getDeserializeHTML = (text: string) => {
     const content = html.deserialize(editor, text);
 
     editor.setEditorValue(content);
+    setIndexParsed(true);
   };
 
   useEffect(() => {
@@ -149,18 +151,29 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
         <TagWrapper as="collapsible" align="center">
           {post?.tags.length ? (
             post.tags.map((tag) => (
-              <Tag id={tag.id} title={tag.label} key={tag.id} />
+              <Tag type="button" id={tag.id} title={tag.label} key={tag.id} />
             ))
           ) : (
             <Tag id={0} title="No Tags" className="pointer-events-none" />
           )}
         </TagWrapper>
 
-        <div className="mb-10 mt-4 text-center text-6xl font-semibold leading-tight">
+        <div className="mb-10 mt-4 text-center text-5xl font-semibold leading-tight">
           {post.title}
         </div>
 
-        <div className="mb-12 flex items-center justify-center">
+        <div className="relative mb-12 aspect-video w-full overflow-hidden rounded-2xl">
+          <Image
+            alt="Thumnail"
+            src={post?.thumbnailUrl || "/thumbnails/frontendThumbnail1.5.png"}
+            className="bg-gray-100 object-cover"
+            priority
+            fill
+          />
+        </div>
+
+        {/* INFORMATIONS */}
+        <div className="mb-24 flex items-center justify-center">
           <div className="group flex cursor-pointer items-center justify-center gap-2 text-sm text-gray-300 transition-all hover:scale-105">
             <FolderIcon size={18} className="group-hover:text-gray-600" />
             <span className="group-hover:text-gray-600">
@@ -185,16 +198,6 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
           </div>
         </div>
 
-        <div className="relative mb-14 aspect-video w-full overflow-hidden rounded-2xl shadow-md">
-          <Image
-            alt="Thumnail"
-            src={post?.thumbnailUrl || "/thumbnails/frontendThumbnail1.5.png"}
-            className="bg-gray-100 object-cover"
-            priority
-            fill
-          />
-        </div>
-
         <Editor
           editor={editor}
           editorValue={editorValue}
@@ -205,7 +208,7 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
 
       {/* 목차 */}
       <div className="col-start-9 col-end-11">
-        <BlogIndex />
+        <BlogIndex onStart={indexParsed} />
       </div>
 
       {/* 댓글 */}

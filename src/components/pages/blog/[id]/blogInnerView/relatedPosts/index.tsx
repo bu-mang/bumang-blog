@@ -9,6 +9,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import BlogItem, { BlogItemFallback } from "../../../(list)/blogItem";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface RelatedPostInnerProps {
   id: number;
@@ -25,32 +26,28 @@ export default function RelatedAndAdjacentPost({ id }: RelatedPostInnerProps) {
 }
 
 function RelatedAndAdjacentPostFallback({ isError }: { isError?: boolean }) {
-  return (
+  return isError ? null : (
     <>
       <div className="col-start-1 col-end-12 mt-16 rounded-xl p-9">
         <div className="flex justify-between">
           {/* 이전 */}
           <div className="group flex flex-col gap-1 font-medium text-gray-400 hover:text-gray-700">
             <div className="flex items-center gap-1.5">
-              <ArrowLeft size={18} />
-              <span className="text-sm font-semibold">Previous Post</span>
+              <Skeleton className="h-6 w-6" />
+              <Skeleton className="h-6 w-40" />
             </div>
 
-            <span className="max-w-64 truncate text-left font-medium group-hover:underline">
-              {/* {adjacentPosts.previous.title} */}
-            </span>
+            <Skeleton className="h-6 w-40" />
           </div>
 
           {/* 이후 */}
           <div className="group flex flex-col items-end gap-1 text-gray-400 hover:text-gray-900">
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold">Next Post</span>
-              <ArrowRight size={18} />
+              <Skeleton className="h-6 w-40" />
+              <Skeleton className="h-6 w-6" />
             </div>
 
-            <span className="flex max-w-64 justify-end truncate font-medium group-hover:underline">
-              {/* {adjacentPosts.next.title} */}
-            </span>
+            <Skeleton className="h-6 w-40" />
           </div>
         </div>
       </div>
@@ -58,10 +55,7 @@ function RelatedAndAdjacentPostFallback({ isError }: { isError?: boolean }) {
       {/* 이 카테고리의 다른 글 */}
       <div className="col-start-1 col-end-12 grid grid-cols-9 gap-x-[1.5vw]">
         <div className="col-span-9 flex justify-center gap-2 pb-8 text-2xl font-semibold text-gray-900">
-          <span>More Articles in</span>
-          <ButtonBase className="transition-all hover:underline">
-            React
-          </ButtonBase>
+          <Skeleton className="h-10 w-56" />
         </div>
 
         {[1, 2, 3].map((item) => (

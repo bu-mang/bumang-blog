@@ -2,6 +2,7 @@
 
 import { ButtonBase, Tag } from "@/components/common";
 import CustomNotification from "@/components/common/customNotification";
+import { Skeleton } from "@/components/ui/skeleton";
 import { PATHNAME } from "@/constants/routes";
 import { RoleType } from "@/types";
 import { TagCompactType } from "@/types/tag";
@@ -31,57 +32,38 @@ interface BlogItemProps {
 }
 
 export function BlogItemFallback() {
-  const titleStyle = "line-clamp-2 flex-1 flex-nowrap font-medium";
-  const contentStyle = "line-clamp-1 flex-1 flex-nowrap text-sm text-gray-400";
-  const tagWrapperStyle = "flex flex-wrap gap-1 mt-1.5";
-
   return (
-    <div className="group flex items-center justify-between gap-6 py-8 lg:gap-28">
-      <div className="flex-1">
-        {/* TITLE */}
-        <div className="mb-2 mt-2.5 flex items-center text-2xl font-semibold group-hover:text-gray-500">
-          <div className={titleStyle}>title</div>
-        </div>
-
-        {/* CONTENT */}
-        <div className={cn(contentStyle, "line-clamp-2 text-base")}>
-          {/* {previewText} */}
-        </div>
-
-        <div className="mt-4 flex items-center gap-2">
-          <div className="flex truncate text-ellipsis text-sm font-semibold text-gray-100">
-            <ButtonBase onClick={() => {}}>
-              <span className="truncate text-ellipsis">groupLabel</span>
-            </ButtonBase>
-            <span>•</span>
-            <ButtonBase onClick={() => {}}>
-              <span className="truncate text-ellipsis">categoryLabel</span>
-            </ButtonBase>
-          </div>
-          <div className="h-2 w-[1px] bg-gray-100" />
-          <span className="truncate text-sm font-semibold text-gray-100">
-            2025. 05. 10.
-          </span>
-        </div>
-
-        {/* TAGS */}
-        <div className={cn(tagWrapperStyle, "mt-4 gap-2")}>
-          {/* {tags?.map((tag) => (
-                <Tag
-                  key={tag.id}
-                  id={tag.id}
-                  title={tag.title}
-                  size={size}
-                  type="button"
-                  isActivated={false}
-                />
-              ))} */}
-        </div>
+    <div className="group">
+      {/* IMAGE */}
+      <div className="relative aspect-video w-full cursor-pointer overflow-hidden rounded-8">
+        <Skeleton className="h-full w-full" />
       </div>
 
-      {/* IMAGE */}
-      <div className="relative h-[135px] w-full max-w-[240px] shrink-0 cursor-pointer overflow-hidden rounded-8 bg-gray-50">
-        <Image src={""} alt="postImage" fill />
+      {/* TITLE */}
+      <div className="mb-1 mt-2.5 flex items-center gap-1 group-hover:text-gray-500">
+        {/* <div className={titleStyle}>{title}</div> */}
+        <Skeleton className="h-6 w-full" />
+
+        <Skeleton className="h-6 w-6" />
+      </div>
+
+      {/* CONTENT */}
+      <Skeleton className="h-6 w-full" />
+
+      {/* GROUP & CATEGORY & DATE */}
+      <div className="mb-3 mt-2 flex items-center gap-2">
+        <div className="flex gap-1">
+          <Skeleton className="h-6 w-10" />
+          <Skeleton className="h-6 w-10" />
+        </div>
+        <div className="h-2 w-[1px] bg-gray-100" />
+        <Skeleton className="h-6 w-full" />
+      </div>
+
+      {/* TAGS */}
+      <div className="flex gap-1">
+        <Skeleton className="h-6 w-16" />
+        <Skeleton className="h-6 w-16" />
       </div>
     </div>
   );
@@ -156,7 +138,9 @@ const BlogItem = ({
 
             <div className="mt-4 flex items-center gap-2">
               <div className="flex truncate text-ellipsis text-sm font-semibold text-gray-100">
-                <ButtonBase onClick={() => {}}>
+                <ButtonBase
+                // onClick={() => router.push(PATHNAME.BLOG + `${}`)}
+                >
                   <span className="truncate text-ellipsis">{groupLabel}</span>
                 </ButtonBase>
                 <span>•</span>

@@ -14,6 +14,18 @@ interface HeaderFallbackProps {
 }
 
 export const HeaderFallback = ({ isLoading }: HeaderFallbackProps) => {
+  const setUserAndIsAuthenticated = useAuthStore(
+    (state) => state.setUserAndIsAuthenticated,
+  );
+
+  useEffect(() => {
+    setUserAndIsAuthenticated({
+      isAuthenticated: false,
+      user: null,
+      isAuthLoading: false,
+    });
+  }, []);
+
   const pathname = usePathname();
   switch (pathname) {
     case "/blog/edit":
@@ -48,6 +60,7 @@ const HeaderInner = () => {
           role: data.role,
           id: data.id,
         },
+        isAuthLoading: false,
       });
     }
 

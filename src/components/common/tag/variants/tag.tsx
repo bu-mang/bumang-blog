@@ -45,7 +45,6 @@ const Tag = ({
   const router = useRouter();
 
   const handleClick = () => {
-    console.log("onClick");
     if (setIsActivated) setIsActivated();
     if (!onClick) return;
     onClick();
