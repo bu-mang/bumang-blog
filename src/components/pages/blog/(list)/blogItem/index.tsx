@@ -8,6 +8,7 @@ import { RoleType } from "@/types";
 import { TagCompactType } from "@/types/tag";
 import { useCheckPermission } from "@/utils/canReadArticle";
 import { cn } from "@/utils/cn";
+import { getThumbnailByGroup } from "@/utils/getThumnailByGroup";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
@@ -173,7 +174,11 @@ const BlogItem = ({
 
           {/* IMAGE */}
           <div className="relative h-[135px] w-full max-w-[240px] shrink-0 cursor-pointer overflow-hidden rounded-8 bg-gray-50">
-            {thumbnailUrl && <Image src={thumbnailUrl} alt="postImage" fill />}
+            <Image
+              src={thumbnailUrl || getThumbnailByGroup(groupLabel)}
+              alt="postImage"
+              fill
+            />
           </div>
         </Link>
       );
@@ -184,7 +189,11 @@ const BlogItem = ({
         <Link href={"/blog/" + id} className="group" onClick={handleNavigate}>
           {/* IMAGE */}
           <div className="relative aspect-video w-full cursor-pointer overflow-hidden rounded-8 bg-gray-50">
-            {thumbnailUrl && <Image src={thumbnailUrl} alt="postImage" fill />}
+            <Image
+              src={thumbnailUrl || getThumbnailByGroup(groupLabel)}
+              alt="postImage"
+              fill
+            />
           </div>
 
           {/* TITLE */}

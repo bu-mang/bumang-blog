@@ -21,6 +21,7 @@ import RelatedAndAdjacentPost from "./relatedPosts";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useRouter } from "next/navigation";
 import { PATHNAME } from "@/constants/routes";
+import { getThumbnailByGroup } from "@/utils/getThumnailByGroup";
 
 interface BlogDetailInnerProps {
   post: PostDetailResponseDto;
@@ -165,7 +166,7 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
         <div className="relative mb-12 aspect-video w-full overflow-hidden rounded-2xl">
           <Image
             alt="Thumnail"
-            src={post?.thumbnailUrl || "/thumbnails/frontendThumbnail1.5.png"}
+            src={post?.thumbnailUrl || getThumbnailByGroup(post.group.label)}
             className="bg-gray-100 object-cover"
             priority
             fill
