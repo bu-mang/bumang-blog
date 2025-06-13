@@ -1,10 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import {
-  LuChevronLeft as ChevronLeftIcon,
-  LuPlaneTakeoff as PublishPlaneIcon,
-} from "react-icons/lu";
+import { useEffect } from "react";
+import { LuChevronLeft as ChevronLeftIcon } from "react-icons/lu";
 
 import { getButtonColorStyle } from "@/utils/styles/filButtonManager";
 import { cn } from "@/utils/cn";
@@ -16,9 +13,10 @@ import {
   FillButton,
 } from "@/components/common";
 import { useRouter } from "next/navigation";
-import { TagType, GroupType, CategoryType, BlogStep } from "@/types";
+import { TagType, GroupType, CategoryType, BlogStep, RoleType } from "@/types";
 import DraftController from "../draftController";
 import { YooptaContentValue } from "@yoopta/editor";
+import { PublishDrawer } from "@/components/pages/blog/edit/blogEditToolBar/publishDrawer";
 
 interface BlogEditorToolBarProps {
   // List
@@ -44,7 +42,7 @@ interface BlogEditorToolBarProps {
   handleDraftOpen: () => void;
   handleEditorValue: (title: string, content: YooptaContentValue) => void;
 
-  onChangeStep: (v: BlogStep) => void;
+  onPublish: () => Promise<void>;
 }
 
 const BlogEditorToolBar = ({
@@ -67,8 +65,8 @@ const BlogEditorToolBar = ({
   handleDraftOpen,
   handleEditorValue,
 
-  // onChangeStep
-  onChangeStep,
+  // publish
+  onPublish,
 }: BlogEditorToolBarProps) => {
   /**
    * @그룹_변경_시_카테고리_전환
@@ -84,13 +82,11 @@ const BlogEditorToolBar = ({
   /**
    * @버튼_스타일
    */
-  const { fillStyle: LightFillStyle, textStyle: LightTextStyle } =
-    getButtonColorStyle("light");
   const {
-    fillStyle: DarkFillStyle,
-    textStyle: DarkTextStyle,
+    fillStyle: LightFillStyle,
+    textStyle: LightTextStyle,
     flexBoxClass,
-  } = getButtonColorStyle("dark");
+  } = getButtonColorStyle("light");
 
   /**
    * @뒤로가기_로직
@@ -164,15 +160,12 @@ const BlogEditorToolBar = ({
           className="ml-2"
         />
         <Divider className="ml-3" />
-        <FillButton
-          className={cn("ml-6 px-4", DarkFillStyle)}
-          onClick={() => onChangeStep(BlogStep.PUBLISHING)}
-        >
-          <div className={flexBoxClass}>
-            <PublishPlaneIcon className={DarkTextStyle} />
-            <span className={DarkTextStyle}>Publish</span>
-          </div>
-        </FillButton>
+
+        {/* 발행 버튼 */}
+        <PublishDrawer
+          onPublish={async () => {}}
+          //
+        />
       </div>
     </div>
   );

@@ -6,8 +6,3 @@ export interface DateType {
   createdAt: Date;
   updatedAt: Date;
 }
-
-export enum SelectedDateType {
-  rightNow = "rightNow",
-  custom = "custom",
-}

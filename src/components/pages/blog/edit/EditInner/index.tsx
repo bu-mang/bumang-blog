@@ -9,10 +9,9 @@ import {
 } from "@yoopta/editor";
 
 import { Divider, Editor } from "@/components/common";
-import { BlogPublishingView, BlogEditorToolBar } from "@/components/pages";
+import { BlogEditorToolBar } from "@/components/pages";
 
-import { BlogStep, CategoryType, GroupType, TagType } from "@/types";
-import { SelectedDateType } from "@/types/date";
+import { CategoryType, GroupType, TagType } from "@/types";
 import { cn } from "@/utils/cn";
 
 import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
@@ -23,7 +22,6 @@ import { html, plainText } from "@yoopta/exports";
 import { useRouter } from "next/navigation";
 import { PATHNAME } from "@/constants/routes";
 import { toast } from "react-toastify";
-import CustomNotification from "@/components/common/customNotification";
 import { isAxiosError } from "axios";
 import { useAuthStore } from "@/store/auth";
 
@@ -40,7 +38,6 @@ export default function BlogEditInner({
    * @FUNNEL_LOGIC
    */
   const router = useRouter();
-  const [step, setStep] = useState(BlogStep.EDITTING);
   const postMutation = useMutation({
     mutationFn: postCreatePost,
     onSuccess: () => router.replace(PATHNAME.BLOG),
@@ -54,7 +51,6 @@ export default function BlogEditInner({
 
   const user = useAuthStore((state) => state.user);
 
-  const handleStep = (v: BlogStep) => setStep(v);
   const handlePublish = async () => {
     const serializedHTML = getSerializeHTML("html");
     const previewText = (getSerializeHTML("plainText") ?? "").slice(0, 200);
@@ -236,89 +232,58 @@ export default function BlogEditInner({
     setEditorValue(value);
   };
 
-  /**
-   * @DATE_LOGIC
-   */
-  const [publishingDate, setPublishingDate] = useState<Date | undefined>(
-    new Date(),
-  );
-  const [selectedDateType, setSelectedDateType] = useState<SelectedDateType>(
-    SelectedDateType.rightNow,
-  );
-  const handleSelectedDateType = (v: SelectedDateType) =>
-    setSelectedDateType(v);
-
   return (
     <main className="flex min-h-screen w-full flex-col">
-      {step === BlogStep.EDITTING && (
-        <>
-          {/* 상단 헤더 (ToolBar) */}
-          <BlogEditorToolBar
-            // Group
-            selectedGroup={selectedGroup}
-            onChangeSelectedGroup={handleChangeSelectedGroup}
-            groupLists={groupLists}
-            // Category
-            selectedCategory={selectedCategory}
-            onChangeSelectedCategory={handleChangeSelectedCategory}
-            // Tags
-            selectedTags={selectedTags}
-            unselectedTags={unselectedTags}
-            handleSwitchTags={handleSwitchTags}
-            // Draft
-            isDraftOpen={isDraftOpen}
-            handleDraftOpen={handleDraftOpen}
-            handleEditorValue={handleEditorValue}
-            // chageStep
-            onChangeStep={handleStep}
+      {/* 상단 헤더 (ToolBar) */}
+      <BlogEditorToolBar
+        // Group
+        selectedGroup={selectedGroup}
+        onChangeSelectedGroup={handleChangeSelectedGroup}
+        groupLists={groupLists}
+        // Category
+        selectedCategory={selectedCategory}
+        onChangeSelectedCategory={handleChangeSelectedCategory}
+        // Tags
+        selectedTags={selectedTags}
+        unselectedTags={unselectedTags}
+        handleSwitchTags={handleSwitchTags}
+        // Draft
+        isDraftOpen={isDraftOpen}
+        handleDraftOpen={handleDraftOpen}
+        handleEditorValue={handleEditorValue}
+        // PUBLISH!
+        onPublish={handlePublish}
+      />
+
+      {/* 본문 영역 */}
+      <div
+        className={cn(
+          "flex w-full flex-1 justify-center pt-24",
+          LAYOUT_PADDING_ALONGSIDE,
+        )}
+      >
+        <div className="flex w-[720px] flex-col">
+          {/* INPUT */}
+          <textarea
+            className="flex h-auto min-h-20 w-full resize-none flex-wrap overflow-hidden rounded-md border-none bg-transparent px-2 py-4 text-5xl font-semibold leading-normal outline-none transition-colors placeholder:text-gray-100 hover:bg-gray-1 disabled:cursor-not-allowed disabled:opacity-50"
+            placeholder="Title of Your Post here..."
+            tabIndex={1}
+            value={title}
+            maxLength={48}
+            onChange={handleChangeTitle}
           />
 
-          {/* 본문 영역 */}
-          <div
-            className={cn(
-              "flex w-full flex-1 justify-center pt-24",
-              LAYOUT_PADDING_ALONGSIDE,
-            )}
-          >
-            <div className="flex w-[720px] flex-col">
-              {/* INPUT */}
-              <textarea
-                className="flex h-auto min-h-20 w-full resize-none flex-wrap overflow-hidden rounded-md border-none bg-transparent px-2 py-4 text-5xl font-semibold leading-normal outline-none transition-colors placeholder:text-gray-100 hover:bg-gray-1 disabled:cursor-not-allowed disabled:opacity-50"
-                placeholder="Title of Your Post here..."
-                tabIndex={1}
-                value={title}
-                maxLength={48}
-                onChange={handleChangeTitle}
-              />
+          {/* DIVIDER */}
+          <Divider direction="horizontal" className={"w-full bg-gray-5"} />
 
-              {/* DIVIDER */}
-              <Divider direction="horizontal" className={"w-full bg-gray-5"} />
-
-              {/* EDITOR */}
-              <Editor
-                editor={editor}
-                editorValue={editorValue}
-                onChangeEditorValue={onChangeEditorValue}
-              />
-            </div>
-          </div>
-        </>
-      )}
-
-      {step === BlogStep.PUBLISHING && (
-        <BlogPublishingView
-          selectedTags={selectedTags}
-          selectedDateType={selectedDateType}
-          publishingDate={publishingDate}
-          // onChageOptions
-          onChangeSelectedDateType={handleSelectedDateType}
-          onChangePublishingDate={setPublishingDate}
-          // onChageStep
-          onChangeStep={handleStep}
-          // PUBLISH!
-          onPublishing={handlePublish}
-        />
-      )}
+          {/* EDITOR */}
+          <Editor
+            editor={editor}
+            editorValue={editorValue}
+            onChangeEditorValue={onChangeEditorValue}
+          />
+        </div>
+      </div>
     </main>
   );
 }

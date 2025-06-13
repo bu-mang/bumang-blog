@@ -17,7 +17,7 @@ const getButtonColorStyle = (
   // COLOR
   switch (fillColor) {
     case "light":
-      layoutColorStyle = "bg-gray-5 hover:bg-gray-10 transition-colors";
+      layoutColorStyle = "bg-gray-1 border hover:bg-gray-5 transition-colors";
       textColorStyle = "text-gray-700";
       break;
 
