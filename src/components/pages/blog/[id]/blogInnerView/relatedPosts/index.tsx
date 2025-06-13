@@ -81,7 +81,7 @@ function RelatedAndAdjacentPostInner({ id }: RelatedPostInnerProps) {
 
   return (
     <>
-      <div className="col-start-1 col-end-12 mt-16 rounded-xl p-9">
+      <div className="col-start-1 col-end-12 mt-16 rounded-xl border-t p-9">
         <div className="flex justify-between">
           {/* 이전 */}
           {adjacentPosts.previous ? (
@@ -126,10 +126,7 @@ function RelatedAndAdjacentPostInner({ id }: RelatedPostInnerProps) {
       {/* 이 카테고리의 다른 글 */}
       <div className="col-start-1 col-end-12 grid grid-cols-9 gap-x-[1.5vw]">
         <div className="col-span-9 flex justify-center gap-2 pb-8 text-2xl font-semibold text-gray-900">
-          <span>More Articles in</span>
-          <ButtonBase className="transition-all hover:underline">
-            React
-          </ButtonBase>
+          <span>Related Posts</span>
         </div>
 
         {relatedPosts.map(

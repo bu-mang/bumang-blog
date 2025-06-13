@@ -6,6 +6,7 @@ export interface CreatePostDto {
   previewText: string;
   categoryId: number;
   tagIds: number[];
+  thumbnailUrl?: string;
   readPermission: RoleType | null;
 }
 

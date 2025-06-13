@@ -177,6 +177,7 @@ const BlogItem = ({
             <Image
               src={thumbnailUrl || getThumbnailByGroup(groupLabel)}
               alt="postImage"
+              className="object-cover"
               fill
             />
           </div>
@@ -192,6 +193,7 @@ const BlogItem = ({
             <Image
               src={thumbnailUrl || getThumbnailByGroup(groupLabel)}
               alt="postImage"
+              className="object-cover object-top transition-all group-hover:scale-110"
               fill
             />
           </div>
@@ -236,6 +238,7 @@ const BlogItem = ({
                 size={size}
                 type="button"
                 isActivated={false}
+                className="pointer-events-none"
               />
             ))}
           </div>

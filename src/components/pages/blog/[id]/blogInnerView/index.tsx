@@ -167,7 +167,7 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
           <Image
             alt="Thumnail"
             src={post?.thumbnailUrl || getThumbnailByGroup(post.group.label)}
-            className="bg-gray-100 object-cover"
+            className="bg-gray-100 object-cover object-top"
             priority
             fill
           />

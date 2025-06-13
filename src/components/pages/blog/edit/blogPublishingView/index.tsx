@@ -117,7 +117,8 @@ const BlogPublishingView = ({
           <div>
             <SectionLabel
               title="Preview"
-              isActionButtonOn={false}
+              itemViewType="list"
+              isTag={false}
               className="mb-0"
             />
             <div className="mb-8 text-4xl font-bold">Title of Post Here</div>
@@ -133,7 +134,8 @@ const BlogPublishingView = ({
             {/* TAGS */}
             <SectionLabel
               title="Tags"
-              isActionButtonOn={false}
+              itemViewType="list"
+              isTag={false}
               className="mb-0"
             />
             <TagWrapper className="min-h-8 flex-grow-0 items-center rounded-sm bg-gray-1 p-2">
@@ -152,7 +154,8 @@ const BlogPublishingView = ({
             {/* SCHEDULE */}
             <SectionLabel
               title="Schedule"
-              isActionButtonOn={false}
+              itemViewType="list"
+              isTag={false}
               className="mb-0"
             />
 
@@ -183,7 +186,8 @@ const BlogPublishingView = ({
             {/* AUTHORIZATION */}
             <SectionLabel
               title="who can read it?"
-              isActionButtonOn={false}
+              itemViewType="list"
+              isTag={false}
               className="mb-0"
             />
 

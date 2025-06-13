@@ -10,6 +10,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useAuthStore } from "@/store/auth";
 import { cn } from "@/utils/cn";
 import { YooptaContentValue } from "@yoopta/editor";
 
@@ -22,8 +23,10 @@ interface DraftControllerProps {
 }
 
 const DraftController = ({
+  // OPEN
   isDraftOpen,
   handleDraftOpen,
+  //
   handleEditorValue,
   className,
 }: DraftControllerProps) => {
@@ -32,9 +35,13 @@ const DraftController = ({
     className,
   );
 
-  const handleSelect = () => {
+  const handleSelect = async () => {
     handleEditorValue;
+
+    return;
   };
+
+  const user = useAuthStore((state) => state.user);
 
   return (
     <Popover open={isDraftOpen} onOpenChange={handleDraftOpen}>

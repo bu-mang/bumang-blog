@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["images.unsplash.com"], // Unsplash와 같은 외부 이미지를 허용
+    domains: [
+      "images.unsplash.com",
+      "bumang-blog-s3-storage.s3.ap-northeast-2.amazonaws.com", // 내 S3..
+    ],
   },
   experimental: {
     optimizePackageImports: ["@chakra-ui/react"],

@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import {
   createYooptaEditor,
+  SlateElement,
   YooptaContentValue,
   // YooptaOnChangeOptions,
 } from "@yoopta/editor";
@@ -21,6 +22,10 @@ import { postCreatePost } from "@/services/api/blog/edit";
 import { html, plainText } from "@yoopta/exports";
 import { useRouter } from "next/navigation";
 import { PATHNAME } from "@/constants/routes";
+import { toast } from "react-toastify";
+import CustomNotification from "@/components/common/customNotification";
+import { isAxiosError } from "axios";
+import { useAuthStore } from "@/store/auth";
 
 interface BlogEditInnerProps {
   tagLists: TagType[];
@@ -39,30 +44,48 @@ export default function BlogEditInner({
   const postMutation = useMutation({
     mutationFn: postCreatePost,
     onSuccess: () => router.replace(PATHNAME.BLOG),
+    onError: (error) => {
+      if (!isAxiosError(error)) return;
+
+      console.log(error.response?.config.data, "error.response?.config.data");
+      console.log(error.message, "error.message");
+    },
   });
+
+  const user = useAuthStore((state) => state.user);
+
   const handleStep = (v: BlogStep) => setStep(v);
   const handlePublish = async () => {
     const serializedHTML = getSerializeHTML("html");
     const previewText = (getSerializeHTML("plainText") ?? "").slice(0, 200);
     const categoryId = selectedCategory?.id;
     const tagIds = selectedTags.map((item) => item.id);
+    const thumbnailUrl = getFirstImageUrl();
     const readPermission = null;
 
-    if (
-      serializedHTML === undefined ||
-      categoryId === undefined ||
-      readPermission === undefined
-    )
-      // 토스트 표출
+    // 로그인을 안 했을 때
+    if (!user?.role) {
+      toast.error("You didn't login.");
       return;
+    }
 
-    console.log("-----");
-    console.log(selectedGroup?.label, "selectedGroup");
-    console.log(selectedCategory?.label, "selectedCategory");
-    console.log(selectedTags, "selectedTags");
-    console.log("-----");
-    console.log(title, "title");
-    console.log(serializedHTML, "getSerializeHTML");
+    // 카테고리 미선택 시
+    if (categoryId === undefined) {
+      toast.error("Category and Group needed, Me!");
+      return;
+    }
+
+    // 타이틀 미입력 시
+    if (!title) {
+      toast.error("Write Some Title, Me!");
+      return;
+    }
+
+    // 본문 미입력 시
+    if (!serializedHTML || !previewText) {
+      toast.error("Write Some Contents, Me!");
+      return;
+    }
 
     postMutation.mutateAsync({
       title,
@@ -71,6 +94,7 @@ export default function BlogEditInner({
       categoryId,
       tagIds,
       readPermission,
+      thumbnailUrl,
     });
   };
 
@@ -165,16 +189,16 @@ export default function BlogEditInner({
    */
   // WITH_BASIC_INIT_VALUE
   const [editorValue, setEditorValue] = useState<YooptaContentValue>();
-  const [serializedEditorValue, setSerializedEditorValue] = useState("");
+  // const [serializedEditorValue, setSerializedEditorValue] = useState("");
 
   const editor = useMemo(() => createYooptaEditor(), []);
 
   // parsing해서 HTML로.
-  const getDeserializeHTML = () => {
-    const content = html.deserialize(editor, serializedEditorValue);
+  // const getDeserializeHTML = () => {
+  //   const content = html.deserialize(editor, serializedEditorValue);
 
-    editor.setEditorValue(content);
-  };
+  //   editor.setEditorValue(content);
+  // };
 
   // string 직렬화해서 서버 패칭
   const getSerializeHTML = (type: "html" | "plainText" = "html") => {
@@ -196,6 +220,16 @@ export default function BlogEditInner({
     }
 
     return;
+  };
+
+  const getFirstImageUrl = (): string | undefined => {
+    const data = editor.getEditorValue();
+    const values = Object.values(data);
+    const target = values.find((item) => item.type === "Image");
+    const image: string | undefined = (target?.value?.[0] as SlateElement)
+      ?.props?.src;
+
+    return image;
   };
 
   const onChangeEditorValue = (value: YooptaContentValue) => {
