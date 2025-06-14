@@ -13,9 +13,9 @@ import {
   FillButton,
 } from "@/components/common";
 import { useRouter } from "next/navigation";
-import { TagType, GroupType, CategoryType, BlogStep, RoleType } from "@/types";
+import { TagType, GroupType, CategoryType } from "@/types";
 import DraftController from "../draftController";
-import { YooptaContentValue } from "@yoopta/editor";
+import { YooEditor, YooptaContentValue } from "@yoopta/editor";
 import { PublishDrawer } from "@/components/pages/blog/edit/blogEditToolBar/publishDrawer";
 
 interface BlogEditorToolBarProps {
@@ -42,7 +42,9 @@ interface BlogEditorToolBarProps {
   handleDraftOpen: () => void;
   handleEditorValue: (title: string, content: YooptaContentValue) => void;
 
-  onPublish: () => Promise<void>;
+  editorValue?: YooptaContentValue;
+  title: string;
+  editor: YooEditor;
 }
 
 const BlogEditorToolBar = ({
@@ -66,7 +68,9 @@ const BlogEditorToolBar = ({
   handleEditorValue,
 
   // publish
-  onPublish,
+  editor,
+  editorValue,
+  title,
 }: BlogEditorToolBarProps) => {
   /**
    * @그룹_변경_시_카테고리_전환
@@ -163,8 +167,16 @@ const BlogEditorToolBar = ({
 
         {/* 발행 버튼 */}
         <PublishDrawer
-          onPublish={async () => {}}
-          //
+          editor={editor}
+          // 타이틀
+          title={title}
+          // 본문 => previewText, thumbnail
+          editorValue={editorValue}
+          // group,
+          selectedGroup={selectedGroup}
+          selectedCategory={selectedCategory}
+          // tags
+          selectedTags={selectedTags}
         />
       </div>
     </div>

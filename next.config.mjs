@@ -3,6 +3,7 @@ const nextConfig = {
   images: {
     domains: [
       "images.unsplash.com",
+      "plus.unsplash.com",
       "bumang-blog-s3-storage.s3.ap-northeast-2.amazonaws.com", // 내 S3..
     ],
   },

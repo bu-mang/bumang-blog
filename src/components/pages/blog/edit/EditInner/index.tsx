@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import {
   createYooptaEditor,
-  SlateElement,
   YooptaContentValue,
   // YooptaOnChangeOptions,
 } from "@yoopta/editor";
@@ -16,14 +15,6 @@ import { cn } from "@/utils/cn";
 
 import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
 import { sortStringOrder } from "@/utils/sortTagOrder";
-import { useMutation } from "@tanstack/react-query";
-import { postCreatePost } from "@/services/api/blog/edit";
-import { html, plainText } from "@yoopta/exports";
-import { useRouter } from "next/navigation";
-import { PATHNAME } from "@/constants/routes";
-import { toast } from "react-toastify";
-import { isAxiosError } from "axios";
-import { useAuthStore } from "@/store/auth";
 
 interface BlogEditInnerProps {
   tagLists: TagType[];
@@ -34,66 +25,6 @@ export default function BlogEditInner({
   tagLists,
   groupLists,
 }: BlogEditInnerProps) {
-  /**
-   * @FUNNEL_LOGIC
-   */
-  const router = useRouter();
-  const postMutation = useMutation({
-    mutationFn: postCreatePost,
-    onSuccess: () => router.replace(PATHNAME.BLOG),
-    onError: (error) => {
-      if (!isAxiosError(error)) return;
-
-      console.log(error.response?.config.data, "error.response?.config.data");
-      console.log(error.message, "error.message");
-    },
-  });
-
-  const user = useAuthStore((state) => state.user);
-
-  const handlePublish = async () => {
-    const serializedHTML = getSerializeHTML("html");
-    const previewText = (getSerializeHTML("plainText") ?? "").slice(0, 200);
-    const categoryId = selectedCategory?.id;
-    const tagIds = selectedTags.map((item) => item.id);
-    const thumbnailUrl = getFirstImageUrl();
-    const readPermission = null;
-
-    // 로그인을 안 했을 때
-    if (!user?.role) {
-      toast.error("You didn't login.");
-      return;
-    }
-
-    // 카테고리 미선택 시
-    if (categoryId === undefined) {
-      toast.error("Category and Group needed, Me!");
-      return;
-    }
-
-    // 타이틀 미입력 시
-    if (!title) {
-      toast.error("Write Some Title, Me!");
-      return;
-    }
-
-    // 본문 미입력 시
-    if (!serializedHTML || !previewText) {
-      toast.error("Write Some Contents, Me!");
-      return;
-    }
-
-    postMutation.mutateAsync({
-      title,
-      content: serializedHTML,
-      previewText,
-      categoryId,
-      tagIds,
-      readPermission,
-      thumbnailUrl,
-    });
-  };
-
   // ------------- 중앙부 그룹/카테고리/태그 로직 (중앙) -------------
 
   // 그룹
@@ -185,48 +116,7 @@ export default function BlogEditInner({
    */
   // WITH_BASIC_INIT_VALUE
   const [editorValue, setEditorValue] = useState<YooptaContentValue>();
-  // const [serializedEditorValue, setSerializedEditorValue] = useState("");
-
   const editor = useMemo(() => createYooptaEditor(), []);
-
-  // parsing해서 HTML로.
-  // const getDeserializeHTML = () => {
-  //   const content = html.deserialize(editor, serializedEditorValue);
-
-  //   editor.setEditorValue(content);
-  // };
-
-  // string 직렬화해서 서버 패칭
-  const getSerializeHTML = (type: "html" | "plainText" = "html") => {
-    const data = editor.getEditorValue();
-    if (!data) return;
-
-    if (type === "html") {
-      const htmlString = html.serialize(editor, data);
-      console.log(htmlString);
-
-      return htmlString;
-    }
-
-    if (type === "plainText") {
-      const plainString = plainText.serialize(editor, data);
-      console.log(plainString);
-
-      return plainString;
-    }
-
-    return;
-  };
-
-  const getFirstImageUrl = (): string | undefined => {
-    const data = editor.getEditorValue();
-    const values = Object.values(data);
-    const target = values.find((item) => item.type === "Image");
-    const image: string | undefined = (target?.value?.[0] as SlateElement)
-      ?.props?.src;
-
-    return image;
-  };
 
   const onChangeEditorValue = (value: YooptaContentValue) => {
     setEditorValue(value);
@@ -252,7 +142,9 @@ export default function BlogEditInner({
         handleDraftOpen={handleDraftOpen}
         handleEditorValue={handleEditorValue}
         // PUBLISH!
-        onPublish={handlePublish}
+        editorValue={editorValue}
+        title={title}
+        editor={editor}
       />
 
       {/* 본문 영역 */}

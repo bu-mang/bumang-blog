@@ -41,7 +41,6 @@ export const getAllPosts = async (
       ),
     {
       cache: "no-cache",
-      // next: { tags: [] },
     },
   );
 

@@ -1,4 +1,7 @@
 export const QUERY_KEY = {
+  // POST
+  GET_POSTS: ["POSTS"],
+
   // USER
   GET_USER_PROFILE: ["GET_USER_PROFILE"],
 
