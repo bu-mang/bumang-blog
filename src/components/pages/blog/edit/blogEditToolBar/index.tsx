@@ -40,11 +40,20 @@ interface BlogEditorToolBarProps {
   // Draft
   isDraftOpen: boolean;
   handleDraftOpen: () => void;
-  handleEditorValue: (title: string, content: YooptaContentValue) => void;
+  handleEditValues: (
+    title: string,
+    content: string | undefined,
+    group: GroupType | null,
+    category: CategoryType | null,
+    tags: TagType[],
+  ) => void;
 
   editorValue?: YooptaContentValue;
   title: string;
+
   editor: YooEditor;
+  onSerialize: (type?: "html" | "plainText") => string | undefined;
+  onDeserialize: (text: string) => void;
 }
 
 const BlogEditorToolBar = ({
@@ -65,12 +74,15 @@ const BlogEditorToolBar = ({
   // Draft
   isDraftOpen,
   handleDraftOpen,
-  handleEditorValue,
+  handleEditValues,
 
   // publish
+  title,
   editor,
   editorValue,
-  title,
+
+  onSerialize,
+  onDeserialize,
 }: BlogEditorToolBarProps) => {
   /**
    * @그룹_변경_시_카테고리_전환
@@ -152,16 +164,18 @@ const BlogEditorToolBar = ({
 
       {/* RIGHT MODULE */}
       <div className="flex flex-1 items-center justify-end pr-4">
-        {
-          <span className="pointer-events-none text-sm text-gray-300">
-            saving...
-          </span>
-        }
         <DraftController
           isDraftOpen={isDraftOpen}
           handleDraftOpen={handleDraftOpen}
-          handleEditorValue={handleEditorValue}
+          handleEditValues={handleEditValues}
           className="ml-2"
+          title={title}
+          content={editorValue}
+          selectedGroup={selectedGroup}
+          selectedCategory={selectedCategory}
+          selectedTags={selectedTags}
+          onSerialize={onSerialize}
+          onDeserialize={onDeserialize}
         />
         <Divider className="ml-3" />
 
@@ -177,6 +191,7 @@ const BlogEditorToolBar = ({
           selectedCategory={selectedCategory}
           // tags
           selectedTags={selectedTags}
+          onSerialize={onSerialize}
         />
       </div>
     </div>

@@ -39,6 +39,7 @@ interface DrawerSheetProps {
   selectedCategory: CategoryType | null;
   selectedTags: TagType[];
   editor: YooEditor;
+  onSerialize: (type?: "html" | "plainText") => string | undefined;
 }
 
 export function PublishDrawer({
@@ -48,6 +49,7 @@ export function PublishDrawer({
   selectedCategory,
   selectedTags,
   editor,
+  onSerialize,
 }: DrawerSheetProps) {
   const { fillStyle: DarkFillStyle, textStyle: DarkTextStyle } =
     getButtonColorStyle("dark");
@@ -85,7 +87,7 @@ export function PublishDrawer({
 
   // PUBLISH!!
   const handlePublish = async () => {
-    const serializedHTML = getSerializeHTML("html");
+    const serializedHTML = onSerialize("html");
     const categoryId = selectedCategory?.id;
     const tagIds = selectedTags.map((item) => item.id);
     const thumbnailUrl = thumbnails[thumbnailIndex];
@@ -126,26 +128,6 @@ export function PublishDrawer({
   };
 
   // string 직렬화해서 서버 패칭
-  const getSerializeHTML = (type: "html" | "plainText" = "html") => {
-    const data = editor.getEditorValue();
-    if (!data) return;
-
-    if (type === "html") {
-      const htmlString = html.serialize(editor, data);
-      console.log(htmlString);
-
-      return htmlString;
-    }
-
-    if (type === "plainText") {
-      const plainString = plainText.serialize(editor, data);
-      console.log(plainString);
-
-      return plainString;
-    }
-
-    return;
-  };
 
   const getImages = (): string[] => {
     const data = editor.getEditorValue();
@@ -176,7 +158,7 @@ export function PublishDrawer({
 
   useEffect(() => {
     setThumbnails(getImages());
-    setPreviewText((getSerializeHTML("plainText") ?? "").slice(0, 200));
+    setPreviewText((onSerialize("plainText") ?? "").slice(0, 200));
   }, [open]);
 
   // parsing해서 HTML로.

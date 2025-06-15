@@ -15,6 +15,7 @@ import { cn } from "@/utils/cn";
 
 import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
 import { sortStringOrder } from "@/utils/sortTagOrder";
+import { html, plainText } from "@yoopta/exports";
 
 interface BlogEditInnerProps {
   tagLists: TagType[];
@@ -93,8 +94,36 @@ export default function BlogEditInner({
    */
   const [isDraftOpen, setIsDraftOpen] = useState(false);
   const handleDraftOpen = () => setIsDraftOpen((prev) => !prev);
-  const handleEditorValue = (title: string, content: YooptaContentValue) => {
-    console.log(title, content);
+  const handleEditValues = (
+    title: string,
+    value: string | undefined,
+    group: GroupType | null,
+    category: CategoryType | null,
+    tags: TagType[],
+  ) => {
+    setTitle(title);
+    if (value) {
+      getDeserializeHTML(value);
+    } else {
+      editor.setEditorValue(null);
+    }
+
+    setSelectedGroup(group);
+    setSelectedCategory(category);
+
+    const selected: TagType[] = [];
+    const unselected: TagType[] = [];
+    tagLists.forEach((item) => {
+      const titles = tags.map((item) => item.title);
+      if (titles.includes(item.title)) {
+        selected.push(item);
+      } else {
+        unselected.push(item);
+      }
+    });
+
+    setSelectedTags(selected);
+    setUnselectedTags(unselected);
   };
 
   // ------------- 본문 로직 -------------
@@ -122,10 +151,42 @@ export default function BlogEditInner({
     setEditorValue(value);
   };
 
+  const getSerializeHTML = (type: "html" | "plainText" = "html") => {
+    const data = editor.getEditorValue();
+    if (!data) return;
+
+    if (type === "html") {
+      const htmlString = html.serialize(editor, data);
+      console.log(htmlString);
+
+      return htmlString;
+    }
+
+    if (type === "plainText") {
+      const plainString = plainText.serialize(editor, data);
+      console.log(plainString);
+
+      return plainString;
+    }
+
+    return;
+  };
+
+  const getDeserializeHTML = (text: string) => {
+    const content = html.deserialize(editor, text);
+
+    editor.setEditorValue(content);
+
+    return content;
+  };
+
   return (
     <main className="flex min-h-screen w-full flex-col">
       {/* 상단 헤더 (ToolBar) */}
       <BlogEditorToolBar
+        // Content
+        onSerialize={getSerializeHTML}
+        onDeserialize={getDeserializeHTML}
         // Group
         selectedGroup={selectedGroup}
         onChangeSelectedGroup={handleChangeSelectedGroup}
@@ -140,7 +201,7 @@ export default function BlogEditInner({
         // Draft
         isDraftOpen={isDraftOpen}
         handleDraftOpen={handleDraftOpen}
-        handleEditorValue={handleEditorValue}
+        handleEditValues={handleEditValues}
         // PUBLISH!
         editorValue={editorValue}
         title={title}
