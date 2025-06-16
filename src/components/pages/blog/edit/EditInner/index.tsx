@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
   createYooptaEditor,
   YooptaContentValue,
@@ -151,26 +151,29 @@ export default function BlogEditInner({
     setEditorValue(value);
   };
 
-  const getSerializeHTML = (type: "html" | "plainText" = "html") => {
-    const data = editor.getEditorValue();
-    if (!data) return;
+  const getSerializeHTML = useCallback(
+    (type: "html" | "plainText" = "html") => {
+      const data = editor.getEditorValue();
+      if (!data) return;
 
-    if (type === "html") {
-      const htmlString = html.serialize(editor, data);
-      console.log(htmlString);
+      if (type === "html") {
+        const htmlString = html.serialize(editor, data);
+        console.log(htmlString);
 
-      return htmlString;
-    }
+        return htmlString;
+      }
 
-    if (type === "plainText") {
-      const plainString = plainText.serialize(editor, data);
-      console.log(plainString);
+      if (type === "plainText") {
+        const plainString = plainText.serialize(editor, data);
+        console.log(plainString);
 
-      return plainString;
-    }
+        return plainString;
+      }
 
-    return;
-  };
+      return;
+    },
+    [editor],
+  );
 
   const getDeserializeHTML = (text: string) => {
     const content = html.deserialize(editor, text);

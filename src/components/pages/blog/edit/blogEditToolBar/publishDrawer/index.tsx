@@ -20,17 +20,15 @@ import { cn } from "@/utils/cn";
 import { SlateElement, YooEditor, YooptaContentValue } from "@yoopta/editor";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { PATHNAME } from "@/constants/routes";
 import { postCreatePost } from "@/services/api/blog/edit";
 import { isAxiosError } from "axios";
-import { html, plainText } from "@yoopta/exports";
 import { useAuthStore } from "@/store/auth";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { getThumbnailByGroup } from "@/utils/getThumnailByGroup";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { QUERY_KEY } from "@/constants/api/queryKey";
 
 interface DrawerSheetProps {
   title: string;
@@ -129,7 +127,7 @@ export function PublishDrawer({
 
   // string 직렬화해서 서버 패칭
 
-  const getImages = (): string[] => {
+  const getImages = useCallback((): string[] => {
     const data = editor.getEditorValue();
     const imageBlocks = Object.values(data).filter(
       (item) => item.type === "Image",
@@ -154,12 +152,12 @@ export function PublishDrawer({
     });
 
     return imageUrls;
-  };
+  }, [editor]);
 
   useEffect(() => {
     setThumbnails(getImages());
     setPreviewText((onSerialize("plainText") ?? "").slice(0, 200));
-  }, [open]);
+  }, [open, onSerialize, getImages]);
 
   // parsing해서 HTML로.
   // const getDeserializeHTML = () => {
@@ -288,7 +286,12 @@ export function PublishDrawer({
                 <div className="pointer-events-none mt-3 flex gap-2">
                   {selectedTags.map((item) => {
                     return (
-                      <Tag id={item.id} title={item.title} className="w-fit" />
+                      <Tag
+                        key={item.id}
+                        id={item.id}
+                        title={item.title}
+                        className="w-fit"
+                      />
                     );
                   })}
                 </div>

@@ -168,79 +168,70 @@ const DraftController = ({
 
       setTimeout(() => setStatus(""), 1000);
     },
-    [saveDraftsToStorage],
+    [saveDraftsToStorage, onSerialize],
   );
 
   // 임시저장 삭제
-  const deleteDraft = useCallback(
-    (draftId: number) => {
-      setDrafts((prevDrafts) => {
-        const newDrafts = prevDrafts.filter((draft) => draft.id !== draftId);
-        saveDraftsToStorage(newDrafts);
-        return newDrafts;
-      });
+  const deleteDraft = (draftId: number) => {
+    setDrafts((prevDrafts) => {
+      const newDrafts = prevDrafts.filter((draft) => draft.id !== draftId);
+      saveDraftsToStorage(newDrafts);
+      return newDrafts;
+    });
 
-      // 현재 선택된 draft가 삭제된 경우
-      if (currentDraftId === draftId) {
-        setCurrentDraftId(null);
-      }
-    },
-    [currentDraftId, saveDraftsToStorage],
-  );
+    // 현재 선택된 draft가 삭제된 경우
+    if (currentDraftId === draftId) {
+      setCurrentDraftId(null);
+    }
+  };
 
   // 임시저장 불러오기
-  const loadDraft = useCallback(
-    (draftId: number) => {
-      const draft = drafts.find((d) => d.id === draftId);
-      if (!draft) return;
+  const loadDraft = (draftId: number) => {
+    const draft = drafts.find((d) => d.id === draftId);
+    if (!draft) return;
 
-      setCurrentDraftId(draftId);
+    setCurrentDraftId(draftId);
 
-      let content = undefined;
-      if (typeof draft.content === "string") {
-        content = draft.content;
-      }
+    let content = undefined;
+    if (typeof draft.content === "string") {
+      content = draft.content;
+    }
 
-      // 에디터에 값 설정
-      handleEditValues(
-        draft.title,
-        content,
-        draft.selectedGroup,
-        draft.selectedCategory,
-        draft.selectedTags,
-      );
-    },
-    [drafts, handleEditValues],
-  );
+    // 에디터에 값 설정
+    handleEditValues(
+      draft.title,
+      content,
+      draft.selectedGroup,
+      draft.selectedCategory,
+      draft.selectedTags,
+    );
+  };
 
   // 현재 내용으로 덮어쓰기
-  const overwriteDraft = useCallback(
-    (draftId: number) => {
-      const updatedDraft = {
-        ...currentDraft,
-        id: draftId,
-      };
+  const overwriteDraft = (draftId: number) => {
+    const updatedDraft = {
+      ...currentDraft,
+      id: draftId,
+    };
 
-      setCurrentDraftId(draftId);
-      saveDraft(updatedDraft);
-    },
-    [currentDraft, saveDraft],
-  );
+    setCurrentDraftId(draftId);
+    saveDraft(updatedDraft);
+  };
 
   // 수동 저장
-  const handleManualSave = useCallback(() => {
+  const handleManualSave = () => {
     // 내용이 비어있으면 저장하지 않음
     if (!title.trim() && !content) return;
 
     saveDraft(currentDraft);
-  }, [currentDraft, saveDraft, title, content]);
+  };
 
   // // 새 draft 시작
-  const startNewDraft = useCallback(() => {
+  const startNewDraft = () => {
     setCurrentDraftId(Date.now());
     saveDraft(currentDraft);
     // handleEditValues("", undefined, null, null, []);
-  }, [handleEditValues]);
+  };
 
   // 초기 로딩
   useEffect(() => {
