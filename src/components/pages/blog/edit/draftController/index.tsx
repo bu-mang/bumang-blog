@@ -228,8 +228,10 @@ const DraftController = ({
 
   // // 새 draft 시작
   const startNewDraft = () => {
-    setCurrentDraftId(Date.now());
-    saveDraft(currentDraft);
+    const newDraft = { ...currentDraft };
+    newDraft.id = Date.now();
+    // setCurrentDraftId(newDraft.id);
+    saveDraft(newDraft);
     // handleEditValues("", undefined, null, null, []);
   };
 
