@@ -12,19 +12,27 @@ import { PostDetailResponseDto } from "@/types/dto/blog/[id]";
 import { createYooptaEditor, YooptaContentValue } from "@yoopta/editor";
 import { html } from "@yoopta/exports";
 import { format } from "date-fns";
-import { AlignJustifyIcon, Calendar, FolderIcon } from "lucide-react";
+import {
+  AlignJustifyIcon,
+  Calendar,
+  Edit,
+  FolderIcon,
+  Trash2,
+} from "lucide-react";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import BlogIndex from "../../(list)/blogIndex";
 import BlogComment from "./blogComment";
 import RelatedAndAdjacentPost from "./relatedPosts";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { PATHNAME } from "@/constants/routes";
 import { getThumbnailByGroup } from "@/utils/getThumnailByGroup";
 import Link from "next/link";
 import { useAuthStore } from "@/store/auth";
 import { useEditStore } from "@/store/edit";
+import { useMutation } from "@tanstack/react-query";
+import { deletePost } from "@/services/api/blog/edit";
 
 interface BlogDetailInnerProps {
   post: PostDetailResponseDto;
@@ -160,6 +168,24 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
     });
   };
 
+  const handleDelete = () => {
+    // 정말 삭제하시겠습니까?
+    deleteMutation.mutateAsync();
+  };
+
+  const router = useRouter();
+  const params = useParams();
+  const queryId = typeof params.id === "string" ? params.id : params.id[0];
+  const deleteMutation = useMutation({
+    mutationFn: () => deletePost(queryId),
+    onSuccess: () => {
+      router.back();
+      setTimeout(() => {
+        router.refresh();
+      }, 300);
+    },
+  });
+
   return (
     <>
       {/* 본문 ARTICLE */}
@@ -224,13 +250,23 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
           {post.authorNickname === user?.nickname && (
             <>
               <Divider className="mx-5" />
+
               <Link
-                className="text-sm text-gray-300 hover:underline"
+                className="mr-5 flex items-center gap-1 text-sm text-gray-300 hover:underline"
                 href={PATHNAME.BLOG + `/edit?id=${post.id}`}
                 onClick={handleSetDraft}
               >
-                Edit
+                <Edit size={18} />
+                <span>Edit</span>
               </Link>
+
+              <ButtonBase
+                className="flex items-center gap-1 text-sm text-gray-300 hover:underline"
+                onClick={handleDelete}
+              >
+                <Trash2 size={18} />
+                <span>Delete</span>
+              </ButtonBase>
             </>
           )}
         </div>

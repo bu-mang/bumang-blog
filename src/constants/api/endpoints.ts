@@ -24,7 +24,8 @@ export const END_POINTS = {
   // BLOG/EDIT
   POST_CREATE_POST: "/posts",
   POST_IMAGE_PRESIGNED_URL: "/s3/presigned-url",
-  POST_UPDATE_POST: (id: number | string) => `/posts/${id}`,
+  PATCH_UPDATE_POST: (id: number | string) => `/posts/${id}`,
+  DELETE_POST: (id: number | string) => `/posts/${id}`,
 
   // BLOG/[ID]
   GET_BLOG_DETAIL: (id: number | string) => `/posts/${id}`,

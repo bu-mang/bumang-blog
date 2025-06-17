@@ -12,8 +12,14 @@ export const postCreatePost = async (dto: CreatePostDto) => {
   return res.data;
 };
 
-export const postUpdatePost = async (id: string, dto: CreatePostDto) => {
-  const res = await ClientInstance.patch(END_POINTS.POST_UPDATE_POST(id), dto);
+export const patchUpdatePost = async (id: string, dto: CreatePostDto) => {
+  const res = await ClientInstance.patch(END_POINTS.PATCH_UPDATE_POST(id), dto);
+
+  return res.data;
+};
+
+export const deletePost = async (id: string) => {
+  const res = await ClientInstance.delete(END_POINTS.DELETE_POST(id));
 
   return res.data;
 };

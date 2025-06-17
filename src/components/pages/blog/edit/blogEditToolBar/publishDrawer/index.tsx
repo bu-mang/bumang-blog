@@ -22,7 +22,7 @@ import { toast } from "react-toastify";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { PATHNAME } from "@/constants/routes";
-import { postCreatePost, postUpdatePost } from "@/services/api/blog/edit";
+import { postCreatePost, patchUpdatePost } from "@/services/api/blog/edit";
 import { isAxiosError } from "axios";
 import { useAuthStore } from "@/store/auth";
 import { useCallback, useEffect, useState } from "react";
@@ -81,7 +81,7 @@ export function PublishDrawer({
 
   const updateMutation = useMutation({
     mutationFn: ({ queryId, ...rest }: CreatePostDto & { queryId: string }) =>
-      postUpdatePost(queryId, rest),
+      patchUpdatePost(queryId, rest),
     onSuccess: () => {
       router.replace(PATHNAME.BLOG + `/${queryId}`);
       router.refresh();
