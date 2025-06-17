@@ -1,6 +1,12 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from "react";
 import {
   createYooptaEditor,
   YooptaContentValue,
@@ -16,6 +22,8 @@ import { cn } from "@/utils/cn";
 import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
 import { sortStringOrder } from "@/utils/sortTagOrder";
 import { html, plainText } from "@yoopta/exports";
+import { useEditStore } from "@/store/edit";
+import { useSearchParams } from "next/navigation";
 
 interface BlogEditInnerProps {
   tagLists: TagType[];
@@ -175,13 +183,60 @@ export default function BlogEditInner({
     [editor],
   );
 
-  const getDeserializeHTML = (text: string) => {
-    const content = html.deserialize(editor, text);
+  const getDeserializeHTML = useCallback(
+    (text: string) => {
+      const content = html.deserialize(editor, text);
 
-    editor.setEditorValue(content);
+      editor.setEditorValue(content);
 
-    return content;
-  };
+      return content;
+    },
+    [editor],
+  );
+
+  // 수정 페이지 edit?id=...
+  const editId = useEditStore((state) => state.id);
+  const editDraft = useEditStore((state) => state.editDraft);
+  useLayoutEffect(() => {
+    console.log(editId, editDraft);
+    if (editDraft?.title) {
+      setTitle(editDraft.title);
+    }
+
+    if (editDraft?.content) {
+      getDeserializeHTML(editDraft.content as string);
+    }
+
+    if (editDraft?.selectedGroup) {
+      const editGroup = groupLists.find(
+        (group) => group.id === editDraft.selectedGroup?.id,
+      );
+      setSelectedGroup(editGroup ?? null);
+
+      if (editDraft?.selectedCategory) {
+        const editCategory = editGroup?.categories.find(
+          (category) => category.id === editDraft.selectedCategory?.id,
+        );
+        setSelectedCategory(editCategory ?? null);
+      }
+    }
+
+    const selected: TagType[] = [];
+    const unselected: TagType[] = [];
+    if (editDraft?.selectedTags) {
+      const selectedTagIds = editDraft.selectedTags.map((item) => item.id);
+      tagLists.forEach((tag) => {
+        if (selectedTagIds.includes(tag.id)) {
+          selected.push(tag);
+        } else {
+          unselected.push(tag);
+        }
+      });
+    }
+
+    setSelectedTags(selected);
+    setUnselectedTags(unselected);
+  }, [editId, editDraft, getDeserializeHTML, groupLists, tagLists]);
 
   return (
     <main className="flex min-h-screen w-full flex-col">
@@ -209,6 +264,7 @@ export default function BlogEditInner({
         editorValue={editorValue}
         title={title}
         editor={editor}
+        //
       />
 
       {/* 본문 영역 */}

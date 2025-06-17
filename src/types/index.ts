@@ -13,6 +13,9 @@ import { RoleType, UserType } from "@/types/user";
 // CATEGORY
 import { MenuType } from "@/types/routes";
 
+import { DraftType } from "@/types/draft";
+import { Nullable, Nullishable } from "@/types/util";
+
 // BLOG
 import {
   BlogStep,
@@ -68,6 +71,9 @@ export type {
 
   // LAYOUT
   AlignType,
+  DraftType,
+  Nullable,
+  Nullishable,
 };
 
 // ENUM

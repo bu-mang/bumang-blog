@@ -14,7 +14,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useAuthStore } from "@/store/auth";
-import { CategoryType, GroupType, TagType } from "@/types";
+import { CategoryType, GroupType, TagType, DraftType } from "@/types";
 import { cn } from "@/utils/cn";
 import { YooptaContentValue } from "@yoopta/editor";
 import { format } from "date-fns";
@@ -43,17 +43,6 @@ interface DraftControllerProps {
 
   onSerialize: (type?: "html" | "plainText") => string | undefined;
   onDeserialize: (text: string) => void;
-}
-
-interface DraftType {
-  id: number;
-  title: string;
-  content: YooptaContentValue | string | undefined;
-  selectedGroup: GroupType | null;
-  selectedCategory: CategoryType | null;
-  selectedTags: TagType[];
-  lastUpdatedAt: string;
-  selected: boolean;
 }
 
 const DraftController = ({

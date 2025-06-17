@@ -19,16 +19,17 @@ import { CategoryType, GroupType, RoleType, TagType } from "@/types";
 import { cn } from "@/utils/cn";
 import { SlateElement, YooEditor, YooptaContentValue } from "@yoopta/editor";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { PATHNAME } from "@/constants/routes";
-import { postCreatePost } from "@/services/api/blog/edit";
+import { postCreatePost, postUpdatePost } from "@/services/api/blog/edit";
 import { isAxiosError } from "axios";
 import { useAuthStore } from "@/store/auth";
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { getThumbnailByGroup } from "@/utils/getThumnailByGroup";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { CreatePostDto } from "@/types/dto/blog/edit";
 
 interface DrawerSheetProps {
   title: string;
@@ -60,11 +61,29 @@ export function PublishDrawer({
   const [open, setOpen] = useState(false);
   const [thumbnailIndex, setThumbnailIndex] = useState(0);
 
+  const params = useSearchParams();
+  const queryId = params.get("id");
+
   const router = useRouter();
   const postMutation = useMutation({
     mutationFn: postCreatePost,
     onSuccess: () => {
       router.replace(PATHNAME.BLOG);
+      router.refresh();
+    },
+    onError: (error) => {
+      if (!isAxiosError(error)) return;
+
+      console.log(error.response?.config.data, "error.response?.config.data");
+      console.log(error.message, "error.message");
+    },
+  });
+
+  const updateMutation = useMutation({
+    mutationFn: ({ queryId, ...rest }: CreatePostDto & { queryId: string }) =>
+      postUpdatePost(queryId, rest),
+    onSuccess: () => {
+      router.replace(PATHNAME.BLOG + `/${queryId}`);
       router.refresh();
     },
     onError: (error) => {
@@ -111,6 +130,20 @@ export function PublishDrawer({
     // 본문 미입력 시
     if (!serializedHTML || !previewText) {
       toast.error("Write Some Contents, Me!");
+      return;
+    }
+
+    if (queryId) {
+      updateMutation.mutateAsync({
+        queryId,
+        title,
+        content: serializedHTML,
+        previewText,
+        categoryId,
+        tagIds,
+        readPermission,
+        thumbnailUrl,
+      });
       return;
     }
 

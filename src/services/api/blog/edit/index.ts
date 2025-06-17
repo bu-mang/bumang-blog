@@ -12,6 +12,12 @@ export const postCreatePost = async (dto: CreatePostDto) => {
   return res.data;
 };
 
+export const postUpdatePost = async (id: string, dto: CreatePostDto) => {
+  const res = await ClientInstance.patch(END_POINTS.POST_UPDATE_POST(id), dto);
+
+  return res.data;
+};
+
 export const postCreatePreSignedUrl = async (
   filename: string,
   mimetype: string,

@@ -22,6 +22,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useRouter } from "next/navigation";
 import { PATHNAME } from "@/constants/routes";
 import { getThumbnailByGroup } from "@/utils/getThumnailByGroup";
+import Link from "next/link";
+import { useAuthStore } from "@/store/auth";
+import { useEditStore } from "@/store/edit";
 
 interface BlogDetailInnerProps {
   post: PostDetailResponseDto;
@@ -131,6 +134,8 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
   const editor = useMemo(() => createYooptaEditor(), []);
   const [editorValue] = useState<YooptaContentValue>();
   const [indexParsed, setIndexParsed] = useState(false);
+  const user = useAuthStore((state) => state.user);
+  const setIdAndEditDraft = useEditStore((state) => state.setIdAndEditDraft);
 
   // parsing해서 HTML로.
   const getDeserializeHTML = (text: string) => {
@@ -144,6 +149,16 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
     getDeserializeHTML(post.content ?? "내용 없음");
     // eslint-disable-next-line
   }, []);
+
+  const handleSetDraft = () => {
+    setIdAndEditDraft(post.id, {
+      title: post.title,
+      content: post.content,
+      selectedGroup: post.group,
+      selectedCategory: post.category,
+      selectedTags: post.tags,
+    });
+  };
 
   return (
     <>
@@ -177,26 +192,47 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
         <div className="mb-24 flex items-center justify-center">
           <div className="group flex cursor-pointer items-center justify-center gap-2 text-sm text-gray-300 transition-all hover:scale-105">
             <FolderIcon size={18} className="group-hover:text-gray-600" />
-            <span className="group-hover:text-gray-600">
+            <Link
+              href={PATHNAME.BLOG + `?groupId=${post.group.id}`}
+              className="group-hover:text-gray-600"
+            >
               {post.group.label ?? "No Group"}
-            </span>
+            </Link>
           </div>
 
           <span className="mx-2 text-gray-200">•</span>
 
           <div className="group flex cursor-pointer items-center justify-center gap-2 text-sm text-gray-300 transition-all hover:scale-105">
             <AlignJustifyIcon size={18} className="group-hover:text-gray-600" />
-            <span className="group-hover:text-gray-600">
+            <Link
+              href={PATHNAME.BLOG + `?categoryId=${post.category.id}`}
+              className="group-hover:text-gray-600"
+            >
               {post.category.label ?? "No Category"}
-            </span>
+            </Link>
           </div>
 
           <Divider className="mx-5" />
 
+          {/* CALENDAR */}
           <div className="pointer-events-none flex items-center justify-center gap-2 text-sm text-gray-300">
             <Calendar size={18} />
             <span>{format(post.createdAt, "yyyy. MM. dd.")}</span>
           </div>
+
+          {/* LOGGINED */}
+          {post.authorNickname === user?.nickname && (
+            <>
+              <Divider className="mx-5" />
+              <Link
+                className="text-sm text-gray-300 hover:underline"
+                href={PATHNAME.BLOG + `/edit?id=${post.id}`}
+                onClick={handleSetDraft}
+              >
+                Edit
+              </Link>
+            </>
+          )}
         </div>
 
         <Editor
