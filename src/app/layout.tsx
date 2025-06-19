@@ -2,6 +2,7 @@ import Providers from "@/components/tanstackQueryProvider";
 import { Footer, Header, Grid } from "@/components/layout";
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
+import InteractiveBackground from "@/components/layout/interactiveBackground";
 
 export default function RootLayout({
   children,
@@ -34,6 +35,7 @@ export default function RootLayout({
           {isGridOn && <Grid />}
           <Header />
           <div className="w-screen">{children}</div>
+          <InteractiveBackground />
           <Footer />
           <ToastContainer
             position="top-right"
