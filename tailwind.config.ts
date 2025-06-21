@@ -47,7 +47,7 @@ const config: Config = {
         gray: {
           "0": "#FFFFFF",
           "1": "#F8F8F8",
-          "5": "#EDEDED",
+          "5": "#F2F2F2",
           "10": "#EDE5E5",
           "50": "#D9D9D9",
           "100": "#B4B4B4",
@@ -157,7 +157,11 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+    require("@midudev/tailwind-animations"),
+  ],
   safelist: ["pt-64"],
 };
 export default config;

@@ -26,6 +26,7 @@ export default function Work() {
 
     if (containerRef.current) {
       const tl = gsap.timeline({
+        onStart: () => setFocusedTab(tab),
         onComplete: () => setIsAnimating(false),
       });
 
@@ -37,9 +38,7 @@ export default function Work() {
         ease: "power2.in",
       })
         // 탭 변경
-        .call(() => {
-          setFocusedTab(tab);
-        })
+        .call(() => {})
         // 새 콘텐츠를 오른쪽에서 슬라이드인
         .fromTo(
           containerRef.current,
@@ -81,7 +80,7 @@ export default function Work() {
       <WorkTab onChangeTab={handleFocusedTab} focusedTab={focusedTab} />
 
       {/* TAB VIEWS */}
-      <div ref={containerRef} className="w-full">
+      <div ref={containerRef} className={cn("mt-5 w-full")}>
         {focusedTab === "Compact" && <WorkInnerCompact />}
         {focusedTab === "Interactive" && <WorkInnerInteractive />}
       </div>

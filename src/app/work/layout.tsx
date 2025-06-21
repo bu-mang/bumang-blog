@@ -7,9 +7,7 @@ export default function WorkLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section
-      className={cn(LAYOUT_PADDING_TOP_WITH_HEIGHT, "h-fit min-h-full w-full")}
-    >
+    <section className={cn("pt-60", "h-fit min-h-full w-full")}>
       <div className="">{children}</div>
     </section>
   );

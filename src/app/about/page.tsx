@@ -7,6 +7,8 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap/all";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionBox, SubBox } from "@/components/pages";
+import { cn } from "@/utils/cn";
+import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,7 +37,7 @@ export default function Blog() {
   }, []);
 
   return (
-    <main className="" ref={containerRef}>
+    <main ref={containerRef}>
       {/* IMAGES */}
       <div className="fade-in-mount relative mx-[10vw] mb-6 h-96">
         <Image
@@ -47,7 +49,7 @@ export default function Blog() {
       </div>
 
       {/* INTRODUCE */}
-      <SectionBox className="fade-in-mount">
+      <SectionBox className={cn("fade-in-mount", LAYOUT_PADDING_ALONGSIDE)}>
         <div className="sticky top-20 col-span-3 mb-20 h-32 text-6xl font-semibold">
           Hello!
         </div>
@@ -69,15 +71,18 @@ export default function Blog() {
             technologies. I&apos;m always open to exciting side project ideas!
           </p>
         </div>
+
         <div className="col-start-4 col-end-9">
           <SubBox>
             <span className="col-span-1 font-semibold">Moblie</span>
             <span className="col-span-4">+82 10-4922-3563</span>
           </SubBox>
+
           <SubBox>
             <span className="col-span-1 font-semibold">Email</span>
             <span className="col-span-4">Baughman0729@gmail.com</span>
           </SubBox>
+
           <SubBox className="mb-16">
             <span className="col-span-1 font-semibold">Links</span>
             <div className="col-span-4 flex gap-2 text-gray-200">
@@ -105,10 +110,11 @@ export default function Blog() {
       </SectionBox>
 
       {/* AWARDS */}
-      <SectionBox className="fade-in-mount">
+      <SectionBox className={cn("fade-in-mount", LAYOUT_PADDING_ALONGSIDE)}>
         <div className="sticky top-20 col-span-3 mb-20 h-32 text-6xl font-semibold">
           Awards
         </div>
+
         <div className="col-start-4 col-end-9 -translate-y-3">
           <SubBox className="border-none">
             <div className="col-span-1 font-semibold">2023</div>
@@ -152,7 +158,7 @@ export default function Blog() {
       </SectionBox>
 
       {/* MAIN TECHSTACK */}
-      <SectionBox className="fade-in-mount">
+      <SectionBox className={cn("fade-in-mount", LAYOUT_PADDING_ALONGSIDE)}>
         <div className="sticky top-20 col-span-3 mb-20 flex h-48 flex-col gap-2 text-6xl font-semibold">
           <span>Main</span>
           <span>TechStack</span>
@@ -188,6 +194,7 @@ export default function Blog() {
               <span className="text-gray-300">Interactive Development</span>
             </div>
           </SubBox>
+
           {/* MOBILE */}
           <SubBox className="gap-y-8 text-sm">
             <div className="col-span-1 row-span-3 pr-2 font-semibold">
@@ -218,6 +225,7 @@ export default function Blog() {
               <span className="text-gray-300">Market Deploy Experience</span>
             </div>
           </SubBox>
+
           {/* BACKEND */}
           <SubBox className="gap-y-8 text-sm">
             <div className="col-span-1 row-span-3 pr-2 font-semibold">
@@ -243,11 +251,8 @@ export default function Blog() {
               <span className="font-semibold">Prisma</span>
               <span className="text-gray-300">ORM</span>
             </div>
-            {/* <div className="col-start-4 col-end-6 flex flex-col pl-2">
-              <span className="font-semibold">Supabase</span>
-              <span className="text-gray-300">Backend as a Service</span>
-            </div> */}
           </SubBox>
+
           {/* CI/CD */}
           <SubBox className="gap-y-8 text-sm">
             <div className="col-span-1 row-span-3 pr-2 font-semibold">
@@ -270,6 +275,7 @@ export default function Blog() {
               </span>
             </div>
           </SubBox>
+
           {/* DESIGN */}
           <SubBox className="gap-y-8 text-sm">
             <div className="col-span-1 row-span-3 pr-2 font-semibold">
@@ -300,11 +306,12 @@ export default function Blog() {
       </SectionBox>
 
       {/* BASIC LEVEL SKILLS */}
-      <SectionBox className="fade-in-mount">
+      <SectionBox className={cn("fade-in-mount", LAYOUT_PADDING_ALONGSIDE)}>
         <div className="sticky top-20 col-span-3 mb-20 flex h-32 flex-col text-6xl font-semibold">
           <span>Basic</span>
           <span>Level in</span>
         </div>
+
         <div className="col-start-4 col-end-9 -translate-y-3">
           {/* DEV */}
           <SubBox className="gap-y-8 border-none text-sm">
@@ -326,6 +333,7 @@ export default function Blog() {
               <span className="text-gray-300">Cloud Infrastructure</span>
             </div>
           </SubBox>
+
           {/* DESIGN */}
           <SubBox className="gap-y-8 text-sm">
             <div className="sticky top-20 col-span-1 row-span-3 mb-20 pr-2 font-semibold">
