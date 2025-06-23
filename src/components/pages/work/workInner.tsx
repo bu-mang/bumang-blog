@@ -22,7 +22,7 @@ export function WorkInnerInteractive() {
 export function WorkInnerCompact() {
   return (
     <>
-      {/* Percent Hotel */}
+      {/* BUMANG BLOG */}
       <SectionBox animated={false} className="fade-in-mount" borderTop={false}>
         {/* TITLE */}
         <div className="sticky top-20 col-span-3 mb-44 mt-8 flex h-fit flex-col font-semibold">
@@ -52,68 +52,233 @@ export function WorkInnerCompact() {
           <SubBox borderTop={false}>
             <div className="col-span-1 translate-y-1.5 font-semibold">1.</div>
             <div className="col-span-4">
-              <div className="col-span-4 mb-3 text-2xl font-semibold">
-                Custom Animated Carousel Library
-              </div>
+              <Title>Built a Nest.js backend for a blog application</Title>
 
-              <p className="col-span-4">
-                Developed a useCarouselSize hook that dynamically updates the
-                x-axis slide position in response to the parent container's
-                width changes on resize events.
-              </p>
+              <OrderedList order={"a."}>
+                <OrderedListHead>
+                  Divide Native Build Config to Dev and Prod
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  Developed a custom hook to determine whether the user can
+                  proceed to the next step, based on various business rules such
+                  as: 1st transfer price, 2nd price configuration status, 2nd
+                  price timing, 2nd price value, bank account registration
+                  status, Yanolja verification, and terms agreement status
+                </OrderedList>
+
+                <OrderedList order={"ii."} className="mb-2">
+                  Calculated the delta between mousedown and mouseup pageX
+                  values to determine the swipe direction; if the delta exceeded
+                  a certain threshold, the carousel advanced to the next slide
+                </OrderedList>
+
+                <OrderedList order={"iii."}>
+                  Used useEffect and setInterval to create an infinite slide
+                  animation that runs every 3 seconds, with mouseenter and
+                  mouseleave events used to pause and resume the animation.
+                  Cleaned up the interval on page unmount to prevent memory
+                  leaks
+                </OrderedList>
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"a."}>
+                <OrderedListHead>
+                  Provided a Consistent User Experience Across Mobile and
+                  Desktop
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  Enabled drag functionality for both mobile and desktop
+                  environments by supporting both TouchEvent and MouseEvent
+                </OrderedList>
+
+                <OrderedList order={"ii."}>
+                  Prevented unintended clicks by canceling mouse events when a
+                  touch event was detected
+                </OrderedList>
+              </OrderedList>
             </div>
           </SubBox>
 
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">2.</div>
             <div className="col-span-4">
-              <div className="col-span-4 mb-3 text-2xl font-semibold">
-                Custom Animated Carousel Library
-              </div>
+              <Title>
+                Established a separation of concerns strategy between SSR and
+                CSR with a focus on SEO and data fetching optimization.
+              </Title>
 
-              <p className="col-span-4">
-                Developed a useCarouselSize hook that dynamically updates the
-                x-axis slide position in response to the parent container's
-                width changes on resize events.
-              </p>
+              <OrderedList order={"a."}>
+                <OrderedListHead>
+                  Divide Native Build Config to Dev and Prod
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  Developed a custom hook to determine whether the user can
+                  proceed to the next step, based on various business rules such
+                  as: 1st transfer price, 2nd price configuration status, 2nd
+                  price timing, 2nd price value, bank account registration
+                  status, Yanolja verification, and terms agreement status
+                </OrderedList>
+
+                <OrderedList order={"ii."} className="mb-2">
+                  Calculated the delta between mousedown and mouseup pageX
+                  values to determine the swipe direction; if the delta exceeded
+                  a certain threshold, the carousel advanced to the next slide
+                </OrderedList>
+
+                <OrderedList order={"iii."}>
+                  Used useEffect and setInterval to create an infinite slide
+                  animation that runs every 3 seconds, with mouseenter and
+                  mouseleave events used to pause and resume the animation.
+                  Cleaned up the interval on page unmount to prevent memory
+                  leaks
+                </OrderedList>
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"a."}>
+                <OrderedListHead>
+                  Provided a Consistent User Experience Across Mobile and
+                  Desktop
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  Enabled drag functionality for both mobile and desktop
+                  environments by supporting both TouchEvent and MouseEvent
+                </OrderedList>
+
+                <OrderedList order={"ii."}>
+                  Prevented unintended clicks by canceling mouse events when a
+                  touch event was detected
+                </OrderedList>
+              </OrderedList>
             </div>
           </SubBox>
 
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">3.</div>
             <div className="col-span-4">
-              <div className="col-span-4 mb-3 text-2xl font-semibold">
-                Custom Animated Carousel Library
-              </div>
+              <Title>
+                Built high-quality components by combining an interactive
+                animation library with Headless UI.
+              </Title>
 
-              <p className="col-span-4">
-                Developed a useCarouselSize hook that dynamically updates the
-                x-axis slide position in response to the parent container's
-                width changes on resize events.
-              </p>
+              <OrderedList order={"a."}>
+                <OrderedListHead>
+                  Divide Native Build Config to Dev and Prod
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  Developed a custom hook to determine whether the user can
+                  proceed to the next step, based on various business rules such
+                  as: 1st transfer price, 2nd price configuration status, 2nd
+                  price timing, 2nd price value, bank account registration
+                  status, Yanolja verification, and terms agreement status
+                </OrderedList>
+
+                <OrderedList order={"ii."} className="mb-2">
+                  Calculated the delta between mousedown and mouseup pageX
+                  values to determine the swipe direction; if the delta exceeded
+                  a certain threshold, the carousel advanced to the next slide
+                </OrderedList>
+
+                <OrderedList order={"iii."}>
+                  Used useEffect and setInterval to create an infinite slide
+                  animation that runs every 3 seconds, with mouseenter and
+                  mouseleave events used to pause and resume the animation.
+                  Cleaned up the interval on page unmount to prevent memory
+                  leaks
+                </OrderedList>
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"a."}>
+                <OrderedListHead>
+                  Provided a Consistent User Experience Across Mobile and
+                  Desktop
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  Enabled drag functionality for both mobile and desktop
+                  environments by supporting both TouchEvent and MouseEvent
+                </OrderedList>
+
+                <OrderedList order={"ii."}>
+                  Prevented unintended clicks by canceling mouse events when a
+                  touch event was detected
+                </OrderedList>
+              </OrderedList>
             </div>
           </SubBox>
 
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">3.</div>
+            <div className="col-span-1 translate-y-1.5 font-semibold">4.</div>
             <div className="col-span-4">
-              <div className="col-span-4 mb-3 text-2xl font-semibold">
-                Custom Animated Carousel Library
-              </div>
+              <Title>
+                Implemented utility features such as i18n (internationalization)
+                and dark mode.
+              </Title>
 
-              <p className="col-span-4">
-                Developed a useCarouselSize hook that dynamically updates the
-                x-axis slide position in response to the parent container's
-                width changes on resize events.
-              </p>
+              <OrderedList order={"a."}>
+                <OrderedListHead>
+                  Divide Native Build Config to Dev and Prod
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  Developed a custom hook to determine whether the user can
+                  proceed to the next step, based on various business rules such
+                  as: 1st transfer price, 2nd price configuration status, 2nd
+                  price timing, 2nd price value, bank account registration
+                  status, Yanolja verification, and terms agreement status
+                </OrderedList>
+
+                <OrderedList order={"ii."} className="mb-2">
+                  Calculated the delta between mousedown and mouseup pageX
+                  values to determine the swipe direction; if the delta exceeded
+                  a certain threshold, the carousel advanced to the next slide
+                </OrderedList>
+
+                <OrderedList order={"iii."}>
+                  Used useEffect and setInterval to create an infinite slide
+                  animation that runs every 3 seconds, with mouseenter and
+                  mouseleave events used to pause and resume the animation.
+                  Cleaned up the interval on page unmount to prevent memory
+                  leaks
+                </OrderedList>
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"a."}>
+                <OrderedListHead>
+                  Provided a Consistent User Experience Across Mobile and
+                  Desktop
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  Enabled drag functionality for both mobile and desktop
+                  environments by supporting both TouchEvent and MouseEvent
+                </OrderedList>
+
+                <OrderedList order={"ii."}>
+                  Prevented unintended clicks by canceling mouse events when a
+                  touch event was detected
+                </OrderedList>
+              </OrderedList>
             </div>
           </SubBox>
         </div>
       </SectionBox>
 
-      {/* AWARDS */}
+      {/* ANTTIME SWAP */}
       <SectionBox animated={false} className="fade-in-mount">
-        {/* TITLE */}
+        {/* ANTTIME SWAP - TITLE */}
         <div className="sticky top-20 col-span-3 mb-44 mt-8 flex h-fit flex-col font-semibold">
           <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
             Work Project
@@ -135,67 +300,242 @@ export function WorkInnerCompact() {
             <div className="h-3 w-[1px] bg-gray-200" />
             <span className="text-sm text-gray-200">FrontEnd Leader</span>
           </div>
+
+          {/* DESCRIPTION */}
+          <div className="mt-10">
+            <span className="text-xl">
+              A platform to check your exchange score and convert Time Points
+              into Ant Tokens.
+            </span>
+          </div>
         </div>
 
-        {/* CONTENTS */}
+        {/* ANTTIME SWAP - CONTENTS */}
         <div className="col-start-4 col-end-9">
           <SubBox borderTop={false}>
             <div className="col-span-1 translate-y-1.5 font-semibold">1.</div>
             <div className="col-span-4">
-              <div className="col-span-4 mb-3 text-2xl font-semibold">
-                Custom Animated Carousel Library
-              </div>
+              <Title>
+                Developing a Strategy for Utilizing React Server Components and
+                Client Components
+              </Title>
 
-              <p className="col-span-4">
-                Developed a useCarouselSize hook that dynamically updates the
-                x-axis slide position in response to the parent container's
-                width changes on resize events.
-              </p>
+              <OrderedList order={"a."}>
+                <OrderedListHead>
+                  Divide Native Build Config to Dev and Prod
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  Developed a custom hook to determine whether the user can
+                  proceed to the next step, based on various business rules such
+                  as: 1st transfer price, 2nd price configuration status, 2nd
+                  price timing, 2nd price value, bank account registration
+                  status, Yanolja verification, and terms agreement status
+                </OrderedList>
+
+                <OrderedList order={"ii."} className="mb-2">
+                  Calculated the delta between mousedown and mouseup pageX
+                  values to determine the swipe direction; if the delta exceeded
+                  a certain threshold, the carousel advanced to the next slide
+                </OrderedList>
+
+                <OrderedList order={"iii."}>
+                  Used useEffect and setInterval to create an infinite slide
+                  animation that runs every 3 seconds, with mouseenter and
+                  mouseleave events used to pause and resume the animation.
+                  Cleaned up the interval on page unmount to prevent memory
+                  leaks
+                </OrderedList>
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"a."}>
+                <OrderedListHead>
+                  Provided a Consistent User Experience Across Mobile and
+                  Desktop
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  Enabled drag functionality for both mobile and desktop
+                  environments by supporting both TouchEvent and MouseEvent
+                </OrderedList>
+
+                <OrderedList order={"ii."}>
+                  Prevented unintended clicks by canceling mouse events when a
+                  touch event was detected
+                </OrderedList>
+              </OrderedList>
             </div>
           </SubBox>
 
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">2.</div>
             <div className="col-span-4">
-              <div className="col-span-4 mb-3 text-2xl font-semibold">
-                Custom Animated Carousel Library
-              </div>
+              <Title>
+                Separation of Concerns by State Using TanStack Query&apos;s
+                useSuspenseQuery with Suspense and ErrorBoundary
+              </Title>
 
-              <p className="col-span-4">
-                Developed a useCarouselSize hook that dynamically updates the
-                x-axis slide position in response to the parent container's
-                width changes on resize events.
-              </p>
+              <OrderedList order={"a."}>
+                <OrderedListHead>
+                  Divide Native Build Config to Dev and Prod
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  Developed a custom hook to determine whether the user can
+                  proceed to the next step, based on various business rules such
+                  as: 1st transfer price, 2nd price configuration status, 2nd
+                  price timing, 2nd price value, bank account registration
+                  status, Yanolja verification, and terms agreement status
+                </OrderedList>
+
+                <OrderedList order={"ii."} className="mb-2">
+                  Calculated the delta between mousedown and mouseup pageX
+                  values to determine the swipe direction; if the delta exceeded
+                  a certain threshold, the carousel advanced to the next slide
+                </OrderedList>
+
+                <OrderedList order={"iii."}>
+                  Used useEffect and setInterval to create an infinite slide
+                  animation that runs every 3 seconds, with mouseenter and
+                  mouseleave events used to pause and resume the animation.
+                  Cleaned up the interval on page unmount to prevent memory
+                  leaks
+                </OrderedList>
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"a."}>
+                <OrderedListHead>
+                  Provided a Consistent User Experience Across Mobile and
+                  Desktop
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  Enabled drag functionality for both mobile and desktop
+                  environments by supporting both TouchEvent and MouseEvent
+                </OrderedList>
+
+                <OrderedList order={"ii."}>
+                  Prevented unintended clicks by canceling mouse events when a
+                  touch event was detected
+                </OrderedList>
+              </OrderedList>
             </div>
           </SubBox>
 
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">3.</div>
             <div className="col-span-4">
-              <div className="col-span-4 mb-3 text-2xl font-semibold">
-                Custom Animated Carousel Library
-              </div>
+              <Title>
+                Implemented Web3 wallet connection and transaction handling
+                using WAGMI
+              </Title>
 
-              <p className="col-span-4">
-                Developed a useCarouselSize hook that dynamically updates the
-                x-axis slide position in response to the parent container's
-                width changes on resize events.
-              </p>
+              <OrderedList order={"a."}>
+                <OrderedListHead>
+                  Divide Native Build Config to Dev and Prod
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  Developed a custom hook to determine whether the user can
+                  proceed to the next step, based on various business rules such
+                  as: 1st transfer price, 2nd price configuration status, 2nd
+                  price timing, 2nd price value, bank account registration
+                  status, Yanolja verification, and terms agreement status
+                </OrderedList>
+
+                <OrderedList order={"ii."} className="mb-2">
+                  Calculated the delta between mousedown and mouseup pageX
+                  values to determine the swipe direction; if the delta exceeded
+                  a certain threshold, the carousel advanced to the next slide
+                </OrderedList>
+
+                <OrderedList order={"iii."}>
+                  Used useEffect and setInterval to create an infinite slide
+                  animation that runs every 3 seconds, with mouseenter and
+                  mouseleave events used to pause and resume the animation.
+                  Cleaned up the interval on page unmount to prevent memory
+                  leaks
+                </OrderedList>
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"a."}>
+                <OrderedListHead>
+                  Provided a Consistent User Experience Across Mobile and
+                  Desktop
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  Enabled drag functionality for both mobile and desktop
+                  environments by supporting both TouchEvent and MouseEvent
+                </OrderedList>
+
+                <OrderedList order={"ii."}>
+                  Prevented unintended clicks by canceling mouse events when a
+                  touch event was detected
+                </OrderedList>
+              </OrderedList>
             </div>
           </SubBox>
 
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">3.</div>
+            <div className="col-span-1 translate-y-1.5 font-semibold">4.</div>
             <div className="col-span-4">
-              <div className="col-span-4 mb-3 text-2xl font-semibold">
-                Custom Animated Carousel Library
-              </div>
+              <Title>
+                Created a sequential “score evaluation” animation using GSAP
+              </Title>
 
-              <p className="col-span-4">
-                Developed a useCarouselSize hook that dynamically updates the
-                x-axis slide position in response to the parent container's
-                width changes on resize events.
-              </p>
+              <OrderedList order={"a."}>
+                <OrderedListHead>
+                  Divide Native Build Config to Dev and Prod
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  Developed a custom hook to determine whether the user can
+                  proceed to the next step, based on various business rules such
+                  as: 1st transfer price, 2nd price configuration status, 2nd
+                  price timing, 2nd price value, bank account registration
+                  status, Yanolja verification, and terms agreement status
+                </OrderedList>
+
+                <OrderedList order={"ii."} className="mb-2">
+                  Calculated the delta between mousedown and mouseup pageX
+                  values to determine the swipe direction; if the delta exceeded
+                  a certain threshold, the carousel advanced to the next slide
+                </OrderedList>
+
+                <OrderedList order={"iii."}>
+                  Used useEffect and setInterval to create an infinite slide
+                  animation that runs every 3 seconds, with mouseenter and
+                  mouseleave events used to pause and resume the animation.
+                  Cleaned up the interval on page unmount to prevent memory
+                  leaks
+                </OrderedList>
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"a."}>
+                <OrderedListHead>
+                  Provided a Consistent User Experience Across Mobile and
+                  Desktop
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  Enabled drag functionality for both mobile and desktop
+                  environments by supporting both TouchEvent and MouseEvent
+                </OrderedList>
+
+                <OrderedList order={"ii."}>
+                  Prevented unintended clicks by canceling mouse events when a
+                  touch event was detected
+                </OrderedList>
+              </OrderedList>
             </div>
           </SubBox>
         </div>
@@ -204,7 +544,7 @@ export function WorkInnerCompact() {
       {/* ANTTIME APP */}
 
       <SectionBox animated={false} className="fade-in-mount">
-        {/* ANTTIME - TITLE */}
+        {/* ANTTIME APP - TITLE */}
         <div className="sticky top-20 col-span-3 mb-44 mt-8 flex h-fit flex-col font-semibold">
           <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
             Work Project
@@ -225,9 +565,15 @@ export function WorkInnerCompact() {
             <div className="h-3 w-[1px] bg-gray-200" />
             <span className="text-sm text-gray-200">FrontEnd Leader</span>
           </div>
+
+          <div className="mt-10">
+            <span className="text-xl">
+              Time 2 Earn! Mining Points to get Rich!
+            </span>
+          </div>
         </div>
 
-        {/* ANTTIME - CONTENTS */}
+        {/* ANTTIME APP - CONTENTS */}
         <div className="col-start-4 col-end-9">
           <SubBox borderTop={false}>
             <div className="col-span-1 translate-y-1.5 font-semibold">1.</div>
@@ -235,7 +581,9 @@ export function WorkInnerCompact() {
               <Title>Separated production and development Environment</Title>
 
               <OrderedList order={"a."}>
-                <p className="mb-3 font-bold">Implemented Slide Animation~~</p>
+                <OrderedListHead>
+                  Divide Native Build Config to Dev and Prod
+                </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
                   Developed a custom hook to determine whether the user can
@@ -263,10 +611,10 @@ export function WorkInnerCompact() {
               <Divider />
 
               <OrderedList order={"a."}>
-                <p className="mb-3 font-bold">
+                <OrderedListHead>
                   Provided a Consistent User Experience Across Mobile and
                   Desktop
-                </p>
+                </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
                   Enabled drag functionality for both mobile and desktop
@@ -287,7 +635,7 @@ export function WorkInnerCompact() {
               <Title>Updated React Native version</Title>
 
               <OrderedList order={"a."}>
-                <p className="mb-3 font-bold">Implemented Slide Animation</p>
+                <OrderedListHead>Implemented Slide Animation</OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
                   Developed a custom hook to determine whether the user can
@@ -315,10 +663,10 @@ export function WorkInnerCompact() {
               <Divider />
 
               <OrderedList order={"a."}>
-                <p className="mb-3 font-bold">
+                <OrderedListHead>
                   Provided a Consistent User Experience Across Mobile and
                   Desktop
-                </p>
+                </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
                   Enabled drag functionality for both mobile and desktop
@@ -339,7 +687,7 @@ export function WorkInnerCompact() {
               <Title>Integrated Google Play Store Referral API</Title>
 
               <OrderedList order={"a."}>
-                <p className="mb-3 font-bold">Implemented Slide Animation</p>
+                <OrderedListHead>Implemented Slide Animation</OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
                   Developed a custom hook to determine whether the user can
@@ -367,10 +715,10 @@ export function WorkInnerCompact() {
               <Divider />
 
               <OrderedList order={"a."}>
-                <p className="mb-3 font-bold">
+                <OrderedListHead>
                   Provided a Consistent User Experience Across Mobile and
                   Desktop
-                </p>
+                </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
                   Enabled drag functionality for both mobile and desktop
@@ -391,7 +739,7 @@ export function WorkInnerCompact() {
               <Title>Updated animation work skins</Title>
 
               <OrderedList order={"a."}>
-                <p className="mb-3 font-bold">Implemented Slide Animation</p>
+                <OrderedListHead>Implemented Slide Animation </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
                   Developed a custom hook to determine whether the user can
@@ -419,10 +767,10 @@ export function WorkInnerCompact() {
               <Divider />
 
               <OrderedList order={"a."}>
-                <p className="mb-3 font-bold">
+                <OrderedListHead>
                   Provided a Consistent User Experience Across Mobile and
                   Desktop
-                </p>
+                </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
                   Enabled drag functionality for both mobile and desktop
@@ -485,7 +833,7 @@ export function WorkInnerCompact() {
               <Title>Custom Animated Carousel Library</Title>
 
               <OrderedList order={"a."}>
-                <p className="mb-3 font-bold">Implemented Slide Animation</p>
+                <OrderedListHead>Implemented Slide Animation</OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
                   Developed a custom hook to determine whether the user can
@@ -513,10 +861,10 @@ export function WorkInnerCompact() {
               <Divider />
 
               <OrderedList order={"a."}>
-                <p className="mb-3 font-bold">
+                <OrderedListHead>
                   Provided a Consistent User Experience Across Mobile and
                   Desktop
-                </p>
+                </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
                   Enabled drag functionality for both mobile and desktop
@@ -538,9 +886,9 @@ export function WorkInnerCompact() {
               <Title>Handling Complex Business Logic with Custom Hooks</Title>
 
               <OrderedList order={"a."}>
-                <p className="mb-3 font-bold">
+                <OrderedListHead>
                   Handled complex business logic exceptions using a custom hook
-                </p>
+                </OrderedListHead>
 
                 <OrderedList order={"i."}>
                   Developed a custom hook to determine whether the user can
@@ -554,11 +902,11 @@ export function WorkInnerCompact() {
               <Divider />
 
               <OrderedList order={"b."}>
-                <p className="mb-3 font-bold">
+                <OrderedListHead>
                   Redirected to the payment method registration page if no
                   payment method is available, while preserving the form state
                   on return{" "}
-                </p>
+                </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
                   Implemented a flow that preserves the user’s input when a bank
@@ -639,24 +987,24 @@ export function WorkInnerCompact() {
               <Divider />
 
               <OrderedList order={"b."}>
-                <p className="mb-3 font-bold">
+                <OrderedListHead>
                   Required full-team code reviews before merging.
-                </p>
+                </OrderedListHead>
 
                 <OrderedList order={"i."}>
-                  Comments like "Good job" were discouraged — reviewers were
-                  expected to leave meaningful feedback after reading the code
-                  carefully
+                  Comments like &quot;Good job&quot; were discouraged —
+                  reviewers were expected to leave meaningful feedback after
+                  reading the code carefully
                 </OrderedList>
               </OrderedList>
 
               <Divider />
 
               <OrderedList order={"b."}>
-                <p className="mb-3 font-bold">
+                <OrderedListHead>
                   Handled a mid-project situation where two teammates left to
                   prepare for job interviews, affecting team morale
-                </p>
+                </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
                   Reached out to the departing members to clarify which features
@@ -722,4 +1070,8 @@ function Title({
 
 function Divider() {
   return <div className="my-5 h-[1px] w-full bg-gray-50" />;
+}
+
+function OrderedListHead({ children }: { children: React.ReactNode }) {
+  return <p className="mb-3 font-bold">{children}</p>;
 }
