@@ -284,6 +284,140 @@ export function WorkInnerCompact() {
             Work Project
           </span>
           {/* <div className="mb-4 text-6xl">ANTTIME SWAP</div> */}
+          <div className="mb-4 flex flex-col text-6xl">SeaPearl</div>
+
+          <div className="flex items-center gap-2 font-normal">
+            <span className="text-xs font-bold text-gray-200">
+              2024.05.01. 2024.05.30.
+            </span>
+          </div>
+
+          <div className="mb-0.5 flex items-center gap-2 font-normal">
+            <span className="text-sm text-gray-200">Team Project</span>
+            <div className="h-3 w-[1px] bg-gray-200" />
+            <span className="text-sm text-gray-200">FrontEnd Leader</span>
+          </div>
+
+          {/* DESCRIPTION */}
+          <div className="mt-10">
+            <span className="text-xl">
+              A platform to check your exchange score and convert Time Points
+              into Ant Tokens.
+            </span>
+          </div>
+        </div>
+
+        {/* ANTTIME SWAP - CONTENTS */}
+        <div className="col-start-4 col-end-9">
+          <SubBox borderTop={false}>
+            <div className="col-span-1 translate-y-1.5 font-semibold">1.</div>
+            <div className="col-span-4">
+              <Title>
+                Developing a Strategy for Utilizing React Server Components and
+                Client Components
+              </Title>
+
+              <OrderedList order={"a."} className="mb-2">
+                Retrieved token swap period metadata on the server side to
+                manage access control
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"b."} className="mb-2">
+                Strengthened security by avoiding exposure of authorization
+                logic based on permissions or timing in client-side code
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"c."}>
+                Defined clear use cases for Server Components (e.g.,
+                SEO-critical pages) and Client Components depending on rendering
+                needs
+              </OrderedList>
+            </div>
+          </SubBox>
+
+          <SubBox>
+            <div className="col-span-1 translate-y-1.5 font-semibold">2.</div>
+            <div className="col-span-4">
+              <Title>
+                Separation of Concerns by State Using TanStack Query&apos;s
+                useSuspenseQuery with Suspense and ErrorBoundary
+              </Title>
+
+              <OrderedList order={"a."} className="mb-2">
+                Used Suspense and ErrorBoundary to isolate loading/error states
+                and reduce component complexity
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"b."}>
+                Designed architecture to minimize API request blocking
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"c."}>
+                Improved UX with skeleton loaders during async loading
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"d."}>
+                Used Suspensive library’s ClientOnly option for components
+                requiring client-side dependencies in an SSR environment{" "}
+              </OrderedList>
+            </div>
+          </SubBox>
+
+          <SubBox>
+            <div className="col-span-1 translate-y-1.5 font-semibold">3.</div>
+            <div className="col-span-4">
+              <Title>
+                Implemented Web3 wallet connection and transaction handling
+                using WAGMI
+              </Title>
+
+              <OrderedList order={"a."} className="mb-2">
+                Connected major wallets such as MetaMask and WalletConnect, and
+                retrieved wallet information
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"b."} className="mb-2">
+                Enabled token swaps via smart contract interactions
+              </OrderedList>
+            </div>
+          </SubBox>
+
+          <SubBox>
+            <div className="col-span-1 translate-y-1.5 font-semibold">4.</div>
+            <div className="col-span-4">
+              <Title>
+                Created a sequential “score evaluation” animation using GSAP
+              </Title>
+
+              <OrderedList order={"a."}>
+                Shared animation timing state between components using
+                useContext
+              </OrderedList>
+            </div>
+          </SubBox>
+        </div>
+      </SectionBox>
+
+      {/* ANTTIME SWAP */}
+      <SectionBox animated={false} className="fade-in-mount">
+        {/* ANTTIME SWAP - TITLE */}
+        <div className="sticky top-20 col-span-3 mb-44 mt-8 flex h-fit flex-col font-semibold">
+          <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
+            Work Project
+          </span>
+          {/* <div className="mb-4 text-6xl">ANTTIME SWAP</div> */}
           <div className="mb-4 flex flex-col text-6xl">
             <span className="mb-2">ANTTIME</span>
             <span>SWAP</span>
@@ -320,51 +454,24 @@ export function WorkInnerCompact() {
                 Client Components
               </Title>
 
-              <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Divide Native Build Config to Dev and Prod
-                </OrderedListHead>
-
-                <OrderedList order={"i."} className="mb-2">
-                  Developed a custom hook to determine whether the user can
-                  proceed to the next step, based on various business rules such
-                  as: 1st transfer price, 2nd price configuration status, 2nd
-                  price timing, 2nd price value, bank account registration
-                  status, Yanolja verification, and terms agreement status
-                </OrderedList>
-
-                <OrderedList order={"ii."} className="mb-2">
-                  Calculated the delta between mousedown and mouseup pageX
-                  values to determine the swipe direction; if the delta exceeded
-                  a certain threshold, the carousel advanced to the next slide
-                </OrderedList>
-
-                <OrderedList order={"iii."}>
-                  Used useEffect and setInterval to create an infinite slide
-                  animation that runs every 3 seconds, with mouseenter and
-                  mouseleave events used to pause and resume the animation.
-                  Cleaned up the interval on page unmount to prevent memory
-                  leaks
-                </OrderedList>
+              <OrderedList order={"a."} className="mb-2">
+                Retrieved token swap period metadata on the server side to
+                manage access control
               </OrderedList>
 
               <Divider />
 
-              <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Provided a Consistent User Experience Across Mobile and
-                  Desktop
-                </OrderedListHead>
+              <OrderedList order={"b."} className="mb-2">
+                Strengthened security by avoiding exposure of authorization
+                logic based on permissions or timing in client-side code
+              </OrderedList>
 
-                <OrderedList order={"i."} className="mb-2">
-                  Enabled drag functionality for both mobile and desktop
-                  environments by supporting both TouchEvent and MouseEvent
-                </OrderedList>
+              <Divider />
 
-                <OrderedList order={"ii."}>
-                  Prevented unintended clicks by canceling mouse events when a
-                  touch event was detected
-                </OrderedList>
+              <OrderedList order={"c."}>
+                Defined clear use cases for Server Components (e.g.,
+                SEO-critical pages) and Client Components depending on rendering
+                needs
               </OrderedList>
             </div>
           </SubBox>
@@ -377,51 +484,28 @@ export function WorkInnerCompact() {
                 useSuspenseQuery with Suspense and ErrorBoundary
               </Title>
 
-              <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Divide Native Build Config to Dev and Prod
-                </OrderedListHead>
-
-                <OrderedList order={"i."} className="mb-2">
-                  Developed a custom hook to determine whether the user can
-                  proceed to the next step, based on various business rules such
-                  as: 1st transfer price, 2nd price configuration status, 2nd
-                  price timing, 2nd price value, bank account registration
-                  status, Yanolja verification, and terms agreement status
-                </OrderedList>
-
-                <OrderedList order={"ii."} className="mb-2">
-                  Calculated the delta between mousedown and mouseup pageX
-                  values to determine the swipe direction; if the delta exceeded
-                  a certain threshold, the carousel advanced to the next slide
-                </OrderedList>
-
-                <OrderedList order={"iii."}>
-                  Used useEffect and setInterval to create an infinite slide
-                  animation that runs every 3 seconds, with mouseenter and
-                  mouseleave events used to pause and resume the animation.
-                  Cleaned up the interval on page unmount to prevent memory
-                  leaks
-                </OrderedList>
+              <OrderedList order={"a."} className="mb-2">
+                Used Suspense and ErrorBoundary to isolate loading/error states
+                and reduce component complexity
               </OrderedList>
 
               <Divider />
 
-              <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Provided a Consistent User Experience Across Mobile and
-                  Desktop
-                </OrderedListHead>
+              <OrderedList order={"b."}>
+                Designed architecture to minimize API request blocking
+              </OrderedList>
 
-                <OrderedList order={"i."} className="mb-2">
-                  Enabled drag functionality for both mobile and desktop
-                  environments by supporting both TouchEvent and MouseEvent
-                </OrderedList>
+              <Divider />
 
-                <OrderedList order={"ii."}>
-                  Prevented unintended clicks by canceling mouse events when a
-                  touch event was detected
-                </OrderedList>
+              <OrderedList order={"c."}>
+                Improved UX with skeleton loaders during async loading
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"d."}>
+                Used Suspensive library’s ClientOnly option for components
+                requiring client-side dependencies in an SSR environment{" "}
               </OrderedList>
             </div>
           </SubBox>
@@ -434,51 +518,15 @@ export function WorkInnerCompact() {
                 using WAGMI
               </Title>
 
-              <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Divide Native Build Config to Dev and Prod
-                </OrderedListHead>
-
-                <OrderedList order={"i."} className="mb-2">
-                  Developed a custom hook to determine whether the user can
-                  proceed to the next step, based on various business rules such
-                  as: 1st transfer price, 2nd price configuration status, 2nd
-                  price timing, 2nd price value, bank account registration
-                  status, Yanolja verification, and terms agreement status
-                </OrderedList>
-
-                <OrderedList order={"ii."} className="mb-2">
-                  Calculated the delta between mousedown and mouseup pageX
-                  values to determine the swipe direction; if the delta exceeded
-                  a certain threshold, the carousel advanced to the next slide
-                </OrderedList>
-
-                <OrderedList order={"iii."}>
-                  Used useEffect and setInterval to create an infinite slide
-                  animation that runs every 3 seconds, with mouseenter and
-                  mouseleave events used to pause and resume the animation.
-                  Cleaned up the interval on page unmount to prevent memory
-                  leaks
-                </OrderedList>
+              <OrderedList order={"a."} className="mb-2">
+                Connected major wallets such as MetaMask and WalletConnect, and
+                retrieved wallet information
               </OrderedList>
 
               <Divider />
 
-              <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Provided a Consistent User Experience Across Mobile and
-                  Desktop
-                </OrderedListHead>
-
-                <OrderedList order={"i."} className="mb-2">
-                  Enabled drag functionality for both mobile and desktop
-                  environments by supporting both TouchEvent and MouseEvent
-                </OrderedList>
-
-                <OrderedList order={"ii."}>
-                  Prevented unintended clicks by canceling mouse events when a
-                  touch event was detected
-                </OrderedList>
+              <OrderedList order={"b."} className="mb-2">
+                Enabled token swaps via smart contract interactions
               </OrderedList>
             </div>
           </SubBox>
@@ -491,50 +539,8 @@ export function WorkInnerCompact() {
               </Title>
 
               <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Divide Native Build Config to Dev and Prod
-                </OrderedListHead>
-
-                <OrderedList order={"i."} className="mb-2">
-                  Developed a custom hook to determine whether the user can
-                  proceed to the next step, based on various business rules such
-                  as: 1st transfer price, 2nd price configuration status, 2nd
-                  price timing, 2nd price value, bank account registration
-                  status, Yanolja verification, and terms agreement status
-                </OrderedList>
-
-                <OrderedList order={"ii."} className="mb-2">
-                  Calculated the delta between mousedown and mouseup pageX
-                  values to determine the swipe direction; if the delta exceeded
-                  a certain threshold, the carousel advanced to the next slide
-                </OrderedList>
-
-                <OrderedList order={"iii."}>
-                  Used useEffect and setInterval to create an infinite slide
-                  animation that runs every 3 seconds, with mouseenter and
-                  mouseleave events used to pause and resume the animation.
-                  Cleaned up the interval on page unmount to prevent memory
-                  leaks
-                </OrderedList>
-              </OrderedList>
-
-              <Divider />
-
-              <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Provided a Consistent User Experience Across Mobile and
-                  Desktop
-                </OrderedListHead>
-
-                <OrderedList order={"i."} className="mb-2">
-                  Enabled drag functionality for both mobile and desktop
-                  environments by supporting both TouchEvent and MouseEvent
-                </OrderedList>
-
-                <OrderedList order={"ii."}>
-                  Prevented unintended clicks by canceling mouse events when a
-                  touch event was detected
-                </OrderedList>
+                Shared animation timing state between components using
+                useContext
               </OrderedList>
             </div>
           </SubBox>
@@ -586,44 +592,14 @@ export function WorkInnerCompact() {
                 </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  Developed a custom hook to determine whether the user can
-                  proceed to the next step, based on various business rules such
-                  as: 1st transfer price, 2nd price configuration status, 2nd
-                  price timing, 2nd price value, bank account registration
-                  status, Yanolja verification, and terms agreement status
-                </OrderedList>
-
-                <OrderedList order={"ii."} className="mb-2">
-                  Calculated the delta between mousedown and mouseup pageX
-                  values to determine the swipe direction; if the delta exceeded
-                  a certain threshold, the carousel advanced to the next slide
-                </OrderedList>
-
-                <OrderedList order={"iii."}>
-                  Used useEffect and setInterval to create an infinite slide
-                  animation that runs every 3 seconds, with mouseenter and
-                  mouseleave events used to pause and resume the animation.
-                  Cleaned up the interval on page unmount to prevent memory
-                  leaks
-                </OrderedList>
-              </OrderedList>
-
-              <Divider />
-
-              <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Provided a Consistent User Experience Across Mobile and
-                  Desktop
-                </OrderedListHead>
-
-                <OrderedList order={"i."} className="mb-2">
-                  Enabled drag functionality for both mobile and desktop
-                  environments by supporting both TouchEvent and MouseEvent
+                  Set up Firestore for each development environment and
+                  configured environment variable files accordingly
                 </OrderedList>
 
                 <OrderedList order={"ii."}>
-                  Prevented unintended clicks by canceling mouse events when a
-                  touch event was detected
+                  Configured environment-specific setups for
+                  react-native-firebase during native builds using Xcode build
+                  schemes for iOS and Android flavors for Android.
                 </OrderedList>
               </OrderedList>
             </div>
@@ -635,48 +611,22 @@ export function WorkInnerCompact() {
               <Title>Updated React Native version</Title>
 
               <OrderedList order={"a."}>
-                <OrderedListHead>Implemented Slide Animation</OrderedListHead>
-
-                <OrderedList order={"i."} className="mb-2">
-                  Developed a custom hook to determine whether the user can
-                  proceed to the next step, based on various business rules such
-                  as: 1st transfer price, 2nd price configuration status, 2nd
-                  price timing, 2nd price value, bank account registration
-                  status, Yanolja verification, and terms agreement status
-                </OrderedList>
-
-                <OrderedList order={"ii."} className="mb-2">
-                  Calculated the delta between mousedown and mouseup pageX
-                  values to determine the swipe direction; if the delta exceeded
-                  a certain threshold, the carousel advanced to the next slide
-                </OrderedList>
-
-                <OrderedList order={"iii."}>
-                  Used useEffect and setInterval to create an infinite slide
-                  animation that runs every 3 seconds, with mouseenter and
-                  mouseleave events used to pause and resume the animation.
-                  Cleaned up the interval on page unmount to prevent memory
-                  leaks
-                </OrderedList>
+                Due to an outdated RN version, library support was discontinued,
+                requiring the use of older library versions
               </OrderedList>
 
               <Divider />
 
-              <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Provided a Consistent User Experience Across Mobile and
-                  Desktop
-                </OrderedListHead>
+              <OrderedList order={"b."}>
+                Upgraded from 0.68 to 0.74 using React Native Upgrade Helper
+                modified native code accordingly (removed Flipper, configured
+                Fabric, updated iOS/Android metadata)
+              </OrderedList>
 
-                <OrderedList order={"i."} className="mb-2">
-                  Enabled drag functionality for both mobile and desktop
-                  environments by supporting both TouchEvent and MouseEvent
-                </OrderedList>
+              <Divider />
 
-                <OrderedList order={"ii."}>
-                  Prevented unintended clicks by canceling mouse events when a
-                  touch event was detected
-                </OrderedList>
+              <OrderedList order={"c."}>
+                Upgraded library configurations to match the new RN version
               </OrderedList>
             </div>
           </SubBox>
@@ -684,51 +634,26 @@ export function WorkInnerCompact() {
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">3.</div>
             <div className="col-span-4">
-              <Title>Integrated Google Play Store Referral API</Title>
+              <Title>Made DeepLink With Google Play Store Referral API</Title>
 
               <OrderedList order={"a."}>
-                <OrderedListHead>Implemented Slide Animation</OrderedListHead>
-
-                <OrderedList order={"i."} className="mb-2">
-                  Developed a custom hook to determine whether the user can
-                  proceed to the next step, based on various business rules such
-                  as: 1st transfer price, 2nd price configuration status, 2nd
-                  price timing, 2nd price value, bank account registration
-                  status, Yanolja verification, and terms agreement status
-                </OrderedList>
-
-                <OrderedList order={"ii."} className="mb-2">
-                  Calculated the delta between mousedown and mouseup pageX
-                  values to determine the swipe direction; if the delta exceeded
-                  a certain threshold, the carousel advanced to the next slide
-                </OrderedList>
-
-                <OrderedList order={"iii."}>
-                  Used useEffect and setInterval to create an infinite slide
-                  animation that runs every 3 seconds, with mouseenter and
-                  mouseleave events used to pause and resume the animation.
-                  Cleaned up the interval on page unmount to prevent memory
-                  leaks
-                </OrderedList>
+                Developed deep links that redirect users to the appropriate
+                store link based on their operating system
               </OrderedList>
 
               <Divider />
 
-              <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Provided a Consistent User Experience Across Mobile and
-                  Desktop
-                </OrderedListHead>
+              <OrderedList order={"b."}>
+                Additionally, used referral link query strings to pre-fill the
+                referrer code upon app entry
+              </OrderedList>
 
-                <OrderedList order={"i."} className="mb-2">
-                  Enabled drag functionality for both mobile and desktop
-                  environments by supporting both TouchEvent and MouseEvent
-                </OrderedList>
+              <Divider />
 
-                <OrderedList order={"ii."}>
-                  Prevented unintended clicks by canceling mouse events when a
-                  touch event was detected
-                </OrderedList>
+              <OrderedList order={"c."}>
+                Completed deep link integration with referrer code using the
+                GOOGLE Play Store Referral API due to the deprecation of
+                Firebase Dynamic Links
               </OrderedList>
             </div>
           </SubBox>
@@ -739,47 +664,38 @@ export function WorkInnerCompact() {
               <Title>Updated animation work skins</Title>
 
               <OrderedList order={"a."}>
-                <OrderedListHead>Implemented Slide Animation </OrderedListHead>
+                <OrderedListHead>
+                  Developed a skin page that allows users to purchase individual
+                  body part skins using in-app currency
+                </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  Developed a custom hook to determine whether the user can
-                  proceed to the next step, based on various business rules such
-                  as: 1st transfer price, 2nd price configuration status, 2nd
-                  price timing, 2nd price value, bank account registration
-                  status, Yanolja verification, and terms agreement status
+                  Implemented functionality to fetch user body part data and
+                  dynamically update skin animations and part replacements
                 </OrderedList>
 
                 <OrderedList order={"ii."} className="mb-2">
-                  Calculated the delta between mousedown and mouseup pageX
-                  values to determine the swipe direction; if the delta exceeded
-                  a certain threshold, the carousel advanced to the next slide
-                </OrderedList>
-
-                <OrderedList order={"iii."}>
-                  Used useEffect and setInterval to create an infinite slide
-                  animation that runs every 3 seconds, with mouseenter and
-                  mouseleave events used to pause and resume the animation.
-                  Cleaned up the interval on page unmount to prevent memory
-                  leaks
+                  Released seasonal skins tailored to major holidays and events
                 </OrderedList>
               </OrderedList>
 
               <Divider />
 
-              <OrderedList order={"a."}>
+              <OrderedList order={"b."}>
                 <OrderedListHead>
-                  Provided a Consistent User Experience Across Mobile and
-                  Desktop
+                  Complex mining animation using React Native Reanimated
                 </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  Enabled drag functionality for both mobile and desktop
-                  environments by supporting both TouchEvent and MouseEvent
+                  The original mining animation was implemented with Lottie,
+                  which played a single fixed animation of a character in a
+                  predefined outfit. To support skin updates, the animation
+                  needed to be separated into individual parts
                 </OrderedList>
 
-                <OrderedList order={"ii."}>
-                  Prevented unintended clicks by canceling mouse events when a
-                  touch event was detected
+                <OrderedList order={"ii."} className="mb-2">
+                  Used react-native-reanimated to create animation timelines for
+                  each part and implemented smooth, coordinated playback
                 </OrderedList>
               </OrderedList>
             </div>
