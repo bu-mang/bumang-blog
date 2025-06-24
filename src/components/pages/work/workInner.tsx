@@ -43,7 +43,7 @@ export function WorkInnerCompact() {
           <div className="mb-0.5 flex items-center gap-2 font-normal">
             <span className="text-sm text-gray-200">Team Project</span>
             <div className="h-3 w-[1px] bg-gray-200" />
-            <span className="text-sm text-gray-200">FrontEnd Leader</span>
+            <span className="text-sm text-gray-200">FullStack</span>
           </div>
         </div>
 
@@ -52,52 +52,27 @@ export function WorkInnerCompact() {
           <SubBox borderTop={false}>
             <div className="col-span-1 translate-y-1.5 font-semibold">1.</div>
             <div className="col-span-4">
-              <Title>Built a Nest.js backend for a blog application</Title>
+              <Title>Build a Nest.js backend for a blog application.</Title>
 
               <OrderedList order={"a."}>
                 <OrderedListHead>
-                  Divide Native Build Config to Dev and Prod
+                  Abstract authentication and authorization using Guards and
+                  custom Decorators.
                 </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  Developed a custom hook to determine whether the user can
-                  proceed to the next step, based on various business rules such
-                  as: 1st transfer price, 2nd price configuration status, 2nd
-                  price timing, 2nd price value, bank account registration
-                  status, Yanolja verification, and terms agreement status
+                  Use TypeORM QueryBuilder to manipulate SQL queries easily.
                 </OrderedList>
 
                 <OrderedList order={"ii."} className="mb-2">
-                  Calculated the delta between mousedown and mouseup pageX
-                  values to determine the swipe direction; if the delta exceeded
-                  a certain threshold, the carousel advanced to the next slide
+                  Generate related posts based on a score-based relevance
+                  algorithm.
                 </OrderedList>
 
                 <OrderedList order={"iii."}>
-                  Used useEffect and setInterval to create an infinite slide
-                  animation that runs every 3 seconds, with mouseenter and
-                  mouseleave events used to pause and resume the animation.
-                  Cleaned up the interval on page unmount to prevent memory
-                  leaks
-                </OrderedList>
-              </OrderedList>
-
-              <Divider />
-
-              <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Provided a Consistent User Experience Across Mobile and
-                  Desktop
-                </OrderedListHead>
-
-                <OrderedList order={"i."} className="mb-2">
-                  Enabled drag functionality for both mobile and desktop
-                  environments by supporting both TouchEvent and MouseEvent
-                </OrderedList>
-
-                <OrderedList order={"ii."}>
-                  Prevented unintended clicks by canceling mouse events when a
-                  touch event was detected
+                  Send presigned S3 URLs to the frontend so that images inserted
+                  during blog editing are uploaded directly from the client to
+                  S3.
                 </OrderedList>
               </OrderedList>
             </div>
@@ -111,50 +86,15 @@ export function WorkInnerCompact() {
                 CSR with a focus on SEO and data fetching optimization.
               </Title>
 
-              <OrderedList order={"a."}>
+              <OrderedList order={"a."} className="mb-2">
                 <OrderedListHead>
-                  Divide Native Build Config to Dev and Prod
+                  Use SSR for static data that requires SEO, and handle
+                  authenticated content via CSR.
                 </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  Developed a custom hook to determine whether the user can
-                  proceed to the next step, based on various business rules such
-                  as: 1st transfer price, 2nd price configuration status, 2nd
-                  price timing, 2nd price value, bank account registration
-                  status, Yanolja verification, and terms agreement status
-                </OrderedList>
-
-                <OrderedList order={"ii."} className="mb-2">
-                  Calculated the delta between mousedown and mouseup pageX
-                  values to determine the swipe direction; if the delta exceeded
-                  a certain threshold, the carousel advanced to the next slide
-                </OrderedList>
-
-                <OrderedList order={"iii."}>
-                  Used useEffect and setInterval to create an infinite slide
-                  animation that runs every 3 seconds, with mouseenter and
-                  mouseleave events used to pause and resume the animation.
-                  Cleaned up the interval on page unmount to prevent memory
-                  leaks
-                </OrderedList>
-              </OrderedList>
-
-              <Divider />
-
-              <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Provided a Consistent User Experience Across Mobile and
-                  Desktop
-                </OrderedListHead>
-
-                <OrderedList order={"i."} className="mb-2">
-                  Enabled drag functionality for both mobile and desktop
-                  environments by supporting both TouchEvent and MouseEvent
-                </OrderedList>
-
-                <OrderedList order={"ii."}>
-                  Prevented unintended clicks by canceling mouse events when a
-                  touch event was detected
+                  Consider whether SSR should read httpOnly cookies when using
+                  cookie-based authentication strategies.
                 </OrderedList>
               </OrderedList>
             </div>
@@ -169,50 +109,25 @@ export function WorkInnerCompact() {
               </Title>
 
               <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Divide Native Build Config to Dev and Prod
-                </OrderedListHead>
-
-                <OrderedList order={"i."} className="mb-2">
-                  Developed a custom hook to determine whether the user can
-                  proceed to the next step, based on various business rules such
-                  as: 1st transfer price, 2nd price configuration status, 2nd
-                  price timing, 2nd price value, bank account registration
-                  status, Yanolja verification, and terms agreement status
-                </OrderedList>
-
-                <OrderedList order={"ii."} className="mb-2">
-                  Calculated the delta between mousedown and mouseup pageX
-                  values to determine the swipe direction; if the delta exceeded
-                  a certain threshold, the carousel advanced to the next slide
-                </OrderedList>
-
-                <OrderedList order={"iii."}>
-                  Used useEffect and setInterval to create an infinite slide
-                  animation that runs every 3 seconds, with mouseenter and
-                  mouseleave events used to pause and resume the animation.
-                  Cleaned up the interval on page unmount to prevent memory
-                  leaks
-                </OrderedList>
+                Create logo animations that react to scroll and mouse hover
+                events.
               </OrderedList>
 
               <Divider />
 
-              <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Provided a Consistent User Experience Across Mobile and
-                  Desktop
-                </OrderedListHead>
+              <OrderedList order={"b."}>
+                Calculated the delta between mousedown and mouseup pageX values
+                to determine the swipe direction; if the delta exceeded a
+                certain threshold, the carousel advanced to the next slide
+              </OrderedList>
 
-                <OrderedList order={"i."} className="mb-2">
-                  Enabled drag functionality for both mobile and desktop
-                  environments by supporting both TouchEvent and MouseEvent
-                </OrderedList>
+              <Divider />
 
-                <OrderedList order={"ii."}>
-                  Prevented unintended clicks by canceling mouse events when a
-                  touch event was detected
-                </OrderedList>
+              <OrderedList order={"c."}>
+                Used useEffect and setInterval to create an infinite slide
+                animation that runs every 3 seconds, with mouseenter and
+                mouseleave events used to pause and resume the animation.
+                Cleaned up the interval on page unmount to prevent memory leaks
               </OrderedList>
             </div>
           </SubBox>
@@ -225,52 +140,7 @@ export function WorkInnerCompact() {
                 and dark mode.
               </Title>
 
-              <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Divide Native Build Config to Dev and Prod
-                </OrderedListHead>
-
-                <OrderedList order={"i."} className="mb-2">
-                  Developed a custom hook to determine whether the user can
-                  proceed to the next step, based on various business rules such
-                  as: 1st transfer price, 2nd price configuration status, 2nd
-                  price timing, 2nd price value, bank account registration
-                  status, Yanolja verification, and terms agreement status
-                </OrderedList>
-
-                <OrderedList order={"ii."} className="mb-2">
-                  Calculated the delta between mousedown and mouseup pageX
-                  values to determine the swipe direction; if the delta exceeded
-                  a certain threshold, the carousel advanced to the next slide
-                </OrderedList>
-
-                <OrderedList order={"iii."}>
-                  Used useEffect and setInterval to create an infinite slide
-                  animation that runs every 3 seconds, with mouseenter and
-                  mouseleave events used to pause and resume the animation.
-                  Cleaned up the interval on page unmount to prevent memory
-                  leaks
-                </OrderedList>
-              </OrderedList>
-
-              <Divider />
-
-              <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Provided a Consistent User Experience Across Mobile and
-                  Desktop
-                </OrderedListHead>
-
-                <OrderedList order={"i."} className="mb-2">
-                  Enabled drag functionality for both mobile and desktop
-                  environments by supporting both TouchEvent and MouseEvent
-                </OrderedList>
-
-                <OrderedList order={"ii."}>
-                  Prevented unintended clicks by canceling mouse events when a
-                  touch event was detected
-                </OrderedList>
-              </OrderedList>
+              {/* <OrderedList order={"a."}></OrderedList> */}
             </div>
           </SubBox>
         </div>
