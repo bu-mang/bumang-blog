@@ -276,14 +276,13 @@ export function WorkInnerCompact() {
         </div>
       </SectionBox>
 
-      {/* ANTTIME SWAP */}
+      {/* SEA PEARL */}
       <SectionBox animated={false} className="fade-in-mount">
-        {/* ANTTIME SWAP - TITLE */}
+        {/* SEA PEARL - TITLE */}
         <div className="sticky top-20 col-span-3 mb-44 mt-8 flex h-fit flex-col font-semibold">
           <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
             Work Project
           </span>
-          {/* <div className="mb-4 text-6xl">ANTTIME SWAP</div> */}
           <div className="mb-4 flex flex-col text-6xl">SeaPearl</div>
 
           <div className="flex items-center gap-2 font-normal">
@@ -313,28 +312,32 @@ export function WorkInnerCompact() {
             <div className="col-span-1 translate-y-1.5 font-semibold">1.</div>
             <div className="col-span-4">
               <Title>
-                Developing a Strategy for Utilizing React Server Components and
-                Client Components
+                Built and deployed an initial product using a webview-based
+                frontend within Telegram.
               </Title>
 
               <OrderedList order={"a."} className="mb-2">
-                Retrieved token swap period metadata on the server side to
-                manage access control
+                Configured the Telegram development environment using ngrok, and
+                used it for both development and deployment.
               </OrderedList>
-
-              <Divider />
 
               <OrderedList order={"b."} className="mb-2">
-                Strengthened security by avoiding exposure of authorization
-                logic based on permissions or timing in client-side code
-              </OrderedList>
+                <OrderedListHead>
+                  Deployed the frontend as a webview within an iframe-based mini
+                  app environment.
+                </OrderedListHead>
 
-              <Divider />
+                <OrderedList order={"i."} className="mb-2">
+                  Implemented an initialization logic that retrieves user
+                  authentication data using Telegram Mini App global browser
+                  APIs.
+                </OrderedList>
 
-              <OrderedList order={"c."}>
-                Defined clear use cases for Server Components (e.g.,
-                SEO-critical pages) and Client Components depending on rendering
-                needs
+                <OrderedList order={"ii."}>
+                  To enable the use of Mini App APIs in development, the local
+                  environment was exposed via ngrok and registered with the
+                  Telegram bot.
+                </OrderedList>
               </OrderedList>
             </div>
           </SubBox>
@@ -342,33 +345,18 @@ export function WorkInnerCompact() {
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">2.</div>
             <div className="col-span-4">
-              <Title>
-                Separation of Concerns by State Using TanStack Query&apos;s
-                useSuspenseQuery with Suspense and ErrorBoundary
-              </Title>
+              <Title>Integrated Adsgram for in-app advertising.</Title>
 
               <OrderedList order={"a."} className="mb-2">
-                Used Suspense and ErrorBoundary to isolate loading/error states
-                and reduce component complexity
+                Implemented a logic to receive success/failure results from the
+                Adsgram server and forward them to the backend API server.
               </OrderedList>
 
               <Divider />
 
-              <OrderedList order={"b."}>
-                Designed architecture to minimize API request blocking
-              </OrderedList>
-
-              <Divider />
-
-              <OrderedList order={"c."}>
-                Improved UX with skeleton loaders during async loading
-              </OrderedList>
-
-              <Divider />
-
-              <OrderedList order={"d."}>
-                Used Suspensive library’s ClientOnly option for components
-                requiring client-side dependencies in an SSR environment{" "}
+              <OrderedList order={"b."} className="mb-2">
+                Treated ad viewing as failed if the user skips the ad, sends the
+                app to background, or remains on the app manager screen.
               </OrderedList>
             </div>
           </SubBox>
@@ -376,20 +364,11 @@ export function WorkInnerCompact() {
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">3.</div>
             <div className="col-span-4">
-              <Title>
-                Implemented Web3 wallet connection and transaction handling
-                using WAGMI
-              </Title>
+              <Title>Used react-virtuoso to build a virtualized list.</Title>
 
-              <OrderedList order={"a."} className="mb-2">
-                Connected major wallets such as MetaMask and WalletConnect, and
-                retrieved wallet information
-              </OrderedList>
-
-              <Divider />
-
-              <OrderedList order={"b."} className="mb-2">
-                Enabled token swaps via smart contract interactions
+              <OrderedList order={"a."}>
+                Configured the virtualized list to handle infinitely growing
+                data lists.
               </OrderedList>
             </div>
           </SubBox>
@@ -398,12 +377,53 @@ export function WorkInnerCompact() {
             <div className="col-span-1 translate-y-1.5 font-semibold">4.</div>
             <div className="col-span-4">
               <Title>
-                Created a sequential “score evaluation” animation using GSAP
+                Optimized API calls for the tapping game using debounce and
+                global caching, balancing between cost efficiency and security.
               </Title>
 
               <OrderedList order={"a."}>
-                Shared animation timing state between components using
-                useContext
+                <OrderedListHead>
+                  Aggregated tapping counts with a debounce and sent to the
+                  server 3 seconds after the last tap.
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  If the user exits the screen within 3 seconds, used a
+                  useEffect cleanup function to ensure server update before
+                  unmounting.
+                </OrderedList>
+
+                <OrderedList order={"ii."} className="mb-2">
+                  Made the tap count a persistent global state so that the count
+                  is sent to the server even after unexpected termination upon
+                  app restart.
+                </OrderedList>
+
+                <OrderedList order={"iii."}>
+                  In the global state update function, combined server patching
+                  and state clearing so that if an unexpected error occurs, the
+                  original state remains intact.
+                </OrderedList>
+              </OrderedList>
+            </div>
+          </SubBox>
+
+          <SubBox>
+            <div className="col-span-1 translate-y-1.5 font-semibold">5.</div>
+            <div className="col-span-4">
+              <Title>Advanced Interactive Tapping Animation</Title>
+
+              <OrderedList order={"a."}>
+                <OrderedListHead>
+                  Aggregated tapping counts with a debounce and sent to the
+                  server 3 seconds after the last tap.
+                </OrderedListHead>
+
+                <OrderedList order={"i."}>
+                  Used random values to control the Bezier path direction of
+                  point-gain animations, with each tap having a 1 in 3 chance to
+                  earn points, enhancing the visual experience.
+                </OrderedList>
               </OrderedList>
             </div>
           </SubBox>
@@ -935,7 +955,7 @@ export function WorkInnerCompact() {
                   work was also emphasized
                 </OrderedList>
 
-                <OrderedList order={"iii."} className="mb-2">
+                <OrderedList order={"iii."}>
                   As a result, one of the most productive teammates mentioned
                   during the project retrospective that the supportive team
                   culture kept them motivated through to the end
