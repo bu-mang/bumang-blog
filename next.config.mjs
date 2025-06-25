@@ -1,3 +1,7 @@
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -12,13 +16,11 @@ const nextConfig = {
   },
 
   webpack(config) {
-    // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) =>
       rule.test?.test?.(".svg"),
     );
 
     config.module.rules.push(
-      // Reapply the existing rule, but only for svg imports ending in ?url
       {
         ...fileLoaderRule,
         test: /\.svg$/i,
@@ -40,4 +42,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

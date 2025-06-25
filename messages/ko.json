@@ -1,0 +1,14 @@
+{
+  "HomePage": {
+    "title": "안녕하세요!",
+    "description": "next-intl 예제입니다"
+  },
+  "AboutPage": {
+    "title": "소개",
+    "content": "이것은 소개 페이지입니다"
+  },
+  "Navigation": {
+    "home": "홈",
+    "about": "소개"
+  }
+}
