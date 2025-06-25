@@ -4,6 +4,7 @@ import Link from "next/link";
 import { SectionBox, SubBox } from "../about/aboutSection";
 import WorkItem from "./workItem";
 import { cn } from "@/utils/cn";
+import { ButtonBase } from "@/components/common";
 
 export function WorkInnerInteractive() {
   return (
@@ -36,12 +37,12 @@ export function WorkInnerCompact() {
 
           <div className="flex items-center gap-2 font-normal">
             <span className="text-xs font-bold text-gray-200">
-              2024.05.01. 2024.05.30.
+              2024.05.01. - 2024.05.30.
             </span>
           </div>
 
           <div className="mb-0.5 flex items-center gap-2 font-normal">
-            <span className="text-sm text-gray-200">Team Project</span>
+            <span className="text-sm text-gray-200">Side Project</span>
             <div className="h-3 w-[1px] bg-gray-200" />
             <span className="text-sm text-gray-200">FullStack</span>
           </div>
@@ -54,7 +55,11 @@ export function WorkInnerCompact() {
             <div className="col-span-4">
               <Title>Build a Nest.js backend for a blog application.</Title>
 
-              <OrderedList order={"a."}>
+              <OrderedList order={"a."} className="mb-2">
+                Implemented blog CRUD functionality
+              </OrderedList>
+
+              <OrderedList order={"b."}>
                 <OrderedListHead>
                   Abstract authentication and authorization using Guards and
                   custom Decorators.
@@ -73,6 +78,33 @@ export function WorkInnerCompact() {
                   Send presigned S3 URLs to the frontend so that images inserted
                   during blog editing are uploaded directly from the client to
                   S3.
+                </OrderedList>
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"c."}>
+                <OrderedListHead>
+                  Optimized CI/CD for Docker and AWS EC2 deployment
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  Containerized Nest.js app and PostgreSQL database using Docker
+                  Compose and deployed via Docker images
+                </OrderedList>
+
+                <OrderedList order={"ii."} className="mb-2">
+                  Mirrored local development environment using Docker
+                </OrderedList>
+
+                <OrderedList order={"iii."} className="mb-2">
+                  Automated deployment with GitHub Actions: SSH into EC2, pull
+                  the latest Docker image, and restart the container
+                </OrderedList>
+
+                <OrderedList order={"iv."}>
+                  Removed old Docker image caches, keeping only the latest 3
+                  images during deployment
                 </OrderedList>
               </OrderedList>
             </div>
