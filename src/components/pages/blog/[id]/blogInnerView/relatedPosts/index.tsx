@@ -7,7 +7,7 @@ import { getAdjacentPosts, getRelatedPosts } from "@/services/api/blog/[id]";
 import { ErrorBoundary, Suspense } from "@suspensive/react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import BlogItem, { BlogItemFallback } from "../../../(list)/blogItem";
 import { Skeleton } from "@/components/ui/skeleton";
 

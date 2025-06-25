@@ -28,7 +28,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { PATHNAME } from "@/constants/routes";
 import { getThumbnailByGroup } from "@/utils/getThumnailByGroup";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useAuthStore } from "@/store/auth";
 import { useEditStore } from "@/store/edit";
 import { useMutation } from "@tanstack/react-query";

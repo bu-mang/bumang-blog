@@ -13,7 +13,7 @@ const gray = fullConfig.theme.colors.gray as Record<string, string>;
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { LuGlobe, LuLayers2, LuMoonStar } from "react-icons/lu";

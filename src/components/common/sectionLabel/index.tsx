@@ -1,7 +1,7 @@
 "use client";
 
 import { LuLayoutGrid, LuLayoutList, LuPlus } from "react-icons/lu";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { getButtonColorStyle } from "@/utils/styles/filButtonManager";
 import { cn } from "@/utils/cn";
 import { useAuthStore } from "@/store/auth";

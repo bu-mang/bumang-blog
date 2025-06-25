@@ -2,7 +2,7 @@
 
 import { useQueryParams } from "@/hooks/useQueryParams";
 import { cn } from "@/utils/cn";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { HTMLAttributes } from "react";
 
 interface GroupProps {

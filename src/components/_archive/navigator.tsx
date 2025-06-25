@@ -1,7 +1,7 @@
 // "use client";
 
 // import clsx from "clsx";
-// import Link from "next/link";
+// import { Link } from "@/i18n/navigation";
 // import { LAYOUT_NAV_HEIGHT, LAYOUT_PADDING } from "@/app/_constants/layout";
 // import { ButtonBase as Button } from "./common/button";
 

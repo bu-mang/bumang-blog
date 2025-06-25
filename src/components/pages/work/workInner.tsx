@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { SectionBox, SubBox } from "../about/aboutSection";
 import WorkItem from "./workItem";
 import { cn } from "@/utils/cn";

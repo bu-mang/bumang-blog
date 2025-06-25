@@ -3,7 +3,7 @@
 import { useQueryParams } from "@/hooks/useQueryParams";
 import { TagType } from "@/types";
 import clsx from "clsx";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { LuX as CloseIcon } from "react-icons/lu";
