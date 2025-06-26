@@ -11,9 +11,10 @@ import { getUserProfile } from "@/services/api/auth/client";
 
 interface HeaderFallbackProps {
   isLoading: boolean;
+  locale: string;
 }
 
-export const HeaderFallback = ({ isLoading }: HeaderFallbackProps) => {
+export const HeaderFallback = ({ isLoading, locale }: HeaderFallbackProps) => {
   const setUserAndIsAuthenticated = useAuthStore(
     (state) => state.setUserAndIsAuthenticated,
   );
@@ -34,13 +35,21 @@ export const HeaderFallback = ({ isLoading }: HeaderFallbackProps) => {
       return (
         <div className="fixed top-0 z-[100] h-fit w-full">
           <NavBanner />
-          <NavBar isAuthenticated={false} isLoading={isLoading} />
+          <NavBar
+            isAuthenticated={false}
+            isLoading={isLoading}
+            locale={locale}
+          />
         </div>
       );
   }
 };
 
-const HeaderInner = () => {
+interface HeaderInnerProps {
+  locale: string;
+}
+
+const HeaderInner = ({ locale }: HeaderInnerProps) => {
   const setUserAndIsAuthenticated = useAuthStore(
     (state) => state.setUserAndIsAuthenticated,
   );
@@ -78,7 +87,11 @@ const HeaderInner = () => {
       return (
         <div className="fixed top-0 z-[100] h-fit w-full">
           <NavBanner />
-          <NavBar isAuthenticated={isAuthenticated} nickname={data.nickname} />
+          <NavBar
+            isAuthenticated={isAuthenticated}
+            nickname={data.nickname}
+            locale={locale}
+          />
         </div>
       );
   }

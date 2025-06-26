@@ -3,7 +3,6 @@
 import type { MenuType } from "@/types";
 import { ROUTES } from "@/constants/routes/navBarRoutes";
 import { cn } from "@/utils/cn";
-import { combinePaths } from "@/utils/combinePaths";
 
 import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "../../../../tailwind.config";
@@ -13,8 +12,7 @@ const gray = fullConfig.theme.colors.gray as Record<string, string>;
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Link } from "@/i18n/navigation";
-import { usePathname } from "next/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { LuGlobe, LuLayers2, LuMoonStar } from "react-icons/lu";
 import { ButtonBase as Button } from "@/components/common";
@@ -27,12 +25,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface NavBarProps {
   isAuthenticated: boolean;
+  locale: string;
   isLoading?: boolean;
   nickname?: string;
 }
 
 // TODO: 사분면 마다 코드스플리팅 할까..
-const NavBar = ({ isAuthenticated, isLoading, nickname }: NavBarProps) => {
+const NavBar = ({
+  isAuthenticated,
+  locale,
+  isLoading,
+  nickname,
+}: NavBarProps) => {
   /**
    * @HEADER_ANIMATION
    */
@@ -211,6 +215,7 @@ const NavBar = ({ isAuthenticated, isLoading, nickname }: NavBarProps) => {
         {/* 2사분면 (메뉴) */}
         <div className="grid grid-cols-2 gap-[1.5vw]">
           <div className="col-start-1 col-end-3">
+            {/* MENU */}
             <div className="flex gap-1">
               {ROUTES.filter((item) => item.group === "NAVIGATOR").map(
                 (item) => (
@@ -227,6 +232,8 @@ const NavBar = ({ isAuthenticated, isLoading, nickname }: NavBarProps) => {
                 ),
               )}
             </div>
+
+            {/* SUBMENU */}
             <div className="flex gap-1">
               {currentRoute?.sub?.map((subItem) => (
                 <Link
@@ -245,7 +252,10 @@ const NavBar = ({ isAuthenticated, isLoading, nickname }: NavBarProps) => {
         {/* 3사분면 (아이콘) */}
         <div className="NAVBAR_SWITCHING_PANEL grid grid-cols-2 gap-[1.5vw]">
           <div className="col-start-1 col-end-2 flex gap-1">
-            <LuGlobe className={cn(linkHoverStyle, "text-base")} />
+            <LocaleSwitcher
+              locale={locale}
+              className={cn(linkHoverStyle, "text-base")}
+            />
             <LuMoonStar className={cn(linkHoverStyle, "text-base")} />
             <LuLayers2 className={cn(linkHoverStyle, "text-base")} />
           </div>
@@ -272,3 +282,18 @@ const NavBar = ({ isAuthenticated, isLoading, nickname }: NavBarProps) => {
 };
 
 export default NavBar;
+
+interface LocaleSwitcherProps {
+  locale: string;
+  className?: string;
+}
+
+function LocaleSwitcher({ locale, className }: LocaleSwitcherProps) {
+  const pathname = usePathname();
+
+  return (
+    <Link href={pathname} locale={locale === "ko" ? "en" : "ko"}>
+      <LuGlobe className={className} />
+    </Link>
+  );
+}
