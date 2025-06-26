@@ -1,14 +1,360 @@
 {
-  "HomePage": {
-    "title": "Hello!",
-    "description": "This is a next-intl example"
+  "about": {
+    "intro": {
+      "title": {
+        "1": "Bumang!",
+        "2": "Bumang! Who loves Interactives"
+      },
+      "desc": "I majored in Industrial design and worked as a UX designer before transitioning to frontend development. I have a passion for art and enjoy drawing as a hobby. I'm particularly interested in creating interactive 2D/3D content on the web, exploring WebGL and Canvas. My goal is to become a full-stack developer, and I enjoy working on solo development projects and experimenting with new technologies. I'm always open to exciting side project ideas!"
+    },
+    "record": {
+      "2024": {
+        "title": "BlockS",
+        "desc": "Frontend Dev, FullTime Job"
+      },
+      "2023": {
+        "title": "Yanolja X Fast Campus Frontend Tech School",
+        "desc": "Outstanding Graduate"
+      },
+      "2022": {
+        "title": "Naver Boostcourse Python Coaching Study",
+        "desc": "Lead Booster"
+      },
+      "2021": {
+        "title": "Kakao x Korea Tourism Organization Travel Data Contest",
+        "desc": "Grand Prize - Participated as a UX Designer"
+      },
+      "2019": {
+        "title": "University of Seoul Jangsangotmae Mascot Graphic Design Contest",
+        "desc": "Second Prize"
+      }
+    },
+    "techStack": {
+      "webFrontEnd": {
+        "1": {
+          "title": "React/Next.js",
+          "desc": "SPA Library/Framework"
+        },
+        "2": {
+          "title": "Tailwind, StyledComponents",
+          "desc": "CSS Styling"
+        },
+        "3": {
+          "title": "React-Hook-Form, Zod",
+          "desc": "Schema Validation"
+        },
+        "4": {
+          "title": "Axios, TanstackQuery",
+          "desc": "Server Fetching"
+        },
+        "5": {
+          "title": "Zustand, ReduxToolkit",
+          "desc": "Global State Management"
+        },
+        "6": {
+          "title": "Gsap, Three.js, Motion",
+          "desc": "Interactive Development"
+        }
+      },
+      "appFrontEnd": {
+        "1": {
+          "title": "React Native",
+          "desc": "Cross Platform"
+        },
+        "2": {
+          "title": "StyleSheet",
+          "desc": "CSS Styling"
+        },
+        "3": {
+          "title": "React Native Codepush",
+          "desc": "Instant Deploy"
+        },
+        "4": {
+          "title": "React Native Firebase FCM",
+          "desc": "Push Notification"
+        },
+        "5": {
+          "title": "React Native Reanimated",
+          "desc": "Animation"
+        }
+      },
+      "backend": {
+        "1": {
+          "title": "express.js, Nest.js",
+          "desc": "Backend Frameworks"
+        },
+        "2": {
+          "title": "Firebase",
+          "desc": "Backend as a Service"
+        },
+        "3": {
+          "title": "PostgresQL, MongoDB",
+          "desc": "Database"
+        },
+        "4": {
+          "title": "TypeORM",
+          "desc": "ORM"
+        },
+        "5": {
+          "title": "AWS EC2",
+          "desc": "Cloud Server"
+        },
+        "6": {
+          "title": "AWS S3",
+          "desc": "File Storage"
+        }
+      },
+      "cicd": {
+        "1": {
+          "title": "Git, Github",
+          "desc": "Version Control & Collaboration"
+        },
+        "2": {
+          "title": "Github Action",
+          "desc": "CI/CD & Automation"
+        },
+        "3": {
+          "title": "Docker, DockerCompose",
+          "desc": "Containerization & Orchestration"
+        }
+      },
+      "design": {
+        "1": {
+          "title": "Figma",
+          "desc": "UX/UI Tool"
+        },
+        "2": {
+          "title": "Photoshop, Illustration",
+          "desc": "Graphic Design"
+        },
+        "3": {
+          "title": "After Effect",
+          "desc": "Motion Graphic"
+        },
+        "4": {
+          "title": "UG NX, Keyshot",
+          "desc": "3D Modeling & Rendering"
+        },
+        "5": {
+          "title": "ClipStudio, ProCreate(iPad)",
+          "desc": "Art & Illustration"
+        }
+      },
+      "basicLevel": {
+        "1": {
+          "title": "SCSS",
+          "desc": "CSS Styling"
+        },
+        "2": {
+          "title": "Redux-Tookit, Jotai",
+          "desc": "Global State Management"
+        },
+        "3": {
+          "title": "P5.js, Phaser3.js",
+          "desc": "Interactive"
+        },
+        "4": {
+          "title": "Blender, Cinema4D",
+          "desc": "3D Modeling & Motion"
+        }
+      }
+    }
   },
-  "AboutPage": {
-    "title": "About",
-    "content": "This is the about page"
+  "work": {
+    "bumangRoute53": {
+      "tag": "Side Project",
+      "projectScale": "Solo Project",
+      "role": "FrontEnd Leader",
+      "desc": "",
+      "contents": {
+        "1": {
+          "title": "Built a Nest.js backend for a blog application",
+          "a": {
+            "title": "Divide Native Build Config to Dev and Prod",
+            "i": "Developed a custom hook to determine whether the user can proceed to the next step, based on various business rules such as: 1st transfer price, 2nd price configuration status, 2nd price timing, 2nd price value, bank account registration status, Yanolja verification, and terms agreement status",
+            "ii": "Calculated the delta between mousedown and mouseup pageX values to determine the swipe direction; if the delta exceeded a certain threshold, the carousel advanced to the next slide",
+            "iii": "Used useEffect and setInterval to create an infinite slide animation that runs every 3 seconds, with mouseenter and mouseleave events used to pause and resume the animation. Cleaned up the interval on page unmount to prevent memory leaks"
+          },
+          "b": {
+            "title": "Provided a Consistent User Experience Across Mobile and Desktop",
+            "i": "Enabled drag functionality for both mobile and desktop environments by supporting both TouchEvent and MouseEvent",
+            "ii": "Prevented unintended clicks by canceling mouse events when a touch event was detected"
+          }
+        },
+        "2": {
+          "title": "Established a separation of concerns strategy between SSR and CSR with a focus on SEO and data fetching optimization.",
+          "a": {
+            "title": "Divide Native Build Config to Dev and Prod",
+            "i": "Developed a custom hook to determine whether the user can proceed to the next step, based on various business rules such as: 1st transfer price, 2nd price configuration status, 2nd price timing, 2nd price value, bank account registration status, Yanolja verification, and terms agreement status",
+            "ii": "Calculated the delta between mousedown and mouseup pageX values to determine the swipe direction; if the delta exceeded a certain threshold, the carousel advanced to the next slide",
+            "iii": "Used useEffect and setInterval to create an infinite slide animation that runs every 3 seconds, with mouseenter and mouseleave events used to pause and resume the animation. Cleaned up the interval on page unmount to prevent memory leaks"
+          },
+          "b": {
+            "title": "Provided a Consistent User Experience Across Mobile and Desktop",
+            "i": "Enabled drag functionality for both mobile and desktop environments by supporting both TouchEvent and MouseEvent",
+            "ii": "Prevented unintended clicks by canceling mouse events when a touch event was detected"
+          }
+        }
+      }
+    },
+    "SeaPearl": {
+      "tag": "Work Project",
+      "projectScale": "Team Project",
+      "role": "Exclusive FrontEnd Dev.",
+      "desc": "A platform to check your exchange score and convert Time Points into Ant Tokens.",
+      "contents": {
+        "1": {
+          "title": "Developing a Strategy for Utilizing React Server Components and Client Components",
+          "a": "Retrieved token swap period metadata on the server side to manage access control",
+          "b": "Strengthened security by avoiding exposure of authorization logic based on permissions or timing in client-side code",
+          "c": "Defined clear use cases for Server Components (e.g., SEO-critical pages) and Client Components depending on rendering needs"
+        },
+        "2": {
+          "title": "Separation of Concerns by State Using TanStack Query's useSuspenseQuery with Suspense and ErrorBoundary",
+          "a": "Used Suspense and ErrorBoundary to isolate loading/error states and reduce component complexity",
+          "b": "Designed architecture to minimize API request blocking",
+          "c": "Improved UX with skeleton loaders during async loading",
+          "d": "Used Suspensive library’s ClientOnly option for components requiring client-side dependencies in an SSR environment"
+        },
+        "3": {
+          "title": "Implemented Web3 wallet connection and transaction handling using WAGMI",
+          "a": "Connected major wallets such as MetaMask and WalletConnect, and retrieved wallet information",
+          "b": "Enabled token swaps via smart contract interactions"
+        },
+        "4": {
+          "title": "Created a sequential “score evaluation” animation using GSAP",
+          "a": "Shared animation timing state between components using useContext"
+        }
+      }
+    },
+    "AnttimeSwap": {
+      "tag": "Work Project",
+      "projectScale": "Team Project",
+      "role": "Exclusive FrontEnd Dev.",
+      "desc": "A platform to check your exchange score and convert Time Points into Ant Tokens.",
+      "1": {
+        "title": "Developing a Strategy for Utilizing React Server Components and Client Components",
+        "a": "Retrieved token swap period metadata on the server side to manage access control",
+        "b": "Strengthened security by avoiding exposure of authorization logic based on permissions or timing in client-side code",
+        "c": "Defined clear use cases for Server Components (e.g., SEO-critical pages) and Client Components depending on rendering needs"
+      },
+      "2": {
+        "title": "Separation of Concerns by State Using TanStack Query's useSuspenseQuery with Suspense and ErrorBoundary",
+        "a": "Used Suspense and ErrorBoundary to isolate loading/error states and reduce component complexity",
+        "b": "Designed architecture to minimize API request blocking",
+        "c": "Improved UX with skeleton loaders during async loading",
+        "d": "Used Suspensive library’s ClientOnly option for components requiring client-side dependencies in an SSR environment"
+      },
+      "3": {
+        "title": "Implemented Web3 wallet connection and transaction handling using WAGMI",
+        "a": "Connected major wallets such as MetaMask and WalletConnect, and retrieved wallet information",
+        "b": "Enabled token swaps via smart contract interactions"
+      },
+      "4": {
+        "title": "Created a sequential “score evaluation” animation using GSAP",
+        "a": "Shared animation timing state between components using useContext"
+      }
+    },
+    "AnttimeApp": {
+      "tag": "Work Project",
+      "projectScale": "Team Project",
+      "role": "FrontEnd Dev.",
+      "desc": "Time 2 Earn! Mining Points to get Rich!",
+      "1": {
+        "title": "Separated production and development Environment",
+        "a": {
+          "title": "Divide Native Build Config to Dev and Prod",
+          "i": "Set up Firestore for each development environment and configured environment variable files accordingly",
+          "ii": "Configured environment-specific setups for react-native-firebase during native builds using Xcode build schemes for iOS and Android flavors for Android."
+        }
+      },
+      "2": {
+        "title": "Updated React Native version",
+        "a": "Due to an outdated RN version, library support was discontinued, requiring the use of older library versions",
+        "b": "Upgraded from 0.68 to 0.74 using React Native Upgrade Helper modified native code accordingly (removed Flipper, configured Fabric, updated iOS/Android metadata)",
+        "c": "Upgraded library configurations to match the new RN version"
+      },
+      "3": {
+        "title": "Made DeepLink With Google Play Store Referral API",
+        "a": "Developed deep links that redirect users to the appropriate store link based on their operating system",
+        "b": "Additionally, used referral link query strings to pre-fill the referrer code upon app entry",
+        "c": "Completed deep link integration with referrer code using the GOOGLE Play Store Referral API due to the deprecation of Firebase Dynamic Links"
+      },
+      "4": {
+        "title": "Updated animation work skins",
+        "a": {
+          "title": "Developed a skin page that allows users to purchase individual body part skins using in-app currency",
+          "i": "Implemented functionality to fetch user body part data and dynamically update skin animations and part replacements",
+          "ii": "Released seasonal skins tailored to major holidays and events"
+        },
+        "b": {
+          "title": "Complex mining animation using React Native Reanimated",
+          "i": "The original mining animation was implemented with Lottie, which played a single fixed animation of a character in a predefined outfit. To support skin updates, the animation needed to be separated into individual parts",
+          "ii": "Used react-native-reanimated to create animation timelines for each part and implemented smooth, coordinated playback"
+        }
+      }
+    },
+    "PercentHotel": {
+      "tag": "Yanolja Bootcamp",
+      "projectScale": "Team Project",
+      "role": "FrontEnd Leader",
+      "desc": "Book non-refundable stays quickly and safelywith Percent Hotel!",
+      "desc2": "(Ranked 2nd out of 12 teams in evaluation by Yanolja mentors)",
+      "1": {
+        "title": "Custom Animated Carousel Library",
+        "a": {
+          "title": "Implemented Slide Animation",
+          "i": "Developed a custom hook to determine whether the user can proceed to the next step, based on various business rules such as: 1st transfer price, 2nd price configuration status, 2nd price timing, 2nd price value, bank account registration status, Yanolja verification, and terms agreement status",
+          "ii": "Calculated the delta between mousedown and mouseup pageX values to determine the swipe direction; if the delta exceeded a certain threshold, the carousel advanced to the next slide",
+          "iii": "Used useEffect and setInterval to create an infinite slide animation that runs every 3 seconds, with mouseenter and mouseleave events used to pause and resume the animation. Cleaned up the interval on page unmount to prevent memory leaks"
+        },
+        "b": {
+          "title": "Provided a Consistent User Experience Across Mobile and Desktop",
+          "i": "Enabled drag functionality for both mobile and desktop environments by supporting both TouchEvent and MouseEvent",
+          "ii": "Prevented unintended clicks by canceling mouse events when a touch event was detected"
+        }
+      },
+      "2": {
+        "title": "Handling Complex Business Logic with Custom Hooks",
+        "a": {
+          "title": "Handled complex business logic exceptions using a custom hook",
+          "i": "Developed a custom hook to determine whether the user can proceed to the next step, based on various business rules such as: 1st transfer price, 2nd price configuration status, 2nd price timing, 2nd price value, bank account registration status, Yanolja verification, and terms agreement status"
+        },
+        "b": {
+          "title": "Redirected to the payment method registration page if no payment method is available, while preserving the form state on return",
+          "i": "Implemented a flow that preserves the user’s input when a bank account is not yet registered by switching to the payment method registration component within the same page, instead of navigating away. This ensured that all previously entered state remained intact",
+          "ii": "Upon returning, while the internal state remained, some browser-controlled elements (e.g. checkbox checked states) were visually reset. This was resolved by creating a hook to restore UI consistency based on the current state during component transitions"
+        }
+      },
+      "3": {
+        "title": "Implemented Firebase Cloud Messaging (FCM) for push notifications",
+        "a": "Created a custom hook to initialize the FCM token upon login",
+        "b": "Received background push notifications via a Firebase service worker",
+        "c": "Tested push notifications across Android, iOS, web, and PWA environments"
+      },
+      "4": {
+        "title": "Optimized SEO in React applications",
+        "a": "Implemented pre-rendering using React Helmet and React Snap",
+        "b": "Improved Lighthouse SEO score from 77 to 100 after optimization"
+      },
+      "5": {
+        "title": "Led team operations",
+        "a": "Shared daily progress through morning stand-up meetings",
+        "b": {
+          "title": "Required full-team code reviews before merging.",
+          "i": "Comments like \"Good job\" were discouraged — reviewers were expected to leave meaningful feedback after reading the code carefully"
+        },
+        "c": {
+          "title": "Handled a mid-project situation where two teammates left to prepare for job interviews, affecting team morale",
+          "i": "Reached out to the departing members to clarify which features they had been working on and what remained unfinished, then redistributed the tasks among the remaining team",
+          "ii": "To maintain development momentum, we doubled down on thorough code reviews and built a culture of giving feedback within 3 hours of a PR being submitted. Positive reinforcement for good work was also emphasized",
+          "iii": "As a result, one of the most productive teammates mentioned during the project retrospective that the supportive team culture kept them motivated through to the end"
+        }
+      }
+    }
   },
   "Navigation": {
-    "home": "Home",
-    "about": "About"
+    "home": "홈",
+    "about": "소개"
   }
 }
