@@ -1,4 +1,5 @@
 import { SectionLabel, Pagenation } from "@/components/common";
+import { TooltipDemo } from "@/components/layout/header/tooltip";
 import { BlogItem } from "@/components/pages";
 import { getAllPosts } from "@/services/api/blog/(list)/server";
 import { PaginatedResponseDto, PostListItemType } from "@/types";

@@ -14,12 +14,21 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { LuGlobe, LuLayers2, LuMoonStar } from "react-icons/lu";
+import { LuGlobe, LuLanguages, LuLayers2, LuMoonStar } from "react-icons/lu";
 import { ButtonBase as Button } from "@/components/common";
 import { useMutation } from "@tanstack/react-query";
 import { postLogout } from "@/services/api/auth/client";
 import { useRouter } from "next/navigation";
 import { useQueryParams } from "@/hooks/useQueryParams";
+
+// import { Tooltip } from "radix-ui";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { RiEnglishInput } from "react-icons/ri";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -292,8 +301,32 @@ function LocaleSwitcher({ locale, className }: LocaleSwitcherProps) {
   const pathname = usePathname();
 
   return (
-    <Link href={pathname} locale={locale === "ko" ? "en" : "ko"}>
-      <LuGlobe className={className} />
-    </Link>
+    <Tooltip>
+      <TooltipTrigger className="group relative h-fit w-fit" asChild>
+        <button>
+          <LuLanguages className={cn(className, "group-hover:text-black")} />
+        </button>
+      </TooltipTrigger>
+      <TooltipContent side="bottom" className="z-[1000] flex gap-2">
+        <Link href={pathname} locale="ko">
+          <p
+            className={
+              locale === "ko" ? "opacity-100" : "opacity-30 hover:opacity-100"
+            }
+          >
+            Ko
+          </p>
+        </Link>
+        <Link href={pathname} locale="en">
+          <p
+            className={
+              locale === "en" ? "opacity-100" : "opacity-30 hover:opacity-100"
+            }
+          >
+            En
+          </p>
+        </Link>
+      </TooltipContent>
+    </Tooltip>
   );
 }
