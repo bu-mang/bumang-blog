@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/tooltip";
 import { RiEnglishInput } from "react-icons/ri";
 import Image from "next/image";
+import { toast } from "react-toastify";
 
 gsap.registerPlugin(ScrollTrigger);
 

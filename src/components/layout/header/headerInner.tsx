@@ -25,6 +25,7 @@ export const HeaderFallback = ({ isLoading, locale }: HeaderFallbackProps) => {
       user: null,
       isAuthLoading: false,
     });
+    // eslint-disable-next-line
   }, []);
 
   const pathname = usePathname();

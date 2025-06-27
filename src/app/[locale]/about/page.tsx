@@ -9,11 +9,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionBox, SubBox } from "@/components/pages";
 import { cn } from "@/utils/cn";
 import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
+import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Blog() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const t = useTranslations("about");
 
   useEffect(() => {
     if (containerRef.current) {
@@ -56,20 +58,12 @@ export default function Blog() {
         <div className="col-span-1 translate-y-1.5 font-semibold">I AM</div>
         <div className="col-span-4 mb-6 grid grid-cols-4">
           <span className="col-span-4 mb-1 text-6xl font-semibold">
-            Bumang!
+            {t("intro.title.1")}
           </span>
-          <span className="col-span-4 mb-3 text-6xl font-semibold">
-            Who loves Interactives
+          <span className="col-span-4 mb-3 whitespace-pre-line text-6xl font-semibold">
+            {t("intro.title.2")}
           </span>
-          <p className="col-span-3">
-            I majored in Industrial design and worked as a UX designer before
-            transitioning to frontend development. I have a passion for art and
-            enjoy drawing as a hobby. I&apos;m particularly interested in
-            creating interactive 2D/3D content on the web, exploring WebGL and
-            Canvas. My goal is to become a full-stack developer, and I enjoy
-            working on solo development projects and experimenting with new
-            technologies. I&apos;m always open to exciting side project ideas!
-          </p>
+          <p className="col-span-4">{t("intro.desc")}</p>
         </div>
 
         <div className="col-start-4 col-end-9">
@@ -117,41 +111,38 @@ export default function Blog() {
 
         <div className="col-start-4 col-end-9 -translate-y-3">
           <SubBox className="border-none">
+            <div className="col-span-1 font-semibold">2024 -</div>
+            <div className="col-span-4 flex flex-col">
+              <span className="font-semibold">{t("record.2024.title")}</span>
+              <span className="text-gray-300">{t("record.2024.desc")}</span>
+            </div>
+          </SubBox>
+          <SubBox>
             <div className="col-span-1 font-semibold">2023</div>
             <div className="col-span-4 flex flex-col">
-              <span className="font-semibold">
-                Yanolja X Fast Campus Frontend Tech School
-              </span>
-              <span className="text-gray-300">Outstanding Graduate</span>
+              <span className="font-semibold">{t("record.2023.title")}</span>
+              <span className="text-gray-300">{t("record.2023.desc")}</span>
             </div>
           </SubBox>
           <SubBox>
             <div className="col-span-1 font-semibold">2022</div>
             <div className="col-span-4 flex flex-col">
-              <span className="font-semibold">
-                Naver Boostcourse Python Coaching Study
-              </span>
-              <span className="text-gray-300">Lead Booster</span>
+              <span className="font-semibold">{t("record.2022.title")}</span>
+              <span className="text-gray-300">{t("record.2022.desc")}</span>
             </div>
           </SubBox>
           <SubBox>
             <div className="col-span-1 font-semibold">2021</div>
             <div className="col-span-4 flex flex-col">
-              <span className="font-semibold">
-                Kakao x Korea Tourism Organization Travel Data Contest
-              </span>
-              <span className="text-gray-300">
-                Grand Prize - Participated as a UX Designer
-              </span>
+              <span className="font-semibold">{t("record.2021.title")}</span>
+              <span className="text-gray-300">{t("record.2021.desc")}</span>
             </div>
           </SubBox>
           <SubBox className="mb-16">
             <div className="col-span-1 font-semibold">2019</div>
             <div className="col-span-4 flex flex-col">
-              <span className="font-semibold">
-                University of Seoul Jangsangotmae Mascot Graphic Design Contest
-              </span>
-              <span className="text-gray-300">Second Prize</span>
+              <span className="font-semibold">{t("record.2019.title")}</span>
+              <span className="text-gray-300">{t("record.2019.desc")}</span>
             </div>
           </SubBox>
         </div>
@@ -170,28 +161,40 @@ export default function Blog() {
               Web Frontend
             </div>
             <div className="col-start-2 col-end-4 flex flex-col">
-              <span className="font-semibold">React/Next.js(App)</span>
-              <span className="text-gray-300">SPA Library/Framework</span>
+              <span className="font-semibold">React/Next.js</span>
+              <span className="text-gray-300">
+                {t("techStack.webFrontEnd.1.desc")}
+              </span>
             </div>
             <div className="col-start-4 col-end-6 flex flex-col pl-2">
               <span className="font-semibold">Tailwind, StyledComponent</span>
-              <span className="text-gray-300">CSS Styling</span>
+              <span className="text-gray-300">
+                {t("techStack.webFrontEnd.2.desc")}
+              </span>
             </div>
             <div className="col-start-2 col-end-4 flex flex-col">
               <span className="font-semibold">React-Hook-Form, Zod</span>
-              <span className="text-gray-300">Validation</span>
+              <span className="text-gray-300">
+                {t("techStack.webFrontEnd.3.desc")}
+              </span>
             </div>
             <div className="col-start-4 col-end-6 flex flex-col pl-2">
               <span className="font-semibold">Axios, TanstackQuery</span>
-              <span className="text-gray-300">Server Fetching</span>
+              <span className="text-gray-300">
+                {t("techStack.webFrontEnd.4.desc")}
+              </span>
             </div>
             <div className="col-start-2 col-end-4 flex flex-col">
               <span className="font-semibold">Zustand, ReduxToolkit</span>
-              <span className="text-gray-300">Global State Management</span>
+              <span className="text-gray-300">
+                {t("techStack.webFrontEnd.5.desc")}
+              </span>
             </div>
             <div className="col-start-4 col-end-6 flex flex-col pl-2">
               <span className="font-semibold">Gsap, Three.js, Motion</span>
-              <span className="text-gray-300">Interactive Development</span>
+              <span className="text-gray-300">
+                {t("techStack.webFrontEnd.6.desc")}
+              </span>
             </div>
           </SubBox>
 
@@ -202,27 +205,33 @@ export default function Blog() {
             </div>
             <div className="col-start-2 col-end-4 flex flex-col">
               <span className="font-semibold">React Native</span>
-              <span className="text-gray-300">Cross Platform</span>
+              <span className="text-gray-300">
+                {t("techStack.appFrontEnd.1.desc")}
+              </span>
             </div>
             <div className="col-start-4 col-end-6 flex flex-col pl-2">
               <span className="font-semibold">StyleSheet</span>
-              <span className="text-gray-300">CSS Styling</span>
+              <span className="text-gray-300">
+                {t("techStack.appFrontEnd.2.desc")}
+              </span>
             </div>
             <div className="col-start-2 col-end-4 flex flex-col">
               <span className="font-semibold">React Native Codepush</span>
-              <span className="text-gray-300">Instant Deploy</span>
+              <span className="text-gray-300">
+                {t("techStack.appFrontEnd.3.desc")}
+              </span>
             </div>
             <div className="col-start-4 col-end-6 flex flex-col pl-2">
               <span className="font-semibold">React Native Firebase FCM</span>
-              <span className="text-gray-300">Push Notification</span>
+              <span className="text-gray-300">
+                {t("techStack.appFrontEnd.4.desc")}
+              </span>
             </div>
             <div className="col-start-2 col-end-4 flex flex-col">
               <span className="font-semibold">React Native Reanimated</span>
-              <span className="text-gray-300">Animation</span>
-            </div>
-            <div className="col-start-4 col-end-6 flex flex-col pl-2">
-              <span className="font-semibold">iOS/Android Store Review</span>
-              <span className="text-gray-300">Market Deploy Experience</span>
+              <span className="text-gray-300">
+                {t("techStack.appFrontEnd.5.desc")}
+              </span>
             </div>
           </SubBox>
 
@@ -231,25 +240,54 @@ export default function Blog() {
             <div className="col-span-1 row-span-3 pr-2 font-semibold">
               Backend
             </div>
+
             <div className="col-start-2 col-end-4 flex flex-col">
-              <span className="font-semibold">express.js, Nest.js</span>
-              <span className="text-gray-300">Backend Frameworks</span>
+              <span className="font-semibold">
+                {t("techStack.backend.1.title")}
+              </span>
+              <span className="text-gray-300">
+                {t("techStack.backend.1.desc")}
+              </span>
             </div>
             <div className="col-start-4 col-end-6 flex flex-col pl-2">
-              <span className="font-semibold">Firebase</span>
-              <span className="text-gray-300">Backend as a Service</span>
+              <span className="font-semibold">
+                {t("techStack.backend.2.title")}
+              </span>
+              <span className="text-gray-300">
+                {t("techStack.backend.2.desc")}
+              </span>
             </div>
             <div className="col-start-2 col-end-4 flex flex-col">
-              <span className="font-semibold">Google Cloud Platform</span>
-              <span className="text-gray-300">Instant Deploy</span>
+              <span className="font-semibold">
+                {t("techStack.backend.3.title")}
+              </span>
+              <span className="text-gray-300">
+                {t("techStack.backend.3.desc")}
+              </span>
             </div>
             <div className="col-start-4 col-end-6 flex flex-col pl-2">
-              <span className="font-semibold">PostgresQL, MongoDB</span>
-              <span className="text-gray-300">Database</span>
+              <span className="font-semibold">
+                {t("techStack.backend.4.title")}
+              </span>
+              <span className="text-gray-300">
+                {t("techStack.backend.4.desc")}
+              </span>
             </div>
             <div className="col-start-2 col-end-4 flex flex-col">
-              <span className="font-semibold">Prisma</span>
-              <span className="text-gray-300">ORM</span>
+              <span className="font-semibold">
+                {t("techStack.backend.5.title")}
+              </span>
+              <span className="text-gray-300">
+                {t("techStack.backend.5.desc")}
+              </span>
+            </div>
+            <div className="col-start-4 col-end-6 flex flex-col pl-2">
+              <span className="font-semibold">
+                {t("techStack.backend.6.title")}
+              </span>
+              <span className="text-gray-300">
+                {t("techStack.backend.6.desc")}
+              </span>
             </div>
           </SubBox>
 
@@ -258,20 +296,29 @@ export default function Blog() {
             <div className="col-span-1 row-span-3 pr-2 font-semibold">
               CI/CD
             </div>
+
             <div className="col-start-2 col-end-4 flex flex-col">
-              <span className="font-semibold">Git, Github</span>
+              <span className="font-semibold">
+                {t("techStack.cicd.1.title")}
+              </span>
               <span className="text-gray-300">
-                Version Control & Collaboration
+                {t("techStack.cicd.1.desc")}
               </span>
             </div>
             <div className="col-start-4 col-end-6 flex flex-col pl-2">
-              <span className="font-semibold">Github Action</span>
-              <span className="text-gray-300">CI/CD & Automation</span>
+              <span className="font-semibold">
+                {t("techStack.cicd.2.title")}
+              </span>
+              <span className="text-gray-300">
+                {t("techStack.cicd.2.desc")}
+              </span>
             </div>
             <div className="col-start-2 col-end-4 flex flex-col">
-              <span className="font-semibold">Docker, DockerCompose</span>
+              <span className="font-semibold">
+                {t("techStack.cicd.3.title")}
+              </span>
               <span className="text-gray-300">
-                Containerization & Orchestration
+                {t("techStack.cicd.3.desc")}
               </span>
             </div>
           </SubBox>
@@ -281,25 +328,46 @@ export default function Blog() {
             <div className="col-span-1 row-span-3 pr-2 font-semibold">
               Design
             </div>
+
             <div className="col-start-2 col-end-4 flex flex-col">
-              <span className="font-semibold">Figma</span>
-              <span className="text-gray-300">UX/UI</span>
+              <span className="font-semibold">
+                {t("techStack.design.1.title")}
+              </span>
+              <span className="text-gray-300">
+                {t("techStack.design.1.desc")}
+              </span>
             </div>
             <div className="col-start-4 col-end-6 flex flex-col pl-2">
-              <span className="font-semibold">Photoshop, Illustration</span>
-              <span className="text-gray-300">Graphic Design</span>
+              <span className="font-semibold">
+                {t("techStack.design.2.title")}
+              </span>
+              <span className="text-gray-300">
+                {t("techStack.design.2.desc")}
+              </span>
             </div>
             <div className="col-start-2 col-end-4 flex flex-col">
-              <span className="font-semibold">After Effect</span>
-              <span className="text-gray-300">Motion Graphic</span>
+              <span className="font-semibold">
+                {t("techStack.design.3.title")}
+              </span>
+              <span className="text-gray-300">
+                {t("techStack.design.3.desc")}
+              </span>
             </div>
             <div className="col-start-4 col-end-6 flex flex-col pl-2">
-              <span className="font-semibold">UG NX, Keyshot</span>
-              <span className="text-gray-300">3D Modeling & Rendering</span>
+              <span className="font-semibold">
+                {t("techStack.design.4.title")}
+              </span>
+              <span className="text-gray-300">
+                {t("techStack.design.4.desc")}
+              </span>
             </div>
             <div className="col-start-2 col-end-4 flex flex-col">
-              <span className="font-semibold">ClipStudio, ProCreate(iPad)</span>
-              <span className="text-gray-300">Art & Illustration</span>
+              <span className="font-semibold">
+                {t("techStack.design.5.title")}
+              </span>
+              <span className="text-gray-300">
+                {t("techStack.design.5.desc")}
+              </span>
             </div>
           </SubBox>
         </div>
@@ -316,21 +384,30 @@ export default function Blog() {
           {/* DEV */}
           <SubBox className="gap-y-8 border-none text-sm">
             <div className="col-span-1 row-span-3 pr-2 font-semibold">Dev</div>
+
             <div className="col-start-2 col-end-4 flex flex-col">
-              <span className="font-semibold">SCSS</span>
-              <span className="text-gray-300">CSS Styling</span>
+              <span className="font-semibold">
+                {t("techStack.basicLevel.1.title")}
+              </span>
+              <span className="text-gray-300">
+                {t("techStack.basicLevel.1.desc")}
+              </span>
             </div>
             <div className="col-start-4 col-end-6 flex flex-col pl-2">
-              <span className="font-semibold">Redux-Tookit, Jotai</span>
-              <span className="text-gray-300">Global State Management</span>
+              <span className="font-semibold">
+                {t("techStack.basicLevel.2.title")}
+              </span>
+              <span className="text-gray-300">
+                {t("techStack.basicLevel.2.desc")}
+              </span>
             </div>
             <div className="col-start-2 col-end-4 flex flex-col">
-              <span className="font-semibold">P5.js, Phaser3.js</span>
-              <span className="text-gray-300">Interactive</span>
-            </div>
-            <div className="col-start-4 col-end-6 flex flex-col pl-2">
-              <span className="font-semibold">Amazon Web Services</span>
-              <span className="text-gray-300">Cloud Infrastructure</span>
+              <span className="font-semibold">
+                {t("techStack.basicLevel.3.title")}
+              </span>
+              <span className="text-gray-300">
+                {t("techStack.basicLevel.3.desc")}
+              </span>
             </div>
           </SubBox>
 
@@ -339,9 +416,14 @@ export default function Blog() {
             <div className="sticky top-20 col-span-1 row-span-3 mb-20 pr-2 font-semibold">
               Design
             </div>
+
             <div className="col-start-2 col-end-4 flex flex-col">
-              <span className="font-semibold">Blender, Cinema4D</span>
-              <span className="text-gray-300">3D Modeling & Motion</span>
+              <span className="font-semibold">
+                {t("techStack.basicLevel.4.title")}
+              </span>
+              <span className="text-gray-300">
+                {t("techStack.basicLevel.4.desc")}
+              </span>
             </div>
           </SubBox>
         </div>
