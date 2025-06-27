@@ -200,37 +200,49 @@
         "4": "Implemented utility features such as i18n (internationalization) and dark mode."
       }
     },
-    "SeaPearl": {
+    "seaPearl": {
       "tag": "Work Project",
       "projectScale": "Team Project",
       "role": "Exclusive FrontEnd Dev.",
       "desc": "A platform to check your exchange score and convert Time Points into Ant Tokens.",
       "contents": {
         "1": {
-          "title": "Developing a Strategy for Utilizing React Server Components and Client Components",
-          "a": "Retrieved token swap period metadata on the server side to manage access control",
-          "b": "Strengthened security by avoiding exposure of authorization logic based on permissions or timing in client-side code",
-          "c": "Defined clear use cases for Server Components (e.g., SEO-critical pages) and Client Components depending on rendering needs"
+          "title": "Built and deployed an initial product using a webview-based frontend within Telegram.",
+          "a": "Configured the Telegram development environment using ngrok, and used it for both development and deployment.",
+          "b": {
+            "title": "Deployed the frontend as a webview within an iframe-based mini app environment.",
+            "i": "Implemented an initialization logic that retrieves user authentication data using Telegram Mini App global browser APIs.",
+            "ii": "To enable the use of Mini App APIs in development, the local environment was exposed via ngrok and registered with the Telegram bot."
+          }
         },
         "2": {
-          "title": "Separation of Concerns by State Using TanStack Query's useSuspenseQuery with Suspense and ErrorBoundary",
-          "a": "Used Suspense and ErrorBoundary to isolate loading/error states and reduce component complexity",
-          "b": "Designed architecture to minimize API request blocking",
-          "c": "Improved UX with skeleton loaders during async loading",
-          "d": "Used Suspensive library’s ClientOnly option for components requiring client-side dependencies in an SSR environment"
+          "title": "Integrated Adsgram for in-app advertising.",
+          "a": "Implemented a logic to receive success/failure results from the Adsgram server and forward them to the backend API server.",
+          "b": "Treated ad viewing as failed if the user skips the ad, sends the app to background, or remains on the app manager screen."
         },
         "3": {
-          "title": "Implemented Web3 wallet connection and transaction handling using WAGMI",
-          "a": "Connected major wallets such as MetaMask and WalletConnect, and retrieved wallet information",
-          "b": "Enabled token swaps via smart contract interactions"
+          "title": "Used react-virtuoso to build a virtualized list.",
+          "a": "Configured the virtualized list to handle infinitely growing data lists."
         },
         "4": {
-          "title": "Created a sequential “score evaluation” animation using GSAP",
-          "a": "Shared animation timing state between components using useContext"
+          "title": "Optimized API calls for the tapping game using debounce and global caching, balancing between cost efficiency and security.",
+          "a": {
+            "title": "Aggregated tapping counts with a debounce and sent to the server 3 seconds after the last tap.",
+            "i": "If the user exits the screen within 3 seconds, used a useEffect cleanup function to ensure server update before unmounting.",
+            "ii": "Made the tap count a persistent global state so that the count is sent to the server even after unexpected termination upon app restart.",
+            "iii": " In the global state update function, combined server patching and state clearing so that if an unexpected error occurs, the original state remains intact."
+          }
+        },
+        "5": {
+          "title": "Advanced Interactive Tapping Animation",
+          "a": {
+            "title": "Aggregated tapping counts with a debounce and sent to the server 3 seconds after the last tap.",
+            "i": "Used random values to control the Bezier path direction of point-gain animations, with each tap having a 1 in 3 chance to earn points, enhancing the visual experience."
+          }
         }
       }
     },
-    "AnttimeSwap": {
+    "anttimeSwap": {
       "tag": "Work Project",
       "projectScale": "Team Project",
       "role": "Exclusive FrontEnd Dev.",
@@ -258,7 +270,7 @@
         "a": "Shared animation timing state between components using useContext"
       }
     },
-    "AnttimeApp": {
+    "anttimeApp": {
       "tag": "Work Project",
       "projectScale": "Team Project",
       "role": "FrontEnd Dev.",
@@ -297,7 +309,7 @@
         }
       }
     },
-    "PercentHotel": {
+    "percentHotel": {
       "tag": "Yanolja Bootcamp",
       "projectScale": "Team Project",
       "role": "FrontEnd Leader",
@@ -355,9 +367,5 @@
         }
       }
     }
-  },
-  "Navigation": {
-    "home": "홈",
-    "about": "소개"
   }
 }

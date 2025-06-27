@@ -58,27 +58,27 @@ export function WorkInnerCompact() {
           <SubBox borderTop={false}>
             <div className="col-span-1 translate-y-1.5 font-semibold">1.</div>
             <div className="col-span-4">
-              <Title>{t("bumangRoute53.contents.1.title")}</Title>
+              <Title>{t("bumangRoute53.1.title")}</Title>
 
               <OrderedList order={"a."} className="mb-2">
-                {t("bumangRoute53.contents.1.a")}
+                {t("bumangRoute53.1.a")}
               </OrderedList>
 
               <OrderedList order={"b."}>
                 <OrderedListHead>
-                  {t("bumangRoute53.contents.1.b.title")}
+                  {t("bumangRoute53.1.b.title")}
                 </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  {t("bumangRoute53.contents.1.b.i")}
+                  {t("bumangRoute53.1.b.i")}
                 </OrderedList>
 
                 <OrderedList order={"ii."} className="mb-2">
-                  {t("bumangRoute53.contents.1.b.ii")}
+                  {t("bumangRoute53.1.b.ii")}
                 </OrderedList>
 
                 <OrderedList order={"iii."}>
-                  {t("bumangRoute53.contents.1.b.iii")}
+                  {t("bumangRoute53.1.b.iii")}
                 </OrderedList>
               </OrderedList>
 
@@ -86,23 +86,23 @@ export function WorkInnerCompact() {
 
               <OrderedList order={"c."}>
                 <OrderedListHead>
-                  {t("bumangRoute53.contents.1.c.title")}
+                  {t("bumangRoute53.1.c.title")}
                 </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  {t("bumangRoute53.contents.1.c.i")}
+                  {t("bumangRoute53.1.c.i")}
                 </OrderedList>
 
                 <OrderedList order={"ii."} className="mb-2">
-                  {t("bumangRoute53.contents.1.c.ii")}
+                  {t("bumangRoute53.1.c.ii")}
                 </OrderedList>
 
                 <OrderedList order={"iii."} className="mb-2">
-                  {t("bumangRoute53.contents.1.c.iii")}
+                  {t("bumangRoute53.1.c.iii")}
                 </OrderedList>
 
                 <OrderedList order={"iv."}>
-                  {t("bumangRoute53.contents.1.c.iv")}
+                  {t("bumangRoute53.1.c.iv")}
                 </OrderedList>
               </OrderedList>
             </div>
@@ -111,15 +111,15 @@ export function WorkInnerCompact() {
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">2.</div>
             <div className="col-span-4">
-              <Title>{t("bumangRoute53.contents.2.title")}</Title>
+              <Title>{t("bumangRoute53.2.title")}</Title>
 
               <OrderedList order={"a."} className="mb-2">
                 <OrderedListHead>
-                  {t("bumangRoute53.contents.2.a.title")}
+                  {t("bumangRoute53.2.a.title")}
                 </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  {t("bumangRoute53.contents.2.a.i")}
+                  {t("bumangRoute53.2.a.i")}
                 </OrderedList>
               </OrderedList>
             </div>
@@ -128,30 +128,24 @@ export function WorkInnerCompact() {
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">3.</div>
             <div className="col-span-4">
-              <Title>{t("bumangRoute53.contents.3.title")}</Title>
+              <Title>{t("bumangRoute53.3.title")}</Title>
 
-              <OrderedList order={"a."}>
-                {t("bumangRoute53.contents.3.a")}
-              </OrderedList>
+              <OrderedList order={"a."}>{t("bumangRoute53.3.a")}</OrderedList>
 
               <Divider />
 
-              <OrderedList order={"b."}>
-                {t("bumangRoute53.contents.3.b")}
-              </OrderedList>
+              <OrderedList order={"b."}>{t("bumangRoute53.3.b")}</OrderedList>
 
               <Divider />
 
-              <OrderedList order={"c."}>
-                {t("bumangRoute53.contents.3.c")}
-              </OrderedList>
+              <OrderedList order={"c."}>{t("bumangRoute53.3.c")}</OrderedList>
             </div>
           </SubBox>
 
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">4.</div>
             <div className="col-span-4">
-              <Title>{t("bumangRoute53.contents.4")}</Title>
+              <Title>{t("bumangRoute53.4")}</Title>
             </div>
           </SubBox>
         </div>
@@ -162,7 +156,7 @@ export function WorkInnerCompact() {
         {/* SEA PEARL - TITLE */}
         <div className="sticky top-20 col-span-3 mb-44 mt-8 flex h-fit flex-col font-semibold">
           <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
-            Work Project
+            {t("seaPearl.tag")}
           </span>
           <div className="mb-4 flex flex-col text-6xl">SeaPearl</div>
 
@@ -173,17 +167,16 @@ export function WorkInnerCompact() {
           </div>
 
           <div className="mb-0.5 flex items-center gap-2 font-normal">
-            <span className="text-sm text-gray-200">Team Project</span>
+            <span className="text-sm text-gray-200">
+              {t("seaPearl.projectScale")}
+            </span>
             <div className="h-3 w-[1px] bg-gray-200" />
-            <span className="text-sm text-gray-200">FrontEnd Leader</span>
+            <span className="text-sm text-gray-200">{t("seaPearl.role")}</span>
           </div>
 
           {/* DESCRIPTION */}
           <div className="mt-10">
-            <span className="text-xl">
-              A platform to check your exchange score and convert Time Points
-              into Ant Tokens.
-            </span>
+            <span className="text-xl">{t("seaPearl.tag")}</span>
           </div>
         </div>
 
@@ -192,33 +185,20 @@ export function WorkInnerCompact() {
           <SubBox borderTop={false}>
             <div className="col-span-1 translate-y-1.5 font-semibold">1.</div>
             <div className="col-span-4">
-              <Title>
-                Built and deployed an initial product using a webview-based
-                frontend within Telegram.
-              </Title>
+              <Title>{t("seaPearl.1.title")}</Title>
 
               <OrderedList order={"a."} className="mb-2">
-                Configured the Telegram development environment using ngrok, and
-                used it for both development and deployment.
+                {t("seaPearl.1.a")}
               </OrderedList>
 
               <OrderedList order={"b."} className="mb-2">
-                <OrderedListHead>
-                  Deployed the frontend as a webview within an iframe-based mini
-                  app environment.
-                </OrderedListHead>
+                <OrderedListHead>{t("seaPearl.1.b.title")}</OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  Implemented an initialization logic that retrieves user
-                  authentication data using Telegram Mini App global browser
-                  APIs.
+                  {t("seaPearl.1.b.i")}
                 </OrderedList>
 
-                <OrderedList order={"ii."}>
-                  To enable the use of Mini App APIs in development, the local
-                  environment was exposed via ngrok and registered with the
-                  Telegram bot.
-                </OrderedList>
+                <OrderedList order={"ii."}>{t("seaPearl.1.b.ii")}</OrderedList>
               </OrderedList>
             </div>
           </SubBox>
@@ -226,18 +206,16 @@ export function WorkInnerCompact() {
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">2.</div>
             <div className="col-span-4">
-              <Title>Integrated Adsgram for in-app advertising.</Title>
+              <Title>{t("seaPearl.2.title")}</Title>
 
               <OrderedList order={"a."} className="mb-2">
-                Implemented a logic to receive success/failure results from the
-                Adsgram server and forward them to the backend API server.
+                {t("seaPearl.2.a")}
               </OrderedList>
 
               <Divider />
 
               <OrderedList order={"b."} className="mb-2">
-                Treated ad viewing as failed if the user skips the ad, sends the
-                app to background, or remains on the app manager screen.
+                {t("seaPearl.2.b")}
               </OrderedList>
             </div>
           </SubBox>
@@ -245,45 +223,30 @@ export function WorkInnerCompact() {
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">3.</div>
             <div className="col-span-4">
-              <Title>Used react-virtuoso to build a virtualized list.</Title>
+              <Title>{t("seaPearl.3.title")}</Title>
 
-              <OrderedList order={"a."}>
-                Configured the virtualized list to handle infinitely growing
-                data lists.
-              </OrderedList>
+              <OrderedList order={"a."}>{t("seaPearl.3.a")}</OrderedList>
             </div>
           </SubBox>
 
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">4.</div>
             <div className="col-span-4">
-              <Title>
-                Optimized API calls for the tapping game using debounce and
-                global caching, balancing between cost efficiency and security.
-              </Title>
+              <Title>{t("seaPearl.4.title")}</Title>
 
               <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Aggregated tapping counts with a debounce and sent to the
-                  server 3 seconds after the last tap.
-                </OrderedListHead>
+                <OrderedListHead>{t("seaPearl.4.a.title")}</OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  If the user exits the screen within 3 seconds, used a
-                  useEffect cleanup function to ensure server update before
-                  unmounting.
+                  {t("seaPearl.4.a.i")}
                 </OrderedList>
 
                 <OrderedList order={"ii."} className="mb-2">
-                  Made the tap count a persistent global state so that the count
-                  is sent to the server even after unexpected termination upon
-                  app restart.
+                  {t("seaPearl.4.a.ii")}
                 </OrderedList>
 
                 <OrderedList order={"iii."}>
-                  In the global state update function, combined server patching
-                  and state clearing so that if an unexpected error occurs, the
-                  original state remains intact.
+                  {t("seaPearl.4.a.iii")}
                 </OrderedList>
               </OrderedList>
             </div>
@@ -292,19 +255,12 @@ export function WorkInnerCompact() {
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">5.</div>
             <div className="col-span-4">
-              <Title>Advanced Interactive Tapping Animation</Title>
+              <Title>{t("seaPearl.5.title")}</Title>
 
               <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Aggregated tapping counts with a debounce and sent to the
-                  server 3 seconds after the last tap.
-                </OrderedListHead>
+                <OrderedListHead>{t("seaPearl.5.a.title")}</OrderedListHead>
 
-                <OrderedList order={"i."}>
-                  Used random values to control the Bezier path direction of
-                  point-gain animations, with each tap having a 1 in 3 chance to
-                  earn points, enhancing the visual experience.
-                </OrderedList>
+                <OrderedList order={"i."}>{t("seaPearl.5.a.i")}</OrderedList>
               </OrderedList>
             </div>
           </SubBox>
@@ -316,7 +272,7 @@ export function WorkInnerCompact() {
         {/* ANTTIME SWAP - TITLE */}
         <div className="sticky top-20 col-span-3 mb-44 mt-8 flex h-fit flex-col font-semibold">
           <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
-            Work Project
+            {t("anttimeSwap.tag")}
           </span>
           {/* <div className="mb-4 text-6xl">ANTTIME SWAP</div> */}
           <div className="mb-4 flex flex-col text-6xl">
@@ -331,17 +287,18 @@ export function WorkInnerCompact() {
           </div>
 
           <div className="mb-0.5 flex items-center gap-2 font-normal">
-            <span className="text-sm text-gray-200">Team Project</span>
+            <span className="text-sm text-gray-200">
+              {t("anttimeSwap.projectScale")}
+            </span>
             <div className="h-3 w-[1px] bg-gray-200" />
-            <span className="text-sm text-gray-200">FrontEnd Leader</span>
+            <span className="text-sm text-gray-200">
+              {t("anttimeSwap.role")}
+            </span>
           </div>
 
           {/* DESCRIPTION */}
           <div className="mt-10">
-            <span className="text-xl">
-              A platform to check your exchange score and convert Time Points
-              into Ant Tokens.
-            </span>
+            <span className="text-xl">{t("anttimeSwap.desc")}</span>
           </div>
         </div>
 
@@ -350,84 +307,60 @@ export function WorkInnerCompact() {
           <SubBox borderTop={false}>
             <div className="col-span-1 translate-y-1.5 font-semibold">1.</div>
             <div className="col-span-4">
-              <Title>
-                Developing a Strategy for Utilizing React Server Components and
-                Client Components
-              </Title>
+              <Title>{t("anttimeSwap.1.title")}</Title>
 
               <OrderedList order={"a."} className="mb-2">
-                Retrieved token swap period metadata on the server side to
-                manage access control
+                {t("anttimeSwap.1.a")}
               </OrderedList>
 
               <Divider />
 
               <OrderedList order={"b."} className="mb-2">
-                Strengthened security by avoiding exposure of authorization
-                logic based on permissions or timing in client-side code
+                {t("anttimeSwap.1.b")}
               </OrderedList>
 
               <Divider />
 
-              <OrderedList order={"c."}>
-                Defined clear use cases for Server Components (e.g.,
-                SEO-critical pages) and Client Components depending on rendering
-                needs
-              </OrderedList>
+              <OrderedList order={"c."}>{t("anttimeSwap.1.c")}</OrderedList>
             </div>
           </SubBox>
 
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">2.</div>
             <div className="col-span-4">
-              <Title>
-                Separation of Concerns by State Using TanStack Query&apos;s
-                useSuspenseQuery with Suspense and ErrorBoundary
-              </Title>
+              <Title>{t("anttimeSwap.2.title")}</Title>
 
               <OrderedList order={"a."} className="mb-2">
-                Used Suspense and ErrorBoundary to isolate loading/error states
-                and reduce component complexity
+                {t("anttimeSwap.2.a")}
               </OrderedList>
 
               <Divider />
 
-              <OrderedList order={"b."}>
-                Designed architecture to minimize API request blocking
-              </OrderedList>
+              <OrderedList order={"b."}>{t("anttimeSwap.2.b")}</OrderedList>
 
               <Divider />
 
-              <OrderedList order={"c."}>
-                Improved UX with skeleton loaders during async loading
-              </OrderedList>
+              <OrderedList order={"c."}>{t("anttimeSwap.2.c")}</OrderedList>
 
               <Divider />
 
-              <OrderedList order={"d."}>
-                Used Suspensive library’s ClientOnly option for components
-                requiring client-side dependencies in an SSR environment{" "}
-              </OrderedList>
+              <OrderedList order={"d."}>{t("anttimeSwap.2.d")}</OrderedList>
             </div>
           </SubBox>
 
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">3.</div>
             <div className="col-span-4">
-              <Title>
-                Implemented Web3 wallet connection and transaction handling
-                using WAGMI
-              </Title>
+              <Title>{t("anttimeSwap.3.title")}</Title>
 
               <OrderedList order={"a."} className="mb-2">
-                Connected major wallets such as MetaMask and WalletConnect, and
-                retrieved wallet information
+                {t("anttimeSwap.3.a")}
               </OrderedList>
 
               <Divider />
 
               <OrderedList order={"b."} className="mb-2">
-                Enabled token swaps via smart contract interactions
+                {t("anttimeSwap.3.b")}
               </OrderedList>
             </div>
           </SubBox>
@@ -435,14 +368,9 @@ export function WorkInnerCompact() {
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">4.</div>
             <div className="col-span-4">
-              <Title>
-                Created a sequential “score evaluation” animation using GSAP
-              </Title>
+              <Title>{t("anttimeSwap.4.title")}</Title>
 
-              <OrderedList order={"a."}>
-                Shared animation timing state between components using
-                useContext
-              </OrderedList>
+              <OrderedList order={"a."}>{t("anttimeSwap.4.a")}</OrderedList>
             </div>
           </SubBox>
         </div>
@@ -455,6 +383,7 @@ export function WorkInnerCompact() {
         <div className="sticky top-20 col-span-3 mb-44 mt-8 flex h-fit flex-col font-semibold">
           <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
             Work Project
+            {t("anttimeSwap.tag")}
           </span>
           <div className="mb-4 flex flex-col text-6xl">
             <span className="mb-2">ANTTIME</span>
@@ -468,15 +397,17 @@ export function WorkInnerCompact() {
           </div>
 
           <div className="mb-0.5 flex items-center gap-2 font-normal">
-            <span className="text-sm text-gray-200">Team Project</span>
+            <span className="text-sm text-gray-200">
+              {t("anttimeSwap.projectScale")}
+            </span>
             <div className="h-3 w-[1px] bg-gray-200" />
-            <span className="text-sm text-gray-200">FrontEnd Leader</span>
+            <span className="text-sm text-gray-200">
+              {t("anttimeSwap.role")}
+            </span>
           </div>
 
           <div className="mt-10">
-            <span className="text-xl">
-              Time 2 Earn! Mining Points to get Rich!
-            </span>
+            <span className="text-xl">{t("anttimeApp.desc")}</span>
           </div>
         </div>
 
@@ -485,22 +416,17 @@ export function WorkInnerCompact() {
           <SubBox borderTop={false}>
             <div className="col-span-1 translate-y-1.5 font-semibold">1.</div>
             <div className="col-span-4">
-              <Title>Separated production and development Environment</Title>
+              <Title>{t("anttimeApp.1.title")}</Title>
 
               <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Divide Native Build Config to Dev and Prod
-                </OrderedListHead>
+                <OrderedListHead>{t("anttimeApp.1.a.title")}</OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  Set up Firestore for each development environment and
-                  configured environment variable files accordingly
+                  {t("anttimeApp.1.a.i")}
                 </OrderedList>
 
                 <OrderedList order={"ii."}>
-                  Configured environment-specific setups for
-                  react-native-firebase during native builds using Xcode build
-                  schemes for iOS and Android flavors for Android.
+                  {t("anttimeApp.1.a.ii")}
                 </OrderedList>
               </OrderedList>
             </div>
@@ -509,94 +435,65 @@ export function WorkInnerCompact() {
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">2.</div>
             <div className="col-span-4">
-              <Title>Updated React Native version</Title>
+              <Title>{t("anttimeApp.2.title")}</Title>
 
-              <OrderedList order={"a."}>
-                Due to an outdated RN version, library support was discontinued,
-                requiring the use of older library versions
-              </OrderedList>
+              <OrderedList order={"a."}>{t("anttimeApp.2.a")}</OrderedList>
 
               <Divider />
 
-              <OrderedList order={"b."}>
-                Upgraded from 0.68 to 0.74 using React Native Upgrade Helper
-                modified native code accordingly (removed Flipper, configured
-                Fabric, updated iOS/Android metadata)
-              </OrderedList>
+              <OrderedList order={"b."}>{t("anttimeApp.2.b")}</OrderedList>
 
               <Divider />
 
-              <OrderedList order={"c."}>
-                Upgraded library configurations to match the new RN version
-              </OrderedList>
+              <OrderedList order={"c."}>{t("anttimeApp.2.c")}</OrderedList>
             </div>
           </SubBox>
 
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">3.</div>
             <div className="col-span-4">
-              <Title>Made DeepLink With Google Play Store Referral API</Title>
+              <Title>{t("anttimeApp.3.title")}</Title>
 
-              <OrderedList order={"a."}>
-                Developed deep links that redirect users to the appropriate
-                store link based on their operating system
-              </OrderedList>
+              <OrderedList order={"a."}>{t("anttimeApp.3.a")}</OrderedList>
 
               <Divider />
 
-              <OrderedList order={"b."}>
-                Additionally, used referral link query strings to pre-fill the
-                referrer code upon app entry
-              </OrderedList>
+              <OrderedList order={"b."}>{t("anttimeApp.3.b")}</OrderedList>
 
               <Divider />
 
-              <OrderedList order={"c."}>
-                Completed deep link integration with referrer code using the
-                GOOGLE Play Store Referral API due to the deprecation of
-                Firebase Dynamic Links
-              </OrderedList>
+              <OrderedList order={"c."}>{t("anttimeApp.3.c")}</OrderedList>
             </div>
           </SubBox>
 
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">4.</div>
             <div className="col-span-4">
-              <Title>Updated animation work skins</Title>
+              <Title>{t("anttimeApp.4.title")}</Title>
 
               <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Developed a skin page that allows users to purchase individual
-                  body part skins using in-app currency
-                </OrderedListHead>
+                <OrderedListHead>{t("anttimeApp.4.a.title")}</OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  Implemented functionality to fetch user body part data and
-                  dynamically update skin animations and part replacements
+                  {t("anttimeApp.4.a.i")}
                 </OrderedList>
 
                 <OrderedList order={"ii."} className="mb-2">
-                  Released seasonal skins tailored to major holidays and events
+                  {t("anttimeApp.4.a.ii")}
                 </OrderedList>
               </OrderedList>
 
               <Divider />
 
               <OrderedList order={"b."}>
-                <OrderedListHead>
-                  Complex mining animation using React Native Reanimated
-                </OrderedListHead>
+                <OrderedListHead>{t("anttimeApp.4.b.title")}</OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  The original mining animation was implemented with Lottie,
-                  which played a single fixed animation of a character in a
-                  predefined outfit. To support skin updates, the animation
-                  needed to be separated into individual parts
+                  {t("anttimeApp.4.b.i")}
                 </OrderedList>
 
                 <OrderedList order={"ii."} className="mb-2">
-                  Used react-native-reanimated to create animation timelines for
-                  each part and implemented smooth, coordinated playback
+                  {t("anttimeApp.4.b.ii")}
                 </OrderedList>
               </OrderedList>
             </div>
@@ -610,7 +507,7 @@ export function WorkInnerCompact() {
         {/* Percent Hotel - TITLE */}
         <div className="sticky top-20 col-span-3 mb-44 mt-8 flex h-fit flex-col font-semibold">
           <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
-            Yanolja Bootcamp
+            {t("percentHotel.tag")}
           </span>
           {/* <div className="mb-4 text-6xl">Percent Hotel</div> */}
           <div className="mb-4 flex flex-col text-6xl">
@@ -625,19 +522,20 @@ export function WorkInnerCompact() {
           </div>
 
           <div className="mb-0.5 flex items-center gap-2 font-normal">
-            <span className="text-sm text-gray-200">Team Project</span>
+            <span className="text-sm text-gray-200">
+              {t("percentHotel.projectScale")}
+            </span>
             <div className="h-3 w-[1px] bg-gray-200" />
-            <span className="text-sm text-gray-200">FrontEnd Leader</span>
+            <span className="text-sm text-gray-200">
+              {t("percentHotel.role")}
+            </span>
           </div>
 
           {/* DESCRIPTION */}
           <div className="mt-10">
-            <span className="text-xl">
-              Book non-refundable stays quickly and safely
-            </span>
-            <span className="text-xl">with Percent Hotel!</span>
+            <span className="text-xl">{t("percentHotel.desc")}</span>
             <span className="text-base font-normal">
-              (Ranked 2nd out of 12 teams in evaluation by Yanolja mentors)
+              {t("percentHotel.desc2")}
             </span>
           </div>
         </div>
@@ -647,50 +545,35 @@ export function WorkInnerCompact() {
           <SubBox borderTop={false}>
             <div className="col-span-1 translate-y-1.5 font-semibold">1.</div>
             <div className="col-span-4">
-              <Title>Custom Animated Carousel Library</Title>
+              <Title>{t("percentHotel.1.title")}</Title>
 
               <OrderedList order={"a."}>
-                <OrderedListHead>Implemented Slide Animation</OrderedListHead>
+                <OrderedListHead>{t("percentHotel.1.a.title")}</OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  Developed a custom hook to determine whether the user can
-                  proceed to the next step, based on various business rules such
-                  as: 1st transfer price, 2nd price configuration status, 2nd
-                  price timing, 2nd price value, bank account registration
-                  status, Yanolja verification, and terms agreement status
+                  {t("percentHotel.1.a.i")}
                 </OrderedList>
 
                 <OrderedList order={"ii."} className="mb-2">
-                  Calculated the delta between mousedown and mouseup pageX
-                  values to determine the swipe direction; if the delta exceeded
-                  a certain threshold, the carousel advanced to the next slide
+                  {t("percentHotel.1.a.ii")}
                 </OrderedList>
 
                 <OrderedList order={"iii."}>
-                  Used useEffect and setInterval to create an infinite slide
-                  animation that runs every 3 seconds, with mouseenter and
-                  mouseleave events used to pause and resume the animation.
-                  Cleaned up the interval on page unmount to prevent memory
-                  leaks
+                  {t("percentHotel.1.a.iii")}
                 </OrderedList>
               </OrderedList>
 
               <Divider />
 
               <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Provided a Consistent User Experience Across Mobile and
-                  Desktop
-                </OrderedListHead>
+                <OrderedListHead>{t("percentHotel.1.b.title")}</OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  Enabled drag functionality for both mobile and desktop
-                  environments by supporting both TouchEvent and MouseEvent
+                  {t("percentHotel.1.b.i")}
                 </OrderedList>
 
                 <OrderedList order={"ii."}>
-                  Prevented unintended clicks by canceling mouse events when a
-                  touch event was detected
+                  {t("percentHotel.1.b.ii")}
                 </OrderedList>
               </OrderedList>
             </div>
@@ -700,45 +583,27 @@ export function WorkInnerCompact() {
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">2.</div>
             <div className="col-span-4">
-              <Title>Handling Complex Business Logic with Custom Hooks</Title>
+              <Title>{t("percentHotel.2.title")}</Title>
 
               <OrderedList order={"a."}>
-                <OrderedListHead>
-                  Handled complex business logic exceptions using a custom hook
-                </OrderedListHead>
+                <OrderedListHead>{t("percentHotel.2.a.title")}</OrderedListHead>
 
                 <OrderedList order={"i."}>
-                  Developed a custom hook to determine whether the user can
-                  proceed to the next step, based on various business rules such
-                  as: 1st transfer price, 2nd price configuration status, 2nd
-                  price timing, 2nd price value, bank account registration
-                  status, Yanolja verification, and terms agreement status
+                  {t("percentHotel.2.a.i")}
                 </OrderedList>
               </OrderedList>
 
               <Divider />
 
               <OrderedList order={"b."}>
-                <OrderedListHead>
-                  Redirected to the payment method registration page if no
-                  payment method is available, while preserving the form state
-                  on return{" "}
-                </OrderedListHead>
+                <OrderedListHead>{t("percentHotel.2.b.title")}</OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  Implemented a flow that preserves the user’s input when a bank
-                  account is not yet registered by switching to the payment
-                  method registration component within the same page, instead of
-                  navigating away. This ensured that all previously entered
-                  state remained intact
+                  {t("percentHotel.2.b.i")}
                 </OrderedList>
 
                 <OrderedList order={"ii."}>
-                  Upon returning, while the internal state remained, some
-                  browser-controlled elements (e.g. checkbox checked states)
-                  were visually reset. This was resolved by creating a hook to
-                  restore UI consistency based on the current state during
-                  component transitions
+                  {t("percentHotel.2.b.ii")}
                 </OrderedList>
               </OrderedList>
             </div>
@@ -748,28 +613,17 @@ export function WorkInnerCompact() {
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">3.</div>
             <div className="col-span-4">
-              <Title>
-                Implemented Firebase Cloud Messaging (FCM) for push
-                notifications
-              </Title>
+              <Title>{t("percentHotel.3.title")}</Title>
 
-              <OrderedList order={"a."}>
-                Created a custom hook to initialize the FCM token upon login
-              </OrderedList>
+              <OrderedList order={"a."}>{t("percentHotel.3.a")}</OrderedList>
 
               <Divider />
 
-              <OrderedList order={"b."}>
-                Received background push notifications via a Firebase service
-                worker
-              </OrderedList>
+              <OrderedList order={"b."}>{t("percentHotel.3.b")}</OrderedList>
 
               <Divider />
 
-              <OrderedList order={"c."}>
-                Tested push notifications across Android, iOS, web, and PWA
-                environments
-              </OrderedList>
+              <OrderedList order={"c."}>{t("percentHotel.3.c")}</OrderedList>
             </div>
           </SubBox>
 
@@ -777,17 +631,13 @@ export function WorkInnerCompact() {
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">4.</div>
             <div className="col-span-4">
-              <Title>Optimized SEO in React applications</Title>
+              <Title>{t("percentHotel.4.title")}</Title>
 
-              <OrderedList order={"a."}>
-                Implemented pre-rendering using React Helmet and React Snap
-              </OrderedList>
+              <OrderedList order={"a."}>{t("percentHotel.4.a")}</OrderedList>
 
               <Divider />
 
-              <OrderedList order={"b."}>
-                Improved Lighthouse SEO score from 77 to 100 after optimization
-              </OrderedList>
+              <OrderedList order={"b."}>{t("percentHotel.4.b")}</OrderedList>
             </div>
           </SubBox>
 
@@ -795,51 +645,35 @@ export function WorkInnerCompact() {
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">5.</div>
             <div className="col-span-4">
-              <Title>Led team operations</Title>
+              <Title>{t("percentHotel.5.title")}</Title>
 
-              <OrderedList order={"a."}>
-                Shared daily progress through morning stand-up meetings{" "}
-              </OrderedList>
+              <OrderedList order={"a."}>{t("percentHotel.5.a")}</OrderedList>
 
               <Divider />
 
               <OrderedList order={"b."}>
-                <OrderedListHead>
-                  Required full-team code reviews before merging.
-                </OrderedListHead>
+                <OrderedListHead>{t("percentHotel.5.b.title")}</OrderedListHead>
 
                 <OrderedList order={"i."}>
-                  Comments like &quot;Good job&quot; were discouraged —
-                  reviewers were expected to leave meaningful feedback after
-                  reading the code carefully
+                  {t("percentHotel.5.b.i")}
                 </OrderedList>
               </OrderedList>
 
               <Divider />
 
-              <OrderedList order={"b."}>
-                <OrderedListHead>
-                  Handled a mid-project situation where two teammates left to
-                  prepare for job interviews, affecting team morale
-                </OrderedListHead>
+              <OrderedList order={"c."}>
+                <OrderedListHead>{t("percentHotel.5.c.title")}</OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  Reached out to the departing members to clarify which features
-                  they had been working on and what remained unfinished, then
-                  redistributed the tasks among the remaining team
+                  {t("percentHotel.5.c.i")}
                 </OrderedList>
 
                 <OrderedList order={"ii."} className="mb-2">
-                  To maintain development momentum, we doubled down on thorough
-                  code reviews and built a culture of giving feedback within 3
-                  hours of a PR being submitted. Positive reinforcement for good
-                  work was also emphasized
+                  {t("percentHotel.5.c.ii")}
                 </OrderedList>
 
                 <OrderedList order={"iii."}>
-                  As a result, one of the most productive teammates mentioned
-                  during the project retrospective that the supportive team
-                  culture kept them motivated through to the end
+                  {t("percentHotel.5.c.iii")}
                 </OrderedList>
               </OrderedList>
             </div>
