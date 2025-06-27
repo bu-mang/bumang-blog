@@ -1,10 +1,10 @@
 "use client";
 
-import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
+// import { Link } from "@/i18n/navigation";
 import { SectionBox, SubBox } from "../about/aboutSection";
 import WorkItem from "./workItem";
 import { cn } from "@/utils/cn";
-import { ButtonBase } from "@/components/common";
 
 export function WorkInnerInteractive() {
   return (
@@ -21,6 +21,7 @@ export function WorkInnerInteractive() {
 }
 
 export function WorkInnerCompact() {
+  const t = useTranslations("work");
   return (
     <>
       {/* BUMANG BLOG */}
@@ -28,7 +29,7 @@ export function WorkInnerCompact() {
         {/* TITLE */}
         <div className="sticky top-20 col-span-3 mb-44 mt-8 flex h-fit flex-col font-semibold">
           <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
-            Side Project
+            {t("bumangRoute53.tag")}
           </span>
           <div className="mb-4 flex flex-col text-6xl">
             <span className="mb-2">Bumang</span>
@@ -42,9 +43,13 @@ export function WorkInnerCompact() {
           </div>
 
           <div className="mb-0.5 flex items-center gap-2 font-normal">
-            <span className="text-sm text-gray-200">Side Project</span>
+            <span className="text-sm text-gray-200">
+              {t("bumangRoute53.projectScale")}
+            </span>
             <div className="h-3 w-[1px] bg-gray-200" />
-            <span className="text-sm text-gray-200">FullStack</span>
+            <span className="text-sm text-gray-200">
+              {t("bumangRoute53.role")}
+            </span>
           </div>
         </div>
 
@@ -53,31 +58,27 @@ export function WorkInnerCompact() {
           <SubBox borderTop={false}>
             <div className="col-span-1 translate-y-1.5 font-semibold">1.</div>
             <div className="col-span-4">
-              <Title>Build a Nest.js backend for a blog application.</Title>
+              <Title>{t("bumangRoute53.contents.1.title")}</Title>
 
               <OrderedList order={"a."} className="mb-2">
-                Implemented blog CRUD functionality
+                {t("bumangRoute53.contents.1.a")}
               </OrderedList>
 
               <OrderedList order={"b."}>
                 <OrderedListHead>
-                  Abstract authentication and authorization using Guards and
-                  custom Decorators.
+                  {t("bumangRoute53.contents.1.b.title")}
                 </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  Use TypeORM QueryBuilder to manipulate SQL queries easily.
+                  {t("bumangRoute53.contents.1.b.i")}
                 </OrderedList>
 
                 <OrderedList order={"ii."} className="mb-2">
-                  Generate related posts based on a score-based relevance
-                  algorithm.
+                  {t("bumangRoute53.contents.1.b.ii")}
                 </OrderedList>
 
                 <OrderedList order={"iii."}>
-                  Send presigned S3 URLs to the frontend so that images inserted
-                  during blog editing are uploaded directly from the client to
-                  S3.
+                  {t("bumangRoute53.contents.1.b.iii")}
                 </OrderedList>
               </OrderedList>
 
@@ -85,26 +86,23 @@ export function WorkInnerCompact() {
 
               <OrderedList order={"c."}>
                 <OrderedListHead>
-                  Optimized CI/CD for Docker and AWS EC2 deployment
+                  {t("bumangRoute53.contents.1.c.title")}
                 </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  Containerized Nest.js app and PostgreSQL database using Docker
-                  Compose and deployed via Docker images
+                  {t("bumangRoute53.contents.1.c.i")}
                 </OrderedList>
 
                 <OrderedList order={"ii."} className="mb-2">
-                  Mirrored local development environment using Docker
+                  {t("bumangRoute53.contents.1.c.ii")}
                 </OrderedList>
 
                 <OrderedList order={"iii."} className="mb-2">
-                  Automated deployment with GitHub Actions: SSH into EC2, pull
-                  the latest Docker image, and restart the container
+                  {t("bumangRoute53.contents.1.c.iii")}
                 </OrderedList>
 
                 <OrderedList order={"iv."}>
-                  Removed old Docker image caches, keeping only the latest 3
-                  images during deployment
+                  {t("bumangRoute53.contents.1.c.iv")}
                 </OrderedList>
               </OrderedList>
             </div>
@@ -113,20 +111,15 @@ export function WorkInnerCompact() {
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">2.</div>
             <div className="col-span-4">
-              <Title>
-                Established a separation of concerns strategy between SSR and
-                CSR with a focus on SEO and data fetching optimization.
-              </Title>
+              <Title>{t("bumangRoute53.contents.2.title")}</Title>
 
               <OrderedList order={"a."} className="mb-2">
                 <OrderedListHead>
-                  Use SSR for static data that requires SEO, and handle
-                  authenticated content via CSR.
+                  {t("bumangRoute53.contents.2.a.title")}
                 </OrderedListHead>
 
                 <OrderedList order={"i."} className="mb-2">
-                  Consider whether SSR should read httpOnly cookies when using
-                  cookie-based authentication strategies.
+                  {t("bumangRoute53.contents.2.a.i")}
                 </OrderedList>
               </OrderedList>
             </div>
@@ -135,31 +128,22 @@ export function WorkInnerCompact() {
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">3.</div>
             <div className="col-span-4">
-              <Title>
-                Built high-quality components by combining an interactive
-                animation library with Headless UI.
-              </Title>
+              <Title>{t("bumangRoute53.contents.3.title")}</Title>
 
               <OrderedList order={"a."}>
-                Create logo animations that react to scroll and mouse hover
-                events.
+                {t("bumangRoute53.contents.3.a")}
               </OrderedList>
 
               <Divider />
 
               <OrderedList order={"b."}>
-                Calculated the delta between mousedown and mouseup pageX values
-                to determine the swipe direction; if the delta exceeded a
-                certain threshold, the carousel advanced to the next slide
+                {t("bumangRoute53.contents.3.b")}
               </OrderedList>
 
               <Divider />
 
               <OrderedList order={"c."}>
-                Used useEffect and setInterval to create an infinite slide
-                animation that runs every 3 seconds, with mouseenter and
-                mouseleave events used to pause and resume the animation.
-                Cleaned up the interval on page unmount to prevent memory leaks
+                {t("bumangRoute53.contents.3.c")}
               </OrderedList>
             </div>
           </SubBox>
@@ -167,12 +151,7 @@ export function WorkInnerCompact() {
           <SubBox>
             <div className="col-span-1 translate-y-1.5 font-semibold">4.</div>
             <div className="col-span-4">
-              <Title>
-                Implemented utility features such as i18n (internationalization)
-                and dark mode.
-              </Title>
-
-              {/* <OrderedList order={"a."}></OrderedList> */}
+              <Title>{t("bumangRoute53.contents.4")}</Title>
             </div>
           </SubBox>
         </div>

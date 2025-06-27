@@ -164,37 +164,40 @@
     "bumangRoute53": {
       "tag": "Side Project",
       "projectScale": "Solo Project",
-      "role": "FrontEnd Leader",
+      "role": "FullStack",
       "desc": "",
       "contents": {
         "1": {
           "title": "Built a Nest.js backend for a blog application",
-          "a": {
-            "title": "Divide Native Build Config to Dev and Prod",
-            "i": "Developed a custom hook to determine whether the user can proceed to the next step, based on various business rules such as: 1st transfer price, 2nd price configuration status, 2nd price timing, 2nd price value, bank account registration status, Yanolja verification, and terms agreement status",
-            "ii": "Calculated the delta between mousedown and mouseup pageX values to determine the swipe direction; if the delta exceeded a certain threshold, the carousel advanced to the next slide",
-            "iii": "Used useEffect and setInterval to create an infinite slide animation that runs every 3 seconds, with mouseenter and mouseleave events used to pause and resume the animation. Cleaned up the interval on page unmount to prevent memory leaks"
-          },
+          "a": "Implemented blog CRUD functionality",
           "b": {
-            "title": "Provided a Consistent User Experience Across Mobile and Desktop",
-            "i": "Enabled drag functionality for both mobile and desktop environments by supporting both TouchEvent and MouseEvent",
-            "ii": "Prevented unintended clicks by canceling mouse events when a touch event was detected"
+            "title": "Abstract authentication and authorization using Guards and custom Decorators.",
+            "i": "Use TypeORM QueryBuilder to manipulate SQL queries easily.",
+            "ii": "Generate related posts based on a score-based relevance algorithm.",
+            "iii": "Send presigned S3 URLs to the frontend so that images inserted during blog editing are uploaded directly from the client to S3."
+          },
+          "c": {
+            "title": "Optimized CI/CD for Docker and AWS EC2 deployment",
+            "i": "Containerized Nest.js app and PostgreSQL database using Docker Compose and deployed via Docker images",
+            "ii": "Mirrored local development environment using Docker",
+            "iii": "Automated deployment with GitHub Actions: SSH into EC2, pull the latest Docker image, and restart the container",
+            "iv": "Removed old Docker image caches, keeping only the latest 3 images during deployment"
           }
         },
         "2": {
           "title": "Established a separation of concerns strategy between SSR and CSR with a focus on SEO and data fetching optimization.",
           "a": {
-            "title": "Divide Native Build Config to Dev and Prod",
-            "i": "Developed a custom hook to determine whether the user can proceed to the next step, based on various business rules such as: 1st transfer price, 2nd price configuration status, 2nd price timing, 2nd price value, bank account registration status, Yanolja verification, and terms agreement status",
-            "ii": "Calculated the delta between mousedown and mouseup pageX values to determine the swipe direction; if the delta exceeded a certain threshold, the carousel advanced to the next slide",
-            "iii": "Used useEffect and setInterval to create an infinite slide animation that runs every 3 seconds, with mouseenter and mouseleave events used to pause and resume the animation. Cleaned up the interval on page unmount to prevent memory leaks"
-          },
-          "b": {
-            "title": "Provided a Consistent User Experience Across Mobile and Desktop",
-            "i": "Enabled drag functionality for both mobile and desktop environments by supporting both TouchEvent and MouseEvent",
-            "ii": "Prevented unintended clicks by canceling mouse events when a touch event was detected"
+            "title": "Use SSR for static data that requires SEO, and handle authenticated content via CSR.",
+            "i": "Consider whether SSR should read httpOnly cookies when using cookie-based authentication strategies."
           }
-        }
+        },
+        "3": {
+          "title": "Built high-quality components by combining an interactive animation library with Headless UI.",
+          "a": "Connected major wallets such as MetaMask and WalletConnect, and retrieved wallet information",
+          "b": "Calculated the delta between mousedown and mouseup pageX values to determine the swipe direction; if the delta exceeded a certain threshold, the carousel advanced to the next slide",
+          "c": "Used useEffect and setInterval to create an infinite slide animation that runs every 3 seconds, with mouseenter and mouseleave events used to pause and resume the animation. Cleaned up the interval on page unmount to prevent memory leaks"
+        },
+        "4": "Implemented utility features such as i18n (internationalization) and dark mode."
       }
     },
     "SeaPearl": {
