@@ -166,79 +166,75 @@
       "projectScale": "Solo Project",
       "role": "FullStack",
       "desc": "",
-      "contents": {
-        "1": {
-          "title": "Built a Nest.js backend for a blog application",
-          "a": "Implemented blog CRUD functionality",
-          "b": {
-            "title": "Abstract authentication and authorization using Guards and custom Decorators.",
-            "i": "Use TypeORM QueryBuilder to manipulate SQL queries easily.",
-            "ii": "Generate related posts based on a score-based relevance algorithm.",
-            "iii": "Send presigned S3 URLs to the frontend so that images inserted during blog editing are uploaded directly from the client to S3."
-          },
-          "c": {
-            "title": "Optimized CI/CD for Docker and AWS EC2 deployment",
-            "i": "Containerized Nest.js app and PostgreSQL database using Docker Compose and deployed via Docker images",
-            "ii": "Mirrored local development environment using Docker",
-            "iii": "Automated deployment with GitHub Actions: SSH into EC2, pull the latest Docker image, and restart the container",
-            "iv": "Removed old Docker image caches, keeping only the latest 3 images during deployment"
-          }
+      "1": {
+        "title": "Built a Nest.js backend for a blog application",
+        "a": "Implemented blog CRUD functionality",
+        "b": {
+          "title": "Abstract authentication and authorization using Guards and custom Decorators.",
+          "i": "Use TypeORM QueryBuilder to manipulate SQL queries easily.",
+          "ii": "Generate related posts based on a score-based relevance algorithm.",
+          "iii": "Send presigned S3 URLs to the frontend so that images inserted during blog editing are uploaded directly from the client to S3."
         },
-        "2": {
-          "title": "Established a separation of concerns strategy between SSR and CSR with a focus on SEO and data fetching optimization.",
-          "a": {
-            "title": "Use SSR for static data that requires SEO, and handle authenticated content via CSR.",
-            "i": "Consider whether SSR should read httpOnly cookies when using cookie-based authentication strategies."
-          }
-        },
-        "3": {
-          "title": "Built high-quality components by combining an interactive animation library with Headless UI.",
-          "a": "Connected major wallets such as MetaMask and WalletConnect, and retrieved wallet information",
-          "b": "Calculated the delta between mousedown and mouseup pageX values to determine the swipe direction; if the delta exceeded a certain threshold, the carousel advanced to the next slide",
-          "c": "Used useEffect and setInterval to create an infinite slide animation that runs every 3 seconds, with mouseenter and mouseleave events used to pause and resume the animation. Cleaned up the interval on page unmount to prevent memory leaks"
-        },
-        "4": "Implemented utility features such as i18n (internationalization) and dark mode."
-      }
+        "c": {
+          "title": "Optimized CI/CD for Docker and AWS EC2 deployment",
+          "i": "Containerized Nest.js app and PostgreSQL database using Docker Compose and deployed via Docker images",
+          "ii": "Mirrored local development environment using Docker",
+          "iii": "Automated deployment with GitHub Actions: SSH into EC2, pull the latest Docker image, and restart the container",
+          "iv": "Removed old Docker image caches, keeping only the latest 3 images during deployment"
+        }
+      },
+      "2": {
+        "title": "Established a separation of concerns strategy between SSR and CSR with a focus on SEO and data fetching optimization.",
+        "a": {
+          "title": "Use SSR for static data that requires SEO, and handle authenticated content via CSR.",
+          "i": "Consider whether SSR should read httpOnly cookies when using cookie-based authentication strategies."
+        }
+      },
+      "3": {
+        "title": "Built high-quality components by combining an interactive animation library with Headless UI.",
+        "a": "Connected major wallets such as MetaMask and WalletConnect, and retrieved wallet information",
+        "b": "Calculated the delta between mousedown and mouseup pageX values to determine the swipe direction; if the delta exceeded a certain threshold, the carousel advanced to the next slide",
+        "c": "Used useEffect and setInterval to create an infinite slide animation that runs every 3 seconds, with mouseenter and mouseleave events used to pause and resume the animation. Cleaned up the interval on page unmount to prevent memory leaks"
+      },
+      "4": "Implemented utility features such as i18n (internationalization) and dark mode."
     },
     "seaPearl": {
       "tag": "Work Project",
       "projectScale": "Team Project",
       "role": "Exclusive FrontEnd Dev.",
       "desc": "A platform to check your exchange score and convert Time Points into Ant Tokens.",
-      "contents": {
-        "1": {
-          "title": "Built and deployed an initial product using a webview-based frontend within Telegram.",
-          "a": "Configured the Telegram development environment using ngrok, and used it for both development and deployment.",
-          "b": {
-            "title": "Deployed the frontend as a webview within an iframe-based mini app environment.",
-            "i": "Implemented an initialization logic that retrieves user authentication data using Telegram Mini App global browser APIs.",
-            "ii": "To enable the use of Mini App APIs in development, the local environment was exposed via ngrok and registered with the Telegram bot."
-          }
-        },
-        "2": {
-          "title": "Integrated Adsgram for in-app advertising.",
-          "a": "Implemented a logic to receive success/failure results from the Adsgram server and forward them to the backend API server.",
-          "b": "Treated ad viewing as failed if the user skips the ad, sends the app to background, or remains on the app manager screen."
-        },
-        "3": {
-          "title": "Used react-virtuoso to build a virtualized list.",
-          "a": "Configured the virtualized list to handle infinitely growing data lists."
-        },
-        "4": {
-          "title": "Optimized API calls for the tapping game using debounce and global caching, balancing between cost efficiency and security.",
-          "a": {
-            "title": "Aggregated tapping counts with a debounce and sent to the server 3 seconds after the last tap.",
-            "i": "If the user exits the screen within 3 seconds, used a useEffect cleanup function to ensure server update before unmounting.",
-            "ii": "Made the tap count a persistent global state so that the count is sent to the server even after unexpected termination upon app restart.",
-            "iii": " In the global state update function, combined server patching and state clearing so that if an unexpected error occurs, the original state remains intact."
-          }
-        },
-        "5": {
-          "title": "Advanced Interactive Tapping Animation",
-          "a": {
-            "title": "Aggregated tapping counts with a debounce and sent to the server 3 seconds after the last tap.",
-            "i": "Used random values to control the Bezier path direction of point-gain animations, with each tap having a 1 in 3 chance to earn points, enhancing the visual experience."
-          }
+      "1": {
+        "title": "Built and deployed an initial product using a webview-based frontend within Telegram.",
+        "a": "Configured the Telegram development environment using ngrok, and used it for both development and deployment.",
+        "b": {
+          "title": "Deployed the frontend as a webview within an iframe-based mini app environment.",
+          "i": "Implemented an initialization logic that retrieves user authentication data using Telegram Mini App global browser APIs.",
+          "ii": "To enable the use of Mini App APIs in development, the local environment was exposed via ngrok and registered with the Telegram bot."
+        }
+      },
+      "2": {
+        "title": "Integrated Adsgram for in-app advertising.",
+        "a": "Implemented a logic to receive success/failure results from the Adsgram server and forward them to the backend API server.",
+        "b": "Treated ad viewing as failed if the user skips the ad, sends the app to background, or remains on the app manager screen."
+      },
+      "3": {
+        "title": "Used react-virtuoso to build a virtualized list.",
+        "a": "Configured the virtualized list to handle infinitely growing data lists."
+      },
+      "4": {
+        "title": "Optimized API calls for the tapping game using debounce and global caching, balancing between cost efficiency and security.",
+        "a": {
+          "title": "Aggregated tapping counts with a debounce and sent to the server 3 seconds after the last tap.",
+          "i": "If the user exits the screen within 3 seconds, used a useEffect cleanup function to ensure server update before unmounting.",
+          "ii": "Made the tap count a persistent global state so that the count is sent to the server even after unexpected termination upon app restart.",
+          "iii": " In the global state update function, combined server patching and state clearing so that if an unexpected error occurs, the original state remains intact."
+        }
+      },
+      "5": {
+        "title": "Advanced Interactive Tapping Animation",
+        "a": {
+          "title": "Aggregated tapping counts with a debounce and sent to the server 3 seconds after the last tap.",
+          "i": "Used random values to control the Bezier path direction of point-gain animations, with each tap having a 1 in 3 chance to earn points, enhancing the visual experience."
         }
       }
     },
