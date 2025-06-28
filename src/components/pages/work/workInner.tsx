@@ -31,6 +31,7 @@ export function WorkInnerCompact() {
           <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
             {t("bumangRoute53.tag")}
           </span>
+          <span className="mb-2">{t("bumangRoute53.desc")}</span>
           <div className="mb-4 flex flex-col text-6xl">
             <span className="mb-2">Bumang</span>
             <span>Route53</span>
@@ -158,6 +159,7 @@ export function WorkInnerCompact() {
           <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
             {t("seaPearl.tag")}
           </span>
+          <span className="mb-2">{t("seaPearl.desc")}</span>
           <div className="mb-4 flex flex-col text-6xl">SeaPearl</div>
 
           <div className="flex items-center gap-2 font-normal">
@@ -172,11 +174,6 @@ export function WorkInnerCompact() {
             </span>
             <div className="h-3 w-[1px] bg-gray-200" />
             <span className="text-sm text-gray-200">{t("seaPearl.role")}</span>
-          </div>
-
-          {/* DESCRIPTION */}
-          <div className="mt-10">
-            <span className="text-xl">{t("seaPearl.desc")}</span>
           </div>
         </div>
 
@@ -274,7 +271,7 @@ export function WorkInnerCompact() {
           <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
             {t("anttimeSwap.tag")}
           </span>
-          {/* <div className="mb-4 text-6xl">ANTTIME SWAP</div> */}
+          <span className="mb-2">{t("anttimeSwap.desc")}</span>
           <div className="mb-4 flex flex-col text-6xl">
             <span className="mb-2">ANTTIME</span>
             <span>SWAP</span>
@@ -294,11 +291,6 @@ export function WorkInnerCompact() {
             <span className="text-sm text-gray-200">
               {t("anttimeSwap.role")}
             </span>
-          </div>
-
-          {/* DESCRIPTION */}
-          <div className="mt-10 flex w-2/3 flex-col">
-            <span className="text-xl">{t("anttimeSwap.desc")}</span>
           </div>
         </div>
 
@@ -382,9 +374,9 @@ export function WorkInnerCompact() {
         {/* ANTTIME APP - TITLE */}
         <div className="sticky top-20 col-span-3 mb-44 mt-8 flex h-fit flex-col font-semibold">
           <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
-            Work Project
             {t("anttimeSwap.tag")}
           </span>
+          <span className="mb-2">{t("anttimeApp.desc")}</span>
           <div className="mb-4 flex flex-col text-6xl">
             <span className="mb-2">ANTTIME</span>
             <span>APP</span>
@@ -404,10 +396,6 @@ export function WorkInnerCompact() {
             <span className="text-sm text-gray-200">
               {t("anttimeSwap.role")}
             </span>
-          </div>
-
-          <div className="mt-10 flex w-2/3 flex-col">
-            <span className="text-xl">{t("anttimeApp.desc")}</span>
           </div>
         </div>
 
@@ -506,10 +494,12 @@ export function WorkInnerCompact() {
       <SectionBox animated={false} className="fade-in-mount">
         {/* Percent Hotel - TITLE */}
         <div className="sticky top-20 col-span-3 mb-44 mt-8 flex h-fit flex-col font-semibold">
-          <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
-            {t("percentHotel.tag")}
-          </span>
-          {/* <div className="mb-4 text-6xl">Percent Hotel</div> */}
+          <div className="flex gap-3">
+            <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
+              {t("percentHotel.tag.1")}
+            </span>
+          </div>
+          <span className="mb-2">{t("percentHotel.desc")}</span>
           <div className="mb-4 flex flex-col text-6xl">
             <span className="mb-2">Percent</span>
             <span>Hotel</span>
@@ -517,7 +507,7 @@ export function WorkInnerCompact() {
 
           <div className="flex items-center gap-2 font-normal">
             <span className="text-sm font-semibold text-gray-200">
-              2024.02.01. 2024.02.27.
+              2024.02.01. - 2024.02.27.
             </span>
           </div>
 
@@ -528,14 +518,6 @@ export function WorkInnerCompact() {
             <div className="h-3 w-[1px] bg-gray-200" />
             <span className="text-sm text-gray-200">
               {t("percentHotel.role")}
-            </span>
-          </div>
-
-          {/* DESCRIPTION */}
-          <div className="mt-10 flex w-2/3 flex-col">
-            <span className="text-xl">{t("percentHotel.desc")}</span>
-            <span className="text-base font-normal">
-              {t("percentHotel.desc2")}
             </span>
           </div>
         </div>

@@ -165,7 +165,7 @@
       "tag": "Side Project",
       "projectScale": "Solo Project",
       "role": "FullStack",
-      "desc": "",
+      "desc": "Personal Blog & Portfolio",
       "1": {
         "title": "Built a Nest.js backend for a blog application",
         "a": "Implemented blog CRUD functionality",
@@ -202,7 +202,7 @@
       "tag": "Work Project",
       "projectScale": "Team Project",
       "role": "Exclusive FrontEnd Dev.",
-      "desc": "A platform to check your exchange score and convert Time Points into Ant Tokens.",
+      "desc": "Tap Game on Telegram Mini App",
       "1": {
         "title": "Built and deployed an initial product using a webview-based frontend within Telegram.",
         "a": "Configured the Telegram development environment using ngrok, and used it for both development and deployment.",
@@ -242,7 +242,7 @@
       "tag": "Work Project",
       "projectScale": "Team Project",
       "role": "Exclusive FrontEnd Dev.",
-      "desc": "A platform to check your exchange score and convert Time Points into Ant Tokens.",
+      "desc": "Point to Token Airdrop Exchange Platform",
       "1": {
         "title": "Developing a Strategy for Utilizing React Server Components and Client Components",
         "a": "Retrieved token swap period metadata on the server side to manage access control",
@@ -270,7 +270,7 @@
       "tag": "Work Project",
       "projectScale": "Team Project",
       "role": "FrontEnd Dev.",
-      "desc": "Time 2 Earn! Mining Points to get Rich!",
+      "desc": "Cross Platform Mining Point App",
       "1": {
         "title": "Separated production and development Environment",
         "a": {
@@ -306,11 +306,13 @@
       }
     },
     "percentHotel": {
-      "tag": "Yanolja Bootcamp",
+      "tag": {
+        "1": "Yanolja Bootcamp",
+        "2": "2nd Place"
+      },
       "projectScale": "Team Project",
       "role": "FrontEnd Leader",
-      "desc": "Book non-refundable stays quickly and safelywith Percent Hotel!",
-      "desc2": "(Ranked 2nd out of 12 teams in evaluation by Yanolja mentors)",
+      "desc": "Accommodation Listing Transfer Platform",
       "1": {
         "title": "Custom Animated Carousel Library",
         "a": {
