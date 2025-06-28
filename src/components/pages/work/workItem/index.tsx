@@ -5,6 +5,7 @@ import { ButtonBase } from "@/components/common/button";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { cn } from "@/utils/cn";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 
 interface WorkItemProps {
   children?: React.ReactNode;
@@ -23,6 +24,8 @@ function mapNumberRange(
 ) {
   return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
 }
+
+gsap.registerPlugin(ScrollTrigger);
 
 const WorkItem = ({ imgSrc, imgAlt, onClick, children }: WorkItemProps) => {
   const cardRef = useRef<HTMLButtonElement | null>(null);
@@ -64,7 +67,7 @@ const WorkItem = ({ imgSrc, imgAlt, onClick, children }: WorkItemProps) => {
         const maxDistance = Math.max(halfWidth, halfHeight);
 
         // 중앙에서 얼마나 먼지.
-        const degree = mapNumberRange(distanceToCenter, 0, maxDistance, 0, 10);
+        const degree = mapNumberRange(distanceToCenter, 0, maxDistance, 0, 5);
 
         const rx = mapNumberRange(deltaY, 0, halfWidth, 0, 1);
         const ry = mapNumberRange(deltaX, 0, halfHeight, 0, 1);
@@ -112,43 +115,111 @@ const WorkItem = ({ imgSrc, imgAlt, onClick, children }: WorkItemProps) => {
   );
 
   useEffect(() => {
-    if (hoverItemRef.current && containerRef.current) {
-      const hoverEl = hoverItemRef.current;
-      containerRef.current.addEventListener("mouseenter", () => {
-        gsap
-          .fromTo(
-            hoverEl,
-            {
-              width: 0,
-              color: "transparent",
-              ease: "power2.out",
-            },
-            {
-              width: 200,
-              color: "black",
-              duration: 0.5,
-              ease: "power2.out",
-            },
-          )
-          .restart();
-      });
+    if (!hoverItemRef.current || !containerRef.current) return;
 
-      containerRef.current.addEventListener("mouseleave", () => {
-        gsap.fromTo(
+    const hoverEl = hoverItemRef.current;
+    const container = containerRef.current;
+
+    const handleMouseEnter = () => {
+      gsap
+        .fromTo(
           hoverEl,
           {
-            width: 200,
+            width: 0,
+            color: "transparent",
             ease: "power2.out",
           },
           {
-            width: 0,
+            width: 200,
+            color: "black",
             duration: 0.5,
             ease: "power2.out",
           },
-        );
+        )
+        .restart();
+    };
+    const handleMouseLeave = () => {
+      gsap.fromTo(
+        hoverEl,
+        {
+          width: 200,
+          ease: "power2.out",
+        },
+        {
+          width: 0,
+          duration: 0.5,
+          ease: "power2.out",
+        },
+      );
+    };
+
+    container.addEventListener("mouseenter", handleMouseEnter);
+
+    container.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      container.removeEventListener("mouseenter", handleMouseEnter);
+      container.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!cardRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const outroTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: cardRef.current,
+          start: "top -20%", // 카드가 뷰포트에 들어올 때
+          end: "bottom 0%", // 카드가 뷰포트에서 나갈 때
+          scrub: 0.5, // 부드러운 스크롤 동기화
+          markers: false, // 개발용 마커
+        },
       });
-    }
-  }, [hoverItemRef, containerRef]);
+
+      const entryTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: cardRef.current,
+          start: "top 100%", // 카드가 뷰포트에 들어올 때
+          end: "bottom 100%", // 카드가 들어올 때
+          scrub: 0.5, // 부드러운 스크롤 동기화
+          markers: false, // 개발용 마커
+        },
+      });
+
+      gsap.set(cardRef.current, {
+        force3D: true, // GPU 가속 강제 활성화
+        transformPerspective: 1000,
+        transformStyle: "preserve-3d",
+      });
+
+      // 1. 나갈 때: perspective로 모서리만 보이게
+      outroTl.fromTo(
+        cardRef.current,
+        {
+          rotationX: 0,
+          opacity: 1,
+        },
+        {
+          rotationX: -50, // X축으로 기울여서 모서리만 보이게
+          // opacity: 0.3, // 투명도 감소
+          transformOrigin: "center bottom", // 아래쪽을 기준으로 회전
+          duration: 0.4,
+          ease: "power2.out",
+        },
+      );
+
+      entryTl.from(cardRef.current, {
+        rotationX: 50, // X축으로 기울여서 모서리만 보이게
+        opacity: 0.3, // 투명도 감소
+        transformOrigin: "center top", // 아래쪽을 기준으로 회전
+        duration: 0.4,
+        ease: "power2.out",
+      });
+    }, cardRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <div

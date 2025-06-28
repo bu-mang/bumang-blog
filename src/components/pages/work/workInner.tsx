@@ -14,6 +14,7 @@ export function WorkInnerInteractive() {
           test
         </div>
       </WorkItem>
+
       <WorkItem onClick={() => {}} imgSrc="" imgAlt="" />
       <WorkItem onClick={() => {}} imgSrc="" imgAlt="" />
     </>
