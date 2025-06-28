@@ -37,8 +37,8 @@ export function WorkInnerCompact() {
           </div>
 
           <div className="flex items-center gap-2 font-normal">
-            <span className="text-xs font-bold text-gray-200">
-              2024.05.01. - 2024.05.30.
+            <span className="text-sm font-semibold text-gray-200">
+              2024.12. -
             </span>
           </div>
 
@@ -161,8 +161,8 @@ export function WorkInnerCompact() {
           <div className="mb-4 flex flex-col text-6xl">SeaPearl</div>
 
           <div className="flex items-center gap-2 font-normal">
-            <span className="text-xs font-bold text-gray-200">
-              2024.05.01. 2024.05.30.
+            <span className="text-sm font-semibold text-gray-200">
+              2024.05. -
             </span>
           </div>
 
@@ -176,7 +176,7 @@ export function WorkInnerCompact() {
 
           {/* DESCRIPTION */}
           <div className="mt-10">
-            <span className="text-xl">{t("seaPearl.tag")}</span>
+            <span className="text-xl">{t("seaPearl.desc")}</span>
           </div>
         </div>
 
@@ -281,8 +281,8 @@ export function WorkInnerCompact() {
           </div>
 
           <div className="flex items-center gap-2 font-normal">
-            <span className="text-xs font-bold text-gray-200">
-              2024.05.01. 2024.05.30.
+            <span className="text-sm font-semibold text-gray-200">
+              2025.04 -
             </span>
           </div>
 
@@ -297,7 +297,7 @@ export function WorkInnerCompact() {
           </div>
 
           {/* DESCRIPTION */}
-          <div className="mt-10">
+          <div className="mt-10 flex w-2/3 flex-col">
             <span className="text-xl">{t("anttimeSwap.desc")}</span>
           </div>
         </div>
@@ -391,8 +391,8 @@ export function WorkInnerCompact() {
           </div>
 
           <div className="flex items-center gap-2 font-normal">
-            <span className="text-xs font-bold text-gray-200">
-              2024.05.01. 2024.05.30.
+            <span className="text-sm font-semibold text-gray-200">
+              2024.04. -
             </span>
           </div>
 
@@ -406,7 +406,7 @@ export function WorkInnerCompact() {
             </span>
           </div>
 
-          <div className="mt-10">
+          <div className="mt-10 flex w-2/3 flex-col">
             <span className="text-xl">{t("anttimeApp.desc")}</span>
           </div>
         </div>
@@ -516,8 +516,8 @@ export function WorkInnerCompact() {
           </div>
 
           <div className="flex items-center gap-2 font-normal">
-            <span className="text-xs font-bold text-gray-200">
-              2024.05.01. 2024.05.30.
+            <span className="text-sm font-semibold text-gray-200">
+              2024.02.01. 2024.02.27.
             </span>
           </div>
 
@@ -532,7 +532,7 @@ export function WorkInnerCompact() {
           </div>
 
           {/* DESCRIPTION */}
-          <div className="mt-10">
+          <div className="mt-10 flex w-2/3 flex-col">
             <span className="text-xl">{t("percentHotel.desc")}</span>
             <span className="text-base font-normal">
               {t("percentHotel.desc2")}
