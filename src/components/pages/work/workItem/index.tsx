@@ -6,11 +6,13 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { cn } from "@/utils/cn";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { Link } from "@/i18n/navigation";
 
 interface WorkItemProps {
-  children?: React.ReactNode;
+  children?: React.ReactNode; // Stickers
   imgSrc: string;
   imgAlt: string;
+  href?: string;
 
   onClick: () => void;
 }
@@ -27,8 +29,14 @@ function mapNumberRange(
 
 gsap.registerPlugin(ScrollTrigger);
 
-const WorkItem = ({ imgSrc, imgAlt, onClick, children }: WorkItemProps) => {
-  const cardRef = useRef<HTMLButtonElement | null>(null);
+const WorkItem = ({
+  href,
+  imgSrc,
+  imgAlt,
+  onClick,
+  children,
+}: WorkItemProps) => {
+  const cardRef = useRef<HTMLAnchorElement | null>(null);
   const [coordX, setCoordX] = useState(0);
   const [coordY, setCoordY] = useState(0);
 
@@ -198,11 +206,9 @@ const WorkItem = ({ imgSrc, imgAlt, onClick, children }: WorkItemProps) => {
         cardRef.current,
         {
           rotationX: 0,
-          opacity: 1,
         },
         {
-          rotationX: -50, // X축으로 기울여서 모서리만 보이게
-          // opacity: 0.3, // 투명도 감소
+          rotationX: -30, // X축으로 기울여서 모서리만 보이게
           transformOrigin: "center bottom", // 아래쪽을 기준으로 회전
           duration: 0.4,
           ease: "power2.out",
@@ -234,7 +240,8 @@ const WorkItem = ({ imgSrc, imgAlt, onClick, children }: WorkItemProps) => {
         A Test Text...
       </div>
 
-      <ButtonBase
+      <Link
+        href={href ?? "#"}
         ref={cardRef}
         onClick={onClick}
         className="relative col-start-2 col-end-8 cursor-none"
@@ -253,10 +260,10 @@ const WorkItem = ({ imgSrc, imgAlt, onClick, children }: WorkItemProps) => {
               opacity,
             }}
           />
-          <Image src={"/next.svg"} fill alt={imgAlt} />
+          <Image src={imgSrc || "/next.svg"} fill alt={imgAlt} />
         </div>
         {children}
-      </ButtonBase>
+      </Link>
     </div>
   );
 };

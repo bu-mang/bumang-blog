@@ -6,6 +6,14 @@ import { SectionBox, SubBox } from "../about/aboutSection";
 import WorkItem from "./workItem";
 import { cn } from "@/utils/cn";
 
+const WorkLists = [];
+interface Work {
+  title: string;
+  href: string;
+  backgroundSrc: string;
+  imageAlt: string;
+}
+
 export function WorkInnerInteractive() {
   return (
     <>
@@ -15,8 +23,11 @@ export function WorkInnerInteractive() {
         </div>
       </WorkItem>
 
-      <WorkItem onClick={() => {}} imgSrc="" imgAlt="" />
-      <WorkItem onClick={() => {}} imgSrc="" imgAlt="" />
+      <WorkItem onClick={() => {}} imgSrc="" imgAlt="" href="/" />
+      <WorkItem onClick={() => {}} imgSrc="" imgAlt="" href="/" />
+      <WorkItem onClick={() => {}} imgSrc="" imgAlt="" href="/" />
+      <WorkItem onClick={() => {}} imgSrc="" imgAlt="" href="/" />
+      <WorkItem onClick={() => {}} imgSrc="" imgAlt="" href="/" />
     </>
   );
 }
