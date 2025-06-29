@@ -1,9 +1,9 @@
 "use client";
 
 import { PATHNAME } from "@/constants/routes";
-import { useInteractiveStore } from "@/store/layout";
+import { usePathname } from "@/i18n/navigation";
+import { useInteractiveStore } from "@/store/interactive";
 import { cn } from "@/utils/cn";
-import { usePathname } from "next/navigation";
 
 export default function InteractiveBackground() {
   const pathname = usePathname();
@@ -17,13 +17,23 @@ export default function InteractiveBackground() {
       // INTERACTIVE
       case PATHNAME.WORK:
         return (
-          <div
-            className={cn(
-              "fixed left-0 top-0 -z-10 h-screen w-screen",
-              bgColor,
-            )}
-            style={{ backgroundImage: bgImage ? `url(${bgImage})` : "none" }}
-          />
+          <>
+            <div
+              className={cn(
+                "fixed inset-0 -z-10 flex h-screen w-screen items-center justify-center transition-all ease-in-out",
+                bgColor,
+              )}
+              style={{
+                backgroundImage: bgImage ? `url(${bgImage})` : "none",
+                opacity: 0.2,
+                filter: "blur(30px)",
+                transform: "scale()",
+              }}
+            />
+            <div className="fixed inset-x-0 inset-y-10 -z-10 flex h-screen w-screen items-center justify-center text-2xl">
+              [Work]
+            </div>
+          </>
         );
 
       // STATIC RENDERS
@@ -36,11 +46,15 @@ export default function InteractiveBackground() {
   const renderStaticBackground = () => {
     return (
       <div
-        className={cn("fixed left-0 top-0 -z-10 h-screen w-screen", bgColor)}
-        style={{ backgroundImage: bgImage ? `url(${bgImage})` : "none" }}
+        className={cn(
+          "fixed inset-0 -z-10 h-screen w-screen transition-all ease-in-out",
+          bgColor,
+        )}
       />
     );
   };
 
-  return renderInteractiveBackground() || renderStaticBackground();
+  const renderInteractives = renderInteractiveBackground();
+
+  return renderInteractives || renderStaticBackground();
 }

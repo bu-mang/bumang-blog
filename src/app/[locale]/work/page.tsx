@@ -72,7 +72,7 @@ export default function Work() {
   return (
     <main
       className={cn(
-        "flex flex-1 flex-col items-center justify-center",
+        "flex w-screen flex-col items-center justify-center overflow-hidden",
         LAYOUT_PADDING_ALONGSIDE,
       )}
     >

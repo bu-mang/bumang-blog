@@ -17,17 +17,45 @@ interface Work {
 export function WorkInnerInteractive() {
   return (
     <>
-      <WorkItem onClick={() => {}} imgSrc="" imgAlt="">
-        <div className="absolute -left-10 -top-10 flex h-20 w-20 items-center justify-center rounded-full bg-red">
+      {/* 마진용 */}
+      <WorkItem nullItem imgSrc="" imgAlt=""></WorkItem>
+
+      <WorkItem onClick={() => {}} imgSrc="/thumbnails/projects.png" imgAlt="">
+        <div className="absolute -left-10 -top-10 flex h-20 w-20 items-center justify-center rounded-full bg-red-500">
           test
         </div>
       </WorkItem>
 
-      <WorkItem onClick={() => {}} imgSrc="" imgAlt="" href="/" />
-      <WorkItem onClick={() => {}} imgSrc="" imgAlt="" href="/" />
-      <WorkItem onClick={() => {}} imgSrc="" imgAlt="" href="/" />
-      <WorkItem onClick={() => {}} imgSrc="" imgAlt="" href="/" />
-      <WorkItem onClick={() => {}} imgSrc="" imgAlt="" href="/" />
+      <WorkItem
+        onClick={() => {}}
+        imgSrc="/thumbnails/backend.png"
+        imgAlt=""
+        href="/"
+      />
+      <WorkItem
+        onClick={() => {}}
+        imgSrc="/thumbnails/computerScience.png"
+        imgAlt=""
+        href="/"
+      />
+      <WorkItem
+        onClick={() => {}}
+        imgSrc="/thumbnails/frontend.png"
+        imgAlt=""
+        href="/"
+      />
+      <WorkItem
+        onClick={() => {}}
+        imgSrc="/thumbnails/interactive.png"
+        imgAlt=""
+        href="/"
+      />
+      <WorkItem
+        onClick={() => {}}
+        imgSrc="/thumbnails/life.png"
+        imgAlt=""
+        href="/"
+      />
     </>
   );
 }

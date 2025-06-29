@@ -2,19 +2,28 @@
 
 import Image from "next/image";
 import { ButtonBase } from "@/components/common/button";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  MutableRefObject,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { cn } from "@/utils/cn";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { Link } from "@/i18n/navigation";
+import { useInteractiveStore } from "@/store/interactive";
 
 interface WorkItemProps {
   children?: React.ReactNode; // Stickers
-  imgSrc: string;
+  imgSrc?: string | null;
   imgAlt: string;
   href?: string;
+  className?: string;
+  nullItem?: boolean;
 
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 function mapNumberRange(
@@ -33,15 +42,18 @@ const WorkItem = ({
   href,
   imgSrc,
   imgAlt,
-  onClick,
+  className,
   children,
+  nullItem,
+
+  onClick,
 }: WorkItemProps) => {
-  const cardRef = useRef<HTMLAnchorElement | null>(null);
+  const cardRef = useRef<HTMLAnchorElement | HTMLDivElement | null>(null);
   const [coordX, setCoordX] = useState(0);
   const [coordY, setCoordY] = useState(0);
 
   /**
-   * CARD_FLIP_LOGIC
+   * 카드 호버링 기울기 애니메이션
    */
   const [rotateY, setRotateY] = useState(0);
   const [rotateX, setRotateX] = useState(0);
@@ -52,6 +64,7 @@ const WorkItem = ({
       const el = cardRef.current;
 
       el.addEventListener("mousemove", (e) => {
+        if (!(e instanceof MouseEvent)) return;
         // 카드 내부에서의 마우스 좌표 (0,0은 카드의 좌측 상단)
         const pointerX = e.clientX;
         const pointerY = e.clientY;
@@ -94,10 +107,10 @@ const WorkItem = ({
         setOpacity(0);
       });
     }
-  }, [cardRef]);
+  }, []);
 
   /**
-   * HOVER_ITEM_LOGIC
+   * 마우스 호버 애니메이션
    */
   const containerRef = useRef<HTMLDivElement | null>(null);
   const hoverItemRef = useRef<HTMLDivElement | null>(null);
@@ -122,6 +135,7 @@ const WorkItem = ({
     opacity ? "opacity-100" : "opacity-0",
   );
 
+  // 마우스 호버 시 애니메이션
   useEffect(() => {
     if (!hoverItemRef.current || !containerRef.current) return;
 
@@ -171,6 +185,9 @@ const WorkItem = ({
     };
   }, []);
 
+  /**
+   * 뷰포트 진입/이탈 시 애니메이션
+   */
   useEffect(() => {
     if (!cardRef.current) return;
 
@@ -227,9 +244,66 @@ const WorkItem = ({
     return () => ctx.revert();
   }, []);
 
+  const setBackgroundImage = useInteractiveStore(
+    (state) => state.setBackgroundImage,
+  );
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  useEffect(() => {
+    const element = cardRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsIntersecting(entry.isIntersecting);
+      },
+      {
+        rootMargin: "-20% 0px -20% 0px",
+        threshold: 0.5,
+      },
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+  useEffect(() => {
+    if (isIntersecting) {
+      setBackgroundImage(imgSrc);
+    }
+  }, [isIntersecting]);
+
+  if (nullItem) {
+    return (
+      <div
+        className={cn(
+          "relative grid w-full flex-1 grid-cols-8 gap-[1.5vw] py-40",
+          className,
+        )}
+        ref={cardRef as MutableRefObject<HTMLDivElement>}
+      >
+        <div className="relative col-start-2 col-end-8">
+          <div className={"relative flex aspect-video"}>
+            {/* GLOSS */}
+            <div
+              className="absolute z-10 h-full w-full rounded-full bg-[radial-gradient(circle,rgba(255,255,255,1)_0%,rgba(255,255,255,0)_50%,rgba(255,255,255,0)_100%)] opacity-0"
+              style={{
+                transform: `translate(${-rotateY * 100}%, ${-rotateX * 100}%) scale(2.4)`,
+                opacity,
+              }}
+            />
+          </div>
+          {children}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
-      className="relative grid w-full flex-1 grid-cols-8 gap-[1.5vw] py-40"
+      className={cn(
+        "relative grid w-full flex-1 grid-cols-8 gap-[1.5vw] py-40",
+        className,
+      )}
       ref={containerRef}
     >
       <div
@@ -239,18 +313,19 @@ const WorkItem = ({
       >
         A Test Text...
       </div>
-
       <Link
         href={href ?? "#"}
-        ref={cardRef}
-        onClick={onClick}
+        ref={cardRef as MutableRefObject<HTMLAnchorElement>}
+        onClick={onClick ? onClick : () => {}}
         className="relative col-start-2 col-end-8 cursor-none"
       >
         <div
           style={{
             transform: `perspective(1500px) rotate3d(${-rotateX}, ${rotateY}, 0, ${degree}deg)`,
           }}
-          className="card-tilt relative flex aspect-video items-center justify-center overflow-hidden rounded-xl bg-emerald-300"
+          className={
+            "card-tilt relative flex aspect-video items-center justify-center overflow-hidden rounded-xl bg-emerald-300"
+          }
         >
           {/* GLOSS */}
           <div
