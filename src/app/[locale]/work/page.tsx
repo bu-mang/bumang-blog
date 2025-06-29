@@ -6,6 +6,7 @@ import {
 } from "@/components/pages/work/workInner";
 import WorkTab from "@/components/pages/work/workTab";
 import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
+import { useInteractiveStore } from "@/store/\binteractive";
 import { cn } from "@/utils/cn";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
@@ -67,6 +68,16 @@ export default function Work() {
         },
       );
     }
+  }, []);
+
+  // 페이지 컴포넌트 언마운트 시 배경 이미지 클린 업
+  const setBackgroundImage = useInteractiveStore(
+    (state) => state.setBackgroundImage,
+  );
+  useEffect(() => {
+    return () => {
+      setBackgroundImage(null);
+    };
   }, []);
 
   return (
