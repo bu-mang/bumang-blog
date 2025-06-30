@@ -6,12 +6,20 @@ interface InteractiveState {
   textColor: string;
   backgroundColor: string | undefined | null; // tailwind Utils
   backgroundImage: string | undefined | null; // url or null
+
+  work: {
+    centerText: boolean;
+  };
 }
 
 interface InteractiveAction {
   setTextColor: (v: string) => void;
   setBackgroundColor: (v: string | undefined | null) => void;
   setBackgroundImage: (v: string | undefined | null) => void;
+
+  work: {
+    setCenterText: (v: boolean) => void;
+  };
 }
 
 export const useInteractiveStore = create<
@@ -21,6 +29,14 @@ export const useInteractiveStore = create<
     textColor: "text-black",
     backgroundColor: null,
     backgroundImage: null,
+
+    work: {
+      centerText: true,
+      setCenterText: (isCenterText: boolean) =>
+        set((state) => {
+          state.work.centerText = isCenterText;
+        }),
+    },
 
     setTextColor: (textColor) =>
       set((state) => {

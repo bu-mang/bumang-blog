@@ -6,7 +6,7 @@ import {
 } from "@/components/pages/work/workInner";
 import WorkTab from "@/components/pages/work/workTab";
 import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
-import { useInteractiveStore } from "@/store/\binteractive";
+import { useInteractiveStore } from "@/store/background";
 import { cn } from "@/utils/cn";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
@@ -74,11 +74,20 @@ export default function Work() {
   const setBackgroundImage = useInteractiveStore(
     (state) => state.setBackgroundImage,
   );
+  const setCenterText = useInteractiveStore(
+    (state) => state.work.setCenterText,
+  );
   useEffect(() => {
+    if (focusedTab === "Compact") {
+      setCenterText(false);
+    } else {
+      setCenterText(true);
+    }
+
     return () => {
       setBackgroundImage(null);
     };
-  }, []);
+  }, [focusedTab]);
 
   return (
     <main

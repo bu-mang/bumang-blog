@@ -2,7 +2,7 @@
 
 import { PATHNAME } from "@/constants/routes";
 import { usePathname } from "@/i18n/navigation";
-import { useInteractiveStore } from "@/store/interactive";
+import { useInteractiveStore } from "@/store/background";
 import { cn } from "@/utils/cn";
 
 export default function InteractiveBackground() {
@@ -11,6 +11,7 @@ export default function InteractiveBackground() {
 
   const bgColor = useInteractiveStore((state) => state.backgroundColor);
   const bgImage = useInteractiveStore((state) => state.backgroundImage);
+  const { centerText } = useInteractiveStore((state) => state.work);
 
   const renderInteractiveBackground = () => {
     switch (pathname) {
@@ -30,9 +31,11 @@ export default function InteractiveBackground() {
                 transform: "scale()",
               }}
             />
-            <div className="fixed inset-x-0 inset-y-10 -z-10 flex h-screen w-screen items-center justify-center text-2xl">
-              [Work]
-            </div>
+            {centerText && (
+              <div className="fixed inset-x-0 inset-y-10 -z-10 flex h-screen w-screen items-center justify-center text-2xl">
+                [Work]
+              </div>
+            )}
           </>
         );
 

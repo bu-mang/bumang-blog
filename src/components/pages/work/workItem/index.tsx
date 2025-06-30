@@ -13,7 +13,7 @@ import { cn } from "@/utils/cn";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { Link } from "@/i18n/navigation";
-import { useInteractiveStore } from "@/store/interactive";
+import { useInteractiveStore } from "@/store/background";
 
 interface WorkItemProps {
   children?: React.ReactNode; // Stickers
