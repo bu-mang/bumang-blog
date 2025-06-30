@@ -87,7 +87,7 @@ export default function Work() {
     return () => {
       setBackgroundImage(null);
     };
-  }, [focusedTab]);
+  }, [focusedTab, setCenterText, setBackgroundImage]);
 
   return (
     <main

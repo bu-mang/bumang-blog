@@ -20,7 +20,7 @@ export function WorkInnerInteractive() {
       {/* 마진용 */}
       <WorkItem nullItem imgSrc="" imgAlt=""></WorkItem>
 
-      <WorkItem onClick={() => {}} imgSrc="/thumbnails/projects.png" imgAlt="">
+      <WorkItem onClick={() => {}} imgSrc="/works/bumangRoute53.png" imgAlt="">
         <div className="absolute -left-10 -top-10 flex h-20 w-20 items-center justify-center rounded-full bg-red-500">
           test
         </div>
@@ -28,31 +28,25 @@ export function WorkInnerInteractive() {
 
       <WorkItem
         onClick={() => {}}
-        imgSrc="/thumbnails/backend.png"
+        imgSrc="/works/seaPearl.png"
         imgAlt=""
         href="/"
       />
       <WorkItem
         onClick={() => {}}
-        imgSrc="/thumbnails/computerScience.png"
+        imgSrc="/works/anttimeSwap.png"
         imgAlt=""
         href="/"
       />
       <WorkItem
         onClick={() => {}}
-        imgSrc="/thumbnails/frontend.png"
+        imgSrc="/works/anttimeApp.png"
         imgAlt=""
         href="/"
       />
       <WorkItem
         onClick={() => {}}
-        imgSrc="/thumbnails/interactive.png"
-        imgAlt=""
-        href="/"
-      />
-      <WorkItem
-        onClick={() => {}}
-        imgSrc="/thumbnails/life.png"
+        imgSrc="/works/percentHotel.png"
         imgAlt=""
         href="/"
       />
