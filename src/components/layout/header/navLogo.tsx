@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Bumang, Route53 } from "@/assets";
 import { useRouter } from "@/i18n/navigation";
 import { cn } from "@/utils/cn";
-// import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
+import { useInteractiveStore } from "@/store/background";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,11 +50,15 @@ const NavLogo = () => {
     ScrollTrigger.refresh();
   }, []);
 
+  const headerBackgroundColor = useInteractiveStore(
+    (state) => state.header.backgroundColor,
+  );
+
   return (
     <div
       className={cn(
-        "LETTER_CONTAINER top-0 grid w-full grid-cols-2 gap-[1.5vw] overflow-hidden bg-white px-[10vw] py-3",
-        // LAYOUT_PADDING_ALONGSIDE,
+        "LETTER_CONTAINER top-0 grid w-full grid-cols-2 gap-[1.5vw] overflow-hidden px-[10vw] py-3",
+        headerBackgroundColor,
       )}
       onMouseEnter={() => handleSwitchVisibility("show")}
       onMouseLeave={() => handleSwitchVisibility("hide")}

@@ -2,10 +2,21 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
+import resolveConfig from "tailwindcss/resolveConfig";
+import tailwindConfig from "../../tailwind.config";
+
+const fullConfig = resolveConfig(tailwindConfig);
+const gray = fullConfig.theme.colors.gray as Record<string, string>;
+
 interface InteractiveState {
   textColor: string;
   backgroundColor: string | undefined | null; // tailwind Utils
   backgroundImage: string | undefined | null; // url or null
+
+  header: {
+    borderBottom: string | undefined | null;
+    backgroundColor: string | undefined | null;
+  };
 
   work: {
     centerText: boolean;
@@ -16,6 +27,12 @@ interface InteractiveAction {
   setTextColor: (v: string) => void;
   setBackgroundColor: (v: string | undefined | null) => void;
   setBackgroundImage: (v: string | undefined | null) => void;
+
+  header: {
+    setBorderBottom: (v: string | undefined | null) => void;
+    setBackgroundColor: (v: string | undefined | null) => void;
+    setDefaultSetting: () => void;
+  };
 
   work: {
     setCenterText: (v: boolean) => void;
@@ -29,6 +46,25 @@ export const useInteractiveStore = create<
     textColor: "text-black",
     backgroundColor: null,
     backgroundImage: null,
+
+    header: {
+      borderBottom: gray?.["10"],
+      backgroundColor: "bg-white",
+      setDefaultSetting: () => {
+        set((state) => {
+          state.header.borderBottom = gray?.["10"];
+          state.header.backgroundColor = "bg-white";
+        });
+      },
+      setBorderBottom: (borderBottom: string | undefined | null) =>
+        set((state) => {
+          state.header.borderBottom = borderBottom;
+        }),
+      setBackgroundColor: (backgroundColor: string | undefined | null) =>
+        set((state) => {
+          state.header.backgroundColor = backgroundColor;
+        }),
+    },
 
     work: {
       centerText: true,

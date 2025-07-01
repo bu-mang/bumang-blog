@@ -5,6 +5,9 @@ import { useTranslations } from "next-intl";
 import { SectionBox, SubBox } from "../about/aboutSection";
 import WorkItem from "./workItem";
 import { cn } from "@/utils/cn";
+import { useEffect } from "react";
+import { useInteractiveStore } from "@/store/background";
+import { usePathname } from "@/i18n/navigation";
 
 const WorkLists = [];
 interface Work {
@@ -15,6 +18,25 @@ interface Work {
 }
 
 export function WorkInnerInteractive() {
+  const setHeaderBackgroundColor = useInteractiveStore(
+    (state) => state.header.setBackgroundColor,
+  );
+  const setBorderBottom = useInteractiveStore(
+    (state) => state.header.setBorderBottom,
+  );
+  const setDefaultSetting = useInteractiveStore(
+    (state) => state.header.setDefaultSetting,
+  );
+
+  useEffect(() => {
+    setHeaderBackgroundColor("bg-transparent");
+    setBorderBottom("transparent");
+
+    return () => {
+      setDefaultSetting();
+    };
+  }, [setBorderBottom, setDefaultSetting, setHeaderBackgroundColor]);
+
   return (
     <>
       {/* 마진용 */}
@@ -56,6 +78,7 @@ export function WorkInnerInteractive() {
 
 export function WorkInnerCompact() {
   const t = useTranslations("work");
+
   return (
     <>
       {/* BUMANG BLOG */}

@@ -4,17 +4,17 @@ import type { MenuType } from "@/types";
 import { ROUTES } from "@/constants/routes/navBarRoutes";
 import { cn } from "@/utils/cn";
 
-import resolveConfig from "tailwindcss/resolveConfig";
-import tailwindConfig from "../../../../tailwind.config";
+// import resolveConfig from "tailwindcss/resolveConfig";
+// import tailwindConfig from "../../../../tailwind.config";
 
-const fullConfig = resolveConfig(tailwindConfig);
-const gray = fullConfig.theme.colors.gray as Record<string, string>;
+// const fullConfig = resolveConfig(tailwindConfig);
+// const gray = fullConfig.theme.colors.gray as Record<string, string>;
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { LuGlobe, LuLanguages, LuLayers2, LuMoonStar } from "react-icons/lu";
+import { LuLanguages, LuLayers2, LuMoonStar } from "react-icons/lu";
 import { ButtonBase as Button } from "@/components/common";
 import { useMutation } from "@tanstack/react-query";
 import { postLogout } from "@/services/api/auth/client";
@@ -27,9 +27,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { RiEnglishInput } from "react-icons/ri";
-import Image from "next/image";
-import { toast } from "react-toastify";
+import { useInteractiveStore } from "@/store/background";
+import { PATHNAME } from "@/constants/routes";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -47,10 +46,19 @@ const NavBar = ({
   isLoading,
   nickname,
 }: NavBarProps) => {
+  const pathname = usePathname();
+  const headerBackgroundColor = useInteractiveStore(
+    (state) => state.header.backgroundColor,
+  );
+  const headerBorderBottom = useInteractiveStore(
+    (state) => state.header.borderBottom,
+  );
+
   /**
    * @HEADER_ANIMATION
    */
   useEffect(() => {
+    console.log(headerBorderBottom, "headerBorderBottom");
     // 타임라인으로 통함??
     gsap.to(".NAVBAR_CONTAINER", {
       y: -32,
@@ -63,8 +71,8 @@ const NavBar = ({
       },
     });
     gsap.to(".NAVBAR_BORDERBOX", {
-      borderTopColor: "white",
-      borderBottomColor: gray?.["10"], // "#ede5e5", text-gray-10
+      borderTopColor: "transparent",
+      borderBottomColor: headerBorderBottom ?? "transparent", // "#ede5e5", text-gray-10
       scrollTrigger: {
         start: "top top",
         end: "200px top",
@@ -83,7 +91,7 @@ const NavBar = ({
         // markers: true,,
       },
     });
-  }, []);
+  }, [pathname, headerBorderBottom]);
 
   const router = useRouter();
   const logoutMutation = useMutation({
@@ -105,7 +113,6 @@ const NavBar = ({
   /**
    * @PATHLOGIC
    */
-  const pathname = usePathname();
   const paths = pathname.split("/").filter((item) => item !== "");
   const currentRoute = ROUTES.filter(
     (item) => item.sub !== undefined && item.url.startsWith(`/${paths[0]}`),
@@ -198,8 +205,15 @@ const NavBar = ({
     setCurrentOs(targetOs);
   }, []);
 
+  // ---
+
   return (
-    <div className="NAVBAR_CONTAINER relative w-full cursor-default bg-white font-medium">
+    <div
+      className={cn(
+        "NAVBAR_CONTAINER relative w-full cursor-default font-medium",
+        headerBackgroundColor,
+      )}
+    >
       <div className="NAVBAR_BORDERBOX mx-[10vw] grid grid-cols-4 gap-[1.5vw] border-b-[1px] border-t-[1px] border-b-white border-t-gray-10 py-1 pb-3 text-xs text-gray-200">
         {/* 1사분면 (로그인 / 인증 정보) */}
         <div className="NAVBAR_SWITCHING_PANEL relative grid grid-cols-2 gap-[1.5vw]">
