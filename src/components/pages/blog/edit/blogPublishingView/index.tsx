@@ -14,7 +14,6 @@ import {
 import { SelectSingleEventHandler } from "react-day-picker";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { SelectedDateType } from "@/types/date";
 import { cn } from "@/utils/cn";
 import { getButtonColorStyle } from "@/utils/styles/filButtonManager";
 
@@ -29,9 +28,6 @@ import { BlogStep } from "@/types";
 interface BlogPublishingViewProps {
   selectedTags: TagType[];
 
-  selectedDateType: SelectedDateType;
-  onChangeSelectedDateType: (v: SelectedDateType) => void;
-
   publishingDate: Date | undefined;
   onChangePublishingDate: SelectSingleEventHandler;
 
@@ -41,9 +37,6 @@ interface BlogPublishingViewProps {
 
 const BlogPublishingView = ({
   selectedTags,
-
-  selectedDateType,
-  onChangeSelectedDateType,
 
   publishingDate,
   onChangePublishingDate,
@@ -158,28 +151,6 @@ const BlogPublishingView = ({
               isTag={false}
               className="mb-0"
             />
-
-            <RadioGroup
-              value={selectedDateType}
-              defaultValue="rightNow"
-              onValueChange={onChangeSelectedDateType}
-              className="flex py-3"
-            >
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="rightNow" id="r1" />
-                <Label htmlFor="r1">Right Now</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="custom" id="r2" />
-                <Label htmlFor="r2">Custom</Label>
-              </div>
-            </RadioGroup>
-
-            <DatePicker
-              selectedDateType={selectedDateType}
-              date={publishingDate}
-              onChangeDate={onChangePublishingDate}
-            />
           </div>
 
           <div>
@@ -190,22 +161,6 @@ const BlogPublishingView = ({
               isTag={false}
               className="mb-0"
             />
-
-            <RadioGroup
-              value={selectedDateType}
-              defaultValue="rightNow"
-              onValueChange={onChangeSelectedDateType}
-              className="flex py-3"
-            >
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="custom" id="r2" />
-                <Label htmlFor="r2">All Visitor</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="rightNow" id="r1" />
-                <Label htmlFor="r1">Only Admin</Label>
-              </div>
-            </RadioGroup>
           </div>
 
           {/* BUTTONS */}

@@ -12,7 +12,7 @@ import { getThumbnailByGroup } from "@/utils/getThumnailByGroup";
 import { format } from "date-fns";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { MouseEventHandler } from "react";
 import { LuLockKeyhole, LuMoveRight } from "react-icons/lu";
 import { toast } from "react-toastify";

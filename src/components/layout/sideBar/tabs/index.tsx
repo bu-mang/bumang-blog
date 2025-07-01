@@ -2,7 +2,7 @@
 
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/utils/cn";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 import { useLayoutEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { useQueryParams } from "@/hooks/useQueryParams";

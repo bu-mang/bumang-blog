@@ -12,7 +12,7 @@ import {
   ComboBox,
   FillButton,
 } from "@/components/common";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { TagType, GroupType, CategoryType } from "@/types";
 import DraftController from "../draftController";
 import { YooEditor, YooptaContentValue } from "@yoopta/editor";

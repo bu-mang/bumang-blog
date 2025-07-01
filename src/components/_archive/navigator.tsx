@@ -9,7 +9,7 @@
 // import { LuGlobe as GlobeIcon } from "react-icons/lu";
 // import Switch from "./switch";
 // import { useState } from "react";
-// import { usePathname } from "next/navigation";
+// import { usePathname } from "@/i18n/navigation";
 
 // const Navigator = () => {
 //   const navClass = clsx(

@@ -26,9 +26,9 @@ export default function InteractiveBackground() {
               )}
               style={{
                 backgroundImage: bgImage ? `url(${bgImage})` : "none",
-                opacity: 0.4,
-                filter: "blur(30px)",
-                transform: "scale(1.1)",
+                opacity: 0.5,
+                filter: "blur(20px)",
+                transform: "scale(1.3)",
               }}
             />
             {centerText && (

@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginFormSchema, LoginFormType } from "@/types/schemas";
 
 import { isAxiosError } from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { postLogin } from "@/services/api/auth/client";
 
 const LoginForm = () => {

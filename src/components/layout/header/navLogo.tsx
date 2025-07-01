@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { Bumang, Route53 } from "@/assets";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { cn } from "@/utils/cn";
 // import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
 

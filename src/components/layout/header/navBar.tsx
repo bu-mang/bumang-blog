@@ -18,7 +18,7 @@ import { LuGlobe, LuLanguages, LuLayers2, LuMoonStar } from "react-icons/lu";
 import { ButtonBase as Button } from "@/components/common";
 import { useMutation } from "@tanstack/react-query";
 import { postLogout } from "@/services/api/auth/client";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useQueryParams } from "@/hooks/useQueryParams";
 
 // import { Tooltip } from "radix-ui";

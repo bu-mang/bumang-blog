@@ -85,6 +85,7 @@ export default function Work() {
     }
 
     return () => {
+      setCenterText(false);
       setBackgroundImage(null);
     };
   }, [focusedTab, setCenterText, setBackgroundImage]);

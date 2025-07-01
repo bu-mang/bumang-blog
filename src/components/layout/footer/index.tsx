@@ -2,7 +2,7 @@
 
 import { cn } from "@/utils/cn";
 import { Link } from "@/i18n/navigation";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

@@ -1,6 +1,6 @@
 "use client";
 
-import { ButtonBase, Divider } from "@/components/common";
+import { ButtonBase } from "@/components/common";
 import { Button } from "@/components/ui/button";
 import {
   Command,

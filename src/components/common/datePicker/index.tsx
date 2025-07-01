@@ -5,7 +5,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { SelectedDateType } from "@/types/date";
 import { cn } from "@/utils/cn";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -14,7 +13,6 @@ import { SelectSingleEventHandler } from "react-day-picker";
 interface DatePickerProps {
   date: Date | undefined;
   onChangeDate: SelectSingleEventHandler;
-  selectedDateType: SelectedDateType;
 }
 
 const DatePicker = ({
@@ -25,19 +23,7 @@ const DatePicker = ({
   //
   return (
     <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          disabled={selectedDateType === SelectedDateType.rightNow}
-          variant={"outline"}
-          className={cn(
-            "w-[240px] justify-start text-left font-normal",
-            !date && "text-muted-foreground",
-          )}
-        >
-          <CalendarIcon />
-          {date ? format(date, "PPP") : <span>Pick a date</span>}
-        </Button>
-      </PopoverTrigger>
+      <PopoverTrigger asChild></PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
         <Calendar
           mode="single"

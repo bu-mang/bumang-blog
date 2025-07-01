@@ -2,12 +2,13 @@
 
 import NavBanner from "./navLogo";
 import NavBar from "./navBar";
-import { usePathname } from "next/navigation";
+
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "@/constants/api/queryKey";
 import { useAuthStore } from "@/store/auth";
 import { useEffect } from "react";
 import { getUserProfile } from "@/services/api/auth/client";
+import { usePathname } from "@/i18n/navigation";
 
 interface HeaderFallbackProps {
   isLoading: boolean;
