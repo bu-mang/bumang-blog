@@ -6,6 +6,10 @@ import WorkItem from "./workItem";
 import { cn } from "@/utils/cn";
 import { useEffect } from "react";
 import { useInteractiveStore } from "@/store/background";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function WorkInnerInteractive() {
   const setHeaderBackgroundColor = useInteractiveStore(
@@ -26,6 +30,28 @@ export function WorkInnerInteractive() {
       setDefaultSetting();
     };
   }, [setBorderBottom, setDefaultSetting, setHeaderBackgroundColor]);
+
+  useEffect(() => {
+    gsap.utils.toArray(".STICKER_IMAGE").forEach((element) => {
+      if (element instanceof HTMLDivElement) {
+        const randomY = Math.random() * 40 - 20; // -20 ~ 20 사이 랜덤값
+
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: element,
+              start: "top 70%",
+              end: "bottom top",
+              scrub: 1,
+            },
+          })
+          .to(element, {
+            y: -50 + randomY, // 기본 -50에 랜덤값 추가
+            ease: "sine.inOut",
+          });
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -50,7 +76,7 @@ export function WorkInnerInteractive() {
         href="/"
       >
         <div
-          className="absolute -left-20 bottom-10 z-[100] flex h-72 w-96 items-center justify-center"
+          className="STICKER_IMAGE absolute -left-20 bottom-10 z-[100] flex h-72 w-96 items-center justify-center"
           style={{
             backgroundImage: `url(/works/seaPearlSticker.png)`,
             backgroundSize: "contain", // 또는 "contain"
@@ -67,7 +93,7 @@ export function WorkInnerInteractive() {
         href="/"
       >
         <div
-          className="absolute -right-20 top-10 z-50 flex h-56 w-80 -scale-x-100 items-center justify-center"
+          className="STICKER_IMAGE absolute -right-20 top-10 z-50 flex h-56 w-80 -scale-x-100 items-center justify-center"
           style={{
             backgroundImage: `url(/works/anttimeSwapSticker.png)`,
             backgroundSize: "contain", // 또는 "contain"
@@ -84,7 +110,7 @@ export function WorkInnerInteractive() {
         href="/"
       >
         <div
-          className="absolute bottom-12 right-0 z-50 flex h-56 w-80 items-center justify-center"
+          className="STICKER_IMAGE absolute bottom-12 right-0 z-50 flex h-56 w-80 items-center justify-center"
           style={{
             backgroundImage: `url(/works/anttimeAppSticker.png)`,
             backgroundSize: "contain", // 또는 "contain"

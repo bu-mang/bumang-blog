@@ -333,6 +333,7 @@ const WorkItem = ({
           <Image src={imgSrc || "/next.svg"} fill alt={imgAlt} />
         </div>
       </Link>
+
       {children}
     </div>
   );
