@@ -30,38 +30,78 @@ export function WorkInnerInteractive() {
   return (
     <>
       {/* 마진용 */}
-      <WorkItem nullItem imgSrc="" imgAlt=""></WorkItem>
+      <WorkItem nullItem imgSrc="" imgAlt="" />
 
-      <WorkItem onClick={() => {}} imgSrc="/works/bumangRoute53.png" imgAlt="">
-        <div className="absolute -left-10 -top-10 flex h-20 w-20 items-center justify-center rounded-full bg-red-500">
-          test
-        </div>
+      <WorkItem
+        onClick={() => {}}
+        title="Bumang Route53"
+        imgSrc="/works/bumangRoute53.png"
+        imgAlt="BumangRoute53"
+        href="/"
+      >
+        {/*  */}
       </WorkItem>
 
       <WorkItem
         onClick={() => {}}
+        title="SeaPearl"
         imgSrc="/works/seaPearl.png"
-        imgAlt=""
+        imgAlt="SeaPearl"
         href="/"
-      />
+      >
+        <div
+          className="absolute -left-20 bottom-10 z-[100] flex h-72 w-96 items-center justify-center"
+          style={{
+            backgroundImage: `url(/works/seaPearlSticker.png)`,
+            backgroundSize: "contain", // 또는 "contain"
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        />
+      </WorkItem>
       <WorkItem
         onClick={() => {}}
+        title="Anttime Swap"
         imgSrc="/works/anttimeSwap.png"
         imgAlt=""
         href="/"
-      />
+      >
+        <div
+          className="absolute -right-20 top-10 z-50 flex h-56 w-80 -scale-x-100 items-center justify-center"
+          style={{
+            backgroundImage: `url(/works/anttimeSwapSticker.png)`,
+            backgroundSize: "contain", // 또는 "contain"
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        />
+      </WorkItem>
       <WorkItem
         onClick={() => {}}
+        title="Anttime App"
         imgSrc="/works/anttimeApp.png"
         imgAlt=""
         href="/"
-      />
+      >
+        <div
+          className="absolute bottom-12 right-0 z-50 flex h-56 w-80 items-center justify-center"
+          style={{
+            backgroundImage: `url(/works/anttimeAppSticker.png)`,
+            backgroundSize: "contain", // 또는 "contain"
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        />
+      </WorkItem>
       <WorkItem
         onClick={() => {}}
+        title="Percent Hotel"
         imgSrc="/works/percentHotel.png"
         imgAlt=""
         href="/"
-      />
+      >
+        {/*  */}
+      </WorkItem>
     </>
   );
 }

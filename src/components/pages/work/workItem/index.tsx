@@ -14,6 +14,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { Link } from "@/i18n/navigation";
 import { useInteractiveStore } from "@/store/background";
+import { LuMoveRight } from "react-icons/lu";
 
 interface WorkItemProps {
   children?: React.ReactNode; // Stickers
@@ -22,6 +23,7 @@ interface WorkItemProps {
   href?: string;
   className?: string;
   nullItem?: boolean;
+  title?: string;
 
   onClick?: () => void;
 }
@@ -45,6 +47,7 @@ const WorkItem = ({
   className,
   children,
   nullItem,
+  title,
 
   onClick,
 }: WorkItemProps) => {
@@ -115,23 +118,27 @@ const WorkItem = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const hoverItemRef = useRef<HTMLDivElement | null>(null);
   useLayoutEffect(() => {
-    if (containerRef.current && hoverItemRef.current) {
-      const containerEl = containerRef.current;
-      const hoverEl = hoverItemRef.current;
+    if (!containerRef.current || !hoverItemRef.current) return;
+    const containerEl = containerRef.current;
+    const hoverEl = hoverItemRef.current;
 
-      containerEl.addEventListener("mousemove", (e) => {
-        const containerRect = containerEl.getBoundingClientRect();
-        const hoverRect = hoverEl.getBoundingClientRect();
-        const x = e.clientX - containerRect.left - hoverRect.width / 2;
-        const y = e.pageY - (containerRect.top + window.scrollY);
-        setCoordX(x);
-        setCoordY(y);
-      });
-    }
+    const handleMouseMove = (e: MouseEvent) => {
+      const containerRect = containerEl.getBoundingClientRect();
+      const hoverRect = hoverEl.getBoundingClientRect();
+      const x = e.clientX - containerRect.left - hoverRect.width / 2;
+      const y = e.pageY - (containerRect.top + window.scrollY);
+      setCoordX(x);
+      setCoordY(y);
+    };
+
+    containerEl.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      containerEl.removeEventListener("mousemove", handleMouseMove);
+    };
   }, []);
 
   const hoverItemClass = cn(
-    "flex absolute z-50 h-40 w-40 bg-red-500 pointer-events-none justify-center items-center",
+    "flex absolute z-50 h-16 px-5 rounded-full border border-white bg-black/80 text-white pointer-events-none justify-center items-center ",
     opacity ? "opacity-100" : "opacity-0",
   );
 
@@ -144,35 +151,15 @@ const WorkItem = ({
 
     const handleMouseEnter = () => {
       gsap
-        .fromTo(
-          hoverEl,
-          {
-            width: 0,
-            color: "transparent",
-            ease: "power2.out",
-          },
-          {
-            width: 200,
-            color: "black",
-            duration: 0.5,
-            ease: "power2.out",
-          },
-        )
+        .timeline()
+        .set(hoverEl, { color: "transparent" })
+        .to(hoverEl, { duration: 1, color: "white", ease: "power2.out" })
         .restart();
     };
     const handleMouseLeave = () => {
-      gsap.fromTo(
-        hoverEl,
-        {
-          width: 200,
-          ease: "power2.out",
-        },
-        {
-          width: 0,
-          duration: 0.5,
-          ease: "power2.out",
-        },
-      );
+      gsap.set(hoverEl, {
+        color: "transparent",
+      });
     };
 
     container.addEventListener("mouseenter", handleMouseEnter);
@@ -306,25 +293,33 @@ const WorkItem = ({
       )}
       ref={containerRef}
     >
+      {/* HOVER EFFECT */}
       <div
         className={hoverItemClass}
         style={{ translate: `${coordX}px ${coordY}px` }}
         ref={hoverItemRef}
       >
-        A Test Text...
+        <div className="flex items-center gap-3">
+          <span className="font-bold">{title}</span>
+          <div className="h-2 w-[1px] bg-white" />
+          <span className="text-sm">Discover</span>
+        </div>
+        <LuMoveRight className="ml-1.5" size={16} />
       </div>
+
       <Link
         href={href ?? "#"}
         ref={cardRef as MutableRefObject<HTMLAnchorElement>}
         onClick={onClick ? onClick : () => {}}
         className="relative col-start-2 col-end-12 cursor-none"
       >
+        {/* CARD TILT */}
         <div
           style={{
             transform: `perspective(1500px) rotate3d(${-rotateX}, ${rotateY}, 0, ${degree}deg)`,
           }}
           className={
-            "card-tilt relative flex aspect-video items-center justify-center overflow-hidden rounded-xl bg-emerald-300"
+            "card-tilt relative -z-10 flex aspect-video items-center justify-center overflow-hidden rounded-xl bg-emerald-300"
           }
         >
           {/* GLOSS */}
@@ -337,8 +332,8 @@ const WorkItem = ({
           />
           <Image src={imgSrc || "/next.svg"} fill alt={imgAlt} />
         </div>
-        {children}
       </Link>
+      {children}
     </div>
   );
 };
