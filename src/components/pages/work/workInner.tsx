@@ -1,21 +1,11 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-// import { Link } from "@/i18n/navigation";
 import { SectionBox, SubBox } from "../about/aboutSection";
 import WorkItem from "./workItem";
 import { cn } from "@/utils/cn";
 import { useEffect } from "react";
 import { useInteractiveStore } from "@/store/background";
-import { usePathname } from "@/i18n/navigation";
-
-const WorkLists = [];
-interface Work {
-  title: string;
-  href: string;
-  backgroundSrc: string;
-  imageAlt: string;
-}
 
 export function WorkInnerInteractive() {
   const setHeaderBackgroundColor = useInteractiveStore(

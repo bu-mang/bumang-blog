@@ -301,7 +301,7 @@ const WorkItem = ({
   return (
     <div
       className={cn(
-        "relative grid w-full flex-1 grid-cols-8 gap-[1.5vw] py-40",
+        "relative grid w-full flex-1 grid-cols-12 gap-[1.5vw] py-32",
         className,
       )}
       ref={containerRef}
@@ -317,7 +317,7 @@ const WorkItem = ({
         href={href ?? "#"}
         ref={cardRef as MutableRefObject<HTMLAnchorElement>}
         onClick={onClick ? onClick : () => {}}
-        className="relative col-start-2 col-end-8 cursor-none"
+        className="relative col-start-2 col-end-12 cursor-none"
       >
         <div
           style={{
