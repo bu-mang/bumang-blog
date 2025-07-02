@@ -1,4 +1,5 @@
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
 
 export function useQueryParams() {
   const searchParams = useSearchParams();
