@@ -12,7 +12,7 @@ const FillButton: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const darkClass = cn(
-    "bg-gray-600 hover:bg-gray-800 px-4 h-8 rounded-md transition-colors",
+    "bg-gray-600 hover:bg-gray-800 text-white px-4 h-8 rounded-md transition-colors",
     {
       "cursor-not-allowed opacity-50": disabled,
       "cursor-wait": isLoading,
@@ -20,7 +20,7 @@ const FillButton: React.FC<ButtonProps> = ({
     className,
   );
   const lightClass = cn(
-    "bg-gray-600 hover:bg-gray-800 px-4 h-8 rounded-md transition-colors",
+    "bg-gray-50 hover:bg-gray-100 px-4 h-8 rounded-md transition-colors",
     {
       "cursor-not-allowed opacity-50": disabled,
       "cursor-wait": isLoading,

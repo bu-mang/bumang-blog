@@ -6,6 +6,7 @@ import InteractiveBackground from "@/components/layout/interactiveBackground";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import OpenedModals from "@/components/modal/openedModals";
 
 interface Props {
   children: React.ReactNode;
@@ -50,6 +51,7 @@ export default async function RootLayout({
             <div className="w-screen">{children}</div>
             <InteractiveBackground />
             <Footer />
+            <OpenedModals />
             <ToastContainer
               position="top-right"
               autoClose={3000}
