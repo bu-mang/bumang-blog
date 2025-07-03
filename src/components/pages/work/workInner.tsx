@@ -9,7 +9,7 @@ import { useInteractiveStore } from "@/store/background";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger); // 등록되어있지 않으면 등록.
 
 export function WorkInnerInteractive() {
   const setHeaderBackgroundColor = useInteractiveStore(
@@ -75,16 +75,12 @@ export function WorkInnerInteractive() {
         imgAlt="SeaPearl"
         href="/"
       >
-        <div
-          className="STICKER_IMAGE absolute -left-20 bottom-10 z-[100] flex h-72 w-96 items-center justify-center"
-          style={{
-            backgroundImage: `url(/works/seaPearlSticker.png)`,
-            backgroundSize: "contain", // 또는 "contain"
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
+        <Sticker
+          imgUrl="/works/seaPearlSticker.png"
+          className="-left-20 bottom-10 h-72 w-96"
         />
       </WorkItem>
+
       <WorkItem
         onClick={() => {}}
         title="Anttime Swap"
@@ -92,16 +88,12 @@ export function WorkInnerInteractive() {
         imgAlt=""
         href="/"
       >
-        <div
-          className="STICKER_IMAGE absolute -right-20 top-10 z-50 flex h-56 w-80 -scale-x-100 items-center justify-center"
-          style={{
-            backgroundImage: `url(/works/anttimeSwapSticker.png)`,
-            backgroundSize: "contain", // 또는 "contain"
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
+        <Sticker
+          imgUrl="/works/anttimeSwapSticker.png"
+          className="-right-20 top-10 h-56 w-80 -scale-x-100"
         />
       </WorkItem>
+
       <WorkItem
         onClick={() => {}}
         title="Anttime App"
@@ -109,16 +101,12 @@ export function WorkInnerInteractive() {
         imgAlt=""
         href="/"
       >
-        <div
-          className="STICKER_IMAGE absolute bottom-12 right-0 z-50 flex h-56 w-80 items-center justify-center"
-          style={{
-            backgroundImage: `url(/works/anttimeAppSticker.png)`,
-            backgroundSize: "contain", // 또는 "contain"
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
+        <Sticker
+          imgUrl="/works/anttimeAppSticker.png"
+          className="bottom-12 right-0 h-56 w-80"
         />
       </WorkItem>
+
       <WorkItem
         onClick={() => {}}
         title="Percent Hotel"
@@ -129,6 +117,27 @@ export function WorkInnerInteractive() {
         {/*  */}
       </WorkItem>
     </>
+  );
+}
+
+interface StickerProps {
+  imgUrl: string;
+  className: string;
+}
+function Sticker({ imgUrl, className }: StickerProps) {
+  return (
+    <div
+      className={cn(
+        "STICKER_IMAGE absolute z-[100] flex items-center justify-center",
+        className,
+      )}
+      style={{
+        backgroundImage: `url(${imgUrl})`,
+        backgroundSize: "contain",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    />
   );
 }
 
@@ -777,10 +786,6 @@ export function WorkInnerCompact() {
       </SectionBox>
     </>
   );
-}
-
-function InlineCode({ children }: { children: React.ReactNode }) {
-  return <span className="bg-gray-5 px-1 py-0.5">{children}</span>;
 }
 
 function OrderedList({

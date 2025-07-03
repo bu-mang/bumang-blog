@@ -14,6 +14,7 @@ export default function InteractiveBackground() {
   const random = Math.floor(Math.random() * 10);
   const bgColor = useInteractiveStore((state) => state.backgroundColor);
 
+  // 부드러운 스크롤 애니메이션 init
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2, // 스크롤 지속시간
@@ -35,6 +36,7 @@ export default function InteractiveBackground() {
     };
   }, []);
 
+  // 특수 배경
   const renderInteractiveBackground = () => {
     switch (pathname) {
       // INTERACTIVE
@@ -48,6 +50,7 @@ export default function InteractiveBackground() {
     }
   };
 
+  // 기본 배경
   const renderStaticBackground = () => {
     return (
       <div
@@ -59,7 +62,5 @@ export default function InteractiveBackground() {
     );
   };
 
-  const renderInteractives = renderInteractiveBackground();
-
-  return renderInteractives || renderStaticBackground();
+  return renderInteractiveBackground() || renderStaticBackground();
 }
