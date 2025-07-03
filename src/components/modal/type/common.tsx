@@ -6,7 +6,7 @@ import Modal from ".";
 import { IoClose } from "react-icons/io5";
 import { cn } from "@/utils/cn";
 
-interface TooltipModalProps {
+interface CommonModalProps {
   image?: React.ReactNode;
   title?: string;
   desc?: React.ReactNode;
@@ -27,7 +27,7 @@ interface TooltipModalProps {
   hasXIcon?: boolean;
 }
 
-export default function TooltipModal({
+export default function CommonModal({
   title,
   desc,
   proceedLabel,
@@ -44,7 +44,7 @@ export default function TooltipModal({
   actionStyle,
 
   hasXIcon = true,
-}: TooltipModalProps) {
+}: CommonModalProps) {
   const [open, setOpen] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -119,6 +119,18 @@ export default function TooltipModal({
     };
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && !canNotEscape) {
+        handleUnmountAnimation(handleDismiss);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [canNotEscape]);
+
   const handleUnmountAnimation = (closeFn: () => void) => {
     const containerEl = containerRef.current;
     const dimEl = dimRef.current;
@@ -189,4 +201,4 @@ export default function TooltipModal({
   );
 }
 
-TooltipModal.displayName = "TooltipModal";
+CommonModal.displayName = "CommonModal";

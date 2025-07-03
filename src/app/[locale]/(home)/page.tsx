@@ -1,7 +1,7 @@
 "use client";
 
 import { FillButton } from "@/components/common";
-import TooltipModal from "@/components/modal/type/tooltip";
+import CommonModal from "@/components/modal/type/common";
 import {
   LAYOUT_PADDING_ALONGSIDE,
   LAYOUT_PADDING_TOP,
@@ -23,7 +23,7 @@ export default function Main() {
       MAIN
       <FillButton
         onClick={() => {
-          openModal(TooltipModal, {
+          openModal(CommonModal, {
             title: "title",
             desc: "desc",
           });

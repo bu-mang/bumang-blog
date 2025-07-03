@@ -1,3 +1,8 @@
+"use client";
+
+import { ButtonBase } from "@/components/common";
+import ExpandModal from "@/components/modal/type/expand";
+import useModalStore from "@/store/modal";
 import { cn } from "@/utils/cn";
 
 interface PlayItemProps {
@@ -8,18 +13,26 @@ interface PlayItemProps {
 }
 
 const PlayItem = ({ title, content, height, className }: PlayItemProps) => {
-  const containerStyle = cn(
-    "group-hover:-translate-y-2 transition-all",
-    className,
-  );
+  const openModal = useModalStore((state) => state.openModal);
+  const handleClick = () => {
+    openModal(ExpandModal, {
+      title: "?",
+    });
+  };
 
   return (
-    <div className="group">
-      <div className={containerStyle} style={{ height }}>
+    <button onClick={handleClick} className="group flex">
+      <div
+        className={cn(
+          "flex-1 transition-all group-hover:-translate-y-2",
+          className,
+        )}
+        style={{ height }}
+      >
         <span>{title}</span>
         <span>{content}</span>
       </div>
-    </div>
+    </button>
   );
 };
 
