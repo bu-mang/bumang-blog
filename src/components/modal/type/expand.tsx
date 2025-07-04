@@ -154,7 +154,10 @@ export default function ExpandModal({
       ease: "back.in(3)", // 약간 튕기는 효과
     });
   };
-
+  // onClick={(e) => {
+  //   console.log("🟢 modal clicked");
+  //   e.stopPropagation();
+  // }}
   return (
     <Modal
       open={open}
@@ -162,7 +165,9 @@ export default function ExpandModal({
       canNotEscape={canNotEscape}
       ref={dimRef}
     >
-      <></>
+      <div>
+        <div></div>
+      </div>
     </Modal>
   );
 }

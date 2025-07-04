@@ -8,7 +8,6 @@ import {
 } from "@/constants/layouts/layout";
 import useModalStore from "@/store/modal";
 import { cn } from "@/utils/cn";
-import { useEffect } from "react";
 
 export default function Main() {
   const mainPageClass = cn(

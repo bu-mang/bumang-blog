@@ -1,8 +1,8 @@
 "use client";
 
-import { ButtonBase } from "@/components/common";
 import ExpandModal from "@/components/modal/type/expand";
 import useModalStore from "@/store/modal";
+import { ImageItemType } from "@/types/playItem";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -12,6 +12,7 @@ interface PlayItemProps {
   content?: string;
   width: number;
   height: number;
+  items: ImageItemType[];
   className?: string;
 }
 
@@ -21,13 +22,8 @@ const PlayItem = ({
   width,
   height,
   className,
+  items,
 }: PlayItemProps) => {
-  const openModal = useModalStore((state) => state.openModal);
-  const handleClick = () => {
-    openModal(ExpandModal, {
-      title: "?",
-    });
-  };
   const textHeight = (title ? 1 : 0) + (content ? 1 : 0);
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -49,6 +45,14 @@ const PlayItem = ({
       ref.current?.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const openModal = useModalStore((state) => state.openModal);
+  const handleClick = () => {
+    openModal(ExpandModal, {
+      title,
+      desc: content,
+    });
+  };
 
   return (
     <button onClick={handleClick} className="group flex flex-1">
@@ -74,7 +78,7 @@ const PlayItem = ({
         {/* DESC */}
         <div
           className={cn(
-            "flex-0 flex h-0 w-full min-w-0 flex-col overflow-hidden opacity-0 transition-all group-hover:opacity-100",
+            "flex-0 mt-2 flex h-0 w-full min-w-0 flex-col overflow-hidden opacity-0 transition-all group-hover:opacity-100",
             textHeight === 1 && "group-hover:h-5",
             textHeight === 2 && "group-hover:h-10",
           )}
@@ -92,6 +96,7 @@ const PlayItem = ({
               </span>
             </div>
           )}
+
           {content && (
             <div className="flex h-5 w-full items-center justify-center text-sm text-gray-300">
               <span

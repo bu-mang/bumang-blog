@@ -15,11 +15,7 @@ interface DatePickerProps {
   onChangeDate: SelectSingleEventHandler;
 }
 
-const DatePicker = ({
-  date,
-  onChangeDate,
-  selectedDateType,
-}: DatePickerProps) => {
+const DatePicker = ({ date, onChangeDate }: DatePickerProps) => {
   //
   return (
     <Popover>
