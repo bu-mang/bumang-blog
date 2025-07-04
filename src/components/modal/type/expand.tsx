@@ -5,9 +5,15 @@ import Modal from ".";
 import Image from "next/image";
 import { ImageItemType } from "@/types/playItem";
 import { cn } from "@/utils/cn";
+import { TfiClose } from "react-icons/tfi";
+import { ButtonBase } from "@/components/common";
 
 interface ExpandModalProps {
+  title?: string;
+  content?: string;
   items: ImageItemType[];
+  imageOnly?: boolean;
+
   containerClassName?: string;
   fill?: boolean;
   objectFit?: "cover" | "contain";
@@ -17,7 +23,11 @@ interface ExpandModalProps {
 }
 
 export default function ExpandModal({
+  title,
+  content,
   items,
+  imageOnly,
+
   containerClassName,
   fill,
   objectFit,
@@ -26,6 +36,8 @@ export default function ExpandModal({
   canNotEscape = false,
 }: ExpandModalProps) {
   const [open, setOpen] = useState(true);
+
+  // const maxWidth = Math.max(...items.map((item) => item.width));
 
   const dimRef = useRef<HTMLDivElement | null>(null);
   const handleUnmountAnimation = (closeFn: () => void) => {
@@ -72,11 +84,26 @@ export default function ExpandModal({
       ref={dimRef}
     >
       <div className="flex h-[100vh] w-full justify-center overflow-y-auto">
+        <ButtonBase
+          className="fixed right-10 top-10"
+          onClick={() => {
+            handleUnmountAnimation(handleClose);
+          }}
+        >
+          <TfiClose
+            className="rounded-lg p-1 text-gray-200 transition-all hover:bg-gray-5/10"
+            size={32}
+          />
+        </ButtonBase>
+
         <div
           className={cn(
-            "flex h-fit w-fit min-w-[70%] flex-col items-center gap-3 py-20",
+            "flex h-fit w-fit flex-col items-center gap-3 py-20",
             containerClassName,
           )}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
         >
           {items.map((item) => {
             return (
@@ -92,6 +119,13 @@ export default function ExpandModal({
               />
             );
           })}
+
+          {!imageOnly && (
+            <div className="flex w-full flex-col items-center">
+              <span className="text-white">{title}</span>
+              <span className="text-gray-100">{content}</span>
+            </div>
+          )}
         </div>
       </div>
     </Modal>

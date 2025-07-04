@@ -6,10 +6,12 @@ export interface ImageItemType {
 }
 
 export interface PlayItemType {
+  id: number;
   title: string;
   content: string;
   thumnail: ImageItemType;
   items: ImageItemType[];
+  imageOnly?: boolean;
   isVisible?: boolean;
   createdAt: string;
 }

@@ -12,6 +12,7 @@ export default function Play() {
             key={item.title}
             title={item.title}
             content={item.content}
+            imageOnly={item.imageOnly}
             width={item.thumnail.width}
             height={item.thumnail.height}
             items={item.items}

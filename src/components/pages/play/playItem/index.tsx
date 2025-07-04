@@ -13,6 +13,7 @@ interface PlayItemProps {
   width: number;
   height: number;
   items: ImageItemType[];
+  imageOnly?: boolean;
   className?: string;
 }
 
@@ -21,6 +22,7 @@ const PlayItem = ({
   content,
   width,
   height,
+  imageOnly,
   className,
   items,
 }: PlayItemProps) => {
@@ -49,8 +51,10 @@ const PlayItem = ({
   const openModal = useModalStore((state) => state.openModal);
   const handleClick = () => {
     openModal(ExpandModal, {
+      title,
+      content,
       items,
-      containerClassName: "",
+      imageOnly,
     });
   };
 
@@ -59,7 +63,6 @@ const PlayItem = ({
       <div
         ref={ref}
         className={cn(
-          // "flex-1 transition-all group-hover:-translate-y-2",
           "flex flex-1 flex-col justify-center transition-all",
           className,
         )}
@@ -83,7 +86,7 @@ const PlayItem = ({
             textHeight === 2 && "group-hover:h-10",
           )}
           style={{
-            transition: "opacity 0.5s ease-in, height 0.5s ease-out",
+            transition: "opacity 0.3s ease-in, height 0.3s ease-out",
           }}
         >
           {title && (
