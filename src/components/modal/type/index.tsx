@@ -23,10 +23,11 @@ interface ModalProps {
   onResolve?: (value: unknown) => void;
   canNotEscape?: boolean;
   children: React.ReactNode;
+  className?: string;
 }
 
 const Modal = forwardRef<HTMLDivElement, ModalProps>(
-  ({ children, onClose }: ModalProps, ref) => {
+  ({ children, className, onClose }: ModalProps, ref) => {
     const handleClick = () => {
       console.log("🟡 DIM clicked");
       onClose();
@@ -38,8 +39,13 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
         ref={ref}
         className={cn(
           "fixed inset-0 z-[1000] flex items-center justify-center bg-[#000]/70 transition-opacity",
+          className,
         )}
         onClick={handleClick}
+        onWheel={(e) => {
+          // 컨테이너 내부 스크롤 이벤트 전파 차단
+          e.stopPropagation();
+        }}
       >
         {children}
       </div>

@@ -49,8 +49,8 @@ const PlayItem = ({
   const openModal = useModalStore((state) => state.openModal);
   const handleClick = () => {
     openModal(ExpandModal, {
-      title,
-      desc: content,
+      items,
+      containerClassName: "",
     });
   };
 

@@ -52,6 +52,11 @@ const playItems: PlayItemListType = [
         height: 736,
         imgUrl: "/star.webp",
       },
+      {
+        width: 736,
+        height: 736,
+        imgUrl: "/star.webp",
+      },
     ],
     isVisible: true,
     createdAt: new Date().toDateString(),
