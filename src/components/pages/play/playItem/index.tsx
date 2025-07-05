@@ -8,20 +8,24 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 interface PlayItemProps {
+  id: number;
   title?: string;
   content?: string;
   width: number;
   height: number;
+  imgUrl: string;
   items: ImageItemType[];
   imageOnly?: boolean;
   className?: string;
 }
 
 const PlayItem = ({
+  id,
   title,
   content,
   width,
   height,
+  imgUrl,
   imageOnly,
   className,
   items,
@@ -51,27 +55,32 @@ const PlayItem = ({
   const openModal = useModalStore((state) => state.openModal);
   const handleClick = () => {
     openModal(ExpandModal, {
-      title,
-      content,
-      items,
-      imageOnly,
+      id,
     });
   };
 
   return (
-    <button onClick={handleClick} className="group flex flex-1">
+    <button onClick={handleClick} className="group flex flex-1 overflow-hidden">
       <div
         ref={ref}
         className={cn(
-          "flex flex-1 flex-col justify-center transition-all",
+          "relative flex h-fit w-full flex-col items-center justify-start transition-all",
           className,
         )}
         style={{ aspectRatio: `${width} / ${height}` }}
       >
         {/* IMAGE */}
-        <div className="relative flex flex-1">
+        <div
+          className={cn(
+            "relative flex h-full w-full items-start transition-all",
+            textHeight === 1 &&
+              "group-hover:h-[calc(100%-20px)] group-hover:w-[calc(100%-20px)]",
+            textHeight === 2 &&
+              "group-hover:h-[calc(100%-40px)] group-hover:w-[calc(100%-40px)]",
+          )}
+        >
           <Image
-            src={"/star.webp"}
+            src={imgUrl}
             alt={title ?? "GalleryImage"}
             className="object-contain"
             fill
@@ -81,7 +90,7 @@ const PlayItem = ({
         {/* DESC */}
         <div
           className={cn(
-            "flex-0 mt-2 flex h-0 w-full min-w-0 flex-col overflow-hidden opacity-0 transition-all group-hover:opacity-100",
+            "flex-0 absolute bottom-0 mt-2 flex h-0 w-full min-w-0 flex-col overflow-hidden opacity-0 transition-all group-hover:opacity-100",
             textHeight === 1 && "group-hover:h-5",
             textHeight === 2 && "group-hover:h-10",
           )}

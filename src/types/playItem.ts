@@ -5,15 +5,26 @@ export interface ImageItemType {
   title?: string;
 }
 
-export interface PlayItemType {
+export interface PlayItemMetaData {
   id: number;
-  title: string;
-  content: string;
-  thumnail: ImageItemType;
+  title?: string;
+  content?: string;
   items: ImageItemType[];
-  imageOnly?: boolean;
-  isVisible?: boolean;
+
+  thumnail: ImageItemType;
+
   createdAt: string;
 }
+
+export interface PlayItemStyle {
+  isVisible?: boolean;
+  isCentered?: boolean;
+  imageOnly?: boolean;
+  containerClassName?: string;
+  fill?: boolean;
+  objectFit?: "cover" | "contain";
+}
+
+export interface PlayItemType extends PlayItemMetaData, PlayItemStyle {}
 
 export type PlayItemListType = (PlayItemType | null)[];

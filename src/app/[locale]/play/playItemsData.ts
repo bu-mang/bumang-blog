@@ -3,20 +3,21 @@ import { PlayItemListType } from "@/types/playItem";
 const playItems: PlayItemListType = [
   {
     id: 9,
-    title: "portrait",
+    title: "portrait1",
 
+    isCentered: true,
     content: "Digital Drawing, Clip Studio",
     imageOnly: false,
     thumnail: {
-      width: 736,
-      height: 736,
-      imgUrl: "/star.webp",
+      width: 1920,
+      height: 1080,
+      imgUrl: "/works/anttimeApp.png",
     },
     items: [
       {
-        width: 736,
-        height: 736,
-        imgUrl: "/star.webp",
+        width: 1920,
+        height: 1080,
+        imgUrl: "/works/anttimeApp.png",
       },
     ],
     isVisible: true,
@@ -25,20 +26,21 @@ const playItems: PlayItemListType = [
   null,
   {
     id: 8,
-    title: "portrait",
+    title: "portrait2",
 
+    isCentered: true,
     content: "Digital Drawing, Clip Studio",
     imageOnly: false,
     thumnail: {
-      width: 736,
-      height: 736,
-      imgUrl: "/star.webp",
+      width: 1920,
+      height: 1080,
+      imgUrl: "/works/anttimeSwap.png",
     },
     items: [
       {
-        width: 736,
-        height: 736,
-        imgUrl: "/star.webp",
+        width: 1920,
+        height: 1080,
+        imgUrl: "/works/anttimeSwap.png",
       },
     ],
     isVisible: true,
@@ -46,25 +48,40 @@ const playItems: PlayItemListType = [
   },
   {
     id: 7,
-    title: "portrait",
+    title: "portrait3",
 
     content: "Digital Drawing, Clip Studio",
     imageOnly: false,
     thumnail: {
-      width: 736,
-      height: 736,
-      imgUrl: "/star.webp",
+      width: 1920,
+      height: 1080,
+      imgUrl: "/works/seaPearl.png",
     },
     items: [
       {
-        width: 736,
-        height: 736,
-        imgUrl: "/star.webp",
+        width: 1920,
+        height: 1080,
+        imgUrl: "/works/seaPearl.png",
       },
       {
-        width: 736,
-        height: 736,
-        imgUrl: "/star.webp",
+        width: 1920,
+        height: 1080,
+        imgUrl: "/works/seaPearl.png",
+      },
+      {
+        width: 1920,
+        height: 1080,
+        imgUrl: "/works/seaPearl.png",
+      },
+      {
+        width: 1920,
+        height: 1080,
+        imgUrl: "/works/seaPearl.png",
+      },
+      {
+        width: 1920,
+        height: 1080,
+        imgUrl: "/works/seaPearl.png",
       },
     ],
     isVisible: true,
@@ -73,20 +90,21 @@ const playItems: PlayItemListType = [
   null,
   {
     id: 6,
-    title: "portrait",
+    title: "portrait4",
 
+    isCentered: true,
     content: "Digital Drawing, Clip Studio",
     imageOnly: false,
     thumnail: {
-      width: 736,
-      height: 736,
-      imgUrl: "/star.webp",
+      width: 1920,
+      height: 1080,
+      imgUrl: "/works/percentHotel.png",
     },
     items: [
       {
-        width: 736,
-        height: 736,
-        imgUrl: "/star.webp",
+        width: 1920,
+        height: 1080,
+        imgUrl: "/works/percentHotel.png",
       },
     ],
     isVisible: true,
@@ -94,20 +112,21 @@ const playItems: PlayItemListType = [
   },
   {
     id: 5,
-    title: "portrait",
+    title: "portrait5",
 
+    isCentered: true,
     content: "Digital Drawing, Clip Studio",
     imageOnly: false,
     thumnail: {
-      width: 736,
-      height: 736,
-      imgUrl: "/star.webp",
+      width: 1920,
+      height: 1080,
+      imgUrl: "/works/bumangRoute53.png",
     },
     items: [
       {
-        width: 736,
-        height: 736,
-        imgUrl: "/star.webp",
+        width: 1920,
+        height: 1080,
+        imgUrl: "/works/bumangRoute53.png",
       },
     ],
     isVisible: true,
@@ -115,8 +134,9 @@ const playItems: PlayItemListType = [
   },
   {
     id: 4,
-    title: "portrait",
+    title: "portrait6",
 
+    isCentered: true,
     content: "Digital Drawing, Clip Studio",
     imageOnly: false,
     thumnail: {
@@ -136,20 +156,21 @@ const playItems: PlayItemListType = [
   },
   {
     id: 3,
-    title: "portrait",
+    title: "portrait7",
 
+    isCentered: true,
     content: "Digital Drawing, Clip Studio",
     imageOnly: false,
     thumnail: {
-      width: 736,
-      height: 736,
-      imgUrl: "/star.webp",
+      width: 394,
+      height: 80,
+      imgUrl: "/next.svg",
     },
     items: [
       {
-        width: 736,
-        height: 736,
-        imgUrl: "/star.webp",
+        width: 394,
+        height: 80,
+        imgUrl: "/next.svg",
       },
     ],
     isVisible: true,
@@ -157,20 +178,21 @@ const playItems: PlayItemListType = [
   },
   {
     id: 2,
-    title: "portrait",
+    title: "portrait8",
 
+    isCentered: true,
     content: "Digital Drawing, Clip Studio",
     imageOnly: false,
     thumnail: {
-      width: 736,
-      height: 736,
-      imgUrl: "/star.webp",
+      width: 1920,
+      height: 1080,
+      imgUrl: "/thumbnails/backend.png",
     },
     items: [
       {
-        width: 736,
-        height: 736,
-        imgUrl: "/star.webp",
+        width: 1920,
+        height: 1080,
+        imgUrl: "/thumbnails/backend.png",
       },
     ],
     isVisible: true,
@@ -179,20 +201,21 @@ const playItems: PlayItemListType = [
   null,
   {
     id: 1,
-    title: "portrait",
+    title: "portrait9",
 
+    isCentered: true,
     content: "Digital Drawing, Clip Studio",
     imageOnly: false,
     thumnail: {
-      width: 736,
-      height: 736,
-      imgUrl: "/star.webp",
+      width: 1920,
+      height: 1080,
+      imgUrl: "/thumbnails/life.png",
     },
     items: [
       {
-        width: 736,
-        height: 736,
-        imgUrl: "/star.webp",
+        width: 1920,
+        height: 1080,
+        imgUrl: "/thumbnails/life.png",
       },
     ],
     isVisible: true,

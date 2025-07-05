@@ -10,11 +10,13 @@ export default function Play() {
         return (
           <PlayItem
             key={item.title}
+            id={item.id}
             title={item.title}
             content={item.content}
             imageOnly={item.imageOnly}
             width={item.thumnail.width}
             height={item.thumnail.height}
+            imgUrl={item.thumnail.imgUrl}
             items={item.items}
           />
         );
