@@ -48,6 +48,12 @@ export default function Blog() {
           className="object-cover"
           fill
         />
+        {/* <Image
+          src="/portrait3.jpg"
+          alt="profileImage"
+          className="object-cover"
+          fill
+        /> */}
       </div>
 
       {/* INTRODUCE */}
