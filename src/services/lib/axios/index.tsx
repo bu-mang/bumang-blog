@@ -1,13 +1,16 @@
 import { END_POINTS } from "@/constants/api/endpoints";
 import { UserResponseType } from "@/types/user";
-import axios, { AxiosRequestConfig, isAxiosError } from "axios";
+import axios from "axios";
 
 /**
  * @직접_서버호출용
  */
 const ClientInstance = axios.create({
-  // baseURL: process.env.NEXT_PUBLIC_API_BASE_URL, // 또는 고정 URL
-  baseURL: "http://localhost:3000", // 또는 고정 URL
+  // baseURL:  process.env.SERVER_LOCAL_HOST, // 또는 고정 URL
+  baseURL:
+    process.env.NODE_ENV === "production"
+      ? process.env.NEXT_PUBLIC_API_BASE_URL
+      : process.env.NEXT_PUBLIC_SERVER_LOCAL_HOST,
   timeout: 5000,
   withCredentials: true,
   headers: {
@@ -49,7 +52,10 @@ ClientInstance.interceptors.response.use(
 
       // 토큰 갱신 - 일반 axios 사용
       await axios.post<UserResponseType>(
-        "http://localhost:3000" + END_POINTS.POST_RENEW_ACCESS_TOKEN,
+        ((process.env.NODE_ENV === "production"
+          ? process.env.NEXT_PUBLIC_API_BASE_URL
+          : process.env.NEXT_PUBLIC_SERVER_LOCAL_HOST) as string) +
+          END_POINTS.POST_RENEW_ACCESS_TOKEN,
         {},
         {
           withCredentials: true,
