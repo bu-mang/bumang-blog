@@ -23,6 +23,7 @@ export interface PlayItemStyle {
   containerClassName?: string;
   fill?: boolean;
   objectFit?: "cover" | "contain";
+  maxWidth?: number | string;
 }
 
 export interface PlayItemType extends PlayItemMetaData, PlayItemStyle {}

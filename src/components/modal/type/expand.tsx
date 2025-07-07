@@ -119,6 +119,7 @@ export default function ExpandModal({
     containerClassName,
     fill,
     objectFit,
+    maxWidth,
   } = targetItem;
 
   return (
@@ -147,13 +148,14 @@ export default function ExpandModal({
         <div
           ref={contentsRef}
           className={cn(
-            "flex h-fit max-w-[60%] flex-col items-center gap-3 py-20",
+            "flex h-fit flex-col items-center gap-3 py-20",
             isCentered && "flex h-full flex-col justify-center",
             containerClassName,
           )}
           onClick={(e) => {
             e.stopPropagation();
           }}
+          style={{ maxWidth: maxWidth ?? "60%" }}
         >
           {items.map((item) => {
             return (

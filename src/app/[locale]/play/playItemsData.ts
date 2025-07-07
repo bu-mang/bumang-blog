@@ -204,6 +204,7 @@ const playItems: PlayItemListType = [
     ],
     isVisible: true,
     createdAt: "2025-07-07T14:48:00.000Z",
+    maxWidth: "40%",
   },
 ];
 
