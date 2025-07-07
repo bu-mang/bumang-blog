@@ -103,7 +103,7 @@ export default async function Blog({ searchParams }: PageProps) {
             }
           >
             <LuCircleAlert size={24} className="mb-1" />
-            <span className="mb-3 text-lg font-semibold">
+            <span className="text-lg font-semibold">
               Failed to load the post.
             </span>
             <span>Please try again in a moment.</span>
