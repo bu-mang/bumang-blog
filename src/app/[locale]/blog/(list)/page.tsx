@@ -4,6 +4,7 @@ import { BlogItem } from "@/components/pages";
 import { getAllPosts } from "@/services/api/blog/(list)/server";
 import { PaginatedResponseDto, PostListItemType } from "@/types";
 import { cn } from "@/utils/cn";
+import { LuCircleAlert, LuFileWarning } from "react-icons/lu";
 
 interface PageProps {
   params: { category: string };
@@ -38,7 +39,6 @@ export default async function Blog({ searchParams }: PageProps) {
       tagIds,
       postType,
     );
-    console.log(allPosts);
   } catch (err) {
     console.log(allPosts, err, "allPost error");
   }
@@ -59,40 +59,55 @@ export default async function Blog({ searchParams }: PageProps) {
         className={cn(
           "col-span-3",
           itemViewType === "thumbnail" &&
+            allPosts &&
             "grid grid-cols-3 gap-x-[1.5vw] gap-y-[4.5vw]",
         )}
       >
         {/* BLOGITEMS */}
-        {allPosts?.data?.map(
-          ({
-            id,
-            title,
-            previewText,
-            createdAt,
-            categoryLabel,
-            groupLabel,
-            tags,
-            author,
-            thumbnailUrl,
-            readPermisson,
-            score,
-          }) => (
-            <BlogItem
-              key={id}
-              id={id}
-              title={title}
-              previewText={previewText}
-              author={author}
-              // category & group
-              groupLabel={groupLabel}
-              categoryLabel={categoryLabel}
-              tags={tags}
-              date={createdAt}
-              thumbnailUrl={thumbnailUrl}
-              readPermisson={readPermisson}
-              itemViewType={itemViewType}
-            />
-          ),
+        {allPosts?.data ? (
+          allPosts?.data?.map(
+            ({
+              id,
+              title,
+              previewText,
+              createdAt,
+              categoryLabel,
+              groupLabel,
+              tags,
+              author,
+              thumbnailUrl,
+              readPermisson,
+              score,
+            }) => (
+              <BlogItem
+                key={id}
+                id={id}
+                title={title}
+                previewText={previewText}
+                author={author}
+                // category & group
+                groupLabel={groupLabel}
+                categoryLabel={categoryLabel}
+                tags={tags}
+                date={createdAt}
+                thumbnailUrl={thumbnailUrl}
+                readPermisson={readPermisson}
+                itemViewType={itemViewType}
+              />
+            ),
+          )
+        ) : (
+          <div
+            className={
+              "mb-5 flex h-80 flex-col items-center justify-center py-10 text-gray-200"
+            }
+          >
+            <LuCircleAlert size={24} className="mb-1" />
+            <span className="mb-3 text-lg font-semibold">
+              Failed to load the post.
+            </span>
+            <span>Please try again in a moment.</span>
+          </div>
         )}
 
         {/* PAGE-NATION */}

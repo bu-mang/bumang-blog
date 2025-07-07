@@ -4,6 +4,7 @@ import { GroupType } from "@/types/category";
 import Group from "./group";
 import Category from "./category";
 import { useSearchParams } from "next/navigation";
+import { LucideAlertCircle } from "lucide-react";
 
 interface MenusProps {
   menus: GroupType[] | null;
@@ -61,7 +62,10 @@ const Menus = ({ menus }: MenusProps) => {
           );
         })
       ) : (
-        <div>{/* TODO: FALLBACK COMPONENTS 나중에 추가 */}</div>
+        <div className="mb-20 flex items-center gap-1 px-2 text-sm text-gray-200">
+          <LucideAlertCircle size={14} />
+          <span>No Categories</span>
+        </div>
       )}
     </div>
   );

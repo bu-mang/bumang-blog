@@ -6,9 +6,7 @@ const Tags = async () => {
   let tags: TagType[] | null = null;
 
   try {
-    const res = await getAllTags();
-
-    tags = res;
+    tags = await getAllTags();
   } catch (err) {}
 
   return (

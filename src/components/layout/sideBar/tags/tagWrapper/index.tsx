@@ -2,6 +2,7 @@
 
 import { Tag, TagWrapper } from "@/components/common";
 import { TagType } from "@/types";
+import { LucideAlertCircle } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 
 interface TagWrapperLayerProps {
@@ -14,18 +15,25 @@ const TagWrapperLayer = ({ tags }: TagWrapperLayerProps) => {
 
   return (
     <TagWrapper className="pr-8">
-      {tags?.map((tag) => {
-        return (
-          <Tag
-            key={tag.id}
-            id={tag.id}
-            title={tag.title}
-            type="link"
-            isActivated={tagIds.includes(`${tag.id}`)}
-            hasXButton
-          />
-        );
-      })}
+      {tags ? (
+        tags.map((tag) => {
+          return (
+            <Tag
+              key={tag.id}
+              id={tag.id}
+              title={tag.title}
+              type="link"
+              isActivated={tagIds.includes(`${tag.id}`)}
+              hasXButton
+            />
+          );
+        })
+      ) : (
+        <div className="mb-20 flex items-center gap-1 text-sm text-gray-200">
+          <LucideAlertCircle size={14} />
+          <span>No Tags</span>
+        </div>
+      )}
     </TagWrapper>
   );
 };

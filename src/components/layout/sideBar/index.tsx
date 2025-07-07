@@ -8,10 +8,7 @@ const SideBar = async () => {
   let menus: GroupType[] | null = null;
 
   try {
-    const res = await getGroupedCategoryTree();
-    if (res) {
-      menus = res;
-    }
+    menus = await getGroupedCategoryTree();
   } catch (err) {
     console.log(err, "err");
   }
