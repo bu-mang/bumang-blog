@@ -37,18 +37,19 @@ const PlayItem = ({
 
   useEffect(() => {
     if (!ref.current) return;
+    const resizeRef = ref.current;
 
     const handleResize = () => {
-      const width = ref.current?.getBoundingClientRect().width;
+      const width = resizeRef.getBoundingClientRect().width;
       setContainerWidth((width ?? 200) * 0.8);
     };
 
-    ref.current.addEventListener("resize", handleResize);
+    resizeRef.addEventListener("resize", handleResize);
 
     handleResize();
 
     return () => {
-      ref.current?.removeEventListener("resize", handleResize);
+      resizeRef.removeEventListener("resize", handleResize);
     };
   }, []);
 

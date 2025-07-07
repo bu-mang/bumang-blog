@@ -48,6 +48,7 @@ const NavLogo = () => {
 
     // 새로고침 시 스크롤 상태를 반영
     ScrollTrigger.refresh();
+    // eslint-disable-next-line
   }, []);
 
   const headerBackgroundColor = useInteractiveStore(

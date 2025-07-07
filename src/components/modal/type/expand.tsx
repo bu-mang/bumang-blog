@@ -74,6 +74,7 @@ export default function ExpandModal({
   useEffect(() => {
     console.log(targetItem, "targetItem");
     if (!targetItem) handleClose();
+    // eslint-disable-next-line
   }, [targetItem]);
 
   useEffect(() => {
@@ -100,6 +101,7 @@ export default function ExpandModal({
       document.body.style.overflow = "unset";
       window.removeEventListener("keydown", handleKeyDown);
     };
+    // eslint-disable-next-line
   }, [canNotEscape, currentId]);
 
   if (!targetItem) {

@@ -257,6 +257,7 @@ const WorkItem = ({
     if (isIntersecting) {
       setBackgroundImage(imgSrc);
     }
+    // eslint-disable-next-line
   }, [isIntersecting]);
 
   if (nullItem) {

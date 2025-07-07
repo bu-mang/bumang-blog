@@ -129,6 +129,7 @@ export default function CommonModal({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
+    // eslint-disable-next-line
   }, [canNotEscape]);
 
   const handleUnmountAnimation = (closeFn: () => void) => {

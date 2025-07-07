@@ -3,21 +3,21 @@
 import { useEffect, useRef, useState } from "react";
 
 const BlogComment = () => {
-  const utterancesSettings = {
-    src: "https://utteranc.es/client.js",
-    repo: "Bumang-Cyber/bumang-blog-comments",
-    "issue-term": "pathname",
-    theme: "github-light",
-    crossorigin: "anonymous",
-    async: "true",
-  };
-
   const COMMENTS_ID = "comment-container";
   const commentRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (commentRef.current) {
+      const utterancesSettings = {
+        src: "https://utteranc.es/client.js",
+        repo: "Bumang-Cyber/bumang-blog-comments",
+        "issue-term": "pathname",
+        theme: "github-light",
+        crossorigin: "anonymous",
+        async: "true",
+      };
+
       const utterances = document.createElement("script");
 
       Object.entries(utterancesSettings).forEach(([key, value]) => {
