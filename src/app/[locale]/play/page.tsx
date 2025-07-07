@@ -3,7 +3,7 @@ import playItems from "./playItemsData";
 
 export default function Play() {
   return (
-    <main className="mx-[10vw] grid grid-cols-1 gap-x-[1.5vw] gap-y-[3vw] sm:grid-cols-2 lg:grid-cols-4">
+    <main className="mx-[10vw] grid grid-cols-1 gap-x-[1.5vw] gap-y-[3vw] sm:grid-cols-2 lg:grid-cols-6">
       {playItems.map((item) => {
         if (!item) return <div key={item} />;
 

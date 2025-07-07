@@ -64,25 +64,16 @@ const PlayItem = ({
       <div
         ref={ref}
         className={cn(
-          "relative flex h-fit w-full flex-col items-center justify-start transition-all",
+          "relative flex aspect-square w-full flex-col items-center justify-start transition-all",
           className,
         )}
-        style={{ aspectRatio: `${width} / ${height}` }}
       >
         {/* IMAGE */}
-        <div
-          className={cn(
-            "relative flex h-full w-full items-start transition-all",
-            textHeight === 1 &&
-              "group-hover:h-[calc(100%-20px)] group-hover:w-[calc(100%-20px)]",
-            textHeight === 2 &&
-              "group-hover:h-[calc(100%-40px)] group-hover:w-[calc(100%-40px)]",
-          )}
-        >
+        <div className={cn("relative flex w-full flex-1 transition-all")}>
           <Image
             src={imgUrl}
             alt={title ?? "GalleryImage"}
-            className="object-contain"
+            objectFit="cover"
             fill
           />
         </div>
@@ -90,7 +81,7 @@ const PlayItem = ({
         {/* DESC */}
         <div
           className={cn(
-            "flex-0 absolute bottom-0 mt-2 flex h-0 w-full min-w-0 flex-col overflow-hidden opacity-0 transition-all group-hover:opacity-100",
+            "flex-0 flex h-0 w-full flex-col overflow-hidden opacity-0 transition-all group-hover:opacity-100",
             textHeight === 1 && "group-hover:h-5",
             textHeight === 2 && "group-hover:h-10",
           )}
@@ -101,7 +92,7 @@ const PlayItem = ({
           {title && (
             <div className="flex h-5 w-full items-center justify-center text-sm">
               <span
-                className="truncate text-center"
+                className="truncate text-center font-semibold"
                 style={{ width: containerWidth }}
               >
                 {title}

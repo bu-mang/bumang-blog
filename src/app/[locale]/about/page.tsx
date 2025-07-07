@@ -42,18 +42,18 @@ export default function Blog() {
     <main ref={containerRef}>
       {/* IMAGES */}
       <div className="fade-in-mount relative mx-[10vw] mb-6 h-96">
-        <Image
+        {/* <Image
           src="/star.webp"
           alt="profileImage"
           className="object-cover"
           fill
-        />
-        {/* <Image
-          src="/portrait3.jpg"
+        /> */}
+        <Image
+          src="/about_banner.jpg"
           alt="profileImage"
           className="object-cover"
           fill
-        /> */}
+        />
       </div>
 
       {/* INTRODUCE */}

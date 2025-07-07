@@ -147,7 +147,7 @@ export default function ExpandModal({
         <div
           ref={contentsRef}
           className={cn(
-            "h-fit max-w-[60%] gap-3 py-20",
+            "flex h-fit max-w-[60%] flex-col items-center gap-3 py-20",
             isCentered && "flex h-full flex-col justify-center",
             containerClassName,
           )}
@@ -158,7 +158,7 @@ export default function ExpandModal({
           {items.map((item) => {
             return (
               <Image
-                className="flex-shrink-0"
+                className="flex-1"
                 key={item.title}
                 src={item.imgUrl}
                 width={!fill ? item.width : undefined}
@@ -166,6 +166,7 @@ export default function ExpandModal({
                 alt={item.title ?? "galleryImage"}
                 fill={fill}
                 objectFit={objectFit}
+                style={{ aspectRatio: `${item.width} / ${item.height}` }}
               />
             );
           })}
