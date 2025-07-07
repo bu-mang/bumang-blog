@@ -1,7 +1,6 @@
 import { ComponentType } from "react";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export type ModalType = {
   Component: ComponentType<any>;
