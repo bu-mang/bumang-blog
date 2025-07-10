@@ -33,11 +33,6 @@ const LoginForm = () => {
     try {
       await postLogin(formData);
 
-      // fetching 성공했다면,
-      queryClient.invalidateQueries({
-        queryKey: QUERY_KEY.GET_USER_PROFILE,
-      });
-
       router.push("/");
     } catch (error) {
       if (isAxiosError(error)) {
@@ -45,7 +40,15 @@ const LoginForm = () => {
         console.log(error, "error");
       }
     } finally {
-      setTimeout(() => router.refresh(), 300);
+      // fetching 성공했다면,
+
+      setTimeout(
+        () =>
+          queryClient.invalidateQueries({
+            queryKey: QUERY_KEY.GET_USER_PROFILE,
+          }),
+        300,
+      );
     }
   };
 
