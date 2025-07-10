@@ -26,7 +26,7 @@ const Pagenation = ({ totalCount, currentPage, pageSize }: PagenationProps) => {
    * @페이지_갯수_로직
    */
   const arr = [];
-  const totalPages = Math.ceil(totalCount / pageSize);
+  const totalPages = Math.ceil(totalCount / pageSize) || 1;
 
   for (let j = -2; j <= 2; j++) {
     const temp = currentPage + j;
