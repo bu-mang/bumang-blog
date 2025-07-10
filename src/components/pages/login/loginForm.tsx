@@ -11,6 +11,8 @@ import { loginFormSchema, LoginFormType } from "@/types/schemas";
 import { isAxiosError } from "axios";
 import { useRouter } from "@/i18n/navigation";
 import { postLogin } from "@/services/api/auth/client";
+import { useQueryClient } from "@tanstack/react-query";
+import { QUERY_KEY } from "@/constants/api/queryKey";
 
 const LoginForm = () => {
   const {
@@ -24,12 +26,18 @@ const LoginForm = () => {
 
   const router = useRouter();
 
+  const queryClient = useQueryClient();
+
   // 유효하면 Server Action Trigger
   const onSubmit = async (formData: LoginFormType) => {
     try {
       await postLogin(formData);
 
       // fetching 성공했다면,
+      queryClient.invalidateQueries({
+        queryKey: QUERY_KEY.GET_USER_PROFILE,
+      });
+
       router.push("/");
     } catch (error) {
       if (isAxiosError(error)) {
