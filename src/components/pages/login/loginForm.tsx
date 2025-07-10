@@ -13,6 +13,7 @@ import { useRouter } from "@/i18n/navigation";
 import { postLogin } from "@/services/api/auth/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { QUERY_KEY } from "@/constants/api/queryKey";
+import { useAuthStore } from "@/store/auth";
 
 const LoginForm = () => {
   const {
@@ -27,28 +28,27 @@ const LoginForm = () => {
   const router = useRouter();
 
   const queryClient = useQueryClient();
+  const { setIsAuthenticated } = useAuthStore();
 
   // 유효하면 Server Action Trigger
   const onSubmit = async (formData: LoginFormType) => {
     try {
       await postLogin(formData);
 
+      await queryClient.invalidateQueries({
+        queryKey: QUERY_KEY.GET_USER_PROFILE,
+      });
+      await queryClient.refetchQueries({
+        queryKey: QUERY_KEY.GET_USER_PROFILE,
+      });
+
+      setIsAuthenticated(true);
       router.push("/");
     } catch (error) {
       if (isAxiosError(error)) {
         console.error(error);
         console.log(error, "error");
       }
-    } finally {
-      // fetching 성공했다면,
-
-      setTimeout(
-        () =>
-          queryClient.invalidateQueries({
-            queryKey: QUERY_KEY.GET_USER_PROFILE,
-          }),
-        300,
-      );
     }
   };
 

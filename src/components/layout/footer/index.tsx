@@ -11,8 +11,6 @@ const Footer = () => {
   const pathname = usePathname();
   const isBlogEdit = pathname === "/blog/edit";
 
-  console.log(isBlogEdit, "isBlogEdit");
-
   const footerClass = cn(
     "flex w-full cursor-default text-xs",
     isBlogEdit && "hidden",

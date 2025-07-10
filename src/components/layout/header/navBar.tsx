@@ -16,7 +16,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { LuLanguages, LuLayers2, LuMoonStar } from "react-icons/lu";
 import { ButtonBase as Button } from "@/components/common";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postLogout } from "@/services/api/auth/client";
 import { useRouter } from "@/i18n/navigation";
 import { useQueryParams } from "@/hooks/useQueryParams";
@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/tooltip";
 import { useInteractiveStore } from "@/store/background";
 import { PATHNAME } from "@/constants/routes";
+import { useAuthStore } from "@/store/auth";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -93,18 +94,26 @@ const NavBar = ({
     });
   }, [pathname, headerBorderBottom]);
 
+  const setUserAndIsAuthenticated = useAuthStore(
+    (state) => state.setUserAndIsAuthenticated,
+  );
   const router = useRouter();
   const logoutMutation = useMutation({
     mutationFn: postLogout,
     onSuccess: () => {
-      router.refresh();
+      router.push(PATHNAME.HOME);
+      setUserAndIsAuthenticated({
+        isAuthenticated: false,
+        isAuthLoading: false,
+        user: null,
+      });
     },
   });
   const handleLogout = async () => {
     try {
       await logoutMutation.mutateAsync();
     } catch (err) {
-      console.log(err, "logged out");
+      console.log(err, "logged out Error");
     }
   };
 

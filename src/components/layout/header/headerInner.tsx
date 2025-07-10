@@ -6,9 +6,10 @@ import NavBar from "./navBar";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "@/constants/api/queryKey";
 import { useAuthStore } from "@/store/auth";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getUserProfile } from "@/services/api/auth/client";
 import { usePathname } from "@/i18n/navigation";
+import { ErrorBoundary, Suspense } from "@suspensive/react";
 
 interface HeaderFallbackProps {
   isLoading: boolean;
@@ -16,19 +17,6 @@ interface HeaderFallbackProps {
 }
 
 export const HeaderFallback = ({ isLoading, locale }: HeaderFallbackProps) => {
-  const setUserAndIsAuthenticated = useAuthStore(
-    (state) => state.setUserAndIsAuthenticated,
-  );
-
-  useEffect(() => {
-    setUserAndIsAuthenticated({
-      isAuthenticated: false,
-      user: null,
-      isAuthLoading: false,
-    });
-    // eslint-disable-next-line
-  }, []);
-
   const pathname = usePathname();
   switch (pathname) {
     case "/blog/edit":
@@ -52,6 +40,25 @@ interface HeaderInnerProps {
 }
 
 const HeaderInner = ({ locale }: HeaderInnerProps) => {
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+
+  return (
+    <ErrorBoundary
+      resetKeys={[isAuthenticated]}
+      fallback={<HeaderFallback locale={locale} isLoading={false} />}
+      onError={(error) => console.error("🔥 Header 에러:", error)}
+    >
+      <Suspense
+        clientOnly
+        fallback={<HeaderFallback locale={locale} isLoading />}
+      >
+        <HeaderInnerAuthenticated locale={locale} />
+      </Suspense>
+    </ErrorBoundary>
+  );
+};
+
+export function HeaderInnerAuthenticated({ locale }: HeaderInnerProps) {
   const setUserAndIsAuthenticated = useAuthStore(
     (state) => state.setUserAndIsAuthenticated,
   );
@@ -59,7 +66,13 @@ const HeaderInner = ({ locale }: HeaderInnerProps) => {
 
   const { data } = useSuspenseQuery({
     queryKey: QUERY_KEY.GET_USER_PROFILE,
-    queryFn: getUserProfile,
+    queryFn: async () => {
+      console.log("🚀 getUserProfile 호출");
+      const result = await getUserProfile();
+      console.log("✅ getUserProfile 성공:", result);
+      return result;
+    },
+    retry: false, // 인증 실패 시 재시도 안 함
   });
 
   useEffect(() => {
@@ -97,6 +110,6 @@ const HeaderInner = ({ locale }: HeaderInnerProps) => {
         </div>
       );
   }
-};
+}
 
 export default HeaderInner;
