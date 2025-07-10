@@ -64,7 +64,7 @@ export default async function Blog({ searchParams }: PageProps) {
         )}
       >
         {/* BLOGITEMS */}
-        {allPosts?.data && allPosts?.data ? (
+        {allPosts?.data && allPosts?.data.length ? (
           allPosts?.data?.map(
             ({
               id,
