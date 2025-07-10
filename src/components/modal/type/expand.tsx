@@ -9,25 +9,6 @@ import { ButtonBase } from "@/components/common";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import playItems from "@/app/[locale]/play/playItemsData";
 
-// export interface PlayItemMetaData {
-//   id: number;
-//   title?: string;
-//   content?: string;
-//   items: ImageItemType[];
-
-//   thumnail: ImageItemType;
-
-//   createdAt: string;
-// }
-
-// export interface PlayItemStyle {
-//   isVisible?: boolean;
-//   imageOnly?: boolean;
-//   containerClassName?: string;
-//   fill?: boolean;
-//   objectFit?: "cover" | "contain";
-// }
-
 interface ExpandModalProps {
   id: number;
 

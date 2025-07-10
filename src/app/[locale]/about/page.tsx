@@ -26,7 +26,7 @@ export default function Blog() {
         gsap.to(el, {
           scrollTrigger: {
             trigger: el,
-            start: "top 66%",
+            start: "top 80%",
             toggleActions: "play none none none",
           },
           duration: 1,
@@ -42,12 +42,6 @@ export default function Blog() {
     <main ref={containerRef}>
       {/* IMAGES */}
       <div className="fade-in-mount relative mx-[10vw] mb-6 h-96">
-        {/* <Image
-          src="/star.webp"
-          alt="profileImage"
-          className="object-cover"
-          fill
-        /> */}
         <Image
           src="/about_banner.jpg"
           alt="profileImage"
