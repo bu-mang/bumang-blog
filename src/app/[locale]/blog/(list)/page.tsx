@@ -99,7 +99,7 @@ export default async function Blog({ searchParams }: PageProps) {
         ) : (
           <div
             className={
-              "mb-5 flex h-80 flex-col items-center justify-center py-10 text-gray-200"
+              "col-span-4 mb-5 flex h-80 flex-col items-center justify-center py-10 text-gray-200"
             }
           >
             <LuCircleAlert size={24} className="mb-1" />
