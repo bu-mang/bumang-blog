@@ -8,7 +8,7 @@ import { previous } from "slate";
 // 블로그 상세 조회 (ServerFetch)
 export const getBlogDetail = async (id: string) => {
   const res = await serverFetch<PostDetailResponseDto>(
-    process.env.SERVER_LOCAL_HOST + END_POINTS.GET_BLOG_DETAIL(id),
+    process.env.NEXT_PUBLIC_API_BASE_URL + END_POINTS.GET_BLOG_DETAIL(id),
     {
       cache: "no-cache",
     },
