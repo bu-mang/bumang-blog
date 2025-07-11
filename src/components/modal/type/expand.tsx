@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
 import Modal from ".";
 
 import Image from "next/image";
@@ -23,6 +22,8 @@ export default function ExpandModal({
 }: ExpandModalProps) {
   const [open, setOpen] = useState(true);
   const [currentId, setCurrentId] = useState(id);
+  const [imageLoading, setImageLoading] = useState(false);
+  const [loadedImages, setLoadedImages] = useState(new Set());
 
   const contentsRef = useRef<null | HTMLDivElement>(null);
 
@@ -36,7 +37,7 @@ export default function ExpandModal({
   const dimRef = useRef<HTMLDivElement | null>(null);
   let targetItem = playItems.find((item) => item && item.id === currentId);
 
-  const handleChangeContents = (
+  const handleChangeContents = async (
     e: React.MouseEvent | React.KeyboardEvent | KeyboardEvent,
     direction: "prev" | "next",
   ) => {
@@ -48,20 +49,37 @@ export default function ExpandModal({
     );
 
     if (changableItem) {
-      setCurrentId(changableItem.id);
+      setImageLoading(true);
+
+      // 새 이미지들이 모두 로드될 때까지 대기
+      const preloadPromises = changableItem.items.map((item) =>
+        preloadImage(item.imgUrl),
+      );
+
+      try {
+        // Nest.js에서 많이 쓰는 패턴.
+        // map으로 비동기 함수 리턴문 배열로 만들어 Promise.All에 제공.
+        await Promise.all(preloadPromises);
+        setCurrentId(changableItem.id);
+      } catch (error) {
+        console.error("Image preload failed:", error);
+        // 실패해도 이미지 변경은 진행
+        setCurrentId(changableItem.id);
+      } finally {
+        setImageLoading(false);
+      }
     }
   };
 
+  // 이상한 아이디 이미지면 바로 끄기
   useEffect(() => {
     console.log(targetItem, "targetItem");
     if (!targetItem) handleClose();
     // eslint-disable-next-line
   }, [targetItem]);
 
+  // 키보드 이동 처리
   useEffect(() => {
-    // 또는 body에 Lenis 제어 클래스 추가
-    document.body.style.overflow = "hidden";
-
     const handleKeyDown = (e: KeyboardEvent) => {
       console.log(e, "keydown");
       if (e.key === "Escape" && !canNotEscape) {
@@ -79,12 +97,67 @@ export default function ExpandModal({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.body.style.overflow = "unset";
       window.removeEventListener("keydown", handleKeyDown);
     };
     // eslint-disable-next-line
   }, [canNotEscape, currentId]);
 
+  // Lenis 임시 끄기 & 다시 활성화
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
+
+  // 이미지 프리로드 함수
+  const preloadImage = (imgUrl: string): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      // 이미 로드된거면 리턴
+      if (loadedImages.has(imgUrl)) {
+        resolve();
+        return;
+      }
+
+      // HTML에 조립되지 않아도 일단 이미지 객체로 만들고 src 연결만 하면 캐싱되는 원리
+      const img = new window.Image();
+      img.onload = () => {
+        // img.src에 url이 할당되어야 시작
+        setLoadedImages((prev) => new Set(prev).add(imgUrl));
+        resolve();
+      };
+      img.onerror = reject;
+      img.src = imgUrl;
+    });
+  };
+
+  // 인접한 이미지들 프리로드
+  useEffect(() => {
+    const currentIndex = playItems.findIndex((item) => item?.id === currentId);
+    const preloadPromises: Promise<void>[] = [];
+
+    // 현재, 이전, 다음 이미지 프리로드
+    [-1, 0, 1].forEach((offset) => {
+      const targetIndex = currentIndex + offset;
+      const targetItem = playItems[targetIndex];
+
+      if (targetItem?.items) {
+        targetItem.items.forEach((item) => {
+          preloadPromises.push(preloadImage(item.imgUrl));
+        });
+      }
+    });
+
+    Promise.all(preloadPromises).catch(console.error);
+  }, [currentId, loadedImages]);
+
+  const buttonClassName = cn(
+    "fixed bottom-0 top-0 z-[100] m-auto h-fit w-fit rounded-xl p-1",
+    imageLoading
+      ? "opacity-50 cursor-not-allowed"
+      : "hover:bg-gray-100/10 cursor-pointer",
+  );
   if (!targetItem) {
     return <></>;
   }
@@ -156,6 +229,12 @@ export default function ExpandModal({
             );
           })}
 
+          {/* {imageLoading && (
+            <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/20">
+              <div className="animate-spin h-8 w-8 rounded-full border-b-2 border-white"/>
+            </div>
+          )} */}
+
           {!imageOnly && (
             <div className="flex w-full flex-col items-center">
               <span className="text-white">{title}</span>
@@ -167,14 +246,14 @@ export default function ExpandModal({
         {/* 이전/다음 */}
         <ButtonBase
           onClick={(e) => handleChangeContents(e, "next")}
-          className="fixed bottom-0 left-[10%] top-0 z-[100] m-auto h-fit w-fit rounded-xl p-1 hover:bg-gray-100/10"
+          className={cn(buttonClassName, "left-[10%]")}
         >
           <BsChevronLeft className="text-white" size={32} />
         </ButtonBase>
 
         <ButtonBase
           onClick={(e) => handleChangeContents(e, "prev")}
-          className="fixed bottom-0 right-[10%] top-0 z-[100] m-auto h-fit w-fit rounded-xl p-1 hover:bg-gray-100/10"
+          className={cn(buttonClassName, "right-[10%]")}
         >
           <BsChevronRight className="text-white" size={32} />
         </ButtonBase>
