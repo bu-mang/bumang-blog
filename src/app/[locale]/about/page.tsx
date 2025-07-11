@@ -57,10 +57,10 @@ export default function Blog() {
         </div>
         <div className="col-span-1 translate-y-1.5 font-semibold">I AM</div>
         <div className="col-span-4 mb-6 grid grid-cols-4">
-          <span className="col-span-4 mb-1 text-6xl font-semibold">
+          <span className="col-span-4 mb-2 text-6xl font-semibold">
             {t("intro.title.1")}
           </span>
-          <span className="col-span-4 mb-3 whitespace-pre-line text-6xl font-semibold">
+          <span className="col-span-4 mb-5 whitespace-pre-line text-6xl font-semibold">
             {t("intro.title.2")}
           </span>
           <p className="col-span-4 break-keep leading-relaxed">
@@ -99,6 +99,14 @@ export default function Blog() {
                 rel="noopener noreferrer"
               >
                 Behance
+              </Link>
+              <Link
+                href={"https://www.chess.com/member/blmnt/stats/rapid"}
+                className="transition-all hover:bg-gray-800 hover:text-white"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Chess.com
               </Link>
               {/* <Link
                 href={""}
