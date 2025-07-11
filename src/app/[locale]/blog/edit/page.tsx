@@ -4,6 +4,11 @@ import {
   getGroupedCategoryTree,
 } from "@/services/api/blog/(list)/server";
 import { GroupType, TagType } from "@/types";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Edit", // 최종 결과: "회사소개 | 사이트명"
+};
 
 export default async function BlogEditServerLayer() {
   let groupLists: GroupType[] = [];

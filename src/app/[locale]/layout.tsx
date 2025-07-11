@@ -7,6 +7,57 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import OpenedModals from "@/components/modal/openedModals";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: {
+    template: "%s | Bumang Route53",
+    default: "Bumang Route53",
+  },
+  description: "Bumang's Portfolio & Blog",
+  metadataBase: new URL("https://www.bumang.xyz"),
+
+  // Open Graph
+  openGraph: {
+    title: "Bumang Route53",
+    description: "Bumang's Portfolio & Blog",
+    url: "https://www.bumang.xyz",
+    siteName: "Bumang Route53",
+    images: [
+      {
+        url: "/works/bumangRoute53.png",
+        width: 1200,
+        height: 630,
+        alt: "Thumbnail Image",
+      },
+    ],
+    type: "website",
+  },
+
+  // Twitter
+  twitter: {
+    card: "summary_large_image",
+    title: "Bumang Route53",
+    description: "Bumang's Portfolio & Blog",
+    creator: "@bumang",
+    images: ["/works/bumangRoute53.png"],
+  },
+
+  // 파비콘
+  icons: {
+    icon: "/favicon.ico",
+  },
+
+  // 기타
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+};
 
 interface Props {
   children: React.ReactNode;

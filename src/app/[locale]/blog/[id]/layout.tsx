@@ -1,7 +1,6 @@
 import {
   LAYOUT_PADDING_ALONGSIDE,
   LAYOUT_PADDING_TOP,
-  LAYOUT_PADDING_TOP_WITH_HEIGHT,
 } from "@/constants/layouts/layout";
 import { cn } from "@/utils/cn";
 

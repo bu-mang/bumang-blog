@@ -41,7 +41,9 @@ export const getAllPosts = async (
         type,
       ),
     {
-      cache: "no-cache",
+      next: {
+        revalidate: process.env.NODE_ENV === "development" ? 0 : 300,
+      },
     },
   );
 
