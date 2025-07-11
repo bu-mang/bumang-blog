@@ -63,7 +63,9 @@ export default function Blog() {
           <span className="col-span-4 mb-3 whitespace-pre-line text-6xl font-semibold">
             {t("intro.title.2")}
           </span>
-          <p className="col-span-4">{t("intro.desc")}</p>
+          <p className="col-span-4 break-keep leading-relaxed">
+            {t("intro.desc")}
+          </p>
         </div>
 
         <div className="col-start-4 col-end-9">
@@ -81,23 +83,29 @@ export default function Blog() {
             <span className="col-span-1 font-semibold">Links</span>
             <div className="col-span-4 flex gap-2 text-gray-200">
               <Link
-                href={""}
+                href={
+                  "https://angry-munchkin-077.notion.site/Portfolio-e6622320a2284acea12280d82898e842?pvs=74"
+                }
                 className="transition-all hover:bg-gray-800 hover:text-white"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Notion
               </Link>
               <Link
-                href={""}
+                href={"https://www.behance.net/calmness078ad4"}
                 className="transition-all hover:bg-gray-800 hover:text-white"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Behance
               </Link>
-              <Link
+              {/* <Link
                 href={""}
                 className="transition-all hover:bg-gray-800 hover:text-white"
               >
                 Instagram
-              </Link>
+              </Link> */}
             </div>
           </SubBox>
         </div>
@@ -106,7 +114,7 @@ export default function Blog() {
       {/* AWARDS */}
       <SectionBox className={cn("fade-in-mount", LAYOUT_PADDING_ALONGSIDE)}>
         <div className="sticky top-20 col-span-3 mb-20 h-32 text-6xl font-semibold">
-          Awards
+          Records
         </div>
 
         <div className="col-start-4 col-end-9 -translate-y-3">

@@ -365,5 +365,27 @@
         }
       }
     }
+  },
+  "login": {
+    "title": "Welcome, Friend!",
+    "desc": "Log in and Access all the contents of BUMANG.",
+    "idLabel": "ID",
+    "passwordLabel": "Password",
+    "tooltips": {
+      "perk": {
+        "title": "🧩 What are the perks of logging in?",
+        "desc1": "View BUMANG’s private artworks and writings",
+        "desc2": "Try writing your own posts on the blog",
+        "desc3": "Just a fun way to explore the editor and maybe raise BUMANG’s AWS bill🤣",
+        "hint": {
+          "1": "Your posts are invisible to non-logged-in users and auto-delete after 24 hours."
+        }
+      },
+      "signUp": {
+        "title": "📬 Want to sign up?",
+        "1": "Just tell BUMANG your desired username and password directly.",
+        "2": " Don’t use your usual credentials — make a new one. It’s better for both of us!"
+      }
+    }
   }
 }

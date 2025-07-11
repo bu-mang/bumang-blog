@@ -6,6 +6,7 @@ import {
 } from "@/constants/layouts/layout";
 import { cn } from "@/utils/cn";
 import { Metadata } from "next";
+import { useTranslations } from "next-intl";
 
 export const metadata: Metadata = {
   title: "Login", // 최종 결과: "회사소개 | 사이트명"
@@ -18,14 +19,14 @@ export default function Blog() {
     LAYOUT_PADDING_ALONGSIDE,
   );
 
+  const t = useTranslations("login");
+
   return (
     <main className={loginPageClass}>
       <div className="flex w-1/2 flex-col rounded-xl border bg-white px-12 py-8 shadow-md">
         {/* TITLE & DESC */}
-        <span className="mb-2 text-4xl font-bold">Welcome, Friend!</span>
-        <span className="mb-8 text-gray-300">
-          Log in and Access all the contents of BUMANG.
-        </span>
+        <span className="mb-2 text-4xl font-bold">{t("title")}</span>
+        <span className="mb-8 text-gray-300">{t("desc")}</span>
 
         {/* FORM */}
         <LoginForm />

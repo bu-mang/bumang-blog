@@ -14,6 +14,7 @@ import { postLogin } from "@/services/api/auth/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { QUERY_KEY } from "@/constants/api/queryKey";
 import { useAuthStore } from "@/store/auth";
+import { useTranslations } from "next-intl";
 
 const LoginForm = () => {
   const {
@@ -25,8 +26,9 @@ const LoginForm = () => {
     mode: "onBlur",
   });
 
-  const router = useRouter();
+  const t = useTranslations("login");
 
+  const router = useRouter();
   const queryClient = useQueryClient();
   const { setIsAuthenticated } = useAuthStore();
 
@@ -55,13 +57,13 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {/* ID */}
-      <label htmlFor="username" className="mb-1 text-sm text-gray-300">
-        ID
+      <label htmlFor="username" className="text-sm text-gray-300">
+        {t("idLabel")}
       </label>
       <Input
         id="username"
         type="email"
-        containerClassName="mb-5"
+        containerClassName="mb-5 mt-1.5"
         autoComplete="username"
         placeholder="Email"
         // RHF
@@ -72,13 +74,13 @@ const LoginForm = () => {
       />
 
       {/* PASSWORD */}
-      <label htmlFor="password" className="mb-1 text-sm text-gray-300">
-        Password
+      <label htmlFor="password" className="text-sm text-gray-300">
+        {t("passwordLabel")}
       </label>
       <Input
         id="password"
         type="password"
-        containerClassName="mb-10"
+        containerClassName="mb-10 mt-1.5"
         autoComplete="current-password"
         placeholder="Password"
         // RHF

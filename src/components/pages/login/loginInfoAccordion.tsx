@@ -7,38 +7,33 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useTranslations } from "next-intl";
 
 export function LoginInfoAccordion() {
+  const t = useTranslations("login");
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="perks">
-        <AccordionTrigger>
-          🧩 What are the perks of logging in?
-        </AccordionTrigger>
+        <AccordionTrigger>{t("tooltips.perk.title")}</AccordionTrigger>
         <AccordionContent>
           <ul className="mb-3 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
-            <li>View BUMANG’s private artworks and writings</li>
-            <li>Try writing your own posts on the blog</li>
-            <li>Leave comments</li>
+            <li>{t("tooltips.perk.desc1")}</li>
+            <li>{t("tooltips.perk.desc2")}</li>
+            <li>{t("tooltips.perk.desc3")}</li>
           </ul>
           <div className="rounded-md bg-gray-5 px-5 py-2 text-muted-foreground">
-            Your posts are invisible to non-logged-in users and auto-delete
-            after 24 hours.
-            <br />
-            Just a fun way to explore the editor and maybe raise BUMANG’s AWS
-            bill 🫠
+            {t("tooltips.perk.hint.1")}
           </div>
         </AccordionContent>
       </AccordionItem>
 
       <AccordionItem value="signup">
-        <AccordionTrigger>📬 Want to sign up?</AccordionTrigger>
+        <AccordionTrigger> {t("tooltips.signUp.title")}</AccordionTrigger>
         <AccordionContent>
           <p className="text-sm text-muted-foreground">
-            Just tell BUMANG your desired username and password directly.
+            {t("tooltips.signUp.1")}
             <br />
-            Don’t use your usual credentials — make a new one. It’s better for
-            both of us!
+            {t("tooltips.signUp.2")}
           </p>
         </AccordionContent>
       </AccordionItem>
