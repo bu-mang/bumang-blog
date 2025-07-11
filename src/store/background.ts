@@ -14,6 +14,7 @@ interface InteractiveState {
   backgroundImage: string | undefined | null; // url or null
 
   header: {
+    animState: "ANIM" | "MIN" | "MAX";
     borderBottom: string | undefined | null;
     backgroundColor: string | undefined | null;
   };
@@ -29,6 +30,7 @@ interface InteractiveAction {
   setBackgroundImage: (v: string | undefined | null) => void;
 
   header: {
+    setAnimState: (v: "ANIM" | "MIN" | "MAX") => void;
     setBorderBottom: (v: string | undefined | null) => void;
     setBackgroundColor: (v: string | undefined | null) => void;
     setDefaultSetting: () => void;
@@ -48,8 +50,15 @@ export const useInteractiveStore = create<
     backgroundImage: null,
 
     header: {
+      animState: "ANIM",
       borderBottom: gray?.["10"],
       backgroundColor: "bg-white",
+
+      setAnimState: (animState: "ANIM" | "MIN" | "MAX") => {
+        set((state) => {
+          state.header.animState = animState;
+        });
+      },
       setDefaultSetting: () => {
         set((state) => {
           state.header.borderBottom = gray?.["10"];

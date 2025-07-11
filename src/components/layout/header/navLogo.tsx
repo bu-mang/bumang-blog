@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,26 +14,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 const NavLogo = () => {
   const router = useRouter();
+  const animState = useInteractiveStore((state) => state.header.animState);
   const handleNavigate = () => {
     router.push("/");
   };
 
-  const handleScrollTriggeredSize = useCallback(() => {
-    const originalWidth = (window.innerWidth * 0.94) / 2;
-    gsap.set(".BUMANG, .ROUTE53", { width: originalWidth });
-
-    gsap.to(".BUMANG, .ROUTE53", {
-      width: 80,
-      scrollTrigger: {
-        trigger: ".LETTER_CONTAINER",
-        start: "top top", // 스크롤이 바로 시작되도록 설정
-        end: "200px top",
-
-        scrub: true,
-      },
-    });
-  }, []);
-
+  /**
+   * @Opacity
+   */
   const handleSwitchVisibility = (type: "show" | "hide") => {
     gsap.to(".SUB", {
       opacity: type === "show" ? 1 : 0,
@@ -42,14 +30,69 @@ const NavLogo = () => {
     });
   };
 
+  const countDebouncingRef = useRef<NodeJS.Timeout | false>(false);
+  const [resizeCountUp, setResizeCountUp] = useState(0);
+  useEffect(() => {
+    const handleResize = () => {
+      // ✅ 기존 타이머가 있으면 취소
+      if (countDebouncingRef.current) {
+        clearTimeout(countDebouncingRef.current);
+      }
+
+      countDebouncingRef.current = setTimeout(() => {
+        setResizeCountUp((prev) => prev + 1);
+        countDebouncingRef.current = false;
+        console.log("debounced!");
+      }, 300);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+
+      if (countDebouncingRef.current) {
+        clearTimeout(countDebouncingRef.current);
+      }
+    };
+  }, []);
+
+  // 처음 숨기기 애니메이션 실행
   useEffect(() => {
     handleSwitchVisibility("hide");
-    handleScrollTriggeredSize();
-
-    // 새로고침 시 스크롤 상태를 반영
-    ScrollTrigger.refresh();
-    // eslint-disable-next-line
   }, []);
+
+  // 헤더 애니메이션 실행
+  useEffect(() => {
+    let scrollTrigger = null;
+
+    const originalWidth = (window.innerWidth * 0.94) / 2;
+
+    if (animState === "ANIM") {
+      gsap.set(".BUMANG, .ROUTE53", { width: originalWidth });
+
+      scrollTrigger = ScrollTrigger.create({
+        trigger: ".LETTER_CONTAINER",
+        start: "top top",
+        end: "200px top",
+        scrub: true,
+        animation: gsap.to(".BUMANG, .ROUTE53", { width: 80 }),
+      });
+      // 새로고침 시 스크롤 상태를 반영
+      ScrollTrigger.refresh();
+    } else if (animState === "MIN") {
+      gsap.set(".BUMANG, .ROUTE53", {
+        width: 80,
+      });
+    } else if (animState === "MAX") {
+      gsap.set(".BUMANG, .ROUTE53", { width: originalWidth });
+    }
+
+    return () => {
+      scrollTrigger?.kill();
+    };
+    // eslint-disable-next-line
+  }, [animState, resizeCountUp]);
 
   const headerBackgroundColor = useInteractiveStore(
     (state) => state.header.backgroundColor,

@@ -4,24 +4,22 @@ import type { MenuType } from "@/types";
 import { ROUTES } from "@/constants/routes/navBarRoutes";
 import { cn } from "@/utils/cn";
 
-// import resolveConfig from "tailwindcss/resolveConfig";
-// import tailwindConfig from "../../../../tailwind.config";
-
-// const fullConfig = resolveConfig(tailwindConfig);
-// const gray = fullConfig.theme.colors.gray as Record<string, string>;
-
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { LuLanguages, LuLayers2, LuMoonStar } from "react-icons/lu";
+import {
+  LuLanguages,
+  LuLayers2,
+  LuMoonStar,
+  LuAudioWaveform,
+} from "react-icons/lu";
 import { ButtonBase as Button } from "@/components/common";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postLogout } from "@/services/api/auth/client";
 import { useRouter } from "@/i18n/navigation";
 import { useQueryParams } from "@/hooks/useQueryParams";
 
-// import { Tooltip } from "radix-ui";
 import {
   Tooltip,
   TooltipContent,
@@ -284,13 +282,19 @@ const NavBar = ({
 
         {/* 3사분면 (아이콘) */}
         <div className="NAVBAR_SWITCHING_PANEL grid grid-cols-2 gap-[1.5vw]">
-          <div className="col-start-1 col-end-2 flex gap-1">
+          <div className="relative col-start-1 col-end-2 flex gap-1">
             <LocaleSwitcher
               locale={locale}
               className={cn(linkHoverStyle, "text-base")}
             />
-            <LuMoonStar className={cn(linkHoverStyle, "text-base")} />
-            <LuLayers2 className={cn(linkHoverStyle, "text-base")} />
+            <ThemeSwitcher
+              locale={locale}
+              className={cn(linkHoverStyle, "text-base")}
+            />
+            <HeaderAnimSwitcher
+              locale={locale}
+              className={cn(linkHoverStyle, "text-base")}
+            />{" "}
           </div>
         </div>
 
@@ -316,40 +320,94 @@ const NavBar = ({
 
 export default NavBar;
 
-interface LocaleSwitcherProps {
+interface SwitcherProps {
   locale: string;
   className?: string;
 }
 
-function LocaleSwitcher({ locale, className }: LocaleSwitcherProps) {
+function LocaleSwitcher({ locale, className }: SwitcherProps) {
   const pathname = usePathname();
 
   return (
     <Tooltip>
       <TooltipTrigger className="group relative h-fit w-fit" asChild>
-        <button>
+        <Link href={pathname} locale={locale === "ko" ? "en" : "ko"}>
           <LuLanguages className={cn(className, "group-hover:text-black")} />
-        </button>
+        </Link>
       </TooltipTrigger>
-      <TooltipContent side="bottom" className="z-[1000] flex gap-2">
-        <Link href={pathname} locale="ko">
-          <p
-            className={
-              locale === "ko" ? "opacity-100" : "opacity-30 hover:opacity-100"
-            }
-          >
-            Ko
-          </p>
-        </Link>
-        <Link href={pathname} locale="en">
-          <p
-            className={
-              locale === "en" ? "opacity-100" : "opacity-30 hover:opacity-100"
-            }
-          >
-            En
-          </p>
-        </Link>
+      <TooltipContent
+        side="bottom"
+        className="z-[1000] flex flex-col items-center gap-1"
+      >
+        <p className="text-[10px] text-gray-50">
+          {locale === "ko" ? "언어" : "language"}
+        </p>
+        <div className="flex gap-2">
+          <Link href={pathname} locale="ko">
+            <p
+              className={
+                locale === "ko" ? "opacity-100" : "opacity-30 hover:opacity-100"
+              }
+            >
+              Ko
+            </p>
+          </Link>
+          <Link href={pathname} locale="en">
+            <p
+              className={
+                locale === "en" ? "opacity-100" : "opacity-30 hover:opacity-100"
+              }
+            >
+              En
+            </p>
+          </Link>
+        </div>
+      </TooltipContent>
+    </Tooltip>
+  );
+}
+
+function ThemeSwitcher({ locale, className }: SwitcherProps) {
+  return (
+    <Tooltip>
+      <TooltipTrigger className="group relative h-fit w-fit" asChild>
+        <Button>
+          <LuMoonStar className={cn(className, "group-hover:text-black")} />
+        </Button>
+      </TooltipTrigger>
+
+      <TooltipContent
+        side="bottom"
+        className="z-[1000] flex flex-col items-center justify-center gap-0.5"
+      >
+        <p className="text-[10px] text-gray-50">
+          {locale === "ko" ? "테마" : "Theme"}
+        </p>
+        <p className="">{locale === "ko" ? "준비중..." : "TBU..."}</p>
+      </TooltipContent>
+    </Tooltip>
+  );
+}
+
+function HeaderAnimSwitcher({ locale, className }: SwitcherProps) {
+  return (
+    <Tooltip>
+      <TooltipTrigger className="group relative h-fit w-fit" asChild>
+        <Button>
+          <LuAudioWaveform
+            className={cn(className, "group-hover:text-black")}
+          />
+        </Button>
+      </TooltipTrigger>
+
+      <TooltipContent
+        side="bottom"
+        className="z-[1000] flex flex-col items-center justify-center gap-0.5"
+      >
+        <p className="text-[10px] text-gray-50">
+          {locale === "ko" ? "헤더" : "Header"}
+        </p>
+        <p className="">{locale === "ko" ? "준비중..." : "TBU..."}</p>
       </TooltipContent>
     </Tooltip>
   );

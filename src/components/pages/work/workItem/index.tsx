@@ -303,7 +303,8 @@ const WorkItem = ({
         <div className="flex items-center gap-3">
           <span className="font-bold">{title}</span>
           <div className="h-2 w-[1px] bg-white" />
-          <span className="text-sm">Discover</span>
+          {/* <span className="text-sm">Discover</span> */}
+          <span className="text-sm">To Be Updated</span>
         </div>
         <LuMoveRight className="ml-1.5" size={16} />
       </div>

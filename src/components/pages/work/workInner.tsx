@@ -63,7 +63,7 @@ export function WorkInnerInteractive() {
         title="Bumang Route53"
         imgSrc="/works/bumangRoute53.png"
         imgAlt="BumangRoute53"
-        href="/"
+        href="#"
       >
         {/*  */}
       </WorkItem>
@@ -73,7 +73,7 @@ export function WorkInnerInteractive() {
         title="SeaPearl"
         imgSrc="/works/seaPearl.png"
         imgAlt="SeaPearl"
-        href="/"
+        href="#"
       >
         <Sticker
           imgUrl="/works/seaPearlSticker.png"
@@ -86,7 +86,7 @@ export function WorkInnerInteractive() {
         title="Anttime Swap"
         imgSrc="/works/anttimeSwap.png"
         imgAlt=""
-        href="/"
+        href="#"
       >
         <Sticker
           imgUrl="/works/anttimeSwapSticker.png"
@@ -99,7 +99,7 @@ export function WorkInnerInteractive() {
         title="Anttime App"
         imgSrc="/works/anttimeApp.png"
         imgAlt=""
-        href="/"
+        href="#"
       >
         <Sticker
           imgUrl="/works/anttimeAppSticker.png"
@@ -112,7 +112,7 @@ export function WorkInnerInteractive() {
         title="Percent Hotel"
         imgSrc="/works/percentHotel.png"
         imgAlt=""
-        href="/"
+        href="#"
       >
         {/*  */}
       </WorkItem>
