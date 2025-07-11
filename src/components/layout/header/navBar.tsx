@@ -8,14 +8,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
-import {
-  LuLanguages,
-  LuLayers2,
-  LuMoonStar,
-  LuAudioWaveform,
-} from "react-icons/lu";
-import { ButtonBase as Button } from "@/components/common";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { LuLanguages, LuMoonStar, LuAudioWaveform } from "react-icons/lu";
+import { ButtonBase as Button, ButtonBase } from "@/components/common";
+import { useMutation } from "@tanstack/react-query";
 import { postLogout } from "@/services/api/auth/client";
 import { useRouter } from "@/i18n/navigation";
 import { useQueryParams } from "@/hooks/useQueryParams";
@@ -56,41 +51,70 @@ const NavBar = ({
   /**
    * @HEADER_ANIMATION
    */
+  const animState = useInteractiveStore((state) => state.header.animState);
+  const setAnimState = useInteractiveStore(
+    (state) => state.header.setAnimState,
+  );
   useEffect(() => {
-    console.log(headerBorderBottom, "headerBorderBottom");
-    // 타임라인으로 통함??
-    gsap.to(".NAVBAR_CONTAINER", {
-      y: -32,
-      scrollTrigger: {
-        start: "top top",
-        end: "200px top",
+    // 애니메이션 실행 컨택스트를 만듦.
+    const ctx = gsap.context(() => {
+      if (animState === "ANIM") {
+        gsap.to(".NAVBAR_CONTAINER", {
+          y: -32,
+          scrollTrigger: {
+            start: "top top",
+            end: "200px top",
 
-        scrub: true,
-        // markers: true,,
-      },
-    });
-    gsap.to(".NAVBAR_BORDERBOX", {
-      borderTopColor: "transparent",
-      borderBottomColor: headerBorderBottom ?? "transparent", // "#ede5e5", text-gray-10
-      scrollTrigger: {
-        start: "top top",
-        end: "200px top",
+            scrub: true,
+            // markers: true,,
+          },
+        });
+        gsap.to(".NAVBAR_BORDERBOX", {
+          borderTopColor: "transparent",
+          borderBottomColor: headerBorderBottom ?? "transparent", // "#ede5e5", text-gray-10
+          scrollTrigger: {
+            start: "top top",
+            end: "200px top",
 
-        scrub: true,
-        // markers: true,,
-      },
-    });
-    gsap.to(".NAVBAR_SWITCHING_PANEL", {
-      x: 88,
-      scrollTrigger: {
-        start: "top top",
-        end: "200px top",
+            scrub: true,
+            // markers: true,,
+          },
+        });
+        gsap.to(".NAVBAR_SWITCHING_PANEL", {
+          x: 88,
+          scrollTrigger: {
+            start: "top top",
+            end: "200px top",
 
-        scrub: true,
-        // markers: true,,
-      },
+            scrub: true,
+            // markers: true,,
+          },
+        });
+      } else if (animState === "MAX") {
+        // 최대화일 때
+        gsap.set(".NAVBAR_CONTAINER", { y: 0 });
+        gsap.set(".NAVBAR_BORDERBOX", {
+          borderTopColor: "#ede5e5",
+          borderBottomColor: "white",
+        });
+        gsap.set(".NAVBAR_SWITCHING_PANEL", {
+          x: 0,
+        });
+      } else if (animState === "MIN") {
+        // 최소화일 때
+        gsap.set(".NAVBAR_CONTAINER", { y: -32 });
+        gsap.set(".NAVBAR_BORDERBOX", {
+          borderTopColor: "transparent",
+          borderBottomColor: headerBorderBottom ?? "transparent",
+        });
+        gsap.set(".NAVBAR_SWITCHING_PANEL", {
+          x: 88,
+        });
+      }
     });
-  }, [pathname, headerBorderBottom]);
+
+    return () => ctx.revert();
+  }, [pathname, headerBorderBottom, animState]);
 
   const setUserAndIsAuthenticated = useAuthStore(
     (state) => state.setUserAndIsAuthenticated,
@@ -390,12 +414,64 @@ function ThemeSwitcher({ locale, className }: SwitcherProps) {
 }
 
 function HeaderAnimSwitcher({ locale, className }: SwitcherProps) {
+  const animState = useInteractiveStore((state) => state.header.animState);
+  const setAnimState = useInteractiveStore(
+    (state) => state.header.setAnimState,
+  );
+
+  const [canActivate, setCanActivate] = useState(true);
+
+  const pathname = usePathname();
+  useEffect(() => {
+    switch (pathname) {
+      case "/work":
+      case "/work":
+        setAnimState("ANIM");
+        setCanActivate(false);
+        break;
+
+      default:
+        setCanActivate(true);
+        break;
+    }
+  }, [pathname]);
+
+  const handleSwitchAnim = (state: "ANIM" | "MIN" | "MAX") => {
+    if (!canActivate) return;
+
+    setAnimState(state);
+  };
+
+  const handleSwitchRotation = () => {
+    if (!canActivate) return;
+    let newAnimState: "ANIM" | "MIN" | "MAX" | null = null;
+    switch (animState) {
+      case "ANIM":
+        newAnimState = "MAX";
+        break;
+      case "MAX":
+        newAnimState = "MIN";
+        break;
+      case "MIN":
+        newAnimState = "ANIM";
+        break;
+    }
+
+    if (newAnimState) {
+      setAnimState(newAnimState);
+    }
+  };
+
   return (
     <Tooltip>
       <TooltipTrigger className="group relative h-fit w-fit" asChild>
-        <Button>
+        <Button onClick={handleSwitchRotation}>
           <LuAudioWaveform
-            className={cn(className, "group-hover:text-black")}
+            className={cn(
+              className,
+              "group-hover:text-black",
+              !canActivate && "opacity-30",
+            )}
           />
         </Button>
       </TooltipTrigger>
@@ -407,7 +483,46 @@ function HeaderAnimSwitcher({ locale, className }: SwitcherProps) {
         <p className="text-[10px] text-gray-50">
           {locale === "ko" ? "헤더" : "Header"}
         </p>
-        <p className="">{locale === "ko" ? "준비중..." : "TBU..."}</p>
+        {canActivate ? (
+          <div className="flex gap-1">
+            <ButtonBase
+              className={cn(
+                animState === "ANIM"
+                  ? "opacity-100"
+                  : "opacity-30 hover:opacity-100",
+              )}
+              onClick={() => handleSwitchAnim("ANIM")}
+            >
+              ANIM
+            </ButtonBase>
+            <ButtonBase
+              className={cn(
+                animState === "MAX"
+                  ? "opacity-100"
+                  : "opacity-30 hover:opacity-100",
+              )}
+              onClick={() => handleSwitchAnim("MAX")}
+            >
+              MAX
+            </ButtonBase>
+            <ButtonBase
+              className={cn(
+                animState === "MIN"
+                  ? "opacity-100"
+                  : "opacity-30 hover:opacity-100",
+              )}
+              onClick={() => handleSwitchAnim("MIN")}
+            >
+              MIN
+            </ButtonBase>
+          </div>
+        ) : (
+          <div className="max-w-24 break-keep text-center">
+            {locale === "ko"
+              ? "이 페이지에서는 header 설정을 변경할 수 없습니다."
+              : "Header cannot be set in this Page."}
+          </div>
+        )}
       </TooltipContent>
     </Tooltip>
   );
