@@ -3,7 +3,7 @@ import { cn } from "@/utils/cn";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About", // 최종 결과: "회사소개 | 사이트명"
+  title: "About",
 };
 
 export default function BlogLayout({
