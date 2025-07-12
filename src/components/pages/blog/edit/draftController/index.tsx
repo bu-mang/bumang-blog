@@ -236,13 +236,13 @@ const DraftController = ({
     setDrafts(savedDrafts);
   }, [user, loadDraftsFromStorage]);
 
-  // 1분마다 자동저장
+  // 마지막 입력 후 5초 마다 자동저장
   useEffect(() => {
     if (!user || (!title.trim() && !content)) return;
 
     const timeoutId = setTimeout(() => {
       saveDraft(currentDraft);
-    }, 60000); // 1분 디바운스
+    }, 5000); // 1분 디바운스
 
     return () => clearTimeout(timeoutId);
   }, [user, currentDraft, saveDraft, title, content]);
