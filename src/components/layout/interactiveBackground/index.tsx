@@ -15,26 +15,30 @@ export default function InteractiveBackground() {
   const bgColor = useInteractiveStore((state) => state.backgroundColor);
 
   // 부드러운 스크롤 애니메이션 init
+  // /blog/edit은 제외
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2, // 스크롤 지속시간
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      lerp: 0.1, // 선형 보간 값 (0-1, 낮을수록 부드러움)
-      touchMultiplier: 2, // 터치 스크롤 민감도
-    });
+    let lenis: Lenis | null = null;
+    if (pathname !== "/blog/edit") {
+      lenis = new Lenis({
+        duration: 1.2, // 스크롤 지속시간
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        lerp: 0.1, // 선형 보간 값 (0-1, 낮을수록 부드러움)
+        touchMultiplier: 2, // 터치 스크롤 민감도
+      });
 
-    lenis.on("scroll", ScrollTrigger.update);
+      lenis.on("scroll", ScrollTrigger.update);
 
-    function raf(time: number) {
-      lenis.raf(time);
+      function raf(time: number) {
+        lenis?.raf(time);
+        requestAnimationFrame(raf);
+      }
       requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
 
     return () => {
-      lenis.destroy();
+      lenis?.destroy();
     };
-  }, []);
+  }, [pathname === "/blog/edit"]);
 
   // 특수 배경
   const renderInteractiveBackground = () => {

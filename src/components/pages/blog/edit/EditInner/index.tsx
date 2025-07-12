@@ -24,6 +24,7 @@ import { sortStringOrder } from "@/utils/sortTagOrder";
 import { html, plainText } from "@yoopta/exports";
 import { useEditStore } from "@/store/edit";
 import { useSearchParams } from "next/navigation";
+import usePauseLenis from "@/hooks/usePauseLenis";
 
 interface BlogEditInnerProps {
   tagLists: TagType[];
@@ -237,6 +238,28 @@ export default function BlogEditInner({
     setSelectedTags(selected);
     setUnselectedTags(unselected);
   }, [editId, editDraft, getDeserializeHTML, groupLists, tagLists]);
+
+  useEffect(() => {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          // Element 타입으로 타입 가드 추가
+          if (
+            node.nodeType === 1 &&
+            node instanceof Element &&
+            node.hasAttribute("data-floating-ui-portal")
+          ) {
+            node.classList.add("no-lenis");
+          }
+        });
+      });
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+  }, []);
 
   return (
     <main className="flex min-h-screen w-full flex-col">
