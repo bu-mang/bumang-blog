@@ -26,6 +26,7 @@ import { useEditStore } from "@/store/edit";
 import useModalStore from "@/store/modal";
 import CommonModal from "@/components/modal/type/common";
 import { useLocale } from "next-intl";
+import { usePageLeavePrevent } from "@/hooks/usePageLeavePrevent";
 
 interface BlogEditInnerProps {
   tagLists: TagType[];
@@ -204,6 +205,7 @@ export default function BlogEditInner({
   const entryPoint = useEditStore((state) => state.entryPoint);
   const setAllEditState = useEditStore((state) => state.setAllEditState);
   useLayoutEffect(() => {
+    console.log(editDraft, editId, entryPoint, "!!!");
     if (!editDraft) return;
     const title =
       locale === "ko" ? "작성하던 글이 존재해요." : "A Draft Exists";
@@ -218,7 +220,7 @@ export default function BlogEditInner({
           proceedFn: () => true,
         });
 
-        console.log(res, "res");
+        console.log(res, "what res");
 
         if (!res) {
           setAllEditState(editId, null, "new");
@@ -266,36 +268,11 @@ export default function BlogEditInner({
     };
 
     handleLoadDraft();
-
-    return () => {
-      // 수정으로 들어왔는데 편집 페이지를 나간다면, 초기화.
-      if (entryPoint === "toUpdate") {
-        setAllEditState(editId, null, "new");
-      }
-    };
   }, [editId, editDraft, getDeserializeHTML, groupLists, tagLists]);
 
-  // useEffect(() => {
-  //   const observer = new MutationObserver((mutations) => {
-  //     mutations.forEach((mutation) => {
-  //       mutation.addedNodes.forEach((node) => {
-  //         // Element 타입으로 타입 가드 추가
-  //         if (
-  //           node.nodeType === 1 &&
-  //           node instanceof Element &&
-  //           node.hasAttribute("data-floating-ui-portal")
-  //         ) {
-  //           node.classList.add("no-lenis");
-  //         }
-  //       });
-  //     });
-  //   });
-
-  //   observer.observe(document.body, {
-  //     childList: true,
-  //     subtree: true,
-  //   });
-  // }, []);
+  const { disablePrevent } = usePageLeavePrevent({
+    enabled: !!title || !!editorValue,
+  });
 
   return (
     <main className="flex min-h-screen w-full flex-col">
@@ -323,7 +300,7 @@ export default function BlogEditInner({
         editorValue={editorValue}
         title={title}
         editor={editor}
-        //
+        onDisablePrevent={disablePrevent}
       />
 
       {/* 본문 영역 */}

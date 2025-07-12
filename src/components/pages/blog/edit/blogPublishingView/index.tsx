@@ -24,6 +24,7 @@ import {
   LuPlaneTakeoff as PublishPlaneIcon,
 } from "react-icons/lu";
 import { BlogStep } from "@/types";
+import { useQueryParams } from "@/hooks/useQueryParams";
 
 interface BlogPublishingViewProps {
   selectedTags: TagType[];
@@ -83,6 +84,9 @@ const BlogPublishingView = ({
     textStyle: lightTextStyle,
     flexBoxClass: lightFlexBoxClass,
   } = getButtonColorStyle("light", "lg");
+
+  const { hasQuery, getQueryValue } = useQueryParams();
+  const idParam = getQueryValue("id");
 
   return (
     <div
@@ -188,7 +192,9 @@ const BlogPublishingView = ({
               >
                 <div className={DarkFlexClass}>
                   <PublishPlaneIcon className={DarkTextStyle} />
-                  <span className={DarkTextStyle}>Publish</span>
+                  <span className={DarkTextStyle}>
+                    {hasQuery("id") ? `Update ${idParam}` : "Publish"}
+                  </span>
                 </div>
               </FillButton>
             </div>

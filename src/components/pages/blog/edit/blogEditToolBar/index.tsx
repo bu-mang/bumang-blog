@@ -54,6 +54,7 @@ interface BlogEditorToolBarProps {
   editor: YooEditor;
   onSerialize: (type?: "html" | "plainText") => string | undefined;
   onDeserialize: (text: string) => void;
+  onDisablePrevent: () => void;
 }
 
 const BlogEditorToolBar = ({
@@ -80,6 +81,7 @@ const BlogEditorToolBar = ({
   title,
   editor,
   editorValue,
+  onDisablePrevent,
 
   onSerialize,
   onDeserialize,
@@ -192,6 +194,7 @@ const BlogEditorToolBar = ({
           // tags
           selectedTags={selectedTags}
           onSerialize={onSerialize}
+          onDisablePrevent={onDisablePrevent}
         />
       </div>
     </div>

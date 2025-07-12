@@ -19,7 +19,7 @@ import { cn } from "@/utils/cn";
 import { YooptaContentValue } from "@yoopta/editor";
 import { format } from "date-fns";
 import { Plus, Save } from "lucide-react";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { IoClose } from "react-icons/io5";
 
 interface DraftControllerProps {
@@ -71,6 +71,7 @@ const DraftController = ({
   const [status, setStatus] = useState<"Auth Checking..." | "Saving..." | "">(
     "Auth Checking...",
   );
+  // const [statusText, setStatusText] = useState();
   const [drafts, setDrafts] = useState<DraftType[]>([]);
   const [currentDraftId, setCurrentDraftId] = useState<number | null>(null);
 
@@ -219,7 +220,6 @@ const DraftController = ({
   const startNewDraft = () => {
     const newDraft = { ...currentDraft };
     newDraft.id = Date.now();
-    // setCurrentDraftId(newDraft.id);
     saveDraft(newDraft);
     // handleEditValues("", undefined, null, null, []);
   };
@@ -236,18 +236,15 @@ const DraftController = ({
     setDrafts(savedDrafts);
   }, [user, loadDraftsFromStorage]);
 
-  // 3분마다 자동저장
+  // 1분마다 자동저장
   useEffect(() => {
     if (!user || (!title.trim() && !content)) return;
 
-    const interval = setInterval(
-      () => {
-        saveDraft(currentDraft);
-      },
-      1000 * 60 * 1,
-    );
+    const timeoutId = setTimeout(() => {
+      saveDraft(currentDraft);
+    }, 60000); // 1분 디바운스
 
-    return () => clearInterval(interval);
+    return () => clearTimeout(timeoutId);
   }, [user, currentDraft, saveDraft, title, content]);
 
   // 내용 변경 시 currentDraftId 설정 (새 글 작성 시)
@@ -268,7 +265,7 @@ const DraftController = ({
     <Popover open={isDraftOpen} onOpenChange={handleDraftOpen}>
       {/* Status */}
       <span className="pointer-events-none text-center text-xs text-gray-300">
-        {status} {currentDraftId}
+        {status}
       </span>
       <PopoverTrigger asChild>
         {/* Trigger */}

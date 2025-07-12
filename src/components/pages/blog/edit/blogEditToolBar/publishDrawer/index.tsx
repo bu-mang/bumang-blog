@@ -39,6 +39,7 @@ interface DrawerSheetProps {
   selectedTags: TagType[];
   editor: YooEditor;
   onSerialize: (type?: "html" | "plainText") => string | undefined;
+  onDisablePrevent: () => void;
 }
 
 export function PublishDrawer({
@@ -49,6 +50,7 @@ export function PublishDrawer({
   selectedTags,
   editor,
   onSerialize,
+  onDisablePrevent,
 }: DrawerSheetProps) {
   const { fillStyle: DarkFillStyle, textStyle: DarkTextStyle } =
     getButtonColorStyle("dark");
@@ -133,6 +135,9 @@ export function PublishDrawer({
       return;
     }
 
+    onDisablePrevent();
+
+    // 수정인 경우
     if (queryId) {
       updateMutation.mutateAsync({
         queryId,
@@ -207,9 +212,15 @@ export function PublishDrawer({
     >
       {/* TRIGGER */}
       <DrawerTrigger asChild className="ml-8">
-        <Button variant="outline" className={DarkFillStyle}>
+        <Button
+          variant="outline"
+          className={cn(DarkFillStyle, "flex items-center")}
+        >
           <PublishPlaneIcon className={DarkTextStyle} />
-          <span className={DarkTextStyle}>Publish</span>
+          <span className={DarkTextStyle}>
+            {queryId ? `Update` : "Publish"}
+          </span>
+          {queryId && <span className="text-xs text-white">id: {queryId}</span>}
         </Button>
       </DrawerTrigger>
 
