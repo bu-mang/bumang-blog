@@ -6,7 +6,9 @@ import { GroupType } from "@/types/category";
 // Group & Category 트리 조회 (ServerFetch)
 export const getGroupedCategoryTree = async () => {
   const res = await serverFetch<GroupType[]>(
-    process.env.NEXT_PUBLIC_API_BASE_URL +
+    (process.env.NODE_ENV === "production"
+      ? process.env.NEXT_PUBLIC_API_BASE_URL
+      : process.env.NEXT_PUBLIC_LOCAL_API_BASE_URL) +
       END_POINTS.GET_GROUP_CATEGORY_MENU_TREE,
   );
 
@@ -16,7 +18,9 @@ export const getGroupedCategoryTree = async () => {
 // TAG 모두 조회 (ServerFetch)
 export const getAllTags = async () => {
   const res = await serverFetch<TagType[]>(
-    process.env.NEXT_PUBLIC_API_BASE_URL + END_POINTS.GET_ALL_TAGS,
+    (process.env.NODE_ENV === "production"
+      ? process.env.NEXT_PUBLIC_API_BASE_URL
+      : process.env.NEXT_PUBLIC_LOCAL_API_BASE_URL) + END_POINTS.GET_ALL_TAGS,
   );
 
   return res;
@@ -31,7 +35,9 @@ export const getAllPosts = async (
   type?: string,
 ) => {
   const res = await serverFetch<PaginatedResponseDto<PostListItemType>>(
-    process.env.NEXT_PUBLIC_API_BASE_URL +
+    (process.env.NODE_ENV === "production"
+      ? process.env.NEXT_PUBLIC_API_BASE_URL
+      : process.env.NEXT_PUBLIC_LOCAL_API_BASE_URL) +
       END_POINTS.GET_ALL_POSTS(
         pageIndex,
         pageSize,

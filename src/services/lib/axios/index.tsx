@@ -6,11 +6,10 @@ import axios from "axios";
  * @직접_서버호출용
  */
 const ClientInstance = axios.create({
-  // baseURL:  process.env.NEXT_PUBLIC_API_BASE_URL, // 또는 고정 URL
   baseURL:
     process.env.NODE_ENV === "production"
       ? process.env.NEXT_PUBLIC_API_BASE_URL
-      : process.env.NEXT_PUBLIC_NEXT_PUBLIC_API_BASE_URL,
+      : process.env.NEXT_PUBLIC_LOCAL_API_BASE_URL,
   timeout: 5000,
   withCredentials: true,
   headers: {
@@ -54,7 +53,7 @@ ClientInstance.interceptors.response.use(
       await axios.post<UserResponseType>(
         ((process.env.NODE_ENV === "production"
           ? process.env.NEXT_PUBLIC_API_BASE_URL
-          : process.env.NEXT_PUBLIC_NEXT_PUBLIC_API_BASE_URL) as string) +
+          : process.env.NEXT_PUBLIC_LOCAL_API_BASE_URL) as string) +
           END_POINTS.POST_RENEW_ACCESS_TOKEN,
         {},
         {
