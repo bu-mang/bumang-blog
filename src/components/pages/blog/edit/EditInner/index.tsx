@@ -23,6 +23,9 @@ import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
 import { sortStringOrder } from "@/utils/sortTagOrder";
 import { html, plainText } from "@yoopta/exports";
 import { useEditStore } from "@/store/edit";
+import useModalStore from "@/store/modal";
+import CommonModal from "@/components/modal/type/common";
+import { useLocale } from "next-intl";
 
 interface BlogEditInnerProps {
   tagLists: TagType[];
@@ -194,47 +197,82 @@ export default function BlogEditInner({
   );
 
   // 수정 페이지 edit?id=...
+  const locale = useLocale();
+  const openModal = useModalStore((state) => state.openModal);
   const editId = useEditStore((state) => state.id);
   const editDraft = useEditStore((state) => state.editDraft);
+  const entryPoint = useEditStore((state) => state.entryPoint);
+  const setAllEditState = useEditStore((state) => state.setAllEditState);
   useLayoutEffect(() => {
-    console.log(editId, editDraft);
-    if (editDraft?.title) {
-      setTitle(editDraft.title);
-    }
+    if (!editDraft) return;
+    const title =
+      locale === "ko" ? "작성하던 글이 존재해요." : "A Draft Exists";
+    const desc =
+      locale === "ko" ? "불러오시겠어요?" : "Would you like to load it?";
 
-    if (editDraft?.content) {
-      getDeserializeHTML(editDraft.content as string);
-    }
+    const handleLoadDraft = async () => {
+      if (entryPoint === "new") {
+        const res = await openModal(CommonModal, {
+          title,
+          desc,
+          proceedFn: () => true,
+        });
 
-    if (editDraft?.selectedGroup) {
-      const editGroup = groupLists.find(
-        (group) => group.id === editDraft.selectedGroup?.id,
-      );
-      setSelectedGroup(editGroup ?? null);
+        console.log(res, "res");
 
-      if (editDraft?.selectedCategory) {
-        const editCategory = editGroup?.categories.find(
-          (category) => category.id === editDraft.selectedCategory?.id,
-        );
-        setSelectedCategory(editCategory ?? null);
-      }
-    }
-
-    const selected: TagType[] = [];
-    const unselected: TagType[] = [];
-    if (editDraft?.selectedTags) {
-      const selectedTagIds = editDraft.selectedTags.map((item) => item.id);
-      tagLists.forEach((tag) => {
-        if (selectedTagIds.includes(tag.id)) {
-          selected.push(tag);
-        } else {
-          unselected.push(tag);
+        if (!res) {
+          setAllEditState(editId, null, "new");
+          return;
         }
-      });
-    }
+      }
 
-    setSelectedTags(selected);
-    setUnselectedTags(unselected);
+      if (editDraft.title) {
+        setTitle(editDraft.title);
+      }
+
+      if (editDraft.content) {
+        getDeserializeHTML(editDraft.content as string);
+      }
+
+      if (editDraft.selectedGroup) {
+        const editGroup = groupLists.find(
+          (group) => group.id === editDraft.selectedGroup?.id,
+        );
+        setSelectedGroup(editGroup ?? null);
+
+        if (editDraft.selectedCategory) {
+          const editCategory = editGroup?.categories.find(
+            (category) => category.id === editDraft.selectedCategory?.id,
+          );
+          setSelectedCategory(editCategory ?? null);
+        }
+      }
+
+      const selected: TagType[] = [];
+      const unselected: TagType[] = [];
+      if (editDraft.selectedTags) {
+        const selectedTagIds = editDraft.selectedTags.map((item) => item.id);
+        tagLists.forEach((tag) => {
+          if (selectedTagIds.includes(tag.id)) {
+            selected.push(tag);
+          } else {
+            unselected.push(tag);
+          }
+        });
+      }
+
+      setSelectedTags(selected);
+      setUnselectedTags(unselected);
+    };
+
+    handleLoadDraft();
+
+    return () => {
+      // 수정으로 들어왔는데 편집 페이지를 나간다면, 초기화.
+      if (entryPoint === "toUpdate") {
+        setAllEditState(editId, null, "new");
+      }
+    };
   }, [editId, editDraft, getDeserializeHTML, groupLists, tagLists]);
 
   // useEffect(() => {

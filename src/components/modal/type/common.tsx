@@ -56,7 +56,7 @@ export default function CommonModal({
         await proceedFn();
       }
 
-      handleClose();
+      handleClose(true);
     } catch (error: unknown) {
       console.log(error, "error");
     }
@@ -71,17 +71,17 @@ export default function CommonModal({
         await dismissFn();
       }
 
-      handleClose();
+      handleClose(false);
     } catch (error: unknown) {
       console.log(error, "error");
     }
   };
 
   // 끄기 함수
-  const handleClose = () => {
+  const handleClose = (res?: boolean) => {
     setIsLoading(false);
     setOpen(false);
-    onResolve();
+    onResolve(res);
   };
 
   // 애니메이션

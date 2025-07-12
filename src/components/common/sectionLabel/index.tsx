@@ -6,6 +6,7 @@ import { getButtonColorStyle } from "@/utils/styles/filButtonManager";
 import { cn } from "@/utils/cn";
 import { useAuthStore } from "@/store/auth";
 import { useQueryParams } from "@/hooks/useQueryParams";
+import { useEditStore } from "@/store/edit";
 
 interface SectionLabelProps {
   title: string;
@@ -33,6 +34,12 @@ const SectionLabel = ({
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const { updateQuery } = useQueryParams();
   const upperCaseCapital = title.charAt(0).toUpperCase() + title.slice(1);
+
+  // 새 글 쓰기 페이지로 이동 전에 초기화.
+  const setEntryPoint = useEditStore((state) => state.setEntryPoint);
+  const handleSetAllEditState = () => {
+    setEntryPoint("new");
+  };
 
   return (
     <div className={titleClass}>
@@ -68,6 +75,7 @@ const SectionLabel = ({
         </Link>
         {isAuthenticated && (
           <Link
+            onClick={handleSetAllEditState}
             href="/blog/edit"
             className={cn(
               flexBoxClass,

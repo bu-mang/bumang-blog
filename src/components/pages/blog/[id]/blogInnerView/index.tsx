@@ -143,7 +143,7 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
   const [editorValue] = useState<YooptaContentValue>();
   const [indexParsed, setIndexParsed] = useState(false);
   const user = useAuthStore((state) => state.user);
-  const setIdAndEditDraft = useEditStore((state) => state.setIdAndEditDraft);
+  const setAllEditState = useEditStore((state) => state.setAllEditState);
 
   // parsing해서 HTML로.
   const getDeserializeHTML = (text: string) => {
@@ -159,13 +159,17 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
   }, []);
 
   const handleSetDraft = () => {
-    setIdAndEditDraft(post.id, {
-      title: post.title,
-      content: post.content,
-      selectedGroup: post.group,
-      selectedCategory: post.category,
-      selectedTags: post.tags,
-    });
+    setAllEditState(
+      post.id,
+      {
+        title: post.title,
+        content: post.content,
+        selectedGroup: post.group,
+        selectedCategory: post.category,
+        selectedTags: post.tags,
+      },
+      "toUpdate",
+    );
   };
 
   const handleDelete = () => {
