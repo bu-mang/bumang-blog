@@ -457,5 +457,25 @@
       "submit": "게시하기",
       "cancel": "취소"
     }
+  },
+  "blog": {
+    "noCategory": "카테고리 없음",
+    "noGroup": "그룹 없음",
+    "noPost": {
+      "title": "죄송합니다. 포스트가 존재하지 않습니다.",
+      "desc": "일시적인 에러일 수 있습니다. 잠시 후 시도해주세요."
+    }
+  },
+  "blogDetail": {
+    "noTag": "태그 없음",
+    "edit": "수정",
+    "delete": "삭제",
+    "nextPost": "다음 포스트",
+    "prevPost": "이전 포스트",
+    "relatedPost": "연관 포스트",
+    "noRelatedPost": {
+      "title": "이 아티클과 연관있는 포스트가 아직 없습니다.",
+      "desc": "아마 버망이 곧 관련있는 주제로 글을 쓸거에요."
+    }
   }
 }

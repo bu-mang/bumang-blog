@@ -33,6 +33,7 @@ import { useAuthStore } from "@/store/auth";
 import { useEditStore } from "@/store/edit";
 import { useMutation } from "@tanstack/react-query";
 import { deletePost } from "@/services/api/blog/edit";
+import { useTranslations } from "next-intl";
 
 interface BlogDetailInnerProps {
   post: PostDetailResponseDto;
@@ -136,6 +137,8 @@ export function BlogInnerViewFallback({ isError }: { isError?: boolean }) {
 }
 
 export default function BlogInnerView({ post }: BlogDetailInnerProps) {
+  const t = useTranslations("blogDetail");
+
   /**
    * EDITOR_LOGIC
    */
@@ -200,7 +203,7 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
               <Tag type="button" id={tag.id} title={tag.label} key={tag.id} />
             ))
           ) : (
-            <Tag id={0} title="No Tags" className="pointer-events-none" />
+            <Tag id={0} title={t("noTag")} className="pointer-events-none" />
           )}
         </TagWrapper>
 
@@ -261,7 +264,7 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
                 onClick={handleSetDraft}
               >
                 <Edit size={18} />
-                <span>Edit</span>
+                <span>{t("edit")}</span>
               </Link>
 
               <ButtonBase
@@ -269,7 +272,7 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
                 onClick={handleDelete}
               >
                 <Trash2 size={18} />
-                <span>Delete</span>
+                <span>{t("delete")}</span>
               </ButtonBase>
             </>
           )}

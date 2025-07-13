@@ -10,6 +10,8 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import BlogItem, { BlogItemFallback } from "../../../(list)/blogItem";
 import { Skeleton } from "@/components/ui/skeleton";
+import { LuCircleAlert } from "react-icons/lu";
+import { useTranslations } from "next-intl";
 
 interface RelatedPostInnerProps {
   id: number;
@@ -69,6 +71,8 @@ function RelatedAndAdjacentPostFallback({ isError }: { isError?: boolean }) {
 }
 
 function RelatedAndAdjacentPostInner({ id }: RelatedPostInnerProps) {
+  const t = useTranslations("blogDetail");
+
   const { data: relatedPosts } = useSuspenseQuery({
     queryKey: QUERY_KEY.GET_RELATED_POSTS(id),
     queryFn: () => getRelatedPosts(id),
@@ -91,7 +95,7 @@ function RelatedAndAdjacentPostInner({ id }: RelatedPostInnerProps) {
             >
               <div className="flex items-center gap-1.5">
                 <ArrowLeft size={18} />
-                <span className="text-sm font-semibold">Previous Post</span>
+                <span className="text-sm font-semibold">{t("prevPost")}</span>
               </div>
 
               <span className="max-w-64 truncate text-left font-medium group-hover:underline">
@@ -99,7 +103,7 @@ function RelatedAndAdjacentPostInner({ id }: RelatedPostInnerProps) {
               </span>
             </Link>
           ) : (
-            <div></div>
+            <div />
           )}
 
           {/* 이후 */}
@@ -109,7 +113,7 @@ function RelatedAndAdjacentPostInner({ id }: RelatedPostInnerProps) {
               className="group flex flex-col items-end gap-1 text-gray-400 hover:text-gray-900"
             >
               <div className="flex items-center gap-1.5">
-                <span className="text-sm font-semibold">Next Post</span>
+                <span className="text-sm font-semibold">{t("nextPost")}</span>
                 <ArrowRight size={18} />
               </div>
 
@@ -118,7 +122,7 @@ function RelatedAndAdjacentPostInner({ id }: RelatedPostInnerProps) {
               </span>
             </Link>
           ) : (
-            <div></div>
+            <div />
           )}
         </div>
       </div>
@@ -126,42 +130,56 @@ function RelatedAndAdjacentPostInner({ id }: RelatedPostInnerProps) {
       {/* 이 카테고리의 다른 글 */}
       <div className="col-start-1 col-end-12 grid grid-cols-9 gap-x-[1.5vw]">
         <div className="col-span-9 flex justify-center gap-2 pb-8 text-2xl font-semibold text-gray-900">
-          <span>Related Posts</span>
+          <span>{t("relatedPost")}</span>
         </div>
 
-        {relatedPosts.map(
-          ({
-            id,
-            title,
-            previewText,
-            createdAt,
-            categoryLabel,
-            groupLabel,
-            tags,
-            author,
-            thumbnailUrl,
-            readPermisson,
-          }) => {
-            return (
-              <div className="group col-span-3" key={id}>
-                <BlogItem
-                  key={id}
-                  id={id}
-                  title={title}
-                  previewText={previewText}
-                  author={author}
-                  // category & group
-                  groupLabel={groupLabel}
-                  categoryLabel={categoryLabel}
-                  tags={tags}
-                  date={createdAt}
-                  thumbnailUrl={thumbnailUrl}
-                  readPermisson={readPermisson}
-                  itemViewType="thumbnail"
-                />
-              </div>
-            );
-          },
+        {relatedPosts.length > 0 ? (
+          relatedPosts.map(
+            ({
+              id,
+              title,
+              previewText,
+              createdAt,
+              categoryLabel,
+              groupLabel,
+              tags,
+              author,
+              thumbnailUrl,
+              readPermisson,
+            }) => {
+              return (
+                <div className="group col-span-3" key={id}>
+                  <BlogItem
+                    key={id}
+                    id={id}
+                    title={title}
+                    previewText={previewText}
+                    author={author}
+                    // category & group
+                    groupLabel={groupLabel}
+                    categoryLabel={categoryLabel}
+                    tags={tags}
+                    date={createdAt}
+                    thumbnailUrl={thumbnailUrl}
+                    readPermisson={readPermisson}
+                    itemViewType="thumbnail"
+                  />
+                </div>
+              );
+            },
+          )
+        ) : (
+          <div
+            className={
+              "mb-5 flex h-80 w-full flex-col items-center justify-center py-10 text-gray-200"
+            }
+          >
+            <LuCircleAlert size={24} className="mb-1" />
+            <span className="text-lg font-semibold">
+              {t("noRelatedPost.title")}
+            </span>
+            <span>{t("noRelatedPost.desc")}</span>
+          </div>
         )}
       </div>
     </>

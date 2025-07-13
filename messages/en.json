@@ -454,5 +454,25 @@
       "submit": "Submit",
       "cancel": "Cancel"
     }
+  },
+  "blog": {
+    "noCategory": "No Category",
+    "noGroup": "No Group",
+    "noPost": {
+      "title": "No Posts are here.",
+      "desc": "Please try again in a moment."
+    }
+  },
+  "blogDetail": {
+    "noTag": "No Tag",
+    "edit": "Edit",
+    "delete": "Delete",
+    "nextPost": "Next Post",
+    "prevPost": "Previous Post",
+    "relatedPost": "Related Posts",
+    "noRelatedPost": {
+      "title": "No Related Post for This Article.",
+      "desc": "More content coming soon from Bumang."
+    }
   }
 }
