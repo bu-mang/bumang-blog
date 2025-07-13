@@ -25,7 +25,7 @@ import { html, plainText } from "@yoopta/exports";
 import { useEditStore } from "@/store/edit";
 import useModalStore from "@/store/modal";
 import CommonModal from "@/components/modal/type/common";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { usePageLeavePrevent } from "@/hooks/usePageLeavePrevent";
 
 interface BlogEditInnerProps {
@@ -37,6 +37,9 @@ export default function BlogEditInner({
   tagLists,
   groupLists,
 }: BlogEditInnerProps) {
+  // i18n
+  const t = useTranslations("blogEdit");
+
   // ------------- 중앙부 그룹/카테고리/태그 로직 (중앙) -------------
 
   // 그룹
@@ -314,7 +317,7 @@ export default function BlogEditInner({
           {/* INPUT */}
           <textarea
             className="flex h-auto min-h-20 w-full resize-none flex-wrap overflow-hidden rounded-md border-none bg-transparent px-2 py-4 text-5xl font-semibold leading-normal outline-none transition-colors placeholder:text-gray-100 hover:bg-gray-1 disabled:cursor-not-allowed disabled:opacity-50"
-            placeholder="Title of Your Post here..."
+            placeholder={t("titlePlaceHolder")}
             tabIndex={1}
             value={title}
             maxLength={48}

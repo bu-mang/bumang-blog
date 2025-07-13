@@ -387,5 +387,75 @@
         "2": "단, 평소 자주 사용하시는 아이디/비밀번호 말고 다른 것을 알려주세요! - 그게 서로에게 좋아요 😘"
       }
     }
+  },
+  "blogEdit": {
+    "titlePlaceHolder": "여기에 제목을 입력하세요...",
+    "contentPlaceHolder": "'/'을 눌러 액션 메뉴 표출",
+    "header": {
+      "backToList": "목록으로 돌아가기",
+      "selectGroup": {
+        "button": "그룹 선택",
+        "inputPlaceHolder": "그룹을 검색하세요."
+      },
+      "selectCategory": {
+        "button": "카테고리 선택",
+        "innerLabel": "그룹을 먼저 선택해주세요.",
+        "inputPlaceHolder": "카테고리를 검색하세요."
+      },
+      "addTags": {
+        "button": "태그 추가하기",
+        "selectedTags": "선택된 태그 목록",
+        "noTags": "선택 가능한 태그가 없습니다.",
+        "inputPlaceHolder": "태그를 검색하세요."
+      }
+    },
+    "draft": {
+      "button": "임시저장",
+      "innerLabel": "임시저장목록",
+      "status": {
+        "saving": "저장중...",
+        "authChecking": "인증 체크 중...",
+        "none": ""
+      },
+      "addNewDraft": "새로운 임시저장 내역 추가하기",
+      "noTitle": "제목 없음",
+      "noDesc": "본문 없음",
+      "noGroup": "그룹 미선택",
+      "noCategory": "카테고리 미선택",
+      "noDraft": "임시저장이 없습니다.",
+      "modals": {
+        "load": {
+          "title": "정말 이 임시저장을 블러오시겠어요?",
+          "desc": "현재까지의 작업사항이 일부 없어질 수 있어요."
+        },
+        "overWrite": {
+          "title": "정말 이 임시저장에\n현재 작성한 내용을 덮어쓰시겠어요?",
+          "desc": "현재 내용으로 덮어 쓴 다음에 현재 편집되고있는 임시저장으로 선택돼요."
+        }
+      }
+    },
+    "publish": {
+      "button": {
+        "publish": "게시하기",
+        "update": "수정하기"
+      },
+      "title": "게시 준비",
+      "desc": "포스티 게시 전에 아래 설정들을 완료하세요.",
+      "noTitle": "제목 없음",
+      "noDesc": "본문 없음",
+      "noGroup": "그룹 미선택",
+      "noCategory": "카테고리 미선택",
+      "noImage": "기본 썸네일을 쓰려면 그룹을 먼저 선택하셔야 합니다.",
+      "readPermission": {
+        "label": "읽기 권한",
+        "types": {
+          "public": "전체 공개",
+          "loggedInUser": "로그인유저만",
+          "admin": "관리자만"
+        }
+      },
+      "submit": "게시하기",
+      "cancel": "취소"
+    }
   }
 }

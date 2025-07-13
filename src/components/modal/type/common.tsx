@@ -161,7 +161,9 @@ export default function CommonModal({
       <Modal.Container ref={containerRef} className="relative w-[400px]">
         <Modal.Title>
           <div>{image}</div>
-          <span className="flex flex-col text-lg">{title}</span>
+          <span className="flex flex-col whitespace-pre-line text-lg">
+            {title}
+          </span>
           {hasXIcon && (
             <ButtonBase
               onClick={() => handleUnmountAnimation(handleDismiss)}

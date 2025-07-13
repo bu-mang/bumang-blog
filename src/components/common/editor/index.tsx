@@ -41,6 +41,7 @@ import Divider from "@yoopta/divider";
 import { useRef } from "react";
 import { postCreatePreSignedUrl, postUploadS3 } from "@/services/api/blog/edit";
 import { getImageDimensions } from "@/utils/getImageDimensions";
+import { useTranslations } from "next-intl";
 
 const plugins = [
   Paragraph,
@@ -222,6 +223,9 @@ const Editor = ({
   editorValue,
   onChangeEditorValue,
 }: EditorProps) => {
+  // i18n
+  const t = useTranslations("blogEdit");
+
   const selectionRef = useRef<HTMLDivElement>(null);
 
   // 블록 추가
@@ -263,7 +267,7 @@ const Editor = ({
         className="flex-1 p-2"
         editor={editor}
         plugins={plugins}
-        placeholder="type '/' to open Menu"
+        placeholder={t("contentPlaceHolder")}
         value={editorValue}
         onChange={onChangeEditorValue}
         selectionBoxRoot={selectionRef}

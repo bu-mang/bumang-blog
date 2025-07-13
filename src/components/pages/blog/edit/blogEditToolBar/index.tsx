@@ -17,6 +17,7 @@ import { TagType, GroupType, CategoryType } from "@/types";
 import DraftController from "../draftController";
 import { YooEditor, YooptaContentValue } from "@yoopta/editor";
 import { PublishDrawer } from "@/components/pages/blog/edit/blogEditToolBar/publishDrawer";
+import { useTranslations } from "next-intl";
 
 interface BlogEditorToolBarProps {
   // List
@@ -86,6 +87,9 @@ const BlogEditorToolBar = ({
   onSerialize,
   onDeserialize,
 }: BlogEditorToolBarProps) => {
+  // i18n
+  const t = useTranslations("blogEdit");
+
   /**
    * @그룹_변경_시_카테고리_전환
    */
@@ -125,7 +129,7 @@ const BlogEditorToolBar = ({
         <FillButton className={LightFillStyle} onClick={handleGoBack}>
           <div className={cn(flexBoxClass, "-translate-x-1")}>
             <ChevronLeftIcon className={LightTextStyle} />
-            <span className={LightTextStyle}>Back to List</span>
+            <span className={LightTextStyle}>{t("header.backToList")}</span>
           </div>
         </FillButton>
       </div>
@@ -139,7 +143,8 @@ const BlogEditorToolBar = ({
           // 전체 리스트
           selectingList={groupLists ?? []}
           iconType="folder"
-          placeholder={"Select Category..."}
+          placeholder={t("header.selectGroup.button")}
+          searchPlaceholder={t("header.selectGroup.inputPlaceHolder")}
         />
 
         <Divider />
@@ -151,7 +156,8 @@ const BlogEditorToolBar = ({
           // 전체 리스트
           selectingList={selectedGroup?.categories ?? []}
           iconType="menu"
-          placeholder={"Select Subject..."}
+          placeholder={t("header.selectCategory.button")}
+          searchPlaceholder={t("header.selectCategory.inputPlaceHolder")}
         />
 
         <Divider />

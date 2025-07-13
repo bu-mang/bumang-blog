@@ -30,6 +30,7 @@ import Image from "next/image";
 import { getThumbnailByGroup } from "@/utils/getThumnailByGroup";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { CreatePostDto } from "@/types/dto/blog/edit";
+import { useTranslations } from "next-intl";
 
 interface DrawerSheetProps {
   title: string;
@@ -52,6 +53,7 @@ export function PublishDrawer({
   onSerialize,
   onDisablePrevent,
 }: DrawerSheetProps) {
+  const t = useTranslations("blogEdit.publish");
   const { fillStyle: DarkFillStyle, textStyle: DarkTextStyle } =
     getButtonColorStyle("dark");
 
@@ -218,7 +220,7 @@ export function PublishDrawer({
         >
           <PublishPlaneIcon className={DarkTextStyle} />
           <span className={DarkTextStyle}>
-            {queryId ? `Update` : "Publish"}
+            {queryId ? t("button.update") : t("button.publish")}
           </span>
           {queryId && <span className="text-xs text-white">id: {queryId}</span>}
         </Button>
@@ -228,10 +230,8 @@ export function PublishDrawer({
       <DrawerContent>
         <div className="mx-auto w-full max-w-4xl">
           <DrawerHeader className="mb-6">
-            <DrawerTitle>Publication Setup</DrawerTitle>
-            <DrawerDescription>
-              Complete the settings before publishing your post.
-            </DrawerDescription>
+            <DrawerTitle>{t("title")}</DrawerTitle>
+            <DrawerDescription>{t("desc")}</DrawerDescription>
           </DrawerHeader>
 
           <div className="flex gap-4 px-4">
@@ -250,9 +250,7 @@ export function PublishDrawer({
                 />
               ) : (
                 <div className="flex flex-wrap items-center justify-center gap-1">
-                  <span>Images in Article</span>
-                  <span>or Group Selection</span>
-                  <span> are Needed</span>
+                  {t("noImage")}
                 </div>
               )}
 
@@ -293,14 +291,14 @@ export function PublishDrawer({
                     !title && "text-red-500",
                   )}
                 >
-                  {title ? title : "No Title"}
+                  {title ? title : t("noTitle")}
                 </h1>
 
                 {/* DESC */}
                 <span
                   className={cn(!previewText && "font-medium text-red-500")}
                 >
-                  {previewText ? previewText : "No Description"}
+                  {previewText ? previewText : t("noDesc")}
                 </span>
 
                 {/* GROUP/CATEGORY */}
@@ -310,7 +308,7 @@ export function PublishDrawer({
                       !selectedGroup?.label && "font-bold text-red-500",
                     )}
                   >
-                    {selectedGroup?.label ? selectedGroup.label : "No Group"}
+                    {selectedGroup?.label ? selectedGroup.label : t("noGroup")}
                   </span>
 
                   <span>•</span>
@@ -322,7 +320,7 @@ export function PublishDrawer({
                   >
                     {selectedCategory?.label
                       ? selectedCategory.label
-                      : "No Group"}
+                      : t("noCategory")}
                   </span>
                 </div>
 
@@ -342,7 +340,9 @@ export function PublishDrawer({
               </div>
 
               <div>
-                <div className="mb-1 font-medium">Read Permission</div>
+                <div className="mb-1 font-medium">
+                  {t("readPermission.label")}
+                </div>
                 <div className="relative flex overflow-hidden rounded-lg border border-gray-50">
                   <ButtonBase
                     className={cn(
@@ -351,7 +351,7 @@ export function PublishDrawer({
                     )}
                     onClick={() => setReadPermission(null)}
                   >
-                    Public
+                    {t("readPermission.types.public")}
                   </ButtonBase>
 
                   <ButtonBase
@@ -361,7 +361,7 @@ export function PublishDrawer({
                     )}
                     onClick={() => setReadPermission("user")}
                   >
-                    Logged In User
+                    {t("readPermission.types.loggedInUser")}
                   </ButtonBase>
 
                   <ButtonBase
@@ -371,7 +371,7 @@ export function PublishDrawer({
                     )}
                     onClick={() => setReadPermission("admin")}
                   >
-                    Admin only
+                    {t("readPermission.types.admin")}
                   </ButtonBase>
 
                   {/* BACKGROUND */}
@@ -389,9 +389,9 @@ export function PublishDrawer({
             </div>
           </div>
           <DrawerFooter>
-            <Button onClick={handlePublish}>Submit</Button>
+            <Button onClick={handlePublish}>{t("submit")}</Button>
             <DrawerClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline">{t("cancel")}</Button>
             </DrawerClose>
           </DrawerFooter>
         </div>

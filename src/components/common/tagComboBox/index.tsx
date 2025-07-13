@@ -23,6 +23,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import { useTranslations } from "next-intl";
 
 interface TagBoxProps {
   isOpen?: boolean;
@@ -44,6 +45,7 @@ const TagCombobox = ({
   unselectedTags,
   handleSwitchTags,
 }: TagBoxProps) => {
+  const t = useTranslations("blogEdit");
   const selectedLength = selectedTags.length;
   const totalLength = unselectedTags.length + selectedLength;
 
@@ -57,7 +59,7 @@ const TagCombobox = ({
         <div className="group flex h-10 min-w-40 cursor-pointer items-center justify-center gap-2 rounded-md transition-all hover:bg-gray-5">
           <div className="flex items-center gap-1.5 text-sm">
             <LuPlus className="text-gray-100" />
-            <span>Add Tag</span>
+            <span>{t("header.addTags.button")}</span>
           </div>
 
           {/* HoverCard */}
@@ -116,7 +118,9 @@ const TagCombobox = ({
       <PopoverContent className="w-[320px] p-0">
         {/* SELECTED_LIST */}
         <div className="flex flex-col gap-1 border-b-[1px] p-2.5">
-          <span className="text-xs text-gray-200">Selected Tags</span>
+          <span className="text-xs text-gray-200">
+            {t("header.addTags.selectedTags")}
+          </span>
           <TagWrapper className="min-h-8 items-center rounded-sm bg-gray-1 p-2">
             {selectedTags.length > 0 &&
               selectedTags.map((tagItem) => (
@@ -139,12 +143,12 @@ const TagCombobox = ({
         </div>
         <Command>
           {/* INPUT */}
-          <CommandInput />
+          <CommandInput placeholder={t("header.addTags.inputPlaceHolder")} />
 
           {/* COMMAND_LIST */}
           <CommandList>
             <CommandEmpty className="flex h-8 items-end justify-center rounded-sm text-sm text-gray-100">
-              All available tags used
+              {t("header.addTags.noTags")}
             </CommandEmpty>
 
             {/* UNSELECTED_LIST */}

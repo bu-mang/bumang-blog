@@ -387,5 +387,72 @@
         "2": " Don’t use your usual credentials — make a new one. It’s better for both of us!"
       }
     }
+  },
+  "blogEdit": {
+    "titlePlaceHolder": "Title of Your Post Here...",
+    "contentPlaceHolder": "Type '/' to open Action Menu",
+    "header": {
+      "backToList": "Back To List",
+      "selectGroup": "Select Group...",
+      "selectCategory": {
+        "button": "Select Category...",
+        "innerLabel": "Select Group First.",
+        "inputPlaceHolder": "Search Category..."
+      },
+      "addTags": {
+        "button": "Add Tags",
+        "selectedTags": "Selected Tags",
+        "noTags": "No selectable tags available.",
+        "inputPlaceHolder": "Search Tags..."
+      }
+    },
+    "draft": {
+      "button": "Draft",
+      "innerLabel": "Drafts",
+      "saving": {
+        "saving": "Saving...",
+        "authChecking": "Auth Checking...",
+        "none": ""
+      },
+      "addNewDraft": "Save as New Draft",
+      "noTitle": "No Title",
+      "noContent": "No Content",
+      "noGroup": "No Group",
+      "noCategory": "No Category",
+      "noDraft": "No Draft found.",
+      "modals": {
+        "load": {
+          "title": "Are you sure you want to load this draft?",
+          "desc": "Some of your current work may be lost."
+        },
+        "overWrite": {
+          "title": "Are you sure you want to overwrite\nthis draft with your current content?",
+          "desc": "After overwriting with the current content, this draft will be selected as the currently editing draft."
+        }
+      }
+    },
+    "publish": {
+      "button": {
+        "publish": "Publish",
+        "update": "Update"
+      },
+      "title": "Publication Setup",
+      "desc": "Complete the settings before publishing your post.",
+      "noTitle": "No Title",
+      "noDesc": "No Description",
+      "noGroup": "No Group",
+      "noCategory": "No Category",
+      "noImage": "Default Thumbnail Image is selected by Group you choose.",
+      "readPermission": {
+        "label": "Read Permission",
+        "types": {
+          "public": "Public",
+          "loggedInUser": "Logged-In User",
+          "admin": "Admin Only"
+        }
+      },
+      "submit": "Submit",
+      "cancel": "Cancel"
+    }
   }
 }

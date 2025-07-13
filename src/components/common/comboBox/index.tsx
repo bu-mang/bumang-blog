@@ -22,6 +22,7 @@ import {
 import type { CategoryType, GroupType } from "@/types";
 import { ButtonBase } from "../button";
 import { useCallback, useState } from "react";
+import { useTranslations } from "next-intl";
 
 interface ComboBoxProps<T extends (GroupType | CategoryType) | null> {
   isOpen?: boolean;
@@ -29,6 +30,7 @@ interface ComboBoxProps<T extends (GroupType | CategoryType) | null> {
 
   selectedValue: T | null;
   handleChangeSelectedValue: (v: T) => void;
+  searchPlaceholder?: string;
 
   selectingList: T[];
   placeholder?: string;
@@ -44,9 +46,11 @@ function ComboBox<T extends (GroupType | CategoryType) | null>({
 
   selectedValue,
   handleChangeSelectedValue,
+  searchPlaceholder,
 
   placeholder,
 }: ComboBoxProps<T>) {
+  const t = useTranslations("blogEdit");
   // 내부 상태 (외부에서 'open' prop이 제공되지 않을 때만 사용)
   const [internalOpen, setInternalOpen] = useState(false);
 
@@ -105,9 +109,12 @@ function ComboBox<T extends (GroupType | CategoryType) | null>({
       {/* 컨텐츠 */}
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Search Category..." className="h-9" />
+          <CommandInput
+            placeholder={searchPlaceholder || "Search"}
+            className="h-9"
+          />
           <CommandList>
-            <CommandEmpty>Select Category first.</CommandEmpty>
+            <CommandEmpty>{t("header.selectCategory.innerLabel")}</CommandEmpty>
             <CommandGroup>
               {selectingList.map((listItem) => (
                 <CommandItem

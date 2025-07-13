@@ -1,6 +1,7 @@
 "use client";
 
 import { ButtonBase } from "@/components/common";
+import CommonModal from "@/components/modal/type/common";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -14,12 +15,14 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useAuthStore } from "@/store/auth";
+import useModalStore from "@/store/modal";
 import { CategoryType, GroupType, TagType, DraftType } from "@/types";
 import { cn } from "@/utils/cn";
 import { YooptaContentValue } from "@yoopta/editor";
 import { format } from "date-fns";
 import { Plus, Save } from "lucide-react";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { IoClose } from "react-icons/io5";
 
 interface DraftControllerProps {
@@ -62,16 +65,14 @@ const DraftController = ({
   onSerialize,
   onDeserialize,
 }: DraftControllerProps) => {
+  const t = useTranslations("blogEdit.draft");
   const triggerClass = cn(
     "group flex h-10 min-w-24 cursor-pointer items-center justify-center gap-2 rounded-md px-4 transition-all hover:bg-gray-5",
     className,
   );
 
   const user = useAuthStore((state) => state.user);
-  const [status, setStatus] = useState<"Auth Checking..." | "Saving..." | "">(
-    "Auth Checking...",
-  );
-  // const [statusText, setStatusText] = useState();
+  const [status, setStatus] = useState<string>(t("status.authChecking"));
   const [drafts, setDrafts] = useState<DraftType[]>([]);
   const [currentDraftId, setCurrentDraftId] = useState<number | null>(null);
 
@@ -96,6 +97,21 @@ const DraftController = ({
       selectedTags,
     ],
   );
+
+  const openModal = useModalStore((state) => state.openModal);
+  const handleProcessPopup = async (
+    title?: string,
+    desc?: string,
+    proceedLabel?: string,
+  ) => {
+    const res = await openModal(CommonModal, {
+      title,
+      desc,
+      proceedLabel,
+    });
+
+    return res;
+  };
 
   // localStorage 키 생성
   const getDraftKey = useCallback(() => {
@@ -134,7 +150,7 @@ const DraftController = ({
   // 임시저장 추가/업데이트 (state/localStorage)
   const saveDraft = useCallback(
     (draftToSave: DraftType) => {
-      setStatus("Saving...");
+      setStatus(t("status.saving"));
       draftToSave.content = onSerialize("html");
 
       setDrafts((prevDrafts) => {
@@ -156,7 +172,7 @@ const DraftController = ({
         return newDrafts;
       });
 
-      setTimeout(() => setStatus(""), 1000);
+      setTimeout(() => setStatus(t("status.none")), 1000);
     },
     [saveDraftsToStorage, onSerialize],
   );
@@ -176,21 +192,32 @@ const DraftController = ({
   };
 
   // 임시저장 불러오기
-  const loadDraft = (draftId: number) => {
+  const loadDraft = async (draftId: number) => {
     const draft = drafts.find((d) => d.id === draftId);
     if (!draft) return;
 
+    let res: boolean | undefined = false;
+
+    if (title || content) {
+      res = await handleProcessPopup(
+        t("modals.load.title"),
+        t("modals.load.desc"),
+      );
+
+      if (!res) return;
+    }
+
     setCurrentDraftId(draftId);
 
-    let content = undefined;
+    let draftContent = undefined;
     if (typeof draft.content === "string") {
-      content = draft.content;
+      draftContent = draft.content;
     }
 
     // 에디터에 값 설정
     handleEditValues(
       draft.title,
-      content,
+      draftContent,
       draft.selectedGroup,
       draft.selectedCategory,
       draft.selectedTags,
@@ -198,7 +225,18 @@ const DraftController = ({
   };
 
   // 현재 내용으로 덮어쓰기
-  const overwriteDraft = (draftId: number) => {
+  const overwriteDraft = async (draftId: number) => {
+    let res: boolean | undefined = false;
+
+    if (currentDraftId !== draftId && (title || content)) {
+      res = await handleProcessPopup(
+        t("modals.overWrite.title"),
+        t("modals.overWrite.desc"),
+      );
+
+      if (!res) return;
+    }
+
     const updatedDraft = {
       ...currentDraft,
       id: draftId,
@@ -221,17 +259,18 @@ const DraftController = ({
     const newDraft = { ...currentDraft };
     newDraft.id = Date.now();
     saveDraft(newDraft);
+    setCurrentDraftId(newDraft.id);
     // handleEditValues("", undefined, null, null, []);
   };
 
   // 초기 로딩
   useEffect(() => {
     if (typeof window === "undefined" || !user) {
-      setStatus("Auth Checking...");
+      setStatus(t("status.authChecking"));
       return;
     }
 
-    setStatus("");
+    setStatus(t("status.none"));
     const savedDrafts = loadDraftsFromStorage();
     setDrafts(savedDrafts);
   }, [user, loadDraftsFromStorage]);
@@ -271,7 +310,7 @@ const DraftController = ({
         {/* Trigger */}
         <div className={triggerClass}>
           <div className="flex items-center gap-1.5 text-sm">
-            <span>Draft</span>
+            <span>{t("button")}</span>
           </div>
 
           <div className="flex min-w-6 items-center justify-evenly gap-1 rounded-full bg-gray-5 px-2 py-0.5 shadow-sm transition-transform group-hover:bg-gray-50">
@@ -288,8 +327,8 @@ const DraftController = ({
           <CommandList>
             {/* SELECTED_LIST */}
             <div className="flex flex-col gap-1 border-b-[1px] p-2.5">
-              <span className="text-xs text-gray-200">Drafts</span>
-              <CommandEmpty>No Draft found.</CommandEmpty>
+              <span className="text-xs text-gray-200">{t("innerLabel")}</span>
+              <CommandEmpty>{t("noDraft")}</CommandEmpty>
               {drafts.map((draft) => (
                 <CommandItem
                   className="group flex justify-between px-4 text-sm"
@@ -314,7 +353,7 @@ const DraftController = ({
                       <span className="font-medium">
                         {draft.title
                           ? `${draft.title}${draft.title.length > 10 ? "..." : ""}`
-                          : "제목없음"}
+                          : t("noTitle")}
                       </span>
 
                       {draft.id === currentDraftId && (
@@ -329,11 +368,8 @@ const DraftController = ({
                     </div>
 
                     <span className="mb-1 text-xs text-gray-200">
-                      {/* {content
-                        ? `${JSON.stringify(content)?.slice(0, 10)}${JSON.stringify(content).length > 10 ? "..." : ""}`
-                        : "내용없음"} */}
-                      {draft.selectedCategory?.label ?? "No Group"}•
-                      {draft.selectedGroup?.label ?? "No Category"}
+                      {draft.selectedCategory?.label ?? t("noGroup")}•
+                      {draft.selectedGroup?.label ?? t("noCategory")}
                     </span>
                   </div>
 
@@ -367,7 +403,7 @@ const DraftController = ({
                 onClick={startNewDraft}
               >
                 <Plus />
-                Add New Draft
+                {t("addNewDraft")}
               </Button>
             </div>
           </CommandList>
