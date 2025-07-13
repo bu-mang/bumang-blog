@@ -70,8 +70,6 @@ export default async function RootLayout({
 }: Readonly<Props>) {
   const isGridOn = false;
 
-  console.log = process.env.NODE_ENV === "production" ? () => {} : console.log;
-
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
