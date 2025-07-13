@@ -48,7 +48,7 @@ export const getAllPosts = async (
       ),
     {
       next: {
-        revalidate: process.env.NODE_ENV === "development" ? 0 : 300,
+        revalidate: process.env.NODE_ENV === "development" ? 0 : 0,
       },
     },
   );

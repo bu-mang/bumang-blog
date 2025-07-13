@@ -16,7 +16,7 @@ export const getBlogDetail = async (id: string) => {
       END_POINTS.GET_BLOG_DETAIL(id),
     {
       next: {
-        revalidate: isDev ? 0 : 300,
+        revalidate: isDev ? 0 : 0,
       },
     },
   );
