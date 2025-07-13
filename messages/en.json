@@ -459,8 +459,8 @@
     "noCategory": "No Category",
     "noGroup": "No Group",
     "noPost": {
-      "title": "No Posts are here.",
-      "desc": "Please try again in a moment."
+      "title": "Sorry, No Posts are here.",
+      "desc": "Maybe Some Error occured, or there is no post literally."
     }
   },
   "blogDetail": {
