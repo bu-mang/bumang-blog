@@ -28,12 +28,7 @@ const LoginForm = () => {
   });
 
   const t = useTranslations("login");
-
-  const router = useRouter();
   const queryClient = useQueryClient();
-  const setUserAndIsAuthenticated = useAuthStore(
-    (state) => state.setUserAndIsAuthenticated,
-  );
 
   // 유효하면 Server Action Trigger
   const onSubmit = async (formData: LoginFormType) => {
@@ -46,12 +41,6 @@ const LoginForm = () => {
       await queryClient.refetchQueries({
         queryKey: QUERY_KEY.GET_USER_PROFILE,
       });
-
-      // setUserAndIsAuthenticated({
-      //   isAuthLoading: false,
-      //   isAuthenticated: true,
-      //   user: res.user, // nickname, role, id
-      // });
 
       window.location.href = PATHNAME.HOME; // full reload
     } catch (error) {

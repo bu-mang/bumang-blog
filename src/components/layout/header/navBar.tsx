@@ -281,12 +281,12 @@ const NavBar = ({
                       linkHoverStyle,
                       item.url.startsWith(`/${paths[0]}`) && "text-black",
                     )}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      if (item.url === "/blog") {
-                        window.location.href = "/blog"; // full reload
-                      }
-                    }}
+                    // onClick={(e) => {
+                    //   e.preventDefault();
+                    //   if (item.url === "/blog") {
+                    //     window.location.href = "/blog"; // full reload
+                    //   }
+                    // }}
                   >
                     {item.title}
                   </Link>
