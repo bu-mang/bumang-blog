@@ -15,6 +15,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { QUERY_KEY } from "@/constants/api/queryKey";
 import { useAuthStore } from "@/store/auth";
 import { useTranslations } from "next-intl";
+import { PATHNAME } from "@/constants/routes";
 
 const LoginForm = () => {
   const {
@@ -30,12 +31,14 @@ const LoginForm = () => {
 
   const router = useRouter();
   const queryClient = useQueryClient();
-  const { setIsAuthenticated } = useAuthStore();
+  const setUserAndIsAuthenticated = useAuthStore(
+    (state) => state.setUserAndIsAuthenticated,
+  );
 
   // 유효하면 Server Action Trigger
   const onSubmit = async (formData: LoginFormType) => {
     try {
-      await postLogin(formData);
+      const res = await postLogin(formData);
 
       await queryClient.invalidateQueries({
         queryKey: QUERY_KEY.GET_USER_PROFILE,
@@ -44,8 +47,13 @@ const LoginForm = () => {
         queryKey: QUERY_KEY.GET_USER_PROFILE,
       });
 
-      setIsAuthenticated(true);
-      router.push("/");
+      // setUserAndIsAuthenticated({
+      //   isAuthLoading: false,
+      //   isAuthenticated: true,
+      //   user: res.user, // nickname, role, id
+      // });
+
+      window.location.href = PATHNAME.HOME; // full reload
     } catch (error) {
       if (isAxiosError(error)) {
         console.error(error);

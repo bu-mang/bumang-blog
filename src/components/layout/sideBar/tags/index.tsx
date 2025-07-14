@@ -1,4 +1,4 @@
-import { getAllTags } from "@/services/api/blog/(list)/server";
+import { getAllTags } from "@/services/api/blog/(list)";
 import TagWrapperLayer from "./tagWrapper";
 import { TagType } from "@/types";
 

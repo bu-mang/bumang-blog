@@ -1,6 +1,13 @@
 export const QUERY_KEY = {
   // POST
-  GET_POSTS: ["POSTS"],
+  GET_POSTS: (
+    pageIndex: number,
+    pageSize: number,
+    groupId?: number,
+    categoryId?: number,
+    tagIds?: string | string[],
+    postType?: string,
+  ) => ["POSTS", pageIndex, pageSize, groupId, categoryId, tagIds, postType],
 
   // USER
   GET_USER_PROFILE: ["GET_USER_PROFILE"],

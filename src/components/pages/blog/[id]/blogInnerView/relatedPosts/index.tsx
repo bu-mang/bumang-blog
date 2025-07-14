@@ -62,7 +62,7 @@ function RelatedAndAdjacentPostFallback({ isError }: { isError?: boolean }) {
 
         {[1, 2, 3].map((item) => (
           <div className="group col-span-3" key={item}>
-            <BlogItemFallback />
+            <BlogItemFallback itemViewType="thumbnail" />
           </div>
         ))}
       </div>

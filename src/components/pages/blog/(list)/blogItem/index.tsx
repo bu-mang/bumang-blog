@@ -33,44 +33,6 @@ interface BlogItemProps {
   readPermisson: null | RoleType;
 }
 
-export function BlogItemFallback() {
-  return (
-    <div className="group">
-      {/* IMAGE */}
-      <div className="relative aspect-video w-full cursor-pointer overflow-hidden rounded-8">
-        <Skeleton className="h-full w-full" />
-      </div>
-
-      {/* TITLE */}
-      <div className="mb-1 mt-2.5 flex items-center gap-1 group-hover:text-gray-500">
-        {/* <div className={titleStyle}>{title}</div> */}
-        <Skeleton className="h-6 w-full" />
-
-        <Skeleton className="h-6 w-6" />
-      </div>
-
-      {/* CONTENT */}
-      <Skeleton className="h-6 w-full" />
-
-      {/* GROUP & CATEGORY & DATE */}
-      <div className="mb-3 mt-2 flex items-center gap-2">
-        <div className="flex gap-1">
-          <Skeleton className="h-6 w-10" />
-          <Skeleton className="h-6 w-10" />
-        </div>
-        <div className="h-2 w-[1px] bg-gray-100" />
-        <Skeleton className="h-6 w-full" />
-      </div>
-
-      {/* TAGS */}
-      <div className="flex gap-1">
-        <Skeleton className="h-6 w-16" />
-        <Skeleton className="h-6 w-16" />
-      </div>
-    </div>
-  );
-}
-
 const BlogItem = ({
   title,
   previewText,
@@ -253,3 +215,70 @@ const BlogItem = ({
 };
 
 export default BlogItem;
+
+interface BlogItemFallbackProps {
+  itemViewType: "thumbnail" | "list";
+}
+
+export function BlogItemFallback({ itemViewType }: BlogItemFallbackProps) {
+  switch (itemViewType) {
+    case "thumbnail":
+      return (
+        <div className="group">
+          {/* IMAGE */}
+          <div className="relative aspect-video w-full cursor-pointer overflow-hidden rounded-8">
+            <Skeleton className="h-full w-full" />
+          </div>
+
+          {/* TITLE */}
+          <div className="mb-1 mt-2.5 flex items-center gap-1 group-hover:text-gray-500">
+            {/* <div className={titleStyle}>{title}</div> */}
+            <Skeleton className="h-6 w-full" />
+
+            <Skeleton className="h-6 w-6" />
+          </div>
+
+          {/* CONTENT */}
+          <Skeleton className="mb-3 h-6 w-full" />
+
+          {/* TAGS */}
+          <div className="flex gap-1">
+            <Skeleton className="h-6 w-16" />
+            <Skeleton className="h-6 w-16" />
+          </div>
+        </div>
+      );
+
+    case "list":
+    default:
+      return (
+        <div className="flex items-center justify-between gap-6 py-8 lg:gap-28">
+          <div className="flex flex-1 flex-col">
+            {/* TITLE */}
+            <div className="mb-2 mt-2.5 flex items-center">
+              <Skeleton className="h-8 w-full max-w-96" />
+            </div>
+
+            {/* CONTENT */}
+            <div className="flex flex-col gap-2">
+              <Skeleton className="h-5 w-full max-w-2xl" />
+              <Skeleton className="h-5 w-full max-w-xl" />
+            </div>
+
+            <div className="mt-4 flex items-center gap-5">
+              <div className="flex gap-1">
+                <Skeleton className="h-6 w-12" />
+                <Skeleton className="h-6 w-12" />
+              </div>
+              <Skeleton className="h-6 w-20" />
+            </div>
+          </div>
+
+          {/* IMAGE */}
+          <div className="relative h-[135px] w-full max-w-[240px] shrink-0 cursor-pointer overflow-hidden rounded-8">
+            <Skeleton className="h-full w-full" />
+          </div>
+        </div>
+      );
+  }
+}

@@ -1,5 +1,5 @@
 import { LoginFormType } from "@/types/schemas";
-import { UserResponseType } from "@/types/user";
+import { UserResponseType, UserType } from "@/types/user";
 import { END_POINTS } from "@/constants/api/endpoints";
 import ClientInstance from "@/services/lib/axios";
 
@@ -7,7 +7,11 @@ import ClientInstance from "@/services/lib/axios";
 export async function postLogin(formData: LoginFormType) {
   const { username, password } = formData;
 
-  const res = await ClientInstance.post(END_POINTS.POST_LOGIN, {
+  const res = await ClientInstance.post<{
+    accessToken: string;
+    refreshToken: string;
+    user: UserType;
+  }>(END_POINTS.POST_LOGIN, {
     email: username,
     password,
   });

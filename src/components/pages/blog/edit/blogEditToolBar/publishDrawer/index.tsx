@@ -73,7 +73,7 @@ export function PublishDrawer({
     mutationFn: postCreatePost,
     onSuccess: () => {
       router.replace(PATHNAME.BLOG);
-      router.refresh();
+      setTimeout(() => router.refresh(), 500);
     },
     onError: (error) => {
       if (!isAxiosError(error)) return;
@@ -198,13 +198,6 @@ export function PublishDrawer({
     setThumbnails(getImages());
     setPreviewText((onSerialize("plainText") ?? "").slice(0, 200));
   }, [open, onSerialize, getImages]);
-
-  // parsing해서 HTML로.
-  // const getDeserializeHTML = () => {
-  //   const content = html.deserialize(editor, serializedEditorValue);
-
-  //   editor.setEditorValue(content);
-  // };
 
   return (
     <Drawer

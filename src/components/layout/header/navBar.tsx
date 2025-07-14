@@ -123,7 +123,7 @@ const NavBar = ({
   const logoutMutation = useMutation({
     mutationFn: postLogout,
     onSuccess: () => {
-      router.push(PATHNAME.HOME);
+      window.location.href = PATHNAME.HOME; // full reload
       setUserAndIsAuthenticated({
         isAuthenticated: false,
         isAuthLoading: false,
@@ -281,6 +281,12 @@ const NavBar = ({
                       linkHoverStyle,
                       item.url.startsWith(`/${paths[0]}`) && "text-black",
                     )}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (item.url === "/blog") {
+                        window.location.href = "/blog"; // full reload
+                      }
+                    }}
                   >
                     {item.title}
                   </Link>
@@ -293,7 +299,6 @@ const NavBar = ({
               {currentRoute?.sub?.map((subItem) => (
                 <Link
                   key={subItem.title}
-                  // href={combinePaths(subItem.url, subItem.parents)}
                   href={subItem?.parents?.[0] + "?type=" + subItem.url}
                   className={navStyleManager(subItem)}
                 >

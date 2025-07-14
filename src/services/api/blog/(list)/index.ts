@@ -1,4 +1,5 @@
 import { END_POINTS } from "@/constants/api/endpoints";
+import ClientInstance from "@/services/lib/axios";
 import serverFetch from "@/services/lib/serverFetch";
 import { TagType, PaginatedResponseDto, PostListItemType } from "@/types";
 import { GroupType } from "@/types/category";
@@ -54,4 +55,26 @@ export const getAllPosts = async (
   );
 
   return res;
+};
+
+export const getAllPostAuthenticated = async (
+  pageIndex: number,
+  pageSize: number,
+  groupId?: number,
+  categoryId?: number,
+  tagIds?: string | string[],
+  type?: string,
+) => {
+  const res = await ClientInstance.get<PaginatedResponseDto<PostListItemType>>(
+    END_POINTS.GET_ALL_POSTS_AUTHENTICATED(
+      pageIndex,
+      pageSize,
+      groupId,
+      categoryId,
+      tagIds,
+      type,
+    ),
+  );
+
+  return res.data;
 };

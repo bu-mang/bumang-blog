@@ -1,8 +1,5 @@
 import BlogEditInner from "@/components/pages/blog/edit/EditInner";
-import {
-  getAllTags,
-  getGroupedCategoryTree,
-} from "@/services/api/blog/(list)/server";
+import { getAllTags, getGroupedCategoryTree } from "@/services/api/blog/(list)";
 import { GroupType, TagType } from "@/types";
 import { Metadata } from "next";
 

@@ -18,6 +18,11 @@ interface PagenationProps {
   pageSize: number;
 }
 
+// TODO: 마크업
+export const PagenationFallback = () => {
+  return <></>;
+};
+
 const Pagenation = ({ totalCount, currentPage, pageSize }: PagenationProps) => {
   let isEllipsisRightOn = true;
   let isEllipsisLeftOn = true;

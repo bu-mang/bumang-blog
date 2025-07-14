@@ -1,10 +1,8 @@
-import { SectionLabel, Pagenation } from "@/components/common";
-import { BlogItem } from "@/components/pages";
-import { getAllPosts } from "@/services/api/blog/(list)/server";
+import BlogInner from "@/components/pages/blog/(list)";
+import { getAllPosts } from "@/services/api/blog/(list)";
 import { PaginatedResponseDto, PostListItemType } from "@/types";
-import { cn } from "@/utils/cn";
-import { getTranslations } from "next-intl/server";
-import { LuCircleAlert } from "react-icons/lu";
+
+import { cookies } from "next/headers";
 
 interface PageProps {
   params: { category: string };
@@ -12,8 +10,9 @@ interface PageProps {
 }
 
 export default async function Blog({ searchParams }: PageProps) {
-  const t = await getTranslations("blog");
   let allPosts: null | PaginatedResponseDto<PostListItemType> = null;
+
+  // QUERIES
   let itemViewType: "list" | "thumbnail" =
     searchParams.view === "list" ? "list" : "thumbnail";
   const groupId =
@@ -28,96 +27,39 @@ export default async function Blog({ searchParams }: PageProps) {
     typeof searchParams.type === "string" ? searchParams.type : undefined;
   const tagIds = searchParams.tagIds;
 
+  console.log("👀1");
   let pageIndex = searchParams.pageIndex ? Number(searchParams.pageIndex) : 1;
   let pageSize = 12;
 
   try {
-    allPosts = await getAllPosts(
-      pageIndex,
-      pageSize,
-      groupId,
-      categoryId,
-      tagIds,
-      postType,
-    );
+    const accessToken = cookies().get("accessToken")?.value;
+    console.log("👀1 accessToken", accessToken);
+
+    if (!accessToken) {
+      allPosts = await getAllPosts(
+        pageIndex,
+        pageSize,
+        groupId,
+        categoryId,
+        tagIds,
+        postType,
+      );
+    }
+    console.log("👀2 allPosts", allPosts);
   } catch (err) {
-    console.log(allPosts, err, "allPost error");
+    console.log(allPosts, err, "allPost error 👀3 ");
   }
 
   return (
-    <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw]">
-      <SectionLabel
-        isTag={typeof tagIds !== "undefined"}
-        title={
-          allPosts?.subject ||
-          postType ||
-          (allPosts?.totalCount ? "All" : "unknown")
-        }
-        amount={allPosts?.totalCount ?? 0}
-        itemViewType={itemViewType}
-      />
-      <div
-        className={cn(
-          "col-span-3",
-          itemViewType === "thumbnail" &&
-            allPosts &&
-            "grid grid-cols-3 gap-x-[1.5vw] gap-y-[4.5vw]",
-        )}
-      >
-        {/* BLOGITEMS */}
-        {allPosts?.data && allPosts?.data.length ? (
-          allPosts?.data?.map(
-            ({
-              id,
-              title,
-              previewText,
-              createdAt,
-              categoryLabel,
-              groupLabel,
-              tags,
-              author,
-              thumbnailUrl,
-              readPermisson,
-              score,
-            }) => (
-              <BlogItem
-                key={id}
-                id={id}
-                title={title}
-                previewText={previewText}
-                author={author}
-                // category & group
-                groupLabel={groupLabel}
-                categoryLabel={categoryLabel}
-                tags={tags}
-                date={createdAt}
-                thumbnailUrl={thumbnailUrl}
-                readPermisson={readPermisson}
-                itemViewType={itemViewType}
-              />
-            ),
-          )
-        ) : (
-          <div
-            className={
-              "col-span-4 mb-5 flex h-80 flex-col items-center justify-center py-10 text-gray-200"
-            }
-          >
-            <LuCircleAlert size={24} className="mb-1" />
-            <span className="text-lg font-semibold">{t("noPost.title")}</span>
-            <span>{t("noPost.desc")}</span>
-          </div>
-        )}
-
-        {/* PAGE-NATION */}
-        <div className="col-span-3">
-          <Pagenation
-            pageSize={allPosts?.pageSize ?? 12}
-            totalCount={allPosts?.totalCount ?? 1}
-            currentPage={allPosts?.currentPage ?? 1}
-          />
-        </div>
-      </div>
-    </div>
+    <BlogInner
+      allPosts={allPosts}
+      itemViewType={itemViewType}
+      groupId={groupId}
+      categoryId={categoryId}
+      postType={postType}
+      tagIds={tagIds}
+      pageIndex={pageIndex}
+      pageSize={pageSize}
+    />
   );
 }

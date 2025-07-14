@@ -43,15 +43,3 @@ export const useAuthStore = create<AuthState & AuthAction>()(
       }),
   })),
 );
-
-// export const useAuthStore = create<AuthState>()(
-//   persist(
-//     (set) => ({
-//       accessToken: null,
-//       setToken: (accessToken) => set({ accessToken }),
-//     }),
-//     {
-//       name: "accessToken", // localStorage에 저장될 key 이름
-//     },
-//   ),
-// );
