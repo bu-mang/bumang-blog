@@ -16,6 +16,7 @@ import { useRouter } from "@/i18n/navigation";
 import { MouseEventHandler } from "react";
 import { LuLockKeyhole, LuMoveRight } from "react-icons/lu";
 import { toast } from "react-toastify";
+import { useTranslations } from "next-intl";
 
 interface BlogItemProps {
   id: number;
@@ -88,25 +89,24 @@ const BlogItem = ({
   const contentStyle = "line-clamp-1 flex-1 flex-nowrap text-sm text-gray-400";
   const tagWrapperStyle = "flex flex-wrap gap-1 mt-1.5";
   const formattedDate = format(date, "yyyy. MM. dd.");
+  const t = useTranslations("alert");
 
   // 권한 체크 및 네비게이팅 막기
-  const isAuthorized = useCheckPermission(readPermisson);
+  const canRead = useCheckPermission(readPermisson);
   const router = useRouter();
 
   const handleNavigate: MouseEventHandler<HTMLAnchorElement> = (e) => {
-    if (!isAuthorized) {
+    if (!canRead) {
       e.preventDefault();
 
-      // toast.error("로그인이 필요합니다.");
-      // toast.error("Login Needed");
       toast(CustomNotification, {
         data: {
-          title: "Oh Snap! It's Private.",
-          content: "You need Login.",
+          title: t("noPermission.title"),
+          content: t("noPermission.desc"),
           onClick: () => router.push(PATHNAME.LOGIN),
-          buttonText: "Go to Login",
+          buttonText: t("noPermission.buttonText"),
         },
-        ariaLabel: "You need Login.",
+        ariaLabel: t("noPermission.ariaLabel"),
         autoClose: 5000, // false에서 숫자로 변경
       });
       return;
@@ -223,8 +223,13 @@ const BlogItem = ({
               </ButtonBase>
             </div>
             <div className="h-2 w-[1px] bg-gray-100" />
-            <span className="truncate text-xs font-semibold text-gray-100">
-              {formattedDate}
+            <span
+              className={cn(
+                "truncate text-xs font-semibold text-gray-100",
+                readPermisson === "user" && "text-red-400",
+              )}
+            >
+              {readPermisson === "user" ? `deleted in 24h` : formattedDate}
             </span>
           </div>
 

@@ -474,5 +474,13 @@
       "title": "No Related Post for This Article.",
       "desc": "More content coming soon from Bumang."
     }
+  },
+  "alert": {
+    "noPermission": {
+      "title": "Oh Snap! It's Private.",
+      "desc": "You need Login.",
+      "buttonText": "Go to Login",
+      "ariaLabel": "You need Login."
+    }
   }
 }

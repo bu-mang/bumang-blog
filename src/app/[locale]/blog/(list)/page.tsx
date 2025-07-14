@@ -4,7 +4,8 @@ import { BlogItem } from "@/components/pages";
 import { getAllPosts } from "@/services/api/blog/(list)/server";
 import { PaginatedResponseDto, PostListItemType } from "@/types";
 import { cn } from "@/utils/cn";
-import { LuCircleAlert, LuFileWarning } from "react-icons/lu";
+import { useTranslations } from "next-intl";
+import { LuCircleAlert } from "react-icons/lu";
 
 interface PageProps {
   params: { category: string };
@@ -12,6 +13,7 @@ interface PageProps {
 }
 
 export default async function Blog({ searchParams }: PageProps) {
+  const t = useTranslations("blog");
   let allPosts: null | PaginatedResponseDto<PostListItemType> = null;
   let itemViewType: "list" | "thumbnail" =
     searchParams.view === "list" ? "list" : "thumbnail";
@@ -103,8 +105,8 @@ export default async function Blog({ searchParams }: PageProps) {
             }
           >
             <LuCircleAlert size={24} className="mb-1" />
-            <span className="text-lg font-semibold">No Posts are here.</span>
-            <span>Please try again in a moment.</span>
+            <span className="text-lg font-semibold">{t("noPost.title")}</span>
+            <span>{t("noPost.desc")}</span>
           </div>
         )}
 
