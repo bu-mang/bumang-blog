@@ -1,10 +1,9 @@
 import { SectionLabel, Pagenation } from "@/components/common";
-import { TooltipDemo } from "@/components/layout/header/tooltip";
 import { BlogItem } from "@/components/pages";
 import { getAllPosts } from "@/services/api/blog/(list)/server";
 import { PaginatedResponseDto, PostListItemType } from "@/types";
 import { cn } from "@/utils/cn";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { LuCircleAlert } from "react-icons/lu";
 
 interface PageProps {
@@ -13,7 +12,7 @@ interface PageProps {
 }
 
 export default async function Blog({ searchParams }: PageProps) {
-  const t = useTranslations("blog");
+  const t = await getTranslations("blog");
   let allPosts: null | PaginatedResponseDto<PostListItemType> = null;
   let itemViewType: "list" | "thumbnail" =
     searchParams.view === "list" ? "list" : "thumbnail";
