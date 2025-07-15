@@ -393,7 +393,10 @@
     "contentPlaceHolder": "Type '/' to open Action Menu",
     "header": {
       "backToList": "Back To List",
-      "selectGroup": "Select Group...",
+      "selectGroup": {
+        "button": "Select Group",
+        "inputPlaceHolder": "Search Group..."
+      },
       "selectCategory": {
         "button": "Select Category...",
         "innerLabel": "Select Group First.",
