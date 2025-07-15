@@ -59,7 +59,10 @@ export default function BlogInner({
     />
   ) : (
     <ErrorBoundary fallback={<></>}>
-      <Suspense fallback={<BlogListFallback itemViewType={itemViewType} />}>
+      <Suspense
+        clientOnly
+        fallback={<BlogListFallback itemViewType={itemViewType} />}
+      >
         <BlogListViewCSR
           itemViewType={itemViewType}
           groupId={groupId}
@@ -77,13 +80,8 @@ export default function BlogInner({
 function BlogListViewSSR({
   allPosts,
   itemViewType,
-  groupId,
-  categoryId,
   postType,
   tagIds,
-
-  pageIndex,
-  pageSize,
 }: BlogListViewProps) {
   const t = useTranslations("blog");
 
