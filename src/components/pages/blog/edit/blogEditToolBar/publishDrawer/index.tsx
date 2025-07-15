@@ -83,6 +83,22 @@ export function PublishDrawer({
     },
   });
 
+  const handleChangeReadPermission = (role: "admin" | "user" | null) => {
+    if (!user) return;
+    if (user?.role === "user") {
+      setReadPermission("user");
+      return;
+    }
+
+    setReadPermission(role);
+  };
+
+  useEffect(() => {
+    if (user?.role === "user") {
+      setReadPermission("user");
+    }
+  }, [user]);
+
   const updateMutation = useMutation({
     mutationFn: ({ queryId, ...rest }: CreatePostDto & { queryId: string }) =>
       patchUpdatePost(queryId, rest),
@@ -333,16 +349,22 @@ export function PublishDrawer({
               </div>
 
               <div>
-                <div className="mb-1 font-medium">
+                <div className="mb-1 flex items-center gap-2 font-medium">
                   {t("readPermission.label")}
+                  {user?.role === "user" && (
+                    <span className="text-xs text-gray-300">
+                      {t("readPermission.userOnly")}
+                    </span>
+                  )}
                 </div>
                 <div className="relative flex overflow-hidden rounded-lg border border-gray-50">
                   <ButtonBase
                     className={cn(
                       "flex-1 py-2 transition-all active:scale-100",
                       readPermission === null && "text-white",
+                      user?.role === "user" && "opacity-30",
                     )}
-                    onClick={() => setReadPermission(null)}
+                    onClick={() => handleChangeReadPermission(null)}
                   >
                     {t("readPermission.types.public")}
                   </ButtonBase>
@@ -352,7 +374,7 @@ export function PublishDrawer({
                       "flex-1 py-2 transition-all active:scale-100",
                       readPermission === "user" && "text-white",
                     )}
-                    onClick={() => setReadPermission("user")}
+                    onClick={() => handleChangeReadPermission("user")}
                   >
                     {t("readPermission.types.loggedInUser")}
                   </ButtonBase>
@@ -361,8 +383,9 @@ export function PublishDrawer({
                     className={cn(
                       "flex-1 py-2 transition-all active:scale-100",
                       readPermission === "admin" && "text-white",
+                      user?.role === "user" && "opacity-30",
                     )}
-                    onClick={() => setReadPermission("admin")}
+                    onClick={() => handleChangeReadPermission("admin")}
                   >
                     {t("readPermission.types.admin")}
                   </ButtonBase>

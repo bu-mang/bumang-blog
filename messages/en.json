@@ -409,7 +409,7 @@
     "draft": {
       "button": "Draft",
       "innerLabel": "Drafts",
-      "saving": {
+      "status": {
         "saving": "Saving...",
         "authChecking": "Auth Checking...",
         "none": ""
@@ -449,7 +449,8 @@
           "public": "Public",
           "loggedInUser": "Logged-In User",
           "admin": "Admin Only"
-        }
+        },
+        "userOnly": "A user can only create read-only posts."
       },
       "submit": "Submit",
       "cancel": "Cancel"
