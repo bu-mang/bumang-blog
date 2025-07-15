@@ -481,8 +481,8 @@
   },
   "alert": {
     "noPermission": {
-      "title": "Oh Snap! It's Private.",
-      "desc": "You need Login.",
+      "title": "Oh Snap! Autorization Failed.",
+      "desc": "Only Admin can read it.",
       "buttonText": "Go to Login",
       "ariaLabel": "You need Login."
     }
