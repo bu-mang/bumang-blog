@@ -45,6 +45,7 @@ const Group = ({
           tagIds: null,
         },
       )}
+      prefetch={false}
       className={
         "flex items-center gap-0.5 rounded-lg px-2 py-1 text-xs font-medium text-gray-200"
       }

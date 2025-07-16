@@ -30,6 +30,7 @@ const Category = ({
           tagIds: null,
         },
       )}
+      prefetch={false}
       className={cn(
         "group flex items-center justify-between rounded-lg px-2 py-0.5 font-normal text-gray-700 transition-all",
         categoryId === currentCategoryId && "font-bold underline",
