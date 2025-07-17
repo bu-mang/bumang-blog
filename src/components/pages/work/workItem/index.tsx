@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { ButtonBase } from "@/components/common/button";
 import {
   MutableRefObject,
   useEffect,
@@ -12,7 +11,7 @@ import {
 import { cn } from "@/utils/cn";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { useInteractiveStore } from "@/store/background";
 import { LuMoveRight } from "react-icons/lu";
 
@@ -260,6 +259,22 @@ const WorkItem = ({
     // eslint-disable-next-line
   }, [isIntersecting]);
 
+  // 언마운트 애니메이션
+  const router = useRouter();
+  const handleUnmount = (
+    e: React.MouseEvent,
+    cb: (args?: [...any]) => void,
+  ) => {
+    e.preventDefault();
+    setBackgroundImage(null);
+    const timeout = setTimeout(() => router.push(href ?? "#"), 300);
+    cb();
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  };
+
   if (nullItem) {
     return (
       <div
@@ -303,7 +318,6 @@ const WorkItem = ({
         <div className="flex items-center gap-3">
           <span className="font-bold">{title}</span>
           <div className="h-2 w-[1px] bg-white" />
-          {/* <span className="text-sm">Discover</span> */}
           <span className="text-sm">To Be Updated</span>
         </div>
         <LuMoveRight className="ml-1.5" size={16} />
@@ -312,7 +326,7 @@ const WorkItem = ({
       <Link
         href={href ?? "#"}
         ref={cardRef as MutableRefObject<HTMLAnchorElement>}
-        onClick={onClick ? onClick : () => {}}
+        onClick={onClick ? (e) => handleUnmount(e, onClick) : () => {}}
         className="relative col-start-2 col-end-12 cursor-none"
       >
         {/* CARD TILT */}

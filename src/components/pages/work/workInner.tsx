@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useInteractiveStore } from "@/store/background";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { PATHNAME } from "@/constants/routes";
 
 gsap.registerPlugin(ScrollTrigger); // 등록되어있지 않으면 등록.
 
@@ -63,7 +64,7 @@ export function WorkInnerInteractive() {
         title="Bumang Route53"
         imgSrc="/works/bumangRoute53.png"
         imgAlt="BumangRoute53"
-        href="#"
+        href={PATHNAME.WORK_DETAIL.BUMANG_ROUTE53}
       >
         {/*  */}
       </WorkItem>
@@ -73,7 +74,7 @@ export function WorkInnerInteractive() {
         title="SeaPearl"
         imgSrc="/works/seaPearl.png"
         imgAlt="SeaPearl"
-        href="#"
+        href={PATHNAME.WORK_DETAIL.SEA_PEARL}
       >
         <Sticker
           imgUrl="/works/seaPearlSticker.png"
@@ -86,7 +87,7 @@ export function WorkInnerInteractive() {
         title="Anttime Swap"
         imgSrc="/works/anttimeSwap.png"
         imgAlt=""
-        href="#"
+        href={PATHNAME.WORK_DETAIL.ANTTIME_SWAP}
       >
         <Sticker
           imgUrl="/works/anttimeSwapSticker.png"
@@ -99,7 +100,7 @@ export function WorkInnerInteractive() {
         title="Anttime App"
         imgSrc="/works/anttimeApp.png"
         imgAlt=""
-        href="#"
+        href={PATHNAME.WORK_DETAIL.ANTTIME_APP}
       >
         <Sticker
           imgUrl="/works/anttimeAppSticker.png"
@@ -112,7 +113,7 @@ export function WorkInnerInteractive() {
         title="Percent Hotel"
         imgSrc="/works/percentHotel.png"
         imgAlt=""
-        href="#"
+        href={PATHNAME.WORK_DETAIL.PERCENT_HOTEL}
       >
         {/*  */}
       </WorkItem>
