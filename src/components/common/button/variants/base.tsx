@@ -10,6 +10,7 @@ const ButtonBase = forwardRef<HTMLButtonElement, ButtonProps>(
       onClick,
       children,
       className = "",
+      defaultShrink = true,
       ...props
     }: ButtonProps,
     ref,
@@ -18,7 +19,7 @@ const ButtonBase = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         onClick={onClick}
-        className={cn("active:scale-95", className)}
+        className={cn(defaultShrink && "active:scale-95", className)}
         disabled={disabled || isLoading}
         {...props}
       >
