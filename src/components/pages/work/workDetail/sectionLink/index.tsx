@@ -12,7 +12,7 @@ export default function SectionLink({ title, desc, href }: SectionLinkProps) {
     if (!href) return;
 
     const element = document.querySelector(href);
-    const OFFSET = 80;
+    const OFFSET = 160;
 
     if (element) {
       const elementPosition = element.getBoundingClientRect().top;

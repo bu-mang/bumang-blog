@@ -81,12 +81,12 @@ function SectionView({ id, content, order }: SectionViewProps) {
             <ul className="ml-6 mt-3 flex flex-col gap-5">
               {content.list.map((item) => {
                 return (
-                  <li>
+                  <li key={item.subtitle}>
                     <div className="mb-3 font-semibold">{item.subtitle}</div>
 
                     <ul className="ml-6 flex flex-col gap-3 text-gray-500">
                       {item.desc.map((desc) => (
-                        <li className="flex gap-1">
+                        <li key={desc} className="flex gap-1">
                           <CornerDownRight
                             size={16}
                             className="shrink-0 translate-y-0.5"
@@ -101,7 +101,7 @@ function SectionView({ id, content, order }: SectionViewProps) {
             </ul>
           </div>
 
-          <div className="relative min-h-96 bg-gray-5">
+          <div className="relative min-h-96 overflow-hidden rounded-2xl bg-gray-5">
             <Image
               src={content.image}
               fill
@@ -112,7 +112,7 @@ function SectionView({ id, content, order }: SectionViewProps) {
         </>
       ) : (
         <>
-          <div className="relative min-h-96 bg-gray-5">
+          <div className="relative min-h-96 overflow-hidden rounded-2xl bg-gray-5">
             <Image
               src={content.image}
               fill
@@ -133,12 +133,12 @@ function SectionView({ id, content, order }: SectionViewProps) {
             <ul className="ml-6 mt-3 flex flex-col gap-5">
               {content.list.map((item) => {
                 return (
-                  <li>
+                  <li key={item.subtitle}>
                     <div className="mb-3 font-semibold">{item.subtitle}</div>
 
                     <ul className="ml-6 flex flex-col gap-3 text-gray-500">
                       {item.desc.map((desc) => (
-                        <li className="flex gap-1">
+                        <li key={desc} className="flex gap-1">
                           <CornerDownRight
                             size={16}
                             className="shrink-0 translate-y-0.5"
@@ -347,13 +347,18 @@ export default function Work() {
       {/* Sections */}
       <div className="mt-20 w-full">
         {PERCENT_HOTEL_KO.map((item, index) => (
-          <SectionView id={item.id} content={item} order={index + 1} />
+          <SectionView
+            key={item.id}
+            id={item.id}
+            content={item}
+            order={index + 1}
+          />
         ))}
       </div>
 
       {/* TODO: RELATED WORKS */}
       <div className="flex w-full flex-col items-center justify-center border-t pt-10">
-        <span className="text-lg font-medium text-gray-400">
+        <span className="text-2xl font-medium text-gray-400">
           Thanks for Reading
         </span>
         <Link
