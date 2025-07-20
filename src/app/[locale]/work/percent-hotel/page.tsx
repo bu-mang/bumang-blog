@@ -4,19 +4,30 @@ import Summary from "@/components/pages/work/workDetail/summary";
 import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
 import { cn } from "@/utils/cn";
 import {
-  BadgeCheckIcon,
   CalendarRange,
   Link as LinkIcon,
   Link2,
   LocateFixed,
   UsersRound,
   Wrench,
+  ArrowLeft,
+  CornerDownRight,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { FaGithub } from "react-icons/fa";
 
 import { Link } from "@/i18n/navigation";
 import SectionLink from "@/components/pages/work/workDetail/sectionLink";
+import { PATHNAME } from "@/constants/routes";
+import {
+  PERCENT_HOTEL_KO,
+  SECTION_MAIN_PAGE,
+  SECTION_PUSH_NOTIFICATION_PAGE,
+  SECTION_SELLER_REGISTER_PAGE,
+  SECTION_SEO,
+  SECTION_TEAM_LEADER,
+} from "./script";
+import Image from "next/image";
 
 interface TitleBadgeProps {
   children: React.ReactNode;
@@ -35,13 +46,119 @@ function TitleBadge({ children, className }: TitleBadgeProps) {
   );
 }
 
-export default function Work() {
-  const SECTION_MAIN_PAGE = "SECTION_MAIN_PAGE";
-  const SECTION_SELLER_REGISTER_PAGE = "SECTION_SELLER_REGISTER_PAGE";
-  const SECTION_PUSH_NOTIFICATION_PAGE = "SECTION_PUSH_NOTIFICATION_PAGE";
-  const SECTION_SEO = "SECTION_SEO";
-  const SECTION_TEAM_LEADER = "SECTION_TEAM_LEADER";
+type List = { subtitle: string; desc: string[]; list?: List[] }[];
+type ContentType = {
+  title: string;
+  titleDesc: string;
+  image: string;
 
+  list: List;
+};
+interface SectionViewProps {
+  id: string;
+  content: ContentType;
+  order: number;
+}
+
+function SectionView({ id, content, order }: SectionViewProps) {
+  return (
+    <section
+      id={id}
+      className="mb-80 grid min-h-40 w-full grid-cols-2 gap-[1.5vw]"
+    >
+      {/* LEFT (TEXTS) */}
+      {order % 2 === 1 ? (
+        <>
+          <div>
+            {/* MAIN-TITLE */}
+            <div className="mb-5 flex items-baseline gap-2">
+              <h2 className="text-4xl font-semibold">{content.title}</h2>
+              <h4 className="flex items-center gap-1 text-sm text-gray-400">
+                {content.titleDesc}
+              </h4>
+            </div>
+
+            <ul className="ml-6 mt-3 flex flex-col gap-5">
+              {content.list.map((item) => {
+                return (
+                  <li>
+                    <div className="mb-3 font-semibold">{item.subtitle}</div>
+
+                    <ul className="ml-6 flex flex-col gap-3 text-gray-500">
+                      {item.desc.map((desc) => (
+                        <li className="flex gap-1">
+                          <CornerDownRight
+                            size={16}
+                            className="shrink-0 translate-y-0.5"
+                          />
+                          {desc}
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+
+          <div className="bg-gray-5">
+            <Image
+              src={content.image}
+              fill
+              alt={`${content.title}_image`}
+              objectFit="cover"
+            />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="bg-gray-5">
+            <Image
+              src={content.image}
+              fill
+              alt={`${content.title}_image`}
+              objectFit="cover"
+            />
+          </div>
+
+          <div>
+            {/* MAIN-TITLE */}
+            <div className="mb-5 flex items-baseline gap-2">
+              <h2 className="text-4xl font-semibold">{content.title}</h2>
+              <h4 className="flex items-center gap-1 text-sm text-gray-400">
+                {content.titleDesc}
+              </h4>
+            </div>
+
+            <ul className="ml-6 mt-3 flex flex-col gap-5">
+              {content.list.map((item) => {
+                return (
+                  <li>
+                    <div className="mb-3 font-semibold">{item.subtitle}</div>
+
+                    <ul className="ml-6 flex flex-col gap-3 text-gray-500">
+                      {item.desc.map((desc) => (
+                        <li className="flex gap-1">
+                          <CornerDownRight
+                            size={16}
+                            className="shrink-0 translate-y-0.5"
+                          />
+                          {desc}
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </>
+      )}
+    </section>
+  );
+}
+
+export default function Work() {
   return (
     <main
       className={cn(
@@ -50,6 +167,14 @@ export default function Work() {
       )}
     >
       <section className="grid w-full grid-cols-8 gap-[1.5vw]">
+        <Link
+          className="group relative z-10 col-span-4 flex translate-y-4 items-center gap-2 text-gray-200 transition-all hover:text-gray-500"
+          href={PATHNAME.WORK}
+        >
+          <ArrowLeft size={14} className="group-hover:animate-arrow-back" />
+          <span>Back To Work List</span>
+        </Link>
+
         {/* TITLE */}
         <div className="col-span-8 text-9xl font-semibold tracking-tighter">
           Percent Hotel
@@ -220,26 +345,22 @@ export default function Work() {
       <div className="mt-10 grid h-[600px] w-screen grid-cols-8 gap-[1.5vw] bg-gray-10" />
 
       {/* Sections */}
-      <div>
-        <section id={SECTION_MAIN_PAGE} className="h-[200px]">
-          가
-        </section>
+      <div className="mt-20 w-full">
+        {PERCENT_HOTEL_KO.map((item, index) => (
+          <SectionView id={item.id} content={item} order={index + 1} />
+        ))}
+      </div>
 
-        <section id={SECTION_SELLER_REGISTER_PAGE} className="h-[200px]">
-          나
-        </section>
-
-        <section id={SECTION_PUSH_NOTIFICATION_PAGE} className="h-[200px]">
-          다
-        </section>
-
-        <section id={SECTION_SEO} className="h-[200px]">
-          라
-        </section>
-
-        <section id={SECTION_TEAM_LEADER} className="h-[200px]">
-          마
-        </section>
+      {/* TODO: RELATED WORKS */}
+      <div className="flex w-full flex-col items-center justify-center border-t pt-10">
+        <span className="text-lg text-gray-400">Thanks for Reading</span>
+        <Link
+          className="group relative z-10 col-span-4 flex translate-y-4 items-center gap-2 text-gray-200 transition-all hover:text-gray-500"
+          href={PATHNAME.WORK}
+        >
+          <ArrowLeft size={14} className="group-hover:animate-arrow-back" />
+          <span>Back To Work List</span>
+        </Link>
       </div>
     </main>
   );
