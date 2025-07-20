@@ -101,7 +101,7 @@ function SectionView({ id, content, order }: SectionViewProps) {
             </ul>
           </div>
 
-          <div className="bg-gray-5">
+          <div className="relative min-h-96 bg-gray-5">
             <Image
               src={content.image}
               fill
@@ -112,7 +112,7 @@ function SectionView({ id, content, order }: SectionViewProps) {
         </>
       ) : (
         <>
-          <div className="bg-gray-5">
+          <div className="relative min-h-96 bg-gray-5">
             <Image
               src={content.image}
               fill
@@ -353,7 +353,9 @@ export default function Work() {
 
       {/* TODO: RELATED WORKS */}
       <div className="flex w-full flex-col items-center justify-center border-t pt-10">
-        <span className="text-lg text-gray-400">Thanks for Reading</span>
+        <span className="text-lg font-medium text-gray-400">
+          Thanks for Reading
+        </span>
         <Link
           className="group relative z-10 col-span-4 flex translate-y-4 items-center gap-2 text-gray-200 transition-all hover:text-gray-500"
           href={PATHNAME.WORK}
