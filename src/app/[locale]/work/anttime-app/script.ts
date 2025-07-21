@@ -1,8 +1,8 @@
-export const SECTION_MAIN_PAGE = "SECTION_MAIN_PAGE";
-export const SECTION_SELLER_REGISTER_PAGE = "SECTION_SELLER_REGISTER_PAGE";
-export const SECTION_PUSH_NOTIFICATION_PAGE = "SECTION_PUSH_NOTIFICATION_PAGE";
-export const SECTION_SEO = "SECTION_SEO";
-export const SECTION_TEAM_LEADER = "SECTION_TEAM_LEADER";
+export const SECTION_ENV_INTERGRATION = "SECTION_ENV_INTERGRATION";
+export const SECTION_ANIM_UPDATE = "SECTION_ANIM_UPDATE";
+export const SECTION_PUSH_SKIN_UPDATE = "SECTION_PUSH_SKIN_UPDATE";
+export const SECTION_RN_UPDATE = "SECTION_RN_UPDATE";
+export const SECTION_DEEPLINK_UPDATE = "SECTION_DEEPLINK_UPDATE";
 
 export const ANTTIME_APP_KO = {
   backToList: "목록으로 돌아가기",
@@ -69,78 +69,45 @@ export const ANTTIME_APP_KO = {
       title: "맡은 역할",
       value: [
         {
-          title: "프로덕션 앱과 테스트앱 환경 분리",
+          title: "프로덕션과 테스트 환경 분리",
           desc: "안드로이드 Flavor와 iOS 스키마 분리",
-          href: SECTION_MAIN_PAGE,
+          href: SECTION_ENV_INTERGRATION,
         },
         {
           title: "고성능 채굴 애니메이션 구현",
           desc: "react-native-reanimate를 통한 좌표 애니메이션 구현", // Lottie 플레이어 기반 애니메이션을 React-native-reanimated를 통한 타임라인 애니메이션으로 전환"
-          href: SECTION_SELLER_REGISTER_PAGE,
+          href: SECTION_ANIM_UPDATE,
         },
         {
-          title: "스킨 샵 추가 및 파츠 별 스킨 업데이트",
+          title: "신체 부위 별 스킨 업데이트",
           desc: "연휴 별 스킨 추가 이벤트 진행",
-          href: SECTION_SEO,
+          href: SECTION_PUSH_SKIN_UPDATE,
         },
         {
           title: "React Native 버전 업데이트",
           desc: "RN 0.68에서 0.74로.",
-          href: SECTION_PUSH_NOTIFICATION_PAGE,
+          href: SECTION_RN_UPDATE,
         },
         {
           title: "딥링크 구현",
           desc: "PlayStore Referral API 사용",
-          href: SECTION_TEAM_LEADER,
+          href: SECTION_DEEPLINK_UPDATE,
         },
       ],
     },
   },
   details: [
-    //     {
-    //   title: "프로덕션 앱과 테스트앱 환경 분리",
-    //   desc: "안드로이드 Flavor와 iOS 스키마 분리",
-    //   href: SECTION_MAIN_PAGE,
-    // },
-    // {
-    //   title: "고성능 채굴 애니메이션 구현",
-    //   desc: "react-native-reanimate를 통한 좌표 애니메이션 구현", // Lottie 플레이어 기반 애니메이션을 React-native-reanimated를 통한 타임라인 애니메이션으로 전환"
-    //   href: SECTION_SELLER_REGISTER_PAGE,
-    // },
-    // {
-    //   title: "스킨 샵 추가 및 파츠 별 스킨 업데이트",
-    //   desc: "연휴 별 스킨 추가 이벤트 진행",
-    //   href: SECTION_SEO,
-    // },
-    // {
-    //   title: "React Native 버전 업데이트",
-    //   desc: "RN 0.68에서 0.74로.",
-    //   href: SECTION_PUSH_NOTIFICATION_PAGE,
-    // },
-    // {
-    //   title: "딥링크 구현",
-    //   desc: "PlayStore Referral API 사용",
-    //   href: SECTION_TEAM_LEADER,
-    // },
     {
-      title: "메인페이지",
-      titleDesc: "자체 캐로셀 개발",
-      id: SECTION_MAIN_PAGE,
+      title: "프로덕션과 테스트 환경 분리",
+      titleDesc: "안드로이드 Flavor와 iOS 스키마 분리",
+      id: SECTION_ENV_INTERGRATION,
 
       list: [
         {
-          subtitle: "• 슬라이드 애니메이션 구현",
+          subtitle: "• 프로덕션과 개발 환경 분리",
           desc: [
-            "Resize 이벤트에 따라 부모 container의 width값이 변하면 슬라이드되는 x값도 변하도록 useCarouselSize 훅 개발",
-            "MouseDown이벤트의 pageX 좌표값과 mouseUp 이벤트의 pageX 좌표값의 차이를 계산하여 delta(변화량)값을 도출. → 변화값이 일정 값 이상이면 다음 슬라이드로 이동하도록 구현",
-            "useEffect와 SetInterval을 활용하여 3초 마다 무한반복 슬라이드 애니메이션 구현. MouseEnter, MouseLeave 이벤트를 감지하여 일시정지 구현. 클린업 함수로 페이지 이탈 시 setTimeout 해제하여 메모리 정리",
-          ],
-        },
-        {
-          subtitle: "• 모바일 환경과 PC 환경에 동일한 사용자 경험 제공",
-          desc: [
-            "캐로셀 애니메이션을 모바일, PC 환경에서 모두 드래그 가능하도록 TouchEvent와 MouseEvent를 모두 활용.",
-            "touch이벤트 발생 시 mouse 이벤트를 cancel시켜 의도치 않은 클릭 방지",
+            "각 개발 환경에 대해 Firestore 설정 및 그에 맞는 환경 변수 파일 구성",
+            "iOS용 Xcode 빌드 스키마와 Android용 Android Flavor를 사용하여 네이티브 빌드 중 react-native-firebase의 환경별 설정 구성",
           ],
         },
       ],
@@ -148,24 +115,18 @@ export const ANTTIME_APP_KO = {
       image: "",
     },
     {
-      title: "판매글 작성 페이지",
-      titleDesc: "복잡한 비즈니스 로직과 예외 처리",
-      id: SECTION_SELLER_REGISTER_PAGE,
+      title: "복잡한 채굴 애니메이션 구현",
+      titleDesc: "좌표 기반 타임라인 애니메이션",
+      id: SECTION_ANIM_UPDATE,
 
       list: [
-        {
-          subtitle: "• 복잡한 비즈니스 로직 예외처리를 커스텀 훅으로 핸들링",
-          desc: [
-            "양도 1차 가격, 2차 가격 설정 여부, 2차 가격 시간 설정, 2차 가격 설정, 계좌 등록 여부, 야놀자 인증 여부, 약관 동의 여부 등 다양한 비즈니스 로직들을 고려하여 다음 프로세스로 진행 가능한지 판별하는 커스텀 훅 개발",
-          ],
-        },
         {
           subtitle:
-            "• 결제 수단이 없을 경우 결제수단등록 페이지로 리다이렉팅시킨 후 복귀 시 작성 상태 기록",
+            "• 기존 Lottie 애니메이션을 캐릭터의 신체 부위 별 애니메이션을 독립적으로 실행되도록 분리",
           desc: [
-            "계좌 등록이 안 된 경우 현재까지의 작성 상태를 기억해놓고, 계좌 연결 플로우를 타게 한 다음 다시 복귀하는 로직이 필요",
-            "현재 페이지에 머무르며 결제수단등록 페이지의 컴포넌트만 갈아끼워서 구현. 이로 인해 기존에 입력했던 state 모두 유지",
-            "복귀 시 state는 살아있지만 브라우저에서 checkbox의 check상태가 풀려 있는 등의 문제가 발생 → 현재 state 상태에 따라 페이지 전환 시 다시 복구시키는 훅으로 대응 및 해결",
+            "기존 Lottie 애니메이션으론 여러가지 스킨 조합의 경우의 수를 표현하는데에 한계가 존재. 신체 부위 별로 아바타를 교체할 수 있으려면 각 파츠 별로 애니메이션을 따로 구현해야하는 상황 발생.",
+            "react-native-reanimate로 각 파츠 별 애니메이션 설정. 타임라인 기능으로 각 애니메이션의 실행시기를 정확하게 맞춤.",
+            "앱이 백그라운드 상태가 되거나 애니메이션 페이지에서 벗어나면 클린업 함수로 타임라인 제거. 캐릭터 idle 상태로 전환 최적화.",
           ],
         },
       ],
@@ -173,17 +134,18 @@ export const ANTTIME_APP_KO = {
       image: "",
     },
     {
-      title: "알림 페이지",
-      titleDesc: "Firebase Cloud Message 알림 구현",
-      id: SECTION_PUSH_NOTIFICATION_PAGE,
+      title: "신체 부위 별 스킨 업데이트",
+      titleDesc: "연휴 별 스킨 추가 이벤트 진행",
+      id: SECTION_PUSH_SKIN_UPDATE,
 
       list: [
         {
-          subtitle: "• 안드로이드, iOS, PWA 내의 브라우저에서 푸시 알림 구현",
+          subtitle:
+            "• 사용자가 앱 내 화폐를 사용하여 구매할 수 있는 스킨 페이지 개발",
           desc: [
-            "FCM 토큰 초기화 로직을 커스텀 훅으로 만들어 로그인 시 사용",
-            "서비스 워커로 백그라운드 푸시 알림 수신",
-            "백엔드에서 매물 거래 성공 혹은 체크인 7일, 1일 전 푸시알림 전송 시 프론트엔드에서 수신",
+            "신체 부위 별 애니메이션 분리 이후, 앱 내 화폐로 스킨을 갈아끼울 수 있는 스킨샵 추가",
+            "인앱 재화 구매(In-app Purchase) 후 착용 시 해당 파츠만 교체되며 나머지 스킨은 유지",
+            "여러 연휴 및 명절을 기념하는 스킨 출시 이벤트를 진행할 수 있는 초석 마련.",
           ],
         },
       ],
@@ -191,17 +153,18 @@ export const ANTTIME_APP_KO = {
       image: "",
     },
     {
-      title: "리액트 SEO 최적화",
-      titleDesc: "LightHouse SEO 최적화",
-      id: SECTION_SEO,
+      title: "React Native 버전 업데이트",
+      titleDesc: "RN 0.68에서 0.74로.",
+      id: SECTION_RN_UPDATE,
 
       list: [
         {
-          subtitle: "• React/Vite 환경에서도 서버사이드 pre-render 구현",
+          subtitle:
+            "• RN 0.68 버전이 노후화로 인해 서드 파티 라이브러리들의 지원이 중단됨",
           desc: [
-            "리액트 헬멧 라이브러리로 동적인 메타데이터를 브라우저에 렌더",
-            "리액트 스냅 라이브러리로 리액트에서도 SSG 방식의 메타데이터 주입 구현",
-            "개선 전 LightHouse SEO 점수 77점 → 100점",
+            "새로운 라이브러리들이 기존 RN 버전(0.68)을 지원하지 않아 버전을 낮춰서 설치해야되는 상황이 빈번하게 발생.",
+            "React Native Upgrade Helper를 사용하여 0.68에서 0.74로 업그레이드하고 그에 맞게 네이티브 코드 수정 (Flipper 제거, Fabric 구성, iOS/Android config 파일 업데이트).",
+            "새로운 RN 버전에 맞게 서드파티 라이브러리 구성도 업데이트 완료.",
           ],
         },
       ],
@@ -209,25 +172,17 @@ export const ANTTIME_APP_KO = {
       image: "",
     },
     {
-      title: "개발팀 운영",
-      titleDesc: "완성도와 팀워크를 가다듬어 파이널 프로젝트 2등 달성",
-      id: SECTION_TEAM_LEADER,
+      title: "딥링크 구현",
+      titleDesc: "PlayStore Referral API 사용",
+      id: SECTION_DEEPLINK_UPDATE,
 
       list: [
         {
           subtitle: "• 개발팀 규칙 설정",
           desc: [
-            "매일 아침 데일리 스크럼으로 작업 내역 공유",
-            "코드리뷰는 전원 다 해야 머지 가능. ‘수고하셨습니다.’보단 코드를 자세히 보면서 뭐라도 남기도록 유도.",
-          ],
-        },
-        {
-          subtitle: "• 프로젝트 중반 팀원 이탈 대처",
-          desc: [
-            "프로젝트 중반에 팀원 2명이 면접 준비를 이유로 중도 이탈하는 상황이 발생하여 남은 팀원들이 사기가 떨어지는 상황에 대한 대처",
-            "이탈한 2명에게 연락하여 구체적으로 어떤 부분을 개발하고 있었고, 완료하지 못한 부분이 어디인지 파악하여 남은 인원들에게 업무 분담",
-            "개발 템포가 떨어지지 않게 하기 위하여 오히려 코드리뷰를 더욱 자세히 하고, 빠른 피드백 문화를 위해 pr이 올라오면 3시간 이내에 확인하기 문화를 만듦. 그리고 잘한 점은 칭찬하는 문화를 전파.",
-            "그 결과 팀원들 중 퍼포먼스가 가장 좋았던 팀원이 팀 분위기가 좋아 마지막까지 힘낼 수 있었다고 회고 때 언급",
+            "사용자의 운영체제에 따라 적절한 스토어 링크로 리디렉션하는 딥링크 개발",
+            "앱 설치 후 진입 시 추천인 링크 쿼리스트링을 자동으로 추출하여 추천인 코드 자동 입력 구현",
+            "Firebase Dynamic Links의 지원 중단으로 인해 Google Play Store Referral API를 사용하여 추천인 코드와 함께 딥링크 통합 완료",
           ],
         },
       ],
@@ -296,27 +251,27 @@ export const ANTTIME_APP_EN = {
         {
           title: "Main Page",
           desc: "Custom carousel development",
-          href: SECTION_MAIN_PAGE,
+          href: SECTION_ENV_INTERGRATION,
         },
         {
           title: "Seller Registration Page",
           desc: "Complex business logic exception handling",
-          href: SECTION_SELLER_REGISTER_PAGE,
+          href: SECTION_ANIM_UPDATE,
         },
         {
           title: "Notification Page",
           desc: "FCM notification implementation",
-          href: SECTION_PUSH_NOTIFICATION_PAGE,
+          href: SECTION_PUSH_SKIN_UPDATE,
         },
         {
           title: "React SEO Optimization",
           desc: "LightHouse SEO score from 77 to 100 points",
-          href: SECTION_SEO,
+          href: SECTION_RN_UPDATE,
         },
         {
           title: "Frontend Team Leader",
           desc: "Team management",
-          href: SECTION_TEAM_LEADER,
+          href: SECTION_DEEPLINK_UPDATE,
         },
       ],
     },
@@ -325,7 +280,7 @@ export const ANTTIME_APP_EN = {
     {
       title: "Main Page",
       titleDesc: "Custom carousel development",
-      id: SECTION_MAIN_PAGE,
+      id: SECTION_ENV_INTERGRATION,
 
       list: [
         {
@@ -351,7 +306,7 @@ export const ANTTIME_APP_EN = {
     {
       title: "Seller Registration Page",
       titleDesc: "Complex business logic and exception handling",
-      id: SECTION_SELLER_REGISTER_PAGE,
+      id: SECTION_ANIM_UPDATE,
 
       list: [
         {
@@ -377,7 +332,7 @@ export const ANTTIME_APP_EN = {
     {
       title: "Notification Page",
       titleDesc: "Firebase Cloud Message notification implementation",
-      id: SECTION_PUSH_NOTIFICATION_PAGE,
+      id: SECTION_PUSH_SKIN_UPDATE,
 
       list: [
         {
@@ -396,7 +351,7 @@ export const ANTTIME_APP_EN = {
     {
       title: "React SEO Optimization",
       titleDesc: "LightHouse SEO optimization",
-      id: SECTION_SEO,
+      id: SECTION_RN_UPDATE,
 
       list: [
         {
@@ -416,7 +371,7 @@ export const ANTTIME_APP_EN = {
       title: "Development Team Management",
       titleDesc:
         "Achieved 2nd place in final project by refining completeness and teamwork",
-      id: SECTION_TEAM_LEADER,
+      id: SECTION_DEEPLINK_UPDATE,
 
       list: [
         {
