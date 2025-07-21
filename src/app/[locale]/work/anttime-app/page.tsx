@@ -12,10 +12,8 @@ import {
   Wrench,
   ArrowLeft,
   CornerDownRight,
-  AppleIcon,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { FaAppStore, FaGithub, FaGooglePlay } from "react-icons/fa";
 
 import { Link } from "@/i18n/navigation";
 import SectionLink from "@/components/pages/work/workDetail/sectionLink";
@@ -23,13 +21,7 @@ import { PATHNAME } from "@/constants/routes";
 import { ANTTIME_APP_EN, ANTTIME_APP_KO } from "./script";
 import Image from "next/image";
 import { useLocale } from "next-intl";
-import { IoLogoGoogle, IoLogoGooglePlaystore } from "react-icons/io5";
-import {
-  RiAppleFill,
-  RiAppStoreFill,
-  RiAppStoreLine,
-  RiGooglePlayLine,
-} from "react-icons/ri";
+import { RiAppleFill } from "react-icons/ri";
 import { BsGoogle } from "react-icons/bs";
 
 interface TitleBadgeProps {
