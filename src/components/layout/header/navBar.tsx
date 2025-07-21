@@ -439,6 +439,7 @@ function HeaderAnimSwitcher({ locale, className }: SwitcherProps) {
         setCanActivate(true);
         break;
     }
+    // eslint-disable-next-line
   }, [pathname]);
 
   const handleSwitchAnim = (state: "ANIM" | "MIN" | "MAX") => {

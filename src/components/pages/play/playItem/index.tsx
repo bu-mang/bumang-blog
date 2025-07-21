@@ -75,6 +75,7 @@ const PlayItem = ({
             src={imgUrl}
             alt={title ?? "GalleryImage"}
             objectFit="cover"
+            // placeholder="blur"
             fill
           />
         </div>

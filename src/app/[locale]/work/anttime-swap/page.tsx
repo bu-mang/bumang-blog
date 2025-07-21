@@ -189,7 +189,7 @@ export default function AnttimeApp() {
 
         {/* TITLE */}
         <div className="col-span-8 text-9xl font-semibold tracking-tighter">
-          ANTTIME
+          ANTTIME SWAP
         </div>
 
         {/* TAG */}

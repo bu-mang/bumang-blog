@@ -32,43 +32,43 @@ const playItems: PlayItemListType = [
     thumnail: {
       width: 754,
       height: 754,
-      imgUrl: "/play/5/thumbnail.png",
+      imgUrl: "/play/5/compressed/thumbnail.webp",
     },
     items: [
       {
         width: 931,
         height: 752,
-        imgUrl: "/play/5/1.jpg",
+        imgUrl: "/play/5/compressed/1.webp",
       },
       {
         width: 931,
         height: 754,
-        imgUrl: "/play/5/2.jpg",
+        imgUrl: "/play/5/compressed/2.webp",
       },
       {
         width: 931,
         height: 752,
-        imgUrl: "/play/5/3.jpg",
+        imgUrl: "/play/5/compressed/3.webp",
       },
       {
         width: 931,
         height: 752,
-        imgUrl: "/play/5/4.jpg",
+        imgUrl: "/play/5/compressed/4.webp",
       },
       {
         width: 1155,
         height: 753,
-        imgUrl: "/play/5/5.jpg",
+        imgUrl: "/play/5/compressed/5.webp",
       },
       {
         width: 1155,
         height: 753,
-        imgUrl: "/play/5/6.jpg",
+        imgUrl: "/play/5/compressed/6.webp",
       },
       {
         width: 2221,
         height: 754,
-        imgUrl: "/play/5/7.jpg",
+        imgUrl: "/play/5/compressed/7.webp",
       },
     ],
     isVisible: true,
@@ -84,23 +84,23 @@ const playItems: PlayItemListType = [
     thumnail: {
       width: 1820,
       height: 1024,
-      imgUrl: "/play/4/3.gif",
+      imgUrl: "/play/4/compressed/3.webp",
     },
     items: [
       {
         width: 1820,
         height: 1024,
-        imgUrl: "/play/4/1.gif",
+        imgUrl: "/play/4/compressed/1.webp",
       },
       {
         width: 1820,
         height: 1024,
-        imgUrl: "/play/4/2.gif",
+        imgUrl: "/play/4/compressed/2.webp",
       },
       {
         width: 1820,
         height: 1024,
-        imgUrl: "/play/4/3.gif",
+        imgUrl: "/play/4/compressed/3.webp",
       },
     ],
     isVisible: true,
@@ -117,13 +117,13 @@ const playItems: PlayItemListType = [
     thumnail: {
       width: 2732,
       height: 2048,
-      imgUrl: "/play/3/1.JPEG",
+      imgUrl: "/play/3/compressed/1.webp",
     },
     items: [
       {
         width: 2732,
         height: 2048,
-        imgUrl: "/play/3/1.JPEG",
+        imgUrl: "/play/3/compressed/1.webp",
       },
     ],
     isVisible: true,
@@ -161,13 +161,13 @@ const playItems: PlayItemListType = [
     thumnail: {
       width: 300,
       height: 300,
-      imgUrl: "/play/2/thumbnail.png",
+      imgUrl: "/play/2/compressed/thumbnail.webp",
     },
     items: [
       {
         width: 739,
         height: 768,
-        imgUrl: "/play/2/1.JPG",
+        imgUrl: "/play/2/compressed/1.webp",
       },
     ],
     isVisible: true,
@@ -183,23 +183,23 @@ const playItems: PlayItemListType = [
     thumnail: {
       width: 2430,
       height: 2430,
-      imgUrl: "/play/1/2.png",
+      imgUrl: "/play/1/compressed/2.webp",
     },
     items: [
       {
         width: 2430,
         height: 2430,
-        imgUrl: "/play/1/1.png",
+        imgUrl: "/play/1/compressed/1.webp",
       },
       {
         width: 2430,
         height: 2430,
-        imgUrl: "/play/1/2.png",
+        imgUrl: "/play/1/compressed/2.webp",
       },
       {
         width: 2430,
         height: 2430,
-        imgUrl: "/play/1/3.png",
+        imgUrl: "/play/1/compressed/3.webp",
       },
     ],
     isVisible: true,

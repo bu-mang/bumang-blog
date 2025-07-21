@@ -160,7 +160,7 @@ export const ANTTIME_APP_KO = {
       list: [
         {
           subtitle:
-            "• RN 0.68 버전이 노후화로 인해 서드 파티 라이브러리들의 지원이 중단됨",
+            "• RN 버전이 노후화로 인해 서드 파티 라이브러리들의 지원이 중단되는 상황 대처",
           desc: [
             "새로운 라이브러리들이 기존 RN 버전(0.68)을 지원하지 않아 버전을 낮춰서 설치해야되는 상황이 빈번하게 발생.",
             "React Native Upgrade Helper를 사용하여 0.68에서 0.74로 업그레이드하고 그에 맞게 네이티브 코드 수정 (Flipper 제거, Fabric 구성, iOS/Android config 파일 업데이트).",

@@ -145,6 +145,7 @@ export default function ExpandModal({
     });
 
     Promise.all(preloadPromises).catch(console.error);
+    // eslint-disable-next-line
   }, [currentId, loadedImages]);
 
   const buttonClassName = cn(
