@@ -164,7 +164,7 @@ function SectionView({ id, content, order, locale }: SectionViewProps) {
   );
 }
 
-export default function AnttimeApp() {
+export default function AnttimeSwap() {
   const locale = useLocale() as "ko" | "en";
   const TARGET_LANGUAGE = locale === "ko" ? ANTTIME_SWAP_KO : ANTTIME_SWAP_EN;
   const CONTENT_LEFT = TARGET_LANGUAGE.left;
@@ -274,33 +274,7 @@ export default function AnttimeApp() {
                     {CONTENT_LEFT.summary.relatedLink.value[0].name}
                   </div>
                   <div className="mt-1 flex h-4 items-center font-semibold">
-                    <BsGoogle size={14} />
-                  </div>
-                </Link>
-
-                <Link
-                  target="_blank"
-                  href={CONTENT_LEFT.summary.relatedLink.value[1].value}
-                  className="flex-1 transition-all hover:scale-[102%] hover:opacity-80"
-                >
-                  <div className="text-xs text-gray-400">
-                    {CONTENT_LEFT.summary.relatedLink.value[1].name}
-                  </div>
-                  <div className="mt-1 h-4 flex-1 font-semibold">
-                    <RiAppleFill size={16} />
-                  </div>
-                </Link>
-
-                <Link
-                  target="_blank"
-                  href={CONTENT_LEFT.summary.relatedLink.value[2].value}
-                  className="flex-1 transition-all hover:scale-[102%] hover:opacity-80"
-                >
-                  <div className="text-xs text-gray-400">
-                    {CONTENT_LEFT.summary.relatedLink.value[2].name}
-                  </div>
-                  <div className="mt-1 h-4 flex-1 font-semibold">
-                    <Link2 size={16} />
+                    <Link2 size={14} />
                   </div>
                 </Link>
 

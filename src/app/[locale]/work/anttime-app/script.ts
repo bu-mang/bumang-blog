@@ -21,14 +21,14 @@ export const ANTTIME_APP_KO = {
       techStack: {
         label: "테크스택",
         value: [
-          { label: "React", colorClass: "bg-blue-100" },
-          { label: "Vite", colorClass: "bg-yellow-100" },
+          { label: "React Native", colorClass: "bg-blue-100" },
+          { label: "Style Sheet", colorClass: "bg-yellow-100" },
           { label: "Zustand", colorClass: "bg-rose-100" },
-          { label: "Styled Components", colorClass: "bg-pink-100" },
-          { label: "PWA", colorClass: "" },
-          { label: "Firebase Cloud Message(FCM)", colorClass: "bg-red-50" },
-          { label: "Github Action", colorClass: "bg-slate-100" },
-          { label: "MSW", colorClass: "bg-neutral-100" },
+          { label: "React Native Reanimated ", colorClass: "bg-pink-100" },
+          { label: "React Native IAP", colorClass: "" },
+          { label: "React Native Firebase", colorClass: "bg-red-50" },
+          { label: "Tanstack Query", colorClass: "bg-slate-100" },
+          { label: "React Native Code Push", colorClass: "bg-neutral-100" },
         ],
       },
       team: {
