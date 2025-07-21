@@ -16,7 +16,7 @@ export const ANTTIME_APP_KO = {
       },
       position: {
         label: "포지션",
-        value: "크로스플랫폼 앱개발",
+        value: "프론트(크로스플랫폼 앱개발)",
       },
       techStack: {
         label: "테크스택",
@@ -34,17 +34,25 @@ export const ANTTIME_APP_KO = {
       team: {
         label: "팀 구성",
         value: [
-          { role: "프론트", amount: 5 },
-          { role: "백엔드", amount: 5 },
-          { role: "PM", amount: 4 },
+          { role: "프론트", amount: 1 },
+          { role: "백엔드", amount: 1 },
+          { role: "PM", amount: 1 },
           { role: "디자인", amount: 1 },
         ],
       },
       relatedLink: {
         label: "관련링크",
         value: [
-          { name: "서비스", value: "https://percenthotel.web.app/" },
-          { name: "깃허브", value: "https://github.com/SCBJ-7/SCBJ-FE" },
+          {
+            name: "Android",
+            value:
+              "https://play.google.com/store/apps/details?id=net.anttime.app",
+          },
+          {
+            name: "iOS",
+            value: "https://apps.apple.com/kr/app/anttime/id6449239746?l=en-GB",
+          },
+          { name: "공식", value: "https://anttime.net/" },
         ],
         testServiceAccount: {
           title: "테스트용 계정",

@@ -4,31 +4,31 @@ export const SECTION_PUSH_NOTIFICATION_PAGE = "SECTION_PUSH_NOTIFICATION_PAGE";
 export const SECTION_SEO = "SECTION_SEO";
 export const SECTION_TEAM_LEADER = "SECTION_TEAM_LEADER";
 
-export const PERCENT_HOTEL_KO = {
+export const ANTTIME_APP_KO = {
   backToList: "목록으로 돌아가기",
   left: {
-    badge: ["야놀자 테크 스쿨", "파이널 프로젝트", "종합 2위"],
+    badge: ["플레이스토어", "다운로드 80만", "Web3 포인트 채굴 앱"],
     summary: {
       title: "프로젝트 요약",
       period: {
-        label: "작업기간",
-        value: "24.02.02. - 24.02.27.",
+        label: "담당 시작일",
+        value: "24.04.15.",
       },
       position: {
         label: "포지션",
-        value: "프론트엔드",
+        value: "크로스플랫폼 앱개발",
       },
       techStack: {
         label: "테크스택",
         value: [
-          "React",
-          "Vite",
-          "Zustand",
-          "Styled Components",
-          "PWA",
-          "Firebase Cloud Message(FCM)",
-          "Github Action",
-          "MSW",
+          { label: "React", colorClass: "bg-blue-100" },
+          { label: "Vite", colorClass: "bg-yellow-100" },
+          { label: "Zustand", colorClass: "bg-rose-100" },
+          { label: "Styled Components", colorClass: "bg-pink-100" },
+          { label: "PWA", colorClass: "" },
+          { label: "Firebase Cloud Message(FCM)", colorClass: "bg-red-50" },
+          { label: "Github Action", colorClass: "bg-slate-100" },
+          { label: "MSW", colorClass: "bg-neutral-100" },
         ],
       },
       team: {
@@ -204,7 +204,7 @@ export const PERCENT_HOTEL_KO = {
   ],
 };
 
-export const PERCENT_HOTEL_EN = {
+export const ANTTIME_APP_EN = {
   backToList: "Back to List",
   left: {
     badge: ["Total", "2nd", "in", "Yanolja Tech School", "Graduate"],
@@ -221,14 +221,14 @@ export const PERCENT_HOTEL_EN = {
       techStack: {
         label: "Tech Stack",
         value: [
-          "React",
-          "Vite",
-          "Zustand",
-          "Styled Components",
-          "PWA",
-          "Firebase Cloud Message(FCM)",
-          "Github Action",
-          "MSW",
+          { label: "React", colorClass: "bg-blue-100" },
+          { label: "Vite", colorClass: "bg-yellow-100" },
+          { label: "Zustand", colorClass: "bg-rose-100" },
+          { label: "Styled Components", colorClass: "bg-pink-100" },
+          { label: "PWA", colorClass: "" },
+          { label: "Firebase Cloud Message(FCM)", colorClass: "bg-red-50" },
+          { label: "Github Action", colorClass: "bg-slate-100" },
+          { label: "MSW", colorClass: "bg-neutral-100" },
         ],
       },
       team: {

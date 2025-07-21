@@ -19,7 +19,7 @@ import { FaGithub } from "react-icons/fa";
 import { Link } from "@/i18n/navigation";
 import SectionLink from "@/components/pages/work/workDetail/sectionLink";
 import { PATHNAME } from "@/constants/routes";
-import { PERCENT_HOTEL_EN, PERCENT_HOTEL_KO } from "./script";
+import { ANTTIME_APP_EN, ANTTIME_APP_KO } from "./script";
 import Image from "next/image";
 import { useLocale } from "next-intl";
 
@@ -163,9 +163,9 @@ function SectionView({ id, content, order, locale }: SectionViewProps) {
   );
 }
 
-export default function Work() {
+export default function AnttimeApp() {
   const locale = useLocale() as "ko" | "en";
-  const TARGET_LANGUAGE = locale === "ko" ? PERCENT_HOTEL_KO : PERCENT_HOTEL_EN;
+  const TARGET_LANGUAGE = locale === "ko" ? ANTTIME_APP_KO : ANTTIME_APP_EN;
   const CONTENT_LEFT = TARGET_LANGUAGE.left;
   const CONTENT_RIGHT = TARGET_LANGUAGE.right;
   const CONTENT_DETAIL = TARGET_LANGUAGE.details;
@@ -188,26 +188,14 @@ export default function Work() {
 
         {/* TITLE */}
         <div className="col-span-8 text-9xl font-semibold tracking-tighter">
-          Percent Hotel
+          ANTTIME
         </div>
 
         {/* TAG */}
         <TitleBadge className="">
-          {locale === "ko" ? (
-            <>
-              <span className="font-semibold">{CONTENT_LEFT.badge[0]}</span>{" "}
-              {CONTENT_LEFT.badge[1]}{" "}
-              <span className="font-bold">{CONTENT_LEFT.badge[2]}</span>
-            </>
-          ) : (
-            <>
-              {CONTENT_LEFT.badge[0]}{" "}
-              <span className="font-bold">{CONTENT_LEFT.badge[1]}</span>{" "}
-              {CONTENT_LEFT.badge[2]}{" "}
-              <span className="font-semibold">{CONTENT_LEFT.badge[3]}</span>{" "}
-              {CONTENT_LEFT.badge[4]}
-            </>
-          )}
+          <span>{CONTENT_LEFT.badge[0]}</span>{" "}
+          <span className="font-bold">{CONTENT_LEFT.badge[1]}</span>{" "}
+          <span>{CONTENT_LEFT.badge[2]}</span>
         </TitleBadge>
 
         {/* LEFT */}
@@ -237,45 +225,17 @@ export default function Work() {
               <span>
                 <div className="flex flex-col items-center gap-2">
                   <div className="flex w-full flex-wrap gap-2">
-                    {/* REACT */}
-                    <Badge variant="outline" className="bg-blue-100">
-                      {CONTENT_LEFT.summary.techStack.value[0]}
-                    </Badge>
-
-                    {/* VITE */}
-                    <Badge variant="outline" className="bg-yellow-100">
-                      {CONTENT_LEFT.summary.techStack.value[1]}
-                    </Badge>
-
-                    {/* ZUSTAND */}
-                    <Badge variant="outline" className="bg-rose-100">
-                      {CONTENT_LEFT.summary.techStack.value[2]}
-                    </Badge>
-
-                    {/* STYLED COMPONENTS */}
-                    <Badge variant="outline" className="bg-pink-100">
-                      {CONTENT_LEFT.summary.techStack.value[3]}
-                    </Badge>
-
-                    {/* PWA */}
-                    <Badge variant="outline" className="">
-                      {CONTENT_LEFT.summary.techStack.value[4]}
-                    </Badge>
-
-                    {/* FCM */}
-                    <Badge variant="outline" className="bg-red-50">
-                      {CONTENT_LEFT.summary.techStack.value[5]}
-                    </Badge>
-
-                    {/* GITHUB ACTION */}
-                    <Badge variant="outline" className="bg-slate-100">
-                      {CONTENT_LEFT.summary.techStack.value[6]}
-                    </Badge>
-
-                    {/* MSW */}
-                    <Badge variant="outline" className="bg-neutral-100">
-                      {CONTENT_LEFT.summary.techStack.value[7]}
-                    </Badge>
+                    {CONTENT_LEFT.summary.techStack.value.map((stack) => {
+                      return (
+                        <Badge
+                          key={stack.label}
+                          variant="outline"
+                          className={stack.colorClass}
+                        >
+                          {stack.label}
+                        </Badge>
+                      );
+                    })}
                   </div>
                 </div>
               </span>
@@ -286,38 +246,16 @@ export default function Work() {
               title={CONTENT_LEFT.summary.team.label}
             >
               <div className="flex flex-1">
-                <div className="flex-1">
-                  <div className="text-xs text-gray-400">
-                    {CONTENT_LEFT.summary.team.value[0].role}
-                  </div>
-                  <div className="font-semibold">
-                    {CONTENT_LEFT.summary.team.value[0].amount}
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <div className="text-xs text-gray-400">
-                    {CONTENT_LEFT.summary.team.value[1].role}
-                  </div>
-                  <div className="font-semibold">
-                    {CONTENT_LEFT.summary.team.value[1].amount}
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <div className="text-xs text-gray-400">
-                    {CONTENT_LEFT.summary.team.value[2].role}
-                  </div>
-                  <div className="font-semibold">
-                    {CONTENT_LEFT.summary.team.value[2].amount}
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <div className="text-xs text-gray-400">
-                    {CONTENT_LEFT.summary.team.value[3].role}
-                  </div>
-                  <div className="font-semibold">
-                    {CONTENT_LEFT.summary.team.value[3].amount}
-                  </div>
-                </div>
+                {CONTENT_LEFT.summary.team.value.map((navItem) => {
+                  return (
+                    <div key={navItem.role} className="flex-1">
+                      <div className="text-xs text-gray-400">
+                        {navItem.role}
+                      </div>
+                      <div className="font-semibold">{navItem.amount}</div>
+                    </div>
+                  );
+                })}
               </div>
             </Summary.Block>
 
@@ -381,35 +319,16 @@ export default function Work() {
             {CONTENT_RIGHT.navigation.title}
           </div>
           <div className="flex flex-col gap-2">
-            <SectionLink
-              href={`#${CONTENT_RIGHT.navigation.value[0].href}`}
-              title={CONTENT_RIGHT.navigation.value[0].title}
-              desc={CONTENT_RIGHT.navigation.value[0].desc}
-            />
-
-            <SectionLink
-              href={`#${CONTENT_RIGHT.navigation.value[1].href}`}
-              title={CONTENT_RIGHT.navigation.value[1].title}
-              desc={CONTENT_RIGHT.navigation.value[1].desc}
-            />
-
-            <SectionLink
-              href={`#${CONTENT_RIGHT.navigation.value[2].href}`}
-              title={CONTENT_RIGHT.navigation.value[2].title}
-              desc={CONTENT_RIGHT.navigation.value[2].desc}
-            />
-
-            <SectionLink
-              href={`#${CONTENT_RIGHT.navigation.value[3].href}`}
-              title={CONTENT_RIGHT.navigation.value[3].title}
-              desc={CONTENT_RIGHT.navigation.value[3].desc}
-            />
-
-            <SectionLink
-              href={`#${CONTENT_RIGHT.navigation.value[4].href}`}
-              title={CONTENT_RIGHT.navigation.value[4].title}
-              desc={CONTENT_RIGHT.navigation.value[4].desc}
-            />
+            {CONTENT_RIGHT.navigation.value.map((item) => {
+              return (
+                <SectionLink
+                  key={item.title}
+                  href={`#${item.href}`}
+                  title={item.title}
+                  desc={item.desc}
+                />
+              );
+            })}
           </div>
         </div>
       </section>
