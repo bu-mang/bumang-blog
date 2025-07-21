@@ -19,15 +19,9 @@ import { FaGithub } from "react-icons/fa";
 import { Link } from "@/i18n/navigation";
 import SectionLink from "@/components/pages/work/workDetail/sectionLink";
 import { PATHNAME } from "@/constants/routes";
-import {
-  PERCENT_HOTEL_KO,
-  SECTION_MAIN_PAGE,
-  SECTION_PUSH_NOTIFICATION_PAGE,
-  SECTION_SELLER_REGISTER_PAGE,
-  SECTION_SEO,
-  SECTION_TEAM_LEADER,
-} from "./script";
+import { PERCENT_HOTEL_EN, PERCENT_HOTEL_KO } from "./script";
 import Image from "next/image";
+import { useLocale } from "next-intl";
 
 interface TitleBadgeProps {
   children: React.ReactNode;
@@ -58,9 +52,10 @@ interface SectionViewProps {
   id: string;
   content: ContentType;
   order: number;
+  locale: "ko" | "en";
 }
 
-function SectionView({ id, content, order }: SectionViewProps) {
+function SectionView({ id, content, order, locale }: SectionViewProps) {
   return (
     <section
       id={id}
@@ -71,7 +66,12 @@ function SectionView({ id, content, order }: SectionViewProps) {
         <>
           <div>
             {/* MAIN-TITLE */}
-            <div className="mb-5 flex items-baseline gap-2">
+            <div
+              className={cn(
+                "mb-5 flex items-baseline gap-2",
+                locale === "en" && "flex-col",
+              )}
+            >
               <h2 className="text-4xl font-semibold">{content.title}</h2>
               <h4 className="flex items-center gap-1 text-sm text-gray-400">
                 {content.titleDesc}
@@ -123,7 +123,12 @@ function SectionView({ id, content, order }: SectionViewProps) {
 
           <div>
             {/* MAIN-TITLE */}
-            <div className="mb-5 flex items-baseline gap-2">
+            <div
+              className={cn(
+                "mb-5 flex items-baseline gap-2",
+                locale === "en" && "flex-col",
+              )}
+            >
               <h2 className="text-4xl font-semibold">{content.title}</h2>
               <h4 className="flex items-center gap-1 text-sm text-gray-400">
                 {content.titleDesc}
@@ -159,6 +164,12 @@ function SectionView({ id, content, order }: SectionViewProps) {
 }
 
 export default function Work() {
+  const locale = useLocale() as "ko" | "en";
+  const TARGET_LANGUAGE = locale === "ko" ? PERCENT_HOTEL_KO : PERCENT_HOTEL_EN;
+  const CONTENT_LEFT = TARGET_LANGUAGE.left;
+  const CONTENT_RIGHT = TARGET_LANGUAGE.right;
+  const CONTENT_DETAIL = TARGET_LANGUAGE.details;
+
   return (
     <main
       className={cn(
@@ -172,7 +183,7 @@ export default function Work() {
           href={PATHNAME.WORK}
         >
           <ArrowLeft size={14} className="group-hover:animate-arrow-back" />
-          <span>Back To Work List</span>
+          <span>{TARGET_LANGUAGE.backToList}</span>
         </Link>
 
         {/* TITLE */}
@@ -182,101 +193,159 @@ export default function Work() {
 
         {/* TAG */}
         <TitleBadge className="">
-          Total <span className="font-bold">2nd</span> in{" "}
-          <span className="font-semibold">Yanolja Tech School</span> Graduate
+          {locale === "ko" ? (
+            <>
+              <span className="font-semibold">{CONTENT_LEFT.badge[0]}</span>{" "}
+              {CONTENT_LEFT.badge[1]}{" "}
+              <span className="font-bold">{CONTENT_LEFT.badge[2]}</span>
+            </>
+          ) : (
+            <>
+              {CONTENT_LEFT.badge[0]}{" "}
+              <span className="font-bold">{CONTENT_LEFT.badge[1]}</span>{" "}
+              {CONTENT_LEFT.badge[2]}{" "}
+              <span className="font-semibold">{CONTENT_LEFT.badge[3]}</span>{" "}
+              {CONTENT_LEFT.badge[4]}
+            </>
+          )}
         </TitleBadge>
 
         {/* LEFT */}
         <div className="col-span-4">
           {/* SUMMARY */}
-          <Summary>
-            <Summary.Block icon={<CalendarRange size={16} />} title="Period">
-              <span>24.02.02. - 24.02.27.</span>
+          <Summary title={CONTENT_LEFT.summary.title}>
+            <Summary.Block
+              icon={<CalendarRange size={16} />}
+              title={CONTENT_LEFT.summary.period.label}
+            >
+              <span>{CONTENT_LEFT.summary.period.value}</span>
             </Summary.Block>
 
-            <Summary.Block icon={<LocateFixed size={16} />} title="Position">
-              <Badge variant="outline">Frontend</Badge>
+            <Summary.Block
+              icon={<LocateFixed size={16} />}
+              title={CONTENT_LEFT.summary.position.label}
+            >
+              <Badge variant="outline">
+                {CONTENT_LEFT.summary.position.value}
+              </Badge>
             </Summary.Block>
 
-            <Summary.Block icon={<Wrench size={16} />} title="Tech Stack">
+            <Summary.Block
+              icon={<Wrench size={16} />}
+              title={CONTENT_LEFT.summary.techStack.label}
+            >
               <span>
                 <div className="flex flex-col items-center gap-2">
                   <div className="flex w-full flex-wrap gap-2">
+                    {/* REACT */}
                     <Badge variant="outline" className="bg-blue-100">
-                      React
+                      {CONTENT_LEFT.summary.techStack.value[0]}
                     </Badge>
 
+                    {/* VITE */}
                     <Badge variant="outline" className="bg-yellow-100">
-                      Vite
+                      {CONTENT_LEFT.summary.techStack.value[1]}
                     </Badge>
 
+                    {/* ZUSTAND */}
                     <Badge variant="outline" className="bg-rose-100">
-                      Zustand
+                      {CONTENT_LEFT.summary.techStack.value[2]}
                     </Badge>
 
+                    {/* STYLED COMPONENTS */}
                     <Badge variant="outline" className="bg-pink-100">
-                      Styled Components
+                      {CONTENT_LEFT.summary.techStack.value[3]}
                     </Badge>
 
+                    {/* PWA */}
                     <Badge variant="outline" className="">
-                      PWA
+                      {CONTENT_LEFT.summary.techStack.value[4]}
                     </Badge>
 
+                    {/* FCM */}
                     <Badge variant="outline" className="bg-red-50">
-                      Firebase Cloud Message(FCM)
+                      {CONTENT_LEFT.summary.techStack.value[5]}
                     </Badge>
 
+                    {/* GITHUB ACTION */}
                     <Badge variant="outline" className="bg-slate-100">
-                      Github Action
+                      {CONTENT_LEFT.summary.techStack.value[6]}
                     </Badge>
 
+                    {/* MSW */}
                     <Badge variant="outline" className="bg-neutral-100">
-                      MSW
+                      {CONTENT_LEFT.summary.techStack.value[7]}
                     </Badge>
                   </div>
                 </div>
               </span>
             </Summary.Block>
 
-            <Summary.Block icon={<UsersRound size={16} />} title="Team">
+            <Summary.Block
+              icon={<UsersRound size={16} />}
+              title={CONTENT_LEFT.summary.team.label}
+            >
               <div className="flex flex-1">
                 <div className="flex-1">
-                  <div className="text-xs text-gray-400">Front</div>
-                  <div className="font-semibold">5</div>
+                  <div className="text-xs text-gray-400">
+                    {CONTENT_LEFT.summary.team.value[0].role}
+                  </div>
+                  <div className="font-semibold">
+                    {CONTENT_LEFT.summary.team.value[0].amount}
+                  </div>
                 </div>
                 <div className="flex-1">
-                  <div className="text-xs text-gray-400">Back</div>
-                  <div className="font-semibold">5</div>
+                  <div className="text-xs text-gray-400">
+                    {CONTENT_LEFT.summary.team.value[1].role}
+                  </div>
+                  <div className="font-semibold">
+                    {CONTENT_LEFT.summary.team.value[1].amount}
+                  </div>
                 </div>
                 <div className="flex-1">
-                  <div className="text-xs text-gray-400">PM</div>
-                  <div className="font-semibold">4</div>
+                  <div className="text-xs text-gray-400">
+                    {CONTENT_LEFT.summary.team.value[2].role}
+                  </div>
+                  <div className="font-semibold">
+                    {CONTENT_LEFT.summary.team.value[2].amount}
+                  </div>
                 </div>
                 <div className="flex-1">
-                  <div className="text-xs text-gray-400">Design</div>
-                  <div className="font-semibold">1</div>
+                  <div className="text-xs text-gray-400">
+                    {CONTENT_LEFT.summary.team.value[3].role}
+                  </div>
+                  <div className="font-semibold">
+                    {CONTENT_LEFT.summary.team.value[3].amount}
+                  </div>
                 </div>
               </div>
             </Summary.Block>
 
-            <Summary.Block icon={<LinkIcon size={16} />} title="Related Links">
+            <Summary.Block
+              icon={<LinkIcon size={16} />}
+              title={CONTENT_LEFT.summary.relatedLink.label}
+            >
               <div className="flex flex-1">
                 <Link
                   target="_blank"
-                  href="https://percenthotel.web.app/"
+                  href={CONTENT_LEFT.summary.relatedLink.value[0].value}
                   className="flex-1 transition-all hover:scale-[102%] hover:opacity-80"
                 >
-                  <div className="text-xs text-gray-400">Service</div>
+                  <div className="text-xs text-gray-400">
+                    {CONTENT_LEFT.summary.relatedLink.value[0].name}
+                  </div>
                   <div className="mt-1 font-semibold">
                     <Link2 size={16} />
                   </div>
                 </Link>
                 <Link
                   target="_blank"
-                  href="https://github.com/SCBJ-7/SCBJ-FE"
+                  href={CONTENT_LEFT.summary.relatedLink.value[1].value}
                   className="flex-1 transition-all hover:scale-[102%] hover:opacity-80"
                 >
-                  <div className="text-xs text-gray-400">Github</div>
+                  <div className="text-xs text-gray-400">
+                    {CONTENT_LEFT.summary.relatedLink.value[1].name}
+                  </div>
                   <div className="mt-1 font-semibold">
                     <FaGithub size={16} />
                   </div>
@@ -284,8 +353,16 @@ export default function Work() {
               </div>
 
               <Summary.Hint
+                title={
+                  CONTENT_LEFT.summary.relatedLink.testServiceAccount.title
+                }
                 testAccount={{
+                  idTitle:
+                    CONTENT_LEFT.summary.relatedLink.testServiceAccount.email,
                   id: "qwerty029369\n@naver.com",
+                  passwordTitle:
+                    CONTENT_LEFT.summary.relatedLink.testServiceAccount
+                      .password,
                   password: "qwerty123@",
                 }}
                 breakId
@@ -296,46 +373,42 @@ export default function Work() {
 
         {/* RIGHT */}
         <div className="col-span-4">
-          <div className="mb-3 text-4xl font-medium">
-            취소불가능한 매물을 양도 거래하세요!
-          </div>
-          <div className="mb-10">
-            숙박 매물의 당근마켓! 야놀자에서 정식 인증된 매물만을 거래하세요.
-            숙박 매물의 당근마켓! 야놀자에서 정식 인증된 매물만을 거래하세요.
-            숙박 매물의 당근마켓! 야놀자에서 정식 인증된 매물만을 거래하세요.
-          </div>
+          <div className="mb-3 text-4xl font-medium">{CONTENT_RIGHT.title}</div>
+          <div className="mb-10">{CONTENT_RIGHT.desc}</div>
 
           {/* 맡은 역할 */}
-          <div className="mb-3 text-2xl font-medium">맡은 역할</div>
+          <div className="mb-3 text-2xl font-medium">
+            {CONTENT_RIGHT.navigation.title}
+          </div>
           <div className="flex flex-col gap-2">
             <SectionLink
-              href={`#${SECTION_MAIN_PAGE}`}
-              title="메인페이지"
-              desc="자체 캐로셀 개발"
+              href={`#${CONTENT_RIGHT.navigation.value[0].href}`}
+              title={CONTENT_RIGHT.navigation.value[0].title}
+              desc={CONTENT_RIGHT.navigation.value[0].desc}
             />
 
             <SectionLink
-              href={`#${SECTION_SELLER_REGISTER_PAGE}`}
-              title="판매글 작성 페이지"
-              desc="복잡한 비즈니스로직 예외처리"
+              href={`#${CONTENT_RIGHT.navigation.value[1].href}`}
+              title={CONTENT_RIGHT.navigation.value[1].title}
+              desc={CONTENT_RIGHT.navigation.value[1].desc}
             />
 
             <SectionLink
-              href={`#${SECTION_PUSH_NOTIFICATION_PAGE}`}
-              title="알림 페이지"
-              desc="FCM 알림 구현하기"
+              href={`#${CONTENT_RIGHT.navigation.value[2].href}`}
+              title={CONTENT_RIGHT.navigation.value[2].title}
+              desc={CONTENT_RIGHT.navigation.value[2].desc}
             />
 
             <SectionLink
-              href={`#${SECTION_SEO}`}
-              title="리액트 SEO 최적화"
-              desc="LightHouse SEO 점수 77점에서 100점으로"
+              href={`#${CONTENT_RIGHT.navigation.value[3].href}`}
+              title={CONTENT_RIGHT.navigation.value[3].title}
+              desc={CONTENT_RIGHT.navigation.value[3].desc}
             />
 
             <SectionLink
-              href={`#${SECTION_TEAM_LEADER}`}
-              title="프론트엔드 팀장" //
-              desc="팀 운영"
+              href={`#${CONTENT_RIGHT.navigation.value[4].href}`}
+              title={CONTENT_RIGHT.navigation.value[4].title}
+              desc={CONTENT_RIGHT.navigation.value[4].desc}
             />
           </div>
         </div>
@@ -346,12 +419,13 @@ export default function Work() {
 
       {/* Sections */}
       <div className="mt-20 w-full">
-        {PERCENT_HOTEL_KO.map((item, index) => (
+        {CONTENT_DETAIL.map((item, index) => (
           <SectionView
             key={item.id}
             id={item.id}
             content={item}
             order={index + 1}
+            locale={locale}
           />
         ))}
       </div>
@@ -366,7 +440,7 @@ export default function Work() {
           href={PATHNAME.WORK}
         >
           <ArrowLeft size={14} className="group-hover:animate-arrow-back" />
-          <span>Back To Work List</span>
+          <span>{TARGET_LANGUAGE.backToList}</span>
         </Link>
       </div>
     </main>
