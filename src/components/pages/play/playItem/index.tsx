@@ -61,7 +61,10 @@ const PlayItem = ({
   };
 
   return (
-    <button onClick={handleClick} className="group flex flex-1 overflow-hidden">
+    <button
+      onClick={handleClick}
+      className="group flex flex-1 animate-fade-in-up overflow-hidden"
+    >
       <div
         ref={ref}
         className={cn(
