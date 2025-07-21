@@ -1,3 +1,5 @@
+"use client";
+
 import { Link } from "@/i18n/navigation";
 import { LuMoveRight } from "react-icons/lu";
 

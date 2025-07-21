@@ -4,26 +4,27 @@ import { Eye, EyeClosed } from "lucide-react";
 import { useState } from "react";
 
 interface SummaryProps {
+  title: string;
   children: React.ReactNode;
 }
 
-export default function Summary({ children }: SummaryProps) {
+const Summary = ({ children, title }: SummaryProps) => {
   return (
     <div className="">
-      <div className="mb-4 font-semibold">Summary</div>
+      <div className="mb-4 font-semibold">{title}</div>
       {children}
     </div>
   );
-}
+};
 
 interface SummaryPartsProps {
   icon: React.ReactNode;
   title: string;
   children: React.ReactNode;
 }
-Summary.Block = ({ icon, title, children }: SummaryPartsProps) => {
+const SummaryBlock = ({ icon, title, children }: SummaryPartsProps) => {
   return (
-    <div className="mb-4 grid grid-cols-6">
+    <div key={title} className="mb-4 grid grid-cols-6">
       <div className="col-span-2">
         <div className="flex items-center gap-2 text-gray-300">
           {icon}
@@ -36,12 +37,22 @@ Summary.Block = ({ icon, title, children }: SummaryPartsProps) => {
   );
 };
 
+SummaryBlock.displayName = "Summary.Block";
+Summary.Block = SummaryBlock;
+
 interface SummaryHintProps {
-  testAccount: { id: string; password: string };
+  title: string;
+  testAccount: {
+    idTitle: string;
+    id: string;
+    passwordTitle: string;
+    password: string;
+  };
   breakId: boolean;
 }
-Summary.Hint = ({
-  testAccount: { id, password },
+const SummaryHint = ({
+  title,
+  testAccount: { idTitle, id, passwordTitle, password },
   breakId,
 }: SummaryHintProps) => {
   const [hidden, setHidden] = useState(true);
@@ -51,11 +62,11 @@ Summary.Hint = ({
   return (
     <div className="mt-5 flex flex-col rounded-lg bg-gray-5 px-4 py-2 text-gray-400">
       <div className="col-span-4 mb-1 border-b border-gray-300 pb-1 text-xs">
-        Test Service Account
+        {title}
       </div>
       <div className="grid grid-cols-2">
         <div>
-          <div className="col-span-4 text-xs">email</div>
+          <div className="col-span-4 text-xs">{idTitle}</div>
           <div
             className={cn(
               breakId && "whitespace-pre-wrap",
@@ -67,7 +78,7 @@ Summary.Hint = ({
         </div>
 
         <div className="group">
-          <div className="col-span-4 text-xs">Password</div>
+          <div className="col-span-4 text-xs">{passwordTitle}</div>
           <div>
             <div className="col-span-4 flex items-center gap-1 text-sm">
               <span className="font-semibold">
@@ -86,3 +97,8 @@ Summary.Hint = ({
     </div>
   );
 };
+
+SummaryHint.displayName = "Summary.Hint";
+Summary.Hint = SummaryHint;
+
+export default Summary;
