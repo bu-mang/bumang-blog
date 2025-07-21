@@ -63,40 +63,65 @@ export const ANTTIME_APP_KO = {
     },
   },
   right: {
-    title: "취소불가능한 매물을 양도 거래하세요!",
-    desc: "이번 연휴에 가기로 한 여행.. 취소되셨다구요? 심지어 취소도 안 된다니.. 이럴 땐 퍼센트 호텔에서 경매에 붙이세요. 숙박 매물의 당근마켓! 사기매물과 과도한 리셀 프리미엄으로 인해 신뢰도가 낮았던 숙소 양도거래를 혁신합니다. 국내 최대 숙박 플랫폼 야놀자에서 인증된 상품만 취급하는 안전한 숙소 중고거래 플랫폼입니다.",
+    title: "When ANTs Mine, TIME Shine.",
+    desc: "ANTTIME은 시간이라는 자산을 수익화할 수 있는 블록체인 기반 T2E(Time-to-Earn) 프로젝트입니다. 이 TIME 생태계에서 창작, 소유, 수익 창출 등 다양한 경제 활동에 참여할 수 있습니다. 또한 노드 검증자가 되어 블록체인에 직접 참여할 수도 있습니다. ANTTIME과 함께 당신의 시간을 더욱 가치 있게 만드세요.",
     navigation: {
       title: "맡은 역할",
       value: [
         {
-          title: "메인 페이지",
-          desc: "자체 캐로셀 개발",
+          title: "프로덕션 앱과 테스트앱 환경 분리",
+          desc: "안드로이드 Flavor와 iOS 스키마 분리",
           href: SECTION_MAIN_PAGE,
         },
         {
-          title: "판매글작성 페이지",
-          desc: "복잡한 비즈니스로직 예외처리",
+          title: "고성능 채굴 애니메이션 구현",
+          desc: "react-native-reanimate를 통한 좌표 애니메이션 구현", // Lottie 플레이어 기반 애니메이션을 React-native-reanimated를 통한 타임라인 애니메이션으로 전환"
           href: SECTION_SELLER_REGISTER_PAGE,
         },
         {
-          title: "알림 페이지",
-          desc: "FCM 알림 구현하기",
-          href: SECTION_PUSH_NOTIFICATION_PAGE,
-        },
-        {
-          title: "리액트 SEO 최적화",
-          desc: "LightHouse SEO 점수 77점에서 100점으로",
+          title: "스킨 샵 추가 및 파츠 별 스킨 업데이트",
+          desc: "연휴 별 스킨 추가 이벤트 진행",
           href: SECTION_SEO,
         },
         {
-          title: "프론트엔드 팀장",
-          desc: "팀 운영",
+          title: "React Native 버전 업데이트",
+          desc: "RN 0.68에서 0.74로.",
+          href: SECTION_PUSH_NOTIFICATION_PAGE,
+        },
+        {
+          title: "딥링크 구현",
+          desc: "PlayStore Referral API 사용",
           href: SECTION_TEAM_LEADER,
         },
       ],
     },
   },
   details: [
+    //     {
+    //   title: "프로덕션 앱과 테스트앱 환경 분리",
+    //   desc: "안드로이드 Flavor와 iOS 스키마 분리",
+    //   href: SECTION_MAIN_PAGE,
+    // },
+    // {
+    //   title: "고성능 채굴 애니메이션 구현",
+    //   desc: "react-native-reanimate를 통한 좌표 애니메이션 구현", // Lottie 플레이어 기반 애니메이션을 React-native-reanimated를 통한 타임라인 애니메이션으로 전환"
+    //   href: SECTION_SELLER_REGISTER_PAGE,
+    // },
+    // {
+    //   title: "스킨 샵 추가 및 파츠 별 스킨 업데이트",
+    //   desc: "연휴 별 스킨 추가 이벤트 진행",
+    //   href: SECTION_SEO,
+    // },
+    // {
+    //   title: "React Native 버전 업데이트",
+    //   desc: "RN 0.68에서 0.74로.",
+    //   href: SECTION_PUSH_NOTIFICATION_PAGE,
+    // },
+    // {
+    //   title: "딥링크 구현",
+    //   desc: "PlayStore Referral API 사용",
+    //   href: SECTION_TEAM_LEADER,
+    // },
     {
       title: "메인페이지",
       titleDesc: "자체 캐로셀 개발",
@@ -264,7 +289,7 @@ export const ANTTIME_APP_EN = {
   },
   right: {
     title: "Trade non-refundable accommodations!",
-    desc: "Your vacation planned for this holiday... got cancelled? And you can't even cancel it? In times like this, put it up for auction on Percent Hotel. The Carrot Market for accommodations! We revolutionize accommodation transfer transactions that had low credibility due to fraudulent listings and excessive resale premiums. This is a safe accommodation resale platform that only handles products verified by Yanolja, Korea's largest accommodation platform.",
+    desc: "ANTTIME is a blockchain-based T2E(Time-to-Earn) project that allows you to monetize the absolute asset of time alongside your ant friends.Within this time, you can engage in various economic activities such as creation, ownership, and revenue generation in the metaverse. Additionally, you can become a Node Validator and directly participate in the blockchain. Make your time more valuable with ANTTIME.",
     navigation: {
       title: "Responsibilities",
       value: [
