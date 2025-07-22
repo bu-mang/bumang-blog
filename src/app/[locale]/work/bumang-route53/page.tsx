@@ -19,7 +19,7 @@ import { FaGithub } from "react-icons/fa";
 import { Link } from "@/i18n/navigation";
 import SectionLink from "@/components/pages/work/workDetail/sectionLink";
 import { PATHNAME } from "@/constants/routes";
-import { ANTTIME_APP_EN, ANTTIME_APP_KO } from "./script";
+import { BUMANG_ROUTE53_KO, BUMANG_ROUTE53_EN } from "./script";
 import Image from "next/image";
 import { useLocale } from "next-intl";
 
@@ -165,7 +165,8 @@ function SectionView({ id, content, order, locale }: SectionViewProps) {
 
 export default function AnttimeApp() {
   const locale = useLocale() as "ko" | "en";
-  const TARGET_LANGUAGE = locale === "ko" ? ANTTIME_APP_KO : ANTTIME_APP_EN;
+  const TARGET_LANGUAGE =
+    locale === "ko" ? BUMANG_ROUTE53_KO : BUMANG_ROUTE53_EN;
   const CONTENT_LEFT = TARGET_LANGUAGE.left;
   const CONTENT_RIGHT = TARGET_LANGUAGE.right;
   const CONTENT_DETAIL = TARGET_LANGUAGE.details;
@@ -188,7 +189,7 @@ export default function AnttimeApp() {
 
         {/* TITLE */}
         <div className="col-span-8 text-9xl font-semibold tracking-tighter">
-          ANTTIME
+          BUMANG ROUTE53
         </div>
 
         {/* TAG */}
@@ -276,18 +277,6 @@ export default function AnttimeApp() {
                     <Link2 size={16} />
                   </div>
                 </Link>
-                <Link
-                  target="_blank"
-                  href={CONTENT_LEFT.summary.relatedLink.value[1].value}
-                  className="flex-1 transition-all hover:scale-[102%] hover:opacity-80"
-                >
-                  <div className="text-xs text-gray-400">
-                    {CONTENT_LEFT.summary.relatedLink.value[1].name}
-                  </div>
-                  <div className="mt-1 font-semibold">
-                    <FaGithub size={16} />
-                  </div>
-                </Link>
               </div>
 
               <Summary.Hint
@@ -297,11 +286,11 @@ export default function AnttimeApp() {
                 testAccount={{
                   idTitle:
                     CONTENT_LEFT.summary.relatedLink.testServiceAccount.email,
-                  id: "qwerty029369\n@naver.com",
+                  id: "blog_user\n@gmail.com",
                   passwordTitle:
                     CONTENT_LEFT.summary.relatedLink.testServiceAccount
                       .password,
-                  password: "qwerty123@",
+                  password: "itsniceday250710",
                 }}
                 breakId
               />
@@ -312,7 +301,7 @@ export default function AnttimeApp() {
         {/* RIGHT */}
         <div className="col-span-4">
           <div className="mb-3 text-4xl font-medium">{CONTENT_RIGHT.title}</div>
-          <div className="mb-10">{CONTENT_RIGHT.desc}</div>
+          <div className="mb-10 leading-loose">{CONTENT_RIGHT.desc}</div>
 
           {/* 맡은 역할 */}
           <div className="mb-3 text-2xl font-medium">

@@ -1,51 +1,46 @@
-export const SECTION_MAIN_PAGE = "SECTION_MAIN_PAGE";
-export const SECTION_SELLER_REGISTER_PAGE = "SECTION_SELLER_REGISTER_PAGE";
-export const SECTION_PUSH_NOTIFICATION_PAGE = "SECTION_PUSH_NOTIFICATION_PAGE";
-export const SECTION_SEO = "SECTION_SEO";
-export const SECTION_TEAM_LEADER = "SECTION_TEAM_LEADER";
+export const SECTION_BACKEND = "SECTION_BACKEND";
+export const SECTION_RBAC = "SECTION_RBAC";
+export const SECTION_REACT_COMP = "SECTION_REACT_COMP";
+export const SECTION_SHADCN = "SECTION_SHADCN";
+export const SECTION_UTILS = "SECTION_UTILS";
 
-export const ANTTIME_APP_KO = {
+export const BUMANG_ROUTE53_KO = {
   backToList: "목록으로 돌아가기",
   left: {
-    badge: ["플레이스토어", "다운로드 80만", "Web3 포인트 채굴 앱"],
+    badge: ["이 블로그", "풀스택으로", "만들었어요."],
     summary: {
       title: "프로젝트 요약",
       period: {
-        label: "담당 시작일",
-        value: "24.04.15.",
+        label: "시작일",
+        value: "2024.12. -",
       },
       position: {
         label: "포지션",
-        value: "크로스플랫폼 앱개발",
+        value: "풀스택",
       },
       techStack: {
         label: "테크스택",
         value: [
-          { label: "React", colorClass: "bg-blue-100" },
-          { label: "Vite", colorClass: "bg-yellow-100" },
-          { label: "Zustand", colorClass: "bg-rose-100" },
-          { label: "Styled Components", colorClass: "bg-pink-100" },
-          { label: "PWA", colorClass: "" },
-          { label: "Firebase Cloud Message(FCM)", colorClass: "bg-red-50" },
-          { label: "Github Action", colorClass: "bg-slate-100" },
-          { label: "MSW", colorClass: "bg-neutral-100" },
+          { label: "Next.js", colorClass: "bg-blue-100" },
+          { label: "Tailwind", colorClass: "bg-neutral-100" },
+          { label: "Next-intl(i18n)", colorClass: "bg-slate-100" },
+          { label: "Gsap", colorClass: "bg-green-100" },
+          { label: "Shadcn/ui", colorClass: "bg-slate-100" },
+          { label: "Nest.js", colorClass: "bg-yellow-100" },
+          { label: "TypeORM", colorClass: "bg-yellow-100" },
+          { label: "Postgresql", colorClass: "bg-rose-100" },
+          { label: "Docker/DockerCompose", colorClass: "bg-pink-100" },
+          { label: "AWS EC2", colorClass: "" },
+          { label: "AWS S3", colorClass: "bg-red-50" },
         ],
       },
       team: {
         label: "팀 구성",
-        value: [
-          { role: "프론트", amount: 5 },
-          { role: "백엔드", amount: 5 },
-          { role: "PM", amount: 4 },
-          { role: "디자인", amount: 1 },
-        ],
+        value: [{ role: "풀스택", amount: 1 }],
       },
       relatedLink: {
         label: "관련링크",
-        value: [
-          { name: "서비스", value: "https://percenthotel.web.app/" },
-          { name: "깃허브", value: "https://github.com/SCBJ-7/SCBJ-FE" },
-        ],
+        value: [{ name: "서비스", value: "https://www.bumang.xyz" }],
         testServiceAccount: {
           title: "테스트용 계정",
           email: "이메일",
@@ -55,59 +50,60 @@ export const ANTTIME_APP_KO = {
     },
   },
   right: {
-    title: "취소불가능한 매물을 양도 거래하세요!",
-    desc: "이번 연휴에 가기로 한 여행.. 취소되셨다구요? 심지어 취소도 안 된다니.. 이럴 땐 퍼센트 호텔에서 경매에 붙이세요. 숙박 매물의 당근마켓! 사기매물과 과도한 리셀 프리미엄으로 인해 신뢰도가 낮았던 숙소 양도거래를 혁신합니다. 국내 최대 숙박 플랫폼 야놀자에서 인증된 상품만 취급하는 안전한 숙소 중고거래 플랫폼입니다.",
+    title: "버망's 인터랙티브 포트폴리오 & 블로그",
+    desc: "버망의 아티클과 그림 기록용 블로그입니다. ROUTE53인 이유가 혹시 궁금하신가요? 제 닉네임 옆에 길이가 비슷한 IT용어(특히 네트워크 용어)를 붙이고 싶었는데, 아마존의 도메인 서비스인 ROUTE53을 가져오기로 했습니다. 뭔가 있어보여서요. 테스트 아이디로 로그인한다면 직접 글을 써보실수도 있어요. 어차피 어드민(버망) 계정이 쓴 글이 아니면 24시간 안에 삭제될거지만요. 임시 아이디가 어딨냐구요?? 좌측 하단에 테스트용 아이디 있을테니 그걸로 로그인 해보세요.",
     navigation: {
       title: "맡은 역할",
       value: [
         {
-          title: "메인 페이지",
-          desc: "자체 캐로셀 개발",
-          href: SECTION_MAIN_PAGE,
+          title: "블로그 백엔드 개발",
+          desc: "Nest.js 개발부터 배포까지",
+          href: SECTION_BACKEND,
         },
         {
-          title: "판매글작성 페이지",
-          desc: "복잡한 비즈니스로직 예외처리",
-          href: SECTION_SELLER_REGISTER_PAGE,
+          title: "역할 기반 접근 제어",
+          desc: "역할을 차등하여 CRUD 권한 차별화",
+          href: SECTION_RBAC,
         },
         {
-          title: "알림 페이지",
-          desc: "FCM 알림 구현하기",
-          href: SECTION_PUSH_NOTIFICATION_PAGE,
+          title: "React 서버/클라 컴포넌트 전략",
+          desc: "SEO에 따른 서버/클라 패칭 분기",
+          href: SECTION_REACT_COMP,
         },
         {
-          title: "리액트 SEO 최적화",
-          desc: "LightHouse SEO 점수 77점에서 100점으로",
-          href: SECTION_SEO,
+          title: "Headless UI 커스텀 컴포넌트",
+          desc: "신속하게 고품질 컴포넌트 구축",
+          href: SECTION_SHADCN,
         },
         {
-          title: "프론트엔드 팀장",
-          desc: "팀 운영",
-          href: SECTION_TEAM_LEADER,
+          title: "i18n 및 다크모드",
+          desc: "여러가지 유틸 기능 구현 및 실험",
+          href: SECTION_UTILS,
         },
       ],
     },
   },
   details: [
     {
-      title: "메인페이지",
-      titleDesc: "자체 캐로셀 개발",
-      id: SECTION_MAIN_PAGE,
+      title: "블로그 백엔드 개발",
+      titleDesc: "Nest.js 개발부터 배포까지",
+      id: SECTION_BACKEND,
 
       list: [
         {
-          subtitle: "• 슬라이드 애니메이션 구현",
+          subtitle: "• 블로그 CRUD 기능 구현",
           desc: [
-            "Resize 이벤트에 따라 부모 container의 width값이 변하면 슬라이드되는 x값도 변하도록 useCarouselSize 훅 개발",
-            "MouseDown이벤트의 pageX 좌표값과 mouseUp 이벤트의 pageX 좌표값의 차이를 계산하여 delta(변화량)값을 도출. → 변화값이 일정 값 이상이면 다음 슬라이드로 이동하도록 구현",
-            "useEffect와 SetInterval을 활용하여 3초 마다 무한반복 슬라이드 애니메이션 구현. MouseEnter, MouseLeave 이벤트를 감지하여 일시정지 구현. 클린업 함수로 페이지 이탈 시 setTimeout 해제하여 메모리 정리",
+            "Postgresql을 활용한 관계형 DB 내 유저 - 포스트 - 카테고리 - 그룹 관계 설정",
+            "점수 기반 관련성 알고리즘을 기반으로 관련 게시물 추천 API 개발",
+            "블로그 편집 중 이미지를 삽입하거나, 썸네일 이미지로 등록하는 과정 구현. 버퍼가 큰 이미지는 클라이언트가 직접 S3로 업로드하도록 presigned URL을 제공.",
           ],
         },
         {
-          subtitle: "• 모바일 환경과 PC 환경에 동일한 사용자 경험 제공",
+          subtitle: "• Docker 및 AWS EC2 배포를 위한 CI/CD 최적화",
           desc: [
-            "캐로셀 애니메이션을 모바일, PC 환경에서 모두 드래그 가능하도록 TouchEvent와 MouseEvent를 모두 활용.",
-            "touch이벤트 발생 시 mouse 이벤트를 cancel시켜 의도치 않은 클릭 방지",
+            "Docker Compose를 사용하여 Nest.js 앱과 PostgreSQL 데이터베이스를 컨테이너화하고 Docker 이미지를 통해 배포",
+            "GitHub Actions으로 자동 배포: EC2에 SSH 접속, 최신 Docker 이미지 pull, 컨테이너 재시작 등을 자동화",
+            "배포 시 오래된 Docker 이미지 캐시 제거, 최신 3개 이미지만 유지하도록 설정",
           ],
         },
       ],
@@ -115,24 +111,39 @@ export const ANTTIME_APP_KO = {
       image: "",
     },
     {
-      title: "판매글 작성 페이지",
-      titleDesc: "복잡한 비즈니스 로직과 예외 처리",
-      id: SECTION_SELLER_REGISTER_PAGE,
+      title: "역할 기반 접근 제어",
+      titleDesc: "역할을 차등하여 CRUD 권한 차별화",
+      id: SECTION_RBAC,
 
       list: [
         {
-          subtitle: "• 복잡한 비즈니스 로직 예외처리를 커스텀 훅으로 핸들링",
+          subtitle: "• 퍼블릭, 유저, 어드민 등의 역할 분리",
           desc: [
-            "양도 1차 가격, 2차 가격 설정 여부, 2차 가격 시간 설정, 2차 가격 설정, 계좌 등록 여부, 야놀자 인증 여부, 약관 동의 여부 등 다양한 비즈니스 로직들을 고려하여 다음 프로세스로 진행 가능한지 판별하는 커스텀 훅 개발",
+            "운영자인 '어드민', 포스트 올리기 체험 및 일부 비공개글을 읽을 수 있는 '유저', 비로그인 상태인 '퍼블릭', 이렇게 3개의 권한이 존재",
+            "퍼블릭 권한은 '유저Only' 포스트를 조회할 수 없고, 유저 권한은 '어드민Only' 포스트를 볼 수 없음.",
+            "cron 스케줄링 작업으로 '어드민'이 올리지 않은 포스트는 24시간에 한 번 꼴로 삭제 정리됨.",
           ],
         },
+      ],
+
+      image: "",
+    },
+    {
+      title: "React 서버/클라 컴포넌트 전략",
+      titleDesc: "SEO에 따른 서버/클라 패칭 분기",
+      id: SECTION_REACT_COMP,
+
+      list: [
         {
           subtitle:
-            "• 결제 수단이 없을 경우 결제수단등록 페이지로 리다이렉팅시킨 후 복귀 시 작성 상태 기록",
+            "• 인증/인가에 따라 서버컴포넌트와 클라이언트 컴포넌트의 관심사 분리",
           desc: [
-            "계좌 등록이 안 된 경우 현재까지의 작성 상태를 기억해놓고, 계좌 연결 플로우를 타게 한 다음 다시 복귀하는 로직이 필요",
-            "현재 페이지에 머무르며 결제수단등록 페이지의 컴포넌트만 갈아끼워서 구현. 이로 인해 기존에 입력했던 state 모두 유지",
-            "복귀 시 state는 살아있지만 브라우저에서 checkbox의 check상태가 풀려 있는 등의 문제가 발생 → 현재 state 상태에 따라 페이지 전환 시 다시 복구시키는 훅으로 대응 및 해결",
+            "SEO가 중요한 데이터(포스트 리스트, 내용 등)면서 public한 데이터는 서버 컴포넌트에서 처리.",
+            "인증/인가가 필요한 데이터면 되도록 클라이언트 컴포넌트 내에서 httpOnly 쿠키와 함께 패칭하도록 유도.",
+            "만약 비공개 글일 경우, 서버컴포넌트에서 토큰없이 호출 후 일차적으로 401에러가 반환되면, 클라이언트 컴포넌트에서 인증정보를 가지고 다시 패칭을 하는 구조 설정",
+            "JWT 전략 상 엑세스토큰 주기를 짧게 설정하기 때문에, 토큰 만료 시 재발급 받아오는 과정이 필연적으로 필요함.",
+            "그러나 서버컴포넌트에서 재발급 처리 시 httpOnly쿠키가 브라우저에 자동으로 심어지지 않음. (요청자가 브라우저가 아니기 때문) 그래서 서버사이드에서 다시 브라우저에 심어주는 과정이 필요.",
+            "서버사이드에서 인증 관리 시 위와 같은 번거로움이 발생하므로 인증 관리는 클라이언트 컴포넌트에 일임. 관심사 분리 결정",
           ],
         },
       ],
@@ -140,17 +151,17 @@ export const ANTTIME_APP_KO = {
       image: "",
     },
     {
-      title: "알림 페이지",
-      titleDesc: "Firebase Cloud Message 알림 구현",
-      id: SECTION_PUSH_NOTIFICATION_PAGE,
+      title: "Headless UI 커스텀 컴포넌트",
+      titleDesc: "신속하게 고품질 컴포넌트 구축",
+      id: SECTION_SHADCN,
 
       list: [
         {
-          subtitle: "• 안드로이드, iOS, PWA 내의 브라우저에서 푸시 알림 구현",
+          subtitle: "• Shadcn/ui, React-bits 등 여러 headless UI 활용",
           desc: [
-            "FCM 토큰 초기화 로직을 커스텀 훅으로 만들어 로그인 시 사용",
-            "서비스 워커로 백그라운드 푸시 알림 수신",
-            "백엔드에서 매물 거래 성공 혹은 체크인 7일, 1일 전 푸시알림 전송 시 프론트엔드에서 수신",
+            "풍부한 테일윈드 기반 HeadlessUI 생태계 활용",
+            "기본적인 컬러, borderRadius, fontSize 규칙을 정해 디자인 통일성을 유지",
+            "이 서비스에 필요한 복합적인 기능 컴포넌트도 헤드리스 UI들을 조합하여 합성하여 생성",
           ],
         },
       ],
@@ -158,43 +169,16 @@ export const ANTTIME_APP_KO = {
       image: "",
     },
     {
-      title: "리액트 SEO 최적화",
-      titleDesc: "LightHouse SEO 최적화",
-      id: SECTION_SEO,
+      title: "i18n 및 다크모드",
+      titleDesc: "여러가지 유틸 기능 구현 및 실험",
+      id: SECTION_UTILS,
 
       list: [
         {
-          subtitle: "• React/Vite 환경에서도 서버사이드 pre-render 구현",
+          subtitle: "• i18n 및 다크모드 등 여러 유틸 기능들을 실험",
           desc: [
-            "리액트 헬멧 라이브러리로 동적인 메타데이터를 브라우저에 렌더",
-            "리액트 스냅 라이브러리로 리액트에서도 SSG 방식의 메타데이터 주입 구현",
-            "개선 전 LightHouse SEO 점수 77점 → 100점",
-          ],
-        },
-      ],
-
-      image: "",
-    },
-    {
-      title: "개발팀 운영",
-      titleDesc: "완성도와 팀워크를 가다듬어 파이널 프로젝트 2등 달성",
-      id: SECTION_TEAM_LEADER,
-
-      list: [
-        {
-          subtitle: "• 개발팀 규칙 설정",
-          desc: [
-            "매일 아침 데일리 스크럼으로 작업 내역 공유",
-            "코드리뷰는 전원 다 해야 머지 가능. ‘수고하셨습니다.’보단 코드를 자세히 보면서 뭐라도 남기도록 유도.",
-          ],
-        },
-        {
-          subtitle: "• 프로젝트 중반 팀원 이탈 대처",
-          desc: [
-            "프로젝트 중반에 팀원 2명이 면접 준비를 이유로 중도 이탈하는 상황이 발생하여 남은 팀원들이 사기가 떨어지는 상황에 대한 대처",
-            "이탈한 2명에게 연락하여 구체적으로 어떤 부분을 개발하고 있었고, 완료하지 못한 부분이 어디인지 파악하여 남은 인원들에게 업무 분담",
-            "개발 템포가 떨어지지 않게 하기 위하여 오히려 코드리뷰를 더욱 자세히 하고, 빠른 피드백 문화를 위해 pr이 올라오면 3시간 이내에 확인하기 문화를 만듦. 그리고 잘한 점은 칭찬하는 문화를 전파.",
-            "그 결과 팀원들 중 퍼포먼스가 가장 좋았던 팀원이 팀 분위기가 좋아 마지막까지 힘낼 수 있었다고 회고 때 언급",
+            "Next-intl으로 i18n 국제화 지원. 패스 라우팅 자체를 분기",
+            "[다크모드 지원 예정]",
           ],
         },
       ],
@@ -203,51 +187,45 @@ export const ANTTIME_APP_KO = {
     },
   ],
 };
-
-export const ANTTIME_APP_EN = {
+export const BUMANG_ROUTE53_EN = {
   backToList: "Back to List",
   left: {
-    badge: ["Total", "2nd", "in", "Yanolja Tech School", "Graduate"],
+    badge: ["This blog", "was built", "full-stack."],
     summary: {
-      title: "Summary",
+      title: "Project Summary",
       period: {
-        label: "Period",
-        value: "24.02.02. - 24.02.27.",
+        label: "Start Date",
+        value: "2024.12. -",
       },
       position: {
         label: "Position",
-        value: "Frontend",
+        value: "Full-stack",
       },
       techStack: {
         label: "Tech Stack",
         value: [
-          { label: "React", colorClass: "bg-blue-100" },
-          { label: "Vite", colorClass: "bg-yellow-100" },
-          { label: "Zustand", colorClass: "bg-rose-100" },
-          { label: "Styled Components", colorClass: "bg-pink-100" },
-          { label: "PWA", colorClass: "" },
-          { label: "Firebase Cloud Message(FCM)", colorClass: "bg-red-50" },
-          { label: "Github Action", colorClass: "bg-slate-100" },
-          { label: "MSW", colorClass: "bg-neutral-100" },
+          { label: "Next.js", colorClass: "bg-blue-100" },
+          { label: "Tailwind", colorClass: "bg-neutral-100" },
+          { label: "Next-intl(i18n)", colorClass: "bg-slate-100" },
+          { label: "Gsap", colorClass: "bg-green-100" },
+          { label: "Shadcn/ui", colorClass: "bg-slate-100" },
+          { label: "Nest.js", colorClass: "bg-yellow-100" },
+          { label: "TypeORM", colorClass: "bg-yellow-100" },
+          { label: "Postgresql", colorClass: "bg-rose-100" },
+          { label: "Docker/DockerCompose", colorClass: "bg-pink-100" },
+          { label: "AWS EC2", colorClass: "" },
+          { label: "AWS S3", colorClass: "bg-red-50" },
         ],
       },
       team: {
-        label: "Team",
-        value: [
-          { role: "Front", amount: 5 },
-          { role: "Back", amount: 5 },
-          { role: "PM", amount: 4 },
-          { role: "Design", amount: 1 },
-        ],
+        label: "Team Size",
+        value: [{ role: "Full-stack", amount: 1 }],
       },
       relatedLink: {
         label: "Related Links",
-        value: [
-          { name: "Service", value: "https://percenthotel.web.app/" },
-          { name: "Github", value: "https://github.com/SCBJ-7/SCBJ-FE" },
-        ],
+        value: [{ name: "Service", value: "https://www.bumang.xyz" }],
         testServiceAccount: {
-          title: "Test Service Account",
+          title: "Test Account",
           email: "Email",
           password: "Password",
         },
@@ -255,60 +233,60 @@ export const ANTTIME_APP_EN = {
     },
   },
   right: {
-    title: "Trade non-refundable accommodations!",
-    desc: "Your vacation planned for this holiday... got cancelled? And you can't even cancel it? In times like this, put it up for auction on Percent Hotel. The Carrot Market for accommodations! We revolutionize accommodation transfer transactions that had low credibility due to fraudulent listings and excessive resale premiums. This is a safe accommodation resale platform that only handles products verified by Yanolja, Korea's largest accommodation platform.",
+    title: "Bumang's Interactive Portfolio & Blog",
+    desc: "This is Bumang's blog for recording articles and artwork. Wondering why it's called ROUTE53? I wanted to attach an IT term (especially a network term) of similar length next to my nickname, so I chose Amazon's domain service ROUTE53. It sounds professional. If you log in with the test account, you can even try writing posts yourself. Though any posts not written by the admin (Bumang) account will be deleted within 24 hours. Looking for the temporary account? Check the test account info at the bottom left.",
     navigation: {
-      title: "Responsibilities",
+      title: "Role & Responsibilities",
       value: [
         {
-          title: "Main Page",
-          desc: "Custom carousel development",
-          href: SECTION_MAIN_PAGE,
+          title: "Blog Backend Development",
+          desc: "From Nest.js development to deployment",
+          href: SECTION_BACKEND,
         },
         {
-          title: "Seller Registration Page",
-          desc: "Complex business logic exception handling",
-          href: SECTION_SELLER_REGISTER_PAGE,
+          title: "Role-Based Access Control",
+          desc: "Differentiated CRUD permissions by role",
+          href: SECTION_RBAC,
         },
         {
-          title: "Notification Page",
-          desc: "FCM notification implementation",
-          href: SECTION_PUSH_NOTIFICATION_PAGE,
+          title: "React Server/Client Component Strategy",
+          desc: "Server/Client fetching strategy for SEO",
+          href: SECTION_REACT_COMP,
         },
         {
-          title: "React SEO Optimization",
-          desc: "LightHouse SEO score from 77 to 100 points",
-          href: SECTION_SEO,
+          title: "Headless UI Custom Components",
+          desc: "Building high-quality components rapidly",
+          href: SECTION_SHADCN,
         },
         {
-          title: "Frontend Team Leader",
-          desc: "Team management",
-          href: SECTION_TEAM_LEADER,
+          title: "i18n & Dark Mode",
+          desc: "Implementation and experimentation of various utility features",
+          href: SECTION_UTILS,
         },
       ],
     },
   },
   details: [
     {
-      title: "Main Page",
-      titleDesc: "Custom carousel development",
-      id: SECTION_MAIN_PAGE,
+      title: "Blog Backend Development",
+      titleDesc: "From Nest.js development to deployment",
+      id: SECTION_BACKEND,
 
       list: [
         {
-          subtitle: "• Slide animation implementation",
+          subtitle: "• Blog CRUD functionality implementation",
           desc: [
-            "Developed useCarouselSize hook so that when the width value of the parent container changes according to the Resize event, the sliding x value also changes",
-            "Calculated the difference between the pageX coordinate value of the MouseDown event and the pageX coordinate value of the mouseUp event to derive the delta (change amount) value. → Implemented to move to the next slide when the change value exceeds a certain value",
-            "Implemented infinite loop slide animation every 3 seconds using useEffect and SetInterval. Implemented pause by detecting MouseEnter and MouseLeave events. Memory cleanup by releasing setTimeout when leaving the page with cleanup function",
+            "Set up relational database structure with PostgreSQL for User - Post - Category - Group relationships",
+            "Developed related post recommendation API based on score-based relevance algorithm",
+            "Implemented image insertion during blog editing and thumbnail registration. For large buffer images, provided presigned URLs for direct client-to-S3 upload.",
           ],
         },
         {
-          subtitle:
-            "• Providing the same user experience in mobile and PC environments",
+          subtitle: "• CI/CD optimization for Docker and AWS EC2 deployment",
           desc: [
-            "Used both TouchEvent and MouseEvent to make carousel animation draggable in both mobile and PC environments.",
-            "Canceled mouse events when touch events occur to prevent unintended clicks",
+            "Containerized Nest.js app and PostgreSQL database using Docker Compose, deployed via Docker images",
+            "Automated deployment with GitHub Actions: SSH connection to EC2, pulling latest Docker images, container restart automation",
+            "Configured deployment to remove old Docker image cache, maintaining only the latest 3 images",
           ],
         },
       ],
@@ -316,25 +294,17 @@ export const ANTTIME_APP_EN = {
       image: "",
     },
     {
-      title: "Seller Registration Page",
-      titleDesc: "Complex business logic and exception handling",
-      id: SECTION_SELLER_REGISTER_PAGE,
+      title: "Role-Based Access Control",
+      titleDesc: "Differentiated CRUD permissions by role",
+      id: SECTION_RBAC,
 
       list: [
         {
-          subtitle:
-            "• Handling complex business logic exceptions with custom hooks",
+          subtitle: "• Separation of Public, User, and Admin roles",
           desc: [
-            "Developed custom hooks to determine whether it is possible to proceed to the next process by considering various business logics such as transfer 1st price, 2nd price setting status, 2nd price time setting, 2nd price setting, account registration status, Yanolja authentication status, terms agreement status, etc.",
-          ],
-        },
-        {
-          subtitle:
-            "• Redirect to payment method registration page when there is no payment method, then record writing status upon return",
-          desc: [
-            "When account registration is not done, it was necessary to remember the current writing status, go through the account connection flow, and then return",
-            "Implemented by staying on the current page and only replacing the component of the payment method registration page. This preserved all previously entered states",
-            "Upon return, the state is alive but problems such as the browser's checkbox check status being unchecked occurred → Responded and resolved with a hook that restores according to the current state status when switching pages",
+            "Three permission levels exist: 'Admin' for operators, 'User' for post creation experience and accessing some private posts, and 'Public' for non-logged-in state",
+            "Public users cannot view 'User Only' posts, and User users cannot see 'Admin Only' posts.",
+            "Cron scheduling job deletes posts not created by 'Admin' once every 24 hours for cleanup.",
           ],
         },
       ],
@@ -342,18 +312,21 @@ export const ANTTIME_APP_EN = {
       image: "",
     },
     {
-      title: "Notification Page",
-      titleDesc: "Firebase Cloud Message notification implementation",
-      id: SECTION_PUSH_NOTIFICATION_PAGE,
+      title: "React Server/Client Component Strategy",
+      titleDesc: "Server/Client fetching strategy for SEO",
+      id: SECTION_REACT_COMP,
 
       list: [
         {
           subtitle:
-            "• Implemented push notifications in Android, iOS, and PWA browsers",
+            "• Separation of concerns between server and client components based on authentication/authorization",
           desc: [
-            "Created FCM token initialization logic as a custom hook for use during login",
-            "Background push notification reception through service worker",
-            "Frontend receives push notifications when backend sends property transaction success or check-in 7 days, 1 day before push notifications",
+            "SEO-important and public data (post lists, content, etc.) is handled in server components.",
+            "Data requiring authentication/authorization is fetched in client components with httpOnly cookies when possible.",
+            "For private posts, server components make calls without tokens first, and if a 401 error is returned, client components refetch with authentication information",
+            "Due to JWT strategy with short access token expiration, token refresh is inevitably required.",
+            "However, when handling refresh in server components, httpOnly cookies are not automatically set in the browser (since the requester is not a browser). Manual cookie setting process is needed on the server side.",
+            "Since server-side authentication management involves such complexities, authentication management is delegated to client components for separation of concerns",
           ],
         },
       ],
@@ -361,18 +334,18 @@ export const ANTTIME_APP_EN = {
       image: "",
     },
     {
-      title: "React SEO Optimization",
-      titleDesc: "LightHouse SEO optimization",
-      id: SECTION_SEO,
+      title: "Headless UI Custom Components",
+      titleDesc: "Building high-quality components rapidly",
+      id: SECTION_SHADCN,
 
       list: [
         {
           subtitle:
-            "• Implemented server-side pre-rendering even in React/Vite environment",
+            "• Utilizing various headless UIs including Shadcn/ui, React-bits",
           desc: [
-            "Rendered dynamic metadata to browser with React Helmet library",
-            "Implemented SSG-style metadata injection in React with React Snap library",
-            "LightHouse SEO score improved from 77 points → 100 points",
+            "Leveraged rich Tailwind-based HeadlessUI ecosystem",
+            "Maintained design consistency by establishing basic color, borderRadius, and fontSize rules",
+            "Created complex functional components needed for this service by composing and combining headless UI elements",
           ],
         },
       ],
@@ -380,27 +353,18 @@ export const ANTTIME_APP_EN = {
       image: "",
     },
     {
-      title: "Development Team Management",
+      title: "i18n & Dark Mode",
       titleDesc:
-        "Achieved 2nd place in final project by refining completeness and teamwork",
-      id: SECTION_TEAM_LEADER,
+        "Implementation and experimentation of various utility features",
+      id: SECTION_UTILS,
 
       list: [
         {
-          subtitle: "• Setting development team rules",
-          desc: [
-            "Shared work details through daily scrum every morning",
-            "Code review must be done by everyone before merge is possible. Encouraged to look at code carefully and leave something rather than just saying 'Good work.'",
-          ],
-        },
-        {
           subtitle:
-            "• Dealing with team member departure in the middle of the project",
+            "• Experimentation with various utility features including i18n and dark mode",
           desc: [
-            "In the middle of the project, 2 team members left for interview preparation, which caused the remaining team members to lose morale",
-            "Contacted the 2 departed members to understand what parts they were developing specifically and what parts were not completed, then distributed tasks among the remaining members",
-            "To prevent the development tempo from dropping, made code reviews even more detailed and created a culture of checking PRs within 3 hours for quick feedback. Also spread a culture of praising good points.",
-            "As a result, the team member with the best performance among the team members mentioned during retrospective that the good team atmosphere helped them stay motivated until the end",
+            "i18n internationalization support with Next-intl. Path routing itself is branched",
+            "[Dark mode support planned]",
           ],
         },
       ],
