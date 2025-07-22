@@ -2,17 +2,17 @@ export function getThumbnailByGroup(group: string) {
   const groupLowercase = group.toLowerCase();
   switch (groupLowercase) {
     case "project":
-      return "/thumbnails/projects.png";
+      return "/thumbnails/compressed/projects.png";
     case "frontend":
-      return "/thumbnails/frontend.png";
+      return "/thumbnails/compressed/frontend.png";
     case "backend":
-      return "/thumbnails/backend.png";
+      return "/thumbnails/compressed/backend.png";
     case "computer science":
-      return "/thumbnails/computerScience.png";
+      return "/thumbnails/compressed/computerScience.png";
     case "interactive":
-      return "/thumbnails/interactive.png";
+      return "/thumbnails/compressed/interactive.png";
     case "life":
-      return "/thumbnails/life.png";
+      return "/thumbnails/compressed/life.png";
     default:
       return "";
   }
