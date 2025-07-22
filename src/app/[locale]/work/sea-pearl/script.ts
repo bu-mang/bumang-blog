@@ -1,22 +1,22 @@
-export const SECTION_MAIN_PAGE = "SECTION_MAIN_PAGE";
-export const SECTION_SELLER_REGISTER_PAGE = "SECTION_SELLER_REGISTER_PAGE";
-export const SECTION_PUSH_NOTIFICATION_PAGE = "SECTION_PUSH_NOTIFICATION_PAGE";
-export const SECTION_SEO = "SECTION_SEO";
+export const SECTION_WHOLE_PROCESS = "SECTION_WHOLE_PROCESS";
+export const SECTION_IN_APP_ADS = "SECTION_IN_APP_ADS";
+export const SECTION_VIRTUAL_LIST = "SECTION_VIRTUAL_LIST";
+export const SECTION_TAPPING_OPTIMIZATION = "SECTION_TAPPING_OPTIMIZATION";
 export const SECTION_TEAM_LEADER = "SECTION_TEAM_LEADER";
 
 export const ANTTIME_APP_KO = {
   backToList: "목록으로 돌아가기",
   left: {
-    badge: ["플레이스토어", "다운로드 80만", "Web3 포인트 채굴 앱"],
+    badge: ["텔레그램 미니앱", "탭게임"],
     summary: {
       title: "프로젝트 요약",
       period: {
         label: "담당 시작일",
-        value: "24.04.15.",
+        value: "24.12.15.",
       },
       position: {
         label: "포지션",
-        value: "크로스플랫폼 앱개발",
+        value: "프론트엔드 (텔레그램 웹뷰 미니앱 개발)",
       },
       techStack: {
         label: "테크스택",
@@ -24,27 +24,28 @@ export const ANTTIME_APP_KO = {
           { label: "React", colorClass: "bg-blue-100" },
           { label: "Vite", colorClass: "bg-yellow-100" },
           { label: "Zustand", colorClass: "bg-rose-100" },
-          { label: "Styled Components", colorClass: "bg-pink-100" },
-          { label: "PWA", colorClass: "" },
-          { label: "Firebase Cloud Message(FCM)", colorClass: "bg-red-50" },
-          { label: "Github Action", colorClass: "bg-slate-100" },
-          { label: "MSW", colorClass: "bg-neutral-100" },
+          { label: "Telegram API", colorClass: "bg-neutral-100" },
+          { label: "Tailwind", colorClass: "bg-blue-50" },
+          { label: "React-Virtuoso", colorClass: "" },
+          { label: "Suspensive", colorClass: "bg-slate-100" },
         ],
       },
       team: {
         label: "팀 구성",
         value: [
-          { role: "프론트", amount: 5 },
-          { role: "백엔드", amount: 5 },
-          { role: "PM", amount: 4 },
+          { role: "프론트", amount: 1 },
+          { role: "백엔드", amount: 1 },
+          { role: "PM", amount: 1 },
           { role: "디자인", amount: 1 },
         ],
       },
       relatedLink: {
         label: "관련링크",
         value: [
-          { name: "서비스", value: "https://percenthotel.web.app/" },
-          { name: "깃허브", value: "https://github.com/SCBJ-7/SCBJ-FE" },
+          {
+            name: "서비스",
+            value: "https://t.me/sea_pearl_game_bot?start=hhuvfp7ea85T99ald3hv",
+          },
         ],
         testServiceAccount: {
           title: "테스트용 계정",
@@ -55,34 +56,34 @@ export const ANTTIME_APP_KO = {
     },
   },
   right: {
-    title: "취소불가능한 매물을 양도 거래하세요!",
-    desc: "이번 연휴에 가기로 한 여행.. 취소되셨다구요? 심지어 취소도 안 된다니.. 이럴 땐 퍼센트 호텔에서 경매에 붙이세요. 숙박 매물의 당근마켓! 사기매물과 과도한 리셀 프리미엄으로 인해 신뢰도가 낮았던 숙소 양도거래를 혁신합니다. 국내 최대 숙박 플랫폼 야놀자에서 인증된 상품만 취급하는 안전한 숙소 중고거래 플랫폼입니다.",
+    title: "이번 주 래플 당첨자는...",
+    desc: "Sea Pearl을 플레이하고 귀여운 수달 캐릭터로 펄을 수집하세요. 모은 펄들로 로터리를 응모하세요. 펄이 많이 있을수록 많은 복권을 구매할 수 있어요. 주간 래플에서 다음 USDT 당첨자가 되어보세요!",
     navigation: {
       title: "맡은 역할",
       value: [
         {
-          title: "메인 페이지",
-          desc: "자체 캐로셀 개발",
-          href: SECTION_MAIN_PAGE,
+          title: "초기제품 전담",
+          desc: "프론트엔드 개발환경 세팅부터 배포까지",
+          href: SECTION_WHOLE_PROCESS,
         },
         {
-          title: "판매글작성 페이지",
-          desc: "복잡한 비즈니스로직 예외처리",
-          href: SECTION_SELLER_REGISTER_PAGE,
+          title: "인앱 광고 플랫폼 연동",
+          desc: "Adsgram SDK 연동",
+          href: SECTION_IN_APP_ADS,
         },
         {
-          title: "알림 페이지",
-          desc: "FCM 알림 구현하기",
-          href: SECTION_PUSH_NOTIFICATION_PAGE,
+          title: "가상 리스트 최적화",
+          desc: "react-virtuoso를 사용하여 긴 목록도 최적화",
+          href: SECTION_VIRTUAL_LIST,
         },
         {
-          title: "리액트 SEO 최적화",
-          desc: "LightHouse SEO 점수 77점에서 100점으로",
-          href: SECTION_SEO,
+          title: "탭게임 API호출 최적화",
+          desc: "디바운스로 호출 횟수 최소화",
+          href: SECTION_TAPPING_OPTIMIZATION,
         },
         {
-          title: "프론트엔드 팀장",
-          desc: "팀 운영",
+          title: "인터랙티브 탭핑 애니메이션",
+          desc: "미니앱 iframe 성능 한계 최적화",
           href: SECTION_TEAM_LEADER,
         },
       ],
@@ -90,24 +91,23 @@ export const ANTTIME_APP_KO = {
   },
   details: [
     {
-      title: "메인페이지",
-      titleDesc: "자체 캐로셀 개발",
-      id: SECTION_MAIN_PAGE,
+      title: "초기제품 전담",
+      titleDesc: "프론트엔드 개발환경 세팅부터 배포까지",
+      id: SECTION_WHOLE_PROCESS,
 
       list: [
         {
-          subtitle: "• 슬라이드 애니메이션 구현",
+          subtitle: "• 텔레그램 챗봇에 배포링크 및 테스트 서버링크 연동",
           desc: [
-            "Resize 이벤트에 따라 부모 container의 width값이 변하면 슬라이드되는 x값도 변하도록 useCarouselSize 훅 개발",
-            "MouseDown이벤트의 pageX 좌표값과 mouseUp 이벤트의 pageX 좌표값의 차이를 계산하여 delta(변화량)값을 도출. → 변화값이 일정 값 이상이면 다음 슬라이드로 이동하도록 구현",
-            "useEffect와 SetInterval을 활용하여 3초 마다 무한반복 슬라이드 애니메이션 구현. MouseEnter, MouseLeave 이벤트를 감지하여 일시정지 구현. 클린업 함수로 페이지 이탈 시 setTimeout 해제하여 메모리 정리",
+            "ngrok을 사용하여 로컬호스트 개발 환경을 텔레그램 챗봇에 연동 구축",
+            "iframe 기반 미니 앱 환경 내에서 웹뷰로 프론트엔드 배포",
           ],
         },
         {
-          subtitle: "• 모바일 환경과 PC 환경에 동일한 사용자 경험 제공",
+          subtitle: "• 텔레그램 API으로 유저 인증 처리",
           desc: [
-            "캐로셀 애니메이션을 모바일, PC 환경에서 모두 드래그 가능하도록 TouchEvent와 MouseEvent를 모두 활용.",
-            "touch이벤트 발생 시 mouse 이벤트를 cancel시켜 의도치 않은 클릭 방지",
+            "텔레그램 미니 앱 글로벌 브라우저 API를 사용하여 사용자 인증 데이터를 가져오는 초기화 로직 구현",
+            "텔레그램 유저 인증 기반으로 API 서버와 유저 고유값 식별하는 프로세스 구축",
           ],
         },
       ],
@@ -115,42 +115,62 @@ export const ANTTIME_APP_KO = {
       image: "",
     },
     {
-      title: "판매글 작성 페이지",
-      titleDesc: "복잡한 비즈니스 로직과 예외 처리",
-      id: SECTION_SELLER_REGISTER_PAGE,
+      title: "인앱 광고 플랫폼 연동",
+      titleDesc: "Adsgram SDK 연동",
+      id: SECTION_IN_APP_ADS,
 
       list: [
         {
-          subtitle: "• 복잡한 비즈니스 로직 예외처리를 커스텀 훅으로 핸들링",
+          subtitle: "• 인앱 광고를 위한 Adsgram SDK 설치",
           desc: [
-            "양도 1차 가격, 2차 가격 설정 여부, 2차 가격 시간 설정, 2차 가격 설정, 계좌 등록 여부, 야놀자 인증 여부, 약관 동의 여부 등 다양한 비즈니스 로직들을 고려하여 다음 프로세스로 진행 가능한지 판별하는 커스텀 훅 개발",
+            "Adsgram 서버로부터 성공/실패 결과를 받아 백엔드 API 서버로 전달하는 로직 구현",
+            "사용자가 광고를 건너뛰거나, 앱을 백그라운드로 보내거나, 앱 관리자 화면에 머물러 있을 경우 광고 시청을 실패로 처리",
           ],
         },
+      ],
+
+      image: "",
+    },
+    {
+      title: "가상 리스트 최적화",
+      titleDesc: "리스트 가상 렌더",
+      id: SECTION_VIRTUAL_LIST,
+
+      list: [
+        {
+          subtitle: "• react-virtuoso를 사용하여 긴 목록도 최적화",
+          desc: [
+            "끝없이 추가될 수 있는 친구 리스트를 처리할 수 있도록 가상화된 리스트 구성",
+            "뷰포트 이내에 올라와야지만 렌더될 수 있도록 처리하여 성능 개선",
+          ],
+        },
+      ],
+
+      image: "",
+    },
+    {
+      title: "탭게임 API호출 최적화",
+      titleDesc: "디바운스로 호출 횟수 최소화",
+      id: SECTION_TAPPING_OPTIMIZATION,
+
+      list: [
         {
           subtitle:
-            "• 결제 수단이 없을 경우 결제수단등록 페이지로 리다이렉팅시킨 후 복귀 시 작성 상태 기록",
+            "• 어뷰징을 최대한 차단하며 동시에 호출비용을 줄이기 위한 방안 고안",
           desc: [
-            "계좌 등록이 안 된 경우 현재까지의 작성 상태를 기억해놓고, 계좌 연결 플로우를 타게 한 다음 다시 복귀하는 로직이 필요",
-            "현재 페이지에 머무르며 결제수단등록 페이지의 컴포넌트만 갈아끼워서 구현. 이로 인해 기존에 입력했던 state 모두 유지",
-            "복귀 시 state는 살아있지만 브라우저에서 checkbox의 check상태가 풀려 있는 등의 문제가 발생 → 현재 state 상태에 따라 페이지 전환 시 다시 복구시키는 훅으로 대응 및 해결",
+            "초기: 연속 탭핑 횟수를 디바운스로 집계하여 마지막 탭 후 3초 뒤 서버로 전송하도록 최적화",
+            "사용자가 3초 이내에 화면을 나갈 경우, useEffect cleanup 함수를 사용하여 언마운트 전 서버 업데이트 보장",
           ],
         },
-      ],
-
-      image: "",
-    },
-    {
-      title: "알림 페이지",
-      titleDesc: "Firebase Cloud Message 알림 구현",
-      id: SECTION_PUSH_NOTIFICATION_PAGE,
-
-      list: [
         {
-          subtitle: "• 안드로이드, iOS, PWA 내의 브라우저에서 푸시 알림 구현",
+          subtitle: "• 서버 비용과 보안의 트레이드 오프 논의",
           desc: [
-            "FCM 토큰 초기화 로직을 커스텀 훅으로 만들어 로그인 시 사용",
-            "서비스 워커로 백그라운드 푸시 알림 수신",
-            "백엔드에서 매물 거래 성공 혹은 체크인 7일, 1일 전 푸시알림 전송 시 프론트엔드에서 수신",
+            "디바운스 패턴으로 호출을 줄였지만, 탭핑 API를 좀 더 덜 호출할 수 있도록 캐싱을 활용하자는 비즈니스 요구가 들어옴.",
+            "상태를 오래 유지하지 않고 바로 초기화시키는 것이 어뷰징을 막을 수 있는 방법이라 생각했지만 비즈니스 결정 요구에 따르기로 결정.",
+            "탭 카운트를 persist되는 전역상태로 만들어 긴 텀으로 서버에 전송하도록 설정",
+            "예상치 못한 종료 후에도 앱 재시작 시 캐싱되어있는 전역상태를 비우도록 설정",
+            "서버에서 불러온 유저 재화와 캐싱된 재화를 합산하여 앱에 표출",
+            "실제로 인앱 재화를 소비할 때는 캐싱된 재화를 먼저 서버에 반영하여 유저 입장에서 잔고가 충분해보이는데 결제되지않는 상황을 방어",
           ],
         },
       ],
@@ -158,43 +178,31 @@ export const ANTTIME_APP_KO = {
       image: "",
     },
     {
-      title: "리액트 SEO 최적화",
-      titleDesc: "LightHouse SEO 최적화",
-      id: SECTION_SEO,
-
-      list: [
-        {
-          subtitle: "• React/Vite 환경에서도 서버사이드 pre-render 구현",
-          desc: [
-            "리액트 헬멧 라이브러리로 동적인 메타데이터를 브라우저에 렌더",
-            "리액트 스냅 라이브러리로 리액트에서도 SSG 방식의 메타데이터 주입 구현",
-            "개선 전 LightHouse SEO 점수 77점 → 100점",
-          ],
-        },
-      ],
-
-      image: "",
-    },
-    {
-      title: "개발팀 운영",
-      titleDesc: "완성도와 팀워크를 가다듬어 파이널 프로젝트 2등 달성",
+      title: "인터랙티브 애니메이션",
+      titleDesc: "미니앱 iframe 성능 한계 최적화",
       id: SECTION_TEAM_LEADER,
 
       list: [
         {
-          subtitle: "• 개발팀 규칙 설정",
+          subtitle:
+            "• 수달이 탭핑할 때 동적인 재화 획득 이펙트가 나오도록 설정",
           desc: [
-            "매일 아침 데일리 스크럼으로 작업 내역 공유",
-            "코드리뷰는 전원 다 해야 머지 가능. ‘수고하셨습니다.’보단 코드를 자세히 보면서 뭐라도 남기도록 유도.",
+            "재화 획득 시 이펙트에 기본 부스트 + 업그레이드 상황 + 부스트 여부를 반영하여 색상과 크기가 바뀌도록 설정",
+            "랜덤을 반영한 path 애니메이션으로 탭핑 시 재미요소 추가",
+            "기본적으로 배열로 된 state에 스코어 텍스트 string를 추가할 시 등장 애니메이션으로 구현.",
+            "오래 탭할 시 배열의 인자 갯수가 너무 많아져서 텔레그램 내 성능 한계 도달. 여러 테스트 후 배열 인자가 80개에 도달했을 시 빈 배열로 초기화하기로 결정.",
+            "80번 연속 탭핑 후 81번 째의 이펙트가 잠시 빠르게 나오는 부정확함이 존재하지만, 그 후 또 80번은 자연스러운 연속적인 탭핑 애니메이션이 표출됨",
           ],
         },
         {
-          subtitle: "• 프로젝트 중반 팀원 이탈 대처",
+          subtitle: "• 동적인 룰렛 애니메이션",
           desc: [
-            "프로젝트 중반에 팀원 2명이 면접 준비를 이유로 중도 이탈하는 상황이 발생하여 남은 팀원들이 사기가 떨어지는 상황에 대한 대처",
-            "이탈한 2명에게 연락하여 구체적으로 어떤 부분을 개발하고 있었고, 완료하지 못한 부분이 어디인지 파악하여 남은 인원들에게 업무 분담",
-            "개발 템포가 떨어지지 않게 하기 위하여 오히려 코드리뷰를 더욱 자세히 하고, 빠른 피드백 문화를 위해 pr이 올라오면 3시간 이내에 확인하기 문화를 만듦. 그리고 잘한 점은 칭찬하는 문화를 전파.",
-            "그 결과 팀원들 중 퍼포먼스가 가장 좋았던 팀원이 팀 분위기가 좋아 마지막까지 힘낼 수 있었다고 회고 때 언급",
+            "룰렛판 구성은 서버에서 패칭해오는 정보. 룰렛판 구성이 동적으로 설정되게 만듦",
+            "룰렛 애니메이션 시 translate3D, will-change 등 GPU 사용을 유도하는 속성들을 이용하여 부족한 성능을 보완.",
+            "룰렛 실행 시 먼저 어떤 아이템이 당첨됐는지 서버에서 패칭해온 다음 애니메이션 시작.",
+            "배열의 구성을 4배로 늘리고 4번째 배열에서 당첨 아이템이 룰렛판의 가운데에 오도록 설정. 트랜지션 애니메이션 속도를 마지막에 딜레이 되도록 유도.",
+            "유저는 룰렛이 네바퀴 쯤 돌다가 내가 당첨된 아이템 앞에서 감속하여 멈추는 것으로 느끼게 됨.",
+            "당첨 애니메이션으로 팡파레와 squisy한 모션의 모달이 표출되며 배열 상태 정상화",
           ],
         },
       ],
@@ -207,16 +215,16 @@ export const ANTTIME_APP_KO = {
 export const ANTTIME_APP_EN = {
   backToList: "Back to List",
   left: {
-    badge: ["Total", "2nd", "in", "Yanolja Tech School", "Graduate"],
+    badge: ["Telegram Mini App", "Tap Game"],
     summary: {
-      title: "Summary",
+      title: "Project Summary",
       period: {
-        label: "Period",
-        value: "24.02.02. - 24.02.27.",
+        label: "Start Date",
+        value: "24.12.15.",
       },
       position: {
         label: "Position",
-        value: "Frontend",
+        value: "Frontend (Telegram WebView Mini App Development)",
       },
       techStack: {
         label: "Tech Stack",
@@ -224,30 +232,31 @@ export const ANTTIME_APP_EN = {
           { label: "React", colorClass: "bg-blue-100" },
           { label: "Vite", colorClass: "bg-yellow-100" },
           { label: "Zustand", colorClass: "bg-rose-100" },
-          { label: "Styled Components", colorClass: "bg-pink-100" },
-          { label: "PWA", colorClass: "" },
-          { label: "Firebase Cloud Message(FCM)", colorClass: "bg-red-50" },
-          { label: "Github Action", colorClass: "bg-slate-100" },
-          { label: "MSW", colorClass: "bg-neutral-100" },
+          { label: "Telegram API", colorClass: "bg-neutral-100" },
+          { label: "Tailwind", colorClass: "bg-blue-50" },
+          { label: "React-Virtuoso", colorClass: "" },
+          { label: "Suspensive", colorClass: "bg-slate-100" },
         ],
       },
       team: {
-        label: "Team",
+        label: "Team Composition",
         value: [
-          { role: "Front", amount: 5 },
-          { role: "Back", amount: 5 },
-          { role: "PM", amount: 4 },
+          { role: "Frontend", amount: 1 },
+          { role: "Backend", amount: 1 },
+          { role: "PM", amount: 1 },
           { role: "Design", amount: 1 },
         ],
       },
       relatedLink: {
         label: "Related Links",
         value: [
-          { name: "Service", value: "https://percenthotel.web.app/" },
-          { name: "Github", value: "https://github.com/SCBJ-7/SCBJ-FE" },
+          {
+            name: "Service",
+            value: "https://t.me/sea_pearl_game_bot?start=hhuvfp7ea85T99ald3hv",
+          },
         ],
         testServiceAccount: {
-          title: "Test Service Account",
+          title: "Test Account",
           email: "Email",
           password: "Password",
         },
@@ -255,34 +264,34 @@ export const ANTTIME_APP_EN = {
     },
   },
   right: {
-    title: "Trade non-refundable accommodations!",
-    desc: "Your vacation planned for this holiday... got cancelled? And you can't even cancel it? In times like this, put it up for auction on Percent Hotel. The Carrot Market for accommodations! We revolutionize accommodation transfer transactions that had low credibility due to fraudulent listings and excessive resale premiums. This is a safe accommodation resale platform that only handles products verified by Yanolja, Korea's largest accommodation platform.",
+    title: "This week's raffle winner is...",
+    desc: "Play Sea Pearl and collect pearls with the cute otter character. Enter the lottery with your collected pearls. The more pearls you have, the more tickets you can purchase. Become the next USDT winner in the weekly raffle!",
     navigation: {
       title: "Responsibilities",
       value: [
         {
-          title: "Main Page",
-          desc: "Custom carousel development",
-          href: SECTION_MAIN_PAGE,
+          title: "End-to-End Initial Product",
+          desc: "From frontend development environment setup to deployment",
+          href: SECTION_WHOLE_PROCESS,
         },
         {
-          title: "Seller Registration Page",
-          desc: "Complex business logic exception handling",
-          href: SECTION_SELLER_REGISTER_PAGE,
+          title: "In-App Ad Platform Integration",
+          desc: "Adsgram SDK integration",
+          href: SECTION_IN_APP_ADS,
         },
         {
-          title: "Notification Page",
-          desc: "FCM notification implementation",
-          href: SECTION_PUSH_NOTIFICATION_PAGE,
+          title: "Virtual List Optimization",
+          desc: "Optimizing long lists using react-virtuoso",
+          href: SECTION_VIRTUAL_LIST,
         },
         {
-          title: "React SEO Optimization",
-          desc: "LightHouse SEO score from 77 to 100 points",
-          href: SECTION_SEO,
+          title: "Tap Game API Call Optimization",
+          desc: "Minimizing call frequency with debouncing",
+          href: SECTION_TAPPING_OPTIMIZATION,
         },
         {
-          title: "Frontend Team Leader",
-          desc: "Team management",
+          title: "Interactive Tapping Animation",
+          desc: "Optimizing mini-app iframe performance limitations",
           href: SECTION_TEAM_LEADER,
         },
       ],
@@ -290,25 +299,24 @@ export const ANTTIME_APP_EN = {
   },
   details: [
     {
-      title: "Main Page",
-      titleDesc: "Custom carousel development",
-      id: SECTION_MAIN_PAGE,
+      title: "End-to-End Initial Product",
+      titleDesc: "From frontend development environment setup to deployment",
+      id: SECTION_WHOLE_PROCESS,
 
       list: [
         {
-          subtitle: "• Slide animation implementation",
+          subtitle:
+            "• Integrating deployment and test server links to Telegram chatbot",
           desc: [
-            "Developed useCarouselSize hook so that when the width value of the parent container changes according to the Resize event, the sliding x value also changes",
-            "Calculated the difference between the pageX coordinate value of the MouseDown event and the pageX coordinate value of the mouseUp event to derive the delta (change amount) value. → Implemented to move to the next slide when the change value exceeds a certain value",
-            "Implemented infinite loop slide animation every 3 seconds using useEffect and SetInterval. Implemented pause by detecting MouseEnter and MouseLeave events. Memory cleanup by releasing setTimeout when leaving the page with cleanup function",
+            "Built integration between localhost development environment and Telegram chatbot using ngrok",
+            "Deployed frontend as webview within iframe-based mini app environment",
           ],
         },
         {
-          subtitle:
-            "• Providing the same user experience in mobile and PC environments",
+          subtitle: "• User authentication handling with Telegram API",
           desc: [
-            "Used both TouchEvent and MouseEvent to make carousel animation draggable in both mobile and PC environments.",
-            "Canceled mouse events when touch events occur to prevent unintended clicks",
+            "Implemented initialization logic to retrieve user authentication data using Telegram mini app global browser API",
+            "Built process to identify unique user values with API server based on Telegram user authentication",
           ],
         },
       ],
@@ -316,25 +324,16 @@ export const ANTTIME_APP_EN = {
       image: "",
     },
     {
-      title: "Seller Registration Page",
-      titleDesc: "Complex business logic and exception handling",
-      id: SECTION_SELLER_REGISTER_PAGE,
+      title: "In-App Ad Platform Integration",
+      titleDesc: "Adsgram SDK integration",
+      id: SECTION_IN_APP_ADS,
 
       list: [
         {
-          subtitle:
-            "• Handling complex business logic exceptions with custom hooks",
+          subtitle: "• Installing Adsgram SDK for in-app advertising",
           desc: [
-            "Developed custom hooks to determine whether it is possible to proceed to the next process by considering various business logics such as transfer 1st price, 2nd price setting status, 2nd price time setting, 2nd price setting, account registration status, Yanolja authentication status, terms agreement status, etc.",
-          ],
-        },
-        {
-          subtitle:
-            "• Redirect to payment method registration page when there is no payment method, then record writing status upon return",
-          desc: [
-            "When account registration is not done, it was necessary to remember the current writing status, go through the account connection flow, and then return",
-            "Implemented by staying on the current page and only replacing the component of the payment method registration page. This preserved all previously entered states",
-            "Upon return, the state is alive but problems such as the browser's checkbox check status being unchecked occurred → Responded and resolved with a hook that restores according to the current state status when switching pages",
+            "Implemented logic to receive success/failure results from Adsgram server and forward them to backend API server",
+            "Handled ad viewing as failure when users skip ads, send app to background, or stay on app manager screen",
           ],
         },
       ],
@@ -342,18 +341,16 @@ export const ANTTIME_APP_EN = {
       image: "",
     },
     {
-      title: "Notification Page",
-      titleDesc: "Firebase Cloud Message notification implementation",
-      id: SECTION_PUSH_NOTIFICATION_PAGE,
+      title: "Virtual List Optimization",
+      titleDesc: "Virtual list rendering",
+      id: SECTION_VIRTUAL_LIST,
 
       list: [
         {
-          subtitle:
-            "• Implemented push notifications in Android, iOS, and PWA browsers",
+          subtitle: "• Optimizing long lists using react-virtuoso",
           desc: [
-            "Created FCM token initialization logic as a custom hook for use during login",
-            "Background push notification reception through service worker",
-            "Frontend receives push notifications when backend sends property transaction success or check-in 7 days, 1 day before push notifications",
+            "Configured virtualized list to handle friends list that can be added indefinitely",
+            "Improved performance by rendering only items within viewport",
           ],
         },
       ],
@@ -361,18 +358,28 @@ export const ANTTIME_APP_EN = {
       image: "",
     },
     {
-      title: "React SEO Optimization",
-      titleDesc: "LightHouse SEO optimization",
-      id: SECTION_SEO,
+      title: "Tap Game API Call Optimization",
+      titleDesc: "Minimizing call frequency with debouncing",
+      id: SECTION_TAPPING_OPTIMIZATION,
 
       list: [
         {
           subtitle:
-            "• Implemented server-side pre-rendering even in React/Vite environment",
+            "• Devising solutions to minimize abuse while reducing API call costs",
           desc: [
-            "Rendered dynamic metadata to browser with React Helmet library",
-            "Implemented SSG-style metadata injection in React with React Snap library",
-            "LightHouse SEO score improved from 77 points → 100 points",
+            "Initial: Optimized by aggregating consecutive tap counts with debouncing and sending to server 3 seconds after last tap",
+            "When users leave screen within 3 seconds, guaranteed server update before unmounting using useEffect cleanup function",
+          ],
+        },
+        {
+          subtitle: "• Trade-off discussion between server costs and security",
+          desc: [
+            "Although API calls were reduced with debouncing pattern, business requested using caching to further reduce tapping API calls",
+            "Initially thought immediate state reset would prevent abuse, but decided to follow business requirements",
+            "Made tap count a persisted global state to send to server in longer intervals",
+            "Set to clear cached global state on app restart after unexpected termination",
+            "Display sum of server-fetched user currency and cached currency in app",
+            "When actually consuming in-app currency, cached currency is reflected to server first to prevent situations where users see sufficient balance but payment fails",
           ],
         },
       ],
@@ -380,27 +387,31 @@ export const ANTTIME_APP_EN = {
       image: "",
     },
     {
-      title: "Development Team Management",
-      titleDesc:
-        "Achieved 2nd place in final project by refining completeness and teamwork",
+      title: "Interactive Animation",
+      titleDesc: "Optimizing mini-app iframe performance limitations",
       id: SECTION_TEAM_LEADER,
 
       list: [
         {
-          subtitle: "• Setting development team rules",
+          subtitle:
+            "• Setting dynamic currency acquisition effects when otter taps",
           desc: [
-            "Shared work details through daily scrum every morning",
-            "Code review must be done by everyone before merge is possible. Encouraged to look at code carefully and leave something rather than just saying 'Good work.'",
+            "Configured effects to change color and size based on basic boost + upgrade situation + boost status when acquiring currency",
+            "Added fun element with path animations using random values during tapping",
+            "Implemented appearance animation when adding score text string to array-based state",
+            "Performance limits reached within Telegram when array had too many elements from long tapping. After testing, decided to reset to empty array when reaching 80 elements",
+            "Some inaccuracy exists where 81st tap effect appears briefly fast after 80 consecutive taps, but natural continuous tapping animation displays for another 80 taps afterward",
           ],
         },
         {
-          subtitle:
-            "• Dealing with team member departure in the middle of the project",
+          subtitle: "• Dynamic roulette animation",
           desc: [
-            "In the middle of the project, 2 team members left for interview preparation, which caused the remaining team members to lose morale",
-            "Contacted the 2 departed members to understand what parts they were developing specifically and what parts were not completed, then distributed tasks among the remaining members",
-            "To prevent the development tempo from dropping, made code reviews even more detailed and created a culture of checking PRs within 3 hours for quick feedback. Also spread a culture of praising good points.",
-            "As a result, the team member with the best performance among the team members mentioned during retrospective that the good team atmosphere helped them stay motivated until the end",
+            "Roulette configuration fetched from server. Made roulette configuration dynamically settable",
+            "Used GPU-accelerating properties like translate3D and will-change to compensate for insufficient performance during roulette animation",
+            "First fetched which item won from server before starting animation when executing roulette",
+            "Expanded array configuration 4x and set winning item to center of roulette in 4th array. Induced transition animation speed to delay at the end",
+            "Users perceive roulette spinning about 4 times then decelerating and stopping before their winning item",
+            "Winning animation displays fanfare and squishy motion modal, then normalizes array state",
           ],
         },
       ],

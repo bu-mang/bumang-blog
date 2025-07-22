@@ -76,7 +76,7 @@ export default function Blog() {
 
           <SubBox>
             <span className="col-span-1 font-semibold">Email</span>
-            <span className="col-span-4">Baughman0729@gmail.com</span>
+            <span className="col-span-4">baughman0729@gmail.com</span>
           </SubBox>
 
           <SubBox className="mb-16">

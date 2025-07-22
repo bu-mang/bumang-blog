@@ -188,14 +188,13 @@ export default function AnttimeApp() {
 
         {/* TITLE */}
         <div className="col-span-8 text-9xl font-semibold tracking-tighter">
-          ANTTIME
+          Sea Pearl
         </div>
 
         {/* TAG */}
         <TitleBadge className="">
           <span>{CONTENT_LEFT.badge[0]}</span>{" "}
-          <span className="font-bold">{CONTENT_LEFT.badge[1]}</span>{" "}
-          <span>{CONTENT_LEFT.badge[2]}</span>
+          <span className="font-bold">{CONTENT_LEFT.badge[1]}</span>
         </TitleBadge>
 
         {/* LEFT */}
@@ -276,21 +275,9 @@ export default function AnttimeApp() {
                     <Link2 size={16} />
                   </div>
                 </Link>
-                <Link
-                  target="_blank"
-                  href={CONTENT_LEFT.summary.relatedLink.value[1].value}
-                  className="flex-1 transition-all hover:scale-[102%] hover:opacity-80"
-                >
-                  <div className="text-xs text-gray-400">
-                    {CONTENT_LEFT.summary.relatedLink.value[1].name}
-                  </div>
-                  <div className="mt-1 font-semibold">
-                    <FaGithub size={16} />
-                  </div>
-                </Link>
               </div>
 
-              <Summary.Hint
+              {/* <Summary.Hint
                 title={
                   CONTENT_LEFT.summary.relatedLink.testServiceAccount.title
                 }
@@ -304,7 +291,7 @@ export default function AnttimeApp() {
                   password: "qwerty123@",
                 }}
                 breakId
-              />
+              /> */}
             </Summary.Block>
           </Summary>
         </div>
