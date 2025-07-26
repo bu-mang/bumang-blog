@@ -252,7 +252,7 @@ const NavBar = ({
         headerBackgroundColor,
       )}
     >
-      <div className="NAVBAR_BORDERBOX mx-[2vw] grid grid-cols-2 gap-[1.5vw] border-b-[1px] border-t-[1px] border-b-white border-t-gray-10 py-1 pb-3 text-xs text-gray-200 md:mx-[10vw] md:grid-cols-4">
+      <div className="NAVBAR_BORDERBOX mx-[2vw] grid grid-cols-2 gap-[1.5vw] border-b-[1px] border-t-[1px] border-b-white border-t-gray-10 py-1 pb-3 text-xs text-gray-200 md:mx-[6vw] md:grid-cols-4">
         {/* 1사분면 (로그인 / 인증 정보) */}
         <div className="NAVBAR_SWITCHING_PANEL relative hidden grid-cols-2 gap-[1.5vw] md:grid">
           {isAuthenticated ? (

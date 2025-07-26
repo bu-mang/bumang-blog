@@ -91,7 +91,7 @@ const BlogPublishingView = ({
   return (
     <div
       ref={containerRef}
-      className="mx-[10vw] flex h-screen flex-col items-center justify-center"
+      className="mx-[6vw] flex h-screen flex-col items-center justify-center"
     >
       <div className="mb-8 w-full">
         {/* GO BACK BUTTON */}

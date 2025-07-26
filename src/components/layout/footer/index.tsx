@@ -18,7 +18,7 @@ const Footer = () => {
 
   return (
     <div className={footerClass}>
-      <div className="none mx-[10vw] mt-20 grid h-20 flex-1 grid-cols-2 gap-[1.5vw] border-t-[1px] border-gray-10 pt-1">
+      <div className="none mx-[6vw] mt-20 grid h-20 flex-1 grid-cols-2 gap-[1.5vw] border-t-[1px] border-gray-10 pt-1">
         <div>
           <div className="font-medium text-gray-700">© {currentYear}</div>
           <div className="text-gray-200">Made by Bumang</div>

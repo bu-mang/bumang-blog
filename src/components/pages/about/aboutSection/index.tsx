@@ -39,7 +39,7 @@ const SubBox = ({
   ...props
 }: SectionBoxProps) => {
   const subBoxClass = cn(
-    "relative grid grid-cols-5 border-gray-10 py-8 gap-y-8",
+    "relative grid sm:grid-cols-5 grid-cols-6 border-gray-10 py-8 gap-y-8",
     borderTop && "border-t-[1px]",
     className,
   );

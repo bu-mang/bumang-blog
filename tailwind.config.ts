@@ -9,6 +9,9 @@ const config: Config = {
   darkMode: ["class"], // 다크 모드를 class 기반으로 설정
   theme: {
     extend: {
+      screens: {
+        tbl: "900px", // 기존 브레이크포인트에 추가
+      },
       fontFamily: {
         sans: ["Wanted Sans Variable", "Wanted Sans", "sans-serif"],
       },
