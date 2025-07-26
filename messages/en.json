@@ -386,6 +386,9 @@
         "1": "Just tell BUMANG your desired username and password directly.",
         "2": " Don’t use your usual credentials — make a new one. It’s better for both of us!"
       }
+    },
+    "error": {
+      "noUser": "ID or Password are Invalid."
     }
   },
   "blogEdit": {

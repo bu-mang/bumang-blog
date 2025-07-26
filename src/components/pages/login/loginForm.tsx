@@ -16,11 +16,13 @@ import { QUERY_KEY } from "@/constants/api/queryKey";
 import { useAuthStore } from "@/store/auth";
 import { useTranslations } from "next-intl";
 import { PATHNAME } from "@/constants/routes";
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, touchedFields },
   } = useForm<LoginFormType>({
     resolver: zodResolver(loginFormSchema),
@@ -38,15 +40,23 @@ const LoginForm = () => {
       await queryClient.invalidateQueries({
         queryKey: QUERY_KEY.GET_USER_PROFILE,
       });
-      await queryClient.refetchQueries({
-        queryKey: QUERY_KEY.GET_USER_PROFILE,
-      });
+      // await queryClient.refetchQueries({
+      //   queryKey: QUERY_KEY.GET_USER_PROFILE,
+      // });
 
       window.location.href = PATHNAME.HOME; // full reload
     } catch (error) {
       if (isAxiosError(error)) {
         console.error(error);
-        console.log(error, "error");
+
+        if (error.status === 401) {
+          toast.error(t("error.noUser"));
+
+          setError("root", {
+            type: "manual",
+            message: t("error.noUser"),
+          });
+        }
       }
     }
   };
