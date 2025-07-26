@@ -210,7 +210,7 @@ const NavBar = ({
       setInnerWidth(window.innerWidth);
       setInnerHeight(window.innerHeight);
 
-      if (window.innerWidth <= 640) {
+      if (window.innerWidth <= 768) {
         setAnimState("MAX");
       } else {
         setAnimState("ANIM");
@@ -252,9 +252,9 @@ const NavBar = ({
         headerBackgroundColor,
       )}
     >
-      <div className="NAVBAR_BORDERBOX mx-[2vw] grid grid-cols-2 gap-[1.5vw] border-b-[1px] border-t-[1px] border-b-white border-t-gray-10 py-1 pb-3 text-xs text-gray-200 sm:mx-[10vw] sm:grid-cols-4">
+      <div className="NAVBAR_BORDERBOX mx-[2vw] grid grid-cols-2 gap-[1.5vw] border-b-[1px] border-t-[1px] border-b-white border-t-gray-10 py-1 pb-3 text-xs text-gray-200 md:mx-[10vw] md:grid-cols-4">
         {/* 1사분면 (로그인 / 인증 정보) */}
-        <div className="NAVBAR_SWITCHING_PANEL relative grid grid-cols-2 gap-[1.5vw]">
+        <div className="NAVBAR_SWITCHING_PANEL relative hidden grid-cols-2 gap-[1.5vw] md:grid">
           {isAuthenticated ? (
             <div className="flex h-fit items-center gap-1.5">
               <Button className={linkHoverStyle}>{nickname}</Button>
@@ -317,7 +317,7 @@ const NavBar = ({
         </div>
 
         {/* 3사분면 (아이콘) */}
-        <div className="NAVBAR_SWITCHING_PANEL hidden grid-cols-2 gap-[1.5vw] sm:grid">
+        <div className="NAVBAR_SWITCHING_PANEL hidden grid-cols-2 gap-[1.5vw] md:grid">
           <div className="relative col-start-1 col-end-2 flex gap-1">
             <LocaleSwitcher
               locale={locale}
@@ -335,13 +335,13 @@ const NavBar = ({
         </div>
 
         {/* 4사분면 (타임존 / 해상도) */}
-        <div className="hidden grid-cols-2 gap-[1.5vw] sm:grid">
-          <div className="col-start-2 col-end-3 grid gap-[1.5vw] whitespace-nowrap lg:grid-cols-2">
+        <div className="grid gap-[1.5vw] md:grid-cols-2">
+          <div className="grid gap-[1.5vw] whitespace-nowrap md:col-start-2 md:col-end-3 lg:grid-cols-2">
             <div className="absolute hidden flex-col lg:relative lg:flex">
               <span>{currentTimeZone}</span>
               <span>{clock}</span>
             </div>
-            <div className="flex flex-col whitespace-nowrap">
+            <div className="flex gap-1 whitespace-nowrap md:flex-col md:gap-0">
               <span className="">
                 {innerWidth}x{innerHeight}
               </span>
