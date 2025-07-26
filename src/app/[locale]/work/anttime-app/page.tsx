@@ -23,146 +23,8 @@ import Image from "next/image";
 import { useLocale } from "next-intl";
 import { RiAppleFill } from "react-icons/ri";
 import { BsGoogle } from "react-icons/bs";
-
-interface TitleBadgeProps {
-  children: React.ReactNode;
-  className: string;
-}
-function TitleBadge({ children, className }: TitleBadgeProps) {
-  return (
-    <div
-      className={cn(
-        "col-span-8 w-fit animate-tada rounded-full border-2 border-black px-4 py-1 text-2xl",
-        className,
-      )}
-    >
-      {children}
-    </div>
-  );
-}
-
-type List = { subtitle: string; desc: string[]; list?: List[] }[];
-type ContentType = {
-  title: string;
-  titleDesc: string;
-  image: string;
-
-  list: List;
-};
-interface SectionViewProps {
-  id: string;
-  content: ContentType;
-  order: number;
-  locale: "ko" | "en";
-}
-
-function SectionView({ id, content, order, locale }: SectionViewProps) {
-  return (
-    <section
-      id={id}
-      className="mb-80 grid min-h-40 w-full grid-cols-2 gap-[1.5vw]"
-    >
-      {/* LEFT (TEXTS) */}
-      {order % 2 === 1 ? (
-        <>
-          <div>
-            {/* MAIN-TITLE */}
-            <div
-              className={cn(
-                "mb-5 flex items-baseline gap-2",
-                locale === "en" && "flex-col",
-              )}
-            >
-              <h2 className="text-4xl font-semibold">{content.title}</h2>
-              <h4 className="flex items-center gap-1 text-sm text-gray-400">
-                {content.titleDesc}
-              </h4>
-            </div>
-
-            <ul className="ml-6 mt-3 flex flex-col gap-5">
-              {content.list.map((item) => {
-                return (
-                  <li key={item.subtitle}>
-                    <div className="mb-3 font-semibold">{item.subtitle}</div>
-
-                    <ul className="ml-6 flex flex-col gap-3 text-gray-500">
-                      {item.desc.map((desc) => (
-                        <li key={desc} className="flex gap-1">
-                          <CornerDownRight
-                            size={16}
-                            className="shrink-0 translate-y-0.5"
-                          />
-                          {desc}
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-
-          <div className="relative min-h-96 overflow-hidden rounded-2xl bg-gray-5">
-            <Image
-              src={content.image}
-              fill
-              alt={`${content.title}_image`}
-              objectFit="cover"
-            />
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="relative min-h-96 overflow-hidden rounded-2xl bg-gray-5">
-            <Image
-              src={content.image}
-              fill
-              alt={`${content.title}_image`}
-              objectFit="cover"
-            />
-          </div>
-
-          <div>
-            {/* MAIN-TITLE */}
-            <div
-              className={cn(
-                "mb-5 flex items-baseline gap-2",
-                locale === "en" && "flex-col",
-              )}
-            >
-              <h2 className="text-4xl font-semibold">{content.title}</h2>
-              <h4 className="flex items-center gap-1 text-sm text-gray-400">
-                {content.titleDesc}
-              </h4>
-            </div>
-
-            <ul className="ml-6 mt-3 flex flex-col gap-5">
-              {content.list.map((item) => {
-                return (
-                  <li key={item.subtitle}>
-                    <div className="mb-3 font-semibold">{item.subtitle}</div>
-
-                    <ul className="ml-6 flex flex-col gap-3 text-gray-500">
-                      {item.desc.map((desc) => (
-                        <li key={desc} className="flex gap-1">
-                          <CornerDownRight
-                            size={16}
-                            className="shrink-0 translate-y-0.5"
-                          />
-                          {desc}
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </>
-      )}
-    </section>
-  );
-}
+import TitleBadge from "@/components/pages/work/workDetail/titleBadge";
+import SectionView from "@/components/pages/work/workDetail/sectionView";
 
 export default function AnttimeApp() {
   const locale = useLocale() as "ko" | "en";
@@ -335,11 +197,14 @@ export default function AnttimeApp() {
       </section>
 
       {/* BackgroundImage */}
-      <Image
-        src="/star.webp"
-        alt="work_section_background_image"
-        className="mt-10 grid h-[600px] w-screen grid-cols-8 gap-[1.5vw] bg-gray-10"
-      />
+      <div className="relative mt-10 grid h-[600px] w-screen grid-cols-8 gap-[1.5vw] bg-gray-10">
+        <Image
+          src="/works/compressed/anttimeApp.webp"
+          alt="work_section_background_image"
+          fill
+          objectFit="cover"
+        />
+      </div>
 
       {/* Sections */}
       <div className="mt-20 w-full">
