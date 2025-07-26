@@ -77,7 +77,6 @@ const LoginForm = () => {
         {...register("username")}
         errorHint={errors.username?.message}
         isTouchedField={touchedFields.username}
-        // successHint={"Looks Good To Me :)"}
       />
 
       {/* PASSWORD */}

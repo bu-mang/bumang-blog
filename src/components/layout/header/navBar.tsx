@@ -209,6 +209,12 @@ const NavBar = ({
     const handleResize = () => {
       setInnerWidth(window.innerWidth);
       setInnerHeight(window.innerHeight);
+
+      if (window.innerWidth <= 640) {
+        setAnimState("MAX");
+      } else {
+        setAnimState("ANIM");
+      }
     };
 
     window.addEventListener("resize", handleResize);
@@ -245,7 +251,7 @@ const NavBar = ({
         headerBackgroundColor,
       )}
     >
-      <div className="NAVBAR_BORDERBOX mx-[10vw] grid grid-cols-4 gap-[1.5vw] border-b-[1px] border-t-[1px] border-b-white border-t-gray-10 py-1 pb-3 text-xs text-gray-200">
+      <div className="NAVBAR_BORDERBOX mx-[2vw] grid grid-cols-2 gap-[1.5vw] border-b-[1px] border-t-[1px] border-b-white border-t-gray-10 py-1 pb-3 text-xs text-gray-200 sm:mx-[10vw] sm:grid-cols-4">
         {/* 1사분면 (로그인 / 인증 정보) */}
         <div className="NAVBAR_SWITCHING_PANEL relative grid grid-cols-2 gap-[1.5vw]">
           {isAuthenticated ? (
@@ -310,7 +316,7 @@ const NavBar = ({
         </div>
 
         {/* 3사분면 (아이콘) */}
-        <div className="NAVBAR_SWITCHING_PANEL grid grid-cols-2 gap-[1.5vw]">
+        <div className="NAVBAR_SWITCHING_PANEL hidden grid-cols-2 gap-[1.5vw] sm:grid">
           <div className="relative col-start-1 col-end-2 flex gap-1">
             <LocaleSwitcher
               locale={locale}
@@ -328,7 +334,7 @@ const NavBar = ({
         </div>
 
         {/* 4사분면 (타임존 / 해상도) */}
-        <div className="grid grid-cols-2 gap-[1.5vw]">
+        <div className="hidden grid-cols-2 gap-[1.5vw] sm:grid">
           <div className="col-start-2 col-end-3 grid gap-[1.5vw] whitespace-nowrap lg:grid-cols-2">
             <div className="absolute hidden flex-col lg:relative lg:flex">
               <span>{currentTimeZone}</span>
