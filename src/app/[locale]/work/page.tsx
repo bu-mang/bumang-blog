@@ -94,7 +94,7 @@ export default function Work() {
     <main
       className={cn(
         "flex w-screen flex-col items-center justify-center overflow-hidden scroll-smooth",
-        LAYOUT_PADDING_ALONGSIDE,
+        "px-[2vw] md:px-[6vw]",
       )}
     >
       {/* TABS */}

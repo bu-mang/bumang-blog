@@ -78,7 +78,10 @@ export function WorkInnerInteractive() {
       >
         <Sticker
           imgUrl="/works/seaPearlSticker.png"
-          className="-left-20 bottom-10 h-72 w-96"
+          className={cn(
+            "-left-20 bottom-10 md:h-72 md:w-96", //
+            "h-36 w-48",
+          )}
         />
       </WorkItem>
 
@@ -91,7 +94,10 @@ export function WorkInnerInteractive() {
       >
         <Sticker
           imgUrl="/works/anttimeSwapSticker.png"
-          className="-right-20 top-10 h-56 w-80 -scale-x-100"
+          className={cn(
+            "-right-20 -scale-x-100 md:top-10 md:h-56 md:w-80",
+            "top-20 h-28 w-40",
+          )}
         />
       </WorkItem>
 
@@ -104,7 +110,10 @@ export function WorkInnerInteractive() {
       >
         <Sticker
           imgUrl="/works/anttimeAppSticker.png"
-          className="bottom-12 right-0 h-56 w-80"
+          className={cn(
+            "bottom-12 right-0 md:h-56 md:w-80", //
+            "h-28 w-40",
+          )}
         />
       </WorkItem>
 
