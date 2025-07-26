@@ -112,7 +112,7 @@ export const PERCENT_HOTEL_KO = {
         },
       ],
 
-      image: "",
+      image: "/workDetails/percentHotel/ph_carousel.gif",
     },
     {
       title: "판매글 작성 페이지",
@@ -137,7 +137,7 @@ export const PERCENT_HOTEL_KO = {
         },
       ],
 
-      image: "",
+      image: "/workDetails/percentHotel/ph_post_price.gif",
     },
     {
       title: "알림 페이지",
@@ -155,7 +155,7 @@ export const PERCENT_HOTEL_KO = {
         },
       ],
 
-      image: "",
+      image: "/workDetails/percentHotel/ph_alarm_ios.gif",
     },
     {
       title: "리액트 SEO 최적화",
@@ -173,10 +173,10 @@ export const PERCENT_HOTEL_KO = {
         },
       ],
 
-      image: "",
+      image: "/workDetails/percentHotel/ph_seo.png",
     },
     {
-      title: "개발팀 운영",
+      title: "팀운영 및 전체 2등",
       titleDesc: "완성도와 팀워크를 가다듬어 파이널 프로젝트 2등 달성",
       id: SECTION_TEAM_LEADER,
 
@@ -199,7 +199,7 @@ export const PERCENT_HOTEL_KO = {
         },
       ],
 
-      image: "",
+      image: "/workDetails/percentHotel/ph_2nd.jpg",
     },
   ],
 };
@@ -313,7 +313,7 @@ export const PERCENT_HOTEL_EN = {
         },
       ],
 
-      image: "",
+      image: "/workDetails/percentHotel/ph_carousel.gif",
     },
     {
       title: "Seller Registration Page",
@@ -339,7 +339,7 @@ export const PERCENT_HOTEL_EN = {
         },
       ],
 
-      image: "",
+      image: "/workDetails/percentHotel/ph_post_price.gif",
     },
     {
       title: "Notification Page",
@@ -358,7 +358,7 @@ export const PERCENT_HOTEL_EN = {
         },
       ],
 
-      image: "",
+      image: "/workDetails/percentHotel/ph_alarm_ios.gif",
     },
     {
       title: "React SEO Optimization",
@@ -377,7 +377,7 @@ export const PERCENT_HOTEL_EN = {
         },
       ],
 
-      image: "",
+      image: "/workDetails/percentHotel/ph_seo.png",
     },
     {
       title: "Development Team Management",
@@ -405,7 +405,7 @@ export const PERCENT_HOTEL_EN = {
         },
       ],
 
-      image: "",
+      image: "/workDetails/percentHotel/ph_2nd.jpg",
     },
   ],
 };

@@ -335,7 +335,11 @@ export default function AnttimeApp() {
       </section>
 
       {/* BackgroundImage */}
-      <div className="mt-10 grid h-[600px] w-screen grid-cols-8 gap-[1.5vw] bg-gray-10" />
+      <Image
+        src="/star.webp"
+        alt="work_section_background_image"
+        className="mt-10 grid h-[600px] w-screen grid-cols-8 gap-[1.5vw] bg-gray-10"
+      />
 
       {/* Sections */}
       <div className="mt-20 w-full">

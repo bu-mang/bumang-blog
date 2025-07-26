@@ -27,13 +27,11 @@ export default async function Blog({ searchParams }: PageProps) {
     typeof searchParams.type === "string" ? searchParams.type : undefined;
   const tagIds = searchParams.tagIds;
 
-  console.log("👀1");
   let pageIndex = searchParams.pageIndex ? Number(searchParams.pageIndex) : 1;
   let pageSize = 12;
 
   try {
     const accessToken = cookies().get("accessToken")?.value;
-    console.log("👀1 accessToken", accessToken);
 
     if (!accessToken) {
       allPosts = await getAllPosts(

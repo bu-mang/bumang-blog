@@ -346,7 +346,14 @@ export default function PercentHotel() {
       </section>
 
       {/* BackgroundImage */}
-      <div className="mt-10 grid h-[600px] w-screen grid-cols-8 gap-[1.5vw] bg-gray-10" />
+      <div className="relative mt-10 grid h-[600px] w-screen grid-cols-8 gap-[1.5vw] bg-gray-10">
+        <Image
+          src="/works/compressed/percentHotel.webp"
+          alt="work_section_background_image"
+          fill
+          objectFit="cover"
+        />
+      </div>
 
       {/* Sections */}
       <div className="mt-20 w-full">
