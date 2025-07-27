@@ -81,6 +81,7 @@ const SectionLabel = ({
               flexBoxClass,
               fillStyle,
               !isAuthenticated && "pointer-events-none opacity-20",
+              "hidden md:flex",
             )}
           >
             <LuPlus className={textStyle} />

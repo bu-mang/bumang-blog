@@ -86,7 +86,7 @@ function BlogListViewSSR({
   const t = useTranslations("blog");
 
   return (
-    <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw]">
+    <div className="col-span-full h-fit md:col-span-3">
       <SectionLabel
         isTag={typeof tagIds !== "undefined"}
         title={
@@ -99,10 +99,10 @@ function BlogListViewSSR({
       />
       <div
         className={cn(
-          "col-span-3",
+          "col-span-full",
           itemViewType === "thumbnail" &&
             allPosts &&
-            "grid grid-cols-3 gap-x-[1.5vw] gap-y-[4.5vw]",
+            "grid grid-cols-2 gap-x-[1.5vw] gap-y-[4.5vw] md:grid-cols-3",
         )}
       >
         {/* BLOGITEMS */}
@@ -151,7 +151,7 @@ function BlogListViewSSR({
         )}
 
         {/* PAGE-NATION */}
-        <div className="col-span-3">
+        <div className="col-span-full scale-75 md:col-span-3 md:scale-100">
           <Pagenation
             pageSize={allPosts?.pageSize ?? 12}
             totalCount={allPosts?.totalCount ?? 1}
@@ -196,7 +196,7 @@ function BlogListViewCSR({
   });
 
   return (
-    <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw]">
+    <div className="col-span-full h-fit md:col-span-3">
       <SectionLabel
         isTag={typeof tagIds !== "undefined"}
         title={
@@ -209,10 +209,10 @@ function BlogListViewCSR({
       />
       <div
         className={cn(
-          "col-span-3",
+          "col-span-full",
           itemViewType === "thumbnail" &&
             allPosts &&
-            "grid grid-cols-3 gap-x-[1.5vw] gap-y-[4.5vw]",
+            "grid grid-cols-2 gap-x-[1.5vw] gap-y-[4.5vw] md:grid-cols-3",
         )}
       >
         {/* BLOGITEMS */}
@@ -261,7 +261,7 @@ function BlogListViewCSR({
         )}
 
         {/* PAGE-NATION */}
-        <div className="col-span-3">
+        <div className="col-span-full scale-75 md:col-span-3 md:scale-100">
           <Pagenation
             pageSize={allPosts?.pageSize ?? 12}
             totalCount={allPosts?.totalCount ?? 1}
@@ -280,15 +280,15 @@ interface BlogListFallbackProps {
 function BlogListFallback({ itemViewType }: BlogListFallbackProps) {
   const arr = Array.from({ length: 12 }, (_, i) => i + 1);
   return (
-    <div className="col-span-3 grid h-fit grid-cols-3 gap-x-[1.5vw]">
+    <div className="col-span-full grid h-fit grid-cols-3 gap-x-[1.5vw] md:col-span-3">
       <Skeleton
         className={cn("h-8 w-24", itemViewType === "thumbnail" && "mb-5")}
       />
       <div
         className={cn(
-          "col-span-3",
+          "col-span-full",
           itemViewType === "thumbnail" &&
-            "grid grid-cols-3 gap-x-[1.5vw] gap-y-[4.5vw]",
+            "grid grid-cols-2 gap-x-[1.5vw] gap-y-[4.5vw] md:grid-cols-3",
         )}
       >
         {/* BLOGITEMS */}
@@ -297,7 +297,7 @@ function BlogListFallback({ itemViewType }: BlogListFallbackProps) {
         ))}
 
         {/* PAGE-NATION */}
-        <div className="col-span-3">
+        <div className="col-span-full scale-75 md:col-span-3 md:scale-100">
           <PagenationFallback />
         </div>
       </div>

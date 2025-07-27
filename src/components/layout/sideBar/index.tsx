@@ -14,7 +14,7 @@ const SideBar = async () => {
   }
 
   return (
-    <div className="relative mb-8 flex flex-col gap-4 px-4">
+    <div className="relative col-span-full mb-8 mt-20 flex flex-col gap-4 px-4 md:col-span-1 md:mt-0">
       <Tabs />
       <Menus menus={menus} />
       <Tags />
