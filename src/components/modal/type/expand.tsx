@@ -211,17 +211,18 @@ export default function ExpandModal({
         >
           {items.map((item) => {
             return (
-              <Image
-                className={cn("flex-1", imageLoading && "opacity-30")}
-                key={item.title}
-                src={item.imgUrl}
-                width={!fill ? item.width : undefined}
-                height={!fill ? item.height : undefined}
-                alt={item.title ?? "galleryImage"}
-                fill={fill}
-                objectFit={objectFit}
-                style={{ aspectRatio: `${item.width} / ${item.height}` }}
-              />
+              <div key={item.title}>
+                <Image
+                  className={cn("flex-1", imageLoading && "opacity-30")}
+                  src={item.imgUrl}
+                  width={!fill ? item.width : undefined}
+                  height={!fill ? item.height : undefined}
+                  alt={item.title ?? "galleryImage"}
+                  fill={fill}
+                  objectFit={objectFit}
+                  style={{ aspectRatio: `${item.width} / ${item.height}` }}
+                />
+              </div>
             );
           })}
 
