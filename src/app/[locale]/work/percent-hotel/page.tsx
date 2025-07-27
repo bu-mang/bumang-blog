@@ -23,6 +23,7 @@ import Image from "next/image";
 import { useLocale } from "next-intl";
 import SectionView from "@/components/pages/work/workDetail/sectionView";
 import TitleBadge from "@/components/pages/work/workDetail/titleBadge";
+import Title from "@/components/pages/work/workDetail/title";
 
 export default function PercentHotel() {
   const locale = useLocale() as "ko" | "en";
@@ -48,9 +49,7 @@ export default function PercentHotel() {
         </Link>
 
         {/* TITLE */}
-        <div className="col-span-full mt-10 flex justify-center text-5xl font-semibold tracking-tighter sm:block sm:text-9xl md:mt-0">
-          Percent Hotel
-        </div>
+        <Title>Percent Hotel</Title>
 
         {/* TAG */}
         <div className="col-span-full flex justify-center sm:block">

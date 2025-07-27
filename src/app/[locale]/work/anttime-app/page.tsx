@@ -25,6 +25,7 @@ import { RiAppleFill } from "react-icons/ri";
 import { BsGoogle } from "react-icons/bs";
 import TitleBadge from "@/components/pages/work/workDetail/titleBadge";
 import SectionView from "@/components/pages/work/workDetail/sectionView";
+import Title from "@/components/pages/work/workDetail/title";
 
 export default function AnttimeApp() {
   const locale = useLocale() as "ko" | "en";
@@ -50,19 +51,19 @@ export default function AnttimeApp() {
         </Link>
 
         {/* TITLE */}
-        <div className="col-span-8 text-9xl font-semibold tracking-tighter">
-          ANTTIME
-        </div>
+        <Title>ANTTIME</Title>
 
         {/* TAG */}
-        <TitleBadge className="">
-          <span>{CONTENT_LEFT.badge[0]}</span>{" "}
-          <span className="font-bold">{CONTENT_LEFT.badge[1]}</span>{" "}
-          <span>{CONTENT_LEFT.badge[2]}</span>
-        </TitleBadge>
+        <div className="col-span-full flex justify-center sm:block">
+          <TitleBadge className="">
+            <span>{CONTENT_LEFT.badge[0]}</span>{" "}
+            <span className="font-bold">{CONTENT_LEFT.badge[1]}</span>{" "}
+            <span>{CONTENT_LEFT.badge[2]}</span>
+          </TitleBadge>
+        </div>
 
         {/* LEFT */}
-        <div className="col-span-4">
+        <div className="col-span-full lg:col-span-4">
           {/* SUMMARY */}
           <Summary title={CONTENT_LEFT.summary.title}>
             <Summary.Block
@@ -173,7 +174,7 @@ export default function AnttimeApp() {
         </div>
 
         {/* RIGHT */}
-        <div className="col-span-4">
+        <div className="col-span-full lg:col-span-4">
           <div className="mb-3 text-4xl font-medium">{CONTENT_RIGHT.title}</div>
           <div className="mb-10">{CONTENT_RIGHT.desc}</div>
 
