@@ -24,6 +24,7 @@ import { useLocale } from "next-intl";
 import SectionView from "@/components/pages/work/workDetail/sectionView";
 import TitleBadge from "@/components/pages/work/workDetail/titleBadge";
 import Title from "@/components/pages/work/workDetail/title";
+import BackgroundWrapper from "@/components/pages/work/workDetail/backgroundWrapper";
 
 export default function PercentHotel() {
   const locale = useLocale() as "ko" | "en";
@@ -208,14 +209,14 @@ export default function PercentHotel() {
       </section>
 
       {/* BackgroundImage */}
-      <div className="relative mt-10 grid h-[600px] w-screen grid-cols-8 gap-[1.5vw] bg-gray-10">
+      <BackgroundWrapper>
         <Image
           src="/works/compressed/percentHotel.webp"
           alt="work_section_background_image"
           fill
           objectFit="cover"
         />
-      </div>
+      </BackgroundWrapper>
 
       {/* Sections */}
       <div className="mt-20 w-full">

@@ -22,6 +22,8 @@ import Image from "next/image";
 import { useLocale } from "next-intl";
 import TitleBadge from "@/components/pages/work/workDetail/titleBadge";
 import SectionView from "@/components/pages/work/workDetail/sectionView";
+import Title from "@/components/pages/work/workDetail/title";
+import BackgroundWrapper from "@/components/pages/work/workDetail/backgroundWrapper";
 
 export default function AnttimeApp() {
   const locale = useLocale() as "ko" | "en";
@@ -48,19 +50,19 @@ export default function AnttimeApp() {
         </Link>
 
         {/* TITLE */}
-        <div className="col-span-8 text-9xl font-semibold tracking-tighter">
-          BUMANG ROUTE53
-        </div>
+        <Title>BUMANG ROUTE53</Title>
 
         {/* TAG */}
-        <TitleBadge className="">
-          <span>{CONTENT_LEFT.badge[0]}</span>{" "}
-          <span className="font-bold">{CONTENT_LEFT.badge[1]}</span>{" "}
-          <span>{CONTENT_LEFT.badge[2]}</span>
-        </TitleBadge>
+        <div className="col-span-full flex justify-center sm:block">
+          <TitleBadge className="">
+            <span>{CONTENT_LEFT.badge[0]}</span>{" "}
+            <span className="font-bold">{CONTENT_LEFT.badge[1]}</span>{" "}
+            <span>{CONTENT_LEFT.badge[2]}</span>
+          </TitleBadge>
+        </div>
 
         {/* LEFT */}
-        <div className="col-span-4">
+        <div className="col-span-full lg:col-span-4">
           {/* SUMMARY */}
           <Summary title={CONTENT_LEFT.summary.title}>
             <Summary.Block
@@ -159,7 +161,7 @@ export default function AnttimeApp() {
         </div>
 
         {/* RIGHT */}
-        <div className="col-span-4">
+        <div className="col-span-full lg:col-span-4">
           <div className="mb-3 text-4xl font-medium">{CONTENT_RIGHT.title}</div>
           <div className="mb-10 leading-loose">{CONTENT_RIGHT.desc}</div>
 
@@ -183,14 +185,14 @@ export default function AnttimeApp() {
       </section>
 
       {/* BackgroundImage */}
-      <div className="relative mt-10 grid h-[600px] w-screen grid-cols-8 gap-[1.5vw] bg-gray-10">
+      <BackgroundWrapper>
         <Image
           src="/works/compressed/bumangRoute53.webp"
           alt="work_section_background_image"
           fill
           objectFit="cover"
         />
-      </div>
+      </BackgroundWrapper>
 
       {/* Sections */}
       <div className="mt-20 w-full">
