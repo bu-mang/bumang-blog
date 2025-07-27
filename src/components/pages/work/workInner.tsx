@@ -159,7 +159,7 @@ export function WorkInnerCompact() {
       {/* BUMANG BLOG */}
       <SectionBox animated={false} className="fade-in-mount" borderTop={false}>
         {/* TITLE */}
-        <div className="sticky top-20 col-span-3 mb-44 mt-8 flex h-fit flex-col font-semibold">
+        <div className="sticky top-20 col-span-full mb-10 mt-8 flex h-fit flex-col px-5 font-semibold md:col-span-3 md:mb-44 md:px-0">
           <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
             {t("bumangRoute53.tag")}
           </span>
@@ -187,15 +187,35 @@ export function WorkInnerCompact() {
         </div>
 
         {/* CONTENTS */}
-        <div className="col-start-4 col-end-9">
+        <div className="col-span-full md:col-start-4 md:col-end-9">
           <SubBox borderTop={false}>
-            <div className="col-span-1 translate-y-1.5 font-semibold">1.</div>
-            <div className="col-span-4">
-              <Title>{t("bumangRoute53.1.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              1.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">
+                {t("bumangRoute53.1.title")}
+              </Title>
 
-              <OrderedList order={"a."} className="mb-2">
-                {t("bumangRoute53.1.a")}
+              <OrderedList order={"a."}>
+                <OrderedListHead>
+                  {t("bumangRoute53.1.a.title")}
+                </OrderedListHead>
+
+                <OrderedList order={"i."} className="mb-2">
+                  {t("bumangRoute53.1.a.i")}
+                </OrderedList>
+
+                <OrderedList order={"ii."} className="mb-2">
+                  {t("bumangRoute53.1.a.ii")}
+                </OrderedList>
+
+                <OrderedList order={"iii."}>
+                  {t("bumangRoute53.1.a.iii")}
+                </OrderedList>
               </OrderedList>
+
+              <Divider />
 
               <OrderedList order={"b."}>
                 <OrderedListHead>
@@ -242,26 +262,48 @@ export function WorkInnerCompact() {
           </SubBox>
 
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">2.</div>
-            <div className="col-span-4">
-              <Title>{t("bumangRoute53.2.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              2.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">
+                {t("bumangRoute53.2.title")}
+              </Title>
 
               <OrderedList order={"a."} className="mb-2">
-                <OrderedListHead>
-                  {t("bumangRoute53.2.a.title")}
-                </OrderedListHead>
+                <OrderedListHead>{t("bumangRoute53.2.a.i")}</OrderedListHead>
 
-                <OrderedList order={"i."} className="mb-2">
-                  {t("bumangRoute53.2.a.i")}
+                <OrderedList order={"ii."} className="mb-2">
+                  {t("bumangRoute53.2.a.ii")}
+                </OrderedList>
+
+                <OrderedList order={"iii."} className="mb-2">
+                  {t("bumangRoute53.2.a.iii")}
+                </OrderedList>
+
+                <OrderedList order={"iv."} className="mb-2">
+                  {t("bumangRoute53.2.a.iv")}
+                </OrderedList>
+
+                <OrderedList order={"v."} className="mb-2">
+                  {t("bumangRoute53.2.a.v")}
+                </OrderedList>
+
+                <OrderedList order={"vi."}>
+                  {t("bumangRoute53.2.a.vi")}
                 </OrderedList>
               </OrderedList>
             </div>
           </SubBox>
 
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">3.</div>
-            <div className="col-span-4">
-              <Title>{t("bumangRoute53.3.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              3.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">
+                {t("bumangRoute53.3.title")}
+              </Title>
 
               <OrderedList order={"a."}>{t("bumangRoute53.3.a")}</OrderedList>
 
@@ -276,9 +318,11 @@ export function WorkInnerCompact() {
           </SubBox>
 
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">4.</div>
-            <div className="col-span-4">
-              <Title>{t("bumangRoute53.4")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              4.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">{t("bumangRoute53.4")}</Title>
             </div>
           </SubBox>
         </div>
@@ -287,7 +331,7 @@ export function WorkInnerCompact() {
       {/* SEA PEARL */}
       <SectionBox animated={false} className="fade-in-mount">
         {/* SEA PEARL - TITLE */}
-        <div className="sticky top-20 col-span-3 mb-44 mt-8 flex h-fit flex-col font-semibold">
+        <div className="sticky top-20 col-span-full mb-10 mt-8 flex h-fit flex-col px-5 font-semibold md:col-span-3 md:mb-44 md:px-0">
           <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
             {t("seaPearl.tag")}
           </span>
@@ -310,11 +354,13 @@ export function WorkInnerCompact() {
         </div>
 
         {/* ANTTIME SWAP - CONTENTS */}
-        <div className="col-start-4 col-end-9">
+        <div className="col-span-full md:col-start-4 md:col-end-9">
           <SubBox borderTop={false}>
-            <div className="col-span-1 translate-y-1.5 font-semibold">1.</div>
-            <div className="col-span-4">
-              <Title>{t("seaPearl.1.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              1.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">{t("seaPearl.1.title")}</Title>
 
               <OrderedList order={"a."} className="mb-2">
                 {t("seaPearl.1.a")}
@@ -333,9 +379,11 @@ export function WorkInnerCompact() {
           </SubBox>
 
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">2.</div>
-            <div className="col-span-4">
-              <Title>{t("seaPearl.2.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              2.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">{t("seaPearl.2.title")}</Title>
 
               <OrderedList order={"a."} className="mb-2">
                 {t("seaPearl.2.a")}
@@ -350,18 +398,22 @@ export function WorkInnerCompact() {
           </SubBox>
 
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">3.</div>
-            <div className="col-span-4">
-              <Title>{t("seaPearl.3.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              3.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">{t("seaPearl.3.title")}</Title>
 
               <OrderedList order={"a."}>{t("seaPearl.3.a")}</OrderedList>
             </div>
           </SubBox>
 
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">4.</div>
-            <div className="col-span-4">
-              <Title>{t("seaPearl.4.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              4.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">{t("seaPearl.4.title")}</Title>
 
               <OrderedList order={"a."}>
                 <OrderedListHead>{t("seaPearl.4.a.title")}</OrderedListHead>
@@ -382,9 +434,11 @@ export function WorkInnerCompact() {
           </SubBox>
 
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">5.</div>
-            <div className="col-span-4">
-              <Title>{t("seaPearl.5.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              5.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">{t("seaPearl.5.title")}</Title>
 
               <OrderedList order={"a."}>
                 <OrderedListHead>{t("seaPearl.5.a.title")}</OrderedListHead>
@@ -399,7 +453,7 @@ export function WorkInnerCompact() {
       {/* ANTTIME SWAP */}
       <SectionBox animated={false} className="fade-in-mount">
         {/* ANTTIME SWAP - TITLE */}
-        <div className="sticky top-20 col-span-3 mb-44 mt-8 flex h-fit flex-col font-semibold">
+        <div className="sticky top-20 col-span-full mb-10 mt-8 flex h-fit flex-col px-5 font-semibold md:col-span-3 md:mb-44 md:px-0">
           <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
             {t("anttimeSwap.tag")}
           </span>
@@ -427,11 +481,15 @@ export function WorkInnerCompact() {
         </div>
 
         {/* ANTTIME SWAP - CONTENTS */}
-        <div className="col-start-4 col-end-9">
+        <div className="col-span-full md:col-start-4 md:col-end-9">
           <SubBox borderTop={false}>
-            <div className="col-span-1 translate-y-1.5 font-semibold">1.</div>
-            <div className="col-span-4">
-              <Title>{t("anttimeSwap.1.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              1.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">
+                {t("anttimeSwap.1.title")}
+              </Title>
 
               <OrderedList order={"a."} className="mb-2">
                 {t("anttimeSwap.1.a")}
@@ -450,9 +508,13 @@ export function WorkInnerCompact() {
           </SubBox>
 
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">2.</div>
-            <div className="col-span-4">
-              <Title>{t("anttimeSwap.2.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              2.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">
+                {t("anttimeSwap.2.title")}
+              </Title>
 
               <OrderedList order={"a."} className="mb-2">
                 {t("anttimeSwap.2.a")}
@@ -473,9 +535,13 @@ export function WorkInnerCompact() {
           </SubBox>
 
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">3.</div>
-            <div className="col-span-4">
-              <Title>{t("anttimeSwap.3.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              3.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">
+                {t("anttimeSwap.3.title")}
+              </Title>
 
               <OrderedList order={"a."} className="mb-2">
                 {t("anttimeSwap.3.a")}
@@ -490,9 +556,13 @@ export function WorkInnerCompact() {
           </SubBox>
 
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">4.</div>
-            <div className="col-span-4">
-              <Title>{t("anttimeSwap.4.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              4.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">
+                {t("anttimeSwap.4.title")}
+              </Title>
 
               <OrderedList order={"a."}>{t("anttimeSwap.4.a")}</OrderedList>
             </div>
@@ -504,7 +574,7 @@ export function WorkInnerCompact() {
 
       <SectionBox animated={false} className="fade-in-mount">
         {/* ANTTIME APP - TITLE */}
-        <div className="sticky top-20 col-span-3 mb-44 mt-8 flex h-fit flex-col font-semibold">
+        <div className="sticky top-20 col-span-full mb-10 mt-8 flex h-fit flex-col px-5 font-semibold md:col-span-3 md:mb-44 md:px-0">
           <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
             {t("anttimeSwap.tag")}
           </span>
@@ -532,11 +602,13 @@ export function WorkInnerCompact() {
         </div>
 
         {/* ANTTIME APP - CONTENTS */}
-        <div className="col-start-4 col-end-9">
+        <div className="col-span-full md:col-start-4 md:col-end-9">
           <SubBox borderTop={false}>
-            <div className="col-span-1 translate-y-1.5 font-semibold">1.</div>
-            <div className="col-span-4">
-              <Title>{t("anttimeApp.1.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              1.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">{t("anttimeApp.1.title")}</Title>
 
               <OrderedList order={"a."}>
                 <OrderedListHead>{t("anttimeApp.1.a.title")}</OrderedListHead>
@@ -553,9 +625,11 @@ export function WorkInnerCompact() {
           </SubBox>
 
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">2.</div>
-            <div className="col-span-4">
-              <Title>{t("anttimeApp.2.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              2.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">{t("anttimeApp.2.title")}</Title>
 
               <OrderedList order={"a."}>{t("anttimeApp.2.a")}</OrderedList>
 
@@ -570,9 +644,11 @@ export function WorkInnerCompact() {
           </SubBox>
 
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">3.</div>
-            <div className="col-span-4">
-              <Title>{t("anttimeApp.3.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              3.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">{t("anttimeApp.3.title")}</Title>
 
               <OrderedList order={"a."}>{t("anttimeApp.3.a")}</OrderedList>
 
@@ -587,9 +663,11 @@ export function WorkInnerCompact() {
           </SubBox>
 
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">4.</div>
-            <div className="col-span-4">
-              <Title>{t("anttimeApp.4.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              4.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">{t("anttimeApp.4.title")}</Title>
 
               <OrderedList order={"a."}>
                 <OrderedListHead>{t("anttimeApp.4.a.title")}</OrderedListHead>
@@ -625,7 +703,7 @@ export function WorkInnerCompact() {
 
       <SectionBox animated={false} className="fade-in-mount">
         {/* Percent Hotel - TITLE */}
-        <div className="sticky top-20 col-span-3 mb-44 mt-8 flex h-fit flex-col font-semibold">
+        <div className="sticky top-20 col-span-full mb-10 mt-8 flex h-fit flex-col px-5 font-semibold md:col-span-3 md:mb-44 md:px-0">
           <div className="flex gap-3">
             <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
               {t("percentHotel.tag.1")}
@@ -655,11 +733,15 @@ export function WorkInnerCompact() {
         </div>
 
         {/* Percent Hotel - CONTENTS */}
-        <div className="col-start-4 col-end-9">
+        <div className="col-span-full md:col-start-4 md:col-end-9">
           <SubBox borderTop={false}>
-            <div className="col-span-1 translate-y-1.5 font-semibold">1.</div>
-            <div className="col-span-4">
-              <Title>{t("percentHotel.1.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              1.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">
+                {t("percentHotel.1.title")}
+              </Title>
 
               <OrderedList order={"a."}>
                 <OrderedListHead>{t("percentHotel.1.a.title")}</OrderedListHead>
@@ -695,9 +777,13 @@ export function WorkInnerCompact() {
 
           {/* Percent Hotel - BUSINESS LOGIC */}
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">2.</div>
-            <div className="col-span-4">
-              <Title>{t("percentHotel.2.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              2.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">
+                {t("percentHotel.2.title")}
+              </Title>
 
               <OrderedList order={"a."}>
                 <OrderedListHead>{t("percentHotel.2.a.title")}</OrderedListHead>
@@ -725,9 +811,13 @@ export function WorkInnerCompact() {
 
           {/* Percent Hotel - FCM */}
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">3.</div>
-            <div className="col-span-4">
-              <Title>{t("percentHotel.3.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              3.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">
+                {t("percentHotel.3.title")}
+              </Title>
 
               <OrderedList order={"a."}>{t("percentHotel.3.a")}</OrderedList>
 
@@ -743,9 +833,13 @@ export function WorkInnerCompact() {
 
           {/* Percent Hotel - SEO */}
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">4.</div>
-            <div className="col-span-4">
-              <Title>{t("percentHotel.4.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              4.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">
+                {t("percentHotel.4.title")}
+              </Title>
 
               <OrderedList order={"a."}>{t("percentHotel.4.a")}</OrderedList>
 
@@ -757,9 +851,13 @@ export function WorkInnerCompact() {
 
           {/* Percent Hotel - TEAM MANAGEMENT */}
           <SubBox>
-            <div className="col-span-1 translate-y-1.5 font-semibold">5.</div>
-            <div className="col-span-4">
-              <Title>{t("percentHotel.5.title")}</Title>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              5.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-0">
+                {t("percentHotel.5.title")}
+              </Title>
 
               <OrderedList order={"a."}>{t("percentHotel.5.a")}</OrderedList>
 
