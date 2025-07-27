@@ -37,7 +37,7 @@ export default function PercentHotel() {
     <main
       className={cn(
         "flex flex-1 flex-col items-center justify-center",
-        LAYOUT_PADDING_ALONGSIDE,
+        "px-[2vw] md:px-[6vw]",
       )}
     >
       <section className="grid w-full grid-cols-8 gap-[1.5vw]">
