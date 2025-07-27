@@ -41,7 +41,7 @@ const BlogComment = () => {
 
   return (
     <div
-      className="utterances-frame relative col-start-3 col-end-9 min-h-40 rounded-xl bg-gray-1"
+      className="utterances-frame relative col-start-1 col-end-12 min-h-40 rounded-xl bg-gray-1 lg:col-start-2 lg:col-end-10 xl:col-start-3 xl:col-end-9"
       id={COMMENTS_ID}
       ref={commentRef}
     >

@@ -14,7 +14,7 @@ export default function BlogLayout({
       className={cn(
         "grid h-fit grid-cols-10 gap-x-[1.5vw]",
         LAYOUT_PADDING_TOP,
-        LAYOUT_PADDING_ALONGSIDE,
+        "px-[2vw] md:px-[6vw]",
       )}
     >
       {children}

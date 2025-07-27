@@ -196,7 +196,7 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
   return (
     <>
       {/* 본문 ARTICLE */}
-      <div className="col-start-3 col-end-9 mb-10 flex h-fit flex-col justify-center gap-x-[1.5vw]">
+      <div className="col-start-1 col-end-12 mb-10 flex h-fit flex-col justify-center gap-x-[1.5vw] lg:col-start-2 lg:col-end-10 xl:col-start-3 xl:col-end-9">
         <TagWrapper as="collapsible" align="center">
           {post?.tags.length ? (
             post.tags.map((tag) => (
@@ -207,7 +207,7 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
           )}
         </TagWrapper>
 
-        <div className="mb-10 mt-4 text-center text-5xl font-semibold leading-tight">
+        <div className="mb-10 mt-4 text-center text-2xl font-semibold leading-tight md:text-5xl">
           {post.title}
         </div>
 
@@ -222,7 +222,7 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
         </div>
 
         {/* INFORMATIONS */}
-        <div className="mb-24 flex items-center justify-center">
+        <div className="mb-24 flex flex-wrap items-center justify-center">
           <div className="group flex cursor-pointer items-center justify-center gap-2 text-sm text-gray-300 transition-all hover:scale-105">
             <FolderIcon size={18} className="group-hover:text-gray-600" />
             <Link
@@ -255,7 +255,7 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
 
           {/* LOGGINED */}
           {post.authorNickname === user?.nickname && (
-            <>
+            <div className="hidden gap-2 md:flex">
               <Divider className="mx-5" />
 
               <Link
@@ -274,7 +274,7 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
                 <Trash2 size={18} />
                 <span>{t("delete")}</span>
               </ButtonBase>
-            </>
+            </div>
           )}
         </div>
 
