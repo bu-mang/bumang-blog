@@ -48,31 +48,33 @@ export default function PercentHotel() {
         </Link>
 
         {/* TITLE */}
-        <div className="col-span-8 text-9xl font-semibold tracking-tighter">
+        <div className="col-span-full mt-10 flex justify-center text-5xl font-semibold tracking-tighter sm:block sm:text-9xl md:mt-0">
           Percent Hotel
         </div>
 
         {/* TAG */}
-        <TitleBadge className="">
-          {locale === "ko" ? (
-            <>
-              <span className="font-semibold">{CONTENT_LEFT.badge[0]}</span>{" "}
-              {CONTENT_LEFT.badge[1]}{" "}
-              <span className="font-bold">{CONTENT_LEFT.badge[2]}</span>
-            </>
-          ) : (
-            <>
-              {CONTENT_LEFT.badge[0]}{" "}
-              <span className="font-bold">{CONTENT_LEFT.badge[1]}</span>{" "}
-              {CONTENT_LEFT.badge[2]}{" "}
-              <span className="font-semibold">{CONTENT_LEFT.badge[3]}</span>{" "}
-              {CONTENT_LEFT.badge[4]}
-            </>
-          )}
-        </TitleBadge>
+        <div className="col-span-full flex justify-center sm:block">
+          <TitleBadge className="">
+            {locale === "ko" ? (
+              <>
+                <span className="font-semibold">{CONTENT_LEFT.badge[0]}</span>{" "}
+                {CONTENT_LEFT.badge[1]}{" "}
+                <span className="font-bold">{CONTENT_LEFT.badge[2]}</span>
+              </>
+            ) : (
+              <>
+                {CONTENT_LEFT.badge[0]}{" "}
+                <span className="font-bold">{CONTENT_LEFT.badge[1]}</span>{" "}
+                {CONTENT_LEFT.badge[2]}{" "}
+                <span className="font-semibold">{CONTENT_LEFT.badge[3]}</span>{" "}
+                {CONTENT_LEFT.badge[4]}
+              </>
+            )}
+          </TitleBadge>
+        </div>
 
         {/* LEFT */}
-        <div className="col-span-4">
+        <div className="col-span-full lg:col-span-4">
           {/* SUMMARY */}
           <Summary title={CONTENT_LEFT.summary.title}>
             <Summary.Block
@@ -183,7 +185,7 @@ export default function PercentHotel() {
         </div>
 
         {/* RIGHT */}
-        <div className="col-span-4">
+        <div className="col-span-full lg:col-span-4">
           <div className="mb-3 text-4xl font-medium">{CONTENT_RIGHT.title}</div>
           <div className="mb-10">{CONTENT_RIGHT.desc}</div>
 
