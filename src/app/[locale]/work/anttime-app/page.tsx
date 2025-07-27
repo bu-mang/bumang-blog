@@ -11,7 +11,6 @@ import {
   UsersRound,
   Wrench,
   ArrowLeft,
-  CornerDownRight,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
