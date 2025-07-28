@@ -16,7 +16,7 @@ export default function Blog() {
   const loginPageClass = cn(
     "flex flex-1 gap-[1.5vw] justify-center w-full",
     LAYOUT_PADDING_TOP,
-    LAYOUT_PADDING_ALONGSIDE,
+    "px-[2vw] md:px-[6vw]",
   );
 
   const t = useTranslations("login");
