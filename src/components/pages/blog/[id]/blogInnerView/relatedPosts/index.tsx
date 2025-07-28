@@ -107,7 +107,7 @@ function RelatedAndAdjacentPostInner({ id }: RelatedPostInnerProps) {
         {adjacentPosts.next ? (
           <Link
             href={PATHNAME.BLOG + `/${adjacentPosts.next.id}`}
-            className="group flex flex-col items-end gap-1 text-gray-400 hover:text-gray-900"
+            className="group col-start-2 col-end-3 flex flex-col items-end gap-1 text-gray-400 hover:text-gray-900"
           >
             <div className="flex items-center gap-1.5">
               <span className="text-sm font-semibold">{t("nextPost")}</span>
