@@ -19,6 +19,8 @@ interface InteractiveState {
     backgroundColor: string | undefined | null;
   };
 
+  home: {};
+
   work: {
     centerText: boolean;
   };
@@ -49,10 +51,12 @@ export const useInteractiveStore = create<
     backgroundColor: null,
     backgroundImage: null,
 
+    home: {},
+
     header: {
       animState: "ANIM",
       borderBottom: gray?.["10"],
-      backgroundColor: "bg-white",
+      backgroundColor: "bg-transparent",
 
       setAnimState: (animState: "ANIM" | "MIN" | "MAX") => {
         set((state) => {

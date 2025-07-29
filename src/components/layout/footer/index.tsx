@@ -3,6 +3,7 @@
 import { cn } from "@/utils/cn";
 import { Link } from "@/i18n/navigation";
 import { usePathname } from "@/i18n/navigation";
+import { PATHNAME } from "@/constants/routes";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,10 +11,12 @@ const Footer = () => {
 
   const pathname = usePathname();
   const isBlogEdit = pathname === "/blog/edit";
+  const isHome = pathname === PATHNAME.HOME;
 
   const footerClass = cn(
     "flex w-full cursor-default text-xs",
     isBlogEdit && "hidden",
+    isHome && "fixed bottom-10",
   );
 
   return (
@@ -26,10 +29,9 @@ const Footer = () => {
         <div>
           <div className="font-medium text-gray-700">Contact</div>
           <div className="text-gray-200">
-            <Link href="#" className={linkClass}>
+            {/* <Link href="#" className={linkClass}>
               LinkedIn
-            </Link>
-            ,{" "}
+            </Link> */}
             <Link href="#" className={linkClass}>
               Notion
             </Link>

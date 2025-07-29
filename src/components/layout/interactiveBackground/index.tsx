@@ -8,10 +8,10 @@ import WorkBackground from "./interactives/work";
 import { useEffect } from "react";
 import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/all";
+import Ascii3DBackground from "./interactives/ascii3d";
 
 export default function InteractiveBackground() {
   const pathname = usePathname();
-  const random = Math.floor(Math.random() * 10);
   const bgColor = useInteractiveStore((state) => state.backgroundColor);
 
   // 부드러운 스크롤 애니메이션 init
@@ -38,6 +38,7 @@ export default function InteractiveBackground() {
     return () => {
       lenis?.destroy();
     };
+    // eslint-disable-next-line
   }, [pathname === "/blog/edit"]);
 
   // 특수 배경
@@ -46,9 +47,10 @@ export default function InteractiveBackground() {
       // INTERACTIVE
       case PATHNAME.WORK:
         return <WorkBackground />;
+      case PATHNAME.HOME:
+        return <Ascii3DBackground />;
 
       // STATIC RENDERS
-      case PATHNAME.HOME:
       default:
         return null;
     }
