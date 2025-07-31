@@ -11,7 +11,12 @@ class ASCIIEffect {
 
   constructor(
     renderer: THREE.WebGLRenderer,
-    charSet: string = " .:-=+*#%@",
+    // charSet: string = "@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. ",
+    // charSet: string = "@&#MW8%*+=-:;,. ",
+    // charSet: string = " .'`^\",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$",
+    charSet: string = "█▉▊▋▌▍▎▏ ",
+    // charSet: string = "@%#*+=-:. ",
+    // charSet: string = " .:-=+*#%@",
     resolution: number = 0.15,
   ) {
     this.renderer = renderer;

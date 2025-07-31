@@ -36,14 +36,14 @@ export default function Ascii3DBackground() {
       );
 
       // 5. 카메라 위치 조정
-      camera.position.z = 7.5; // 카메라를 뒤로 5만큼 빼기
+      camera.position.z = 10; // 카메라를 뒤로 5만큼 빼기
 
       const asciiEffect = new ASCIIEffect(renderer);
       threeRef.current.appendChild(asciiEffect.domElement);
 
-      const ambientLight = new THREE.AmbientLight(0x404040, 0.4);
-      const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
-      directionalLight.position.set(10, 10, 5);
+      const ambientLight = new THREE.AmbientLight(0x404040, 0.2);
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 2.5);
+      directionalLight.position.set(5, 15, 10);
       const hemiLight = new THREE.HemisphereLight(0x87ceeb, 0x444444, 0.3);
 
       scene.add(ambientLight);
@@ -60,8 +60,8 @@ export default function Ascii3DBackground() {
         "/models/lily.glb",
         (gltf) => {
           lily = gltf.scene;
-          lily.position.set(1.5, -1, 0); // 위치 조절
-          lily.scale.set(5, 5, 5);
+          lily.position.set(1.5, 0, 0); // 위치 조절
+          lily.scale.set(6, 6, 6);
           scene.add(lily);
         },
         undefined,
