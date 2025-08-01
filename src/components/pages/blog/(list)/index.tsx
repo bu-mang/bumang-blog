@@ -48,6 +48,7 @@ export default function BlogInner({
   );
   useEffect(() => {
     setDefaultSetting();
+    // eslint-disable-next-line
   }, []);
 
   if (!allPosts && !user) {
@@ -243,7 +244,7 @@ function BlogListViewCSR({
                 key={id}
                 id={id}
                 title={title}
-                previewText={previewText}
+                previewText={previewText + "."}
                 author={author}
                 // category & group
                 groupLabel={groupLabel}
