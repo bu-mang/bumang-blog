@@ -254,7 +254,8 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
           </div>
 
           {/* LOGGINED */}
-          {post.authorNickname === user?.nickname && (
+          {(post.authorNickname === user?.nickname ||
+            user?.role === "admin") && (
             <div className="hidden gap-2 md:flex">
               <Divider className="mx-5" />
 
