@@ -18,6 +18,7 @@ import DraftController from "../draftController";
 import { YooEditor, YooptaContentValue } from "@yoopta/editor";
 import { PublishDrawer } from "@/components/pages/blog/edit/blogEditToolBar/publishDrawer";
 import { useTranslations } from "next-intl";
+import { PATHNAME } from "@/constants/routes";
 
 interface BlogEditorToolBarProps {
   // List
@@ -115,11 +116,7 @@ const BlogEditorToolBar = ({
    */
   const router = useRouter();
   const handleGoBack = () => {
-    if (window.history.length > 1) {
-      router.back(); // 이전 페이지가 있으면 뒤로 가기
-    } else {
-      router.push("/"); // 없으면 홈으로 이동
-    }
+    router.push(PATHNAME.BLOG);
   };
 
   return (
