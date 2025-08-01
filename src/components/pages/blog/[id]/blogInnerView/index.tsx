@@ -34,6 +34,7 @@ import { useEditStore } from "@/store/edit";
 import { useMutation } from "@tanstack/react-query";
 import { deletePost } from "@/services/api/blog/edit";
 import { useTranslations } from "next-intl";
+import { useInteractiveStore } from "@/store/background";
 
 interface BlogDetailInnerProps {
   post: PostDetailResponseDto;
@@ -138,6 +139,14 @@ export function BlogInnerViewFallback({ isError }: { isError?: boolean }) {
 
 export default function BlogInnerView({ post }: BlogDetailInnerProps) {
   const t = useTranslations("blogDetail");
+
+  const setDefaultSetting = useInteractiveStore(
+    (state) => state.header.setDefaultSetting,
+  );
+  useEffect(() => {
+    setDefaultSetting();
+    // eslint-disable-next-line
+  }, []);
 
   /**
    * EDITOR_LOGIC

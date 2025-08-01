@@ -43,6 +43,7 @@ export default function BlogInner({
   pageSize,
 }: BlogListViewProps) {
   const user = useAuthStore((state) => state.user);
+
   const setDefaultSetting = useInteractiveStore(
     (state) => state.header.setDefaultSetting,
   );
