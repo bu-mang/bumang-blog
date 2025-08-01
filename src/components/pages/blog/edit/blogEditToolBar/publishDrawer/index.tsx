@@ -250,7 +250,10 @@ export function PublishDrawer({
                 <Image
                   src={
                     thumbnails?.[thumbnailIndex] ??
-                    getThumbnailByGroup(selectedGroup?.label ?? "") ??
+                    getThumbnailByGroup(
+                      selectedGroup?.label ?? "",
+                      "blogItem",
+                    ) ??
                     ""
                   } // thumbnails
                   alt="thumbnail Image"

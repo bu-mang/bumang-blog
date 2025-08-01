@@ -223,7 +223,10 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
         <div className="relative mb-12 aspect-video w-full overflow-hidden rounded-2xl">
           <Image
             alt="Thumnail"
-            src={post?.thumbnailUrl || getThumbnailByGroup(post.group.label)}
+            src={
+              post?.thumbnailUrl ||
+              getThumbnailByGroup(post.group.label, "postBanner")
+            }
             className="bg-gray-100 object-cover object-top"
             priority
             fill

@@ -137,7 +137,7 @@ const BlogItem = ({
           {/* IMAGE */}
           <div className="relative h-[135px] w-full max-w-[240px] shrink-0 cursor-pointer overflow-hidden rounded-8 bg-gray-50">
             <Image
-              src={thumbnailUrl || getThumbnailByGroup(groupLabel)}
+              src={thumbnailUrl || getThumbnailByGroup(groupLabel, "blogItem")}
               alt="postImage"
               className="object-cover"
               fill
@@ -153,7 +153,7 @@ const BlogItem = ({
           {/* IMAGE */}
           <div className="relative aspect-video w-full cursor-pointer overflow-hidden rounded-8 bg-gray-50">
             <Image
-              src={thumbnailUrl || getThumbnailByGroup(groupLabel)}
+              src={thumbnailUrl || getThumbnailByGroup(groupLabel, "blogItem")}
               alt="postImage"
               className="object-cover object-top transition-all group-hover:scale-110"
               fill
