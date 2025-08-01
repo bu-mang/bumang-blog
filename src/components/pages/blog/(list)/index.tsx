@@ -16,6 +16,8 @@ import { useAuthStore } from "@/store/auth";
 import { BlogItemFallback } from "./blogItem";
 import { PagenationFallback } from "@/components/common/pageNation";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useInteractiveStore } from "@/store/background";
+import { useEffect } from "react";
 
 interface BlogListViewProps {
   allPosts: null | PaginatedResponseDto<PostListItemType>;
@@ -41,6 +43,12 @@ export default function BlogInner({
   pageSize,
 }: BlogListViewProps) {
   const user = useAuthStore((state) => state.user);
+  const setDefaultSetting = useInteractiveStore(
+    (state) => state.header.setDefaultSetting,
+  );
+  useEffect(() => {
+    setDefaultSetting();
+  }, []);
 
   if (!allPosts && !user) {
     return <BlogListFallback itemViewType={itemViewType} />;
