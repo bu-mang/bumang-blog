@@ -191,7 +191,7 @@ const BlogItem = ({
                 readPermisson === "user" && "text-red-400",
               )}
             >
-              {readPermisson === "user" ? `deleted in 24h` : formattedDate}
+              {readPermisson === "user" ? `deleted at 00:00` : formattedDate}
             </span>
           </div>
 
