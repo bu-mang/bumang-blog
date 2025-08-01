@@ -245,7 +245,7 @@ function BlogListViewCSR({
                 key={id}
                 id={id}
                 title={title}
-                previewText={previewText + "."}
+                previewText={previewText + "!!"}
                 author={author}
                 // category & group
                 groupLabel={groupLabel}

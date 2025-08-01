@@ -30,9 +30,8 @@ export default async function Blog({ searchParams }: PageProps) {
   let pageIndex = searchParams.pageIndex ? Number(searchParams.pageIndex) : 1;
   let pageSize = 12;
 
+  const accessToken = cookies().get("accessToken")?.value;
   try {
-    const accessToken = cookies().get("accessToken")?.value;
-
     if (!accessToken) {
       allPosts = await getAllPosts(
         pageIndex,
@@ -42,6 +41,7 @@ export default async function Blog({ searchParams }: PageProps) {
         tagIds,
         postType,
       );
+      console.log("??🤣");
     }
     console.log("👀 allPosts", allPosts);
   } catch (err) {
