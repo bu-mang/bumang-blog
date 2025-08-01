@@ -6,6 +6,8 @@ import { QUERY_KEY } from "@/constants/api/queryKey";
 import { useAuthStore } from "@/store/auth";
 import { ErrorBoundary, Suspense } from "@suspensive/react";
 import BlogInnerView, { BlogInnerViewFallback } from "./blogInnerView";
+import { useEffect } from "react";
+import { useInteractiveStore } from "@/store/background";
 /**
  * @BLOG_DETAIL_AUTHORIZED
  * csr로 AUTH 정보까지
@@ -32,6 +34,13 @@ export function BlogDetailAuthorizedCSRInner({ postId }: { postId: string }) {
     queryKey: QUERY_KEY.GET_BLOG_AUTHENTICATED_DETAIL(postId),
     queryFn: () => getBlogAuthenticatedDetail(postId),
   });
+
+  const setDefaultSetting = useInteractiveStore(
+    (state) => state.header.setDefaultSetting,
+  );
+  useEffect(() => {
+    setDefaultSetting();
+  }, []);
 
   return <BlogInnerView post={data} />;
 }
