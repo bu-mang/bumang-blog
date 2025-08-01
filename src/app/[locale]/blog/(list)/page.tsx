@@ -43,9 +43,9 @@ export default async function Blog({ searchParams }: PageProps) {
         postType,
       );
     }
-    console.log("👀2 allPosts", allPosts);
+    console.log("👀 allPosts", allPosts);
   } catch (err) {
-    console.log(allPosts, err, "allPost error 👀3 ");
+    console.log(allPosts, err, "allPost error ");
   }
 
   return (

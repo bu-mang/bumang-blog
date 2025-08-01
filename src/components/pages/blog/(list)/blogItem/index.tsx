@@ -64,7 +64,7 @@ const BlogItem = ({
       toast(CustomNotification, {
         data: {
           title: t("noPermission.title"),
-          content: t("noPermission.desc"),
+          content: t("noPermission.desc") + ` ${readPermisson}`,
           onClick: () => router.push(PATHNAME.LOGIN),
           buttonText: t("noPermission.buttonText"),
         },

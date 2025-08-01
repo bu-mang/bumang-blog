@@ -485,7 +485,7 @@
   "alert": {
     "noPermission": {
       "title": "Oh Snap! Autorization Failed.",
-      "desc": "Only Admin can read it.",
+      "desc": "It can be read by... ",
       "buttonText": "Go to Login",
       "ariaLabel": "You need Login."
     }
