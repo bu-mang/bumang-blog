@@ -353,7 +353,7 @@ export function WorkInnerCompact() {
           </div>
         </div>
 
-        {/* ANTTIME SWAP - CONTENTS */}
+        {/* SEA PEARL - CONTENTS */}
         <div className="col-span-full md:col-start-4 md:col-end-9">
           <SubBox borderTop={false}>
             <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
@@ -365,6 +365,8 @@ export function WorkInnerCompact() {
               <OrderedList order={"a."} className="mb-2">
                 {t("seaPearl.1.a")}
               </OrderedList>
+
+              <Divider />
 
               <OrderedList order={"b."} className="mb-2">
                 <OrderedListHead>{t("seaPearl.1.b.title")}</OrderedListHead>
