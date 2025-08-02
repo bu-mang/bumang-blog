@@ -193,7 +193,7 @@ export function WorkInnerCompact() {
               1.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">
+              <Title className="mb-16 md:mb-6">
                 {t("bumangRoute53.1.title")}
               </Title>
 
@@ -266,7 +266,7 @@ export function WorkInnerCompact() {
               2.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">
+              <Title className="mb-16 md:mb-6">
                 {t("bumangRoute53.2.title")}
               </Title>
 
@@ -301,7 +301,7 @@ export function WorkInnerCompact() {
               3.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">
+              <Title className="mb-16 md:mb-6">
                 {t("bumangRoute53.3.title")}
               </Title>
 
@@ -322,7 +322,7 @@ export function WorkInnerCompact() {
               4.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">{t("bumangRoute53.4")}</Title>
+              <Title className="mb-16 md:mb-6">{t("bumangRoute53.4")}</Title>
             </div>
           </SubBox>
         </div>
@@ -360,7 +360,7 @@ export function WorkInnerCompact() {
               1.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">{t("seaPearl.1.title")}</Title>
+              <Title className="mb-16 md:mb-6">{t("seaPearl.1.title")}</Title>
 
               <OrderedList order={"a."} className="mb-2">
                 {t("seaPearl.1.a")}
@@ -383,7 +383,7 @@ export function WorkInnerCompact() {
               2.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">{t("seaPearl.2.title")}</Title>
+              <Title className="mb-16 md:mb-6">{t("seaPearl.2.title")}</Title>
 
               <OrderedList order={"a."} className="mb-2">
                 {t("seaPearl.2.a")}
@@ -402,7 +402,7 @@ export function WorkInnerCompact() {
               3.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">{t("seaPearl.3.title")}</Title>
+              <Title className="mb-16 md:mb-6">{t("seaPearl.3.title")}</Title>
 
               <OrderedList order={"a."}>{t("seaPearl.3.a")}</OrderedList>
             </div>
@@ -413,7 +413,7 @@ export function WorkInnerCompact() {
               4.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">{t("seaPearl.4.title")}</Title>
+              <Title className="mb-16 md:mb-6">{t("seaPearl.4.title")}</Title>
 
               <OrderedList order={"a."}>
                 <OrderedListHead>{t("seaPearl.4.a.title")}</OrderedListHead>
@@ -438,7 +438,7 @@ export function WorkInnerCompact() {
               5.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">{t("seaPearl.5.title")}</Title>
+              <Title className="mb-16 md:mb-6">{t("seaPearl.5.title")}</Title>
 
               <OrderedList order={"a."}>
                 <OrderedListHead>{t("seaPearl.5.a.title")}</OrderedListHead>
@@ -487,7 +487,7 @@ export function WorkInnerCompact() {
               1.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">
+              <Title className="mb-16 md:mb-6">
                 {t("anttimeSwap.1.title")}
               </Title>
 
@@ -512,7 +512,7 @@ export function WorkInnerCompact() {
               2.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">
+              <Title className="mb-16 md:mb-6">
                 {t("anttimeSwap.2.title")}
               </Title>
 
@@ -539,7 +539,7 @@ export function WorkInnerCompact() {
               3.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">
+              <Title className="mb-16 md:mb-6">
                 {t("anttimeSwap.3.title")}
               </Title>
 
@@ -560,7 +560,7 @@ export function WorkInnerCompact() {
               4.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">
+              <Title className="mb-16 md:mb-6">
                 {t("anttimeSwap.4.title")}
               </Title>
 
@@ -608,7 +608,7 @@ export function WorkInnerCompact() {
               1.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">{t("anttimeApp.1.title")}</Title>
+              <Title className="mb-16 md:mb-6">{t("anttimeApp.1.title")}</Title>
 
               <OrderedList order={"a."}>
                 <OrderedListHead>{t("anttimeApp.1.a.title")}</OrderedListHead>
@@ -629,7 +629,7 @@ export function WorkInnerCompact() {
               2.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">{t("anttimeApp.2.title")}</Title>
+              <Title className="mb-16 md:mb-6">{t("anttimeApp.2.title")}</Title>
 
               <OrderedList order={"a."}>{t("anttimeApp.2.a")}</OrderedList>
 
@@ -648,7 +648,7 @@ export function WorkInnerCompact() {
               3.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">{t("anttimeApp.3.title")}</Title>
+              <Title className="mb-16 md:mb-6">{t("anttimeApp.3.title")}</Title>
 
               <OrderedList order={"a."}>{t("anttimeApp.3.a")}</OrderedList>
 
@@ -667,7 +667,7 @@ export function WorkInnerCompact() {
               4.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">{t("anttimeApp.4.title")}</Title>
+              <Title className="mb-16 md:mb-6">{t("anttimeApp.4.title")}</Title>
 
               <OrderedList order={"a."}>
                 <OrderedListHead>{t("anttimeApp.4.a.title")}</OrderedListHead>
@@ -739,7 +739,7 @@ export function WorkInnerCompact() {
               1.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">
+              <Title className="mb-16 md:mb-6">
                 {t("percentHotel.1.title")}
               </Title>
 
@@ -781,7 +781,7 @@ export function WorkInnerCompact() {
               2.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">
+              <Title className="mb-16 md:mb-6">
                 {t("percentHotel.2.title")}
               </Title>
 
@@ -815,7 +815,7 @@ export function WorkInnerCompact() {
               3.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">
+              <Title className="mb-16 md:mb-6">
                 {t("percentHotel.3.title")}
               </Title>
 
@@ -837,7 +837,7 @@ export function WorkInnerCompact() {
               4.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">
+              <Title className="mb-16 md:mb-6">
                 {t("percentHotel.4.title")}
               </Title>
 
@@ -855,7 +855,7 @@ export function WorkInnerCompact() {
               5.
             </div>
             <div className="col-span-full px-5 md:col-span-4 md:px-0">
-              <Title className="mb-16 md:mb-0">
+              <Title className="mb-16 md:mb-6">
                 {t("percentHotel.5.title")}
               </Title>
 
