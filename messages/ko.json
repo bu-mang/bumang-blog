@@ -375,7 +375,7 @@
     }
   },
   "login": {
-    "title": "안녕, 여러분!",
+    "title": "안녕하세요!",
     "desc": "로그인 하시고 모든 Bumang Route53의 기능을 체험해보세요.",
     "idLabel": "아이디",
     "passwordLabel": "패스워드",

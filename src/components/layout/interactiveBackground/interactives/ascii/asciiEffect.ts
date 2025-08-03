@@ -44,8 +44,6 @@ class ASCIIEffect {
     this.width = Math.floor(width * this.resolution);
     this.height = Math.floor(height * this.resolution);
     this.renderTarget.setSize(this.width, this.height);
-
-    // ASCII 문자 비율 보정 (문자는 세로가 더 김)
   }
 
   public render(scene: THREE.Scene, camera: THREE.Camera): void {

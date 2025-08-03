@@ -1,9 +1,7 @@
+import LetterGlitch from "@/components/pages/login/letterGlitch";
 import LoginForm from "@/components/pages/login/loginForm";
 import { LoginInfoAccordion } from "@/components/pages/login/loginInfoAccordion";
-import {
-  LAYOUT_PADDING_ALONGSIDE,
-  LAYOUT_PADDING_TOP,
-} from "@/constants/layouts/layout";
+import { LAYOUT_PADDING_TOP } from "@/constants/layouts/layout";
 import { cn } from "@/utils/cn";
 import { Metadata } from "next";
 import { useTranslations } from "next-intl";
@@ -39,8 +37,14 @@ export default function Blog() {
       </div>
 
       {/* RIGHT SECTION */}
-      <section className="flex w-1/2 flex-col items-center justify-center rounded-xl bg-gray-1 px-12 py-8 text-gray-50">
-        SOME COOL IMAGE AND INTERACTION WILL BE HERE....
+      <section className="flex w-1/2 flex-col items-center justify-center overflow-hidden rounded-xl bg-gray-1 text-gray-50">
+        <LetterGlitch
+          glitchSpeed={10}
+          centerVignette={true}
+          outerVignette={false}
+          smooth={true}
+          centerText="Hello from Bumang"
+        />
       </section>
     </main>
   );
