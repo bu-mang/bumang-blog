@@ -11,12 +11,7 @@ class ASCIIEffect {
 
   constructor(
     renderer: THREE.WebGLRenderer,
-    // charSet: string = "@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. ",
-    // charSet: string = "@&#MW8%*+=-:;,. ",
-    // charSet: string = " .'`^\",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$",
     charSet: string = "█▉▊▋▌▍▎▏ ",
-    // charSet: string = "@%#*+=-:. ",
-    // charSet: string = " .:-=+*#%@",
     resolution: number = 0.15,
   ) {
     this.renderer = renderer;
@@ -54,35 +49,53 @@ class ASCIIEffect {
   }
 
   public render(scene: THREE.Scene, camera: THREE.Camera): void {
+    // --------------------------------------------------------------------
+    // 일반 렌더링 (DOM에 보임)
+    // const renderer = new THREE.WebGLRenderer();
+    // renderer.setSize(x, y);
+    // document.body.appendChild(renderer.domElement); // ← DOM에 추가
+    // renderer.render(scene, camera); // → 화면에 보임
+    // --------------------------------------------------------------------
+
     // 오프스크린에 렌더링
-    this.renderer.setRenderTarget(this.renderTarget);
-    this.renderer.render(scene, camera);
-    this.renderer.setRenderTarget(null);
+    // setRenderTarget은 초기는 null이다. 기본 타겟은 domElement다.
+    this.renderer.setRenderTarget(this.renderTarget); // 렌더 타겟을 세팅
+    this.renderer.render(scene, camera); // 렌더
+    this.renderer.setRenderTarget(null); // 렌더 후 렌더타깃 초기화
 
     // 픽셀 데이터 읽기
+    // 가로 x 세로 x 4 (rgba가 4자리이기 때문)가 들어가는 Array 설정
     const pixels = new Uint8Array(this.width * this.height * 4);
     this.renderer.readRenderTargetPixels(
-      this.renderTarget,
-      0,
-      0,
-      this.width,
-      this.height,
-      pixels,
+      this.renderTarget, // 어떤 가상 캔버스에서
+      0, // X 시작점 (왼쪽 끝)
+      0, // Y 시작점 (아래쪽 끝)
+      this.width, // 가로로 얼마나 읽을지
+      this.height, // 세로로 얼마나 읽을지
+      pixels, // 읽은 데이터를 어디에 저장할지
     );
 
     // ASCII 변환
     let ascii: string = "";
+    // three.js 좌표계는 좌측 하단부터여서, y축을 마이너스 방향으로.
     for (let y = this.height - 1; y >= 0; y--) {
-      // 상하반전 해결
       for (let x = 0; x < this.width; x++) {
         const i: number = (y * this.width + x) * 4;
+
+        // R, G, B 값의 평균을 냄
         const brightness: number =
           (pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3;
+
+        // 나누기 255 곱하기 charSet.length로 index를 생성
         const charIndex: number = Math.floor(
           (brightness / 255) * (this.charSet.length - 1),
         );
+
+        // 해당하는 index의 문자열을 ascii 결과물에 붙이기
         ascii += this.charSet[charIndex];
       }
+
+      // 한 줄 끝나면 줄바꿈 추가
       ascii += "\n";
     }
 

@@ -8,7 +8,7 @@ import WorkBackground from "./interactives/work";
 import { useEffect } from "react";
 import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/all";
-import Ascii3DBackground from "./interactives/ascii3d";
+import Ascii3DBackground from "./interactives/ascii/ascii3d";
 
 export default function InteractiveBackground() {
   const pathname = usePathname();

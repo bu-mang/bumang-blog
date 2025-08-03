@@ -1,5 +1,5 @@
 import { useInteractiveStore } from "@/store/background";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
@@ -8,6 +8,7 @@ import ASCIIEffect from "./asciiEffect";
 export default function Ascii3DBackground() {
   const bgColor = useInteractiveStore((state) => state.backgroundColor);
   const bgImage = useInteractiveStore((state) => state.backgroundImage);
+  const [initialized, setInitialized] = useState(false);
 
   const threeRef = useRef<HTMLDivElement>(null); // DOM 요소 참조
 
@@ -15,7 +16,7 @@ export default function Ascii3DBackground() {
     if (threeRef.current && typeof window !== "undefined") {
       // 1. Renderer 만들기 (화가)
       const renderer = new THREE.WebGLRenderer();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      // renderer.setSize(window.innerWidth, window.innerHeight);
 
       // 2. DOM에 canvas 추가
       // threeRef.current.appendChild(renderer.domElement);
@@ -50,9 +51,6 @@ export default function Ascii3DBackground() {
       scene.add(directionalLight);
       scene.add(hemiLight);
 
-      // 7. 렌더링 (그림 그리기)
-      // renderer.render(scene, camera);
-
       let lily: THREE.Group | null = null;
 
       const loader = new GLTFLoader();
@@ -80,6 +78,8 @@ export default function Ascii3DBackground() {
       controls.enableRotate = true; // 회전 허용
       controls.enablePan = false; // 패닝 허용
 
+      setInitialized(true);
+
       // 애니메이션 루프에서 업데이트 필요
       function animate() {
         if (lily) {
@@ -97,9 +97,20 @@ export default function Ascii3DBackground() {
   return (
     <div className="fixed left-0 top-0 h-screen w-screen">
       <div ref={threeRef} className="h-full w-full" />
-      {/* <div className="absolute inset-0 m-auto flex h-24 w-24 items-center justify-center">
-        In Progress...
-      </div> */}
+
+      {/* Loading Img */}
+      {!initialized && (
+        <div
+          className="absolute inset-0 m-auto flex h-screen w-screen items-center justify-center opacity-80"
+          style={{
+            backgroundImage: "url(/interactiveBackground/blurred-ascii.png)",
+            backgroundSize: "100% 100%;",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            filter: "blur(20px)",
+          }}
+        />
+      )}
     </div>
   );
 }
