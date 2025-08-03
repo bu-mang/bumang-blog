@@ -57,6 +57,7 @@ export default function Ascii3DBackground() {
       loader.load(
         "/models/lily.glb",
         (gltf) => {
+          setInitialized(true);
           lily = gltf.scene;
           lily.position.set(1.5, 0, 0); // 위치 조절
           lily.scale.set(6, 6, 6);
@@ -77,8 +78,6 @@ export default function Ascii3DBackground() {
       controls.enableZoom = false; // 줌 허용
       controls.enableRotate = true; // 회전 허용
       controls.enablePan = false; // 패닝 허용
-
-      setInitialized(true);
 
       // 애니메이션 루프에서 업데이트 필요
       function animate() {
