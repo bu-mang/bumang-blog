@@ -54,8 +54,8 @@ const Tag = ({
     "flex gap-2 items-center h-fit bg-gray-1 text-gray-200 transition-all truncate shadow-sm",
     {
       // SIZE
-      ["rounded-8 px-2 py-1 text-sm"]: size === "lg",
-      ["rounded-2 p-1 text-xs"]: size === "sm",
+      ["rounded-lg px-2 py-1 text-sm"]: size === "lg",
+      ["rounded-3xs p-1 text-xs"]: size === "sm",
 
       // BACKGROUND
       ["bg-gray-700 text-white hover:bg-gray-500"]:

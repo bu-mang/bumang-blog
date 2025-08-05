@@ -135,7 +135,7 @@ const BlogItem = ({
           </div>
 
           {/* IMAGE */}
-          <div className="relative h-[135px] w-full max-w-[240px] shrink-0 cursor-pointer overflow-hidden rounded-8 bg-gray-50">
+          <div className="relative h-[135px] w-full max-w-[240px] shrink-0 cursor-pointer overflow-hidden rounded-lg bg-gray-50">
             <Image
               src={thumbnailUrl || getThumbnailByGroup(groupLabel, "blogItem")}
               alt="postImage"
@@ -151,7 +151,7 @@ const BlogItem = ({
       return (
         <Link href={"/blog/" + id} className="group" onClick={handleNavigate}>
           {/* IMAGE */}
-          <div className="relative aspect-video w-full cursor-pointer overflow-hidden rounded-8 bg-gray-50">
+          <div className="relative aspect-video w-full cursor-pointer overflow-hidden rounded-lg bg-gray-50">
             <Image
               src={thumbnailUrl || getThumbnailByGroup(groupLabel, "blogItem")}
               alt="postImage"
@@ -226,7 +226,7 @@ export function BlogItemFallback({ itemViewType }: BlogItemFallbackProps) {
       return (
         <div className="group">
           {/* IMAGE */}
-          <div className="relative aspect-video w-full cursor-pointer overflow-hidden rounded-8">
+          <div className="relative aspect-video w-full cursor-pointer overflow-hidden rounded-lg">
             <Skeleton className="h-full w-full" />
           </div>
 
@@ -275,7 +275,7 @@ export function BlogItemFallback({ itemViewType }: BlogItemFallbackProps) {
           </div>
 
           {/* IMAGE */}
-          <div className="relative h-[135px] w-full max-w-[240px] shrink-0 cursor-pointer overflow-hidden rounded-8">
+          <div className="relative h-[135px] w-full max-w-[240px] shrink-0 cursor-pointer overflow-hidden rounded-lg">
             <Skeleton className="h-full w-full" />
           </div>
         </div>

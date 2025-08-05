@@ -34,7 +34,7 @@ const CollapsedTag = ({
     {
       // SIZE
       ["rounded-lg w-7 h-7 text-xs"]: size === "lg",
-      ["rounded-2 w-7 h-7 text-xs"]: size === "sm",
+      ["rounded-3xs w-7 h-7 text-xs"]: size === "sm",
     },
     className,
   );

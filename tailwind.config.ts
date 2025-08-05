@@ -16,6 +16,7 @@ const config: Config = {
         sans: ["Wanted Sans Variable", "Wanted Sans", "sans-serif"],
       },
       borderRadius: {
+        "3xs": "2px",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
