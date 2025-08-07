@@ -103,7 +103,7 @@ export default function Ascii3DBackground() {
           className="absolute inset-0 m-auto flex h-screen w-screen items-center justify-center opacity-80"
           style={{
             backgroundImage: "url(/interactiveBackground/blurred-ascii.png)",
-            backgroundSize: "100% 100%;",
+            backgroundSize: "100% 100%",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             filter: "blur(20px)",
