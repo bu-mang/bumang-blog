@@ -40,11 +40,8 @@ interface HeaderInnerProps {
 }
 
 const HeaderInner = ({ locale }: HeaderInnerProps) => {
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-
   return (
     <ErrorBoundary
-      resetKeys={[isAuthenticated]}
       fallback={<HeaderFallback locale={locale} isLoading={false} />}
       onError={(error) => console.error("🔥 Header 에러:", error)}
     >
@@ -67,16 +64,14 @@ export function HeaderInnerAuthenticated({ locale }: HeaderInnerProps) {
   const { data } = useSuspenseQuery({
     queryKey: QUERY_KEY.GET_USER_PROFILE,
     queryFn: async () => {
-      console.log("🚀 getUserProfile 호출");
       const result = await getUserProfile();
-      console.log("✅ getUserProfile 성공:", result);
       return result;
     },
     retry: false, // 인증 실패 시 재시도 안 함
   });
 
   useEffect(() => {
-    if (data) {
+    if (data && !isAuthenticated) {
       setUserAndIsAuthenticated({
         isAuthenticated: true,
         user: {

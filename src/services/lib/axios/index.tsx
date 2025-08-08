@@ -2,9 +2,6 @@ import { END_POINTS } from "@/constants/api/endpoints";
 import { UserResponseType } from "@/types/user";
 import axios from "axios";
 
-/**
- * @직접_서버호출용
- */
 const ClientInstance = axios.create({
   baseURL:
     process.env.NODE_ENV === "production"
