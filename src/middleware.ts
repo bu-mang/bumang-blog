@@ -1,10 +1,8 @@
 import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
-import { NextRequest, NextResponse } from "next/server";
-import { jwtVerify, SignJWT } from "jose";
+import { NextRequest } from "next/server";
+import { jwtVerify } from "jose";
 import { END_POINTS } from "./services";
-
-// export default createMiddleware(routing);
 
 const intlMiddleware = createMiddleware(routing);
 

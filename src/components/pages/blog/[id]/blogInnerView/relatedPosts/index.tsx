@@ -131,21 +131,25 @@ function RelatedAndAdjacentPostInner({ id }: RelatedPostInnerProps) {
 
         {relatedPosts.length > 0 ? (
           relatedPosts.map(
-            ({
-              id,
-              title,
-              previewText,
-              createdAt,
-              categoryLabel,
-              groupLabel,
-              tags,
-              author,
-              thumbnailUrl,
-              readPermisson,
-            }) => {
+            (
+              {
+                id,
+                title,
+                previewText,
+                createdAt,
+                categoryLabel,
+                groupLabel,
+                tags,
+                author,
+                thumbnailUrl,
+                readPermisson,
+              },
+              index,
+            ) => {
               return (
                 <div className="group col-span-full md:col-span-3" key={id}>
                   <BlogItem
+                    index={index}
                     key={id}
                     id={id}
                     title={title}
