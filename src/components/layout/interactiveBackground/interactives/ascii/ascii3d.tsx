@@ -95,7 +95,10 @@ export default function Ascii3DBackground() {
 
   return (
     <div className="fixed left-0 top-0 h-screen w-screen">
-      <div ref={threeRef} className="h-full w-full" />
+      <div
+        ref={threeRef}
+        className="h-full w-full cursor-grab active:cursor-grabbing"
+      />
 
       {/* Loading Img */}
       {!initialized && (
