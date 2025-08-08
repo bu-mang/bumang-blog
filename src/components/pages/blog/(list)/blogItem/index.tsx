@@ -19,6 +19,7 @@ import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
 
 interface BlogItemProps {
+  index: number;
   id: number;
   title: string;
   previewText: string;
@@ -34,6 +35,7 @@ interface BlogItemProps {
 }
 
 const BlogItem = ({
+  index,
   title,
   previewText,
   categoryLabel,
@@ -140,6 +142,8 @@ const BlogItem = ({
               src={thumbnailUrl || getThumbnailByGroup(groupLabel, "blogItem")}
               alt="postImage"
               className="object-cover"
+              sizes="(max-width: 768px) 300px, 400px"
+              priority={index <= 6}
               fill
             />
           </div>
@@ -156,6 +160,8 @@ const BlogItem = ({
               src={thumbnailUrl || getThumbnailByGroup(groupLabel, "blogItem")}
               alt="postImage"
               className="object-cover object-top transition-all group-hover:scale-110"
+              sizes="(max-width: 768px) 300px, 400px"
+              priority={index <= 6}
               fill
             />
           </div>

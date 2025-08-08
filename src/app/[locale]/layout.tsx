@@ -86,13 +86,8 @@ export default async function RootLayout({
               crossOrigin="anonymous"
             />
             <link
-              rel="preload"
               as="style"
               crossOrigin="anonymous"
-              href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css"
-            />
-            <link
-              rel="stylesheet"
               href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css"
             />
           </head>

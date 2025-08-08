@@ -118,20 +118,24 @@ function BlogListViewSSR({
         {/* BLOGITEMS */}
         {allPosts?.data && allPosts?.data.length ? (
           allPosts?.data?.map(
-            ({
-              id,
-              title,
-              previewText,
-              createdAt,
-              categoryLabel,
-              groupLabel,
-              tags,
-              author,
-              thumbnailUrl,
-              readPermisson,
-              score,
-            }) => (
+            (
+              {
+                id,
+                title,
+                previewText,
+                createdAt,
+                categoryLabel,
+                groupLabel,
+                tags,
+                author,
+                thumbnailUrl,
+                readPermisson,
+                score,
+              },
+              index,
+            ) => (
               <BlogItem
+                index={index}
                 key={id}
                 id={id}
                 title={title}
@@ -228,20 +232,24 @@ function BlogListViewCSR({
         {/* BLOGITEMS */}
         {allPosts?.data && allPosts?.data.length ? (
           allPosts?.data?.map(
-            ({
-              id,
-              title,
-              previewText,
-              createdAt,
-              categoryLabel,
-              groupLabel,
-              tags,
-              author,
-              thumbnailUrl,
-              readPermisson,
-              score,
-            }) => (
+            (
+              {
+                id,
+                title,
+                previewText,
+                createdAt,
+                categoryLabel,
+                groupLabel,
+                tags,
+                author,
+                thumbnailUrl,
+                readPermisson,
+                score,
+              },
+              index,
+            ) => (
               <BlogItem
+                index={index}
                 key={id}
                 id={id}
                 title={title}
