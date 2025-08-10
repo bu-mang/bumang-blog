@@ -35,6 +35,7 @@ import { useMutation } from "@tanstack/react-query";
 import { deletePost } from "@/services/api/blog/edit";
 import { useTranslations } from "next-intl";
 import { useInteractiveStore } from "@/store/background";
+import { useTheme } from "next-themes";
 
 interface BlogDetailInnerProps {
   post: PostDetailResponseDto;
@@ -140,11 +141,12 @@ export function BlogInnerViewFallback({ isError }: { isError?: boolean }) {
 export default function BlogInnerView({ post }: BlogDetailInnerProps) {
   const t = useTranslations("blogDetail");
 
+  const { resolvedTheme } = useTheme();
   const setDefaultSetting = useInteractiveStore(
     (state) => state.header.setDefaultSetting,
   );
   useEffect(() => {
-    setDefaultSetting();
+    setDefaultSetting(resolvedTheme ?? "light");
     // eslint-disable-next-line
   }, []);
 

@@ -57,6 +57,10 @@ q:after {
 }
 
 @layer utilities {
+  .theme-transition {
+    @apply transition-colors duration-300 ease-in-out;
+  }
+
   .text-balance {
     text-wrap: balance;
   }
@@ -127,7 +131,8 @@ q:after {
     --radius: 0.5rem;
   }
   .dark {
-    --background: 240 10% 3.9%;
+    /* --background: 240 10% 3.9%; */
+    --background: 240 10% 10%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -154,10 +159,13 @@ q:after {
   }
 
   * {
-    @apply border-border;
+    @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 
   .tiptap p.is-editor-empty:first-child::before {
@@ -170,18 +178,5 @@ q:after {
 
   li .line-menu {
     display: none;
-  }
-}
-
-/* p .line-menu {
-  display: none;
-} */
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
   }
 }

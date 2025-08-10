@@ -35,7 +35,7 @@ interface InteractiveAction {
     setAnimState: (v: "ANIM" | "MIN" | "MAX") => void;
     setBorderBottom: (v: string | undefined | null) => void;
     setBackgroundColor: (v: string | undefined | null) => void;
-    setDefaultSetting: () => void;
+    setDefaultSetting: (v: string) => void;
   };
 
   work: {
@@ -63,10 +63,11 @@ export const useInteractiveStore = create<
           state.header.animState = animState;
         });
       },
-      setDefaultSetting: () => {
+      setDefaultSetting: (theme: string) => {
         set((state) => {
           state.header.borderBottom = gray?.["10"];
-          state.header.backgroundColor = "bg-white";
+          state.header.backgroundColor =
+            theme === "dark" ? "bg-background" : "bg-white";
         });
       },
       setBorderBottom: (borderBottom: string | undefined | null) =>

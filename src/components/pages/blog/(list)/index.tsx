@@ -18,6 +18,7 @@ import { PagenationFallback } from "@/components/common/pageNation";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useInteractiveStore } from "@/store/background";
 import { useEffect } from "react";
+import { useTheme } from "next-themes";
 
 interface BlogListViewProps {
   allPosts: null | PaginatedResponseDto<PostListItemType>;
@@ -44,11 +45,12 @@ export default function BlogInner({
 }: BlogListViewProps) {
   const user = useAuthStore((state) => state.user);
 
+  const { resolvedTheme } = useTheme();
   const setDefaultSetting = useInteractiveStore(
     (state) => state.header.setDefaultSetting,
   );
   useEffect(() => {
-    setDefaultSetting();
+    setDefaultSetting(resolvedTheme ?? "light");
     // eslint-disable-next-line
   }, []);
 

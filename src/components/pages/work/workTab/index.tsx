@@ -69,6 +69,10 @@ export default function WorkTab({ focusedTab, onChangeTab }: WorkTabProps) {
   const compactRef = useRef<HTMLButtonElement | null>(null);
   const interactiveRef = useRef<HTMLButtonElement | null>(null);
 
+  const focusedStyle = "scale-x-105 font-black text-black dark:text-white";
+  const hoverStyle =
+    "hover:scale-x-105 hover:font-black hover:text-black dark:hover:text-white";
+
   return (
     <section className="relative grid w-full grid-cols-8 gap-[1.5vw]">
       <div className="relative col-start-1 col-end-9 grid grid-cols-2 gap-[1.5vw] border-b border-t border-gray-10 px-[1.5vw] py-2">
@@ -86,8 +90,8 @@ export default function WorkTab({ focusedTab, onChangeTab }: WorkTabProps) {
           ref={interactiveRef}
           className={cn(
             "relative z-10 flex justify-center rounded-md p-2 text-sm font-semibold text-gray-200 transition-all",
-            "hover:scale-x-105 hover:font-black hover:text-black",
-            focusedTab === "Interactive" && "scale-x-105 font-black text-black",
+            hoverStyle,
+            focusedTab === "Interactive" && focusedStyle,
           )}
           onClick={() => onChangeTab("Interactive")}
         >
@@ -98,8 +102,8 @@ export default function WorkTab({ focusedTab, onChangeTab }: WorkTabProps) {
           ref={compactRef}
           className={cn(
             "relative z-10 flex justify-center rounded-md p-2 text-sm font-semibold text-gray-200 transition-all",
-            "hover:scale-x-105 hover:font-black hover:text-black",
-            focusedTab === "Compact" && "scale-x-105 font-black text-black",
+            hoverStyle,
+            focusedTab === "Compact" && focusedStyle,
           )}
           onClick={() => onChangeTab("Compact")}
         >

@@ -285,16 +285,7 @@ const WorkItem = ({
         ref={cardRef as MutableRefObject<HTMLDivElement>}
       >
         <div className="relative col-start-2 col-end-8">
-          <div className={"relative flex aspect-video"}>
-            {/* GLOSS */}
-            <div
-              className="absolute z-10 h-full w-full rounded-full bg-[radial-gradient(circle,rgba(255,255,255,1)_0%,rgba(255,255,255,0)_50%,rgba(255,255,255,0)_100%)] opacity-0"
-              style={{
-                transform: `translate(${-rotateY * 100}%, ${-rotateX * 100}%) scale(2.4)`,
-                opacity,
-              }}
-            />
-          </div>
+          <div className={"relative flex aspect-video"}></div>
           {children}
         </div>
       </div>

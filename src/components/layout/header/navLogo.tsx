@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,6 +9,7 @@ import { Bumang, Route53 } from "@/assets";
 import { useRouter } from "@/i18n/navigation";
 import { cn } from "@/utils/cn";
 import { useInteractiveStore } from "@/store/background";
+import { useTheme } from "next-themes";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,6 +30,8 @@ const NavLogo = () => {
       ease: "power1.inOut",
     });
   };
+
+  const { resolvedTheme } = useTheme();
 
   const countDebouncingRef = useRef<NodeJS.Timeout | false>(false);
   const [resizeCountUp, setResizeCountUp] = useState(0);
@@ -109,6 +112,7 @@ const NavLogo = () => {
     >
       <div className="flex h-fit flex-1 items-center justify-start">
         <Bumang
+          color={resolvedTheme === "dark" ? "#ECE5E5" : "black"}
           className="BUMANG relative z-50 h-auto w-auto cursor-pointer"
           viewBox="0 0 802 140"
           preserveAspectRatio="xMinYMin meet"
@@ -117,6 +121,7 @@ const NavLogo = () => {
       </div>
       <div className="flex h-fit flex-1 items-center justify-start">
         <Route53
+          color={resolvedTheme === "dark" ? "#ECE5E5" : "black"}
           className="ROUTE53 relative z-50 h-auto w-auto cursor-pointer"
           viewBox="0 0 802 140"
           preserveAspectRatio="xMinYMin meet"

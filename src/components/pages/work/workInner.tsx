@@ -9,6 +9,7 @@ import { useInteractiveStore } from "@/store/background";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { PATHNAME } from "@/constants/routes";
+import { useTheme } from "next-themes";
 
 gsap.registerPlugin(ScrollTrigger); // 등록되어있지 않으면 등록.
 
@@ -23,14 +24,20 @@ export function WorkInnerInteractive() {
     (state) => state.header.setDefaultSetting,
   );
 
+  const { resolvedTheme } = useTheme();
   useEffect(() => {
     setHeaderBackgroundColor("bg-transparent");
     setBorderBottom("transparent");
 
     return () => {
-      setDefaultSetting();
+      setDefaultSetting(resolvedTheme ?? "light");
     };
-  }, [setBorderBottom, setDefaultSetting, setHeaderBackgroundColor]);
+  }, [
+    setBorderBottom,
+    setDefaultSetting,
+    setHeaderBackgroundColor,
+    resolvedTheme,
+  ]);
 
   useEffect(() => {
     gsap.utils.toArray(".STICKER_IMAGE").forEach((element) => {

@@ -2,6 +2,7 @@
 
 import { useInteractiveStore } from "@/store/background";
 import { cn } from "@/utils/cn";
+import { useTheme } from "next-themes";
 import { useEffect } from "react";
 
 export default function Main() {
@@ -15,12 +16,14 @@ export default function Main() {
   const setDefaultSetting = useInteractiveStore(
     (state) => state.header.setDefaultSetting,
   );
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     setHeaderBackgroundColor("bg-transparent");
 
     return () => {
-      setDefaultSetting();
+      console.log(resolvedTheme, "resolvedTheme");
+      setDefaultSetting(resolvedTheme ?? "light");
     };
 
     // eslint-disable-next-line

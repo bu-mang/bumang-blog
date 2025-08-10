@@ -76,24 +76,24 @@ export default async function RootLayout({
   }
 
   return (
-    <Providers>
-      <NextIntlClientProvider>
-        <html suppressHydrationWarning lang={locale}>
-          <head>
-            <link
-              rel="preconnect"
-              href="https://cdn.jsdelivr.net"
-              crossOrigin="anonymous"
-            />
-            <link
-              rel="preload"
-              as="font"
-              type="font/woff2"
-              crossOrigin="anonymous"
-              href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css"
-            />
-          </head>
-          <body className="flex-1">
+    <html suppressHydrationWarning lang={locale}>
+      <head>
+        <link
+          rel="preconnect"
+          href="https://cdn.jsdelivr.net"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+          href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css"
+        />
+      </head>
+      <body className="flex-1">
+        <NextIntlClientProvider>
+          <Providers>
             {isGridOn && <Grid />}
             <Header />
             <div className="w-screen">{children}</div>
@@ -107,9 +107,9 @@ export default async function RootLayout({
               closeOnClick
               pauseOnHover
             />
-          </body>
-        </html>
-      </NextIntlClientProvider>
-    </Providers>
+          </Providers>
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }

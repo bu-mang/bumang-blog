@@ -23,6 +23,7 @@ import {
 import { useInteractiveStore } from "@/store/background";
 import { PATHNAME } from "@/constants/routes";
 import { useAuthStore } from "@/store/auth";
+import { useTheme } from "next-themes";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -119,7 +120,7 @@ const NavBar = ({
   const setUserAndIsAuthenticated = useAuthStore(
     (state) => state.setUserAndIsAuthenticated,
   );
-  const router = useRouter();
+
   const logoutMutation = useMutation({
     mutationFn: postLogout,
     onSuccess: () => {
@@ -154,12 +155,14 @@ const NavBar = ({
    */
   const { hasQueryValue, hasQuery } = useQueryParams();
   const linkHoverStyle =
-    "relative z-50 transition-colors duration-300 ease-in-out text-gray-200 hover:text-black cursor-pointer";
+    "relative z-50 transition-colors duration-300 ease-in-out text-gray-200 hover:text-black dark:hover:text-white cursor-pointer";
   const navStyleManager = (subItem: MenuType) => {
     return cn(
       linkHoverStyle,
-      hasQueryValue("type", subItem.url) && "text-black",
-      subItem.url === "all" && !hasQuery("type") && "text-black",
+      hasQueryValue("type", subItem.url) && "text-black dark:text-white",
+      subItem.url === "all" &&
+        !hasQuery("type") &&
+        "text-black dark:text-white",
     );
   };
 
@@ -287,7 +290,8 @@ const NavBar = ({
                     key={item.title}
                     className={cn(
                       linkHoverStyle,
-                      item.url.startsWith(`/${paths[0]}`) && "text-black",
+                      item.url.startsWith(`/${paths[0]}`) &&
+                        "text-black dark:text-white",
                     )}
                     // onClick={(e) => {
                     //   e.preventDefault();
@@ -372,11 +376,12 @@ function LocaleSwitcher({ locale, className }: SwitcherProps) {
           <LuLanguages className={cn(className, "group-hover:text-black")} />
         </Link>
       </TooltipTrigger>
+
       <TooltipContent
         side="bottom"
         className="z-[1000] flex flex-col items-center gap-1"
       >
-        <p className="text-[10px] text-gray-50">
+        <p className="text-[10px] text-gray-50 dark:text-gray-200">
           {locale === "ko" ? "언어" : "language"}
         </p>
         <div className="flex gap-2">
@@ -405,6 +410,12 @@ function LocaleSwitcher({ locale, className }: SwitcherProps) {
 }
 
 function ThemeSwitcher({ locale, className }: SwitcherProps) {
+  const { theme, setTheme } = useTheme();
+
+  const handleSwitchTheme = (state: "light" | "dark" | "system") => {
+    setTheme(state);
+  };
+
   return (
     <Tooltip>
       <TooltipTrigger className="group relative h-fit w-fit" asChild>
@@ -417,10 +428,39 @@ function ThemeSwitcher({ locale, className }: SwitcherProps) {
         side="bottom"
         className="z-[1000] flex flex-col items-center justify-center gap-0.5"
       >
-        <p className="text-[10px] text-gray-50">
+        <p className="text-[10px] text-gray-50 dark:text-gray-200">
           {locale === "ko" ? "테마" : "Theme"}
         </p>
-        <p className="">{locale === "ko" ? "준비중..." : "TBU..."}</p>
+        <div className="flex gap-1">
+          <ButtonBase
+            className={cn(
+              theme === "light"
+                ? "opacity-100"
+                : "opacity-30 hover:opacity-100",
+            )}
+            onClick={() => handleSwitchTheme("light")}
+          >
+            LIGHT
+          </ButtonBase>
+          <ButtonBase
+            className={cn(
+              theme === "dark" ? "opacity-100" : "opacity-30 hover:opacity-100",
+            )}
+            onClick={() => handleSwitchTheme("dark")}
+          >
+            DARK
+          </ButtonBase>
+          <ButtonBase
+            className={cn(
+              theme === "system"
+                ? "opacity-100"
+                : "opacity-30 hover:opacity-100",
+            )}
+            onClick={() => handleSwitchTheme("system")}
+          >
+            SYSTEM
+          </ButtonBase>
+        </div>
       </TooltipContent>
     </Tooltip>
   );
@@ -494,7 +534,7 @@ function HeaderAnimSwitcher({ locale, className }: SwitcherProps) {
         side="bottom"
         className="z-[1000] flex flex-col items-center justify-center gap-0.5"
       >
-        <p className="text-[10px] text-gray-50">
+        <p className="text-[10px] text-gray-50 dark:text-gray-200">
           {locale === "ko" ? "헤더" : "Header"}
         </p>
         {canActivate ? (
