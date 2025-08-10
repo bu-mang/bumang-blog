@@ -21,7 +21,7 @@ export default function Blog() {
 
   return (
     <main className={loginPageClass}>
-      <div className="flex w-1/2 flex-col rounded-xl border bg-white px-12 py-8 shadow-md">
+      <div className="flex w-1/2 flex-col rounded-xl border px-12 py-8 shadow-md">
         {/* TITLE & DESC */}
         <span className="mb-2 text-4xl font-bold">{t("title")}</span>
         <span className="mb-8 text-gray-300">{t("desc")}</span>
