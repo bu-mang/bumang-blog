@@ -446,7 +446,9 @@ function ThemeSwitcher({ locale, className }: SwitcherProps) {
             className={cn(
               theme === "dark" ? "opacity-100" : "opacity-30 hover:opacity-100",
             )}
-            onClick={() => handleSwitchTheme("dark")}
+            onClick={() => {
+              handleSwitchTheme("dark");
+            }}
           >
             DARK
           </ButtonBase>

@@ -66,8 +66,7 @@ export const useInteractiveStore = create<
       setDefaultSetting: (theme: string) => {
         set((state) => {
           state.header.borderBottom = gray?.["10"];
-          state.header.backgroundColor =
-            theme === "dark" ? "bg-background" : "bg-white";
+          state.header.backgroundColor = "bg-background";
         });
       },
       setBorderBottom: (borderBottom: string | undefined | null) =>
@@ -76,7 +75,12 @@ export const useInteractiveStore = create<
         }),
       setBackgroundColor: (backgroundColor: string | undefined | null) =>
         set((state) => {
-          state.header.backgroundColor = backgroundColor;
+          if (typeof backgroundColor === "string") {
+            state.header.backgroundColor = backgroundColor;
+            return;
+          }
+
+          state.header.backgroundColor = "bg-transparent";
         }),
     },
 
