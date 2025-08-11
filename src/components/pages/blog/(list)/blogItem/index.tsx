@@ -89,11 +89,21 @@ const BlogItem = ({
           <div className="flex-1">
             {/* TITLE */}
             <div className="mb-2 mt-2.5 flex items-center text-2xl font-semibold group-hover:text-gray-500">
-              <div className={titleStyle}>{title}</div>
+              <div
+                className={cn(
+                  titleStyle,
+                  "transition-colors dark:text-gray-100 dark:group-hover:text-white",
+                )}
+              >
+                {title}
+              </div>
               {!readPermisson ? (
                 <LuMoveRight className="animate-arrow text-gray-200 opacity-0 transition-all duration-500 group-hover:opacity-100" />
               ) : (
-                <LuLockKeyhole size={14} />
+                <LuLockKeyhole
+                  size={14}
+                  className="dark:text-gray-100 dark:group-hover:text-white"
+                />
               )}
             </div>
 

@@ -51,28 +51,29 @@ const SectionLabel = ({
         <span className="text-sm text-gray-200">{amount}</span>
       </div>
 
-      {/* NEW POST */}
       <div className="flex items-center gap-2">
         <Link href={updateQuery({ view: "thumbnail" })}>
           <div
             className={cn(
-              "flex h-8 w-8 items-center justify-center rounded-md transition-all duration-300 hover:bg-gray-5",
-              itemViewType !== "list" && "bg-gray-1",
+              "flex h-8 w-8 items-center justify-center rounded-md transition-all duration-300 hover:bg-gray-5 dark:hover:bg-gray-700",
+              itemViewType !== "list" && "bg-gray-1 dark:bg-gray-700",
             )}
           >
             <LuLayoutGrid size={20} />
           </div>
         </Link>
+
         <Link href={updateQuery({ view: "list" })}>
           <div
             className={cn(
-              "flex h-8 w-8 items-center justify-center rounded-md transition-all duration-300 hover:bg-gray-5",
-              itemViewType === "list" && "bg-gray-1",
+              "flex h-8 w-8 items-center justify-center rounded-md transition-all duration-300 hover:bg-gray-5 dark:hover:bg-gray-700",
+              itemViewType === "list" && "bg-gray-1 dark:bg-gray-700",
             )}
           >
             <LuLayoutList size={20} />
           </div>
         </Link>
+
         {isAuthenticated && (
           <Link
             onClick={handleSetAllEditState}
