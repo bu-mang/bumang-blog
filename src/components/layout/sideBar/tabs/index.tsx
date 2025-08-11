@@ -16,8 +16,8 @@ const Tabs = () => {
   const getTabStyle = (target: string) =>
     cn(
       "text-xl text-gray-300 font-medium",
-      hasQueryValue("type", target) && "text-black",
-      target === "all" && !hasQuery("type") && "text-black",
+      hasQueryValue("type", target) && "text-black dark:text-white",
+      target === "all" && !hasQuery("type") && "text-black dark:text-white",
     );
 
   /**
@@ -52,12 +52,12 @@ const Tabs = () => {
   }, [allRef, devRef, lifeRef, hasQueryValue, typeValue]);
 
   const indicatorClass = clsx(
-    "bottom-0 absolute h-0.5 bg-gray-700 transition-all",
+    "bottom-0 absolute h-0.5 bg-gray-700 dark:bg-gray-50 transition-all",
   );
 
   return (
     <div className="flex h-10 items-center rounded-lg px-2">
-      <div className="relative flex h-full w-full border-b-[1px] py-1">
+      <div className="relative flex h-full w-full border-b-[1px] py-1 dark:border-gray-50">
         {/* TAB INDICATOR */}
         <div
           className={indicatorClass}

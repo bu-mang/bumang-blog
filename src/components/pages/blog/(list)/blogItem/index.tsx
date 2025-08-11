@@ -49,8 +49,9 @@ const BlogItem = ({
   size = "sm",
   readPermisson,
 }: BlogItemProps) => {
-  const titleStyle = "line-clamp-2 flex-1 flex-nowrap font-medium";
-  const contentStyle = "line-clamp-1 flex-1 flex-nowrap text-sm text-gray-400";
+  const titleStyle = "line-clamp-1 flex-1 flex-nowrap font-medium";
+  const contentStyle =
+    "line-clamp-1 flex-1 flex-nowrap text-sm text-gray-400 dark:text-gray-200";
   const tagWrapperStyle = "flex flex-wrap gap-1 mt-1.5";
   const formattedDate = format(date, "yyyy. MM. dd.");
   const t = useTranslations("alert");
@@ -166,8 +167,27 @@ const BlogItem = ({
             />
           </div>
 
+          {/* GROUP & CATEGORY */}
+          <div className="mt-3 flex items-center gap-2">
+            <span
+              className={cn("truncate text-xs font-semibold text-gray-100")}
+            >
+              {author}
+            </span>
+
+            <div className="h-2 w-[1px] bg-gray-100" />
+            <span
+              className={cn(
+                "truncate text-xs font-semibold text-gray-100",
+                readPermisson === "user" && "text-red-400",
+              )}
+            >
+              {readPermisson === "user" ? `deleted at 00:00` : formattedDate}
+            </span>
+          </div>
+
           {/* TITLE */}
-          <div className="mt-2.5 flex items-center group-hover:text-gray-500">
+          <div className="mt-2.5 flex items-center group-hover:text-gray-500 dark:text-gray-50 dark:group-hover:text-white">
             <div className={titleStyle}>{title}</div>
             {!readPermisson ? (
               <LuMoveRight className="animate-arrow text-gray-200 opacity-0 transition-all duration-500 group-hover:opacity-100" />
@@ -179,26 +199,17 @@ const BlogItem = ({
           {/* CONTENT */}
           <div className={contentStyle}>{previewText}</div>
 
-          {/* GROUP & CATEGORY & DATE */}
+          {/* GROUP & CATEGORY */}
           <div className="mt-3 flex items-center gap-2">
             <div className="flex truncate text-ellipsis text-xs font-semibold text-gray-100">
               <ButtonBase onClick={() => {}}>
                 <span className="truncate text-ellipsis">{groupLabel}</span>
               </ButtonBase>
-              <span>•</span>
+              <span className="mx-0.5 flex">/</span>
               <ButtonBase onClick={() => {}}>
                 <span className="truncate text-ellipsis">{categoryLabel}</span>
               </ButtonBase>
             </div>
-            <div className="h-2 w-[1px] bg-gray-100" />
-            <span
-              className={cn(
-                "truncate text-xs font-semibold text-gray-100",
-                readPermisson === "user" && "text-red-400",
-              )}
-            >
-              {readPermisson === "user" ? `deleted at 00:00` : formattedDate}
-            </span>
           </div>
 
           {/* TAGS */}

@@ -19,7 +19,7 @@ interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 
 const Badge = ({ value }: BadgeProps) => {
   return (
-    <span className="rounded-md bg-gray-1 px-1 text-[10px] font-semibold text-gray-100">
+    <span className="rounded-md bg-gray-1 px-1 text-[10px] font-semibold text-gray-100 dark:bg-gray-700">
       {value}
     </span>
   );
@@ -47,12 +47,12 @@ const Group = ({
       )}
       prefetch={false}
       className={
-        "flex items-center gap-0.5 rounded-lg px-2 py-1 text-xs font-medium text-gray-200"
+        "flex items-center gap-0.5 rounded-lg px-2 py-1 text-xs font-medium"
       }
     >
       <span
         className={cn(
-          "truncate transition-all duration-200 hover:underline",
+          "truncate text-gray-200 transition-all duration-200 hover:underline dark:text-gray-50",
           groupId === currentGroupId && "font-bold underline",
         )}
       >

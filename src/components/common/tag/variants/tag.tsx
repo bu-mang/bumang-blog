@@ -51,7 +51,7 @@ const Tag = ({
   };
 
   const tagClass = clsx(
-    "flex gap-2 items-center h-fit bg-gray-1 text-gray-200 transition-all truncate shadow-sm",
+    "flex gap-2 items-center h-fit bg-gray-1 dark:bg-gray-700 text-gray-200 transition-all truncate shadow-sm",
     {
       // SIZE
       ["rounded-lg px-2 py-1 text-sm"]: size === "lg",
