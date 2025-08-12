@@ -105,7 +105,8 @@ export default function Ascii3DBackground() {
         <div
           className="absolute inset-0 m-auto flex h-screen w-screen items-center justify-center opacity-80"
           style={{
-            backgroundImage: "url(/interactiveBackground/blurred-ascii.png)",
+            backgroundImage:
+              "url(/interactiveBackground/blurred-ascii-compressed.png)",
             backgroundSize: "100% 100%",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
