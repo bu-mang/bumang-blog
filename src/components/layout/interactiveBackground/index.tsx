@@ -4,11 +4,12 @@ import { PATHNAME } from "@/constants/routes";
 import { usePathname } from "@/i18n/navigation";
 import { useInteractiveStore } from "@/store/background";
 import { cn } from "@/utils/cn";
-import WorkBackground from "./interactives/work";
 import { useEffect } from "react";
 import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/all";
-import Ascii3DBackground from "./interactives/ascii/ascii3d";
+import Ascii3DBackground from "./ascii";
+import BlockMatters from "./blockMatters";
+import WorkBackground from "./work";
 
 export default function InteractiveBackground() {
   const pathname = usePathname();
@@ -48,7 +49,12 @@ export default function InteractiveBackground() {
       case PATHNAME.WORK:
         return <WorkBackground />;
       case PATHNAME.HOME:
-        return <Ascii3DBackground />;
+        if (process.env.NODE_ENV === "production") {
+          return <Ascii3DBackground />;
+        } else if (process.env.NODE_ENV === "development") {
+          // 개발중인 인터랙티브 배경!
+          return <BlockMatters />;
+        }
 
       // STATIC RENDERS
       default:

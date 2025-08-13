@@ -1,4 +1,4 @@
-import BlogEditInner from "@/components/pages/blog/edit/EditInner";
+import BlogEditInner from "@/components/pages/blog/edit/editInner";
 import { getAllTags, getGroupedCategoryTree } from "@/services/api/blog/(list)";
 import { GroupType, TagType } from "@/types";
 import { Metadata } from "next";

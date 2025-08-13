@@ -1,8 +1,8 @@
-import Tabs from "./tabs";
 import Tags from "./tags";
 import Menus from "./menus";
 import { getGroupedCategoryTree } from "@/services/api/blog/(list)";
 import { GroupType } from "@/types";
+import Tabs from "./tabs";
 
 const SideBar = async () => {
   let menus: GroupType[] | null = null;

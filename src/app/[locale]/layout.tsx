@@ -1,5 +1,5 @@
-import Providers from "@/components/tanstackQueryProvider";
-import { Footer, Header, Grid } from "@/components/layout";
+import Providers from "@/components/providers";
+import { Footer, Header } from "@/components/layout";
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
 import InteractiveBackground from "@/components/layout/interactiveBackground";
@@ -94,7 +94,7 @@ export default async function RootLayout({
       <body className="flex-1">
         <NextIntlClientProvider>
           <Providers>
-            {isGridOn && <Grid />}
+            {/* {isGridOn && <Grid />} */}
             <Header />
             <div className="w-screen">{children}</div>
             <InteractiveBackground />

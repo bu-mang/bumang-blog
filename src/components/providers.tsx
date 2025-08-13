@@ -1,10 +1,9 @@
 "use client";
 
 import { QueryClientProvider } from "@tanstack/react-query";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import { clientQueryClient } from "@/services/lib/queryClients";
 import { ThemeProvider } from "next-themes";
-import { NextIntlClientProvider } from "next-intl";
 
 interface ProviderProps {
   children: ReactNode;
@@ -19,6 +18,7 @@ export default function Providers({ children }: ProviderProps) {
     console.error = function () {}; // console error 막기
   }
 
+  // TanstackQuery, Next-theme
   return (
     <QueryClientProvider client={clientQueryClient}>
       <ThemeProvider

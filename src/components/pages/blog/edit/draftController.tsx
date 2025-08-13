@@ -174,6 +174,8 @@ const DraftController = ({
 
       setTimeout(() => setStatus(t("status.none")), 1000);
     },
+
+    // eslint-disable-next-line
     [saveDraftsToStorage, onSerialize],
   );
 
@@ -273,6 +275,8 @@ const DraftController = ({
     setStatus(t("status.none"));
     const savedDrafts = loadDraftsFromStorage();
     setDrafts(savedDrafts);
+
+    // eslint-disable-next-line
   }, [user, loadDraftsFromStorage]);
 
   // 마지막 입력 후 5초 마다 자동저장

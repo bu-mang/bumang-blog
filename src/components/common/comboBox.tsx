@@ -20,7 +20,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import type { CategoryType, GroupType } from "@/types";
-import { ButtonBase } from "../button";
+import { ButtonBase } from "./button";
 import { useCallback, useState } from "react";
 import { useTranslations } from "next-intl";
 

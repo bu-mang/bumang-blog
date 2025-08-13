@@ -1,7 +1,7 @@
 import { useInteractiveStore } from "@/store/background";
 import { cn } from "@/utils/cn";
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function WorkBackground() {
   const bgColor = useInteractiveStore((state) => state.backgroundColor);
