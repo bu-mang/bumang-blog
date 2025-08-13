@@ -15,7 +15,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { QUERY_KEY } from "@/constants/api/queryKey";
 import { useAuthStore } from "@/store/auth";
 import { useTranslations } from "next-intl";
-import { PATHNAME } from "@/constants/routes";
+import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { toast } from "react-toastify";
 
 const LoginForm = () => {

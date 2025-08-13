@@ -21,7 +21,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useInteractiveStore } from "@/store/background";
-import { PATHNAME } from "@/constants/routes";
+import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { useAuthStore } from "@/store/auth";
 import { useTheme } from "next-themes";
 

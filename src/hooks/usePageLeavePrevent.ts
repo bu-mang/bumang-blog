@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import useModalStore from "@/store/modal";
 import CommonModal from "@/components/modal/type/common";
 import { useLocale } from "next-intl";
-import { PATHNAME } from "@/constants/routes";
+import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 
 interface UsePageLeavePreventOptions {
   /** 페이지 이탈 방지 활성화 여부 */

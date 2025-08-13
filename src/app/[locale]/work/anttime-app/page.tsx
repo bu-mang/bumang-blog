@@ -16,7 +16,7 @@ import { Badge } from "@/components/ui/badge";
 
 import { Link } from "@/i18n/navigation";
 import SectionLink from "@/components/pages/work/workDetail/sectionLink";
-import { PATHNAME } from "@/constants/routes";
+import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { ANTTIME_APP_EN, ANTTIME_APP_KO } from "./script";
 import Image from "next/image";
 import { useLocale } from "next-intl";

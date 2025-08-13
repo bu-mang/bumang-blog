@@ -1,7 +1,6 @@
 "use client";
 
 import Summary from "@/components/pages/work/workDetail/summary";
-import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
 import { cn } from "@/utils/cn";
 import {
   CalendarRange,
@@ -16,7 +15,7 @@ import { Badge } from "@/components/ui/badge";
 
 import { Link } from "@/i18n/navigation";
 import SectionLink from "@/components/pages/work/workDetail/sectionLink";
-import { PATHNAME } from "@/constants/routes";
+import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { ANTTIME_SWAP_EN, ANTTIME_SWAP_KO } from "./script";
 import { useLocale } from "next-intl";
 import TitleBadge from "@/components/pages/work/workDetail/titleBadge";

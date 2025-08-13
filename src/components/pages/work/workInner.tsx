@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useInteractiveStore } from "@/store/background";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { PATHNAME } from "@/constants/routes";
+import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { useTheme } from "next-themes";
 
 gsap.registerPlugin(ScrollTrigger); // 등록되어있지 않으면 등록.

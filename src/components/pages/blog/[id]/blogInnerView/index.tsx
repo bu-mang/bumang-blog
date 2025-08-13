@@ -26,7 +26,7 @@ import BlogComment from "./blogComment";
 import RelatedAndAdjacentPost from "./relatedPosts";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useParams, useRouter } from "next/navigation";
-import { PATHNAME } from "@/constants/routes";
+import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { getThumbnailByGroup } from "@/utils/getThumnailByGroup";
 import { Link } from "@/i18n/navigation";
 import { useAuthStore } from "@/store/auth";

@@ -168,7 +168,12 @@
       "desc": "Personal Blog & Portfolio",
       "1": {
         "title": "Built a Nest.js backend for a blog application",
-        "a": "Implemented blog CRUD functionality",
+        "a": {
+          "title": "Blog CRUD Functionality Implementation",
+          "i": "Established relational database relationships between users, posts, categories, and groups using PostgreSQL",
+          "ii": "Developed related post recommendation API based on score-based relevancy algorithm",
+          "iii": "Implemented image insertion during blog editing and thumbnail registration process. For large buffer images, provided presigned URLs to enable direct client-side uploads to S3."
+        },
         "b": {
           "title": "Abstract authentication and authorization using Guards and custom Decorators.",
           "i": "Use TypeORM QueryBuilder to manipulate SQL queries easily.",

@@ -3,7 +3,6 @@ import ClientInstance from "@/services/lib/axios";
 import serverFetch from "@/services/lib/serverFetch";
 import { PostListItemType } from "@/types";
 import { PostDetailResponseDto } from "@/types/dto/blog/[id]";
-import { previous } from "slate";
 
 // 블로그 상세 조회 (ServerFetch)
 export const getBlogDetail = async (id: string) => {

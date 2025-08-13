@@ -13,15 +13,15 @@ import {
 } from "@/components/ui/drawer";
 import { LuPlaneTakeoff as PublishPlaneIcon } from "react-icons/lu";
 import { getButtonColorStyle } from "@/utils/styles/filButtonManager";
-import { Tag } from "../../../../../common/tag";
-import { ButtonBase } from "../../../../../common/button";
+import { Tag } from "../../../../common/tag";
+import { ButtonBase } from "../../../../common/button";
 import { CategoryType, GroupType, RoleType, TagType } from "@/types";
 import { cn } from "@/utils/cn";
 import { SlateElement, YooEditor, YooptaContentValue } from "@yoopta/editor";
 import { toast } from "react-toastify";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import { PATHNAME } from "@/constants/routes";
+import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { postCreatePost, patchUpdatePost } from "@/services/api/blog/edit";
 import { isAxiosError } from "axios";
 import { useAuthStore } from "@/store/auth";

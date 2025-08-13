@@ -3,7 +3,7 @@
 import { cn } from "@/utils/cn";
 import { Link } from "@/i18n/navigation";
 import { usePathname } from "@/i18n/navigation";
-import { PATHNAME } from "@/constants/routes";
+import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -27,12 +27,14 @@ const Footer = () => {
           <div className="font-medium text-gray-700 dark:text-gray-300">
             © {currentYear}
           </div>
+
           <div className="text-gray-200">Made by Bumang</div>
         </div>
         <div>
           <div className="font-medium text-gray-700 dark:text-gray-300">
             Contact
           </div>
+
           <div className="text-gray-200">
             {/* <Link href="#" className={linkClass}>
               LinkedIn

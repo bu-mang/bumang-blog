@@ -17,7 +17,7 @@ import { FaGithub } from "react-icons/fa";
 
 import { Link } from "@/i18n/navigation";
 import SectionLink from "@/components/pages/work/workDetail/sectionLink";
-import { PATHNAME } from "@/constants/routes";
+import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { PERCENT_HOTEL_EN, PERCENT_HOTEL_KO } from "./script";
 import Image from "next/image";
 import { useLocale } from "next-intl";

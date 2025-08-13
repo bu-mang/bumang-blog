@@ -18,7 +18,7 @@ import DraftController from "../draftController";
 import { YooEditor, YooptaContentValue } from "@yoopta/editor";
 import { PublishDrawer } from "@/components/pages/blog/edit/blogEditToolBar/publishDrawer";
 import { useTranslations } from "next-intl";
-import { PATHNAME } from "@/constants/routes";
+import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 
 interface BlogEditorToolBarProps {
   // List

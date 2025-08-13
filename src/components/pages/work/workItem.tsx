@@ -337,7 +337,7 @@ const WorkItem = ({
               opacity,
             }}
           />
-          <Image src={imgSrc || "/next.svg"} fill alt={imgAlt} />
+          <Image src={imgSrc ?? "401.png"} fill alt={imgAlt} />
         </div>
       </Link>
 

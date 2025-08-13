@@ -3,7 +3,7 @@
 import { ButtonBase, Tag } from "@/components/common";
 import CustomNotification from "@/components/common/customNotification";
 import { Skeleton } from "@/components/ui/skeleton";
-import { PATHNAME } from "@/constants/routes";
+import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { RoleType } from "@/types";
 import { TagCompactType } from "@/types/tag";
 import { useCheckPermission } from "@/utils/canReadArticle";

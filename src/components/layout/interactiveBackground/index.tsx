@@ -1,6 +1,6 @@
 "use client";
 
-import { PATHNAME } from "@/constants/routes";
+import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { usePathname } from "@/i18n/navigation";
 import { useInteractiveStore } from "@/store/background";
 import { cn } from "@/utils/cn";

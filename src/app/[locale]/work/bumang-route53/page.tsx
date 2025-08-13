@@ -16,7 +16,7 @@ import { Badge } from "@/components/ui/badge";
 
 import { Link } from "@/i18n/navigation";
 import SectionLink from "@/components/pages/work/workDetail/sectionLink";
-import { PATHNAME } from "@/constants/routes";
+import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { BUMANG_ROUTE53_KO, BUMANG_ROUTE53_EN } from "./script";
 import Image from "next/image";
 import { useLocale } from "next-intl";
