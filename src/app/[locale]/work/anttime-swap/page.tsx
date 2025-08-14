@@ -24,6 +24,8 @@ import Image from "next/image";
 import Title from "@/components/pages/work/workDetail/title";
 import BackgroundWrapper from "@/components/pages/work/workDetail/backgroundWrapper";
 
+import bannerImage from "@/assets/works/compressed/anttimeSwap.webp";
+
 export default function AnttimeSwap() {
   const locale = useLocale() as "ko" | "en";
   const TARGET_LANGUAGE = locale === "ko" ? ANTTIME_SWAP_KO : ANTTIME_SWAP_EN;
@@ -171,7 +173,7 @@ export default function AnttimeSwap() {
       {/* BackgroundImage */}
       <BackgroundWrapper>
         <Image
-          src="/works/compressed/anttimeSwap.webp"
+          src={bannerImage}
           alt="work_section_background_image"
           fill
           objectFit="cover"

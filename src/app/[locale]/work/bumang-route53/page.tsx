@@ -25,6 +25,8 @@ import SectionView from "@/components/pages/work/workDetail/sectionView";
 import Title from "@/components/pages/work/workDetail/title";
 import BackgroundWrapper from "@/components/pages/work/workDetail/backgroundWrapper";
 
+import bannerImage from "@/assets/works/compressed/bumangRoute53.webp";
+
 export default function AnttimeApp() {
   const locale = useLocale() as "ko" | "en";
   const TARGET_LANGUAGE =
@@ -187,7 +189,7 @@ export default function AnttimeApp() {
       {/* BackgroundImage */}
       <BackgroundWrapper>
         <Image
-          src="/works/compressed/bumangRoute53.webp"
+          src={bannerImage}
           alt="work_section_background_image"
           fill
           objectFit="cover"

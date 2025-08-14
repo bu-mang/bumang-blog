@@ -9,6 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionBox, SubBox } from "@/components/pages";
 import { cn } from "@/utils/cn";
 import { useTranslations } from "next-intl";
+import AboutBanner from "@/assets/about_banner.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,9 +41,9 @@ export default function Blog() {
   return (
     <main ref={containerRef}>
       {/* IMAGES */}
-      <div className="fade-in-mount tbl:h-96 relative mx-[2vw] mb-6 h-40 md:mx-[6vw]">
+      <div className="fade-in-mount relative mx-[2vw] mb-6 h-40 md:mx-[6vw] tbl:h-96">
         <Image
-          src="/about_banner.jpg"
+          src={AboutBanner}
           alt="profileImage"
           className="object-cover"
           fill
@@ -51,13 +52,13 @@ export default function Blog() {
 
       {/* INTRODUCE */}
       <SectionBox className={cn("fade-in-mount px-[2vw] md:px-[6vw]")}>
-        <div className="tbl:col-span-3 tbl:mb-20 tbl:h-32 tbl:sticky tbl:block top-20 col-span-full hidden text-6xl font-semibold">
+        <div className="top-20 col-span-full hidden text-6xl font-semibold tbl:sticky tbl:col-span-3 tbl:mb-20 tbl:block tbl:h-32">
           Hello!
         </div>
-        <div className="tbl:block col-span-1 hidden translate-y-1.5 grid-cols-1 font-semibold">
+        <div className="col-span-1 hidden translate-y-1.5 grid-cols-1 font-semibold tbl:block">
           I AM
         </div>
-        <div className="tbl:col-span-4 col-span-full mb-6 grid grid-cols-4">
+        <div className="col-span-full mb-6 grid grid-cols-4 tbl:col-span-4">
           <span className="col-span-4 mb-6 text-6xl font-semibold md:mb-2">
             {t("intro.title.1")}
           </span>
@@ -69,7 +70,7 @@ export default function Blog() {
           </p>
         </div>
 
-        <div className="tbl:col-start-4 tbl:col-end-9 tbl:-translate-y-3 col-span-full">
+        <div className="col-span-full tbl:col-start-4 tbl:col-end-9 tbl:-translate-y-3">
           <SubBox>
             <span className="col-span-1 font-semibold">Moblie</span>
             <span className="col-span-4">+82 10-4922-3563</span>
@@ -123,11 +124,11 @@ export default function Blog() {
       {/* AWARDS */}
       {/* LAYOUT_PADDING_ALONGSIDE */}
       <SectionBox className={cn("fade-in-mount px-[2vw] md:px-[6vw]")}>
-        <div className="tbl:col-span-3 tbl:mb-20 tbl:h-32 tbl:sticky top-20 col-span-full mb-3 text-6xl font-semibold">
+        <div className="top-20 col-span-full mb-3 text-6xl font-semibold tbl:sticky tbl:col-span-3 tbl:mb-20 tbl:h-32">
           Records
         </div>
 
-        <div className="tbl:col-start-4 tbl:col-end-9 tbl:-translate-y-3 col-span-full">
+        <div className="col-span-full tbl:col-start-4 tbl:col-end-9 tbl:-translate-y-3">
           <SubBox className="border-none">
             <div className="col-span-1 font-semibold">2024 -</div>
             <div className="col-span-4 flex flex-col">
@@ -168,12 +169,12 @@ export default function Blog() {
 
       {/* MAIN TECHSTACK */}
       <SectionBox className={cn("fade-in-mount px-[2vw] md:px-[6vw]")}>
-        <div className="tbl:col-span-3 tbl:mb-20 tbl:h-32 tbl:sticky top-20 col-span-full mb-3 flex flex-col text-6xl font-semibold">
+        <div className="top-20 col-span-full mb-3 flex flex-col text-6xl font-semibold tbl:sticky tbl:col-span-3 tbl:mb-20 tbl:h-32">
           <span>Main</span>
           <span>TechStack</span>
         </div>
 
-        <div className="tbl:col-start-4 tbl:col-end-9 tbl:-translate-y-3 col-span-full">
+        <div className="col-span-full tbl:col-start-4 tbl:col-end-9 tbl:-translate-y-3">
           {/* WEB */}
           <SubBox className="gap-y-8 border-none text-sm">
             <div className="col-span-full pr-2 font-semibold sm:col-span-1 sm:text-gray-200 md:row-span-3">
@@ -394,12 +395,12 @@ export default function Blog() {
 
       {/* BASIC LEVEL SKILLS */}
       <SectionBox className={cn("fade-in-mount px-[2vw] md:px-[6vw]")}>
-        <div className="tbl:col-span-3 tbl:mb-20 tbl:h-32 tbl:sticky top-20 col-span-full mb-3 flex flex-col text-6xl font-semibold">
+        <div className="top-20 col-span-full mb-3 flex flex-col text-6xl font-semibold tbl:sticky tbl:col-span-3 tbl:mb-20 tbl:h-32">
           <span>Basic</span>
           <span>Level in</span>
         </div>
 
-        <div className="tbl:col-start-4 tbl:col-end-9 tbl:-translate-y-3 col-span-full">
+        <div className="col-span-full tbl:col-start-4 tbl:col-end-9 tbl:-translate-y-3">
           {/* DEV */}
           <SubBox className="gap-y-8 border-none text-sm">
             <div className="col-span-1 pr-2 font-semibold md:row-span-3 md:mb-20">
@@ -434,7 +435,7 @@ export default function Blog() {
 
           {/* DESIGN */}
           <SubBox className="gap-y-8 text-sm">
-            <div className="tbl:sticky top-20 col-span-1 pr-2 font-semibold md:row-span-3 md:mb-20">
+            <div className="top-20 col-span-1 pr-2 font-semibold md:row-span-3 md:mb-20 tbl:sticky">
               Design
             </div>
 

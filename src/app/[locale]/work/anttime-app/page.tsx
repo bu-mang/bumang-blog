@@ -13,6 +13,7 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import bannerImage from "@/assets/works/compressed/anttimeApp.webp";
 
 import { Link } from "@/i18n/navigation";
 import SectionLink from "@/components/pages/work/workDetail/sectionLink";
@@ -200,7 +201,7 @@ export default function AnttimeApp() {
       {/* BackgroundImage */}
       <BackgroundWrapper>
         <Image
-          src="/works/compressed/anttimeApp.webp"
+          src={bannerImage}
           alt="work_section_background_image"
           fill
           objectFit="cover"

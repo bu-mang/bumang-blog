@@ -4,7 +4,7 @@ import ExpandModal from "@/components/modal/type/expand";
 import useModalStore from "@/store/modal";
 import { ImageItemType } from "@/types/playItem";
 import { cn } from "@/utils/cn";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 interface PlayItemProps {
@@ -13,7 +13,7 @@ interface PlayItemProps {
   content?: string;
   width: number;
   height: number;
-  imgUrl: string;
+  imgUrl: string | StaticImageData;
   items: ImageItemType[];
   imageOnly?: boolean;
   className?: string;

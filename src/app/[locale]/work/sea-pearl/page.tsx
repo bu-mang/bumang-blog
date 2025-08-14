@@ -24,6 +24,8 @@ import TitleBadge from "@/components/pages/work/workDetail/titleBadge";
 import SectionView from "@/components/pages/work/workDetail/sectionView";
 import Title from "@/components/pages/work/workDetail/title";
 
+import BannerImage from "@/assets/works/compressed/seaPearl.webp";
+
 export default function AnttimeApp() {
   const locale = useLocale() as "ko" | "en";
   const TARGET_LANGUAGE = locale === "ko" ? ANTTIME_APP_KO : ANTTIME_APP_EN;
@@ -168,7 +170,7 @@ export default function AnttimeApp() {
       {/* BackgroundImage */}
       <div className="relative mt-10 grid h-[600px] w-screen grid-cols-8 gap-[1.5vw] bg-gray-10">
         <Image
-          src="/works/compressed/seaPearl.webp"
+          src={BannerImage}
           alt="work_section_background_image"
           fill
           objectFit="cover"

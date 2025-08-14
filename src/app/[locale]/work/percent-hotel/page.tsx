@@ -26,6 +26,8 @@ import TitleBadge from "@/components/pages/work/workDetail/titleBadge";
 import Title from "@/components/pages/work/workDetail/title";
 import BackgroundWrapper from "@/components/pages/work/workDetail/backgroundWrapper";
 
+import BannerImage from "@/assets/works/compressed/percentHotel.webp";
+
 export default function PercentHotel() {
   const locale = useLocale() as "ko" | "en";
   const TARGET_LANGUAGE = locale === "ko" ? PERCENT_HOTEL_KO : PERCENT_HOTEL_EN;
@@ -211,7 +213,7 @@ export default function PercentHotel() {
       {/* BackgroundImage */}
       <BackgroundWrapper>
         <Image
-          src="/works/compressed/percentHotel.webp"
+          src={BannerImage}
           alt="work_section_background_image"
           fill
           objectFit="cover"

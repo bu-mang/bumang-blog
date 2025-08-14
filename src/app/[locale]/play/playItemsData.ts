@@ -1,4 +1,5 @@
 import { PlayItemListType } from "@/types/playItem";
+import * as PlayImages from "@/assets/play";
 
 const playItems: PlayItemListType = [
   {
@@ -11,13 +12,13 @@ const playItems: PlayItemListType = [
     thumnail: {
       width: 736,
       height: 736,
-      imgUrl: "/star.webp",
+      imgUrl: PlayImages.Star,
     },
     items: [
       {
         width: 736,
         height: 736,
-        imgUrl: "/star.webp",
+        imgUrl: PlayImages.Star,
       },
     ],
     isVisible: true,
@@ -32,43 +33,43 @@ const playItems: PlayItemListType = [
     thumnail: {
       width: 754,
       height: 754,
-      imgUrl: "/play/5/compressed/thumbnail.webp",
+      imgUrl: PlayImages.Play5_thumbnail,
     },
     items: [
       {
         width: 931,
         height: 752,
-        imgUrl: "/play/5/compressed/1.webp",
+        imgUrl: PlayImages.Play5_1,
       },
       {
         width: 931,
         height: 754,
-        imgUrl: "/play/5/compressed/2.webp",
+        imgUrl: PlayImages.Play5_2,
       },
       {
         width: 931,
         height: 752,
-        imgUrl: "/play/5/compressed/3.webp",
+        imgUrl: PlayImages.Play5_3,
       },
       {
         width: 931,
         height: 752,
-        imgUrl: "/play/5/compressed/4.webp",
+        imgUrl: PlayImages.Play5_4,
       },
       {
         width: 1155,
         height: 753,
-        imgUrl: "/play/5/compressed/5.webp",
+        imgUrl: PlayImages.Play5_5,
       },
       {
         width: 1155,
         height: 753,
-        imgUrl: "/play/5/compressed/6.webp",
+        imgUrl: PlayImages.Play5_6,
       },
       {
         width: 2221,
         height: 754,
-        imgUrl: "/play/5/compressed/7.webp",
+        imgUrl: PlayImages.Play5_7,
       },
     ],
     isVisible: true,
@@ -84,23 +85,23 @@ const playItems: PlayItemListType = [
     thumnail: {
       width: 1820,
       height: 1024,
-      imgUrl: "/play/4/compressed/3.webp",
+      imgUrl: PlayImages.Play4_3,
     },
     items: [
       {
         width: 1820,
         height: 1024,
-        imgUrl: "/play/4/compressed/1.webp",
+        imgUrl: PlayImages.Play4_1,
       },
       {
         width: 1820,
         height: 1024,
-        imgUrl: "/play/4/compressed/2.webp",
+        imgUrl: PlayImages.Play4_2,
       },
       {
         width: 1820,
         height: 1024,
-        imgUrl: "/play/4/compressed/3.webp",
+        imgUrl: PlayImages.Play4_3,
       },
     ],
     isVisible: true,
@@ -117,13 +118,13 @@ const playItems: PlayItemListType = [
     thumnail: {
       width: 2732,
       height: 2048,
-      imgUrl: "/play/3/compressed/1.webp",
+      imgUrl: PlayImages.Play3_1,
     },
     items: [
       {
         width: 2732,
         height: 2048,
-        imgUrl: "/play/3/compressed/1.webp",
+        imgUrl: PlayImages.Play3_1,
       },
     ],
     isVisible: true,
@@ -161,13 +162,13 @@ const playItems: PlayItemListType = [
     thumnail: {
       width: 300,
       height: 300,
-      imgUrl: "/play/2/compressed/thumbnail.webp",
+      imgUrl: PlayImages.Play2_thumbnail,
     },
     items: [
       {
         width: 739,
         height: 768,
-        imgUrl: "/play/2/compressed/1.webp",
+        imgUrl: PlayImages.Play2_1,
       },
     ],
     isVisible: true,
@@ -183,23 +184,23 @@ const playItems: PlayItemListType = [
     thumnail: {
       width: 2430,
       height: 2430,
-      imgUrl: "/play/1/compressed/2.webp",
+      imgUrl: PlayImages.Play1_2,
     },
     items: [
       {
         width: 2430,
         height: 2430,
-        imgUrl: "/play/1/compressed/1.webp",
+        imgUrl: PlayImages.Play1_1,
       },
       {
         width: 2430,
         height: 2430,
-        imgUrl: "/play/1/compressed/2.webp",
+        imgUrl: PlayImages.Play1_2,
       },
       {
         width: 2430,
         height: 2430,
-        imgUrl: "/play/1/compressed/3.webp",
+        imgUrl: PlayImages.Play1_3,
       },
     ],
     isVisible: true,

@@ -1,7 +1,9 @@
+import { StaticImageData } from "next/image";
+
 export interface ImageItemType {
   width: number;
   height: number;
-  imgUrl: string;
+  imgUrl: string | StaticImageData;
   title?: string;
 }
 

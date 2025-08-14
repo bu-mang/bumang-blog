@@ -24,7 +24,7 @@ export default function ExpandModal({
   const [open, setOpen] = useState(true);
   const [currentId, setCurrentId] = useState(id);
   const [imageLoading, setImageLoading] = useState(false);
-  const [loadedImages, setLoadedImages] = useState(new Set());
+  // const [loadedImages, setLoadedImages] = useState(new Set());
 
   const contentsRef = useRef<null | HTMLDivElement>(null);
 
@@ -53,14 +53,14 @@ export default function ExpandModal({
       setImageLoading(true);
 
       // 새 이미지들이 모두 로드될 때까지 대기
-      const preloadPromises = changableItem.items.map((item) =>
-        preloadImage(item.imgUrl),
-      );
+      // const preloadPromises = changableItem.items.map((item) =>
+      //   preloadImage(item.imgUrl),
+      // );
 
       try {
         // Nest.js에서 많이 쓰는 패턴.
         // map으로 비동기 함수 리턴문 배열로 만들어 Promise.All에 제공.
-        await Promise.all(preloadPromises);
+        // await Promise.all(preloadPromises);
         setCurrentId(changableItem.id);
       } catch (error) {
         console.error("Image preload failed:", error);
@@ -107,46 +107,46 @@ export default function ExpandModal({
   usePauseLenis();
 
   // 이미지 프리로드 함수
-  const preloadImage = (imgUrl: string): Promise<void> => {
-    return new Promise((resolve, reject) => {
-      // 이미 로드된거면 리턴
-      if (loadedImages.has(imgUrl)) {
-        resolve();
-        return;
-      }
+  // const preloadImage = (imgUrl: string): Promise<void> => {
+  //   return new Promise((resolve, reject) => {
+  //     // 이미 로드된거면 리턴
+  //     if (loadedImages.has(imgUrl)) {
+  //       resolve();
+  //       return;
+  //     }
 
-      // HTML에 조립되지 않아도 일단 이미지 객체로 만들고 src 연결만 하면 캐싱되는 원리
-      const img = new window.Image();
-      img.onload = () => {
-        // img.src에 url이 할당되어야 시작
-        setLoadedImages((prev) => new Set(prev).add(imgUrl));
-        resolve();
-      };
-      img.onerror = reject;
-      img.src = imgUrl;
-    });
-  };
+  //     // HTML에 조립되지 않아도 일단 이미지 객체로 만들고 src 연결만 하면 캐싱되는 원리
+  //     const img = new window.Image();
+  //     img.onload = () => {
+  //       // img.src에 url이 할당되어야 시작
+  //       setLoadedImages((prev) => new Set(prev).add(imgUrl));
+  //       resolve();
+  //     };
+  //     img.onerror = reject;
+  //     img.src = imgUrl;
+  //   });
+  // };
 
   // 인접한 이미지들 프리로드
-  useEffect(() => {
-    const currentIndex = playItems.findIndex((item) => item?.id === currentId);
-    const preloadPromises: Promise<void>[] = [];
+  // useEffect(() => {
+  // const currentIndex = playItems.findIndex((item) => item?.id === currentId);
+  // const preloadPromises: Promise<void>[] = [];
 
-    // 현재, 이전, 다음 이미지 프리로드
-    [-1, 0, 1].forEach((offset) => {
-      const targetIndex = currentIndex + offset;
-      const targetItem = playItems[targetIndex];
+  // 현재, 이전, 다음 이미지 프리로드
+  // [-1, 0, 1].forEach((offset) => {
+  //   const targetIndex = currentIndex + offset;
+  //   const targetItem = playItems[targetIndex];
 
-      if (targetItem?.items) {
-        targetItem.items.forEach((item) => {
-          preloadPromises.push(preloadImage(item.imgUrl));
-        });
-      }
-    });
+  //   if (targetItem?.items) {
+  //     targetItem.items.forEach((item) => {
+  //       preloadPromises.push(preloadImage(item.imgUrl));
+  //     });
+  //   }
+  // });
 
-    Promise.all(preloadPromises).catch(console.error);
-    // eslint-disable-next-line
-  }, [currentId, loadedImages]);
+  // Promise.all(preloadPromises).catch(console.error);
+  // eslint-disable-next-line
+  // }, [currentId, loadedImages]);
 
   const buttonClassName = cn(
     "fixed bottom-0 top-0 z-[100] m-auto h-fit w-fit rounded-xl p-1",
