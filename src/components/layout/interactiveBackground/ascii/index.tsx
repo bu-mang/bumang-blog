@@ -4,6 +4,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import ASCIIEffect from "./asciiEffect";
+import AsciiBlurLoading from "@/assets/interactiveBackground/blurred-ascii-compressed.png";
 
 export default function Ascii3DBackground() {
   const bgColor = useInteractiveStore((state) => state.backgroundColor);
@@ -105,8 +106,7 @@ export default function Ascii3DBackground() {
         <div
           className="absolute inset-0 m-auto flex h-screen w-screen items-center justify-center opacity-80"
           style={{
-            backgroundImage:
-              "url(/interactiveBackground/blurred-ascii-compressed.png)",
+            backgroundImage: `url(${AsciiBlurLoading.src})`,
             backgroundSize: "100% 100%",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
