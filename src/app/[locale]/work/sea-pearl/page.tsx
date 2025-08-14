@@ -174,6 +174,7 @@ export default function AnttimeApp() {
           alt="work_section_background_image"
           fill
           objectFit="cover"
+          placeholder="blur"
         />
       </div>
 

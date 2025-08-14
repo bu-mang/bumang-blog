@@ -217,6 +217,7 @@ export default function PercentHotel() {
           alt="work_section_background_image"
           fill
           objectFit="cover"
+          placeholder="blur"
         />
       </BackgroundWrapper>
 

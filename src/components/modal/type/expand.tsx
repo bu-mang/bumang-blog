@@ -221,6 +221,7 @@ export default function ExpandModal({
                   fill={fill}
                   objectFit={objectFit}
                   style={{ aspectRatio: `${item.width} / ${item.height}` }}
+                  placeholder={item.placeholder ? "blur" : undefined}
                 />
               </div>
             );

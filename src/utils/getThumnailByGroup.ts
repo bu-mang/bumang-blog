@@ -1,3 +1,6 @@
+import * as BlogItems from "@/assets/thumbnails/asBlogItem";
+import * as PostBanners from "@/assets/thumbnails/compressed";
+
 export function getThumbnailByGroup(
   group: string,
   as: "blogItem" | "postBanner" = "postBanner",
@@ -8,17 +11,17 @@ export function getThumbnailByGroup(
     case "blogItem":
       switch (groupLowercase) {
         case "project":
-          return "/thumbnails/asBlogItem/projects.webp";
+          return BlogItems.projects;
         case "frontend":
-          return "/thumbnails/asBlogItem/frontend.webp";
+          return BlogItems.frontend;
         case "backend":
-          return "/thumbnails/asBlogItem/backend.webp";
+          return BlogItems.backend;
         case "computer science":
-          return "/thumbnails/asBlogItem/computerScience.webp";
+          return BlogItems.computerScience;
         case "interactive":
-          return "/thumbnails/asBlogItem/interactive.webp";
+          return BlogItems.interactive;
         case "life":
-          return "/thumbnails/asBlogItem/life.webp";
+          return BlogItems.life;
         default:
           return "";
       }
@@ -26,17 +29,17 @@ export function getThumbnailByGroup(
     case "postBanner":
       switch (groupLowercase) {
         case "project":
-          return "/thumbnails/compressed/projects.png";
+          return PostBanners.projects;
         case "frontend":
-          return "/thumbnails/compressed/frontend.png";
+          return PostBanners.frontend;
         case "backend":
-          return "/thumbnails/compressed/backend.png";
+          return PostBanners.backend;
         case "computer science":
-          return "/thumbnails/compressed/computerScience.png";
+          return PostBanners.computerScience;
         case "interactive":
-          return "/thumbnails/compressed/interactive.png";
+          return PostBanners.interactive;
         case "life":
-          return "/thumbnails/compressed/life.png";
+          return PostBanners.life;
         default:
           return "";
       }

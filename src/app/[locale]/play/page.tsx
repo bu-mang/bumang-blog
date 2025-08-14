@@ -18,6 +18,7 @@ export default function Play() {
             height={item.thumnail.height}
             imgUrl={item.thumnail.imgUrl}
             items={item.items}
+            placeholder={item.thumnail.placeholder}
           />
         );
       })}

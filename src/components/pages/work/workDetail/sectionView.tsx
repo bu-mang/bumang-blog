@@ -88,6 +88,7 @@ export default function SectionView({
           fill
           alt={`${content.title}_image`}
           objectFit="cover"
+          placeholder="blur"
         />
       </div>
     </section>

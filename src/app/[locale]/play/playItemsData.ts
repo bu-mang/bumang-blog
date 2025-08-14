@@ -33,7 +33,7 @@ const playItems: PlayItemListType = [
     thumnail: {
       width: 754,
       height: 754,
-      imgUrl: PlayImages.Play5_thumbnail,
+      imgUrl: PlayImages.Play5_5,
     },
     items: [
       {
@@ -86,22 +86,26 @@ const playItems: PlayItemListType = [
       width: 1820,
       height: 1024,
       imgUrl: PlayImages.Play4_3,
+      placeholder: false,
     },
     items: [
       {
         width: 1820,
         height: 1024,
         imgUrl: PlayImages.Play4_1,
+        placeholder: false,
       },
       {
         width: 1820,
         height: 1024,
         imgUrl: PlayImages.Play4_2,
+        placeholder: false,
       },
       {
         width: 1820,
         height: 1024,
         imgUrl: PlayImages.Play4_3,
+        placeholder: false,
       },
     ],
     isVisible: true,
@@ -130,28 +134,7 @@ const playItems: PlayItemListType = [
     isVisible: true,
     createdAt: "2025-07-07T14:48:00.000Z",
   },
-  // {
-  //   id: 3,
-  //   title: "Sketch",
 
-  //   isCentered: true,
-  //   content: "Clip Studio",
-  //   imageOnly: false,
-  //   thumnail: {
-  //     width: 800,
-  //     height: 1066,
-  //     imgUrl: "/play/3/1.JPG",
-  //   },
-  //   items: [
-  //     {
-  //       width: 800,
-  //       height: 1066,
-  //       imgUrl: "/play/3/1.JPG",
-  //     },
-  //   ],
-  //   isVisible: true,
-  //   createdAt: "2019-07-07T14:48:00.000Z",
-  // },
   {
     id: 2,
     title: "CardCaptor",

@@ -4,6 +4,7 @@ export { default as Play1_3 } from "./1/compressed/3.webp";
 
 export { default as Play2_1 } from "./2/compressed/1.webp";
 export { default as Play2_thumbnail } from "./2/compressed/thumbnail.webp";
+
 export { default as Play3_1 } from "./3/compressed/1.webp";
 
 export { default as Play4_1 } from "./4/compressed/1.webp";

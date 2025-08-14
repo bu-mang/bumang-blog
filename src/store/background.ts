@@ -4,6 +4,7 @@ import { immer } from "zustand/middleware/immer";
 
 import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "../../tailwind.config";
+import { StaticImageData } from "next/image";
 
 const fullConfig = resolveConfig(tailwindConfig);
 const gray = fullConfig.theme.colors.gray as Record<string, string>;

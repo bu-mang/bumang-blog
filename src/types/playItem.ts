@@ -3,8 +3,9 @@ import { StaticImageData } from "next/image";
 export interface ImageItemType {
   width: number;
   height: number;
-  imgUrl: string | StaticImageData;
+  imgUrl: StaticImageData;
   title?: string;
+  placeholder?: false;
 }
 
 export interface PlayItemMetaData {

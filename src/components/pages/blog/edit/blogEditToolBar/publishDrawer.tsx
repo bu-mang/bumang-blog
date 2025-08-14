@@ -259,6 +259,7 @@ export function PublishDrawer({
                   alt="thumbnail Image"
                   fill
                   className="object-cover object-top"
+                  placeholder="blur"
                 />
               ) : (
                 <div className="flex flex-wrap items-center justify-center gap-1">

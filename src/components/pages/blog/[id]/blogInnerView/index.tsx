@@ -58,6 +58,7 @@ export function BlogInnerViewFallback({ isError }: { isError?: boolean }) {
             width={324}
             height={127}
             className="pointer-events-none"
+            placeholder="blur"
           />
           <div className="mb-5 mt-3 text-xl font-semibold">OopseyDaisies!</div>
           <div className="text-lg font-medium">This is Private Article.</div>
@@ -232,6 +233,7 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
             className="bg-gray-100 object-cover object-top"
             priority
             fill
+            placeholder="blur"
           />
         </div>
 

@@ -177,6 +177,7 @@ export default function AnttimeSwap() {
           alt="work_section_background_image"
           fill
           objectFit="cover"
+          placeholder="blur"
         />
       </BackgroundWrapper>
 

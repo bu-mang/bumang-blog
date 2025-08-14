@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import {
   MutableRefObject,
   useEffect,
@@ -17,7 +17,7 @@ import { LuMoveRight } from "react-icons/lu";
 
 interface WorkItemProps {
   children?: React.ReactNode; // Stickers
-  imgSrc?: string | null;
+  imgSrc?: string | StaticImageData | null;
   imgAlt: string;
   href?: string;
   className?: string;
@@ -254,7 +254,8 @@ const WorkItem = ({
   }, []);
   useEffect(() => {
     if (isIntersecting) {
-      setBackgroundImage(imgSrc);
+      const imageSrc = typeof imgSrc === "string" ? imgSrc : imgSrc?.src;
+      setBackgroundImage(imageSrc);
     }
     // eslint-disable-next-line
   }, [isIntersecting]);
@@ -337,7 +338,12 @@ const WorkItem = ({
               opacity,
             }}
           />
-          <Image src={imgSrc ?? "401.png"} fill alt={imgAlt} />
+          <Image
+            src={imgSrc ?? "401.png"}
+            fill
+            alt={imgAlt}
+            placeholder="blur"
+          />
         </div>
       </Link>
 

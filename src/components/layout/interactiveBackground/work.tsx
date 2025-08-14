@@ -2,6 +2,7 @@ import { useInteractiveStore } from "@/store/background";
 import { cn } from "@/utils/cn";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
+import * as BackgroundImage from "@/assets/works";
 
 export default function WorkBackground() {
   const bgColor = useInteractiveStore((state) => state.backgroundColor);
@@ -34,7 +35,7 @@ export default function WorkBackground() {
   return (
     <>
       <div
-        data-bg="/works/bumangRoute53.png"
+        data-bg={BackgroundImage.bumangRoute53.src}
         ref={bgRef}
         className={cn(
           "WORK_BG fixed inset-0 -z-10 flex h-screen w-screen items-center justify-center opacity-0 transition-all ease-in-out",
@@ -43,7 +44,7 @@ export default function WorkBackground() {
         style={{
           backgroundPosition: "center center",
           filter: "blur(20px)",
-          backgroundImage: "url(/works/bumangRoute53.png)",
+          backgroundImage: `url(${BackgroundImage.bumangRoute53.src})`,
           backgroundSize: "cover", // 추가: 이미지 크기 최적화
           backgroundRepeat: "no-repeat", // 추가: 반복 방지
           transform: "scale(1.3)",
@@ -51,7 +52,7 @@ export default function WorkBackground() {
         }}
       />
       <div
-        data-bg="/works/seaPearl.png"
+        data-bg={BackgroundImage.seaPearl.src}
         ref={bgRef}
         className={cn(
           "WORK_BG fixed inset-0 -z-10 flex h-screen w-screen items-center justify-center opacity-0 transition-all ease-in-out",
@@ -60,7 +61,7 @@ export default function WorkBackground() {
         style={{
           backgroundPosition: "center center",
           filter: "blur(20px)",
-          backgroundImage: "url(/works/seaPearl.png)",
+          backgroundImage: `url(${BackgroundImage.seaPearl.src})`,
           backgroundSize: "cover", // 추가: 이미지 크기 최적화
           backgroundRepeat: "no-repeat", // 추가: 반복 방지
           transform: "scale(1.3)",
@@ -68,7 +69,7 @@ export default function WorkBackground() {
         }}
       />
       <div
-        data-bg="/works/anttimeSwap.png"
+        data-bg={BackgroundImage.anttimeSwap.src}
         ref={bgRef}
         className={cn(
           "WORK_BG fixed inset-0 -z-10 flex h-screen w-screen items-center justify-center opacity-0 transition-all ease-in-out",
@@ -77,7 +78,7 @@ export default function WorkBackground() {
         style={{
           backgroundPosition: "center center",
           filter: "blur(20px)",
-          backgroundImage: `url(/works/anttimeSwap.png)`,
+          backgroundImage: `url(${BackgroundImage.anttimeSwap.src})`,
           backgroundSize: "cover", // 추가: 이미지 크기 최적화
           backgroundRepeat: "no-repeat", // 추가: 반복 방지
           transform: "scale(1.3)",
@@ -85,7 +86,7 @@ export default function WorkBackground() {
         }}
       />
       <div
-        data-bg="/works/anttimeApp.png"
+        data-bg={BackgroundImage.anttimeApp.src}
         ref={bgRef}
         className={cn(
           "WORK_BG fixed inset-0 -z-10 flex h-screen w-screen items-center justify-center opacity-0 transition-all ease-in-out",
@@ -94,7 +95,7 @@ export default function WorkBackground() {
         style={{
           backgroundPosition: "center center",
           filter: "blur(20px)",
-          backgroundImage: "url(/works/anttimeApp.png)",
+          backgroundImage: `url(${BackgroundImage.anttimeApp.src})`,
           backgroundSize: "cover", // 추가: 이미지 크기 최적화
           backgroundRepeat: "no-repeat", // 추가: 반복 방지
           transform: "scale(1.3)",
@@ -102,7 +103,7 @@ export default function WorkBackground() {
         }}
       />
       <div
-        data-bg="/works/percentHotel.png"
+        data-bg={BackgroundImage.percentHotel.src}
         ref={bgRef}
         className={cn(
           "WORK_BG fixed inset-0 -z-10 flex h-screen w-screen items-center justify-center opacity-0 transition-all ease-in-out",
@@ -111,7 +112,7 @@ export default function WorkBackground() {
         style={{
           backgroundPosition: "center center",
           filter: "blur(20px)",
-          backgroundImage: `url(/works/percentHotel.png)`,
+          backgroundImage: `url(${BackgroundImage.percentHotel.src})`,
           backgroundSize: "cover", // 추가: 이미지 크기 최적화
           backgroundRepeat: "no-repeat", // 추가: 반복 방지
           transform: "scale(1.3)",

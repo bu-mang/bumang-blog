@@ -10,6 +10,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { useTheme } from "next-themes";
+import * as CardImage from "@/assets/works";
+import { StaticImageData } from "next/image";
 
 gsap.registerPlugin(ScrollTrigger); // 등록되어있지 않으면 등록.
 
@@ -69,7 +71,7 @@ export function WorkInnerInteractive() {
       <WorkItem
         onClick={() => {}}
         title="Bumang Route53"
-        imgSrc="/works/bumangRoute53.png"
+        imgSrc={CardImage.bumangRoute53}
         imgAlt="BumangRoute53"
         href={PATHNAME.WORK_DETAIL.BUMANG_ROUTE53}
       >
@@ -79,12 +81,12 @@ export function WorkInnerInteractive() {
       <WorkItem
         onClick={() => {}}
         title="SeaPearl"
-        imgSrc="/works/seaPearl.png"
+        imgSrc={CardImage.seaPearl}
         imgAlt="SeaPearl"
         href={PATHNAME.WORK_DETAIL.SEA_PEARL}
       >
         <Sticker
-          imgUrl="/works/seaPearlSticker.png"
+          imgSrc={CardImage.seaPearlSticker}
           className={cn(
             "-left-20 bottom-10 md:h-72 md:w-96", //
             "h-36 w-48",
@@ -95,12 +97,12 @@ export function WorkInnerInteractive() {
       <WorkItem
         onClick={() => {}}
         title="Anttime Swap"
-        imgSrc="/works/anttimeSwap.png"
+        imgSrc={CardImage.anttimeSwap}
         imgAlt=""
         href={PATHNAME.WORK_DETAIL.ANTTIME_SWAP}
       >
         <Sticker
-          imgUrl="/works/anttimeSwapSticker.png"
+          imgSrc={CardImage.anttimeSwapSticker}
           className={cn(
             "-right-20 -scale-x-100 md:top-10 md:h-56 md:w-80",
             "top-20 h-28 w-40",
@@ -111,12 +113,12 @@ export function WorkInnerInteractive() {
       <WorkItem
         onClick={() => {}}
         title="Anttime App"
-        imgSrc="/works/anttimeApp.png"
+        imgSrc={CardImage.anttimeApp}
         imgAlt=""
         href={PATHNAME.WORK_DETAIL.ANTTIME_APP}
       >
         <Sticker
-          imgUrl="/works/anttimeAppSticker.png"
+          imgSrc={CardImage.anttimeAppSticker}
           className={cn(
             "bottom-12 right-0 md:h-56 md:w-80", //
             "h-28 w-40",
@@ -127,7 +129,7 @@ export function WorkInnerInteractive() {
       <WorkItem
         onClick={() => {}}
         title="Percent Hotel"
-        imgSrc="/works/percentHotel.png"
+        imgSrc={CardImage.percentHotel}
         imgAlt=""
         href={PATHNAME.WORK_DETAIL.PERCENT_HOTEL}
       >
@@ -138,10 +140,12 @@ export function WorkInnerInteractive() {
 }
 
 interface StickerProps {
-  imgUrl: string;
+  imgSrc: StaticImageData | string;
   className: string;
 }
-function Sticker({ imgUrl, className }: StickerProps) {
+function Sticker({ imgSrc, className }: StickerProps) {
+  const imageSrc = typeof imgSrc === "string" ? imgSrc : imgSrc.src;
+
   return (
     <div
       className={cn(
@@ -149,7 +153,7 @@ function Sticker({ imgUrl, className }: StickerProps) {
         className,
       )}
       style={{
-        backgroundImage: `url(${imgUrl})`,
+        backgroundImage: `url(${imageSrc})`,
         backgroundSize: "contain",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

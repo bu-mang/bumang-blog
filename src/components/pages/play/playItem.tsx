@@ -13,10 +13,11 @@ interface PlayItemProps {
   content?: string;
   width: number;
   height: number;
-  imgUrl: string | StaticImageData;
+  imgUrl: StaticImageData;
   items: ImageItemType[];
   imageOnly?: boolean;
   className?: string;
+  placeholder?: boolean;
 }
 
 const PlayItem = ({
@@ -29,6 +30,7 @@ const PlayItem = ({
   imageOnly,
   className,
   items,
+  placeholder = true,
 }: PlayItemProps) => {
   const textHeight = (title ? 1 : 0) + (content ? 1 : 0);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -78,8 +80,8 @@ const PlayItem = ({
             src={imgUrl}
             alt={title ?? "GalleryImage"}
             objectFit="cover"
-            // placeholder="blur"
             fill
+            placeholder={placeholder ? "blur" : undefined}
           />
         </div>
 

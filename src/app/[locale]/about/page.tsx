@@ -47,6 +47,8 @@ export default function Blog() {
           alt="profileImage"
           className="object-cover"
           fill
+          priority
+          placeholder="blur"
         />
       </div>
 
