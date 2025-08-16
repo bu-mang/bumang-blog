@@ -65,7 +65,7 @@ const PlayItem = ({
   return (
     <button
       onClick={handleClick}
-      className="group flex flex-1 animate-fade-in-up overflow-hidden"
+      className="group flex flex-1 animate-fade-in-up overflow-hidden rounded-sm"
     >
       <div
         ref={ref}
