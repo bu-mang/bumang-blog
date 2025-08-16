@@ -21,4 +21,11 @@ export { default as Play5_7 } from "./5/compressed/7.webp";
 export { default as Play5_thumbnail } from "./5/compressed/thumbnail.webp";
 
 export { default as Play6_1 } from "./6/1.jpg";
+export { default as RiveBackground } from "./6/riveBackground.jpg";
+
+export { default as Character } from "./6/parts/character.png";
+export { default as Hand } from "./6/parts/hand.png";
+export { default as RoarHair } from "./6/parts/roar_hair.png";
+export { default as Wrist } from "./6/parts/wrist.png";
+
 export { default as Star } from "./star.webp";

@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/all";
 import Ascii3DBackground from "./ascii";
-import BlockMatters from "./blockMatters";
+import HandDeepInside from "./handDeepInsde";
 import WorkBackground from "./work";
 
 export default function InteractiveBackground() {
@@ -53,7 +53,7 @@ export default function InteractiveBackground() {
           return <Ascii3DBackground />;
         } else if (process.env.NODE_ENV === "development") {
           // 개발중인 인터랙티브 배경!
-          return <BlockMatters />;
+          return <HandDeepInside />;
         }
 
       // STATIC RENDERS
