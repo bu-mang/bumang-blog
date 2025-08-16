@@ -20,4 +20,5 @@ export { default as Play5_6 } from "./5/compressed/6.webp";
 export { default as Play5_7 } from "./5/compressed/7.webp";
 export { default as Play5_thumbnail } from "./5/compressed/thumbnail.webp";
 
+export { default as Play6_1 } from "./6/1.jpg";
 export { default as Star } from "./star.webp";

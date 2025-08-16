@@ -3,8 +3,8 @@ import * as PlayImages from "@/assets/play";
 
 const playItems: PlayItemListType = [
   {
-    id: 6,
-    title: "Star",
+    id: 7,
+    title: "250816",
 
     isCentered: true,
     content: "Digital Drawing, Clip Studio",
@@ -12,18 +12,40 @@ const playItems: PlayItemListType = [
     thumnail: {
       width: 736,
       height: 736,
-      imgUrl: PlayImages.Star,
+      imgUrl: PlayImages.Play6_1,
     },
     items: [
       {
-        width: 736,
-        height: 736,
-        imgUrl: PlayImages.Star,
+        width: 800,
+        height: 800,
+        imgUrl: PlayImages.Play6_1,
       },
     ],
     isVisible: true,
     createdAt: "2025-07-07T14:48:00.000Z",
   },
+  // {
+  //   id: 6,
+  //   title: "Star",
+
+  //   isCentered: true,
+  //   content: "Digital Drawing, Clip Studio",
+  //   imageOnly: false,
+  //   thumnail: {
+  //     width: 736,
+  //     height: 736,
+  //     imgUrl: PlayImages.Star,
+  //   },
+  //   items: [
+  //     {
+  //       width: 736,
+  //       height: 736,
+  //       imgUrl: PlayImages.Star,
+  //     },
+  //   ],
+  //   isVisible: true,
+  //   createdAt: "2025-07-07T14:48:00.000Z",
+  // },
   {
     id: 5,
     title: "250707 Drawings",
