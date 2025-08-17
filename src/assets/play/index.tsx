@@ -21,7 +21,8 @@ export { default as Play5_7 } from "./5/compressed/7.webp";
 export { default as Play5_thumbnail } from "./5/compressed/thumbnail.webp";
 
 export { default as Play6_1 } from "./6/1.jpg";
-export { default as RiveBackground } from "./6/riveBackground.jpg";
+export { default as Play6_2 } from "./6/2.jpg";
+export { default as Play6_3 } from "./6/3.jpg";
 
 export { default as Character } from "./6/parts/character.png";
 export { default as Hand } from "./6/parts/hand.png";
@@ -34,5 +35,6 @@ export { default as CharacterInner1 } from "./6/parts/inner/character_inner1.png
 export { default as CharacterInner2 } from "./6/parts/inner/character_inner2.png";
 export { default as CharacterInner3 } from "./6/parts/inner/character_inner3.png";
 export { default as cloud } from "./6/parts/inner/cloud.jpg";
+export { default as cloudRed } from "./6/parts/inner/cloud_red.jpg";
 
 export { default as Star } from "./star.webp";

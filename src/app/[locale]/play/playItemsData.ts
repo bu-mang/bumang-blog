@@ -6,7 +6,7 @@ const playItems: PlayItemListType = [
     id: 7,
     title: "250816",
 
-    isCentered: true,
+    isCentered: false,
     content: "Digital Drawing, Clip Studio",
     imageOnly: false,
     thumnail: {
@@ -15,14 +15,24 @@ const playItems: PlayItemListType = [
       imgUrl: PlayImages.Play6_1,
     },
     items: [
+      // {
+      //   width: 800,
+      //   height: 800,
+      //   imgUrl: PlayImages.Play6_1,
+      // },
       {
-        width: 800,
-        height: 800,
-        imgUrl: PlayImages.Play6_1,
+        width: 1403.5,
+        height: 907,
+        imgUrl: PlayImages.Play6_2,
+      },
+      {
+        width: 1403.5,
+        height: 907,
+        imgUrl: PlayImages.Play6_3,
       },
     ],
     isVisible: true,
-    createdAt: "2025-07-07T14:48:00.000Z",
+    createdAt: "2025-08-18T14:48:00.000Z",
   },
   // {
   //   id: 6,

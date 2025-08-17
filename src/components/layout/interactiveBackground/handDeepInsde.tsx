@@ -12,6 +12,7 @@ import {
   CharacterInner2,
   CharacterInner3,
   cloud,
+  cloudRed,
 } from "@/assets/play";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
