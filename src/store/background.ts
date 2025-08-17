@@ -18,6 +18,7 @@ interface InteractiveState {
     animState: "ANIM" | "MIN" | "MAX";
     borderBottom: string | undefined | null;
     backgroundColor: string | undefined | null;
+    letterColor: string;
   };
 
   home: {};
@@ -37,6 +38,7 @@ interface InteractiveAction {
     setBorderBottom: (v: string | undefined | null) => void;
     setBackgroundColor: (v: string | undefined | null) => void;
     setDefaultSetting: (v: string) => void;
+    setLetterColor: (v: string) => void;
   };
 
   work: {
@@ -58,6 +60,13 @@ export const useInteractiveStore = create<
       animState: "ANIM",
       borderBottom: gray?.["10"],
       backgroundColor: "bg-transparent",
+      letterColor: "black",
+
+      setLetterColor: (letterColor: string) => {
+        set((state) => {
+          state.header.letterColor = letterColor;
+        });
+      },
 
       setAnimState: (animState: "ANIM" | "MIN" | "MAX") => {
         set((state) => {

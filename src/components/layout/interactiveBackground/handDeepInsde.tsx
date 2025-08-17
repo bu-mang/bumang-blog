@@ -1,10 +1,23 @@
 "use client";
 
 import Image from "next/image";
-import { Character, Hand, RoarHair, Wrist } from "@/assets/play";
+import {
+  Character,
+  Hand,
+  RoarHair,
+  Wrist,
+  HandInner,
+  WristInner,
+  CharacterInner1,
+  CharacterInner2,
+  CharacterInner3,
+  cloud,
+} from "@/assets/play";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { randomBetween } from "@/utils/createRandomBetween";
+import { cn } from "@/utils/cn";
+import { useInteractiveStore } from "@/store/background";
 
 // 파티클 설정 타입
 interface ParticleConfig {
@@ -71,6 +84,14 @@ const PARALLAX_CONFIG = {
 } as const;
 
 export default function HandDeepInside() {
+  const setBackgroundColor = useInteractiveStore(
+    (state) => state.header.setBackgroundColor,
+  );
+  const setDefaultSetting = useInteractiveStore(
+    (state) => state.header.setDefaultSetting,
+  );
+  useEffect(() => {}, []);
+
   // DOM ref
   const idleRef = useRef<HTMLDivElement | null>(null);
 
@@ -197,12 +218,21 @@ export default function HandDeepInside() {
   // --------- 마우스 로직 ---------
 
   // 마우스 위치 상태
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState({
+    x: 0,
+    y: 0,
+    leftClicked: false,
+  });
+  const xrayLayerRef = useRef<HTMLDivElement>(null);
 
   // 마우스 이벤트 핸들러
   useEffect(() => {
     const handleMouseMove: (e: MouseEvent) => void = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      setMousePosition({
+        x: e.clientX,
+        y: e.clientY,
+        leftClicked: e.buttons === 1,
+      });
     };
 
     // 전역 마우스 이벤트 등록
@@ -212,6 +242,84 @@ export default function HandDeepInside() {
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
+
+  const updateXrayMask = (
+    mouseX: number,
+    mouseY: number,
+    buttonClicked: boolean,
+  ) => {
+    if (!xrayLayerRef.current) return;
+
+    const time = performance.now() * 0.001;
+    const jitterX = Math.sin(time * 4.2) * 3;
+    const jitterY = Math.cos(time * 3.8) * 2;
+    const radiusNoise = Math.sin(time * 5.1) * 8;
+    const baseRadius = 120;
+    const clicked = buttonClicked ? 1 : 0;
+    const currentRadius = (baseRadius + radiusNoise) * clicked;
+
+    // 표면에 구멍 뚫기 (마우스 위치에 투명 구멍)
+    gsap.set(xrayLayerRef.current, {
+      maskImage: `radial-gradient(circle at ${mouseX + jitterX}px ${mouseY + jitterY}px, 
+                transparent ${currentRadius * 0.6}px,           /* 구멍 (투명) */
+                rgba(0,0,0,0.3) ${currentRadius * 0.8}px,       /* 부드러운 가장자리 */
+                black ${currentRadius}px)` /* 표면 (불투명) */,
+      webkitMaskImage: `radial-gradient(circle at ${mouseX + jitterX}px ${mouseY + jitterY}px, 
+                     transparent ${currentRadius * 0.6}px,
+                     rgba(0,0,0,0.3) ${currentRadius * 0.8}px,
+                     black ${currentRadius}px)`,
+      filter: `
+      contrast(1.1)
+      brightness(1.05)
+    `,
+    });
+  };
+
+  // 3. X-Ray 마스킹 업데이트 함수 추가
+  // const updateXrayMask = (
+  //   mouseX: number,
+  //   mouseY: number,
+  //   buttonClicked: boolean,
+  // ) => {
+  //   if (!xrayLayerRef.current) return;
+
+  //   const time = performance.now() * 0.001;
+
+  //   // 불안정한 노이즈 생성
+  //   const jitterX = Math.sin(time * 4.2) * 3;
+  //   const jitterY = Math.cos(time * 3.8) * 2;
+  //   const radiusNoise = Math.sin(time * 5.1) * 2;
+
+  //   const baseRadius = 120; // 마스크 크기
+  //   const currentRadius = baseRadius + radiusNoise;
+
+  //   // CSS mask 적용 (부드러운 경계)
+  //   gsap.set(xrayLayerRef.current, {
+  //     // maskImage: `radial-gradient(circle at ${mouseX + jitterX}px ${mouseY + jitterY}px,
+  //     //           black ${currentRadius * 0.6}px,
+  //     //           rgba(0,0,0,0.8) ${currentRadius * 0.75}px,
+  //     //           rgba(0,0,0,0.3) ${currentRadius * 0.9}px,
+  //     //           transparent ${currentRadius}px)`,
+  //     maskImage: `radial-gradient(circle at ${mouseX}px ${mouseY}px,
+  //             black 100px, transparent 150px)`,
+  //     maskComposite: "subtract", // 마스크 영역 반전
+  //     webkitMaskComposite: "xor", // webkit 호환성
+  //     // webkitMaskImage: `radial-gradient(circle at ${mouseX + jitterX}px ${mouseY + jitterY}px,
+  //     //                black ${currentRadius * 0.6}px,
+  //     //                rgba(0,0,0,0.8) ${currentRadius * 0.75}px,
+  //     //                rgba(0,0,0,0.3) ${currentRadius * 0.9}px,
+  //     //                transparent ${currentRadius}px)`,
+  //   });
+  //   // 이면 레이어에 글로우 효과 추가
+  //   gsap.set(xrayLayerRef.current, {
+  //     filter: `
+  //     contrast(1.4)
+  //     brightness(1.2)
+  //     drop-shadow(0 0 15px rgba(255, 0, 0, 0.6))
+  //     drop-shadow(0 0 25px rgba(255, 255, 0, 0.4))
+  //   `,
+  //   });
+  // };
 
   // 패럴랙스 업데이트 함수
   const updateParallax = (mouseX: number, mouseY: number) => {
@@ -266,57 +374,225 @@ export default function HandDeepInside() {
     });
   };
 
+  // const updateXrayMask = (mouseX: number, mouseY: number) => {
+  //   if (!xrayLayerRef.current) return;
+
+  //   const time = performance.now() * 0.001;
+
+  //   // 불안정한 노이즈 생성
+  //   const jitterX = Math.sin(time * 4.2) * 5;
+  //   const jitterY = Math.cos(time * 3.8) * 4;
+  //   // const radiusNoise = Math.sin(time * 5.1) * 12;
+
+  //   const baseRadius = 120;
+  //   // const currentRadius = baseRadius + radiusNoise;
+  //   const currentRadius = baseRadius;
+
+  //   // 폴리곤 기반 지글거리는 마스크 생성
+  //   const createDistortedMask = () => {
+  //     const segments = 32;
+  //     const points = [];
+
+  //     for (let i = 0; i < segments; i++) {
+  //       const angle = (i / segments) * Math.PI * 2;
+
+  //       // 각 점마다 다른 turbulence 시뮬레이션
+  //       // const turbulence1 = Math.sin(time * 3 + angle * 3.5) * 12;
+  //       // const turbulence2 = Math.cos(time * 2.8 + angle * 3) * 10;
+  //       // const turbulence3 = Math.sin(time * 4.2 + angle * 4) * 8;
+
+  //       // const displacement = turbulence1 + turbulence2;
+  //       // const radius = currentRadius + displacement;
+  //       const radius = currentRadius + 100;
+
+  //       const x =
+  //         randomBetween(1, 1.01) * mouseX + jitterX + Math.cos(angle) * radius;
+  //       const y =
+  //         randomBetween(1, 1.01) * mouseY + jitterY + Math.sin(angle) * radius;
+
+  //       points.push(`${x}px ${y}px`);
+  //     }
+
+  //     return `polygon(${points.join(", ")})`;
+  //   };
+
+  //   // 마스크 적용 (clipPath + filter 조합)
+  //   gsap.set(xrayLayerRef.current, {
+  //     clipPath: createDistortedMask(),
+  //     filter: `
+  //       url(#turbulence-displacement)
+  //       contrast(1.5)
+  //       brightness(1.3)
+  //       drop-shadow(0 0 20px rgba(255, 0, 0, 0.8))
+  //       drop-shadow(0 0 30px rgba(255, 255, 0, 0.6))
+  //   `,
+  //   });
+  //   // gsap.set(xrayLayerRef.current, {
+  //   //   // clipPath 제거
+  //   //   clipPath: "none",
+
+  //   //   // 부드러운 그라데이션 마스크 적용
+  //   //   maskImage: `radial-gradient(circle at ${mouseX + jitterX}px ${mouseY + jitterY}px,
+  //   //             black ${200 * 0.4}px,           /* 완전히 보임 */
+  //   //             rgba(0,0,0,0.9) ${200 * 0.6}px, /* 90% 보임 */
+  //   //             rgba(0,0,0,0.6) ${200 * 0.75}px, /* 60% 보임 */
+  //   //             rgba(0,0,0,0.3) ${200 * 0.85}px, /* 30% 보임 */
+  //   //             rgba(0,0,0,0.1) ${200 * 0.95}px, /* 10% 보임 */
+  //   //             transparent ${200}px)` /* 완전히 숨김 */,
+
+  //   //   webkitMaskImage: `radial-gradient(circle at ${mouseX + jitterX}px ${mouseY + jitterY}px,
+  //   //                  black ${200 * 0.4}px,
+  //   //                  rgba(0,0,0,0.9) ${200 * 0.6}px,
+  //   //                  rgba(0,0,0,0.6) ${200 * 0.75}px,
+  //   //                  rgba(0,0,0,0.3) ${200 * 0.85}px,
+  //   //                  rgba(0,0,0,0.1) ${200 * 0.95}px,
+  //   //                  transparent ${200}px)`,
+
+  //   //   filter: `
+  //   //   contrast(1.5)
+  //   //   brightness(1.3)
+  //   //   drop-shadow(0 0 20px rgba(255, 0, 0, 0.8))
+  //   //   drop-shadow(0 0 30px rgba(255, 255, 0, 0.6))
+  //   // `,
+  //   // });
+  // };
+
   // 마우스 위치 변경 시 패럴랙스 업데이트
   useEffect(() => {
     updateParallax(mousePosition.x, mousePosition.y);
   }, [mousePosition]);
 
+  // 4. 실시간 애니메이션 루프 추가
+  useEffect(() => {
+    let animationId: number;
+
+    const animate = () => {
+      updateXrayMask(
+        mousePosition.x,
+        mousePosition.y,
+        mousePosition.leftClicked,
+      );
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
+  }, [mousePosition]);
+
   return (
-    <div className="fixed left-0 top-0 h-screen w-screen bg-gradient-to-tl from-red-700 to-red-900 will-change-transform">
+    <div
+      ref={idleRef}
+      className={cn(
+        "fixed left-0 top-0 h-screen w-screen select-none",
+        mousePosition.leftClicked ? "cursor-none" : "cursor-zoom-out",
+      )}
+    >
+      {/* SVG 필터 추가 - 반드시 먼저 렌더링 */}
+      <TurbulenceFilter />
+
       {/* 파티클 */}
-      <div ref={totalParticlesRef} className="fixed z-10 h-screen w-screen" />
+      <div ref={totalParticlesRef} className="fixed z-30 h-screen w-screen" />
 
-      {/* 전체 씬 */}
-      <div
-        ref={idleRef}
-        className="ANIM_CONTAINER absolute left-0 top-0 h-screen w-screen"
-      >
-        <div className="ANIM_ALL relative -top-32 right-20 scale-125">
-          <Image
-            src={Wrist}
-            alt="Wrist"
-            width={716 / 2}
-            height={440 / 2}
-            className="absolute right-0 top-0"
-          />
+      {/* 전체 씬 (이면) */}
+      <div className="fixed left-0 top-0 z-20 h-screen w-screen">
+        {/* 배경과 콘텐츠를 하나의 div 안에 */}
+        <div
+          className="absolute left-0 top-0 h-screen w-screen"
+          style={{
+            backgroundImage: `url(${cloud.src})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            filter: "invert(1)",
+          }}
+        />
 
-          {/* 손과 캐릭터 (손목 제외) */}
-          <div className="ANIM_HAND absolute right-[300px] top-0 h-[894px] w-[1003px] will-change-transform">
-            {/* <div className="absolute left-0 top-0 h-1/4 w-full bg-blue-500" /> */}
+        <div className="ANIM_CONTAINER absolute left-0 top-0 z-10 h-screen w-screen">
+          <div className="ANIM_ALL relative -top-32 right-20 scale-125">
             <Image
-              src={Hand}
-              alt="Hand"
-              width={2006 / 2}
-              height={1788 / 2}
-              className="absolute -top-[2px] right-0"
+              src={WristInner}
+              alt="Wrist"
+              width={716 / 2}
+              height={440 / 2}
+              className="absolute right-0 top-0"
+              draggable={false}
             />
 
-            {/* 캐릭터만 */}
-            <div className="ANIM_CHARACTER absolute -left-[64px] bottom-[144px] h-[312.5px] w-[174.5px] will-change-transform">
+            {/* 손과 캐릭터 (손목 제외) */}
+            <div className="ANIM_HAND absolute right-[300px] top-0 h-[894px] w-[1003px] will-change-transform">
+              {/* <div className="absolute left-0 top-0 h-1/4 w-full bg-blue-500" /> */}
               <Image
-                src={RoarHair}
-                alt="RoarHair"
-                width={69 / 2}
-                height={67 / 2}
-                className="ANIM_ROAR_HAIR absolute left-[24px] top-[48px] will-change-transform"
+                src={HandInner}
+                alt="Hand"
+                width={2006 / 2}
+                height={1788 / 2}
+                className="absolute -top-[2px] right-0"
+                draggable={false}
               />
+
+              {/* 캐릭터만 */}
+              <div className="ANIM_CHARACTER absolute -left-[64px] bottom-[144px] h-[312.5px] w-[174.5px] will-change-transform">
+                <CharacterInnerAnimation />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 전체 씬 (표면) */}
+      <div
+        ref={xrayLayerRef}
+        className="fixed left-0 top-0 z-20 h-screen w-screen"
+        style={{
+          // 초기에는 구멍 없음 (완전히 덮음)
+          maskImage: "radial-gradient(circle at 50% 50%, black 100%)",
+        }}
+      >
+        {/* 표면 배경 */}
+        <div className="absolute left-0 top-0 h-screen w-screen bg-gradient-to-tl from-red-700 to-red-900 will-change-transform" />
+
+        {/* 표면 콘텐츠 */}
+        <div className="ANIM_CONTAINER absolute left-0 top-0 z-20 h-screen w-screen">
+          <div className="ANIM_ALL relative -top-32 right-20 scale-125">
+            <Image
+              src={Wrist}
+              alt="Wrist"
+              width={716 / 2}
+              height={440 / 2}
+              className="absolute right-0 top-0"
+            />
+            손과 캐릭터 (손목 제외)
+            <div className="ANIM_HAND absolute right-[300px] top-0 h-[894px] w-[1003px] will-change-transform">
+              {/* <div className="absolute left-0 top-0 h-1/4 w-full bg-blue-500" /> */}
               <Image
-                src={Character}
-                alt="Character"
-                width={349 / 2}
-                height={625 / 2}
-                className="absolute left-0 top-0"
+                src={Hand}
+                alt="Hand"
+                width={2006 / 2}
+                height={1788 / 2}
+                className="absolute -top-[2px] right-0"
               />
+
+              {/* 캐릭터만 */}
+              <div className="ANIM_CHARACTER absolute -left-[64px] bottom-[144px] h-[312.5px] w-[174.5px] will-change-transform">
+                <Image
+                  src={RoarHair}
+                  alt="RoarHair"
+                  width={69 / 2}
+                  height={67 / 2}
+                  className="ANIM_ROAR_HAIR absolute left-[24px] top-[48px] will-change-transform"
+                />
+                <Image
+                  src={Character}
+                  alt="Character"
+                  width={349 / 2}
+                  height={625 / 2}
+                  className="absolute left-0 top-0"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -324,3 +600,142 @@ export default function HandDeepInside() {
     </div>
   );
 }
+
+function CharacterInnerAnimation() {
+  const [visibleNumber, setVisibleNumber] = useState(1);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVisibleNumber((prev) => (prev + 1) % 3);
+    }, 800);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  return (
+    <>
+      <Image
+        src={CharacterInner1}
+        alt="Character"
+        width={349 / 2}
+        height={625 / 2}
+        className={cn(
+          "absolute left-0 top-0 opacity-0",
+          visibleNumber === 0 && "opacity-100",
+        )}
+        draggable={false}
+      />
+      <Image
+        src={CharacterInner2}
+        alt="Character"
+        width={349 / 2}
+        height={625 / 2}
+        className={cn(
+          "absolute left-0 top-0 opacity-0",
+          visibleNumber === 1 && "opacity-100",
+        )}
+        draggable={false}
+      />
+      <Image
+        src={CharacterInner3}
+        alt="Character"
+        width={349 / 2}
+        height={625 / 2}
+        className={cn(
+          "absolute left-0 top-0 opacity-0",
+          visibleNumber === 2 && "opacity-100",
+        )}
+        draggable={false}
+      />
+    </>
+  );
+}
+
+const TurbulenceFilter = () => (
+  <svg className="absolute h-0 w-0">
+    <defs>
+      <filter
+        id="turbulence-displacement"
+        x="-50%"
+        y="-50%"
+        width="200%"
+        height="200%"
+      >
+        {/* 기본 노이즈 생성 */}
+        <feTurbulence
+          baseFrequency="0.02 0.03"
+          numOctaves="4"
+          result="turbulence"
+          seed="1"
+          type="fractalNoise"
+        />
+
+        {/* 노이즈 강도 조절 */}
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="turbulence"
+          scale="15"
+          result="displaced"
+        />
+
+        {/* 색상 분산 효과 */}
+        <feOffset in="displaced" dx="2" dy="0" result="red" />
+        <feOffset in="displaced" dx="-2" dy="0" result="blue" />
+        <feBlend in="red" in2="blue" mode="screen" result="chromatic" />
+
+        {/* 최종 합성 */}
+        <feComposite in="chromatic" in2="displaced" operator="multiply" />
+      </filter>
+
+      {/* 더 강한 왜곡 효과 */}
+      <filter
+        id="heavy-displacement"
+        x="-100%"
+        y="-100%"
+        width="300%"
+        height="300%"
+      >
+        <feTurbulence
+          baseFrequency="0.05 0.08"
+          numOctaves="6"
+          result="heavyNoise"
+          seed="2"
+          type="turbulence"
+        />
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="heavyNoise"
+          scale="25"
+          result="heavyDisplaced"
+        />
+        <feGaussianBlur in="heavyDisplaced" stdDeviation="1" />
+      </filter>
+
+      {/* 애니메이션용 필터 */}
+      <filter id="animated-turbulence">
+        <feTurbulence
+          baseFrequency="0.03 0.04"
+          numOctaves="3"
+          result="animNoise"
+          seed="3"
+        >
+          <animate
+            attributeName="baseFrequency"
+            values="0.03 0.04;0.05 0.06;0.03 0.04"
+            dur="3s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="seed"
+            values="3;7;3"
+            dur="2s"
+            repeatCount="indefinite"
+          />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="animNoise" scale="20" />
+      </filter>
+    </defs>
+  </svg>
+);

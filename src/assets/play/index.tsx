@@ -28,4 +28,11 @@ export { default as Hand } from "./6/parts/hand.png";
 export { default as RoarHair } from "./6/parts/roar_hair.png";
 export { default as Wrist } from "./6/parts/wrist.png";
 
+export { default as HandInner } from "./6/parts/inner/hand_inner.png";
+export { default as WristInner } from "./6/parts/inner/wrist_inner.png";
+export { default as CharacterInner1 } from "./6/parts/inner/character_inner1.png";
+export { default as CharacterInner2 } from "./6/parts/inner/character_inner2.png";
+export { default as CharacterInner3 } from "./6/parts/inner/character_inner3.png";
+export { default as cloud } from "./6/parts/inner/cloud.jpg";
+
 export { default as Star } from "./star.webp";
