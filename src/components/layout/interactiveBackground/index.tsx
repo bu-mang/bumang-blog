@@ -50,9 +50,15 @@ export default function InteractiveBackground() {
         return <WorkBackground />;
       case PATHNAME.HOME:
         if (process.env.NODE_ENV === "production") {
-          return <Ascii3DBackground />;
+          const AMOUNT = 2;
+          const RANGE = 10;
+          const random = Math.round(Math.random() * RANGE);
+          if (random > RANGE / AMOUNT) {
+            return <Ascii3DBackground />;
+          }
+
+          return <HandDeepInside />;
         } else if (process.env.NODE_ENV === "development") {
-          // 개발중인 인터랙티브 배경!
           return <HandDeepInside />;
         }
 
