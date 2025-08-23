@@ -263,7 +263,7 @@ export default function HandDeepInside() {
 
       // 머리카락 애니메이션
       gsap.to(".ANIM_ROAR_HAIR", {
-        rotation: -10,
+        rotation: -30,
         transformOrigin: "50% 0%",
         delay: 1,
         duration: 4,
