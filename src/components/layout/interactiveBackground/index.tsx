@@ -59,6 +59,7 @@ export default function InteractiveBackground() {
 
           return <HandDeepInside />;
         } else if (process.env.NODE_ENV === "development") {
+          return <Ascii3DBackground />;
           return <HandDeepInside />;
         }
 

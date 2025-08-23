@@ -22,7 +22,7 @@ class ASCIIEffect {
 
     // ASCII 출력용 DOM 요소 생성
     this.domElement = document.createElement("div");
-    this.domElement.style.fontFamily = "Courier New, monospace";
+    this.domElement.style.fontFamily = "JetBrains Mono, monospace";
     this.domElement.style.fontSize = "8px";
     this.domElement.style.lineHeight = "8px";
     this.domElement.style.whiteSpace = "pre";
