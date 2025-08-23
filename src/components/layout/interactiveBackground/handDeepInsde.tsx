@@ -44,7 +44,7 @@ const PARTICLE_CONFIG: Record<"BACKGROUND" | "FOREGROUND", ParticleConfig> = {
   BACKGROUND: {
     count: 40,
     size: [1, 3],
-    opacity: [0.1, 0.25],
+    opacity: [0.3, 0.5],
     blur: 1.5,
     mouseInfluence: 0.02,
     color: "rgba(214, 225, 64, 1)",
@@ -53,7 +53,7 @@ const PARTICLE_CONFIG: Record<"BACKGROUND" | "FOREGROUND", ParticleConfig> = {
   FOREGROUND: {
     count: 25,
     size: [3, 6],
-    opacity: [0.3, 0.6],
+    opacity: [0.6, 0.9],
     blur: 0.5,
     mouseInfluence: 0.08,
     color: "rgba(214, 225, 64, 1)",
@@ -100,44 +100,6 @@ export default function HandDeepInside() {
   const totalParticlesRef = useRef<HTMLDivElement | null>(null);
   const backgroundParticlesRef = useRef<Particle[]>([]);
   const foregroundParticlesRef = useRef<Particle[]>([]);
-
-  // 기본 IDLE 애니메이션
-  useEffect(() => {
-    const ctx = gsap.context((self) => {
-      gsap.to(".ANIM_ALL", {
-        y: -30,
-        duration: 3,
-        ease: "power2.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
-
-      // 손목 회전 애니메이션 (독립적)
-      gsap.to(".ANIM_HAND", {
-        rotation: -2,
-        transformOrigin: "100% 25%",
-        duration: 4,
-        ease: "power2.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
-
-      // 머리카락 애니메이션
-      gsap.to(".ANIM_ROAR_HAIR", {
-        rotation: -10,
-        transformOrigin: "50% 0%",
-        delay: 1,
-        duration: 4,
-        ease: "power2.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
-    }, idleRef);
-
-    return () => {
-      ctx.revert();
-    };
-  }, []);
 
   // ------ 파티클 생성 함수 ------
 
@@ -276,53 +238,81 @@ export default function HandDeepInside() {
     });
   };
 
-  // 3. X-Ray 마스킹 업데이트 함수 추가
-  // const updateXrayMask = (
-  //   mouseX: number,
-  //   mouseY: number,
-  //   buttonClicked: boolean,
-  // ) => {
-  //   if (!xrayLayerRef.current) return;
+  // ------ 일러스트 조작 로직 ------
 
-  //   const time = performance.now() * 0.001;
+  // 기본 IDLE 애니메이션
+  useEffect(() => {
+    const ctx = gsap.context((self) => {
+      gsap.to(".ANIM_ALL", {
+        y: -30,
+        duration: 3,
+        ease: "power2.inOut",
+        repeat: -1,
+        yoyo: true,
+      });
 
-  //   // 불안정한 노이즈 생성
-  //   const jitterX = Math.sin(time * 4.2) * 3;
-  //   const jitterY = Math.cos(time * 3.8) * 2;
-  //   const radiusNoise = Math.sin(time * 5.1) * 2;
+      // 손목 회전 애니메이션 (독립적)
+      gsap.to(".ANIM_HAND", {
+        rotation: -2,
+        transformOrigin: "100% 25%",
+        duration: 4,
+        ease: "power2.inOut",
+        repeat: -1,
+        yoyo: true,
+      });
 
-  //   const baseRadius = 120; // 마스크 크기
-  //   const currentRadius = baseRadius + radiusNoise;
+      // 머리카락 애니메이션
+      gsap.to(".ANIM_ROAR_HAIR", {
+        rotation: -10,
+        transformOrigin: "50% 0%",
+        delay: 1,
+        duration: 4,
+        ease: "power2.inOut",
+        repeat: -1,
+        yoyo: true,
+      });
+    }, idleRef);
 
-  //   // CSS mask 적용 (부드러운 경계)
-  //   gsap.set(xrayLayerRef.current, {
-  //     // maskImage: `radial-gradient(circle at ${mouseX + jitterX}px ${mouseY + jitterY}px,
-  //     //           black ${currentRadius * 0.6}px,
-  //     //           rgba(0,0,0,0.8) ${currentRadius * 0.75}px,
-  //     //           rgba(0,0,0,0.3) ${currentRadius * 0.9}px,
-  //     //           transparent ${currentRadius}px)`,
-  //     maskImage: `radial-gradient(circle at ${mouseX}px ${mouseY}px,
-  //             black 100px, transparent 150px)`,
-  //     maskComposite: "subtract", // 마스크 영역 반전
-  //     webkitMaskComposite: "xor", // webkit 호환성
-  //     // webkitMaskImage: `radial-gradient(circle at ${mouseX + jitterX}px ${mouseY + jitterY}px,
-  //     //                black ${currentRadius * 0.6}px,
-  //     //                rgba(0,0,0,0.8) ${currentRadius * 0.75}px,
-  //     //                rgba(0,0,0,0.3) ${currentRadius * 0.9}px,
-  //     //                transparent ${currentRadius}px)`,
-  //   });
-  //   // 이면 레이어에 글로우 효과 추가
-  //   gsap.set(xrayLayerRef.current, {
-  //     filter: `
-  //     contrast(1.4)
-  //     brightness(1.2)
-  //     drop-shadow(0 0 15px rgba(255, 0, 0, 0.6))
-  //     drop-shadow(0 0 25px rgba(255, 255, 0, 0.4))
-  //   `,
-  //   });
-  // };
+    return () => {
+      ctx.revert();
+    };
+  }, []);
 
-  // 패럴랙스 업데이트 함수
+  // 일러스트 크기조절 함수
+  const ILLUSTRATION_WIDTH = 1400;
+  const ILLUSTRATION_HEIGHT = 920;
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleScale = () => {
+      let finalWidth = ILLUSTRATION_WIDTH;
+      let finalHeight = ILLUSTRATION_HEIGHT;
+
+      const scaleX = innerWidth / ILLUSTRATION_WIDTH;
+      const scaleY = innerHeight / ILLUSTRATION_HEIGHT;
+
+      const scale = Math.min(scaleX, scaleY);
+
+      gsap.context((self) => {
+        gsap.to(".ANIM_ALL", {
+          scaleX: scale,
+          scaleY: scale,
+          transformOrigin: "top left",
+        });
+      });
+    };
+
+    handleScale();
+
+    window.addEventListener("resize", handleScale);
+
+    return () => {
+      window.removeEventListener("resize", handleScale);
+    };
+  }, []);
+
+  // --------- 패럴렉스 업데이트 함수 ---------
+
   const updateParallax = (mouseX: number, mouseY: number) => {
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
@@ -375,7 +365,6 @@ export default function HandDeepInside() {
     });
   };
 
-  // const updateXrayMask = (mouseX: number, mouseY: number) => {
   //   if (!xrayLayerRef.current) return;
 
   //   const time = performance.now() * 0.001;
@@ -512,8 +501,15 @@ export default function HandDeepInside() {
           }}
         />
 
-        <div className="ANIM_CONTAINER absolute left-0 top-0 z-10 h-screen w-screen">
-          <div className="ANIM_ALL relative -top-32 right-20 scale-125">
+        {/* 이면 콘텐츠 */}
+        <div className="ANIM_CONTAINER absolute left-0 top-0 z-10 flex h-screen w-screen justify-center">
+          <div
+            className="ANIM_ALL absolute -top-10 left-0 right-0 mx-auto h-fit w-fit"
+            style={{
+              width: ILLUSTRATION_WIDTH,
+              height: ILLUSTRATION_HEIGHT,
+            }}
+          >
             <Image
               src={WristInner}
               alt="Wrist"
@@ -557,8 +553,14 @@ export default function HandDeepInside() {
         <div className="absolute left-0 top-0 h-screen w-screen bg-gradient-to-tl from-red-700 to-red-900 will-change-transform" />
 
         {/* 표면 콘텐츠 */}
-        <div className="ANIM_CONTAINER absolute left-0 top-0 z-20 h-screen w-screen">
-          <div className="ANIM_ALL relative -top-32 right-20 scale-125">
+        <div className="ANIM_CONTAINER absolute left-0 top-0 z-10 flex h-screen w-screen justify-center">
+          <div
+            className="ANIM_ALL absolute -top-10 left-0 right-0 mx-auto h-fit w-fit"
+            style={{
+              width: ILLUSTRATION_WIDTH,
+              height: ILLUSTRATION_HEIGHT,
+            }}
+          >
             <Image
               src={Wrist}
               alt="Wrist"
