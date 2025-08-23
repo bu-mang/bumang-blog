@@ -20,11 +20,16 @@ class ASCIIEffect {
     this.width = 0;
     this.height = 0;
 
+    // Windows에서는 더 작게
+    const isWindows = navigator.userAgent.indexOf("Windows") > -1;
+
     // ASCII 출력용 DOM 요소 생성
     this.domElement = document.createElement("div");
-    this.domElement.style.fontFamily = "JetBrains Mono, monospace";
-    this.domElement.style.fontSize = "8px";
-    this.domElement.style.lineHeight = "8px";
+    this.domElement.style.fontFamily = "windo Mono, monospace";
+    // this.domElement.style.fontSize = "8px";
+    // this.domElement.style.lineHeight = "8px";
+    this.domElement.style.fontSize = isWindows ? "7px" : "8px";
+    this.domElement.style.lineHeight = isWindows ? "7px" : "8px";
     this.domElement.style.whiteSpace = "pre";
     this.domElement.style.color = "#b4b4b4";
 
