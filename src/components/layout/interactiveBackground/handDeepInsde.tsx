@@ -253,7 +253,7 @@ export default function HandDeepInside() {
 
       // 손목 회전 애니메이션 (독립적)
       gsap.to(".ANIM_HAND", {
-        rotation: -2,
+        rotation: -5,
         transformOrigin: "100% 25%",
         duration: 4,
         ease: "power2.inOut",
@@ -263,7 +263,7 @@ export default function HandDeepInside() {
 
       // 머리카락 애니메이션
       gsap.to(".ANIM_ROAR_HAIR", {
-        rotation: -30,
+        rotation: -20,
         transformOrigin: "50% 0%",
         delay: 1,
         duration: 4,
