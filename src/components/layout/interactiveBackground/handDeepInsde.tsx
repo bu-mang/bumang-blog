@@ -297,7 +297,7 @@ export default function HandDeepInside() {
         gsap.to(".ANIM_ALL", {
           scaleX: scale,
           scaleY: scale,
-          transformOrigin: "top left",
+          transformOrigin: "top center",
         });
       });
     };
