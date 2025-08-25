@@ -4,11 +4,8 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import ASCIIEffect from "./asciiEffect";
 import AsciiBlurLoading from "@/assets/interactiveBackground/blurred-ascii-compressed.png";
-import { useBackgroundStore } from "@/store/background";
 
-export default function Ascii3DBackground() {
-  const bgColor = useBackgroundStore((state) => state.backgroundColor);
-  const bgImage = useBackgroundStore((state) => state.backgroundImage);
+export default function Ascii3DLily() {
   const [initialized, setInitialized] = useState(false);
 
   const threeRef = useRef<HTMLDivElement>(null); // DOM 요소 참조

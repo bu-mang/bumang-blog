@@ -1,6 +1,6 @@
 "use client";
 
-import { useHeaderStore } from "@/store/headerState";
+import { useHeaderStore } from "@/store/header";
 import { cn } from "@/utils/cn";
 import { useTheme } from "next-themes";
 import { useEffect } from "react";

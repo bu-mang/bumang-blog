@@ -6,19 +6,20 @@ import { cn } from "@/utils/cn";
 import { useEffect, useMemo } from "react";
 import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/all";
-import Ascii3DBackground from "./ascii";
+import Ascii3DLily from "./ascii";
 import HandDeepInside from "./handDeepInsde";
 import WorkBackground from "./work";
 import { useBackgroundStore } from "@/store/background";
 
 export default function InteractiveBackground() {
   const pathname = usePathname();
-  const bgColor = useBackgroundStore((state) => state.backgroundColor);
-  const selected = useBackgroundStore((state) => state.home.selected);
+
   const backgrounds = useMemo(
-    () => [<Ascii3DBackground key={0} />, <HandDeepInside key={1} />],
+    () => [<Ascii3DLily key={0} />, <HandDeepInside key={1} />],
     [],
   );
+  const selectedIndex = useBackgroundStore((state) => state.home.selectedIndex);
+  const bgColor = useBackgroundStore((state) => state.backgroundColor);
 
   // 부드러운 스크롤 애니메이션 init
   // /blog/edit은 제외
@@ -55,12 +56,11 @@ export default function InteractiveBackground() {
         return <WorkBackground />;
       case PATHNAME.HOME:
         if (process.env.NODE_ENV === "production") {
-          return backgrounds[selected];
+          return backgrounds[selectedIndex];
         } else if (process.env.NODE_ENV === "development") {
-          return backgrounds[0];
+          return backgrounds[selectedIndex];
         }
 
-      // STATIC RENDERS
       default:
         return null;
     }

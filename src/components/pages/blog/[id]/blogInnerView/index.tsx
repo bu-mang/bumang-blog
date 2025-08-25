@@ -35,7 +35,7 @@ import { useMutation } from "@tanstack/react-query";
 import { deletePost } from "@/services/api/blog/edit";
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
-import { useHeaderStore } from "@/store/headerState";
+import { useHeaderStore } from "@/store/header";
 
 interface BlogDetailInnerProps {
   post: PostDetailResponseDto;

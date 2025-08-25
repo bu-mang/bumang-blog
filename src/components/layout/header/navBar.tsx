@@ -23,7 +23,7 @@ import {
 import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { useAuthStore } from "@/store/auth";
 import { useTheme } from "next-themes";
-import { useHeaderStore } from "@/store/headerState";
+import { useHeaderStore } from "@/store/header";
 
 gsap.registerPlugin(ScrollTrigger);
 

@@ -18,7 +18,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { randomBetween } from "@/utils/createRandomBetween";
 import { cn } from "@/utils/cn";
-import { useHeaderStore } from "@/store/headerState";
+import { useHeaderStore } from "@/store/header";
 
 // 파티클 설정 타입
 interface ParticleConfig {

@@ -11,7 +11,7 @@ import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { useTheme } from "next-themes";
 import * as CardImage from "@/assets/works";
 import { StaticImageData } from "next/image";
-import { useHeaderStore } from "@/store/headerState";
+import { useHeaderStore } from "@/store/header";
 
 gsap.registerPlugin(ScrollTrigger); // 등록되어있지 않으면 등록.
 

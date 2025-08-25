@@ -9,7 +9,7 @@ import { Bumang, Route53 } from "@/assets";
 import { useRouter } from "@/i18n/navigation";
 import { cn } from "@/utils/cn";
 import { useTheme } from "next-themes";
-import { useHeaderStore } from "@/store/headerState";
+import { useHeaderStore } from "@/store/header";
 
 gsap.registerPlugin(ScrollTrigger);
 

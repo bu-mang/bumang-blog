@@ -18,7 +18,7 @@ import { PagenationFallback } from "@/components/common/pageNation";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect } from "react";
 import { useTheme } from "next-themes";
-import { useHeaderStore } from "@/store/headerState";
+import { useHeaderStore } from "@/store/header";
 
 interface BlogListViewProps {
   allPosts: null | PaginatedResponseDto<PostListItemType>;

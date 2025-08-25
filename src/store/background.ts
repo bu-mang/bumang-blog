@@ -2,13 +2,15 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
+export type BackgroundItem = [number, "Ascii3DLily" | "HandDeepInside"];
+
 interface BackgroundState {
   backgroundColor: string | undefined | null; // tailwind Utils
   backgroundImage: string | undefined | null; // url or null
 
   home: {
-    list: Record<number, "Ascii3DBackground" | "HandDeepInside">;
-    selected: number;
+    list: BackgroundItem[];
+    selectedIndex: number;
   };
 
   work: {
@@ -21,7 +23,7 @@ interface BackgroundAction {
   setBackgroundImage: (v: string | undefined | null) => void;
 
   home: {
-    setSelected: (v: number) => void;
+    setSelectedItem: (v: number) => void;
   };
 
   work: {
@@ -35,15 +37,15 @@ export const useBackgroundStore = create<BackgroundState & BackgroundAction>()(
     backgroundImage: null,
 
     home: {
-      list: {
-        0: "Ascii3DBackground",
-        1: "HandDeepInside",
-      },
-      selected: 0,
+      list: [
+        [0, "Ascii3DLily"],
+        [1, "HandDeepInside"],
+      ],
+      selectedIndex: 0,
 
-      setSelected: (selected: number) =>
+      setSelectedItem: (selectedIndex: number) =>
         set((state) => {
-          state.home.selected = selected;
+          state.home.selectedIndex = selectedIndex;
         }),
     },
 
