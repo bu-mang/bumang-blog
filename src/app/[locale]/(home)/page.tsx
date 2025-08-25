@@ -1,6 +1,6 @@
 "use client";
 
-import { useInteractiveStore } from "@/store/interactive";
+import { useHeaderStore } from "@/store/headerState";
 import { cn } from "@/utils/cn";
 import { useTheme } from "next-themes";
 import { useEffect } from "react";
@@ -10,12 +10,10 @@ export default function Main() {
     "flex flex-1 gap-[1.5vw] justify-center w-full h-[100vh]",
   );
 
-  const setHeaderBackgroundColor = useInteractiveStore(
-    (state) => state.header.setBackgroundColor,
+  const setHeaderBackgroundColor = useHeaderStore(
+    (state) => state.setBackgroundColor,
   );
-  const setDefaultSetting = useInteractiveStore(
-    (state) => state.header.setDefaultSetting,
-  );
+  const setDefaultSetting = useHeaderStore((state) => state.setDefaultSetting);
   const { resolvedTheme } = useTheme();
 
   useEffect(() => {

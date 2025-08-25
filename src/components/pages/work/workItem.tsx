@@ -12,7 +12,7 @@ import { cn } from "@/utils/cn";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { Link, useRouter } from "@/i18n/navigation";
-import { useInteractiveStore } from "@/store/interactive";
+import { useBackgroundStore } from "@/store/background";
 import { LuMoveRight } from "react-icons/lu";
 
 interface WorkItemProps {
@@ -230,7 +230,7 @@ const WorkItem = ({
     return () => ctx.revert();
   }, []);
 
-  const setBackgroundImage = useInteractiveStore(
+  const setBackgroundImage = useBackgroundStore(
     (state) => state.setBackgroundImage,
   );
   const [isIntersecting, setIsIntersecting] = useState(false);

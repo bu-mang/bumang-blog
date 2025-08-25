@@ -16,9 +16,9 @@ import { useAuthStore } from "@/store/auth";
 import { BlogItemFallback } from "./blogItem";
 import { PagenationFallback } from "@/components/common/pageNation";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useInteractiveStore } from "@/store/interactive";
 import { useEffect } from "react";
 import { useTheme } from "next-themes";
+import { useHeaderStore } from "@/store/headerState";
 
 interface BlogListViewProps {
   allPosts: null | PaginatedResponseDto<PostListItemType>;
@@ -46,9 +46,7 @@ export default function BlogInner({
   const user = useAuthStore((state) => state.user);
 
   const { resolvedTheme } = useTheme();
-  const setDefaultSetting = useInteractiveStore(
-    (state) => state.header.setDefaultSetting,
-  );
+  const setDefaultSetting = useHeaderStore((state) => state.setDefaultSetting);
   useEffect(() => {
     setDefaultSetting(resolvedTheme ?? "light");
     // eslint-disable-next-line

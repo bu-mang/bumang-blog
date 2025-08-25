@@ -20,10 +20,10 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useInteractiveStore } from "@/store/interactive";
 import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { useAuthStore } from "@/store/auth";
 import { useTheme } from "next-themes";
+import { useHeaderStore } from "@/store/headerState";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,20 +42,16 @@ const NavBar = ({
   nickname,
 }: NavBarProps) => {
   const pathname = usePathname();
-  const headerBackgroundColor = useInteractiveStore(
-    (state) => state.header.backgroundColor,
+  const headerBackgroundColor = useHeaderStore(
+    (state) => state.backgroundColor,
   );
-  const headerBorderBottom = useInteractiveStore(
-    (state) => state.header.borderBottom,
-  );
+  const headerBorderBottom = useHeaderStore((state) => state.borderBottom);
 
   /**
    * @HEADER_ANIMATION
    */
-  const animState = useInteractiveStore((state) => state.header.animState);
-  const setAnimState = useInteractiveStore(
-    (state) => state.header.setAnimState,
-  );
+  const animState = useHeaderStore((state) => state.animState);
+  const setAnimState = useHeaderStore((state) => state.setAnimState);
   useEffect(() => {
     // 애니메이션 실행 컨택스트를 만듦.
     const ctx = gsap.context(() => {
@@ -469,10 +465,8 @@ function ThemeSwitcher({ locale, className }: SwitcherProps) {
 }
 
 function HeaderAnimSwitcher({ locale, className }: SwitcherProps) {
-  const animState = useInteractiveStore((state) => state.header.animState);
-  const setAnimState = useInteractiveStore(
-    (state) => state.header.setAnimState,
-  );
+  const animState = useHeaderStore((state) => state.animState);
+  const setAnimState = useHeaderStore((state) => state.setAnimState);
 
   const [canActivate, setCanActivate] = useState(true);
 

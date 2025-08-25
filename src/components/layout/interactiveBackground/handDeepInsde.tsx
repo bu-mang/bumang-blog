@@ -18,7 +18,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { randomBetween } from "@/utils/createRandomBetween";
 import { cn } from "@/utils/cn";
-import { useInteractiveStore } from "@/store/interactive";
+import { useHeaderStore } from "@/store/headerState";
 
 // 파티클 설정 타입
 interface ParticleConfig {
@@ -85,12 +85,10 @@ const PARALLAX_CONFIG = {
 } as const;
 
 export default function HandDeepInside() {
-  const setBackgroundColor = useInteractiveStore(
-    (state) => state.header.setBackgroundColor,
+  const setBackgroundColor = useHeaderStore(
+    (state) => state.setBackgroundColor,
   );
-  const setDefaultSetting = useInteractiveStore(
-    (state) => state.header.setDefaultSetting,
-  );
+  const setDefaultSetting = useHeaderStore((state) => state.setDefaultSetting);
   useEffect(() => {}, []);
 
   // DOM ref

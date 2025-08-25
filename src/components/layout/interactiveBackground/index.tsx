@@ -2,7 +2,6 @@
 
 import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { usePathname } from "@/i18n/navigation";
-import { useInteractiveStore } from "@/store/interactive";
 import { cn } from "@/utils/cn";
 import { useEffect } from "react";
 import Lenis from "lenis";
@@ -10,10 +9,11 @@ import { ScrollTrigger } from "gsap/all";
 import Ascii3DBackground from "./ascii";
 import HandDeepInside from "./handDeepInsde";
 import WorkBackground from "./work";
+import { useBackgroundStore } from "@/store/background";
 
 export default function InteractiveBackground() {
   const pathname = usePathname();
-  const bgColor = useInteractiveStore((state) => state.backgroundColor);
+  const bgColor = useBackgroundStore((state) => state.backgroundColor);
 
   // 부드러운 스크롤 애니메이션 init
   // /blog/edit은 제외

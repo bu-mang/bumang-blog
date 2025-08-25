@@ -5,26 +5,22 @@ import { SectionBox, SubBox } from "../about/aboutSection";
 import WorkItem from "./workItem";
 import { cn } from "@/utils/cn";
 import { useEffect } from "react";
-import { useInteractiveStore } from "@/store/interactive";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { useTheme } from "next-themes";
 import * as CardImage from "@/assets/works";
 import { StaticImageData } from "next/image";
+import { useHeaderStore } from "@/store/headerState";
 
 gsap.registerPlugin(ScrollTrigger); // 등록되어있지 않으면 등록.
 
 export function WorkInnerInteractive() {
-  const setHeaderBackgroundColor = useInteractiveStore(
-    (state) => state.header.setBackgroundColor,
+  const setHeaderBackgroundColor = useHeaderStore(
+    (state) => state.setBackgroundColor,
   );
-  const setBorderBottom = useInteractiveStore(
-    (state) => state.header.setBorderBottom,
-  );
-  const setDefaultSetting = useInteractiveStore(
-    (state) => state.header.setDefaultSetting,
-  );
+  const setBorderBottom = useHeaderStore((state) => state.setBorderBottom);
+  const setDefaultSetting = useHeaderStore((state) => state.setDefaultSetting);
 
   const { resolvedTheme } = useTheme();
   useEffect(() => {

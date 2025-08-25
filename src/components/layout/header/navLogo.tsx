@@ -8,14 +8,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Bumang, Route53 } from "@/assets";
 import { useRouter } from "@/i18n/navigation";
 import { cn } from "@/utils/cn";
-import { useInteractiveStore } from "@/store/interactive";
 import { useTheme } from "next-themes";
+import { useHeaderStore } from "@/store/headerState";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const NavLogo = () => {
   const router = useRouter();
-  const animState = useInteractiveStore((state) => state.header.animState);
+  const animState = useHeaderStore((state) => state.animState);
   const handleNavigate = () => {
     router.push("/");
   };
@@ -97,8 +97,8 @@ const NavLogo = () => {
     // eslint-disable-next-line
   }, [animState, resizeCountUp]);
 
-  const headerBackgroundColor = useInteractiveStore(
-    (state) => state.header.backgroundColor,
+  const headerBackgroundColor = useHeaderStore(
+    (state) => state.backgroundColor,
   );
 
   return (

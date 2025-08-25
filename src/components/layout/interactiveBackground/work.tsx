@@ -1,13 +1,13 @@
-import { useInteractiveStore } from "@/store/interactive";
 import { cn } from "@/utils/cn";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
 import * as BackgroundImage from "@/assets/works";
+import { useBackgroundStore } from "@/store/background";
 
 export default function WorkBackground() {
-  const bgColor = useInteractiveStore((state) => state.backgroundColor);
-  const bgImage = useInteractiveStore((state) => state.backgroundImage);
-  const { centerText } = useInteractiveStore((state) => state.work);
+  const bgColor = useBackgroundStore((state) => state.backgroundColor);
+  const bgImage = useBackgroundStore((state) => state.backgroundImage);
+  const { centerText } = useBackgroundStore((state) => state.work);
 
   const bgRef = useRef<HTMLDivElement | null>(null);
 
