@@ -285,20 +285,15 @@ export default function HandDeepInside() {
     if (typeof window === "undefined") return;
 
     const handleScale = () => {
-      let finalWidth = ILLUSTRATION_WIDTH;
-      let finalHeight = ILLUSTRATION_HEIGHT;
-
       const scaleX = innerWidth / ILLUSTRATION_WIDTH;
       const scaleY = innerHeight / ILLUSTRATION_HEIGHT;
 
       const scale = Math.min(scaleX, scaleY);
 
-      gsap.context((self) => {
-        gsap.to(".ANIM_ALL", {
-          scaleX: scale,
-          scaleY: scale,
-          transformOrigin: "top center",
-        });
+      gsap.to(".ANIM_ALL", {
+        scaleX: scale,
+        scaleY: scale,
+        transformOrigin: "top center",
       });
     };
 
