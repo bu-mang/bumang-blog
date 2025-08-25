@@ -34,7 +34,7 @@ import { useEditStore } from "@/store/edit";
 import { useMutation } from "@tanstack/react-query";
 import { deletePost } from "@/services/api/blog/edit";
 import { useTranslations } from "next-intl";
-import { useInteractiveStore } from "@/store/background";
+import { useInteractiveStore } from "@/store/interactive";
 import { useTheme } from "next-themes";
 
 interface BlogDetailInnerProps {

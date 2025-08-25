@@ -6,7 +6,7 @@ import {
 } from "@/components/pages/work/workInner";
 import WorkTab from "@/components/pages/work/workTab";
 import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
-import { useInteractiveStore } from "@/store/background";
+import { useInteractiveStore } from "@/store/interactive";
 import { cn } from "@/utils/cn";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";

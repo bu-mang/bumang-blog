@@ -5,7 +5,7 @@ import { SectionBox, SubBox } from "../about/aboutSection";
 import WorkItem from "./workItem";
 import { cn } from "@/utils/cn";
 import { useEffect } from "react";
-import { useInteractiveStore } from "@/store/background";
+import { useInteractiveStore } from "@/store/interactive";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { PATHNAME } from "@/constants/routes/pathnameRoutes";

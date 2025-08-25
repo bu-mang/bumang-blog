@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Bumang, Route53 } from "@/assets";
 import { useRouter } from "@/i18n/navigation";
 import { cn } from "@/utils/cn";
-import { useInteractiveStore } from "@/store/background";
+import { useInteractiveStore } from "@/store/interactive";
 import { useTheme } from "next-themes";
 
 gsap.registerPlugin(ScrollTrigger);

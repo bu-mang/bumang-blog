@@ -16,7 +16,7 @@ import { useAuthStore } from "@/store/auth";
 import { BlogItemFallback } from "./blogItem";
 import { PagenationFallback } from "@/components/common/pageNation";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useInteractiveStore } from "@/store/background";
+import { useInteractiveStore } from "@/store/interactive";
 import { useEffect } from "react";
 import { useTheme } from "next-themes";
 

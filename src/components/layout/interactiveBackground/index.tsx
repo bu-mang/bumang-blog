@@ -2,7 +2,7 @@
 
 import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { usePathname } from "@/i18n/navigation";
-import { useInteractiveStore } from "@/store/background";
+import { useInteractiveStore } from "@/store/interactive";
 import { cn } from "@/utils/cn";
 import { useEffect } from "react";
 import Lenis from "lenis";
@@ -53,6 +53,7 @@ export default function InteractiveBackground() {
           const AMOUNT = 2;
           const RANGE = 10;
           const random = Math.round(Math.random() * RANGE);
+
           if (random > RANGE / AMOUNT) {
             return <Ascii3DBackground />;
           }
@@ -60,7 +61,6 @@ export default function InteractiveBackground() {
           return <HandDeepInside />;
         } else if (process.env.NODE_ENV === "development") {
           return <HandDeepInside />;
-          return <Ascii3DBackground />;
         }
 
       // STATIC RENDERS

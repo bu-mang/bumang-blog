@@ -1,6 +1,6 @@
 "use client";
 
-import { useInteractiveStore } from "@/store/background";
+import { useInteractiveStore } from "@/store/interactive";
 import { cn } from "@/utils/cn";
 import { useTheme } from "next-themes";
 import { useEffect } from "react";

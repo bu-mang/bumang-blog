@@ -12,7 +12,7 @@ import { cn } from "@/utils/cn";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { Link, useRouter } from "@/i18n/navigation";
-import { useInteractiveStore } from "@/store/background";
+import { useInteractiveStore } from "@/store/interactive";
 import { LuMoveRight } from "react-icons/lu";
 
 interface WorkItemProps {

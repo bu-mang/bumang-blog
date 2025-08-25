@@ -1,4 +1,4 @@
-import { useInteractiveStore } from "@/store/background";
+import { useInteractiveStore } from "@/store/interactive";
 import { cn } from "@/utils/cn";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";

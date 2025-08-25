@@ -20,7 +20,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useInteractiveStore } from "@/store/background";
+import { useInteractiveStore } from "@/store/interactive";
 import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { useAuthStore } from "@/store/auth";
 import { useTheme } from "next-themes";
