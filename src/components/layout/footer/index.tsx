@@ -4,7 +4,7 @@ import { cn } from "@/utils/cn";
 import { usePathname } from "@/i18n/navigation";
 import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { useBackgroundStore } from "@/store/background";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import FooterBackgroundSelect from "./footerBackgroundSelect";
 
 const Footer = () => {
@@ -22,9 +22,7 @@ const Footer = () => {
 
   const list = useBackgroundStore((state) => state.home.list);
   const selectedIndex = useBackgroundStore((state) => state.home.selectedIndex);
-  const setSelectedItem = useBackgroundStore(
-    (state) => state.home.setSelectedItem,
-  );
+
   const [indicator, setIndicator] = useState(list[selectedIndex]);
 
   const handleIndicator = (selected: number) => {
