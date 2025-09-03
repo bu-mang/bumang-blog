@@ -21,22 +21,46 @@ class ASCIIEffect {
     this.width = 0;
     this.height = 0;
 
-    // Windows에서는 더 작게
-    const isWindows = navigator.userAgent.indexOf("Windows") > -1;
-
     // ASCII 출력용 DOM 요소 생성
     this.domElement = document.createElement("div");
     this.domElement.style.fontFamily = '"Courier New", monospace';
-    this.domElement.style.fontSize = "8px";
-    this.domElement.style.lineHeight = "8px";
     this.domElement.style.whiteSpace = "pre";
     this.domElement.style.color = "#b4b4b4";
-
-    const isMac = navigator.userAgent.indexOf("Mac") > -1;
-    if (isMac) {
-      this.domElement.style.transform = "scaleX(1.5)"; // 가로만 2배 확대
-    }
     this.domElement.style.transformOrigin = "left top";
+
+    const isWindows = navigator.userAgent.indexOf("Windows") > -1;
+    const isMac = navigator.userAgent.indexOf("Mac") > -1; // 대문자 M
+
+    if (isWindows) {
+      this.domElement.style.fontSize = "6px";
+      this.domElement.style.lineHeight = "4px"; // 줄 간격을 더 좁게
+      this.domElement.style.letterSpacing = "0px";
+      this.domElement.style.transform = "scaleX(1.5) scaleY(0.7)"; // Y축 압축
+      this.domElement.style.fontWeight = "bold";
+      this.domElement.style.textRendering = "geometricPrecision";
+
+      // Windows용 폰트 스무딩 - CSS 속성으로 안전하게 설정
+      this.domElement.style.setProperty("-webkit-font-smoothing", "none");
+      this.domElement.style.setProperty("font-smooth", "never");
+    } else if (isMac) {
+      this.domElement.style.fontSize = "8px";
+      this.domElement.style.lineHeight = "8px";
+      this.domElement.style.letterSpacing = "0px";
+      this.domElement.style.transform = "scaleX(1.5)";
+
+      // macOS용 폰트 스무딩 - CSS 속성으로 안전하게 설정
+      this.domElement.style.setProperty(
+        "-webkit-font-smoothing",
+        "antialiased",
+      );
+      this.domElement.style.setProperty("-moz-osx-font-smoothing", "grayscale");
+    } else {
+      // Linux 등 기타 OS
+      this.domElement.style.fontSize = "7px";
+      this.domElement.style.lineHeight = "6px";
+      this.domElement.style.letterSpacing = "0px";
+      this.domElement.style.transform = "scaleX(1.3) scaleY(0.8)";
+    }
 
     // 렌더 타겟 설정
     this.renderTarget = new THREE.WebGLRenderTarget(
