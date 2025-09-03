@@ -12,7 +12,6 @@ class ASCIIEffect {
   constructor(
     renderer: THREE.WebGLRenderer,
     charSet: string = "█▉▊▋▌▍▎▏ ",
-    // charSet: string = "██▓▓▒▒░░  ",
     resolution: number = 0.15,
   ) {
     this.renderer = renderer;
@@ -21,18 +20,50 @@ class ASCIIEffect {
     this.width = 0;
     this.height = 0;
 
-    // Windows에서는 더 작게
-    const isWindows = navigator.userAgent.indexOf("Windows") > -1;
-
     // ASCII 출력용 DOM 요소 생성
     this.domElement = document.createElement("div");
-    this.domElement.style.fontFamily = '"Courier New", monospace';
-    this.domElement.style.fontSize = "8px";
-    this.domElement.style.lineHeight = "8px";
+
+    // 기본 스타일 설정
+    this.domElement.style.fontFamily =
+      '"Consolas", "Liberation Mono", "Menlo", "Courier New", monospace';
     this.domElement.style.whiteSpace = "pre";
     this.domElement.style.color = "#b4b4b4";
+    this.domElement.style.overflow = "hidden";
+    this.domElement.style.userSelect = "none";
+    const isWindows = navigator.userAgent.indexOf("Windows") > -1;
+    const isMac = navigator.userAgent.indexOf("Mac") > -1;
 
-    this.domElement.style.transform = "scaleX(1.5)"; // 가로만 2배 확대
+    // OS별 최적화된 스타일
+    if (isWindows) {
+      this.domElement.style.fontSize = "6px";
+      this.domElement.style.lineHeight = "6px";
+      this.domElement.style.letterSpacing = "0px";
+      this.domElement.style.transform = "scaleX(1.2)";
+      this.domElement.style.fontWeight = "bold";
+
+      // Windows용 폰트 스무딩 - CSS 속성으로 안전하게 설정
+      this.domElement.style.setProperty("-webkit-font-smoothing", "none");
+      this.domElement.style.setProperty("font-smooth", "never");
+    } else if (isMac) {
+      this.domElement.style.fontSize = "8px";
+      this.domElement.style.lineHeight = "8px";
+      this.domElement.style.letterSpacing = "0px";
+      this.domElement.style.transform = "scaleX(1.5)";
+
+      // macOS용 폰트 스무딩 - CSS 속성으로 안전하게 설정
+      this.domElement.style.setProperty(
+        "-webkit-font-smoothing",
+        "antialiased",
+      );
+      this.domElement.style.setProperty("-moz-osx-font-smoothing", "grayscale");
+    } else {
+      // Linux 등 기타 OS
+      this.domElement.style.fontSize = "7px";
+      this.domElement.style.lineHeight = "7px";
+      this.domElement.style.letterSpacing = "0px";
+      this.domElement.style.transform = "scaleX(1.3)";
+    }
+
     this.domElement.style.transformOrigin = "left top";
 
     // 렌더 타겟 설정
@@ -45,42 +76,63 @@ class ASCIIEffect {
   }
 
   public setSize(width: number, height: number): void {
-    this.width = Math.floor(width * this.resolution);
-    this.height = Math.floor(height * this.resolution);
+    // OS별 해상도 조정
+    const isWindows = navigator.userAgent.indexOf("Windows") > -1;
+    const adjustedResolution = isWindows
+      ? this.resolution * 0.8
+      : this.resolution;
+
+    this.width = Math.floor(width * adjustedResolution);
+    this.height = Math.floor(height * adjustedResolution);
     this.renderTarget.setSize(this.width, this.height);
   }
 
   public render(scene: THREE.Scene, camera: THREE.Camera): void {
-    // --------------------------------------------------------------------
-    // 일반 렌더링 (DOM에 보임)
-    // const renderer = new THREE.WebGLRenderer();
-    // renderer.setSize(x, y);
-    // document.body.appendChild(renderer.domElement); // ← DOM에 추가
-    // renderer.render(scene, camera); // → 화면에 보임
-    // --------------------------------------------------------------------
-
     // 오프스크린에 렌더링
-    // setRenderTarget은 초기는 null이다. 기본 타겟은 domElement다.
-    this.renderer.setRenderTarget(this.renderTarget); // 렌더 타겟을 세팅
-    this.renderer.render(scene, camera); // 렌더
-    this.renderer.setRenderTarget(null); // 렌더 후 렌더타깃 초기화
+    this.renderer.setRenderTarget(this.renderTarget);
+    this.renderer.render(scene, camera);
+    this.renderer.setRenderTarget(null);
 
     // 픽셀 데이터 읽기
-    // 가로 x 세로 x 4 (rgba가 4자리이기 때문)가 들어가는 Array 설정
     const pixels = new Uint8Array(this.width * this.height * 4);
     this.renderer.readRenderTargetPixels(
-      this.renderTarget, // 어떤 가상 캔버스에서
-      0, // X 시작점 (왼쪽 끝)
-      0, // Y 시작점 (아래쪽 끝)
-      this.width, // 가로로 얼마나 읽을지
-      this.height, // 세로로 얼마나 읽을지
-      pixels, // 읽은 데이터를 어디에 저장할지
+      this.renderTarget,
+      0,
+      0,
+      this.width,
+      this.height,
+      pixels,
     );
 
-    // ASCII 변환
-    let ascii: string = "";
-    // three.js 좌표계는 좌측 하단부터여서, y축을 마이너스 방향으로.
+    // let ascii: string = "";
+    // for (let y = this.height - 1; y >= 0; y--) {
+    //   for (let x = 0; x < this.width; x++) {
+    // const i: number = (y * this.width + x) * 4;
+
+    // // R, G, B 값의 평균을 냄
+    // const brightness: number =
+    //   (pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3;
+
+    // // 나누기 255 곱하기 charSet.length로 index를 생성
+    // const charIndex: number = Math.floor(
+    //   (brightness / 255) * (this.charSet.length - 1),
+    // );
+
+    // // 해당하는 index의 문자열을 ascii 결과물에 붙이기
+    // ascii += this.charSet[charIndex];
+    // }
+
+    //   // 한 줄 끝나면 줄바꿈 추가
+    // ascii += "\n";
+    // }
+
+    // this.domElement.textContent = ascii;
+
+    // ASCII 변환 최적화
+    const lines: string[] = [];
+
     for (let y = this.height - 1; y >= 0; y--) {
+      let line = "";
       for (let x = 0; x < this.width; x++) {
         const i: number = (y * this.width + x) * 4;
 
@@ -94,14 +146,13 @@ class ASCIIEffect {
         );
 
         // 해당하는 index의 문자열을 ascii 결과물에 붙이기
-        ascii += this.charSet[charIndex];
+        line += this.charSet[charIndex];
       }
-
-      // 한 줄 끝나면 줄바꿈 추가
-      ascii += "\n";
+      lines.push(line);
     }
 
-    this.domElement.textContent = ascii;
+    // 한 번에 DOM 업데이트 (성능 최적화)
+    this.domElement.textContent = lines.join("\n");
   }
 }
 
