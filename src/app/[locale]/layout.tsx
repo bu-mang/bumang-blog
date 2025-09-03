@@ -96,7 +96,7 @@ export default async function RootLayout({
           <Providers>
             {/* {isGridOn && <Grid />} */}
             <Header />
-            <div className="w-screen">{children}</div>
+            <div className="w-full overflow-x-hidden">{children}</div>
             <InteractiveBackground />
             <Footer />
             <OpenedModals />
