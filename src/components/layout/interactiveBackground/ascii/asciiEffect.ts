@@ -12,6 +12,7 @@ class ASCIIEffect {
   constructor(
     renderer: THREE.WebGLRenderer,
     charSet: string = "█▉▊▋▌▍▎▏ ",
+    // charSet: string = "██▓▓▒▒░░  ",
     resolution: number = 0.15,
   ) {
     this.renderer = renderer;
@@ -28,7 +29,7 @@ class ASCIIEffect {
     this.domElement.style.fontFamily = '"Courier New", monospace';
     this.domElement.style.fontSize = "8px";
     this.domElement.style.lineHeight = "8px";
-    this.domElement.style.whiteSpace = "pre";
+    // this.domElement.style.whiteSpace = "pre";
     this.domElement.style.color = "#b4b4b4";
 
     this.domElement.style.transform = "scaleX(1.5)"; // 가로만 2배 확대
