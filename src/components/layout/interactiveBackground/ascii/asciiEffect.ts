@@ -19,6 +19,10 @@ class ASCIIEffect {
     this.resolution = resolution;
     this.width = 0;
     this.height = 0;
+    const isWindows = navigator.userAgent.indexOf("Windows") > -1;
+    if (isWindows) {
+      this.charSet = "██▓▓▒▒░░  ";
+    }
 
     // ASCII 출력용 DOM 요소 생성
     this.domElement = document.createElement("div");
