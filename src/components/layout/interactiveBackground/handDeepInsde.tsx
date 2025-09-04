@@ -85,12 +85,6 @@ const PARALLAX_CONFIG = {
 } as const;
 
 export default function HandDeepInside() {
-  const setBackgroundColor = useHeaderStore(
-    (state) => state.setBackgroundColor,
-  );
-  const setDefaultSetting = useHeaderStore((state) => state.setDefaultSetting);
-  useEffect(() => {}, []);
-
   // DOM ref
   const idleRef = useRef<HTMLDivElement | null>(null);
 
@@ -357,88 +351,6 @@ export default function HandDeepInside() {
       });
     });
   };
-
-  //   if (!xrayLayerRef.current) return;
-
-  //   const time = performance.now() * 0.001;
-
-  //   // 불안정한 노이즈 생성
-  //   const jitterX = Math.sin(time * 4.2) * 5;
-  //   const jitterY = Math.cos(time * 3.8) * 4;
-  //   // const radiusNoise = Math.sin(time * 5.1) * 12;
-
-  //   const baseRadius = 120;
-  //   // const currentRadius = baseRadius + radiusNoise;
-  //   const currentRadius = baseRadius;
-
-  //   // 폴리곤 기반 지글거리는 마스크 생성
-  //   const createDistortedMask = () => {
-  //     const segments = 32;
-  //     const points = [];
-
-  //     for (let i = 0; i < segments; i++) {
-  //       const angle = (i / segments) * Math.PI * 2;
-
-  //       // 각 점마다 다른 turbulence 시뮬레이션
-  //       // const turbulence1 = Math.sin(time * 3 + angle * 3.5) * 12;
-  //       // const turbulence2 = Math.cos(time * 2.8 + angle * 3) * 10;
-  //       // const turbulence3 = Math.sin(time * 4.2 + angle * 4) * 8;
-
-  //       // const displacement = turbulence1 + turbulence2;
-  //       // const radius = currentRadius + displacement;
-  //       const radius = currentRadius + 100;
-
-  //       const x =
-  //         randomBetween(1, 1.01) * mouseX + jitterX + Math.cos(angle) * radius;
-  //       const y =
-  //         randomBetween(1, 1.01) * mouseY + jitterY + Math.sin(angle) * radius;
-
-  //       points.push(`${x}px ${y}px`);
-  //     }
-
-  //     return `polygon(${points.join(", ")})`;
-  //   };
-
-  //   // 마스크 적용 (clipPath + filter 조합)
-  //   gsap.set(xrayLayerRef.current, {
-  //     clipPath: createDistortedMask(),
-  //     filter: `
-  //       url(#turbulence-displacement)
-  //       contrast(1.5)
-  //       brightness(1.3)
-  //       drop-shadow(0 0 20px rgba(255, 0, 0, 0.8))
-  //       drop-shadow(0 0 30px rgba(255, 255, 0, 0.6))
-  //   `,
-  //   });
-  //   // gsap.set(xrayLayerRef.current, {
-  //   //   // clipPath 제거
-  //   //   clipPath: "none",
-
-  //   //   // 부드러운 그라데이션 마스크 적용
-  //   //   maskImage: `radial-gradient(circle at ${mouseX + jitterX}px ${mouseY + jitterY}px,
-  //   //             black ${200 * 0.4}px,           /* 완전히 보임 */
-  //   //             rgba(0,0,0,0.9) ${200 * 0.6}px, /* 90% 보임 */
-  //   //             rgba(0,0,0,0.6) ${200 * 0.75}px, /* 60% 보임 */
-  //   //             rgba(0,0,0,0.3) ${200 * 0.85}px, /* 30% 보임 */
-  //   //             rgba(0,0,0,0.1) ${200 * 0.95}px, /* 10% 보임 */
-  //   //             transparent ${200}px)` /* 완전히 숨김 */,
-
-  //   //   webkitMaskImage: `radial-gradient(circle at ${mouseX + jitterX}px ${mouseY + jitterY}px,
-  //   //                  black ${200 * 0.4}px,
-  //   //                  rgba(0,0,0,0.9) ${200 * 0.6}px,
-  //   //                  rgba(0,0,0,0.6) ${200 * 0.75}px,
-  //   //                  rgba(0,0,0,0.3) ${200 * 0.85}px,
-  //   //                  rgba(0,0,0,0.1) ${200 * 0.95}px,
-  //   //                  transparent ${200}px)`,
-
-  //   //   filter: `
-  //   //   contrast(1.5)
-  //   //   brightness(1.3)
-  //   //   drop-shadow(0 0 20px rgba(255, 0, 0, 0.8))
-  //   //   drop-shadow(0 0 30px rgba(255, 255, 0, 0.6))
-  //   // `,
-  //   // });
-  // };
 
   // 마우스 위치 변경 시 패럴랙스 업데이트
   useEffect(() => {
