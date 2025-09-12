@@ -40,6 +40,32 @@ export default function Ascii3DLily() {
       const asciiEffect = new ASCIIEffect(renderer);
       threeRef.current.appendChild(asciiEffect.domElement);
 
+      // --------------- 리사이징 핸들러 ---------------
+      let resizeTimeout: NodeJS.Timeout;
+
+      const handleResize = () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          // 1. 카메라 종횡비 업데이트
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+
+          // 2. 렌더러 크기 업데이트
+          renderer.setSize(window.innerWidth, window.innerHeight);
+
+          // 3. ASCIIEffect 크기 업데이트
+          asciiEffect.setSize(window.innerWidth, window.innerHeight);
+        }, 100);
+      };
+
+      // 초기 크기 설정
+      handleResize();
+
+      // 리사이즈 이벤트 리스너 추가
+      window.addEventListener("resize", handleResize);
+
+      // ---------------------------------------------
+
       const ambientLight = new THREE.AmbientLight(0x404040, 0.2);
       const directionalLight = new THREE.DirectionalLight(0xffffff, 2.5);
       directionalLight.position.set(5, 15, 10);
@@ -77,17 +103,53 @@ export default function Ascii3DLily() {
       controls.enableRotate = true; // 회전 허용
       controls.enablePan = false; // 패닝 허용
 
+      let animationId: number;
+
       // 애니메이션 루프에서 업데이트 필요
       function animate() {
         if (lily) {
-          lily.rotation.y += 0.0025; // 회전 애니메이션
+          lily.rotation.y += 0.0025;
         }
-
         controls.update();
         asciiEffect.render(scene, camera);
-        requestAnimationFrame(animate);
+        animationId = requestAnimationFrame(animate);
       }
       animate();
+
+      return () => {
+        // 1. 애니메이션 중지
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+        }
+
+        // 2. Controls 해제
+        controls.dispose();
+
+        // 3. Renderer 해제
+        renderer.dispose();
+
+        // 4 이벤트 리스너 해제
+        window.removeEventListener("resize", handleResize);
+
+        // 5. 디바운스 타이머 해제
+        clearTimeout(resizeTimeout);
+
+        // 6. ASCIIEffect 해제
+        if (asciiEffect.domElement.parentNode) {
+          asciiEffect.domElement.parentNode.removeChild(asciiEffect.domElement);
+        }
+
+        // 5. Scene 정리
+        scene.traverse((object) => {
+          if (object instanceof THREE.Mesh) {
+            object.geometry.dispose();
+            if (object.material instanceof THREE.Material) {
+              object.material.dispose();
+            }
+          }
+        });
+        scene.clear();
+      };
     }
   }, []);
 
