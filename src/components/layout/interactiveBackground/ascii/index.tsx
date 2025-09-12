@@ -14,17 +14,12 @@ export default function Ascii3DLily() {
     if (threeRef.current && typeof window !== "undefined") {
       // 1. Renderer 만들기 (화가)
       const renderer = new THREE.WebGLRenderer();
-      // renderer.setSize(window.innerWidth, window.innerHeight);
 
-      // 2. DOM에 canvas 추가
-      // threeRef.current.appendChild(renderer.domElement);
-
-      // 3. Scene 만들기 (3D공간)
+      // 2. Scene 만들기 (3D공간)
       const scene = new THREE.Scene();
-      // scene.background = new THREE.Color("red");
       scene.background = new THREE.Color(0xffffff); // 흰색 배경
 
-      // 4. Camera 만들기 (관객 시점)
+      // 3. Camera 만들기 (관객 시점)
       // OrthographicCamera: 도면 카메라
       // PerspectiveCamera: 원근 카메라 (실제 현실 카메라)
       const camera = new THREE.PerspectiveCamera(
@@ -34,7 +29,7 @@ export default function Ascii3DLily() {
         1000, // Far Plane (먼 거리)
       );
 
-      // 5. 카메라 위치 조정
+      // 4. 카메라 위치 조정
       camera.position.z = 10; // 카메라를 뒤로 5만큼 빼기
 
       const asciiEffect = new ASCIIEffect(renderer);
