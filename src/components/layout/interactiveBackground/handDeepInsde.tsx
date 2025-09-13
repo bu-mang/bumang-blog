@@ -12,13 +12,13 @@ import {
   CharacterInner2,
   CharacterInner3,
   cloud,
-  cloudRed,
+  // cloudRed,
 } from "@/assets/play";
 import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
+import gsap, { clamp } from "gsap";
 import { randomBetween } from "@/utils/createRandomBetween";
 import { cn } from "@/utils/cn";
-import { useHeaderStore } from "@/store/header";
+import CustomCursor from "../customCursor";
 
 // 파티클 설정 타입
 interface ParticleConfig {
@@ -198,6 +198,7 @@ export default function HandDeepInside() {
     };
   }, []);
 
+  const timeRef = useRef(0);
   const updateXrayMask = (
     mouseX: number,
     mouseY: number,
@@ -205,13 +206,21 @@ export default function HandDeepInside() {
   ) => {
     if (!xrayLayerRef.current) return;
 
-    const time = performance.now() * 0.001;
-    const jitterX = Math.sin(time * 4.2) * 3;
-    const jitterY = Math.cos(time * 3.8) * 2;
-    const radiusNoise = Math.sin(time * 5.1) * 8;
-    const baseRadius = 120;
+    // performance.now(): 페이지 로딩 시점부터 지금까지의 시간
+    const sec = performance.now() * 0.001;
     const clicked = buttonClicked ? 1 : 0;
-    const currentRadius = (baseRadius + radiusNoise) * clicked;
+    timeRef.current = gsap.utils.clamp(
+      0,
+      120,
+      clicked ? timeRef.current + 1 : timeRef.current - 1,
+    );
+
+    const jitterX = Math.sin(sec * 4.2) * 3 * clicked;
+    const jitterY = Math.cos(sec * 3.8) * 2 * clicked;
+    const radiusNoise = Math.sin(sec * 5.1) * 8 * clicked;
+
+    const baseRadius = timeRef.current;
+    const currentRadius = baseRadius + radiusNoise;
 
     // 표면에 구멍 뚫기 (마우스 위치에 투명 구멍)
     gsap.set(xrayLayerRef.current, {
@@ -382,13 +391,21 @@ export default function HandDeepInside() {
   return (
     <div
       ref={idleRef}
-      className={cn(
-        "fixed left-0 top-0 h-screen w-screen select-none",
-        mousePosition.leftClicked ? "cursor-none" : "cursor-zoom-out",
-      )}
+      className={cn("fixed left-0 top-0 h-screen w-screen select-none")}
     >
       {/* SVG 필터 추가 - 반드시 먼저 렌더링 */}
       <TurbulenceFilter />
+      <CustomCursor
+        targetRef={idleRef}
+        cursorSpec={{
+          width: 32,
+          height: 32,
+          delay: 0.1,
+          imageUrl: "/magnifier-cursor.svg",
+        }}
+        isFollowerExist={false}
+        mousePosition={mousePosition}
+      />
 
       {/* 파티클 */}
       <div ref={totalParticlesRef} className="fixed z-30 h-screen w-screen" />
@@ -426,7 +443,6 @@ export default function HandDeepInside() {
 
             {/* 손과 캐릭터 (손목 제외) */}
             <div className="ANIM_HAND absolute right-[300px] top-0 h-[894px] w-[1003px] will-change-transform">
-              {/* <div className="absolute left-0 top-0 h-1/4 w-full bg-blue-500" /> */}
               <Image
                 src={HandInner}
                 alt="Hand"
