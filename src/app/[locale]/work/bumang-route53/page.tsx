@@ -26,6 +26,7 @@ import Title from "@/components/pages/work/workDetail/title";
 import BackgroundWrapper from "@/components/pages/work/workDetail/backgroundWrapper";
 
 import bannerImage from "@/assets/works/compressed/bumangRoute53.webp";
+import BackToList from "@/components/pages/work/workDetail/backToList";
 
 export default function AnttimeApp() {
   const locale = useLocale() as "ko" | "en";
@@ -95,7 +96,7 @@ export default function AnttimeApp() {
                         <Badge
                           key={stack.label}
                           variant="outline"
-                          className={stack.colorClass}
+                          className={cn("text-black", stack.colorClass)}
                         >
                           {stack.label}
                         </Badge>
@@ -211,18 +212,10 @@ export default function AnttimeApp() {
       </div>
 
       {/* TODO: RELATED WORKS */}
-      <div className="flex w-full flex-col items-center justify-center border-t pt-10">
-        <span className="text-2xl font-medium text-gray-400">
-          Thanks for Reading
-        </span>
-        <Link
-          className="group relative z-10 col-span-4 flex translate-y-4 items-center gap-2 text-gray-200 transition-all hover:text-gray-500"
-          href={PATHNAME.WORK}
-        >
-          <ArrowLeft size={14} className="group-hover:animate-arrow-back" />
-          <span>{TARGET_LANGUAGE.backToList}</span>
-        </Link>
-      </div>
+      <BackToList
+        href={PATHNAME.WORK}
+        backToListLabel={TARGET_LANGUAGE.backToList}
+      />
     </main>
   );
 }

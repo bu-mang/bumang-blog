@@ -30,7 +30,7 @@ export const BUMANG_ROUTE53_KO = {
           { label: "TypeORM", colorClass: "bg-yellow-100" },
           { label: "Postgresql", colorClass: "bg-rose-100" },
           { label: "Docker/DockerCompose", colorClass: "bg-pink-100" },
-          { label: "AWS EC2", colorClass: "" },
+          { label: "AWS EC2", colorClass: "bg-emerald-100" },
           { label: "AWS S3", colorClass: "bg-red-50" },
         ],
       },

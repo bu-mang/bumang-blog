@@ -24,7 +24,7 @@ export const ANTTIME_SWAP_KO = {
         value: [
           { label: "Next.js", colorClass: "bg-gray-10" },
           { label: "Tailwind", colorClass: "bg-blue-50" },
-          { label: "WAGMI", colorClass: "" },
+          { label: "WAGMI", colorClass: "bg-emerald-50" },
           { label: "Gsap", colorClass: "bg-green-50" },
           { label: "Zustand", colorClass: "bg-rose-100" },
           { label: "Tanstack Query", colorClass: "bg-orange-50" },

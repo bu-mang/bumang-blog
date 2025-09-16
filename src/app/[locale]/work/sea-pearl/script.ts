@@ -26,7 +26,7 @@ export const ANTTIME_APP_KO = {
           { label: "Zustand", colorClass: "bg-rose-100" },
           { label: "Telegram API", colorClass: "bg-neutral-100" },
           { label: "Tailwind", colorClass: "bg-blue-50" },
-          { label: "React-Virtuoso", colorClass: "" },
+          { label: "React-Virtuoso", colorClass: "bg-emerald-100" },
           { label: "Suspensive", colorClass: "bg-slate-100" },
         ],
       },

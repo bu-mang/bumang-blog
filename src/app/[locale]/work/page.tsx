@@ -71,6 +71,9 @@ export default function Work() {
   }, []);
 
   // 페이지 컴포넌트 언마운트 시 배경 이미지 클린 업
+  const setBackgroundColor = useBackgroundStore(
+    (state) => state.setBackgroundColor,
+  );
   const setBackgroundImage = useBackgroundStore(
     (state) => state.setBackgroundImage,
   );
@@ -85,8 +88,9 @@ export default function Work() {
     return () => {
       setCenterText(false);
       setBackgroundImage(null);
+      setBackgroundColor("bg-background");
     };
-  }, [focusedTab, setCenterText, setBackgroundImage]);
+  }, [focusedTab, setCenterText, setBackgroundImage, setBackgroundColor]);
 
   return (
     <main

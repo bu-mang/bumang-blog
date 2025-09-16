@@ -25,7 +25,7 @@ export const PERCENT_HOTEL_KO = {
           { label: "Vite", colorClass: "bg-yellow-100" },
           { label: "Zustand", colorClass: "bg-rose-100" },
           { label: "Styled Components", colorClass: "bg-pink-100" },
-          { label: "PWA", colorClass: "" },
+          { label: "PWA", colorClass: "bg-emerald-100" },
           { label: "Firebase Cloud Message(FCM)", colorClass: "bg-red-50" },
           { label: "Github Action", colorClass: "bg-slate-100" },
           { label: "MSW", colorClass: "bg-neutral-100" },

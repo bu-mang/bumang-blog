@@ -25,7 +25,7 @@ export const ANTTIME_APP_KO = {
           { label: "Style Sheet", colorClass: "bg-yellow-100" },
           { label: "Zustand", colorClass: "bg-rose-100" },
           { label: "React Native Reanimated ", colorClass: "bg-pink-100" },
-          { label: "React Native IAP", colorClass: "" },
+          { label: "React Native IAP", colorClass: "bg-emerald-100" },
           { label: "React Native Firebase", colorClass: "bg-red-50" },
           { label: "Tanstack Query", colorClass: "bg-slate-100" },
           { label: "React Native Code Push", colorClass: "bg-neutral-100" },
