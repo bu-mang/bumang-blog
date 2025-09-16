@@ -412,9 +412,9 @@ export default function HandDeepInside() {
 
       {/* 전체 씬 (이면) */}
       <div className="fixed left-0 top-0 z-20 h-screen w-screen">
-        {/* 배경과 콘텐츠를 하나의 div 안에 */}
+        {/* 이면 배경 */}
         <div
-          className="absolute left-0 top-0 h-screen w-screen"
+          className="absolute h-screen w-screen"
           style={{
             backgroundImage: `url(${cloud.src})`,
             backgroundSize: "cover",
@@ -426,7 +426,7 @@ export default function HandDeepInside() {
         {/* 이면 콘텐츠 */}
         <div className="ANIM_CONTAINER absolute left-0 top-0 z-10 flex h-screen w-screen justify-center">
           <div
-            className="ANIM_ALL absolute -top-10 left-0 right-0 mx-auto h-fit w-fit"
+            className="ANIM_ALL absolute -top-10 h-fit w-fit"
             style={{
               width: ILLUSTRATION_WIDTH,
               height: ILLUSTRATION_HEIGHT,
@@ -476,7 +476,7 @@ export default function HandDeepInside() {
         {/* 표면 콘텐츠 */}
         <div className="ANIM_CONTAINER absolute left-0 top-0 z-10 flex h-screen w-screen justify-center">
           <div
-            className="ANIM_ALL absolute -top-10 left-0 right-0 mx-auto h-fit w-fit"
+            className="ANIM_ALL absolute -top-10 mx-auto h-fit w-fit"
             style={{
               width: ILLUSTRATION_WIDTH,
               height: ILLUSTRATION_HEIGHT,
