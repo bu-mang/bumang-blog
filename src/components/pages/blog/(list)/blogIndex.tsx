@@ -15,6 +15,7 @@ const BlogIndex = ({ onStart }: BlogIndexProps) => {
   const observer = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
+    // 글의 h1, h2, h3 태그 파싱
     const headingElements = Array.from(document.querySelectorAll("h1, h2, h3"))
       .filter((el) => el.id) // id 없는 요소 제외
       .map((el) => ({
@@ -42,6 +43,22 @@ const BlogIndex = ({ onStart }: BlogIndexProps) => {
     return () => observer.current?.disconnect();
   }, [onStart]);
 
+  const [isVisible, setIsVisible] = useState(true); // 가시성 상태 추가
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset;
+      const documentHeight = document.documentElement.scrollHeight;
+      const windowHeight = window.innerHeight;
+
+      // 하단 30% 영역에 도달했는지 확인
+      const scrollPercentage = (scrollTop + windowHeight) / documentHeight;
+      setIsVisible(scrollPercentage < 0.8); // 80% 지점까지만 보이기
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const handleScrollTo = (id: string) => {
     const element = document.getElementById(id);
     if (!element) return;
@@ -50,7 +67,12 @@ const BlogIndex = ({ onStart }: BlogIndexProps) => {
   };
 
   return (
-    <div className="fixed top-[360px] -z-10 ml-10 flex w-full flex-col gap-2.5 border-l-[2px] pr-10">
+    <div
+      className={cn(
+        "fixed top-[360px] -z-10 ml-10 flex w-full flex-col gap-2.5 border-l-[2px] pr-10",
+        isVisible ? "opacity-100" : "opacity-0",
+      )}
+    >
       {headings.map((heading) => (
         <ButtonBase
           key={heading.id}
