@@ -69,7 +69,7 @@ const BlogIndex = ({ onStart }: BlogIndexProps) => {
   return (
     <div
       className={cn(
-        "fixed top-[360px] -z-10 ml-10 flex w-full flex-col gap-2.5 border-l-[2px] pr-10",
+        "fixed top-[360px] -z-10 ml-10 flex w-full flex-col gap-2.5 border-l-[2px] pr-10 transition-opacity duration-300 ease-out",
         isVisible ? "opacity-100" : "opacity-0",
       )}
     >
