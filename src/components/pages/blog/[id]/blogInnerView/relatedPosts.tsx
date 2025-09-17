@@ -85,7 +85,7 @@ function RelatedAndAdjacentPostInner({ id }: RelatedPostInnerProps) {
 
   return (
     <>
-      <div className="col-span-full mt-16 grid grid-cols-2 border-t py-9 md:px-9">
+      <div className="col-span-full mt-16 grid grid-cols-2 border-t bg-background py-9 md:px-9">
         {/* 이전 */}
         {adjacentPosts.previous && (
           <Link
@@ -124,7 +124,7 @@ function RelatedAndAdjacentPostInner({ id }: RelatedPostInnerProps) {
       </div>
 
       {/* 이 카테고리의 다른 글 */}
-      <div className="col-start-1 col-end-12 grid grid-cols-9 gap-x-[1.5vw] gap-y-8">
+      <div className="col-start-1 col-end-12 grid grid-cols-9 gap-x-[1.5vw] gap-y-8 bg-background">
         <div className="col-span-9 flex justify-center gap-2 pb-8 text-2xl font-semibold text-gray-900">
           <span>{t("relatedPost")}</span>
         </div>

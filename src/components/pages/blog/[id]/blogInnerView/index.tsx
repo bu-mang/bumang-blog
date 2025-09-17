@@ -206,7 +206,7 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
   return (
     <>
       {/* 본문 ARTICLE */}
-      <div className="col-start-1 col-end-12 mb-10 flex h-fit flex-col justify-center gap-x-[1.5vw] lg:col-start-2 lg:col-end-10 xl:col-start-3 xl:col-end-9">
+      <div className="col-start-1 col-end-12 mb-10 flex h-fit flex-col justify-center gap-x-[1.5vw] lg:col-start-3 lg:col-end-9 xl:col-start-3 xl:col-end-9">
         <TagWrapper as="collapsible" align="center">
           {post?.tags.length ? (
             post.tags.map((tag) => (
@@ -231,7 +231,6 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
             className="bg-gray-100 object-cover object-top"
             priority
             fill
-            placeholder="blur"
           />
         </div>
 
@@ -302,7 +301,7 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
       </div>
 
       {/* 목차 */}
-      <div className="col-start-9 col-end-11">
+      <div className="relative col-start-9 col-end-11">
         <BlogIndex onStart={indexParsed} />
       </div>
 
