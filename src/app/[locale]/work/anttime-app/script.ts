@@ -4,6 +4,12 @@ export const SECTION_PUSH_SKIN_UPDATE = "SECTION_PUSH_SKIN_UPDATE";
 export const SECTION_RN_UPDATE = "SECTION_RN_UPDATE";
 export const SECTION_DEEPLINK_UPDATE = "SECTION_DEEPLINK_UPDATE";
 
+import attApp_anim from "@/assets/workDetails/anttimeApp/attApp_anim.gif";
+import attApp_buildType from "@/assets/workDetails/anttimeApp/attApp_buildType.png";
+import attApp_referral from "@/assets/workDetails/anttimeApp/attApp_referral.png";
+import attApp_skin from "@/assets/workDetails/anttimeApp/attApp_skin.png";
+import attApp_upgrade from "@/assets/workDetails/anttimeApp/attApp_upgrade.png";
+
 export const ANTTIME_APP_KO = {
   backToList: "목록으로 돌아가기",
   left: {
@@ -112,7 +118,7 @@ export const ANTTIME_APP_KO = {
         },
       ],
 
-      image: "",
+      image: attApp_buildType,
     },
     {
       title: "복잡한 채굴 애니메이션 구현",
@@ -131,7 +137,7 @@ export const ANTTIME_APP_KO = {
         },
       ],
 
-      image: "",
+      image: attApp_anim,
     },
     {
       title: "신체 부위 별 스킨 업데이트",
@@ -150,7 +156,7 @@ export const ANTTIME_APP_KO = {
         },
       ],
 
-      image: "",
+      image: attApp_skin,
     },
     {
       title: "React Native 버전 업데이트",
@@ -169,7 +175,7 @@ export const ANTTIME_APP_KO = {
         },
       ],
 
-      image: "",
+      image: attApp_upgrade,
     },
     {
       title: "딥링크 구현",
@@ -187,55 +193,62 @@ export const ANTTIME_APP_KO = {
         },
       ],
 
-      image: "",
+      image: attApp_referral,
     },
   ],
 };
-
 export const ANTTIME_APP_EN = {
-  backToList: "Back to List",
+  backToList: "Back to list",
   left: {
-    badge: ["Total", "2nd", "in", "Yanolja Tech School", "Graduate"],
+    badge: ["Google Play", "800K downloads", "Web3 point-mining app"],
     summary: {
-      title: "Summary",
+      title: "Project Summary",
       period: {
-        label: "Period",
-        value: "24.02.02. - 24.02.27.",
+        label: "Start Date",
+        value: "24.04.15.",
       },
       position: {
-        label: "Position",
-        value: "Frontend",
+        label: "Role",
+        value: "Frontend (cross-platform app development)",
       },
       techStack: {
         label: "Tech Stack",
         value: [
-          { label: "React", colorClass: "bg-blue-100" },
-          { label: "Vite", colorClass: "bg-yellow-100" },
+          { label: "React Native", colorClass: "bg-blue-100" },
+          { label: "Style Sheet", colorClass: "bg-yellow-100" },
           { label: "Zustand", colorClass: "bg-rose-100" },
-          { label: "Styled Components", colorClass: "bg-pink-100" },
-          { label: "PWA", colorClass: "" },
-          { label: "Firebase Cloud Message(FCM)", colorClass: "bg-red-50" },
-          { label: "Github Action", colorClass: "bg-slate-100" },
-          { label: "MSW", colorClass: "bg-neutral-100" },
+          { label: "React Native Reanimated", colorClass: "bg-pink-100" },
+          { label: "React Native IAP", colorClass: "bg-emerald-100" },
+          { label: "React Native Firebase", colorClass: "bg-red-50" },
+          { label: "TanStack Query", colorClass: "bg-slate-100" },
+          { label: "React Native CodePush", colorClass: "bg-neutral-100" },
         ],
       },
       team: {
         label: "Team",
         value: [
-          { role: "Front", amount: 5 },
-          { role: "Back", amount: 5 },
-          { role: "PM", amount: 4 },
+          { role: "Frontend", amount: 1 },
+          { role: "Backend", amount: 1 },
+          { role: "PM", amount: 1 },
           { role: "Design", amount: 1 },
         ],
       },
       relatedLink: {
         label: "Related Links",
         value: [
-          { name: "Service", value: "https://percenthotel.web.app/" },
-          { name: "Github", value: "https://github.com/SCBJ-7/SCBJ-FE" },
+          {
+            name: "Android",
+            value:
+              "https://play.google.com/store/apps/details?id=net.anttime.app",
+          },
+          {
+            name: "iOS",
+            value: "https://apps.apple.com/kr/app/anttime/id6449239746?l=en-GB",
+          },
+          { name: "Official", value: "https://anttime.net/" },
         ],
         testServiceAccount: {
-          title: "Test Service Account",
+          title: "Test Account",
           email: "Email",
           password: "Password",
         },
@@ -243,34 +256,34 @@ export const ANTTIME_APP_EN = {
     },
   },
   right: {
-    title: "Trade non-refundable accommodations!",
-    desc: "ANTTIME is a blockchain-based T2E(Time-to-Earn) project that allows you to monetize the absolute asset of time alongside your ant friends.Within this time, you can engage in various economic activities such as creation, ownership, and revenue generation in the metaverse. Additionally, you can become a Node Validator and directly participate in the blockchain. Make your time more valuable with ANTTIME.",
+    title: "When ANTs Mine, TIME Shine.",
+    desc: "ANTTIME is a blockchain-based T2E (Time-to-Earn) project that lets you monetize time as an asset. Within the TIME ecosystem, you can create, own, and generate revenue through various economic activities. You can also participate directly in the blockchain as a node validator. Make your time more valuable with ANTTIME.",
     navigation: {
       title: "Responsibilities",
       value: [
         {
-          title: "Main Page",
-          desc: "Custom carousel development",
+          title: "Separate production and test environments",
+          desc: "Android flavors and iOS scheme separation",
           href: SECTION_ENV_INTERGRATION,
         },
         {
-          title: "Seller Registration Page",
-          desc: "Complex business logic exception handling",
+          title: "High-performance mining animation",
+          desc: "Coordinate-based animations with react-native-reanimated",
           href: SECTION_ANIM_UPDATE,
         },
         {
-          title: "Notification Page",
-          desc: "FCM notification implementation",
+          title: "Per-body-part skin updates",
+          desc: "Holiday-themed skin release events",
           href: SECTION_PUSH_SKIN_UPDATE,
         },
         {
-          title: "React SEO Optimization",
-          desc: "LightHouse SEO score from 77 to 100 points",
+          title: "React Native version upgrade",
+          desc: "RN 0.68 → 0.74",
           href: SECTION_RN_UPDATE,
         },
         {
-          title: "Frontend Team Leader",
-          desc: "Team management",
+          title: "Deep link implementation",
+          desc: "Using Play Store Referral API",
           href: SECTION_DEEPLINK_UPDATE,
         },
       ],
@@ -278,122 +291,96 @@ export const ANTTIME_APP_EN = {
   },
   details: [
     {
-      title: "Main Page",
-      titleDesc: "Custom carousel development",
+      title: "Separate production and test environments",
+      titleDesc: "Android flavors and iOS scheme separation",
       id: SECTION_ENV_INTERGRATION,
 
       list: [
         {
-          subtitle: "• Slide animation implementation",
+          subtitle: "• Separate production and development environments",
           desc: [
-            "Developed useCarouselSize hook so that when the width value of the parent container changes according to the Resize event, the sliding x value also changes",
-            "Calculated the difference between the pageX coordinate value of the MouseDown event and the pageX coordinate value of the mouseUp event to derive the delta (change amount) value. → Implemented to move to the next slide when the change value exceeds a certain value",
-            "Implemented infinite loop slide animation every 3 seconds using useEffect and SetInterval. Implemented pause by detecting MouseEnter and MouseLeave events. Memory cleanup by releasing setTimeout when leaving the page with cleanup function",
-          ],
-        },
-        {
-          subtitle:
-            "• Providing the same user experience in mobile and PC environments",
-          desc: [
-            "Used both TouchEvent and MouseEvent to make carousel animation draggable in both mobile and PC environments.",
-            "Canceled mouse events when touch events occur to prevent unintended clicks",
+            "Configure Firestore for each environment and set up matching environment variable files.",
+            "Use Xcode build schemes (iOS) and Android flavors to apply environment-specific react-native-firebase configs during native builds.",
           ],
         },
       ],
 
-      image: "",
+      image: attApp_buildType,
     },
     {
-      title: "Seller Registration Page",
-      titleDesc: "Complex business logic and exception handling",
+      title: "Complex mining animation",
+      titleDesc: "Coordinate-based timeline animation",
       id: SECTION_ANIM_UPDATE,
 
       list: [
         {
           subtitle:
-            "• Handling complex business logic exceptions with custom hooks",
+            "• Split the original Lottie animation so each body part’s animation runs independently",
           desc: [
-            "Developed custom hooks to determine whether it is possible to proceed to the next process by considering various business logics such as transfer 1st price, 2nd price setting status, 2nd price time setting, 2nd price setting, account registration status, Yanolja authentication status, terms agreement status, etc.",
-          ],
-        },
-        {
-          subtitle:
-            "• Redirect to payment method registration page when there is no payment method, then record writing status upon return",
-          desc: [
-            "When account registration is not done, it was necessary to remember the current writing status, go through the account connection flow, and then return",
-            "Implemented by staying on the current page and only replacing the component of the payment method registration page. This preserved all previously entered states",
-            "Upon return, the state is alive but problems such as the browser's checkbox check status being unchecked occurred → Responded and resolved with a hook that restores according to the current state status when switching pages",
+            "The original Lottie approach couldn’t cover the combinatorial number of skin variants. To swap avatars by body part, we implemented per-part animations.",
+            "Used react-native-reanimated to define per-part animations and aligned timings with timeline features.",
+            "When the app goes to background or leaves the animation page, clean up timelines and switch the character to an idle state.",
           ],
         },
       ],
 
-      image: "",
+      image: attApp_anim,
     },
     {
-      title: "Notification Page",
-      titleDesc: "Firebase Cloud Message notification implementation",
+      title: "Per-body-part skin updates",
+      titleDesc: "Holiday-themed skin releases",
       id: SECTION_PUSH_SKIN_UPDATE,
 
       list: [
         {
           subtitle:
-            "• Implemented push notifications in Android, iOS, and PWA browsers",
+            "• Built a Skin page where users can purchase with in-app currency",
           desc: [
-            "Created FCM token initialization logic as a custom hook for use during login",
-            "Background push notification reception through service worker",
-            "Frontend receives push notifications when backend sends property transaction success or check-in 7 days, 1 day before push notifications",
+            "After splitting animations by body part, added a skin shop so users can swap skins using in-app currency.",
+            "After an in-app purchase, equipping replaces only the targeted part while other skins remain.",
+            "Laid the groundwork for seasonal and holiday skin release events.",
           ],
         },
       ],
 
-      image: "",
+      image: attApp_skin,
     },
     {
-      title: "React SEO Optimization",
-      titleDesc: "LightHouse SEO optimization",
+      title: "React Native version upgrade",
+      titleDesc: "RN 0.68 → 0.74",
       id: SECTION_RN_UPDATE,
 
       list: [
         {
           subtitle:
-            "• Implemented server-side pre-rendering even in React/Vite environment",
+            "• Addressed discontinued third-party support due to an outdated RN version",
           desc: [
-            "Rendered dynamic metadata to browser with React Helmet library",
-            "Implemented SSG-style metadata injection in React with React Snap library",
-            "LightHouse SEO score improved from 77 points → 100 points",
+            "New libraries often dropped support for RN 0.68, frequently forcing downgrades.",
+            "Used React Native Upgrade Helper to move from 0.68 to 0.74 and updated native code (removed Flipper, configured Fabric, updated iOS/Android config files).",
+            "Updated third-party library setups to match the new RN version.",
           ],
         },
       ],
 
-      image: "",
+      image: attApp_upgrade,
     },
     {
-      title: "Development Team Management",
-      titleDesc:
-        "Achieved 2nd place in final project by refining completeness and teamwork",
+      title: "Deep link implementation",
+      titleDesc: "Using Play Store Referral API",
       id: SECTION_DEEPLINK_UPDATE,
 
       list: [
         {
-          subtitle: "• Setting development team rules",
+          subtitle: "• Team rules",
           desc: [
-            "Shared work details through daily scrum every morning",
-            "Code review must be done by everyone before merge is possible. Encouraged to look at code carefully and leave something rather than just saying 'Good work.'",
-          ],
-        },
-        {
-          subtitle:
-            "• Dealing with team member departure in the middle of the project",
-          desc: [
-            "In the middle of the project, 2 team members left for interview preparation, which caused the remaining team members to lose morale",
-            "Contacted the 2 departed members to understand what parts they were developing specifically and what parts were not completed, then distributed tasks among the remaining members",
-            "To prevent the development tempo from dropping, made code reviews even more detailed and created a culture of checking PRs within 3 hours for quick feedback. Also spread a culture of praising good points.",
-            "As a result, the team member with the best performance among the team members mentioned during retrospective that the good team atmosphere helped them stay motivated until the end",
+            "Developed deep links that redirect to the appropriate store based on the user’s OS.",
+            "On first open after install, automatically extract referral query strings and prefill the referral code.",
+            "Because Firebase Dynamic Links support is being discontinued, integrated deep links with the Google Play Install Referrer API to include the referral code.",
           ],
         },
       ],
 
-      image: "",
+      image: attApp_referral,
     },
   ],
 };

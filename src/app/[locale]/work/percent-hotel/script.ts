@@ -5,10 +5,8 @@ export const SECTION_SEO = "SECTION_SEO";
 export const SECTION_TEAM_LEADER = "SECTION_TEAM_LEADER";
 
 import ph_2nd from "@/assets/workDetails/percentHotel/ph_2nd.jpg";
-import ph_alarm from "@/assets/workDetails/percentHotel/ph_alarm.png";
 import ph_alarm_ios from "@/assets/workDetails/percentHotel/ph_alarm_ios.gif";
 import ph_carousel from "@/assets/workDetails/percentHotel/ph_carousel.gif";
-import ph_post from "@/assets/workDetails/percentHotel/ph_post.gif";
 import ph_post_price from "@/assets/workDetails/percentHotel/ph_post_price.gif";
 import ph_seo from "@/assets/workDetails/percentHotel/ph_seo.png";
 
