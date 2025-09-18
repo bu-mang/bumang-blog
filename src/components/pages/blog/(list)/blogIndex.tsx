@@ -66,7 +66,7 @@ const BlogIndex = ({ onStart }: BlogIndexProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const [topMargin, setTopMargin] = useState(0);
+  const [marginBottom, setMarginBottom] = useState(0);
   const containerRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     if (!containerRef.current) return;
@@ -74,10 +74,17 @@ const BlogIndex = ({ onStart }: BlogIndexProps) => {
     const resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
         const { height } = entry.contentRect;
-        console.log("Height:", height);
-        if (height > 0) {
+
+        console.log(height, "height");
+
+        if (height <= 500 && height > 0) {
           const targetMargin = (window.innerHeight - height) / 2;
-          setTopMargin(targetMargin);
+          setMarginBottom(targetMargin);
+        }
+
+        if (height > 500) {
+          const targetMargin = 50;
+          setMarginBottom(targetMargin);
         }
       }
     });
@@ -91,10 +98,10 @@ const BlogIndex = ({ onStart }: BlogIndexProps) => {
     <div
       ref={containerRef}
       className={cn(
-        "fixed -z-10 ml-10 flex w-full flex-col gap-2.5 border-l-[2px] pr-10 transition-opacity duration-300 ease-out",
+        "fixed ml-10 flex w-full flex-col gap-2.5 border-l-[2px] pr-10 transition-opacity duration-300 ease-out",
         isVisible ? "opacity-100" : "opacity-0",
       )}
-      style={{ top: topMargin }}
+      style={{ bottom: marginBottom }}
     >
       {headings.map((heading) => (
         <ButtonBase
