@@ -28,6 +28,8 @@ import BackgroundWrapper from "@/components/pages/work/workDetail/backgroundWrap
 
 import BannerImage from "@/assets/works/compressed/percentHotel.webp";
 import BackToList from "@/components/pages/work/workDetail/backToList";
+import { useEffect } from "react";
+import { useHeaderStore } from "@/store/header";
 
 export default function PercentHotel() {
   const locale = useLocale() as "ko" | "en";
@@ -35,6 +37,13 @@ export default function PercentHotel() {
   const CONTENT_LEFT = TARGET_LANGUAGE.left;
   const CONTENT_RIGHT = TARGET_LANGUAGE.right;
   const CONTENT_DETAIL = TARGET_LANGUAGE.details;
+
+  const setBackgroundColor = useHeaderStore(
+    (state) => state.setBackgroundColor,
+  );
+  useEffect(() => {
+    setBackgroundColor("bg-background");
+  }, [setBackgroundColor]);
 
   return (
     <main

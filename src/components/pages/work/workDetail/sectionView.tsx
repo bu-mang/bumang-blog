@@ -1,12 +1,12 @@
 import { cn } from "@/utils/cn";
 import { CornerDownRight } from "lucide-react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 type List = { subtitle: string; desc: string[]; list?: List[] }[];
 type ContentType = {
   title: string;
   titleDesc: string;
-  image: string;
+  image: string | StaticImageData;
 
   list: List;
 };
@@ -87,8 +87,9 @@ export default function SectionView({
           src={content.image}
           fill
           alt={`${content.title}_image`}
-          objectFit="cover"
-          // placeholder="blur"
+          style={{ objectFit: "cover" }}
+          placeholder="blur"
+          blurDataURL={content.image.toString()}
         />
       </div>
     </section>

@@ -4,6 +4,14 @@ export const SECTION_PUSH_NOTIFICATION_PAGE = "SECTION_PUSH_NOTIFICATION_PAGE";
 export const SECTION_SEO = "SECTION_SEO";
 export const SECTION_TEAM_LEADER = "SECTION_TEAM_LEADER";
 
+import ph_2nd from "@/assets/workDetails/percentHotel/ph_2nd.jpg";
+import ph_alarm from "@/assets/workDetails/percentHotel/ph_alarm.png";
+import ph_alarm_ios from "@/assets/workDetails/percentHotel/ph_alarm_ios.gif";
+import ph_carousel from "@/assets/workDetails/percentHotel/ph_carousel.gif";
+import ph_post from "@/assets/workDetails/percentHotel/ph_post.gif";
+import ph_post_price from "@/assets/workDetails/percentHotel/ph_post_price.gif";
+import ph_seo from "@/assets/workDetails/percentHotel/ph_seo.png";
+
 export const PERCENT_HOTEL_KO = {
   backToList: "목록으로 돌아가기",
   left: {
@@ -112,7 +120,7 @@ export const PERCENT_HOTEL_KO = {
         },
       ],
 
-      image: "/workDetails/percentHotel/ph_carousel.gif",
+      image: ph_carousel,
     },
     {
       title: "판매글 작성 페이지",
@@ -137,7 +145,7 @@ export const PERCENT_HOTEL_KO = {
         },
       ],
 
-      image: "/workDetails/percentHotel/ph_post_price.gif",
+      image: ph_post_price,
     },
     {
       title: "알림 페이지",
@@ -155,7 +163,7 @@ export const PERCENT_HOTEL_KO = {
         },
       ],
 
-      image: "/workDetails/percentHotel/ph_alarm_ios.gif",
+      image: ph_alarm_ios,
     },
     {
       title: "리액트 SEO 최적화",
@@ -173,7 +181,7 @@ export const PERCENT_HOTEL_KO = {
         },
       ],
 
-      image: "/workDetails/percentHotel/ph_seo.png",
+      image: ph_seo,
     },
     {
       title: "팀운영 및 전체 2등",
@@ -199,7 +207,7 @@ export const PERCENT_HOTEL_KO = {
         },
       ],
 
-      image: "/workDetails/percentHotel/ph_2nd.jpg",
+      image: ph_2nd,
     },
   ],
 };
@@ -313,7 +321,7 @@ export const PERCENT_HOTEL_EN = {
         },
       ],
 
-      image: "/workDetails/percentHotel/ph_carousel.gif",
+      image: ph_carousel,
     },
     {
       title: "Seller Registration Page",
@@ -339,7 +347,7 @@ export const PERCENT_HOTEL_EN = {
         },
       ],
 
-      image: "/workDetails/percentHotel/ph_post_price.gif",
+      image: ph_post_price,
     },
     {
       title: "Notification Page",
@@ -358,7 +366,7 @@ export const PERCENT_HOTEL_EN = {
         },
       ],
 
-      image: "/workDetails/percentHotel/ph_alarm_ios.gif",
+      image: ph_alarm_ios,
     },
     {
       title: "React SEO Optimization",
@@ -377,7 +385,7 @@ export const PERCENT_HOTEL_EN = {
         },
       ],
 
-      image: "/workDetails/percentHotel/ph_seo.png",
+      image: ph_seo,
     },
     {
       title: "Development Team Management",
@@ -405,7 +413,7 @@ export const PERCENT_HOTEL_EN = {
         },
       ],
 
-      image: "/workDetails/percentHotel/ph_2nd.jpg",
+      image: ph_2nd,
     },
   ],
 };
