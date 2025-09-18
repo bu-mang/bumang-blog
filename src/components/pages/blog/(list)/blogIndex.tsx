@@ -43,6 +43,13 @@ const BlogIndex = ({ onStart }: BlogIndexProps) => {
     return () => observer.current?.disconnect();
   }, [onStart]);
 
+  const handleScrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (!element) return;
+
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   const [isVisible, setIsVisible] = useState(true); // 가시성 상태 추가
   useEffect(() => {
     const handleScroll = () => {
@@ -50,7 +57,7 @@ const BlogIndex = ({ onStart }: BlogIndexProps) => {
       const documentHeight = document.documentElement.scrollHeight;
       const windowHeight = window.innerHeight;
 
-      // 하단 30% 영역에 도달했는지 확인
+      // 하단 20% 영역에 도달했는지 확인
       const scrollPercentage = (scrollTop + windowHeight) / documentHeight;
       setIsVisible(scrollPercentage < 0.8); // 80% 지점까지만 보이기
     };
@@ -59,19 +66,24 @@ const BlogIndex = ({ onStart }: BlogIndexProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleScrollTo = (id: string) => {
-    const element = document.getElementById(id);
-    if (!element) return;
-
-    element.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
+  const [topMargin, setTopMargin] = useState(0);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (containerRef.current) {
+      const rectSpec = containerRef.current.getBoundingClientRect();
+      const targetMargin = (window.innerHeight - rectSpec.height) / 2;
+      setTopMargin(targetMargin);
+    }
+  }, []);
 
   return (
     <div
+      ref={containerRef}
       className={cn(
-        "fixed top-[360px] -z-10 ml-10 flex w-full flex-col gap-2.5 border-l-[2px] pr-10 transition-opacity duration-300 ease-out",
+        "fixed -z-10 ml-10 flex w-full flex-col gap-2.5 border-l-[2px] pr-10 transition-opacity duration-300 ease-out",
         isVisible ? "opacity-100" : "opacity-0",
       )}
+      style={{ top: topMargin }}
     >
       {headings.map((heading) => (
         <ButtonBase
