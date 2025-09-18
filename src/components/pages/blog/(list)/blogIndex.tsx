@@ -69,11 +69,22 @@ const BlogIndex = ({ onStart }: BlogIndexProps) => {
   const [topMargin, setTopMargin] = useState(0);
   const containerRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
-    if (containerRef.current) {
-      const rectSpec = containerRef.current.getBoundingClientRect();
-      const targetMargin = (window.innerHeight - rectSpec.height) / 2;
-      setTopMargin(targetMargin);
-    }
+    if (!containerRef.current) return;
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { height } = entry.contentRect;
+        console.log("Height:", height);
+        if (height > 0) {
+          const targetMargin = (window.innerHeight - height) / 2;
+          setTopMargin(targetMargin);
+        }
+      }
+    });
+
+    resizeObserver.observe(containerRef.current);
+
+    return () => resizeObserver.disconnect();
   }, []);
 
   return (
