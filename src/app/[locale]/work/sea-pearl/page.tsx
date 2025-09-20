@@ -1,7 +1,6 @@
 "use client";
 
 import Summary from "@/components/pages/work/workDetail/summary";
-import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
 import { cn } from "@/utils/cn";
 import {
   CalendarRange,
@@ -31,10 +30,11 @@ import { useEffect } from "react";
 
 export default function AnttimeApp() {
   const locale = useLocale() as "ko" | "en";
-  const TARGET_LANGUAGE = locale === "ko" ? ANTTIME_APP_KO : ANTTIME_APP_EN;
-  const CONTENT_LEFT = TARGET_LANGUAGE.left;
-  const CONTENT_RIGHT = TARGET_LANGUAGE.right;
-  const CONTENT_DETAIL = TARGET_LANGUAGE.details;
+  const TARGET_LANGUAGE_CONTENT =
+    locale === "ko" ? ANTTIME_APP_KO : ANTTIME_APP_EN;
+  const CONTENT_LEFT = TARGET_LANGUAGE_CONTENT.left;
+  const CONTENT_RIGHT = TARGET_LANGUAGE_CONTENT.right;
+  const CONTENT_DETAIL = TARGET_LANGUAGE_CONTENT.details;
 
   const setBackgroundColor = useHeaderStore(
     (state) => state.setBackgroundColor,
@@ -56,7 +56,7 @@ export default function AnttimeApp() {
           href={PATHNAME.WORK}
         >
           <ArrowLeft size={14} className="group-hover:animate-arrow-back" />
-          <span>{TARGET_LANGUAGE.backToList}</span>
+          <span>{TARGET_LANGUAGE_CONTENT.backToList}</span>
         </Link>
 
         {/* TITLE */}
@@ -183,7 +183,7 @@ export default function AnttimeApp() {
           src={BannerImage}
           alt="work_section_background_image"
           fill
-          objectFit="cover"
+          style={{ objectFit: "cover" }}
           placeholder="blur"
         />
       </div>
@@ -204,7 +204,7 @@ export default function AnttimeApp() {
       {/* TODO: RELATED WORKS */}
       <BackToList
         href={PATHNAME.WORK}
-        backToListLabel={TARGET_LANGUAGE.backToList}
+        backToListLabel={TARGET_LANGUAGE_CONTENT.backToList}
       />
     </main>
   );

@@ -4,6 +4,12 @@ export const SECTION_VIRTUAL_LIST = "SECTION_VIRTUAL_LIST";
 export const SECTION_TAPPING_OPTIMIZATION = "SECTION_TAPPING_OPTIMIZATION";
 export const SECTION_TEAM_LEADER = "SECTION_TEAM_LEADER";
 
+import sp_start from "@/assets/workDetails/seaPearl/sp_start.webp";
+import sp_ads from "@/assets/workDetails/seaPearl/sp_ads.gif";
+import sp_virtual_list from "@/assets/workDetails/seaPearl/sp_virtual_list.png";
+import sp_interactive from "@/assets/workDetails/seaPearl/sp_interactive.gif";
+import sp_tab_caching from "@/assets/workDetails/seaPearl/sp_tab_caching.gif";
+
 export const ANTTIME_APP_KO = {
   backToList: "목록으로 돌아가기",
   left: {
@@ -112,7 +118,7 @@ export const ANTTIME_APP_KO = {
         },
       ],
 
-      image: "",
+      image: sp_start,
     },
     {
       title: "인앱 광고 플랫폼 연동",
@@ -129,7 +135,7 @@ export const ANTTIME_APP_KO = {
         },
       ],
 
-      image: "",
+      image: sp_ads,
     },
     {
       title: "가상 리스트 최적화",
@@ -146,7 +152,7 @@ export const ANTTIME_APP_KO = {
         },
       ],
 
-      image: "",
+      image: sp_virtual_list,
     },
     {
       title: "탭게임 API호출 최적화",
@@ -175,7 +181,7 @@ export const ANTTIME_APP_KO = {
         },
       ],
 
-      image: "",
+      image: sp_tab_caching,
     },
     {
       title: "인터랙티브 애니메이션",
@@ -207,7 +213,7 @@ export const ANTTIME_APP_KO = {
         },
       ],
 
-      image: "",
+      image: sp_interactive,
     },
   ],
 };
@@ -321,7 +327,7 @@ export const ANTTIME_APP_EN = {
         },
       ],
 
-      image: "",
+      image: sp_start,
     },
     {
       title: "In-App Ad Platform Integration",
@@ -338,7 +344,7 @@ export const ANTTIME_APP_EN = {
         },
       ],
 
-      image: "",
+      image: sp_ads,
     },
     {
       title: "Virtual List Optimization",
@@ -355,7 +361,7 @@ export const ANTTIME_APP_EN = {
         },
       ],
 
-      image: "",
+      image: sp_virtual_list,
     },
     {
       title: "Tap Game API Call Optimization",
@@ -384,7 +390,7 @@ export const ANTTIME_APP_EN = {
         },
       ],
 
-      image: "",
+      image: sp_tab_caching,
     },
     {
       title: "Interactive Animation",
@@ -416,7 +422,7 @@ export const ANTTIME_APP_EN = {
         },
       ],
 
-      image: "",
+      image: sp_interactive,
     },
   ],
 };
