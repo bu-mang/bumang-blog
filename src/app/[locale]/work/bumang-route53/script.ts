@@ -4,6 +4,12 @@ export const SECTION_REACT_COMP = "SECTION_REACT_COMP";
 export const SECTION_SHADCN = "SECTION_SHADCN";
 export const SECTION_UTILS = "SECTION_UTILS";
 
+import br_backend from "@/assets/workDetails/bumangRoute53/br_backend.png";
+import br_userRole from "@/assets/workDetails/bumangRoute53/br_userRole.png";
+import br_serverComponents from "@/assets/workDetails/bumangRoute53/br_serverComponents.png";
+import br_headless from "@/assets/workDetails/bumangRoute53/br_headless.gif";
+import br_darkmode from "@/assets/workDetails/bumangRoute53/br_darkmode.gif";
+
 export const BUMANG_ROUTE53_KO = {
   backToList: "목록으로 돌아가기",
   left: {
@@ -108,7 +114,7 @@ export const BUMANG_ROUTE53_KO = {
         },
       ],
 
-      image: "",
+      image: br_backend,
     },
     {
       title: "역할 기반 접근 제어",
@@ -127,7 +133,7 @@ export const BUMANG_ROUTE53_KO = {
         },
       ],
 
-      image: "",
+      image: br_userRole,
     },
     {
       title: "React 서버/클라 컴포넌트 전략",
@@ -149,7 +155,7 @@ export const BUMANG_ROUTE53_KO = {
         },
       ],
 
-      image: "",
+      image: br_serverComponents,
     },
     {
       title: "Headless UI 커스텀 컴포넌트",
@@ -160,34 +166,37 @@ export const BUMANG_ROUTE53_KO = {
         {
           subtitle: "• Shadcn/ui, React-bits 등 여러 headless UI 활용",
           desc: [
-            "풍부한 테일윈드 기반 HeadlessUI 생태계 활용",
+            "풍부한 Shadcn HeadlessUI 생태계 활용",
             "기본적인 컬러, borderRadius, fontSize 규칙을 정해 디자인 통일성을 유지",
             "이 서비스에 필요한 복합적인 기능 컴포넌트도 헤드리스 UI들을 조합하여 합성하여 생성",
           ],
         },
       ],
 
-      image: "",
+      image: br_headless,
     },
     {
-      title: "i18n 및 다크모드",
-      titleDesc: "여러가지 유틸 기능 구현 및 실험",
+      title: "인터랙티브 아트 및 유틸 기능 구현",
+      titleDesc: "사적인 기술 테스트베드",
       id: SECTION_UTILS,
 
       list: [
         {
-          subtitle: "• i18n 및 다크모드 등 여러 유틸 기능들을 실험",
+          subtitle: "• i18n 및 다크모드 등 여러 유틸 기능들을 구현",
           desc: [
+            "Three.js 및 Canvas를 이용한 배경들을 지속적 업데이트",
+            "각종 인터랙티브 기능을 위한 CSS 기능 실험",
             "Next-intl으로 i18n 국제화 지원. 패스 라우팅 자체를 분기",
-            "[다크모드 지원 예정]",
+            "tailwind 디자인 토큰 기반 다크모드 전환 구현",
           ],
         },
       ],
 
-      image: "",
+      image: br_darkmode,
     },
   ],
 };
+
 export const BUMANG_ROUTE53_EN = {
   backToList: "Back to List",
   left: {
@@ -292,7 +301,7 @@ export const BUMANG_ROUTE53_EN = {
         },
       ],
 
-      image: "",
+      image: br_backend,
     },
     {
       title: "Role-Based Access Control",
@@ -310,7 +319,7 @@ export const BUMANG_ROUTE53_EN = {
         },
       ],
 
-      image: "",
+      image: br_userRole,
     },
     {
       title: "React Server/Client Component Strategy",
@@ -332,7 +341,7 @@ export const BUMANG_ROUTE53_EN = {
         },
       ],
 
-      image: "",
+      image: br_serverComponents,
     },
     {
       title: "Headless UI Custom Components",
@@ -351,7 +360,7 @@ export const BUMANG_ROUTE53_EN = {
         },
       ],
 
-      image: "",
+      image: br_headless,
     },
     {
       title: "i18n & Dark Mode",
@@ -362,15 +371,17 @@ export const BUMANG_ROUTE53_EN = {
       list: [
         {
           subtitle:
-            "• Experimentation with various utility features including i18n and dark mode",
+            "• Implementation of various utility features including i18n and dark mode",
           desc: [
-            "i18n internationalization support with Next-intl. Path routing itself is branched",
-            "[Dark mode support planned]",
+            "Continuous updates of backgrounds using Three.js and Canvas",
+            "CSS feature experimentation for various interactive functionalities",
+            "i18n internationalization support with Next-intl. Path routing branching itself",
+            "Dark mode switching implementation based on Tailwind design tokens",
           ],
         },
       ],
 
-      image: "",
+      image: br_darkmode,
     },
   ],
 };

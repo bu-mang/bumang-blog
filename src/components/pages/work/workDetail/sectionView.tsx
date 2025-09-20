@@ -38,7 +38,7 @@ export default function SectionView({
         {/* MAIN-TITLE */}
         <div
           className={cn(
-            "mb-5 flex flex-col items-baseline gap-2 lg:flex-row",
+            "mb-5 flex flex-col items-baseline gap-2",
             locale === "en" && "flex-col",
           )}
         >
@@ -78,7 +78,7 @@ export default function SectionView({
 
       <div
         className={cn(
-          "relative order-1 col-span-full aspect-auto h-56 overflow-hidden rounded-2xl bg-gray-5 sm:h-64 lg:order-2 lg:col-span-1 lg:h-fit lg:min-h-96",
+          "relative order-1 col-span-full aspect-auto h-56 overflow-hidden rounded-2xl bg-gray-5 shadow-md sm:h-64 lg:order-2 lg:col-span-1 lg:h-fit lg:min-h-96",
           order % 2 === 1 && "order-1 lg:order-2",
           order % 2 === 0 && "order-1 lg:order-1",
         )}
