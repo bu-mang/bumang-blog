@@ -19,7 +19,7 @@ interface HeaderAction {
   setAnimState: (v: "ANIM" | "MIN" | "MAX") => void;
   setBorderBottom: (v: string | undefined | null) => void;
   setBackgroundColor: (v: string | undefined | null) => void;
-  setDefaultSetting: (v: string) => void;
+  setDefaultSetting: () => void;
   setLetterColor: (v: string) => void;
 }
 
@@ -41,7 +41,7 @@ export const useHeaderStore = create<HeaderState & HeaderAction>()(
         state.animState = animState;
       });
     },
-    setDefaultSetting: (theme: string) => {
+    setDefaultSetting: () => {
       set((state) => {
         state.borderBottom = gray?.["10"];
         state.backgroundColor = "bg-background";
