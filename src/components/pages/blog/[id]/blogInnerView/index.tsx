@@ -142,7 +142,6 @@ export function BlogInnerViewFallback({ isError }: { isError?: boolean }) {
 export default function BlogInnerView({ post }: BlogDetailInnerProps) {
   const t = useTranslations("blogDetail");
 
-  const { resolvedTheme } = useTheme();
   const setDefaultSetting = useHeaderStore((state) => state.setDefaultSetting);
   useEffect(() => {
     setDefaultSetting();
