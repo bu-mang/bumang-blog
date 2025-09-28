@@ -18,7 +18,6 @@ gsap.registerPlugin(ScrollTrigger);
 interface AboutInnerProps {
   isAuthenticated: boolean;
   locale: string;
-  temp?: string;
 }
 
 const KorLogin = () => (
@@ -49,7 +48,6 @@ const EngLogin = () => (
 export default function AboutInner({
   isAuthenticated,
   locale,
-  temp,
 }: AboutInnerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const t = useTranslations("about");
@@ -116,9 +114,7 @@ export default function AboutInner({
 
         <div className="col-span-full tbl:col-start-4 tbl:col-end-9 tbl:-translate-y-3">
           <SubBox>
-            <span className="col-span-1 font-semibold">
-              Moblie ({temp ?? "undefined"})
-            </span>
+            <span className="col-span-1 font-semibold">Moblie</span>
             <span className="col-span-4">
               {isAuthenticated ? (
                 "+82 10-4922-3563"
