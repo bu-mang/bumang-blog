@@ -19,7 +19,7 @@ export default async function AboutPage({
   return (
     <AboutInner
       isAuthenticated={!!accessToken}
-      // temp={accessToken?.slice(0, 10)}
+      temp={accessToken?.slice(0, 10)}
       locale={locale}
     />
   );
