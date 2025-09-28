@@ -21,7 +21,7 @@ export default function Main() {
 
     return () => {
       console.log(resolvedTheme, "resolvedTheme");
-      setDefaultSetting(resolvedTheme ?? "light");
+      setDefaultSetting();
     };
 
     // eslint-disable-next-line

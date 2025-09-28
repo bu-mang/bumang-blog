@@ -28,7 +28,7 @@ export function WorkInnerInteractive() {
     setBorderBottom("transparent");
 
     return () => {
-      setDefaultSetting(resolvedTheme ?? "light");
+      setDefaultSetting();
     };
   }, [
     setBorderBottom,

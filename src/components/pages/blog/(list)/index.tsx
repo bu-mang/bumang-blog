@@ -48,7 +48,7 @@ export default function BlogInner({
   const { resolvedTheme } = useTheme();
   const setDefaultSetting = useHeaderStore((state) => state.setDefaultSetting);
   useEffect(() => {
-    setDefaultSetting(resolvedTheme ?? "light");
+    setDefaultSetting();
     // eslint-disable-next-line
   }, []);
 
