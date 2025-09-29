@@ -1,6 +1,3 @@
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-
 import AboutInner from "@/components/pages/about/aboutInner";
 import { cookies } from "next/headers";
 
