@@ -307,7 +307,7 @@ export default function AboutInner({
 
           {/* BACKEND */}
           <SubBox className="gap-y-8 text-sm">
-            <div className="col-span-full pr-2 font-semibold sm:col-span-1 md:row-span-3">
+            <div className="col-span-full pr-2 font-semibold sm:col-span-1 sm:text-gray-200 md:row-span-3">
               Backend
             </div>
 
