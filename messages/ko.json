@@ -494,7 +494,7 @@
     "noPermission": {
       "title": "이런, 권한이 부족해요.",
       "desc": "이 글을 보려면 이 권한이 필요해요: ",
-      "buttonText": "로그인 하러가기",
+      "buttonText": "로그인",
       "ariaLabel": "로그인이 필요해요."
     }
   }
