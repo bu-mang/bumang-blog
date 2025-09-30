@@ -13,14 +13,7 @@ export const getBlogDetail = async (id: string) => {
       ? process.env.NEXT_PUBLIC_API_BASE_URL
       : process.env.NEXT_PUBLIC_LOCAL_API_BASE_URL) +
       END_POINTS.GET_BLOG_DETAIL(id),
-    {
-      next: {
-        revalidate: isDev ? 0 : 0,
-      },
-    },
   );
-
-  console.log(res, "Res");
 
   return res;
 };

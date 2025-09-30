@@ -11,7 +11,7 @@ import BlogInnerView, { BlogInnerViewFallback } from "./blogInnerView";
  * @BLOG_DETAIL_AUTHORIZED
  * csr로 AUTH 정보까지
  */
-export function BlogDetailAuthorizedCSR({ postId }: { postId: string }) {
+export function BlogDetailCSR({ postId }: { postId: string }) {
   const isAuthLoading = useAuthStore((state) => state.isAuthLoading);
   const user = useAuthStore((state) => state.user);
 
@@ -22,13 +22,13 @@ export function BlogDetailAuthorizedCSR({ postId }: { postId: string }) {
   return (
     <ErrorBoundary fallback={<BlogInnerViewFallback isError={!user} />}>
       <Suspense fallback={<BlogInnerViewFallback />}>
-        <BlogDetailAuthorizedCSRInner postId={postId} />
+        <BlogDetailCSRInner postId={postId} />
       </Suspense>
     </ErrorBoundary>
   );
 }
 
-export function BlogDetailAuthorizedCSRInner({ postId }: { postId: string }) {
+export function BlogDetailCSRInner({ postId }: { postId: string }) {
   const { data } = useSuspenseQuery({
     queryKey: QUERY_KEY.GET_BLOG_AUTHENTICATED_DETAIL(postId),
     queryFn: () => getBlogAuthenticatedDetail(postId),

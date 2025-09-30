@@ -14,6 +14,11 @@ import { PagenationFallback } from "@/components/common/pageNation";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect } from "react";
 import { useHeaderStore } from "@/store/header";
+import { useSearchParams } from "next/navigation";
+// import { toast } from "react-toastify";
+// import CustomNotification from "@/components/common/customNotification";
+// import { useRouter } from "next/navigation";
+// import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 
 interface BlogListViewProps {
   allPosts: null | PaginatedResponseDto<PostListItemType>;
@@ -39,10 +44,22 @@ export default function BlogInner({
   pageSize,
 }: BlogListViewProps) {
   const user = useAuthStore((state) => state.user);
+  const t = useTranslations("alert");
 
   const setDefaultSetting = useHeaderStore((state) => state.setDefaultSetting);
   useEffect(() => {
     setDefaultSetting();
+    // eslint-disable-next-line
+  }, []);
+
+  const params = useSearchParams();
+  // const router = useRouter();
+  useEffect(() => {
+    const errorType = params.get("error");
+
+    if (errorType === "unauthorized") {
+      //
+    }
     // eslint-disable-next-line
   }, []);
 
