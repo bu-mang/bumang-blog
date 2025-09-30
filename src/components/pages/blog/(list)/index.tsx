@@ -45,7 +45,6 @@ export default function BlogInner({
 }: BlogListViewProps) {
   const user = useAuthStore((state) => state.user);
 
-  const { resolvedTheme } = useTheme();
   const setDefaultSetting = useHeaderStore((state) => state.setDefaultSetting);
   useEffect(() => {
     setDefaultSetting();
@@ -56,8 +55,8 @@ export default function BlogInner({
     return <BlogListFallback itemViewType={itemViewType} />;
   }
 
-  return allPosts ? (
-    <BlogListViewSSR
+  return (
+    <BlogListView
       allPosts={allPosts}
       itemViewType={itemViewType}
       groupId={groupId}
@@ -67,27 +66,10 @@ export default function BlogInner({
       pageIndex={pageIndex}
       pageSize={pageSize}
     />
-  ) : (
-    <ErrorBoundary fallback={<></>}>
-      <Suspense
-        clientOnly
-        fallback={<BlogListFallback itemViewType={itemViewType} />}
-      >
-        <BlogListViewCSR
-          itemViewType={itemViewType}
-          groupId={groupId}
-          categoryId={categoryId}
-          postType={postType}
-          tagIds={tagIds}
-          pageIndex={pageIndex}
-          pageSize={pageSize}
-        />
-      </Suspense>
-    </ErrorBoundary>
   );
 }
 
-function BlogListViewSSR({
+function BlogListView({
   allPosts,
   itemViewType,
   postType,
@@ -112,7 +94,7 @@ function BlogListViewSSR({
           "col-span-full",
           itemViewType === "thumbnail" &&
             allPosts &&
-            "grid grid-cols-2 gap-x-[1.5vw] gap-y-[4.5vw] md:grid-cols-3",
+            "grid grid-cols-2 gap-x-[1.5vw] gap-y-[4vw] md:grid-cols-3",
         )}
       >
         {/* BLOGITEMS */}
@@ -140,120 +122,6 @@ function BlogListViewSSR({
                 id={id}
                 title={title}
                 previewText={previewText}
-                author={author}
-                // category & group
-                groupLabel={groupLabel}
-                categoryLabel={categoryLabel}
-                tags={tags}
-                date={createdAt}
-                thumbnailUrl={thumbnailUrl}
-                readPermisson={readPermisson}
-                itemViewType={itemViewType}
-              />
-            ),
-          )
-        ) : (
-          <div
-            className={
-              "col-span-4 mb-5 flex h-80 flex-col items-center justify-center py-10 text-gray-200"
-            }
-          >
-            <LuCircleAlert size={24} className="mb-1" />
-            <span className="text-lg font-semibold">{t("noPost.title")}</span>
-            <span>{t("noPost.desc")}</span>
-          </div>
-        )}
-
-        {/* PAGE-NATION */}
-        <div className="col-span-full scale-75 md:col-span-3 md:scale-100">
-          <Pagenation
-            pageSize={allPosts?.pageSize ?? 12}
-            totalCount={allPosts?.totalCount ?? 1}
-            currentPage={allPosts?.currentPage ?? 1}
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function BlogListViewCSR({
-  itemViewType,
-  groupId,
-  categoryId,
-  postType,
-  tagIds,
-
-  pageIndex,
-  pageSize,
-}: Omit<BlogListViewProps, "allPosts">) {
-  const t = useTranslations("blog");
-
-  const { data: allPosts } = useSuspenseQuery({
-    queryKey: QUERY_KEY.GET_POSTS(
-      pageIndex,
-      pageSize,
-      groupId,
-      categoryId,
-      tagIds,
-      postType,
-    ),
-    queryFn: () =>
-      getAllPostAuthenticated(
-        pageIndex,
-        pageSize,
-        groupId,
-        categoryId,
-        tagIds,
-        postType,
-      ),
-  });
-
-  return (
-    <div className="col-span-full h-fit md:col-span-3">
-      <SectionLabel
-        isTag={typeof tagIds !== "undefined"}
-        title={
-          allPosts?.subject ||
-          postType ||
-          (allPosts?.totalCount ? "All" : "unknown")
-        }
-        amount={allPosts?.totalCount ?? 0}
-        itemViewType={itemViewType}
-      />
-      <div
-        className={cn(
-          "col-span-full",
-          itemViewType === "thumbnail" &&
-            allPosts &&
-            "grid grid-cols-2 gap-x-[1.5vw] gap-y-[4.5vw] md:grid-cols-3",
-        )}
-      >
-        {/* BLOGITEMS */}
-        {allPosts?.data && allPosts?.data.length ? (
-          allPosts?.data?.map(
-            (
-              {
-                id,
-                title,
-                previewText,
-                createdAt,
-                categoryLabel,
-                groupLabel,
-                tags,
-                author,
-                thumbnailUrl,
-                readPermisson,
-                score,
-              },
-              index,
-            ) => (
-              <BlogItem
-                index={index}
-                key={id}
-                id={id}
-                title={title}
-                previewText={previewText + "!!"}
                 author={author}
                 // category & group
                 groupLabel={groupLabel}

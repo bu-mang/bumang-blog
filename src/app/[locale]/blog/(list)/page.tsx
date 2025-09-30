@@ -2,8 +2,6 @@ import BlogInner from "@/components/pages/blog/(list)";
 import { getAllPosts } from "@/services/api/blog/(list)";
 import { PaginatedResponseDto, PostListItemType } from "@/types";
 
-import { cookies } from "next/headers";
-
 interface PageProps {
   params: { category: string };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -30,20 +28,15 @@ export default async function Blog({ searchParams }: PageProps) {
   let pageIndex = searchParams.pageIndex ? Number(searchParams.pageIndex) : 1;
   let pageSize = 12;
 
-  const accessToken = cookies().get("accessToken")?.value;
   try {
-    if (!accessToken) {
-      allPosts = await getAllPosts(
-        pageIndex,
-        pageSize,
-        groupId,
-        categoryId,
-        tagIds,
-        postType,
-      );
-      console.log("??🤣");
-    }
-    console.log("👀 allPosts", allPosts);
+    allPosts = await getAllPosts(
+      pageIndex,
+      pageSize,
+      groupId,
+      categoryId,
+      tagIds,
+      postType,
+    );
   } catch (err) {
     console.log(allPosts, err, "allPost error ");
   }
