@@ -8,16 +8,11 @@ import { useTranslations } from "next-intl";
 import { cn } from "@/utils/cn";
 
 import { LuCircleAlert } from "react-icons/lu";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { QUERY_KEY } from "@/constants/api/queryKey";
-import { getAllPostAuthenticated } from "@/services/api/blog/(list)";
-import { ErrorBoundary, Suspense } from "@suspensive/react";
 import { useAuthStore } from "@/store/auth";
 import { BlogItemFallback } from "./blogItem";
 import { PagenationFallback } from "@/components/common/pageNation";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect } from "react";
-import { useTheme } from "next-themes";
 import { useHeaderStore } from "@/store/header";
 
 interface BlogListViewProps {
