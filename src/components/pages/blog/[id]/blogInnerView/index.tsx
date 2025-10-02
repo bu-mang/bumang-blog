@@ -216,11 +216,14 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
           )}
         </TagWrapper>
 
-        <div className="mb-10 mt-4 text-center text-2xl font-semibold leading-tight md:text-5xl">
+        <div
+          className="mb-8 mt-4 text-center text-2xl font-semibold md:text-5xl"
+          style={{ lineHeight: 1.4 }}
+        >
           {post.title}
         </div>
 
-        <div className="relative mb-12 aspect-video w-full overflow-hidden rounded-2xl">
+        <div className="relative mb-4 aspect-video w-full overflow-hidden rounded-2xl">
           <Image
             alt="Thumnail"
             src={
@@ -234,7 +237,7 @@ export default function BlogInnerView({ post }: BlogDetailInnerProps) {
         </div>
 
         {/* INFORMATIONS */}
-        <div className="mb-24 flex flex-wrap items-center justify-center">
+        <div className="mb-8 flex flex-wrap items-center justify-center">
           <div className="group flex cursor-pointer items-center justify-center gap-2 text-sm text-gray-300 transition-all hover:scale-105">
             <FolderIcon size={18} className="group-hover:text-gray-600" />
             <Link
