@@ -1,4 +1,3 @@
-import { LAYOUT_PADDING_TOP_WITH_HEIGHT } from "@/constants/layouts/layout";
 import { cn } from "@/utils/cn";
 import { Metadata } from "next";
 
@@ -13,7 +12,9 @@ export default function PlayLayout({
 }) {
   return (
     <section
-      className={cn(LAYOUT_PADDING_TOP_WITH_HEIGHT, "h-fit min-h-full w-full")}
+      className={cn(
+        "h-fit min-h-full w-full pt-[22vw] md:pt-[18vw] lg:pt-[14vw]",
+      )}
     >
       <div className="">{children}</div>
     </section>
