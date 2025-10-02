@@ -98,7 +98,7 @@ const BlogIndex = ({ onStart }: BlogIndexProps) => {
     <div
       ref={containerRef}
       className={cn(
-        "fixed flex w-full flex-col gap-2.5 border-l-[2px] transition-opacity duration-300 ease-out",
+        "fixed flex hidden h-fit w-[17vw] flex-col gap-2.5 border-l-[2px] transition-opacity duration-300 ease-out lg:flex",
         isVisible ? "opacity-100" : "opacity-0",
       )}
       style={{ bottom: marginBottom }}

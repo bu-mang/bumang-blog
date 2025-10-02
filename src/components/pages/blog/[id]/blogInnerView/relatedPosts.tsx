@@ -1,6 +1,5 @@
 "use client";
 
-import { ButtonBase } from "@/components/common";
 import { QUERY_KEY } from "@/constants/api/queryKey";
 import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { getAdjacentPosts, getRelatedPosts } from "@/services/api/blog/[id]";
