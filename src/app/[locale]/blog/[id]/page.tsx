@@ -2,7 +2,7 @@ import BlogDetailPublic, {
   BlogInnerViewFallback,
 } from "@/components/pages/blog/[id]/blogInnerView";
 import { PATHNAME } from "@/constants/routes/pathnameRoutes";
-import { getBlogDetail } from "@/services/api/blog/[id]";
+import { getBlogDetail } from "@/services/api/blog/server";
 import { PostDetailResponseDto } from "@/types/dto/blog/[id]";
 import { isAxiosError } from "axios";
 import { Metadata } from "next";
