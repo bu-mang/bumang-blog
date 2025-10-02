@@ -7,6 +7,7 @@ const BlogComment = () => {
   const commentRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // utterance 초기화
   useEffect(() => {
     if (commentRef.current) {
       const utterancesSettings = {

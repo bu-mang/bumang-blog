@@ -141,6 +141,7 @@ export function BlogInnerViewFallback({ isError }: { isError?: boolean }) {
 export default function BlogInnerView({ post }: BlogDetailInnerProps) {
   const t = useTranslations("blogDetail");
 
+  // 헤더 상태 초기화
   const setDefaultSetting = useHeaderStore((state) => state.setDefaultSetting);
   useEffect(() => {
     setDefaultSetting();

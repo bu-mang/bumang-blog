@@ -1,4 +1,7 @@
 // 서버 컴포넌트에서 사용할 기본 fetch 래퍼
+
+import { cookies } from "next/headers";
+
 // lib/serverFetch.ts
 export default async function serverFetch<T>(
   url: string,
@@ -16,10 +19,29 @@ export default async function serverFetch<T>(
     headersToUse = new Headers();
   }
 
+  // 서버 컴포넌트에서 쿠키 가져오기
+  if (!skipAuth) {
+    const cookieStore = await cookies();
+
+    // 현재 프로젝트에서 사용하는 인증 쿠키 이름만 지정
+    const authCookieNames = ["accessToken", "refreshToken"]; // 실제 사용하는 이름으로 변경
+
+    const authCookies = authCookieNames
+      .map((name) => {
+        const cookie = cookieStore.get(name);
+        return cookie ? `${cookie.name}=${cookie.value}` : null;
+      })
+      .filter(Boolean)
+      .join("; ");
+
+    if (authCookies) {
+      headersToUse.set("Cookie", authCookies);
+    }
+  }
+
   const finalOptions = {
     ...fetchOptions,
     headers: headersToUse,
-    credentials: "include" as RequestCredentials,
   };
 
   // 초기 요청
