@@ -189,10 +189,14 @@
         }
       },
       "2": {
-        "title": "Established a separation of concerns strategy between SSR and CSR with a focus on SEO and data fetching optimization.",
+        "title": "Separation of concerns between server components and client components based on authentication/authorization",
         "a": {
-          "title": "Use SSR for static data that requires SEO, and handle authenticated content via CSR.",
-          "i": "Consider whether SSR should read httpOnly cookies when using cookie-based authentication strategies."
+          "i": "Process SEO-critical and public data in server components.",
+          "ii": "For data requiring authentication/authorization, guide it to be fetched within client components with httpOnly cookies.",
+          "iii": "In case of private posts, first call from server component without token, and if 401 error is returned, set up a structure to refetch with authentication information in client component",
+          "iv": "Due to JWT strategy setting short access token lifespan, the process of reissuing tokens upon expiration is inevitably necessary.",
+          "v": "However, when handling reissuance in server components, httpOnly cookies are not automatically set in the browser (because the requester is not the browser). Therefore, a process to set them in the browser from server-side is required.",
+          "vi": "Since such inconveniences occur when managing authentication on the server-side, authentication management is delegated to client components. Separation of concerns decision"
         }
       },
       "3": {
