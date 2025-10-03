@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { LuChevronLeft as ChevronLeftIcon } from "react-icons/lu";
 
 import { getButtonColorStyle } from "@/utils/styles/filButtonManager";
@@ -19,6 +19,7 @@ import { YooEditor, YooptaContentValue } from "@yoopta/editor";
 import { PublishDrawer } from "@/components/pages/blog/edit/blogEditToolBar/publishDrawer";
 import { useTranslations } from "next-intl";
 import { PATHNAME } from "@/constants/routes/pathnameRoutes";
+import { useTheme } from "next-themes";
 
 interface BlogEditorToolBarProps {
   // List
@@ -90,6 +91,12 @@ const BlogEditorToolBar = ({
 }: BlogEditorToolBarProps) => {
   // i18n
   const t = useTranslations("blogEdit");
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   /**
    * @그룹_변경_시_카테고리_전환
@@ -109,7 +116,7 @@ const BlogEditorToolBar = ({
     fillStyle: LightFillStyle,
     textStyle: LightTextStyle,
     flexBoxClass,
-  } = getButtonColorStyle("light");
+  } = getButtonColorStyle(resolvedTheme === "dark" ? "dark" : "light");
 
   /**
    * @뒤로가기_로직
@@ -120,15 +127,17 @@ const BlogEditorToolBar = ({
   };
 
   return (
-    <div className="fixed left-0 top-0 z-10 flex h-14 w-full border-b-[1px] border-gray-5 bg-white shadow-sm">
+    <div className="fixed left-0 top-0 z-10 flex h-14 w-full border-b-[1px] border-gray-5 bg-background shadow-sm">
       {/* LEFT MODULE */}
       <div className="flex flex-1 items-center pl-4">
-        <FillButton className={LightFillStyle} onClick={handleGoBack}>
-          <div className={cn(flexBoxClass, "-translate-x-1")}>
-            <ChevronLeftIcon className={LightTextStyle} />
-            <span className={LightTextStyle}>{t("header.backToList")}</span>
-          </div>
-        </FillButton>
+        {mounted && (
+          <FillButton className={LightFillStyle} onClick={handleGoBack}>
+            <div className={cn(flexBoxClass, "-translate-x-1")}>
+              <ChevronLeftIcon className={LightTextStyle} />
+              <span className={LightTextStyle}>{t("header.backToList")}</span>
+            </div>
+          </FillButton>
+        )}
       </div>
 
       {/* CENTER MODULE */}

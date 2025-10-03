@@ -67,7 +67,7 @@ const DraftController = ({
 }: DraftControllerProps) => {
   const t = useTranslations("blogEdit.draft");
   const triggerClass = cn(
-    "group flex h-10 min-w-24 cursor-pointer items-center justify-center gap-2 rounded-md px-4 transition-all hover:bg-gray-5",
+    "group flex h-10 min-w-24 cursor-pointer items-center justify-center gap-2 rounded-md px-4 transition-all hover:bg-gray-5 dark:hover:bg-gray-800",
     className,
   );
 

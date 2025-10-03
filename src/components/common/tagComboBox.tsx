@@ -56,7 +56,7 @@ const TagCombobox = ({
       {/* TRIGGER */}
       <PopoverTrigger asChild>
         {/* TODO: selected 있을 때 없을 때 View 바꾸기 */}
-        <div className="group flex h-10 min-w-40 cursor-pointer items-center justify-center gap-2 rounded-md transition-all hover:bg-gray-5">
+        <div className="group flex h-10 min-w-40 cursor-pointer items-center justify-center gap-2 rounded-md transition-all hover:bg-gray-5 dark:hover:bg-gray-800">
           <div className="flex items-center gap-1.5 text-sm">
             <LuPlus className="text-gray-100" />
             <span>{t("header.addTags.button")}</span>
@@ -88,7 +88,7 @@ const TagCombobox = ({
             <HoverCardContent className="pointer-events-none w-80">
               <div className="flex flex-col gap-1">
                 <span className="text-xs text-gray-200">Selected Tags</span>
-                <TagWrapper className="min-h-8 items-center rounded-sm bg-gray-1 p-2">
+                <TagWrapper className="min-h-8 items-center rounded-sm bg-gray-1 p-2 dark:bg-gray-600">
                   {selectedTags.length > 0 &&
                     selectedTags.map((tagItem) => (
                       <Tag
@@ -121,7 +121,7 @@ const TagCombobox = ({
           <span className="text-xs text-gray-200">
             {t("header.addTags.selectedTags")}
           </span>
-          <TagWrapper className="min-h-8 items-center rounded-sm bg-gray-1 p-2">
+          <TagWrapper className="min-h-8 items-center rounded-sm bg-gray-1 p-2 dark:bg-gray-800">
             {selectedTags.length > 0 &&
               selectedTags.map((tagItem) => (
                 <Tag

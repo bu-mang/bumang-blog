@@ -85,7 +85,7 @@ function ComboBox<T extends (GroupType | CategoryType) | null>({
         <ButtonBase
           role="combobox"
           aria-expanded={isOpen}
-          className="flex min-w-40 items-center justify-between gap-3 rounded-md p-2 hover:bg-gray-5"
+          className="flex min-w-40 items-center justify-between gap-3 rounded-md p-2 hover:bg-gray-5 dark:hover:bg-gray-800"
         >
           <div className="flex items-center gap-1.5">
             {iconType === "folder" && (

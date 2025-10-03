@@ -271,6 +271,7 @@ export default function BlogEditInner({
     };
 
     handleLoadDraft();
+    // eslint-disable-next-line
   }, [editId, editDraft, getDeserializeHTML, groupLists, tagLists]);
 
   const { disablePrevent } = usePageLeavePrevent({
@@ -316,7 +317,7 @@ export default function BlogEditInner({
         <div className="flex w-[720px] flex-col">
           {/* INPUT */}
           <textarea
-            className="flex h-auto min-h-20 w-full resize-none flex-wrap overflow-hidden rounded-md border-none bg-transparent px-2 py-4 text-5xl font-semibold leading-normal outline-none transition-colors placeholder:text-gray-100 hover:bg-gray-1 disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex h-auto min-h-20 w-full resize-none flex-wrap overflow-hidden rounded-md border-none bg-transparent px-2 py-4 text-5xl font-semibold leading-normal outline-none transition-colors placeholder:text-gray-100 hover:bg-gray-1 disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-gray-800"
             placeholder={t("titlePlaceHolder")}
             tabIndex={1}
             value={title}
