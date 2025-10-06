@@ -15,7 +15,7 @@ const BlogComment = () => {
     if (commentRef.current) {
       const utterancesSettings = {
         src: "https://utteranc.es/client.js",
-        repo: "Bumang-Cyber/bumang-blog-comments",
+        repo: "bu-mang/bumang-blog-comments",
         "issue-term": "pathname",
         theme: resolvedTheme === "dark" ? "github-dark" : "github-light",
         crossorigin: "anonymous",
