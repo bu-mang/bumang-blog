@@ -18,21 +18,18 @@ interface HeaderFallbackProps {
 
 export const HeaderFallback = ({ isLoading, locale }: HeaderFallbackProps) => {
   const pathname = usePathname();
-  switch (pathname) {
-    case "/blog/edit":
-      return null;
-    default:
-      return (
-        <div className="fixed top-0 z-[100] h-fit w-full">
-          <NavBanner />
-          <NavBar
-            isAuthenticated={false}
-            isLoading={isLoading}
-            locale={locale}
-          />
-        </div>
-      );
+
+  // Hide header on these paths
+  if (pathname === "/blog/edit" || /^\/play\/\d+$/.test(pathname)) {
+    return null;
   }
+
+  return (
+    <div className="fixed top-0 z-[100] h-fit w-full">
+      <NavBanner />
+      <NavBar isAuthenticated={false} isLoading={isLoading} locale={locale} />
+    </div>
+  );
 };
 
 interface HeaderInnerProps {
@@ -90,9 +87,13 @@ export function HeaderInnerAuthenticated({ locale }: HeaderInnerProps) {
    * @FACTORY
    */
   const pathname = usePathname();
+
+  // Hide header on these paths
+  if (pathname === "/blog/edit" || /^\/play\/\d+$/.test(pathname)) {
+    return null;
+  }
+
   switch (pathname) {
-    case "/blog/edit":
-      return null;
     default:
       return (
         <div className="fixed top-0 z-[100] h-fit w-full">
