@@ -1,14 +1,14 @@
-import { PlayItemType } from "@/types/playItem";
+import { PlayItemListType } from "@/types/playItem";
 import * as PlayImages from "@/assets/play";
 
-const playItems: PlayItemType[] = [
+const playItems: PlayItemListType = [
   {
     id: 7,
     title: "250816",
+
     isCentered: false,
     content: "Digital Drawing, Clip Studio",
     imageOnly: false,
-    position: { x: 400, y: 500, width: 300, height: 300 },
     thumnail: {
       width: 736,
       height: 736,
@@ -54,9 +54,9 @@ const playItems: PlayItemType[] = [
   {
     id: 5,
     title: "250707 Drawings",
+
     content: "Digital Drawing, Clip Studio",
     imageOnly: false,
-    position: { x: 900, y: 1200, width: 350, height: 350 },
     thumnail: {
       width: 754,
       height: 754,
@@ -102,12 +102,13 @@ const playItems: PlayItemType[] = [
     isVisible: true,
     createdAt: "2025-07-07T14:48:00.000Z",
   },
+  null,
   {
     id: 4,
     title: "Pendulum in Pendulum",
+
     content: "Procreate, AfterEffect",
     imageOnly: false,
-    position: { x: 1600, y: 700, width: 450, height: 253 },
     thumnail: {
       width: 1820,
       height: 1024,
@@ -137,13 +138,14 @@ const playItems: PlayItemType[] = [
     isVisible: true,
     createdAt: "2025-07-07T14:48:00.000Z",
   },
+  null,
   {
     id: 3,
     title: "Sketch",
+
     isCentered: true,
     content: "Procreate",
     imageOnly: false,
-    position: { x: 2300, y: 1300, width: 400, height: 300 },
     thumnail: {
       width: 2732,
       height: 2048,
@@ -163,15 +165,14 @@ const playItems: PlayItemType[] = [
   {
     id: 2,
     title: "CardCaptor",
+
     isCentered: true,
     content: "Clip Studio",
     imageOnly: false,
-    position: { x: 2900, y: 550, width: 280, height: 280 },
     thumnail: {
       width: 300,
       height: 300,
       imgUrl: PlayImages.Play2_thumbnail,
-      unoptimized: true,
     },
     items: [
       {
@@ -183,12 +184,13 @@ const playItems: PlayItemType[] = [
     isVisible: true,
     createdAt: "2019-07-07T14:48:00.000Z",
   },
+  null,
   {
     id: 1,
     title: "Drawing in Notebook",
+
     content: "Hand Drawn",
     imageOnly: false,
-    position: { x: 3500, y: 1000, width: 320, height: 320 },
     thumnail: {
       width: 2430,
       height: 2430,

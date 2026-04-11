@@ -11,7 +11,6 @@ import { PostDetailResponseDto } from "@/types/dto/blog/[id]";
 import { BlockNoteSchema, createCodeBlockSpec } from "@blocknote/core";
 import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/mantine";
-import "@blocknote/mantine/style.css";
 import { codeBlockOptions } from "@blocknote/code-block";
 import { useTheme } from "next-themes";
 import { format } from "date-fns";
@@ -41,7 +40,8 @@ import { useHeaderStore } from "@/store/header";
 import { parseBlockNoteContent } from "@/utils/contentFormat";
 import useModalStore from "@/store/modal";
 import CommonModal from "@/components/modal/type/common";
-import { cn } from "@/utils/cn";
+
+import "@blocknote/mantine/style.css";
 
 interface BlogDetailInnerProps {
   post: PostDetailResponseDto;
@@ -271,15 +271,17 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
         </div>
 
         {/* INFORMATIONS */}
-        <div className="mb-4 flex flex-wrap items-center justify-center">
+        <div className="mb-12 flex flex-wrap items-center justify-center">
           <div className="group flex cursor-pointer items-center justify-center gap-2 text-sm text-gray-300 transition-all hover:scale-105">
             <FolderIcon size={18} className="group-hover:text-gray-600" />
-            <Link
-              href={PATHNAME.BLOG + `?groupId=${post.group.id}`}
-              className="group-hover:text-gray-600"
-            >
-              {post.group.label ?? "No Group"}
-            </Link>
+            {post.group.label && (
+              <Link
+                href={PATHNAME.BLOG + `?groupId=${post.group.id}`}
+                className="group-hover:text-gray-600"
+              >
+                {post.group.label}
+              </Link>
+            )}
           </div>
 
           <span className="mx-2 text-gray-200">•</span>
