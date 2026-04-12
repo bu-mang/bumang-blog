@@ -168,8 +168,8 @@ export default async function middleware(request: NextRequest) {
       // 검증된 봇: 1분에 200회
       rateLimitResponse = applyRateLimit(ip, 200, 60000);
     } else {
-      // 일반 사용자: 1분에 120회
-      rateLimitResponse = applyRateLimit(ip, 120, 60000);
+      // 일반 사용자: 1분에 300회
+      rateLimitResponse = applyRateLimit(ip, 300, 60000);
     }
 
     if (rateLimitResponse) {
