@@ -193,15 +193,15 @@ const basicLevelSections: Array<{
       },
     ],
   },
-  {
-    category: "Design",
-    items: [
-      {
-        title: "techStack.basicLevel.5.title",
-        descriptionKey: "techStack.basicLevel.5.desc",
-      },
-    ],
-  },
+  // {
+  //   category: "Design",
+  //   items: [
+  //     {
+  //       title: "techStack.basicLevel.5.title",
+  //       descriptionKey: "techStack.basicLevel.5.desc",
+  //     },
+  //   ],
+  // },
 ];
 
 export default function AboutInner({
@@ -284,7 +284,7 @@ export default function AboutInner({
             }
           />
 
-          <InfoRow label="Email" value="baughman0729@gmail.com" />
+          <InfoRow label="Email" value="calmness0729@gmail.com" />
 
           <InfoRow
             label="Links"
