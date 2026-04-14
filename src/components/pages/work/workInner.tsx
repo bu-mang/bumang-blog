@@ -90,7 +90,7 @@ export function WorkInnerInteractive() {
         />
       </WorkItem>
 
-      <WorkItem
+      {/* <WorkItem
         onClick={() => {}}
         title="Anttime Swap"
         imgSrc={CardImage.anttimeSwap}
@@ -104,7 +104,7 @@ export function WorkInnerInteractive() {
             "top-20 h-28 w-40",
           )}
         />
-      </WorkItem>
+      </WorkItem> */}
 
       <WorkItem
         onClick={() => {}}

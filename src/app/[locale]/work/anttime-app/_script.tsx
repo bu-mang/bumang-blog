@@ -6,12 +6,16 @@ import attApp_buildType from "@/assets/workDetails/anttimeApp/attApp_buildType.p
 import attApp_referral from "@/assets/workDetails/anttimeApp/attApp_referral.png";
 import attApp_skin from "@/assets/workDetails/anttimeApp/attApp_skin.png";
 import attApp_upgrade from "@/assets/workDetails/anttimeApp/attApp_upgrade.png";
+import attApp_swap_loading from "@/assets/workDetails/anttimeApp/attApp_swap_loading.png";
+import attApp_web3 from "@/assets/workDetails/anttimeApp/attApp_web3.png";
 
 export const SECTION_ENV_INTERGRATION = "SECTION_ENV_INTERGRATION";
 export const SECTION_ANIM_UPDATE = "SECTION_ANIM_UPDATE";
 export const SECTION_PUSH_SKIN_UPDATE = "SECTION_PUSH_SKIN_UPDATE";
 export const SECTION_RN_UPDATE = "SECTION_RN_UPDATE";
 export const SECTION_DEEPLINK_UPDATE = "SECTION_DEEPLINK_UPDATE";
+export const SECTION_WEB3_WALLET = "SECTION_WEB3_WALLET";
+export const SECTION_SUSPENSE_PATTERN = "SECTION_SUSPENSE_PATTERN";
 
 const ANTTIME_APP_KO = {
   backToList: "목록으로 돌아가기",
@@ -25,7 +29,7 @@ const ANTTIME_APP_KO = {
       },
       position: {
         label: "포지션",
-        value: "프론트(크로스플랫폼 앱개발)",
+        value: "프론트 ReactNative(앱)/Next.js(환전웹사이트)",
       },
       techStack: {
         label: "테크스택",
@@ -38,6 +42,7 @@ const ANTTIME_APP_KO = {
           { label: "React Native Firebase", colorClass: "bg-red-50" },
           { label: "Tanstack Query", colorClass: "bg-slate-100" },
           { label: "React Native Code Push", colorClass: "bg-neutral-100" },
+          { label: "WAGMI", colorClass: "bg-indigo-100" },
         ],
       },
       team: {
@@ -103,6 +108,16 @@ const ANTTIME_APP_KO = {
           desc: "PlayStore Referral API 사용",
           href: SECTION_DEEPLINK_UPDATE,
         },
+        {
+          title: "WEB3 지갑 트랜잭션",
+          desc: "WAGMI를 사용한 Web3 지갑 연결 및 트랜잭션",
+          href: SECTION_WEB3_WALLET,
+        },
+        {
+          title: "React18 Suspense 패턴",
+          desc: "로딩/성공/에러 상태 컴포넌트 별 분리",
+          href: SECTION_SUSPENSE_PATTERN,
+        },
       ],
     },
   },
@@ -131,8 +146,7 @@ const ANTTIME_APP_KO = {
 
       list: [
         {
-          subtitle:
-            "• 기존 Lottie 애니메이션을 캐릭터의 신체 부위 별 애니메이션을 독립적으로 실행되도록 분리",
+          subtitle: "• 캐릭터의 신체 부위 별로 독립적인 애니메이션 실행",
           desc: [
             "기존 Lottie 애니메이션으론 여러가지 스킨 조합의 경우의 수를 표현하는데에 한계가 존재. 신체 부위 별로 아바타를 교체할 수 있으려면 각 파츠 별로 애니메이션을 따로 구현해야하는 상황 발생.",
             "react-native-reanimate로 각 파츠 별 애니메이션 설정. 타임라인 기능으로 각 애니메이션의 실행시기를 정확하게 맞춤.",
@@ -163,8 +177,8 @@ const ANTTIME_APP_KO = {
       image: attApp_skin,
     },
     {
-      title: "React Native 버전 업데이트",
-      titleDesc: "RN 0.68에서 0.74로.",
+      title: "지속적인 React Native 버전 유지보수",
+      titleDesc: "Bridge 구조에서 New Architecture로",
       id: SECTION_RN_UPDATE,
 
       list: [
@@ -172,7 +186,7 @@ const ANTTIME_APP_KO = {
           subtitle:
             "• RN 버전이 노후화로 인해 서드 파티 라이브러리들의 지원이 중단되는 상황 대처",
           desc: [
-            "새로운 라이브러리들이 기존 RN 버전(0.68)을 지원하지 않아 버전을 낮춰서 설치해야되는 상황이 빈번하게 발생.",
+            "여러 라이브러리들이 기존 RN 버전(0.68)을 지원하지 않아 버전을 낮춰서 설치해야되는 상황이 빈번하게 발생.",
             "React Native Upgrade Helper를 사용하여 0.68에서 0.74로 업그레이드하고 그에 맞게 네이티브 코드 수정 (Flipper 제거, Fabric 구성, iOS/Android config 파일 업데이트).",
             "새로운 RN 버전에 맞게 서드파티 라이브러리 구성도 업데이트 완료.",
           ],
@@ -198,6 +212,42 @@ const ANTTIME_APP_KO = {
       ],
 
       image: attApp_referral,
+    },
+    {
+      title: "Web3 지갑 트랜잭션",
+      titleDesc: "WAGMI를 사용한 Web3 지갑 연결 및 트랜잭션",
+      id: SECTION_WEB3_WALLET,
+
+      list: [
+        {
+          subtitle: "• 토큰스왑 신청 및 수령 과정에서 Web3 지갑 사용",
+          desc: [
+            "MetaMask와 WalletConnect 등 주요 지갑 연결 및 사용자 정보 가져오기",
+            "서버에서 유저의 토큰 신청량, 머클프루프 등을 받아 트랜잭션 발생",
+            "이더스캔에서 성공 여부를 스캔할 수 있도록 유도.",
+          ],
+        },
+      ],
+
+      image: attApp_web3,
+    },
+    {
+      title: "React18 Suspense 패턴",
+      titleDesc: "로딩/성공/에러 상태 컴포넌트 별 분리",
+      id: SECTION_SUSPENSE_PATTERN,
+
+      list: [
+        {
+          subtitle: "• Tanstack Query의 useSuspenseQuery와의 조합 활용",
+          desc: [
+            "Suspense로 Promise를 캐치하여 스켈레톤 및 로딩 컴포넌트를 표출. Error Boundary에 에러 컴포넌트를 물려 상태 별 컴포넌트가 분리되도록 유도.",
+            "순차적인 데이터 패칭이 필요한 경우 컴포넌트 레이어를 차등하여 Suspense 패턴 유지",
+            "클라이언트 사이드 내에서 패칭 보장이 필요한 요청의 경우, Suspensive 라이브러리의 ClientOnly 옵션 사용",
+          ],
+        },
+      ],
+
+      image: attApp_swap_loading,
     },
   ],
 };
@@ -226,6 +276,7 @@ const ANTTIME_APP_EN = {
           { label: "React Native Firebase", colorClass: "bg-red-50" },
           { label: "TanStack Query", colorClass: "bg-slate-100" },
           { label: "React Native CodePush", colorClass: "bg-neutral-100" },
+          { label: "WAGMI", colorClass: "bg-indigo-100" },
         ],
       },
       team: {
@@ -290,6 +341,16 @@ const ANTTIME_APP_EN = {
           title: "Deep link implementation",
           desc: "Using Play Store Referral API",
           href: SECTION_DEEPLINK_UPDATE,
+        },
+        {
+          title: "Web3 wallet transactions",
+          desc: "Web3 wallet connection and transactions using WAGMI",
+          href: SECTION_WEB3_WALLET,
+        },
+        {
+          title: "React18 Suspense pattern",
+          desc: "Separate components for loading/success/error states",
+          href: SECTION_SUSPENSE_PATTERN,
         },
       ],
     },
@@ -386,6 +447,43 @@ const ANTTIME_APP_EN = {
       ],
 
       image: attApp_referral,
+    },
+    {
+      title: "Web3 wallet transactions",
+      titleDesc: "Web3 wallet connection and transactions using WAGMI",
+      id: SECTION_WEB3_WALLET,
+
+      list: [
+        {
+          subtitle:
+            "• Used Web3 wallets during token swap request and claim process",
+          desc: [
+            "Connected major wallets such as MetaMask and WalletConnect to retrieve user information.",
+            "Received the user's token claim amount, Merkle proof, etc. from the server to trigger transactions.",
+            "Guided users to verify success on Etherscan.",
+          ],
+        },
+      ],
+
+      image: attApp_web3,
+    },
+    {
+      title: "React18 Suspense pattern",
+      titleDesc: "Separate components for loading/success/error states",
+      id: SECTION_SUSPENSE_PATTERN,
+
+      list: [
+        {
+          subtitle: "• Combined with TanStack Query's useSuspenseQuery",
+          desc: [
+            "Catch Promises with Suspense to display skeleton and loading components. Pass error components to Error Boundary to separate components by state.",
+            "For sequential data fetching, layer components at different levels to maintain the Suspense pattern.",
+            "For requests that must be fetched on the client side, use the Suspensive library's ClientOnly option.",
+          ],
+        },
+      ],
+
+      image: attApp_swap_loading,
     },
   ],
 };
