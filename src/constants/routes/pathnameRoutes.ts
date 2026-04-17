@@ -5,6 +5,7 @@ export const PATHNAME = {
   PLAY: "/play",
   WORK: "/work",
   WORK_DETAIL: {
+    BLAI: "/work/blai",
     BUMANG_ROUTE53: "/work/bumang-route53",
     SEA_PEARL: "/work/sea-pearl",
     ANTTIME_SWAP: "/work/anttime-swap",

@@ -161,6 +161,32 @@
     }
   },
   "work": {
+    "blai": {
+      "tag": "SaaS Service",
+      "projectScale": "Solo Project",
+      "role": "Full-stack",
+      "desc": "Naver Blog Analytics & Optimization Platform",
+      "1": {
+        "title": "RabbitMQ Async Analysis Pipeline",
+        "a": "Distributed analysis requests to Python workers via Topic Exchange routing key patterns, implementing a round-trip structure returning results via response queues",
+        "b": "Analyzed text with Playwright-based Naver crawling and KiwiPy morpheme analyzer. Distributed processing across worker pods via RPC call_parallel()"
+      },
+      "2": {
+        "title": "Subscription/Payment & Access Control",
+        "a": "Implemented tier-based feature access and daily usage limits via SubscriptionGuard + FeatureLimitGuard. API Key auth for external tools (1-key-1-device binding)",
+        "b": "Built admin dashboard with auto-aggregated daily/weekly/monthly cron statistics, user management, and feature toggle (maintenance mode)"
+      },
+      "3": {
+        "title": "Keyword Analysis/Mining",
+        "a": "Built pipeline analyzing keyword competitiveness, monthly search volume, and exposure sections based on Naver search API crawling",
+        "b": "Auto-discovered related keywords from seed keywords and filtered promising ones by competitiveness/search volume"
+      },
+      "4": {
+        "title": "Post Comprehensive Analysis",
+        "a": "Simultaneously published 3 RPC requests for morpheme, profanity, and image analysis, aggregating individual responses into unified results",
+        "b": "Implemented Excel export via ExcelJS for analysis results. Improved accuracy through user dictionary (synonyms, ignored words) integration"
+      }
+    },
     "bumangRoute53": {
       "tag": "Side Project",
       "projectScale": "Solo Project",

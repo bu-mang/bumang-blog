@@ -66,6 +66,16 @@ export function WorkInnerInteractive() {
 
       <WorkItem
         onClick={() => {}}
+        title="BLAI"
+        imgSrc={CardImage.blai}
+        imgAlt="BLAI"
+        href={PATHNAME.WORK_DETAIL.BLAI}
+      >
+        {/*  */}
+      </WorkItem>
+
+      <WorkItem
+        onClick={() => {}}
         title="Bumang Route53"
         imgSrc={CardImage.bumangRoute53}
         imgAlt="BumangRoute53"
@@ -163,8 +173,115 @@ export function WorkInnerCompact() {
 
   return (
     <>
-      {/* BUMANG BLOG */}
+      {/* BLAI */}
       <SectionBox animated={false} className="fade-in-mount" borderTop={false}>
+        {/* TITLE */}
+        <div className="sticky top-20 col-span-full mb-10 mt-8 flex h-fit flex-col px-5 font-semibold md:col-span-3 md:mb-44 md:px-0">
+          <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
+            {t("blai.tag")}
+          </span>
+          <span className="mb-2">{t("blai.desc")}</span>
+          <div className="mb-4 flex flex-col text-6xl">
+            <span>BLAI</span>
+          </div>
+
+          <div className="flex items-center gap-2 font-normal">
+            <span className="text-sm font-semibold text-gray-200">
+              2024.04. -
+            </span>
+          </div>
+
+          <div className="mb-0.5 flex items-center gap-2 font-normal">
+            <span className="text-sm text-gray-200">
+              {t("blai.projectScale")}
+            </span>
+            <div className="h-3 w-[1px] bg-gray-200" />
+            <span className="text-sm text-gray-200">{t("blai.role")}</span>
+          </div>
+        </div>
+
+        {/* CONTENTS */}
+        <div className="col-span-full md:col-start-4 md:col-end-9">
+          <SubBox borderTop={false}>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              1.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-6">{t("blai.1.title")}</Title>
+
+              <OrderedList order={"a."} className="mb-2">
+                {t("blai.1.a")}
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"b."} className="mb-2">
+                {t("blai.1.b")}
+              </OrderedList>
+            </div>
+          </SubBox>
+
+          <SubBox>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              2.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-6">{t("blai.2.title")}</Title>
+
+              <OrderedList order={"a."} className="mb-2">
+                {t("blai.2.a")}
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"b."} className="mb-2">
+                {t("blai.2.b")}
+              </OrderedList>
+            </div>
+          </SubBox>
+
+          <SubBox>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              3.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-6">{t("blai.3.title")}</Title>
+
+              <OrderedList order={"a."} className="mb-2">
+                {t("blai.3.a")}
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"b."} className="mb-2">
+                {t("blai.3.b")}
+              </OrderedList>
+            </div>
+          </SubBox>
+
+          <SubBox>
+            <div className="col-span-full translate-y-1.5 px-5 font-semibold md:col-span-1 md:px-0">
+              4.
+            </div>
+            <div className="col-span-full px-5 md:col-span-4 md:px-0">
+              <Title className="mb-16 md:mb-6">{t("blai.4.title")}</Title>
+
+              <OrderedList order={"a."} className="mb-2">
+                {t("blai.4.a")}
+              </OrderedList>
+
+              <Divider />
+
+              <OrderedList order={"b."} className="mb-2">
+                {t("blai.4.b")}
+              </OrderedList>
+            </div>
+          </SubBox>
+        </div>
+      </SectionBox>
+
+      {/* BUMANG BLOG */}
+      <SectionBox animated={false} className="fade-in-mount">
         {/* TITLE */}
         <div className="sticky top-20 col-span-full mb-10 mt-8 flex h-fit flex-col px-5 font-semibold md:col-span-3 md:mb-44 md:px-0">
           <span className="mb-4 h-fit w-fit rounded-sm border border-gray-700 px-2 py-1 text-xs">
