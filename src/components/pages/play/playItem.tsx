@@ -70,7 +70,7 @@ const PlayItem = ({
       onClick={handleClick}
       className={cn(
         "group flex flex-1 animate-fade-in-up overflow-hidden rounded-sm",
-        isBlurred && "pointer-events-none",
+        isBlurred && "cursor-not-allowed",
       )}
     >
       <div
@@ -86,7 +86,7 @@ const PlayItem = ({
             src={imgUrl}
             alt={title ?? "GalleryImage"}
             fill
-            className={cn("object-cover", isBlurred && "blur-sm")}
+            className={cn("object-cover", isBlurred && "blur-lg")}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 16.67vw"
             placeholder={placeholder ? "blur" : undefined}
           />
