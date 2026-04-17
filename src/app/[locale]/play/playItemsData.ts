@@ -60,34 +60,34 @@ const playItems: PlayItemListType = [
     thumnail: {
       width: 754,
       height: 754,
-      imgUrl: PlayImages.Play5_5,
+      imgUrl: PlayImages.Play5_6,
     },
     items: [
-      {
-        width: 931,
-        height: 752,
-        imgUrl: PlayImages.Play5_1,
-      },
-      {
-        width: 931,
-        height: 754,
-        imgUrl: PlayImages.Play5_2,
-      },
-      {
-        width: 931,
-        height: 752,
-        imgUrl: PlayImages.Play5_3,
-      },
-      {
-        width: 931,
-        height: 752,
-        imgUrl: PlayImages.Play5_4,
-      },
-      {
-        width: 1155,
-        height: 753,
-        imgUrl: PlayImages.Play5_5,
-      },
+      // {
+      //   width: 931,
+      //   height: 752,
+      //   imgUrl: PlayImages.Play5_1,
+      // },
+      // {
+      //   width: 931,
+      //   height: 754,
+      //   imgUrl: PlayImages.Play5_2,
+      // },
+      // {
+      //   width: 931,
+      //   height: 752,
+      //   imgUrl: PlayImages.Play5_3,
+      // },
+      // {
+      //   width: 931,
+      //   height: 752,
+      //   imgUrl: PlayImages.Play5_4,
+      // },
+      // {
+      //   width: 1155,
+      //   height: 753,
+      //   imgUrl: PlayImages.Play5_5,
+      // },
       {
         width: 1155,
         height: 753,
@@ -146,6 +146,7 @@ const playItems: PlayItemListType = [
     isCentered: true,
     content: "Procreate",
     imageOnly: false,
+    isBlurred: true,
     thumnail: {
       width: 2732,
       height: 2048,
@@ -169,6 +170,7 @@ const playItems: PlayItemListType = [
     isCentered: true,
     content: "Clip Studio",
     imageOnly: false,
+    isBlurred: true,
     thumnail: {
       width: 300,
       height: 300,

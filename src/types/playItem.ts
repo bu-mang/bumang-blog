@@ -23,6 +23,7 @@ export interface PlayItemStyle {
   isVisible?: boolean;
   isCentered?: boolean;
   imageOnly?: boolean;
+  isBlurred?: boolean;
   containerClassName?: string;
   fill?: boolean;
   objectFit?: "cover" | "contain";

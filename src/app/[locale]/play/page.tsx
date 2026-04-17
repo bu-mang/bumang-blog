@@ -19,6 +19,7 @@ export default function Play() {
             imgUrl={item.thumnail.imgUrl}
             items={item.items}
             placeholder={item.thumnail.placeholder}
+            isBlurred={item.isBlurred}
           />
         );
       })}

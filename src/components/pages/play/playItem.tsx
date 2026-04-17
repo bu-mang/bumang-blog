@@ -16,6 +16,7 @@ interface PlayItemProps {
   imgUrl: StaticImageData;
   items: ImageItemType[];
   imageOnly?: boolean;
+  isBlurred?: boolean;
   className?: string;
   placeholder?: boolean;
 }
@@ -28,6 +29,7 @@ const PlayItem = ({
   height,
   imgUrl,
   imageOnly,
+  isBlurred,
   className,
   items,
   placeholder = true,
@@ -57,6 +59,7 @@ const PlayItem = ({
 
   const openModal = useModalStore((state) => state.openModal);
   const handleClick = () => {
+    if (isBlurred) return;
     openModal(ExpandModal, {
       id,
     });
@@ -65,7 +68,10 @@ const PlayItem = ({
   return (
     <button
       onClick={handleClick}
-      className="group flex flex-1 animate-fade-in-up overflow-hidden rounded-sm"
+      className={cn(
+        "group flex flex-1 animate-fade-in-up overflow-hidden rounded-sm",
+        isBlurred && "pointer-events-none",
+      )}
     >
       <div
         ref={ref}
@@ -80,7 +86,7 @@ const PlayItem = ({
             src={imgUrl}
             alt={title ?? "GalleryImage"}
             fill
-            className="object-cover"
+            className={cn("object-cover", isBlurred && "blur-sm")}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 16.67vw"
             placeholder={placeholder ? "blur" : undefined}
           />
