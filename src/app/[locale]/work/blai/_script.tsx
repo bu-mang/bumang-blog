@@ -1,10 +1,10 @@
 import type { WorkDetailConfig } from "@/types/work";
 import bannerImage from "@/assets/works/compressed/blai.webp";
 
-import blai_placeholder_1 from "@/assets/workDetails/blai/blai_placeholder_1.png";
-import blai_placeholder_2 from "@/assets/workDetails/blai/blai_placeholder_2.png";
-import blai_placeholder_3 from "@/assets/workDetails/blai/blai_placeholder_3.png";
-import blai_placeholder_4 from "@/assets/workDetails/blai/blai_placeholder_4.gif";
+import blai_mq from "@/assets/workDetails/blai/blai_mq.jpg";
+import blai_subscription from "@/assets/workDetails/blai/blai_subscription.jpg";
+import blai_keywordMining from "@/assets/workDetails/blai/blai_keywordMining.jpg";
+import blai_postComprehensive from "@/assets/workDetails/blai/blai_postComprehensive.jpg";
 
 export const SECTION_PIPELINE = "SECTION_PIPELINE";
 export const SECTION_SUBSCRIPTION = "SECTION_SUBSCRIPTION";
@@ -14,7 +14,7 @@ export const SECTION_POST_COMPREHENSIVE = "SECTION_POST_COMPREHENSIVE";
 const BLAI_KO = {
   backToList: "목록으로 돌아가기",
   left: {
-    badge: ["네이버 블로그", "분석 SaaS를", "만들었어요."],
+    badge: ["국내 최대", "네이버 블로그", "분석 SaaS"],
     summary: {
       title: "프로젝트 요약",
       period: {
@@ -42,7 +42,10 @@ const BLAI_KO = {
       },
       team: {
         label: "팀 구성",
-        value: [{ role: "풀스택", amount: 1 }],
+        value: [
+          { role: "PM", amount: 1 },
+          { role: "풀스택", amount: 1 },
+        ],
       },
       relatedLink: {
         label: "관련링크",
@@ -109,10 +112,10 @@ const BLAI_KO = {
         },
       ],
 
-      image: blai_placeholder_1,
+      image: blai_mq,
     },
     {
-      title: "구독/결제 시스템 및 접근 제어",
+      title: "단건결제 시스템에서 구독/결제 시스템으로 전환",
       titleDesc: "티어별 기능 제한과 사용량 추적",
       id: SECTION_SUBSCRIPTION,
 
@@ -133,7 +136,7 @@ const BLAI_KO = {
         },
       ],
 
-      image: blai_placeholder_2,
+      image: blai_subscription,
     },
     {
       title: "키워드 분석/마이닝",
@@ -157,7 +160,7 @@ const BLAI_KO = {
         },
       ],
 
-      image: blai_placeholder_3,
+      image: blai_keywordMining,
     },
     {
       title: "포스팅 통합 분석",
@@ -181,7 +184,7 @@ const BLAI_KO = {
         },
       ],
 
-      image: blai_placeholder_4,
+      image: blai_postComprehensive,
     },
   ],
 };
@@ -285,7 +288,7 @@ const BLAI_EN = {
         },
       ],
 
-      image: blai_placeholder_1,
+      image: blai_mq,
     },
     {
       title: "Subscription/Payment & Access Control",
@@ -309,7 +312,7 @@ const BLAI_EN = {
         },
       ],
 
-      image: blai_placeholder_2,
+      image: blai_subscription,
     },
     {
       title: "Keyword Analysis/Mining",
@@ -333,7 +336,7 @@ const BLAI_EN = {
         },
       ],
 
-      image: blai_placeholder_3,
+      image: blai_keywordMining,
     },
     {
       title: "Post Comprehensive Analysis",
@@ -358,7 +361,7 @@ const BLAI_EN = {
         },
       ],
 
-      image: blai_placeholder_4,
+      image: blai_postComprehensive,
     },
   ],
 };
