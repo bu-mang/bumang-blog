@@ -371,7 +371,7 @@ const BLAI_EN = {
 };
 
 export const BLAI_CONFIG: WorkDetailConfig = {
-  title: "BLAI",
+  title: "blai",
   bannerImage,
   content: {
     ko: BLAI_KO,
