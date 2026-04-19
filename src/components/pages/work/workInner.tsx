@@ -66,9 +66,9 @@ export function WorkInnerInteractive() {
 
       <WorkItem
         onClick={() => {}}
-        title="BLAI"
+        title="blai"
         imgSrc={CardImage.blai}
-        imgAlt="BLAI"
+        imgAlt="blai"
         href={PATHNAME.WORK_DETAIL.BLAI}
       >
         {/*  */}
@@ -182,7 +182,7 @@ export function WorkInnerCompact() {
           </span>
           <span className="mb-2">{t("blai.desc")}</span>
           <div className="mb-4 flex flex-col text-6xl">
-            <span>BLAI</span>
+            <span>blai</span>
           </div>
 
           <div className="flex items-center gap-2 font-normal">

@@ -14,7 +14,11 @@ export const SECTION_POST_COMPREHENSIVE = "SECTION_POST_COMPREHENSIVE";
 const BLAI_KO = {
   backToList: "목록으로 돌아가기",
   left: {
-    badge: ["국내 최대", "네이버 블로그", "분석 SaaS"],
+    badge: [
+      "1년 만에 제로 투 원,",
+      "0명부터 5만 유저까지",
+      " - 국내 최대 네이버 블로그 상위노출 분석 플랫폼",
+    ],
     summary: {
       title: "프로젝트 요약",
       period: {
