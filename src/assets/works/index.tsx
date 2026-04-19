@@ -1,4 +1,6 @@
 export { default as blai } from "./blai.png";
+export { default as blaiSticker } from "./blaiSticker.png";
+export { default as blaiSticker2 } from "./blaiSticker2.png";
 export { default as anttimeApp } from "./anttimeApp.png";
 export { default as anttimeAppSticker } from "./anttimeAppSticker.png";
 export { default as anttimeSwap } from "./anttimeSwap.png";

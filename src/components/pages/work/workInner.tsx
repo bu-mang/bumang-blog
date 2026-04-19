@@ -72,7 +72,14 @@ export function WorkInnerInteractive() {
         imgAlt="blai"
         href={PATHNAME.WORK_DETAIL.BLAI}
       >
-        {/*  */}
+        <Sticker
+          imgSrc={CardImage.blaiSticker}
+          className={cn("-left-14 bottom-20 md:h-52 md:w-52", "h-28 w-28")}
+        />
+        <Sticker
+          imgSrc={CardImage.blaiSticker2}
+          className={cn("right-10 top-32 md:h-40 md:w-40", "h-20 w-20")}
+        />
       </WorkItem>
 
       <WorkItem

@@ -335,7 +335,7 @@ const WorkItem = ({
             transform: `perspective(1500px) rotate3d(${-rotateX}, ${rotateY}, 0, ${degree}deg)`,
           }}
           className={
-            "card-tilt relative -z-10 flex aspect-video items-center justify-center overflow-hidden rounded-xl bg-emerald-300"
+            "card-tilt relative -z-10 flex aspect-video items-center justify-center overflow-hidden rounded-xl bg-emerald-300 shadow-lg"
           }
         >
           {/* GLOSS */}
