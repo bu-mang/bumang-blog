@@ -67,6 +67,7 @@ export function WorkInnerInteractive() {
       <WorkItem
         onClick={() => {}}
         title="blai"
+        role="Full-stack"
         imgSrc={CardImage.blai}
         imgAlt="blai"
         href={PATHNAME.WORK_DETAIL.BLAI}
@@ -77,6 +78,7 @@ export function WorkInnerInteractive() {
       <WorkItem
         onClick={() => {}}
         title="Bumang Route53"
+        role="Full-stack"
         imgSrc={CardImage.bumangRoute53}
         imgAlt="BumangRoute53"
         href={PATHNAME.WORK_DETAIL.BUMANG_ROUTE53}
@@ -87,6 +89,7 @@ export function WorkInnerInteractive() {
       <WorkItem
         onClick={() => {}}
         title="SeaPearl"
+        role="Frontend"
         imgSrc={CardImage.seaPearl}
         imgAlt="SeaPearl"
         href={PATHNAME.WORK_DETAIL.SEA_PEARL}
@@ -103,6 +106,7 @@ export function WorkInnerInteractive() {
       {/* <WorkItem
         onClick={() => {}}
         title="Anttime Swap"
+        role="Frontend"
         imgSrc={CardImage.anttimeSwap}
         imgAlt=""
         href={PATHNAME.WORK_DETAIL.ANTTIME_SWAP}
@@ -119,6 +123,7 @@ export function WorkInnerInteractive() {
       <WorkItem
         onClick={() => {}}
         title="Anttime App"
+        role="Frontend"
         imgSrc={CardImage.anttimeApp}
         imgAlt=""
         href={PATHNAME.WORK_DETAIL.ANTTIME_APP}
@@ -135,6 +140,7 @@ export function WorkInnerInteractive() {
       <WorkItem
         onClick={() => {}}
         title="Percent Hotel"
+        role="Frontend"
         imgSrc={CardImage.percentHotel}
         imgAlt=""
         href={PATHNAME.WORK_DETAIL.PERCENT_HOTEL}

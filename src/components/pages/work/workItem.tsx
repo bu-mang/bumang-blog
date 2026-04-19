@@ -23,6 +23,7 @@ interface WorkItemProps {
   className?: string;
   nullItem?: boolean;
   title?: string;
+  role?: string;
 
   onClick?: () => void;
 }
@@ -47,6 +48,7 @@ const WorkItem = ({
   children,
   nullItem,
   title,
+  role,
 
   onClick,
 }: WorkItemProps) => {
@@ -309,8 +311,14 @@ const WorkItem = ({
       >
         <div className="flex items-center gap-3">
           <span className="font-bold">{title}</span>
+          {role && (
+            <>
+              <div className="h-2 w-[1px] bg-white" />
+              <span className="text-sm">{role}</span>
+            </>
+          )}
           <div className="h-2 w-[1px] bg-white" />
-          <span className="text-sm">To Be Updated</span>
+          <span className="text-sm">View Details</span>
         </div>
         <LuMoveRight className="ml-1.5" size={16} />
       </div>
