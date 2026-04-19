@@ -74,11 +74,11 @@ export function WorkInnerInteractive() {
       >
         <Sticker
           imgSrc={CardImage.blaiSticker}
-          className={cn("-left-14 bottom-20 md:h-52 md:w-52", "h-28 w-28")}
+          className={cn("bottom-20 left-8 md:h-52 md:w-52", "h-32 w-32")}
         />
         <Sticker
           imgSrc={CardImage.blaiSticker2}
-          className={cn("right-10 top-32 md:h-40 md:w-40", "h-20 w-20")}
+          className={cn("right-10 top-32 md:h-32 md:w-32", "h-16 w-16")}
         />
       </WorkItem>
 
