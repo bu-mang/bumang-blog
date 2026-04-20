@@ -127,15 +127,15 @@ const BLAI_KO = {
         {
           subtitle: "• 구독 티어별 기능 접근 제어",
           desc: [
-            "SubscriptionGuard로 구독 상태 검증, FeatureLimitGuard로 일일 사용량 제한을 구현. 티어별(FREE, BASIC, PREMIUM) 접근 가능 기능과 사용 한도를 enum + config로 관리",
-            "외부 도구(크롬 확장, 데스크톱 앱)용 API Key 인증 시스템 구현. 1키 1디바이스 바인딩, 구독 상태와 매시간 자동 동기화",
+            "SubscriptionGuard로 구독 상태 검증, FeatureLimitGuard로 일일 사용량 제한을 구현.",
+            "티어별(FREE, BASIC, PREMIUM) 접근 가능 기능과 사용 한도를 enum + config로 관리",
           ],
         },
         {
-          subtitle: "• 관리자 대시보드 통계",
+          subtitle: "• 구독 갱신 및 업그레이드 검증 자동화",
           desc: [
-            "일/주/월 단위 cron 스케줄로 신규유저, 활성유저, 매출, 기능별 사용량 통계를 자동 집계",
-            "관리자 웹에서 사용자 계정 관리, 기능 토글(점검 모드), 쿠폰/이벤트 관리 등 운영 기능 구축",
+            "구독 티어·기간·사용 인원을 교차 검증하는 업그레이드 로직 구현. 다운그레이드 시 초과 인원 처리, 잔여 기간 일할 정산 등 엣지 케이스 커버",
+            "CronJob으로 만료 임박 구독을 자동 재갱신하고, EKS 배포 시 cron 전용 환경변수를 분리하여 단일 pod만 스케줄러를 실행하도록 구성. 다중 pod 간 동시성 경쟁 없이 구독 처리의 정합성 확보",
           ],
         },
       ],
@@ -176,7 +176,7 @@ const BLAI_KO = {
           subtitle: "• 3가지 분석을 동시에 RPC 요청/수합",
           desc: [
             "하나의 포스팅 URL 또는 텍스트에 대해 형태소 분석, 비속어 분석, 이미지 분석 3가지 RPC 요청을 동시에 발행",
-            "각 분석 결과가 개별 response 큐로 돌아오면 Consumer가 post 문서에 병합. 3개 모두 완료되면 level을 1로 업데이트하여 프론트 폴링이 완료를 감지",
+            "각 분석 결과가 개별 response 큐로 돌아오면 Consumer가 post 문서에 병합. 3개 모두 완료되면 완료 플래그를 true로 업데이트하여 프론트 폴링이 완료를 감지",
           ],
         },
         {
@@ -308,10 +308,10 @@ const BLAI_EN = {
           ],
         },
         {
-          subtitle: "• Admin dashboard analytics",
+          subtitle: "• Subscription renewal and upgrade validation automation",
           desc: [
-            "Auto-aggregated statistics for new users, active users, revenue, and feature usage via daily/weekly/monthly cron schedules",
-            "Built operational features including user account management, feature toggle (maintenance mode), coupon/event management in admin web",
+            "Implemented upgrade logic with cross-validation of subscription tier, duration, and seat count. Covered edge cases including excess seat handling on downgrade and pro-rated billing for remaining periods",
+            "Auto-renewed expiring subscriptions via CronJob. Isolated cron-specific env vars in EKS deployment so only a single pod runs the scheduler, eliminating concurrency races across multiple pods and ensuring subscription processing consistency",
           ],
         },
       ],
