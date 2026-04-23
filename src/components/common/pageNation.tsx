@@ -24,50 +24,46 @@ export const PagenationFallback = () => {
 };
 
 const Pagenation = ({ totalCount, currentPage, pageSize }: PagenationProps) => {
-  let isEllipsisRightOn = true;
-  let isEllipsisLeftOn = true;
-
-  /**
-   * @페이지_갯수_로직
-   */
-  const arr = [];
   const totalPages = Math.ceil(totalCount / pageSize) || 1;
-
-  for (let j = -2; j <= 2; j++) {
-    const temp = currentPage + j;
-
-    // 페이지네이션 버튼이 1보다 작거나 최대치보다 높을 수 없도록 예외처리
-    if (temp < 1 || temp > totalPages) continue;
-
-    arr.push(temp);
-  }
-
-  const lastArg = arr[arr.length - 1];
-  if (arr.length < 5 && lastArg !== totalPages) {
-    for (let i = arr.length + 1, j = lastArg + 1; i <= 5; i++, j++) {
-      arr.push(j);
-    }
-  } else if (arr.length < 5 && arr[0] !== 1) {
-    for (let i = arr.length, j = arr[0] - 1; i < 5; i++, j--) {
-      arr.push(j);
-    }
-  }
-  arr.sort();
-
-  if (arr[0] === 1) {
-    isEllipsisLeftOn = false;
-  }
-
-  if (arr[arr.length - 1] === totalPages) {
-    isEllipsisRightOn = false;
-  }
-
   const { updateQuery } = useQueryParams();
+
+  const getPageNumbers = (): (number | "ellipsis")[] => {
+    if (totalPages <= 7) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+
+    if (currentPage <= 4) {
+      return [1, 2, 3, 4, 5, "ellipsis", totalPages];
+    }
+
+    if (currentPage >= totalPages - 3) {
+      return [
+        1,
+        "ellipsis",
+        totalPages - 4,
+        totalPages - 3,
+        totalPages - 2,
+        totalPages - 1,
+        totalPages,
+      ];
+    }
+
+    return [
+      1,
+      "ellipsis",
+      currentPage - 1,
+      currentPage,
+      currentPage + 1,
+      "ellipsis",
+      totalPages,
+    ];
+  };
+
+  const pages = getPageNumbers();
 
   return (
     <Pagination>
       <PaginationContent>
-        {/* 이전페이지 */}
         <PaginationItem>
           <PaginationPrevious
             href={updateQuery({
@@ -79,46 +75,21 @@ const Pagenation = ({ totalCount, currentPage, pageSize }: PagenationProps) => {
           />
         </PaginationItem>
 
-        {isEllipsisLeftOn && (
-          <PaginationItem>
-            <PaginationLink href={updateQuery({ pageIndex: `1` })}>
-              1
-            </PaginationLink>
-          </PaginationItem>
-        )}
-
-        {isEllipsisLeftOn && (
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
-        )}
-
-        {arr.map((page) => (
-          <PaginationItem key={page}>
-            <PaginationLink
-              isActive={page === currentPage}
-              href={updateQuery({ pageIndex: `${page}` })}
-            >
-              {page}
-            </PaginationLink>
+        {pages.map((page, index) => (
+          <PaginationItem key={index}>
+            {typeof page === "number" ? (
+              <PaginationLink
+                isActive={page === currentPage}
+                href={updateQuery({ pageIndex: `${page}` })}
+              >
+                {page}
+              </PaginationLink>
+            ) : (
+              <PaginationEllipsis />
+            )}
           </PaginationItem>
         ))}
 
-        {isEllipsisRightOn && (
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
-        )}
-
-        {isEllipsisRightOn && (
-          <PaginationItem>
-            <PaginationLink href={updateQuery({ pageIndex: `${totalPages}` })}>
-              {totalPages}
-            </PaginationLink>
-          </PaginationItem>
-        )}
-
-        {/* 다음페이지 */}
         <PaginationItem>
           <PaginationNext
             href={updateQuery({

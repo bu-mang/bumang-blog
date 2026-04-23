@@ -9,7 +9,7 @@ import { useBackgroundStore } from "@/store/background";
 
 import { cn } from "@/utils/cn";
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 export default function Work() {
   const [focusedTab, setFocusedTab] = useState<"Compact" | "Interactive">(
@@ -53,6 +53,24 @@ export default function Work() {
         );
     }
   };
+
+  // 스크롤 위치 저장/복원
+  useLayoutEffect(() => {
+    const saved = sessionStorage.getItem("work-scroll-y");
+    if (saved) {
+      const y = parseInt(saved, 10);
+      sessionStorage.removeItem("work-scroll-y");
+      requestAnimationFrame(() => {
+        window.scrollTo(0, y);
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      sessionStorage.setItem("work-scroll-y", String(window.scrollY));
+    };
+  }, []);
 
   // 초기 마운트 애니메이션
   useEffect(() => {
