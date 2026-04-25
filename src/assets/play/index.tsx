@@ -37,4 +37,7 @@ export { default as CharacterInner3 } from "./6/parts/inner/character_inner3.png
 export { default as cloud } from "./6/parts/inner/cloud.jpg";
 export { default as cloudRed } from "./6/parts/inner/cloud_red.jpg";
 
+export { default as Play7_1 } from "./7/1.jpg";
+export { default as Play7_2 } from "./7/2.jpg";
+
 export { default as Star } from "./star.webp";

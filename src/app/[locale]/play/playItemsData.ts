@@ -3,6 +3,29 @@ import * as PlayImages from "@/assets/play";
 
 const playItems: PlayItemListType = [
   {
+    id: 8,
+    title: "GUITAR",
+
+    isCentered: false,
+    content: "Digital Drawing, Clip Studio",
+    imageOnly: false,
+    thumnail: {
+      width: 736,
+      height: 736,
+      imgUrl: PlayImages.Play7_1,
+    },
+    items: [
+      {
+        width: 558,
+        height: 864,
+        imgUrl: PlayImages.Play7_2,
+      },
+    ],
+    isVisible: true,
+    createdAt: "2025-08-18T14:48:00.000Z",
+  },
+  null,
+  {
     id: 7,
     title: "250816",
 
