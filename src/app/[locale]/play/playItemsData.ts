@@ -10,14 +10,14 @@ const playItems: PlayItemListType = [
     content: "Digital Drawing, Clip Studio",
     imageOnly: false,
     thumnail: {
-      width: 736,
-      height: 736,
+      width: 474,
+      height: 474,
       imgUrl: PlayImages.Play7_1,
     },
     items: [
       {
-        width: 893,
-        height: 1382,
+        width: 947,
+        height: 1728,
         imgUrl: PlayImages.Play7_2,
       },
     ],
