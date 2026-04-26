@@ -45,9 +45,13 @@ export default function ExpandModal({
     e.stopPropagation();
     const isPrev = direction === "prev";
 
-    const changableItem = playItems.find(
-      (item) => item && item.id === currentId + (isPrev ? -1 : 1),
-    );
+    const step = isPrev ? -1 : 1;
+    let nextId = currentId + step;
+    let changableItem = playItems.find((item) => item && item.id === nextId);
+    while (changableItem && changableItem.isBlurred) {
+      nextId += step;
+      changableItem = playItems.find((item) => item && item.id === nextId);
+    }
 
     if (changableItem) {
       setImageLoading(true);
