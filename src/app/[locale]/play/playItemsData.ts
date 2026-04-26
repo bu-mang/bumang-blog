@@ -75,7 +75,7 @@ const playItems: PlayItemListType = [
   //   createdAt: "2025-07-07T14:48:00.000Z",
   // },
   {
-    id: 5,
+    id: 6,
     title: "250707 Drawings",
 
     content: "Digital Drawing, Clip Studio",
@@ -127,7 +127,7 @@ const playItems: PlayItemListType = [
   },
   null,
   {
-    id: 4,
+    id: 5,
     title: "Pendulum in Pendulum",
 
     content: "Procreate, AfterEffect",
@@ -163,7 +163,7 @@ const playItems: PlayItemListType = [
   },
   null,
   {
-    id: 3,
+    id: 4,
     title: "Sketch",
 
     isCentered: true,
@@ -187,7 +187,7 @@ const playItems: PlayItemListType = [
   },
 
   {
-    id: 2,
+    id: 3,
     title: "CardCaptor",
 
     isCentered: true,
@@ -211,7 +211,7 @@ const playItems: PlayItemListType = [
   },
   null,
   {
-    id: 1,
+    id: 2,
     title: "Drawing in Notebook",
 
     content: "Hand Drawn",
