@@ -209,8 +209,8 @@ export default function WorkDetailTemplate({
       </BackgroundWrapper>
 
       {/* Markdown Content */}
-      <div className="mt-20 grid w-full grid-cols-10 gap-x-[1.5vw]">
-        <div className="col-span-full lg:col-start-3 lg:col-end-9">
+      <div className="mt-20 flex w-full justify-center">
+        <div className="w-full max-w-[640px]">
           <MarkdownRenderer content={markdownContent} />
         </div>
       </div>

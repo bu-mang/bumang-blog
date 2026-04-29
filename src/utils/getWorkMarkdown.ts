@@ -18,10 +18,7 @@ function syncImages(slug: string) {
   for (const file of readdirSync(srcDir)) {
     const src = join(srcDir, file);
     const dest = join(destDir, file);
-    if (
-      !existsSync(dest) ||
-      statSync(src).mtimeMs > statSync(dest).mtimeMs
-    ) {
+    if (!existsSync(dest) || statSync(src).mtimeMs > statSync(dest).mtimeMs) {
       copyFileSync(src, dest);
     }
   }
@@ -35,14 +32,34 @@ export function getWorkMarkdown(slug: string, locale: string): string {
 
   const target = `/images/work/${slug}/`;
 
+  function resolveLocalPath(src: string): string {
+    try {
+      const decoded = decodeURIComponent(src);
+      const filename = decoded.split("/").pop() || decoded;
+      return target + encodeURIComponent(filename);
+    } catch {
+      const filename = src.split("/").pop() || src;
+      return target + filename;
+    }
+  }
+
+  // 이미지 경로 변환
   content = content.replace(
     /!\[([^\]]*)\]\(((?:[^()]*|\([^()]*\))*)\)/g,
     (_match, alt, src) => {
       if (src.startsWith("http")) return _match;
       if (src.includes(target)) return _match;
-      const decoded = decodeURIComponent(src);
-      const filename = decoded.split("/").pop() || decoded;
-      return `![${alt}](${target}${encodeURIComponent(filename)})`;
+      return `![${alt}](${resolveLocalPath(src)})`;
+    },
+  );
+
+  // 비디오 링크 경로 변환
+  content = content.replace(
+    /(?<!!)\[([^\]]*)\]\(([^)]*\.(?:mp4|mov|webm))\)/gi,
+    (_match, text, src) => {
+      if (src.startsWith("http")) return _match;
+      if (src.includes(target)) return _match;
+      return `[${text}](${resolveLocalPath(src)})`;
     },
   );
 

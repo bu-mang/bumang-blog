@@ -7,7 +7,7 @@ interface BackToListProps {
 }
 export default function BackToList({ backToListLabel, href }: BackToListProps) {
   return (
-    <div className="flex w-full flex-col items-center justify-center border-t py-10">
+    <div className="mt-20 flex w-full flex-col items-center justify-center border-t py-10">
       <span className="text-2xl font-medium text-gray-400">
         Thanks for Reading
       </span>
