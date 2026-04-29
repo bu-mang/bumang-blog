@@ -209,8 +209,10 @@ export default function WorkDetailTemplate({
       </BackgroundWrapper>
 
       {/* Markdown Content */}
-      <div className="mt-20 w-full">
-        <MarkdownRenderer content={markdownContent} />
+      <div className="mt-20 grid w-full grid-cols-10 gap-x-[1.5vw]">
+        <div className="col-span-full lg:col-start-3 lg:col-end-9">
+          <MarkdownRenderer content={markdownContent} />
+        </div>
       </div>
 
       {/* Back to List */}

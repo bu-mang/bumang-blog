@@ -22,6 +22,10 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
         "prose-hr:my-10 prose-hr:border-gray-50",
         "prose-strong:text-gray-600",
         "prose-code:rounded prose-code:bg-gray-5 prose-code:px-1.5 prose-code:py-0.5 prose-code:text-sm prose-code:font-normal prose-code:text-gray-500 prose-code:before:content-none prose-code:after:content-none",
+        "prose-img:rounded-xl prose-img:shadow-md prose-img:my-6",
+        "prose-table:text-sm",
+        "prose-th:bg-gray-5 prose-th:px-4 prose-th:py-2",
+        "prose-td:px-4 prose-td:py-2",
       ].join(" ")}
     >
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
