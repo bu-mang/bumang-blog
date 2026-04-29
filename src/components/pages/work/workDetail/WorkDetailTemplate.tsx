@@ -19,27 +19,22 @@ import { Badge } from "@/components/ui/badge";
 import Summary from "./summary";
 import Title from "./title";
 import TitleBadge from "./titleBadge";
-import SectionLink from "./sectionLink";
-import SectionView from "./sectionView";
 import BackgroundWrapper from "./backgroundWrapper";
 import BackToList from "./backToList";
 import RelatedLinks from "./relatedLinks";
+import MarkdownRenderer from "@/components/common/MarkdownRenderer";
 
 import { PATHNAME } from "@/constants/routes/pathnameRoutes";
-import type { WorkDetailConfig } from "@/types/work";
-
-interface WorkDetailTemplateProps {
-  config: WorkDetailConfig;
-}
+import type { WorkDetailTemplateProps } from "@/types/work";
 
 export default function WorkDetailTemplate({
   config,
+  markdownContent,
 }: WorkDetailTemplateProps) {
   const locale = useLocale() as "ko" | "en";
   const TARGET_LANGUAGE = config.content[locale];
   const CONTENT_LEFT = TARGET_LANGUAGE.left;
   const CONTENT_RIGHT = TARGET_LANGUAGE.right;
-  const CONTENT_DETAIL = TARGET_LANGUAGE.details;
 
   const setBackgroundColor = useHeaderStore(
     (state) => state.setBackgroundColor,
@@ -50,7 +45,6 @@ export default function WorkDetailTemplate({
     window.scrollTo(0, 0);
   }, [setBackgroundColor]);
 
-  // Render badge with custom styles if provided, otherwise default
   const renderBadge = () => {
     if (CONTENT_LEFT.badgeStyles) {
       return (
@@ -74,7 +68,6 @@ export default function WorkDetailTemplate({
       );
     }
 
-    // Default badge rendering (used by most pages)
     return (
       <>
         <span>{CONTENT_LEFT.badge[0]}</span>{" "}
@@ -172,7 +165,6 @@ export default function WorkDetailTemplate({
             >
               <RelatedLinks links={CONTENT_LEFT.summary.relatedLink.value} />
 
-              {/* Optional Test Account Hint */}
               {CONTENT_LEFT.summary.relatedLink.testServiceAccount && (
                 <Summary.Hint
                   title={
@@ -197,24 +189,10 @@ export default function WorkDetailTemplate({
           </Summary>
         </div>
 
-        {/* RIGHT COLUMN - Description & Navigation */}
+        {/* RIGHT COLUMN - Description */}
         <div className="col-span-full lg:col-span-4">
           <div className="mb-3 text-4xl font-medium">{CONTENT_RIGHT.title}</div>
           <div className="mb-10">{CONTENT_RIGHT.desc}</div>
-
-          <div className="mb-3 text-2xl font-medium">
-            {CONTENT_RIGHT.navigation.title}
-          </div>
-          <div className="flex flex-col gap-2">
-            {CONTENT_RIGHT.navigation.value.map((item) => (
-              <SectionLink
-                key={item.title}
-                href={`#${item.href}`}
-                title={item.title}
-                desc={item.desc}
-              />
-            ))}
-          </div>
         </div>
       </section>
 
@@ -230,17 +208,9 @@ export default function WorkDetailTemplate({
         />
       </BackgroundWrapper>
 
-      {/* Detail Sections */}
+      {/* Markdown Content */}
       <div className="mt-20 w-full">
-        {CONTENT_DETAIL.map((item, index) => (
-          <SectionView
-            key={item.id}
-            id={item.id}
-            content={item}
-            order={index + 1}
-            locale={locale}
-          />
-        ))}
+        <MarkdownRenderer content={markdownContent} />
       </div>
 
       {/* Back to List */}

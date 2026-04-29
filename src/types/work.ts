@@ -71,12 +71,7 @@ export type WorkDetailContent = {
   right: {
     title: string;
     desc: string | React.ReactNode;
-    navigation: {
-      title: string;
-      value: NavItem[];
-    };
   };
-  details: Detail[];
 };
 
 export type WorkDetailConfig = {
@@ -86,4 +81,9 @@ export type WorkDetailConfig = {
     ko: WorkDetailContent;
     en: WorkDetailContent;
   };
+};
+
+export type WorkDetailTemplateProps = {
+  config: WorkDetailConfig;
+  markdownContent: string;
 };
