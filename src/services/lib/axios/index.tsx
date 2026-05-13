@@ -21,7 +21,8 @@ ClientInstance.interceptors.request.use(
   },
 );
 
-const tokenRefreshMap = new Map<string, boolean>();
+// 동시에 여러 요청이 401을 받아도 토큰 갱신은 한 번만 (single-flight)
+let refreshPromise: Promise<unknown> | null = null;
 
 // 응답 인터셉터
 ClientInstance.interceptors.response.use(
@@ -43,15 +44,24 @@ ClientInstance.interceptors.response.use(
       // 재시도 플래그 설정
       error.config._retry = true;
 
-      // 토큰 갱신 - 일반 axios 사용
-      await axios.post<UserResponseType>(
-        (process.env.NEXT_PUBLIC_API_BASE_URL as string) +
-          END_POINTS.POST_RENEW_ACCESS_TOKEN,
-        {},
-        {
-          withCredentials: true,
-        },
-      );
+      // 토큰 갱신 - 일반 axios 사용. 진행 중인 갱신이 있으면 그것을 공유한다.
+      if (!refreshPromise) {
+        refreshPromise = axios
+          .post<UserResponseType>(
+            (process.env.NEXT_PUBLIC_API_BASE_URL as string) +
+              END_POINTS.POST_RENEW_ACCESS_TOKEN,
+            {},
+            {
+              withCredentials: true,
+              timeout: 10000,
+            },
+          )
+          .finally(() => {
+            refreshPromise = null;
+          });
+      }
+
+      await refreshPromise;
 
       return ClientInstance(error.config);
     } catch (refreshError) {

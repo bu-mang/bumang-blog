@@ -8,14 +8,24 @@ import {
 } from "@/types/dto/blog/edit";
 import axios, { isAxiosError } from "axios";
 
+// 본문(직렬화된 에디터 콘텐츠)이 클 수 있고, access token 만료 시 갱신 왕복까지
+// 끼므로 기본 5초 timeout으로는 부족하다. 이 두 요청만 넉넉하게 늘린다.
+const MUTATION_TIMEOUT_MS = 30000;
+
 export const postCreatePost = async (dto: CreatePostDto) => {
-  const res = await ClientInstance.post(END_POINTS.POST_CREATE_POST, dto);
+  const res = await ClientInstance.post(END_POINTS.POST_CREATE_POST, dto, {
+    timeout: MUTATION_TIMEOUT_MS,
+  });
 
   return res.data;
 };
 
 export const patchUpdatePost = async (id: string, dto: CreatePostDto) => {
-  const res = await ClientInstance.patch(END_POINTS.PATCH_UPDATE_POST(id), dto);
+  const res = await ClientInstance.patch(
+    END_POINTS.PATCH_UPDATE_POST(id),
+    dto,
+    { timeout: MUTATION_TIMEOUT_MS },
+  );
 
   return res.data;
 };

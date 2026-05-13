@@ -8,6 +8,8 @@ export interface CreatePostDto {
   tagIds: number[];
   thumbnailUrl?: string;
   readPermission: RoleType | null;
+  /** 생성 요청 멱등 키(UUID). 재시도 시 중복 생성을 막기 위해 사용 */
+  clientRequestId?: string;
 }
 
 export interface CreatePreSignedUrlResponseDto {
