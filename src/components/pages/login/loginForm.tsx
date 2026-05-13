@@ -46,18 +46,26 @@ const LoginForm = () => {
 
       window.location.href = PATHNAME.HOME; // full reload
     } catch (error) {
+      console.error(error);
+
+      let message = t("error.general");
+
       if (isAxiosError(error)) {
-        console.error(error);
+        const status = error.response?.status ?? error.status;
 
-        if (error.status === 401) {
-          toast.error(t("error.noUser"));
-
-          setError("root", {
-            type: "manual",
-            message: t("error.noUser"),
-          });
+        if (status === 401) {
+          message = t("error.noUser");
+        } else if (typeof error.response?.data?.message === "string") {
+          message = error.response.data.message;
+        } else if (Array.isArray(error.response?.data?.message)) {
+          message = error.response.data.message.join("\n");
+        } else if (error.code === "ERR_NETWORK") {
+          message = t("error.network");
         }
       }
+
+      toast.error(message);
+      setError("root", { type: "manual", message });
     }
   };
 

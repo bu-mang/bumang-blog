@@ -423,7 +423,9 @@
       }
     },
     "error": {
-      "noUser": "ID or Password are Invalid."
+      "noUser": "ID or Password are Invalid.",
+      "network": "Network connection failed. Please try again later.",
+      "general": "Login failed. Please try again later."
     }
   },
   "blogEdit": {
