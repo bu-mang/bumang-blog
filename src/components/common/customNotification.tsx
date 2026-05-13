@@ -25,12 +25,12 @@ export default function CustomNotification({
       >
         {data.title}
       </h3>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-2">
         <p className="text-sm">{data.content}</p>
         <button
           onClick={data?.onClick || closeToast}
           className={cn(
-            "ml-auto rounded-md border px-4 py-2 text-xs text-white transition-all active:scale-[.95]",
+            "ml-auto shrink-0 whitespace-nowrap rounded-md border px-4 py-2 text-xs text-white transition-all active:scale-[.95]",
             isColored ? "bg-transparent" : "bg-zinc-900",
           )}
         >

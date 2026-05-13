@@ -23,7 +23,7 @@ const LoginForm = () => {
     register,
     handleSubmit,
     setError,
-    formState: { errors, touchedFields },
+    formState: { errors, touchedFields, isSubmitting },
   } = useForm<LoginFormType>({
     resolver: zodResolver(loginFormSchema),
     mode: "onBlur",
@@ -96,7 +96,12 @@ const LoginForm = () => {
       />
 
       {/* SUBMIT BUTTON */}
-      <Button onClick={handleSubmit(onSubmit)} className="mb-6 h-12 text-white">
+      <Button
+        type="submit"
+        isLoading={isSubmitting}
+        disabled={isSubmitting}
+        className="mb-6 h-12 w-full text-white"
+      >
         Login
       </Button>
     </form>
