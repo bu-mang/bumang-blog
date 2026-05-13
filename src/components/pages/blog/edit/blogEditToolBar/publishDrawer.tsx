@@ -72,18 +72,61 @@ export function PublishDrawer() {
   const [thumbnailIndex, setThumbnailIndex] = useState(0);
 
   const router = useRouter();
+
+  // 성공 후 이동. router 전환이 실패하는 환경(오래 열어둔 탭에서 빌드 불일치 등)을
+  // 대비해, 잠시 후에도 에디터에 그대로면 하드 네비게이션으로 폴백한다.
+  const navigateAfterSuccess = useCallback(
+    (targetUrl: string) => {
+      setIsLoading(false);
+      router.replace(targetUrl);
+      window.setTimeout(() => {
+        if (window.location.pathname.includes("/blog/edit")) {
+          window.location.assign(targetUrl);
+        }
+      }, 2000);
+    },
+    [router],
+  );
+
+  // mutation 공통 에러 핸들러
+  const handleMutationError = useCallback(
+    (fallbackMessage: string) => (error: unknown) => {
+      setIsLoading(false);
+
+      if (!isAxiosError(error)) {
+        toast.error(fallbackMessage);
+        console.error("Non-axios mutation error:", error);
+        return;
+      }
+
+      // 응답 자체가 없으면(timeout / 네트워크 단절) 서버엔 이미 반영됐을 수 있다.
+      if (!error.response) {
+        toast.error(
+          "응답이 지연되고 있어요. 변경사항이 저장됐을 수 있으니 블로그에서 확인해 주세요.",
+        );
+        console.error("No response (timeout/network):", error.code, error.message);
+        return;
+      }
+
+      const errorMessage = error.response.data?.message || fallbackMessage;
+      toast.error(errorMessage);
+      console.error(
+        "Mutation error:",
+        error.response.status,
+        error.response.config?.data,
+      );
+    },
+    [],
+  );
+
   const postMutation = useMutation({
     mutationFn: postCreatePost,
-    onError: (error) => {
-      if (!isAxiosError(error)) return;
-
-      const errorMessage =
-        error.response?.data?.message || "Failed to publish post";
-      toast.error(errorMessage);
-      console.error("Post creation error:", error.response?.config.data);
-      console.error("Error message:", error.message);
-      setIsLoading(false);
+    onSuccess: () => {
+      console.log("Post created successfully!");
+      toast.success("Post published successfully!");
+      navigateAfterSuccess(PATHNAME.BLOG);
     },
+    onError: handleMutationError("Failed to publish post"),
   });
 
   // 수정 모드일 때 기존 readPermission 값 로드
@@ -96,16 +139,12 @@ export function PublishDrawer() {
   const updateMutation = useMutation({
     mutationFn: ({ queryId, ...rest }: CreatePostDto & { queryId: string }) =>
       patchUpdatePost(queryId, rest),
-    onError: (error) => {
-      if (!isAxiosError(error)) return;
-
-      const errorMessage =
-        error.response?.data?.message || "Failed to update post";
-      toast.error(errorMessage);
-      console.error("Post update error:", error.response?.config.data);
-      console.error("Error message:", error.message);
-      setIsLoading(false);
+    onSuccess: (_data, variables) => {
+      console.log("Post updated successfully!");
+      toast.success("Post updated successfully!");
+      navigateAfterSuccess(PATHNAME.BLOG + `/${variables.queryId}`);
     },
+    onError: handleMutationError("Failed to update post"),
   });
 
   const handleChangeThumbnailIndex = (value: -1 | 1) => {
@@ -152,9 +191,8 @@ export function PublishDrawer() {
   };
 
   // PUBLISH!!
-  const handlePublish = async () => {
-    setIsLoading(true);
-    // BlockNote content를 HTML로 변환
+  const handlePublish = () => {
+    // BlockNote content를 직렬화
     const content = onSerialize();
     const trimmedContent = trimBlockNoteContent(content);
     const serializedHTML = trimmedContent
@@ -192,58 +230,26 @@ export function PublishDrawer() {
       return;
     }
 
+    setIsLoading(true);
     onDisablePrevent();
 
-    try {
-      // 수정인 경우
-      if (queryId) {
-        await updateMutation.mutateAsync({
-          queryId,
-          title: trimmedTitle,
-          content: serializedHTML,
-          previewText: trimmedPreviewText,
-          categoryId,
-          tagIds,
-          readPermission,
-          thumbnailUrl,
-        });
+    const payload: CreatePostDto = {
+      title: trimmedTitle,
+      content: serializedHTML,
+      previewText: trimmedPreviewText,
+      categoryId,
+      tagIds,
+      readPermission,
+      thumbnailUrl,
+    };
 
-        // 성공 후 처리
-        console.log("Post updated successfully!");
-        toast.success("Post updated successfully!");
-        setIsLoading(false);
-
-        // 바로 redirect
-        const targetUrl = PATHNAME.BLOG + `/${queryId}`;
-        console.log("Redirecting to:", targetUrl);
-        router.push(targetUrl);
-        return;
-      }
-
-      // 생성인 경우
-      await postMutation.mutateAsync({
-        title: trimmedTitle,
-        content: serializedHTML,
-        previewText: trimmedPreviewText,
-        categoryId,
-        tagIds,
-        readPermission,
-        thumbnailUrl,
-      });
-
-      // 성공 후 처리
-      console.log("Post created successfully!");
-      toast.success("Post published successfully!");
-      setIsLoading(false);
-
-      // 바로 redirect
-      console.log("Redirecting to:", PATHNAME.BLOG);
-      router.push(PATHNAME.BLOG);
-    } catch (error) {
-      // onError 콜백에서 처리되므로 여기서는 로그만
-      console.error("Mutation failed:", error);
-      setIsLoading(false);
+    // 성공 시 redirect / 에러 처리는 각 mutation의 onSuccess/onError 콜백에서 담당한다.
+    if (queryId) {
+      updateMutation.mutate({ queryId, ...payload });
+      return;
     }
+
+    postMutation.mutate(payload);
   };
 
   // 외부 URL 이미지를 S3로 업로드 (프록시 API 사용)
