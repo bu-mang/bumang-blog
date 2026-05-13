@@ -28,7 +28,7 @@ import {
 import { isAxiosError } from "axios";
 import { useAuthStore } from "@/store/auth";
 import { useEditStore } from "@/store/edit";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { getThumbnailByGroup } from "@/utils/getThumnailByGroup";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -72,6 +72,10 @@ export function PublishDrawer() {
   const [thumbnailIndex, setThumbnailIndex] = useState(0);
 
   const router = useRouter();
+
+  // 생성(POST) 요청의 멱등 키. 자동 재시도/사용자 재클릭 시에도 동일한 키를 보내
+  // 백엔드가 중복 글을 만들지 않도록 한다. 한 번 만든 키는 일부러 리셋하지 않는다.
+  const createRequestIdRef = useRef<string | null>(null);
 
   // 성공 후 이동. router 전환이 실패하는 환경(오래 열어둔 탭에서 빌드 불일치 등)을
   // 대비해, 잠시 후에도 에디터에 그대로면 하드 네비게이션으로 폴백한다.
@@ -249,7 +253,14 @@ export function PublishDrawer() {
       return;
     }
 
-    postMutation.mutate(payload);
+    // 생성: 멱등 키를 최초 1회만 만들어 이후 재시도에도 동일하게 보낸다.
+    if (!createRequestIdRef.current) {
+      createRequestIdRef.current = crypto.randomUUID();
+    }
+    postMutation.mutate({
+      ...payload,
+      clientRequestId: createRequestIdRef.current,
+    });
   };
 
   // 외부 URL 이미지를 S3로 업로드 (프록시 API 사용)
