@@ -35,6 +35,22 @@ import { usePageLeavePrevent } from "@/hooks/usePageLeavePrevent";
 import { useAutoSave } from "@/hooks/useAutoSave";
 import { DraftData } from "@/lib/indexedDB";
 
+/**
+ * 붙여넣은 plain text가 마크다운 문법을 포함하는지 판별하는 휴리스틱.
+ * BlockNote 기본 휴리스틱(헤딩 뒤 빈 줄 요구 등)이 너무 엄격해
+ * `# 제목`이 그대로 텍스트로 들어가는 문제를 보완하기 위해 더 느슨하게 검사한다.
+ */
+const looksLikeMarkdown = (text: string) =>
+  /(^|\n)\s{0,3}#{1,6}\s/.test(text) || // 헤딩
+  /(^|\n)\s{0,3}[-*+]\s/.test(text) || // 순서 없는 리스트
+  /(^|\n)\s{0,3}\d+\.\s/.test(text) || // 순서 있는 리스트
+  /(^|\n)\s{0,3}>\s/.test(text) || // 인용
+  /```|~~~/.test(text) || // 코드 블록
+  /(\*\*|__)[^\s].*?[^\s](\*\*|__)/.test(text) || // 볼드
+  /\[[^\]]+\]\([^)]+\)/.test(text) || // 링크
+  /(^|\n)\s{0,3}(-{3,}|\*{3,}|_{3,})\s*$/.test(text) || // 구분선
+  /(^|\n)\s*\|.+\|/.test(text); // 테이블
+
 interface BlogEditInnerProps {
   tagLists: TagType[];
   groupLists: GroupType[];
@@ -139,6 +155,21 @@ export default function BlogEditInner({
         }),
       },
     }),
+    // 마크다운 텍스트를 붙여넣으면 자동으로 블록으로 변환한다.
+    // 코드 블록 안 / 파일 붙여넣기는 BlockNote 기본 동작을 유지한다.
+    pasteHandler: ({ event, editor, defaultPasteHandler }) => {
+      const plain = event.clipboardData?.getData("text/plain");
+      const hasFiles = event.clipboardData?.types.includes("Files");
+      const inCodeBlock =
+        editor.getTextCursorPosition().block.type === "codeBlock";
+
+      if (plain && !hasFiles && !inCodeBlock && looksLikeMarkdown(plain)) {
+        editor.pasteMarkdown(plain);
+        return true;
+      }
+
+      return defaultPasteHandler();
+    },
     uploadFile: async (file: File) => {
       try {
         // 외부 URL 이미지인 경우 (클립보드로 붙여넣은 경우)
