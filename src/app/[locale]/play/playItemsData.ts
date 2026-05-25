@@ -17,7 +17,7 @@ const playItems: PlayItemListType = [
     items: [
       {
         width: 644,
-        height: 1085,
+        height: 996,
         imgUrl: PlayImages.Play7_2,
       },
     ],
