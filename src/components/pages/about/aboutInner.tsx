@@ -240,11 +240,11 @@ export default function AboutInner({
   return (
     <main ref={containerRef}>
       {/* IMAGES */}
-      <div className="fade-in-mount relative mx-[2vw] mb-6 h-40 md:mx-[6vw] tbl:h-96">
+      <div className="fade-in-mount relative mx-[2vw] mb-6 h-40 dark:bg-background md:mx-[6vw] tbl:h-96">
         <Image
           src={AboutBanner}
           alt="profileImage"
-          className="object-cover"
+          className="object-cover dark:mix-blend-multiply"
           fill
           priority
           sizes="100vw"
