@@ -30,9 +30,7 @@ import {
 import { BlogEditorProvider } from "@/contexts/BlogEditorContext";
 
 import { CategoryType, GroupType, TagType } from "@/types";
-import { cn } from "@/utils/cn";
 
-import { LAYOUT_PADDING_ALONGSIDE } from "@/constants/layouts/layout";
 import { sortStringOrder } from "@/utils/sortTagOrder";
 import { useEditStore } from "@/store/edit";
 import useModalStore from "@/store/modal";
@@ -456,14 +454,9 @@ export default function BlogEditInner({
           {/* 상단 헤더 (ToolBar) */}
           <BlogEditorToolBar />
 
-          {/* 본문 영역 */}
-          <div
-            className={cn(
-              "flex w-full flex-1 justify-center pt-24",
-              LAYOUT_PADDING_ALONGSIDE,
-            )}
-          >
-            <div className="flex w-[760px] flex-col">
+          {/* 본문 영역 — 상세 페이지와 동일한 grid 레이아웃 */}
+          <div className="grid h-fit flex-1 grid-cols-10 gap-x-[1.5vw] px-[2vw] pt-24 md:px-[6vw]">
+            <div className="col-span-full flex flex-col lg:col-start-3 lg:col-end-9">
               {/* INPUT */}
               <textarea
                 ref={titleRef}
@@ -482,11 +475,16 @@ export default function BlogEditInner({
               />
 
               {/* BLOCKNOTE EDITOR */}
-              <BlockNoteView
-                editor={editor}
-                theme={resolvedTheme === "dark" ? "dark" : "light"}
-                editable={true}
-              />
+              {/* BlockNote 내부 .bn-editor의 padding-inline:54px를 보정해
+                  데스크탑(lg↑)에서 본문 가시 폭을 제목/컨테이너에 맞춤.
+                  모바일에선 col-span-full이라 여백이 부족하므로 lg부터만 적용. */}
+              <div className="lg:-mx-[46px]">
+                <BlockNoteView
+                  editor={editor}
+                  theme={resolvedTheme === "dark" ? "dark" : "light"}
+                  editable={true}
+                />
+              </div>
             </div>
           </div>
         </main>

@@ -330,11 +330,16 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
           )}
         </div>
 
-        <BlockNoteView
-          editor={editor}
-          theme={resolvedTheme === "dark" ? "dark" : "light"}
-          editable={false}
-        />
+        {/* BlockNote 내부 .bn-editor의 padding-inline:54px를 보정해
+            데스크탑(lg↑)에서 본문 가시 폭을 제목/컨테이너에 맞춤.
+            모바일에선 col-span-full이라 여백이 부족하므로 lg부터만 적용. */}
+        <div className="lg:-mx-[46px]">
+          <BlockNoteView
+            editor={editor}
+            theme={resolvedTheme === "dark" ? "dark" : "light"}
+            editable={false}
+          />
+        </div>
       </div>
 
       {/* 목차 */}
