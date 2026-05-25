@@ -535,7 +535,7 @@ function HeaderAnimSwitcher({ locale, className }: SwitcherProps) {
         className="z-[1000] flex flex-col items-center justify-center gap-0.5"
       >
         <p className="text-[10px] text-gray-50 dark:text-gray-200">
-          {locale === "ko" ? "헤더" : "Header"}
+          {locale === "ko" ? "헤더 크기" : "Header Size"}
         </p>
         {canActivate ? (
           <div className="flex gap-1">
