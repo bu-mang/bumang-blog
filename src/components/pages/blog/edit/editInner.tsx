@@ -1,6 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   PartialBlock,
   BlockNoteSchema,
@@ -131,12 +138,24 @@ export default function BlogEditInner({
   const [title, setTitle] = useState("");
   const [draftId, setDraftId] = useState(() => Date.now());
 
+  const titleRef = useRef<HTMLTextAreaElement>(null);
+
+  const resizeTitle = useCallback(() => {
+    const el = titleRef.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${el.scrollHeight}px`;
+  }, []);
+
   const handleChangeTitle = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
-    const target = e.target as HTMLTextAreaElement;
-    target.style.height = "auto";
-    target.style.height = `${target.scrollHeight}px`;
   };
+
+  // title이 바뀌면(직접 입력/수정 페이지 backfill 모두) textarea 높이 재계산.
+  // useLayoutEffect: paint 전에 동기적으로 실행되어 깜빡임 방지.
+  useLayoutEffect(() => {
+    resizeTitle();
+  }, [title, resizeTitle]);
 
   // BlockNote 에디터 초기화
   const editor = useCreateBlockNote({
@@ -447,6 +466,7 @@ export default function BlogEditInner({
             <div className="flex w-[760px] flex-col">
               {/* INPUT */}
               <textarea
+                ref={titleRef}
                 className="flex h-auto min-h-20 w-full resize-none flex-wrap overflow-hidden rounded-md border-none bg-transparent px-14 px-2 py-4 text-5xl font-semibold leading-normal outline-none transition-colors placeholder:text-gray-100 hover:bg-gray-1 disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-gray-800"
                 placeholder={t("titlePlaceHolder")}
                 tabIndex={1}
