@@ -17,7 +17,7 @@ import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
 import { codeBlockOptions } from "@blocknote/code-block";
-import { useTheme } from "next-themes";
+import { EDITOR_TRANSPARENT_THEME } from "@/constants/layouts/blocknoteTheme";
 
 import { Divider } from "@/components/common";
 import { BlogEditorToolBar } from "@/components/pages";
@@ -68,9 +68,6 @@ export default function BlogEditInner({
   // i18n
   const t = useTranslations("blogEdit");
   const locale = useLocale();
-
-  // Theme
-  const { resolvedTheme } = useTheme();
 
   // ------------- 중앙부 그룹/카테고리/태그 로직 -------------
 
@@ -481,7 +478,7 @@ export default function BlogEditInner({
               <div className="lg:-mx-[46px]">
                 <BlockNoteView
                   editor={editor}
-                  theme={resolvedTheme === "dark" ? "dark" : "light"}
+                  theme={EDITOR_TRANSPARENT_THEME}
                   editable={true}
                 />
               </div>
