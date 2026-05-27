@@ -487,6 +487,7 @@ export default function BlogEditInner({
                 <BlockNoteView
                   editor={editor}
                   theme={blocknoteTheme}
+                  data-color-scheme={resolvedTheme === "dark" ? "dark" : "light"}
                   editable={true}
                 />
               </div>

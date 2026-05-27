@@ -342,6 +342,7 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
           <BlockNoteView
             editor={editor}
             theme={blocknoteTheme}
+            data-color-scheme={resolvedTheme === "dark" ? "dark" : "light"}
             editable={false}
           />
         </div>
