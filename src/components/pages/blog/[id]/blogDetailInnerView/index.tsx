@@ -37,6 +37,7 @@ import { useMutation } from "@tanstack/react-query";
 import { deletePost } from "@/services/api/blog/edit";
 import { useTranslations } from "next-intl";
 import { useHeaderStore } from "@/store/header";
+import { useTheme } from "next-themes";
 import { parseBlockNoteContent } from "@/utils/contentFormat";
 import useModalStore from "@/store/modal";
 import CommonModal from "@/components/modal/type/common";
@@ -169,6 +170,13 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
   const blockNoteContent = useMemo(() => {
     return parseBlockNoteContent(post.content);
   }, [post.content]);
+
+  // BlockNote가 시스템 OS 색상이 아닌 앱 테마(next-themes)를 따르게 함.
+  const { resolvedTheme } = useTheme();
+  const blocknoteTheme =
+    resolvedTheme === "dark"
+      ? EDITOR_TRANSPARENT_THEME.dark
+      : EDITOR_TRANSPARENT_THEME.light;
 
   // Create BlockNote editor
   const editor = useCreateBlockNote({
@@ -333,7 +341,7 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
         <div className="lg:-mx-[46px]">
           <BlockNoteView
             editor={editor}
-            theme={EDITOR_TRANSPARENT_THEME}
+            theme={blocknoteTheme}
             editable={false}
           />
         </div>
