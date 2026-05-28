@@ -12,7 +12,6 @@ import { BlockNoteSchema, createCodeBlockSpec } from "@blocknote/core";
 import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/mantine";
 import { codeBlockOptions } from "@blocknote/code-block";
-import { EDITOR_TRANSPARENT_THEME } from "@/constants/layouts/blocknoteTheme";
 import { format } from "date-fns";
 import {
   AlignJustifyIcon,
@@ -173,10 +172,6 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
 
   // BlockNote가 시스템 OS 색상이 아닌 앱 테마(next-themes)를 따르게 함.
   const { resolvedTheme } = useTheme();
-  const blocknoteTheme =
-    resolvedTheme === "dark"
-      ? EDITOR_TRANSPARENT_THEME.dark
-      : EDITOR_TRANSPARENT_THEME.light;
 
   // Create BlockNote editor
   const editor = useCreateBlockNote({

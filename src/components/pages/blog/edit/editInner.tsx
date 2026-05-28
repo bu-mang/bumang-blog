@@ -17,7 +17,6 @@ import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
 import { codeBlockOptions } from "@blocknote/code-block";
-import { EDITOR_TRANSPARENT_THEME } from "@/constants/layouts/blocknoteTheme";
 import { useTheme } from "next-themes";
 
 import { Divider } from "@/components/common";
@@ -155,10 +154,6 @@ export default function BlogEditInner({
 
   // BlockNote가 시스템 OS 색상이 아닌 앱 테마(next-themes)를 따르게 함.
   const { resolvedTheme } = useTheme();
-  const blocknoteTheme =
-    resolvedTheme === "dark"
-      ? EDITOR_TRANSPARENT_THEME.dark
-      : EDITOR_TRANSPARENT_THEME.light;
 
   // BlockNote 에디터 초기화
   const editor = useCreateBlockNote({
@@ -486,8 +481,7 @@ export default function BlogEditInner({
               <div className="lg:-mx-[46px]">
                 <BlockNoteView
                   editor={editor}
-                  theme={blocknoteTheme}
-                  data-color-scheme={resolvedTheme === "dark" ? "dark" : "light"}
+                  theme={resolvedTheme === "dark" ? "dark" : "light"}
                   editable={true}
                 />
               </div>
