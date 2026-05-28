@@ -310,7 +310,7 @@ export default function AboutInner({
                   Behance
                 </Link>
                 <Link
-                  href={"https://www.chess.com/member/blmnt/stats/rapid"}
+                  href={"https://www.chess.com/member/bu-mang/stats/rapid"}
                   className="transition-all hover:bg-gray-800 hover:text-white"
                   target="_blank"
                   rel="noopener noreferrer"
