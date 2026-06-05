@@ -31,4 +31,13 @@ export const END_POINTS = {
   GET_BLOG_DETAIL: (id: number | string) => `/posts/${id}`,
   GET_RELATED_POSTS: (id: number | string) => `/posts/${id}/related`,
   GET_ADJACENT_POSTS: (id: number | string) => `/posts/${id}/adjacent`,
+
+  // USER GROUPS (OWNER only)
+  GET_USER_GROUPS: "/user-groups",
+  POST_USER_GROUP: "/user-groups",
+  PATCH_USER_GROUP: (id: number | string) => `/user-groups/${id}`,
+  DELETE_USER_GROUP: (id: number | string) => `/user-groups/${id}`,
+  POST_USER_GROUP_MEMBER: (id: number | string) => `/user-groups/${id}/members`,
+  DELETE_USER_GROUP_MEMBER: (id: number | string, userId: number | string) =>
+    `/user-groups/${id}/members/${userId}`,
 } as const;
