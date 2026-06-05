@@ -11,7 +11,6 @@ import {
   Divider,
   ComboBox,
   FillButton,
-  AudienceCombobox,
 } from "@/components/common";
 import { useRouter } from "@/i18n/navigation";
 import { GroupType, CategoryType } from "@/types";
@@ -185,11 +184,6 @@ const BlogEditorToolBar = () => {
           unselectedTags={unselectedTags}
           handleSwitchTags={handleSwitchTags}
         />
-
-        <Divider />
-
-        {/* AUDIENCE BOX */}
-        <AudienceCombobox />
       </div>
 
       {/* AUTO-SAVE STATUS */}
