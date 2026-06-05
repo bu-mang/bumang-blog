@@ -10,7 +10,7 @@ interface CountBadgeProps {
 
 /**
  * "선택 / 전체" 카운트를 표시하는 둥근 배지.
- * TagCombobox, AudienceCombobox 등 콤보박스 트리거 옆에서 공통으로 쓰인다.
+ * TagCombobox 등 콤보박스 트리거 옆에서 공통으로 쓰인다.
  */
 const CountBadge = ({ selected, total, className }: CountBadgeProps) => (
   <div
