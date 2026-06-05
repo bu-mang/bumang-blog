@@ -9,6 +9,8 @@ import LabelWithUtil from "./labelWithUtil";
 
 import { Tag, CollapsedTag, TagWrapper } from "./tag";
 import ReadPermissionSelector from "./readPermissionSelector";
+import AudienceCombobox from "./audienceCombobox";
+import CountBadge from "./countBadge";
 
 export {
   /**
@@ -40,8 +42,13 @@ export {
    */
   ReadPermissionSelector,
   /**
+   * @AUDIENCE
+   */
+  AudienceCombobox,
+  /**
    * @ETC
    */
   Divider,
   Pagenation,
+  CountBadge,
 };

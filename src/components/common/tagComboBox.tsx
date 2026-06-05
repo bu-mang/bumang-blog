@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/command";
 
 import { LuPlus } from "react-icons/lu";
-import { Divider, Tag, TagWrapper } from "@/components/common";
+import { CountBadge, Tag, TagWrapper } from "@/components/common";
 import type { TagType } from "@/types";
 import { CommandItem } from "cmdk";
 import {
@@ -69,19 +69,7 @@ const TagCombobox = ({
             open={isOpen ? false : undefined}
           >
             <HoverCardTrigger asChild>
-              <div className="flex min-w-10 items-center justify-evenly gap-1 rounded-full bg-gray-600 px-2 py-0.5 shadow-md transition-transform group-hover:bg-gray-900">
-                <span className="text-xs font-semibold text-white">
-                  {selectedLength}
-                </span>
-                <Divider
-                  size={18}
-                  direction="vertical"
-                  className="bg-gray-100"
-                />
-                <span className="text-xs font-semibold text-white">
-                  {totalLength}
-                </span>
-              </div>
+              <CountBadge selected={selectedLength} total={totalLength} />
             </HoverCardTrigger>
 
             {/* CONTENT */}

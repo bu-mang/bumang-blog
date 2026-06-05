@@ -443,7 +443,7 @@
         "inputPlaceHolder": "카테고리를 검색하세요."
       },
       "addTags": {
-        "button": "태그 추가하기",
+        "button": "태그 추가",
         "selectedTags": "선택된 태그 목록",
         "noTags": "선택 가능한 태그가 없습니다.",
         "inputPlaceHolder": "태그를 검색하세요."
@@ -457,7 +457,7 @@
         "authChecking": "인증 체크 중...",
         "none": ""
       },
-      "addNewDraft": "새로운 임시저장 내역 추가하기",
+      "addNewDraft": "새로운 임시저장 내역 추가",
       "noTitle": "제목 없음",
       "noDesc": "본문 없음",
       "noGroup": "그룹 미선택",
