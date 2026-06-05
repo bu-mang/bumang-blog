@@ -9,7 +9,6 @@ import LabelWithUtil from "./labelWithUtil";
 
 import { Tag, CollapsedTag, TagWrapper } from "./tag";
 import ReadPermissionSelector from "./readPermissionSelector";
-import AudienceCombobox from "./audienceCombobox";
 import CountBadge from "./countBadge";
 
 export {
@@ -41,10 +40,6 @@ export {
    * @READ_PERMISSION
    */
   ReadPermissionSelector,
-  /**
-   * @AUDIENCE
-   */
-  AudienceCombobox,
   /**
    * @ETC
    */

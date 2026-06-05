@@ -20,7 +20,11 @@ export const HeaderFallback = ({ isLoading, locale }: HeaderFallbackProps) => {
   const pathname = usePathname();
 
   // Hide header on these paths
-  if (pathname === "/blog/edit" || /^\/play\/\d+$/.test(pathname)) {
+  if (
+    pathname === "/blog/edit" ||
+    pathname.startsWith("/admin") ||
+    /^\/play\/\d+$/.test(pathname)
+  ) {
     return null;
   }
 
@@ -89,7 +93,11 @@ export function HeaderInnerAuthenticated({ locale }: HeaderInnerProps) {
   const pathname = usePathname();
 
   // Hide header on these paths
-  if (pathname === "/blog/edit" || /^\/play\/\d+$/.test(pathname)) {
+  if (
+    pathname === "/blog/edit" ||
+    pathname.startsWith("/admin") ||
+    /^\/play\/\d+$/.test(pathname)
+  ) {
     return null;
   }
 

@@ -12,11 +12,12 @@ const Footer = () => {
 
   const pathname = usePathname();
   const isBlogEdit = pathname === "/blog/edit";
+  const isAdmin = pathname.startsWith("/admin");
   const isHome = pathname === PATHNAME.HOME;
 
   const footerClass = cn(
     "flex w-full cursor-default text-xs",
-    isBlogEdit && "hidden",
+    (isBlogEdit || isAdmin) && "hidden",
     isHome && "fixed bottom-10",
   );
 
