@@ -10,6 +10,7 @@ interface EditDraftType {
   selectedCategory: { id: number; label: string } | null;
   selectedTags: { id: number; label: string }[];
   readPermission?: RoleType;
+  blockAudienceMap?: Record<string, number[]>;
 }
 
 interface EditState {

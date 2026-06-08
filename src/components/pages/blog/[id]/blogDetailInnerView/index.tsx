@@ -8,10 +8,9 @@ import {
   TagWrapper,
 } from "@/components/common";
 import { PostDetailResponseDto } from "@/types/dto/blog/[id]";
-import { BlockNoteSchema, createCodeBlockSpec } from "@blocknote/core";
 import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/mantine";
-import { codeBlockOptions } from "@blocknote/code-block";
+import { blogBlockNoteSchema } from "@/components/editor/blogBlockNoteSchema";
 import { format } from "date-fns";
 import {
   AlignJustifyIcon,
@@ -164,6 +163,9 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
    */
   const user = useAuthStore((state) => state.user);
   const setAllEditState = useEditStore((state) => state.setAllEditState);
+  const router = useRouter();
+  const params = useParams();
+  const queryId = typeof params.id === "string" ? params.id : params.id[0];
 
   // Parse BlockNote content
   const blockNoteContent = useMemo(() => {
@@ -173,25 +175,51 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
   // BlockNote가 시스템 OS 색상이 아닌 앱 테마(next-themes)를 따르게 함.
   const { resolvedTheme } = useTheme();
 
-  // Create BlockNote editor
+  // Create BlockNote editor — shared schema with editor side
   const editor = useCreateBlockNote({
-    schema: BlockNoteSchema.create().extend({
-      blockSpecs: {
-        codeBlock: createCodeBlockSpec({
-          ...codeBlockOptions,
-          defaultLanguage: "typescript",
-          supportedLanguages: {
-            typescript: { name: "TypeScript", aliases: ["ts"] },
-            javascript: { name: "JavaScript", aliases: ["js"] },
-            python: { name: "Python", aliases: ["py"] },
-            java: { name: "Java", aliases: [] },
-            markdown: { name: "Markdown", aliases: ["md"] },
-          },
-        }),
-      },
-    }),
+    schema: blogBlockNoteSchema,
     initialContent: blockNoteContent,
   });
+
+  // 백엔드가 마스킹한 블록(원본 텍스트는 같은 길이 더미로 치환됨)에:
+  // - 블러 클래스(`audience-blocked`) 부여
+  // - hover 시 안내 툴팁(`title`)
+  // - 클릭 시 로그인 페이지로 (anon만)
+  // BlockNote가 각 블록을 [data-id="..."] 속성으로 렌더하므로 그걸로 찾는다.
+  const isAnon = !user;
+  useEffect(() => {
+    const ids = post.maskedBlockIds ?? [];
+    if (ids.length === 0) return;
+
+    const tooltip = isAnon
+      ? "로그인하면 볼 수 있어요"
+      : "권한이 있는 그룹에 속해야 볼 수 있어요";
+
+    const handlers: Array<{ el: HTMLElement; onClick: () => void }> = [];
+
+    const raf = requestAnimationFrame(() => {
+      ids.forEach((id) => {
+        const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
+        if (!el) return;
+        el.classList.add("audience-blocked");
+        el.title = tooltip;
+        const onClick = () => {
+          if (isAnon) router.push(PATHNAME.LOGIN);
+        };
+        el.addEventListener("click", onClick);
+        handlers.push({ el, onClick });
+      });
+    });
+
+    return () => {
+      cancelAnimationFrame(raf);
+      handlers.forEach(({ el, onClick }) => {
+        el.classList.remove("audience-blocked");
+        el.removeAttribute("title");
+        el.removeEventListener("click", onClick);
+      });
+    };
+  }, [post.maskedBlockIds, isAnon, router]);
 
   const handleSetDraft = () => {
     setAllEditState(
@@ -203,6 +231,7 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
         selectedCategory: post.category,
         selectedTags: post.tags,
         readPermission: post.readPermission,
+        blockAudienceMap: post.blockAudienceMap ?? {},
       },
       "toUpdate",
     );
@@ -225,9 +254,6 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
     }
   };
 
-  const router = useRouter();
-  const params = useParams();
-  const queryId = typeof params.id === "string" ? params.id : params.id[0];
   const deleteMutation = useMutation({
     mutationFn: () => deletePost(queryId),
     onSuccess: () => {

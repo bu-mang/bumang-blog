@@ -46,6 +46,7 @@ export function PublishDrawer() {
     selectedTags,
     onSerialize,
     onDisablePrevent,
+    blockAudienceMap,
   } = useBlogEditorContext();
 
   // const editorValue = onSerialize();
@@ -245,6 +246,7 @@ export function PublishDrawer() {
       tagIds,
       readPermission,
       thumbnailUrl,
+      blockAudienceMap,
     };
 
     // 성공 시 redirect / 에러 처리는 각 mutation의 onSuccess/onError 콜백에서 담당한다.

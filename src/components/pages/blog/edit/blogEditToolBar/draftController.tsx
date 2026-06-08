@@ -40,13 +40,14 @@ const DraftController = ({ className }: DraftControllerProps) => {
     handleDraftOpen,
     loadDraftToEditor,
     title,
-    editor,
     draftId,
     setDraftId,
     selectedGroup,
     selectedCategory,
     selectedTags,
     onSerialize,
+    blockAudienceMap,
+    setBlockAudienceMap,
   } = useBlogEditorContext();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps -- Required for real-time document tracking
@@ -70,8 +71,17 @@ const DraftController = ({ className }: DraftControllerProps) => {
       selectedCategory,
       selectedTags,
       lastUpdatedAt: new Date().toISOString(),
+      blockAudienceMap,
     }),
-    [draftId, title, content, selectedGroup, selectedCategory, selectedTags],
+    [
+      draftId,
+      title,
+      content,
+      selectedGroup,
+      selectedCategory,
+      selectedTags,
+      blockAudienceMap,
+    ],
   );
 
   const openModal = useModalStore((state) => state.openModal);
@@ -165,6 +175,7 @@ const DraftController = ({ className }: DraftControllerProps) => {
       draft.selectedTags,
       targetDraftId,
     );
+    setBlockAudienceMap(draft.blockAudienceMap ?? {});
   };
 
   // 현재 내용으로 덮어쓰기

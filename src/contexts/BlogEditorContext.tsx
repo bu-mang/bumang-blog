@@ -1,13 +1,16 @@
 "use client";
 
 import { createContext, useContext, ReactNode } from "react";
-import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
+import {
+  BlogBlockNoteEditor,
+  BlogPartialBlock,
+} from "@/components/editor/blogBlockNoteSchema";
 import { CategoryType, GroupType, TagType } from "@/types";
 import { SaveStatus } from "@/hooks/useAutoSave";
 
 // State Context (자주 변경되는 값들)
 export interface BlogEditorStateContextValue {
-  editor: BlockNoteEditor | null;
+  editor: BlogBlockNoteEditor | null;
   title: string;
   draftId: number;
   selectedGroup: GroupType | null;
@@ -17,6 +20,10 @@ export interface BlogEditorStateContextValue {
   isDraftOpen: boolean;
   saveStatus?: SaveStatus;
   lastSavedAt?: Date | null;
+  /** block.id → groupId[]. 키 없거나 빈 배열은 공개. */
+  blockAudienceMap: Record<string, number[]>;
+  /** 공개대상 설정 다이얼로그가 타겟으로 잡은 block.id. null이면 다이얼로그 닫힘. */
+  audienceTargetBlockId: string | null;
 }
 
 // Actions Context (거의 변경되지 않는 함수들)
@@ -31,16 +38,20 @@ export interface BlogEditorActionsContextValue {
   setDraftId: (id: number) => void;
   loadDraftToEditor: (
     title: string,
-    content: PartialBlock[] | undefined,
+    content: BlogPartialBlock[] | undefined,
     group: GroupType | null,
     category: CategoryType | null,
     tags: TagType[],
     draftId?: number,
   ) => void;
-  onSerialize: () => PartialBlock[] | undefined;
-  onDeserialize: (content: PartialBlock[]) => void;
+  onSerialize: () => BlogPartialBlock[] | undefined;
+  onDeserialize: (content: BlogPartialBlock[]) => void;
   onDisablePrevent: () => void;
   groupLists: GroupType[]; // 거의 안 변함
+  setBlockAudience: (blockId: string, groupIds: number[] | undefined) => void;
+  setBlockAudienceMap: (next: Record<string, number[]>) => void;
+  openBlockAudience: (blockId: string) => void;
+  closeBlockAudience: () => void;
 }
 
 const BlogEditorStateContext =

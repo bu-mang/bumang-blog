@@ -2,18 +2,20 @@
  * IndexedDB utility for managing blog drafts
  */
 
-import { PartialBlock } from "@blocknote/core";
+import { BlogPartialBlock } from "@/components/editor/blogBlockNoteSchema";
 import { CategoryType, GroupType, TagType } from "@/types";
 
 // Draft 타입 (BlockNote 전용)
 export interface DraftData {
   id: number;
   title: string;
-  content: PartialBlock[]; // BlockNote document
+  content: BlogPartialBlock[]; // BlockNote document
   selectedGroup: GroupType | null;
   selectedCategory: CategoryType | null;
   selectedTags: TagType[];
   lastUpdatedAt: string;
+  /** block.id → groupId[]. 키 없거나 빈 배열은 공개. */
+  blockAudienceMap?: Record<string, number[]>;
 }
 
 const DB_NAME = "BumangBlogDB";

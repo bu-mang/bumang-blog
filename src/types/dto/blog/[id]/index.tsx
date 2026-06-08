@@ -9,6 +9,10 @@ export interface PostDetailResponseDto {
   updatedAt: string; // Date;
   authorNickname: string;
   readPermission: RoleType | null;
+  /** block.id → groupId[]. 작성자/owner에게만 응답에 포함된다. */
+  blockAudienceMap?: Record<string, number[]>;
+  /** 마스킹된 블록의 BlockNote id 목록 (프론트에서 블러 적용용) */
+  maskedBlockIds: string[];
   thumbnailUrl: string;
   views: number;
   likes: number;
