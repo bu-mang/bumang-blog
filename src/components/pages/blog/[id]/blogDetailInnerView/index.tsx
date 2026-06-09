@@ -31,8 +31,10 @@ import { getThumbnailByGroup } from "@/utils/getThumnailByGroup";
 import { Link } from "@/i18n/navigation";
 import { useAuthStore } from "@/store/auth";
 import { useEditStore } from "@/store/edit";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { deletePost } from "@/services/api/blog/edit";
+import { getUserGroups } from "@/services/api/userGroups";
+import AudienceMarkerLayer from "@/components/editor/blockAudience/audienceMarkerLayer";
 import { useTranslations } from "next-intl";
 import { useHeaderStore } from "@/store/header";
 import { useTheme } from "next-themes";
@@ -221,6 +223,15 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
     };
   }, [post.maskedBlockIds, isAnon, router]);
 
+  // Owner 응답에 blockAudienceMap이 포함됐을 때만 그룹 라벨용 캐시를 채워둔다.
+  // AudienceMarkerLayer는 ["user-groups"] queryKey 캐시를 enabled:false로 구독하므로
+  // 여기서 한 번 fetch만 트리거해주면 마커가 그룹명을 읽어 쓴다.
+  useQuery({
+    queryKey: ["user-groups"],
+    queryFn: getUserGroups,
+    enabled: !!post.blockAudienceMap,
+  });
+
   const handleSetDraft = () => {
     setAllEditState(
       post.id,
@@ -364,7 +375,11 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
             editor={editor}
             theme={resolvedTheme === "dark" ? "dark" : "light"}
             editable={false}
-          />
+          >
+            {post.blockAudienceMap && (
+              <AudienceMarkerLayer blockAudienceMap={post.blockAudienceMap} />
+            )}
+          </BlockNoteView>
         </div>
       </div>
 

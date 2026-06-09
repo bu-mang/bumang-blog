@@ -204,4 +204,21 @@ q:after {
   .blog-index-scroll::-webkit-scrollbar {
     display: none; /* Chrome, Safari */
   }
+
+  /* Audience-blocked block — 백엔드 마스킹된 블록에 적용되는 블러 효과.
+     원본 텍스트는 같은 길이의 더미로 치환되어 있어 길이감만 유지된다.
+     hover 시 title 툴팁이 뜨고, 클릭 시 핸들러로 로그인 이동 등 가능.
+     pointer-events는 살려둬서 hover/click을 받게 한다. */
+  .audience-blocked {
+    filter: blur(5px);
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    transition: filter 0.15s ease;
+  }
+
+  .audience-blocked:hover {
+    filter: blur(3px);
+  }
+
 }

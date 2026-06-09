@@ -29,8 +29,7 @@ import {
   postUploadExternalImage,
 } from "@/services/api/blog/edit";
 import { BlogEditorProvider } from "@/contexts/BlogEditorContext";
-import { useQuery } from "@tanstack/react-query";
-import { getUserGroups } from "@/services/api/userGroups";
+import AudienceMarkerLayer from "@/components/editor/blockAudience/audienceMarkerLayer";
 
 import { CategoryType, GroupType, TagType } from "@/types";
 
@@ -168,96 +167,6 @@ export default function BlogEditInner({
     () => setAudienceTargetBlockId(null),
     [],
   );
-
-  // D: blockAudienceMap에 키가 있는 블록의 DOM에 `.audience-targeted` 클래스 부여 + 그룹명 뱃지.
-  // 에디터에서는 절대 fetch를 트리거하지 않는다(enabled: false). 다이얼로그(AudiencePicker)가
-  // 한 번이라도 열리면 같은 queryKey 캐시에 그룹 리스트가 들어오고, 이 useQuery는 그 캐시만 구독한다.
-  // 캐시가 비어있으면 라벨은 "N개 그룹"으로 폴백.
-  const { data: groups = [] } = useQuery({
-    queryKey: ["user-groups"],
-    queryFn: getUserGroups,
-    enabled: false,
-  });
-  const groupNameById = useMemo(() => {
-    const m = new Map<number, string>();
-    groups.forEach((g) => m.set(g.id, g.name));
-    return m;
-  }, [groups]);
-
-  // blockAudienceMap이 바뀌거나 캐시(그룹명) 도착할 때마다 DOM 재동기.
-  // MutationObserver는 자기 mutation에 재발화해 무한루프 → 제거.
-  useEffect(() => {
-    const formatLabel = (ids: number[]): string => {
-      const names = ids
-        .map((id) => groupNameById.get(id))
-        .filter((n): n is string => !!n);
-      if (names.length === 0) return `${ids.length}개 그룹`;
-      if (names.length <= 2) return names.join(", ");
-      return `${names[0]} +${names.length - 1}`;
-    };
-
-    const targeted = new Map<string, number[]>();
-    for (const [id, ids] of Object.entries(blockAudienceMap)) {
-      if ((ids?.length ?? 0) > 0) targeted.set(id, ids);
-    }
-
-    const sync = () => {
-      const editorEl = document.querySelector<HTMLElement>(".bn-editor");
-      if (!editorEl) return;
-
-      editorEl.querySelectorAll<HTMLElement>("[data-id]").forEach((el) => {
-        const id = el.getAttribute("data-id");
-        if (!id) return;
-
-        const ids = targeted.get(id);
-        if (ids) {
-          if (!el.classList.contains("audience-targeted")) {
-            el.classList.add("audience-targeted");
-          }
-
-          let badge: HTMLElement | null = null;
-          for (const c of Array.from(el.children)) {
-            if (c.classList.contains("audience-badge")) {
-              badge = c as HTMLElement;
-              break;
-            }
-          }
-          const nextText = `🔒 ${formatLabel(ids)}`;
-          if (!badge) {
-            badge = document.createElement("span");
-            badge.className = "audience-badge";
-            badge.setAttribute("contenteditable", "false");
-            badge.textContent = nextText;
-            el.appendChild(badge);
-          } else if (badge.textContent !== nextText) {
-            badge.textContent = nextText;
-          }
-        } else {
-          if (el.classList.contains("audience-targeted")) {
-            el.classList.remove("audience-targeted");
-          }
-          for (const c of Array.from(el.children)) {
-            if (c.classList.contains("audience-badge")) c.remove();
-          }
-        }
-      });
-    };
-
-    // BlockNote가 그릴 시간 1프레임 확보
-    const rafId = requestAnimationFrame(sync);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      const editorEl = document.querySelector<HTMLElement>(".bn-editor");
-      if (!editorEl) return;
-      editorEl
-        .querySelectorAll<HTMLElement>(".audience-badge")
-        .forEach((el) => el.remove());
-      editorEl
-        .querySelectorAll<HTMLElement>(".audience-targeted")
-        .forEach((el) => el.classList.remove("audience-targeted"));
-    };
-  }, [blockAudienceMap, groupNameById]);
 
   const titleRef = useRef<HTMLTextAreaElement>(null);
 
@@ -622,10 +531,17 @@ export default function BlogEditInner({
                   sideMenu={false}
                   slashMenu={false}
                 >
-                  <BlockAudienceSideMenu onSetAudience={openBlockAudience} />
+                  <BlockAudienceSideMenu
+                    onSetAudience={openBlockAudience}
+                    blockAudienceMap={blockAudienceMap}
+                  />
                   <BlockAudienceSlashMenu
                     editor={editor}
                     onSetAudience={openBlockAudience}
+                  />
+                  <AudienceMarkerLayer
+                    blockAudienceMap={blockAudienceMap}
+                    onClick={openBlockAudience}
                   />
                 </BlockNoteView>
               </div>
