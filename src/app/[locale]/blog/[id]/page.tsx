@@ -3,7 +3,6 @@ import BlogDetailInner, {
 } from "@/components/pages/blog/[id]/blogDetailInnerView";
 import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { getBlogDetail } from "@/services/api/blog/[id].server";
-import { getThumbnailByGroup } from "@/utils/getThumnailByGroup";
 import { PostDetailResponseDto } from "@/types/dto/blog/[id]";
 import { isAxiosError } from "axios";
 import { Metadata } from "next";
@@ -39,11 +38,28 @@ export async function generateMetadata({
   // 카테고리와 그룹 정보를 포함한 풍부한 제목
   const fullTitle = `${post.title} | ${post.category.label}`;
 
-  // Open Graph용 이미지 (썸네일 > 그룹 배너 > 기본 이미지)
-  const groupBanner = getThumbnailByGroup(post.group.label, "postBanner");
-  const groupBannerUrl =
-    typeof groupBanner === "string" ? groupBanner : groupBanner.src;
+  // Open Graph용 이미지 (썸네일 > 그룹 배너 압축본 > 기본 이미지)
+  // 본문 배너 원본은 4K PNG(~12MB)라 크롤러가 거름 → public/og 의 1200px 압축본 사용
+  const OG_BANNER_BY_GROUP: Record<string, string> = {
+    project: "/og/projects.jpg",
+    frontend: "/og/frontend.jpg",
+    backend: "/og/backend.jpg",
+    "computer science": "/og/computerScience.jpg",
+    interactive: "/og/interactive.jpg",
+    life: "/og/life.jpg",
+  };
+  const groupBannerUrl = OG_BANNER_BY_GROUP[post.group.label.toLowerCase()];
   const ogImage = post.thumbnailUrl || groupBannerUrl || "/bumangRoute53.png";
+
+  // width/height는 크기를 확실히 아는 경우(배너/기본)에만 선언한다.
+  // S3 썸네일은 글마다 크기가 달라(예: 600x314) 하드코딩 시 실제와 불일치 →
+  // 카카오/페북이 렌더에 실패하므로 치수를 생략해 크롤러가 직접 측정하게 둔다.
+  const ogImageEntry =
+    ogImage === groupBannerUrl
+      ? { url: ogImage, width: 1200, height: 675, alt: post.title }
+      : ogImage === "/bumangRoute53.png"
+        ? { url: ogImage, width: 1200, height: 630, alt: post.title }
+        : { url: ogImage, alt: post.title };
 
   // 사이트 기본 URL
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bumang.xyz";
@@ -63,14 +79,7 @@ export async function generateMetadata({
       description: post.previewText,
       url: postUrl,
       siteName: "Bumang Route53", // 실제 블로그 이름으로 변경
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: post.title,
-        },
-      ],
+      images: [ogImageEntry],
       publishedTime: post.createdAt,
       modifiedTime: post.updatedAt,
       authors: [post.authorNickname],
