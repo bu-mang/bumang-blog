@@ -222,3 +222,17 @@ q:after {
   }
 
 }
+
+/* 다크테마에서 BlockNote 본문 뒤에 깔리는 mantine 기본 패널 배경 제거.
+   페이지 배경(--background)이 그대로 비치게 투명 처리.
+   주의: @layer 밖에 둬야 한다. mantine style.css는 비-레이어로 임포트되어
+   @layer base 안의 규칙은 무조건 지므로 효과가 없다. */
+.dark .bn-container,
+.bn-container[data-color-scheme="dark"] {
+  --bn-colors-editor-background: transparent;
+}
+
+.dark .bn-editor,
+[data-color-scheme="dark"] .bn-editor {
+  background-color: transparent;
+}

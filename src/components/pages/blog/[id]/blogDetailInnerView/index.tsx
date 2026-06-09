@@ -8,9 +8,7 @@ import {
   TagWrapper,
 } from "@/components/common";
 import { PostDetailResponseDto } from "@/types/dto/blog/[id]";
-import { useCreateBlockNote } from "@blocknote/react";
-import { BlockNoteView } from "@blocknote/mantine";
-import { blogBlockNoteSchema } from "@/components/editor/blogBlockNoteSchema";
+import dynamic from "next/dynamic";
 import { format } from "date-fns";
 import {
   AlignJustifyIcon,
@@ -33,18 +31,22 @@ import { useAuthStore } from "@/store/auth";
 import { useEditStore } from "@/store/edit";
 import { useMutation } from "@tanstack/react-query";
 import { deletePost } from "@/services/api/blog/edit";
-import AudienceMarkerLayer, {
+import {
   AudienceMarkerSpec,
   formatAudienceLabel,
 } from "@/components/editor/blockAudience/audienceMarkerLayer";
 import { useTranslations } from "next-intl";
 import { useHeaderStore } from "@/store/header";
-import { useTheme } from "next-themes";
 import { parseBlockNoteContent } from "@/utils/contentFormat";
 import useModalStore from "@/store/modal";
 import CommonModal from "@/components/modal/type/common";
 
-import "@blocknote/mantine/style.css";
+// useCreateBlockNote가 SSR 중 window를 참조해 페이지가 500을 반환하므로
+// BlockNote 본문은 클라이언트 전용(ssr:false)으로만 로드한다.
+const ArticleBody = dynamic(() => import("./articleBody"), {
+  ssr: false,
+  loading: () => <Skeleton className="h-[400px] w-full rounded-2xl" />,
+});
 
 interface BlogDetailInnerProps {
   post: PostDetailResponseDto;
@@ -176,54 +178,8 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
     return parseBlockNoteContent(post.content);
   }, [post.content]);
 
-  // BlockNote가 시스템 OS 색상이 아닌 앱 테마(next-themes)를 따르게 함.
-  const { resolvedTheme } = useTheme();
-
-  // Create BlockNote editor — shared schema with editor side
-  const editor = useCreateBlockNote({
-    schema: blogBlockNoteSchema,
-    initialContent: blockNoteContent,
-  });
-
-  // 백엔드가 마스킹한 블록(원본 텍스트는 같은 길이 더미로 치환됨)에:
-  // - 블러 클래스(`audience-blocked`) 부여
-  // - hover 시 안내 툴팁(`title`)
-  // - 클릭 시 로그인 페이지로 (anon만)
-  // BlockNote가 각 블록을 [data-id="..."] 속성으로 렌더하므로 그걸로 찾는다.
+  // 마스킹 블러/툴팁 처리는 ArticleBody(클라이언트 전용)에서 수행한다.
   const isAnon = !user;
-  useEffect(() => {
-    const ids = post.maskedBlockIds ?? [];
-    if (ids.length === 0) return;
-
-    const tooltip = isAnon
-      ? "로그인하면 볼 수 있어요"
-      : "권한이 있는 그룹에 속해야 볼 수 있어요";
-
-    const handlers: Array<{ el: HTMLElement; onClick: () => void }> = [];
-
-    const raf = requestAnimationFrame(() => {
-      ids.forEach((id) => {
-        const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
-        if (!el) return;
-        el.classList.add("audience-blocked");
-        el.title = tooltip;
-        const onClick = () => {
-          if (isAnon) router.push(PATHNAME.LOGIN);
-        };
-        el.addEventListener("click", onClick);
-        handlers.push({ el, onClick });
-      });
-    });
-
-    return () => {
-      cancelAnimationFrame(raf);
-      handlers.forEach(({ el, onClick }) => {
-        el.classList.remove("audience-blocked");
-        el.removeAttribute("title");
-        el.removeEventListener("click", onClick);
-      });
-    };
-  }, [post.maskedBlockIds, isAnon, router]);
 
   // 백엔드가 viewer마다 미리 풀어준 그룹명을 그대로 마커로.
   // - owner: 전체 audience-set 블록의 라벨이 옴
@@ -374,20 +330,15 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
           )}
         </div>
 
-        {/* BlockNote 내부 .bn-editor의 padding-inline:54px를 보정해
-            데스크탑(lg↑)에서 본문 가시 폭을 제목/컨테이너에 맞춤.
-            모바일에선 col-span-full이라 여백이 부족하므로 lg부터만 적용. */}
-        <div className="lg:-mx-[46px]">
-          <BlockNoteView
-            editor={editor}
-            theme={resolvedTheme === "dark" ? "dark" : "light"}
-            editable={false}
-          >
-            {audienceMarkers.length > 0 && (
-              <AudienceMarkerLayer markers={audienceMarkers} />
-            )}
-          </BlockNoteView>
-        </div>
+        {/* BlockNote 본문 — useCreateBlockNote가 서버에서 window를 건드려
+            500을 유발하므로 ssr:false 클라이언트 전용으로 로드한다.
+            (.lg:-mx-[46px] 보정은 ArticleBody 내부에서 적용) */}
+        <ArticleBody
+          blockNoteContent={blockNoteContent}
+          maskedBlockIds={post.maskedBlockIds ?? []}
+          isAnon={isAnon}
+          audienceMarkers={audienceMarkers}
+        />
       </div>
 
       {/* 목차 */}
