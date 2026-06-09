@@ -159,6 +159,9 @@ const BlogIndex = ({ onStart = true }: BlogIndexProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // heading이 하나도 없으면 목차 영역(세로선·그라데이션 등) 자체를 숨긴다.
+  if (headings.length === 0) return null;
+
   return (
     <div
       className={cn(
