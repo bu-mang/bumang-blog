@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: "Bumang Route53",
     images: [
       {
-        url: "/works/bumangRoute53.png",
+        url: "/bumangRoute53.png",
         width: 1200,
         height: 630,
         alt: "Thumbnail Image",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: "Bumang Route53",
     description: "Bumang's Portfolio & Blog",
     creator: "@bumang",
-    images: ["/works/bumangRoute53.png"],
+    images: ["/bumangRoute53.png"],
   },
 
   // 파비콘

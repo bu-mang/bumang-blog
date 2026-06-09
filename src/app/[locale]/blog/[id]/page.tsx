@@ -3,6 +3,7 @@ import BlogDetailInner, {
 } from "@/components/pages/blog/[id]/blogDetailInnerView";
 import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { getBlogDetail } from "@/services/api/blog/[id].server";
+import { getThumbnailByGroup } from "@/utils/getThumnailByGroup";
 import { PostDetailResponseDto } from "@/types/dto/blog/[id]";
 import { isAxiosError } from "axios";
 import { Metadata } from "next";
@@ -38,8 +39,11 @@ export async function generateMetadata({
   // 카테고리와 그룹 정보를 포함한 풍부한 제목
   const fullTitle = `${post.title} | ${post.category.label}`;
 
-  // Open Graph용 이미지 (썸네일이 있으면 사용, 없으면 기본 이미지)
-  const ogImage = post.thumbnailUrl || "/bumangRoute53.png";
+  // Open Graph용 이미지 (썸네일 > 그룹 배너 > 기본 이미지)
+  const groupBanner = getThumbnailByGroup(post.group.label, "postBanner");
+  const groupBannerUrl =
+    typeof groupBanner === "string" ? groupBanner : groupBanner.src;
+  const ogImage = post.thumbnailUrl || groupBannerUrl || "/bumangRoute53.png";
 
   // 사이트 기본 URL
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bumang.xyz";
