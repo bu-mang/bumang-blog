@@ -31,10 +31,12 @@ import { getThumbnailByGroup } from "@/utils/getThumnailByGroup";
 import { Link } from "@/i18n/navigation";
 import { useAuthStore } from "@/store/auth";
 import { useEditStore } from "@/store/edit";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { deletePost } from "@/services/api/blog/edit";
-import { getUserGroups } from "@/services/api/userGroups";
-import AudienceMarkerLayer from "@/components/editor/blockAudience/audienceMarkerLayer";
+import AudienceMarkerLayer, {
+  AudienceMarkerSpec,
+  formatAudienceLabel,
+} from "@/components/editor/blockAudience/audienceMarkerLayer";
 import { useTranslations } from "next-intl";
 import { useHeaderStore } from "@/store/header";
 import { useTheme } from "next-themes";
@@ -223,14 +225,19 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
     };
   }, [post.maskedBlockIds, isAnon, router]);
 
-  // Owner 응답에 blockAudienceMap이 포함됐을 때만 그룹 라벨용 캐시를 채워둔다.
-  // AudienceMarkerLayer는 ["user-groups"] queryKey 캐시를 enabled:false로 구독하므로
-  // 여기서 한 번 fetch만 트리거해주면 마커가 그룹명을 읽어 쓴다.
-  useQuery({
-    queryKey: ["user-groups"],
-    queryFn: getUserGroups,
-    enabled: !!post.blockAudienceMap,
-  });
+  // 백엔드가 viewer마다 미리 풀어준 그룹명을 그대로 마커로.
+  // - owner: 전체 audience-set 블록의 라벨이 옴
+  // - 비-owner: 본인이 마스킹당한(블러된) 블록의 라벨만 옴 → 블러 옆에 "🔒 친구" 노출
+  const audienceMarkers = useMemo<AudienceMarkerSpec[]>(() => {
+    const labels = post.blockAudienceLabels;
+    if (!labels) return [];
+    const out: AudienceMarkerSpec[] = [];
+    for (const [blockId, names] of Object.entries(labels)) {
+      if (!names || names.length === 0) continue;
+      out.push({ blockId, label: formatAudienceLabel(names) });
+    }
+    return out;
+  }, [post.blockAudienceLabels]);
 
   const handleSetDraft = () => {
     setAllEditState(
@@ -376,8 +383,8 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
             theme={resolvedTheme === "dark" ? "dark" : "light"}
             editable={false}
           >
-            {post.blockAudienceMap && (
-              <AudienceMarkerLayer blockAudienceMap={post.blockAudienceMap} />
+            {audienceMarkers.length > 0 && (
+              <AudienceMarkerLayer markers={audienceMarkers} />
             )}
           </BlockNoteView>
         </div>

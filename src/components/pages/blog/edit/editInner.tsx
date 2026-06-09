@@ -29,7 +29,12 @@ import {
   postUploadExternalImage,
 } from "@/services/api/blog/edit";
 import { BlogEditorProvider } from "@/contexts/BlogEditorContext";
-import AudienceMarkerLayer from "@/components/editor/blockAudience/audienceMarkerLayer";
+import AudienceMarkerLayer, {
+  AudienceMarkerSpec,
+  formatAudienceLabel,
+} from "@/components/editor/blockAudience/audienceMarkerLayer";
+import { useQuery } from "@tanstack/react-query";
+import { getUserGroups } from "@/services/api/userGroups";
 
 import { CategoryType, GroupType, TagType } from "@/types";
 
@@ -167,6 +172,28 @@ export default function BlogEditInner({
     () => setAudienceTargetBlockId(null),
     [],
   );
+
+  // 마커 라벨용. 다이얼로그가 fetch한 캐시만 구독(enabled:false). 캐시 없으면 "N개 그룹" 폴백.
+  const { data: groups = [] } = useQuery({
+    queryKey: ["user-groups"],
+    queryFn: getUserGroups,
+    enabled: false,
+  });
+  const audienceMarkers = useMemo<AudienceMarkerSpec[]>(() => {
+    const groupNameById = new Map<number, string>();
+    groups.forEach((g) => groupNameById.set(g.id, g.name));
+    const out: AudienceMarkerSpec[] = [];
+    for (const [blockId, ids] of Object.entries(blockAudienceMap)) {
+      if (!ids || ids.length === 0) continue;
+      const names = ids
+        .map((id) => groupNameById.get(id))
+        .filter((n): n is string => !!n);
+      const label =
+        names.length > 0 ? formatAudienceLabel(names) : `${ids.length}개 그룹`;
+      out.push({ blockId, label });
+    }
+    return out;
+  }, [blockAudienceMap, groups]);
 
   const titleRef = useRef<HTMLTextAreaElement>(null);
 
@@ -540,7 +567,7 @@ export default function BlogEditInner({
                     onSetAudience={openBlockAudience}
                   />
                   <AudienceMarkerLayer
-                    blockAudienceMap={blockAudienceMap}
+                    markers={audienceMarkers}
                     onClick={openBlockAudience}
                   />
                 </BlockNoteView>
