@@ -489,10 +489,10 @@
       "readPermission": {
         "label": "Read Permission",
         "types": {
-          "public": "Public",
-          "loggedInUser": "Logged-In User",
-          "admin": "Admin Only",
-          "owner": "Private"
+          "anon": "Everyone",
+          "guest": "Guest and up",
+          "member": "Member and up",
+          "host": "Host only"
         },
         "userOnly": "A user can only create read-only posts."
       },

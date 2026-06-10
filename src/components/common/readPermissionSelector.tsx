@@ -63,7 +63,7 @@ export default function ReadPermissionSelector({
           onClick={() => handleChangeReadPermission(null)}
           disabled={userRole === "guest"}
         >
-          {t("readPermission.types.public")}
+          {t("readPermission.types.anon")}
         </ButtonBase>
 
         <ButtonBase
@@ -73,7 +73,7 @@ export default function ReadPermissionSelector({
           )}
           onClick={() => handleChangeReadPermission("guest")}
         >
-          {t("readPermission.types.loggedInUser")}
+          {t("readPermission.types.guest")}
         </ButtonBase>
 
         <ButtonBase
@@ -85,7 +85,7 @@ export default function ReadPermissionSelector({
           onClick={() => handleChangeReadPermission("member")}
           disabled={userRole === "guest"}
         >
-          {t("readPermission.types.admin")}
+          {t("readPermission.types.member")}
         </ButtonBase>
 
         <ButtonBase
@@ -98,7 +98,7 @@ export default function ReadPermissionSelector({
           onClick={() => handleChangeReadPermission("host")}
           disabled={userRole === "guest" || userRole === "member"}
         >
-          {t("readPermission.types.owner")}
+          {t("readPermission.types.host")}
         </ButtonBase>
 
         {/* BACKGROUND */}
