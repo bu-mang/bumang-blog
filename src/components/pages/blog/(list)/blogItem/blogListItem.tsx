@@ -105,10 +105,12 @@ export default function BlogListItem({
             {formattedDate}
           </span>
 
-          <LuLockKeyhole
-            size={10}
-            className="ml-1.5 dark:text-gray-100 dark:group-hover:text-white"
-          />
+          {readPermisson && (
+            <LuLockKeyhole
+              size={10}
+              className="ml-1.5 dark:text-gray-100 dark:group-hover:text-white"
+            />
+          )}
         </div>
 
         {/* TAGS */}

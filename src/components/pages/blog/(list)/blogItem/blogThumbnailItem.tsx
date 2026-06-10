@@ -104,19 +104,10 @@ export default function BlogThumbnailItem({
         {!readPermisson ? (
           <LuMoveRight
             size={10}
-            className={cn(
-              "animate-arrow text-gray-200 opacity-0 transition-all duration-500 group-hover:opacity-100",
-              readPermisson === "user" && "text-red-400",
-            )}
+            className="animate-arrow text-gray-200 opacity-0 transition-all duration-500 group-hover:opacity-100"
           />
         ) : (
-          <LuLockKeyhole
-            size={10}
-            className={cn(
-              "my-1.5 text-gray-200",
-              readPermisson === "user" && "text-red-400",
-            )}
-          />
+          <LuLockKeyhole size={10} className="my-1.5 text-gray-200" />
         )}
       </div>
 
