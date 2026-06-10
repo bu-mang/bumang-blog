@@ -7,9 +7,11 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "@/constants/api/queryKey";
 import { useAuthStore } from "@/store/auth";
 import { useEffect, useState } from "react";
-import { getUserProfile } from "@/services/api/auth/client";
+import { getUserProfile, postLogout } from "@/services/api/auth/client";
 import { usePathname } from "@/i18n/navigation";
 import { ErrorBoundary, Suspense } from "@suspensive/react";
+import { isValidRole } from "@/types/user";
+import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 
 interface HeaderFallbackProps {
   isLoading: boolean;
@@ -72,7 +74,23 @@ export function HeaderInnerAuthenticated({ locale }: HeaderInnerProps) {
   });
 
   useEffect(() => {
-    if (data && !isAuthenticated) {
+    if (!data) return;
+
+    // 권한 체계 리네임(user/admin/owner → guest/member/host) 이전에 발급된
+    // 토큰/세션은 구 role 값을 들고 있다. 이 경우 강제 로그아웃 후 재로그인 유도.
+    if (!isValidRole(data.role)) {
+      postLogout().finally(() => {
+        setUserAndIsAuthenticated({
+          isAuthenticated: false,
+          isAuthLoading: false,
+          user: null,
+        });
+        window.location.href = PATHNAME.HOME; // full reload
+      });
+      return;
+    }
+
+    if (!isAuthenticated) {
       setUserAndIsAuthenticated({
         isAuthenticated: true,
         user: {
