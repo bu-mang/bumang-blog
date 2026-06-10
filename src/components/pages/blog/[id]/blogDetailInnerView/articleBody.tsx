@@ -19,8 +19,6 @@ interface ArticleBodyProps {
   maskedBlockIds: string[];
   isAnon: boolean;
   audienceMarkers: AudienceMarkerSpec[];
-  /** 에디터가 마운트돼 인터랙티브 뷰가 준비되면 호출(서버 직렬화 HTML 교체용). */
-  onReady?: () => void;
 }
 
 /**
@@ -34,7 +32,6 @@ export default function ArticleBody({
   maskedBlockIds,
   isAnon,
   audienceMarkers,
-  onReady,
 }: ArticleBodyProps) {
   const router = useRouter();
   const { resolvedTheme } = useTheme();
@@ -43,11 +40,6 @@ export default function ArticleBody({
     schema: blogBlockNoteSchema,
     initialContent: blockNoteContent,
   });
-
-  // 마운트 완료 시 부모에 알려 서버 직렬화 HTML을 인터랙티브 뷰로 교체.
-  useEffect(() => {
-    onReady?.();
-  }, [onReady]);
 
   // 백엔드가 마스킹한 블록에 블러 클래스/툴팁/클릭 핸들러 부여.
   // BlockNote가 각 블록을 [data-id="..."]로 렌더하므로 그걸로 찾는다.

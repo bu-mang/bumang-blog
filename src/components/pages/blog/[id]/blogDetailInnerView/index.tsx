@@ -43,13 +43,13 @@ import CommonModal from "@/components/modal/type/common";
 
 // useCreateBlockNote가 SSR 중 window를 참조해 페이지가 500을 반환하므로
 // BlockNote 본문은 클라이언트 전용(ssr:false)으로만 로드한다.
-// 로딩 중엔 서버 직렬화 HTML(articleHtml)이 그 자리를 채우므로 별도 스켈레톤 불필요.
-const ArticleBody = dynamic(() => import("./articleBody"), { ssr: false });
+const ArticleBody = dynamic(() => import("./articleBody"), {
+  ssr: false,
+  loading: () => <Skeleton className="h-[400px] w-full rounded-2xl" />,
+});
 
 interface BlogDetailInnerProps {
   post: PostDetailResponseDto;
-  /** 서버에서 직렬화한 본문 HTML(blocksToFullHTML). 크롤러/초기 페인트용. */
-  articleHtml?: string;
 }
 
 /**
@@ -154,10 +154,7 @@ export function BlogDetailInnerViewFallback({
   );
 }
 
-export default function BlogDetailInnerView({
-  post,
-  articleHtml,
-}: BlogDetailInnerProps) {
+export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
   const t = useTranslations("blogDetail");
 
   // 헤더 상태 초기화
@@ -183,10 +180,6 @@ export default function BlogDetailInnerView({
 
   // 마스킹 블러/툴팁 처리는 ArticleBody(클라이언트 전용)에서 수행한다.
   const isAnon = !user;
-
-  // 서버 직렬화 HTML(articleHtml)을 초기/SSR에 보여주다가,
-  // 클라 BlockNote 에디터가 마운트되면 교체한다. 같은 mantine CSS라 점프 없음.
-  const [editorReady, setEditorReady] = useState(false);
 
   // 백엔드가 viewer마다 미리 풀어준 그룹명을 그대로 마커로.
   // - owner: 전체 audience-set 블록의 라벨이 옴
@@ -337,23 +330,14 @@ export default function BlogDetailInnerView({
           )}
         </div>
 
-        {/* BlockNote 본문.
-            - 서버/초기: 직렬화 HTML(articleHtml)을 그대로 출력 → 크롤러·SEO·초기 페인트.
-            - 클라: useCreateBlockNote(window 참조)는 ssr:false로만 로드, 마운트되면
-              editorReady=true로 정적 HTML을 걷어내고 인터랙티브 뷰로 교체.
-            blocksToFullHTML이 에디터 DOM을 미러링 + 동일 mantine CSS라 교체 시 점프 없음. */}
-        {!editorReady && articleHtml ? (
-          <div
-            className="lg:-mx-[46px]"
-            dangerouslySetInnerHTML={{ __html: articleHtml }}
-          />
-        ) : null}
+        {/* BlockNote 본문 — useCreateBlockNote가 서버에서 window를 건드려
+            500을 유발하므로 ssr:false 클라이언트 전용으로 로드한다.
+            (.lg:-mx-[46px] 보정은 ArticleBody 내부에서 적용) */}
         <ArticleBody
           blockNoteContent={blockNoteContent}
           maskedBlockIds={post.maskedBlockIds ?? []}
           isAnon={isAnon}
           audienceMarkers={audienceMarkers}
-          onReady={() => setEditorReady(true)}
         />
       </div>
 

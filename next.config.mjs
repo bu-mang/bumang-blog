@@ -6,20 +6,6 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 const nextConfig = {
   output: "standalone", // Docker 최적화를 위한 standalone 빌드
 
-  // @blocknote/server-util은 @blocknote/react(createContext)를 끌어와
-  // RSC(react-server) 번들에선 "createContext only works in Client Components"로 터진다.
-  // 외부화하면 일반 Node 모듈로 로드돼 정상 동작한다(서버 본문 직렬화용).
-  experimental: {
-    // isomorphic-dompurify/jsdom: webpack 번들 시 jsdom이 자기 asset
-    // (browser/default-stylesheet.css)을 못 찾아 ENOENT로 터진다.
-    // 외부화하면 일반 Node require로 로드돼 asset 경로가 정상 해석된다.
-    serverComponentsExternalPackages: [
-      "@blocknote/server-util",
-      "isomorphic-dompurify",
-      "jsdom",
-    ],
-  },
-
   images: {
     domains: [
       "images.unsplash.com",
