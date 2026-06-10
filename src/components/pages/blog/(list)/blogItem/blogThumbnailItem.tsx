@@ -107,9 +107,12 @@ export default function BlogThumbnailItem({
             className="animate-arrow text-gray-200 opacity-0 transition-all duration-500 group-hover:opacity-100"
           />
         ) : (
-          <div className="flex items-center gap-0.5">
-            <LuLockKeyhole size={10} className="my-1.5 text-gray-200" />
-            <span className="text-2xs font-semibold capitalize text-gray-300">
+          <div className="flex items-center gap-0.5 transition-colors group-hover:text-destructive">
+            <LuLockKeyhole
+              size={10}
+              className="my-1.5 text-gray-200 transition-colors group-hover:text-destructive"
+            />
+            <span className="text-2xs font-semibold capitalize text-gray-300 transition-colors group-hover:text-destructive">
               {readPermisson}
             </span>
           </div>

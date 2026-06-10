@@ -106,12 +106,12 @@ export default function BlogListItem({
           </span>
 
           {readPermisson && (
-            <div className="ml-1.5 flex items-center gap-0.5">
+            <div className="ml-1.5 flex items-center gap-0.5 transition-colors group-hover:text-destructive">
               <LuLockKeyhole
                 size={10}
-                className="dark:text-gray-100 dark:group-hover:text-white"
+                className="transition-colors group-hover:text-destructive dark:text-gray-100"
               />
-              <span className="text-xs font-semibold capitalize text-gray-300 dark:text-gray-100 dark:group-hover:text-white">
+              <span className="text-xs font-semibold capitalize text-gray-300 transition-colors group-hover:text-destructive dark:text-gray-100">
                 {readPermisson}
               </span>
             </div>
