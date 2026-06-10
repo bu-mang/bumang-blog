@@ -7,6 +7,32 @@ import { PostDetailResponseDto } from "@/types/dto/blog/[id]";
 import { isAxiosError } from "axios";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
+import { ServerBlockNoteEditor } from "@blocknote/server-util";
+import { blogBlockNoteSchema } from "@/components/editor/blogBlockNoteSchema";
+import { parseBlockNoteContent } from "@/utils/contentFormat";
+import DOMPurify from "isomorphic-dompurify";
+
+// 본문 BlockNote JSON을 서버에서 HTML로 직렬화.
+// 클라 BlockNoteView는 ssr:false라 서버 응답엔 본문이 없으므로,
+// 크롤러/SEO/초기 페인트용으로 동일 구조의 HTML을 미리 만들어 내려보낸다.
+// (blocksToFullHTML은 에디터 DOM을 미러링 → 같은 mantine CSS로 동일하게 보임)
+async function serializeArticleHtml(content: string): Promise<string> {
+  try {
+    const blocks = parseBlockNoteContent(content);
+    if (blocks.length === 0) return "";
+    const serverEditor = ServerBlockNoteEditor.create({
+      schema: blogBlockNoteSchema,
+    });
+    const html = await serverEditor.blocksToFullHTML(blocks);
+    // dangerouslySetInnerHTML로 주입되므로 새니타이즈 한 겹.
+    // 본문은 내가 작성한 것이지만, 댓글/외부 데이터가 섞일 경우를 대비한 보험.
+    // data-*/class/style은 DOMPurify 기본값이 유지하므로 mantine 렌더는 안 깨짐.
+    return DOMPurify.sanitize(html);
+  } catch (err) {
+    console.log("serializeArticleHtml error:", err);
+    return "";
+  }
+}
 
 interface BlogDetailPageProps {
   params: { id: string };
@@ -149,5 +175,7 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
     return <BlogDetailInnerViewFallback />;
   }
 
-  return <BlogDetailInner post={post} />;
+  const articleHtml = await serializeArticleHtml(post.content);
+
+  return <BlogDetailInner post={post} articleHtml={articleHtml} />;
 }
