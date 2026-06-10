@@ -8,7 +8,7 @@ import { ButtonBase } from "./button";
 interface ReadPermissionSelectorProps {
   value: RoleType;
   onChange: (permission: RoleType) => void;
-  userRole: "admin" | "user" | "owner" | null;
+  userRole: "member" | "guest" | "host" | null;
   className?: string;
 }
 
@@ -17,9 +17,9 @@ interface ReadPermissionSelectorProps {
  * 블로그 포스트의 공개 범위를 선택하는 컴포넌트
  *
  * 권한별 제한사항:
- * - user 역할: "user" 권한만 선택 가능 (public, admin, owner 비활성화)
- * - admin 역할: public, user, admin 선택 가능 (owner 비활성화)
- * - owner 역할: 모든 권한 선택 가능 (public, user, admin, owner)
+ * - guest 역할: "guest" 권한만 선택 가능 (public, member, host 비활성화)
+ * - member 역할: public, guest, member 선택 가능 (host 비활성화)
+ * - host 역할: 모든 권한 선택 가능 (public, guest, member, host)
  */
 export default function ReadPermissionSelector({
   value,
@@ -30,13 +30,13 @@ export default function ReadPermissionSelector({
   const t = useTranslations("blogEdit.publish");
 
   const handleChangeReadPermission = (role: RoleType) => {
-    // user 역할인 경우 user만 선택 가능
-    if (userRole === "user" && role !== "user") {
+    // guest 역할인 경우 guest만 선택 가능
+    if (userRole === "guest" && role !== "guest") {
       return;
     }
 
-    // admin 역할인 경우 owner 선택 불가
-    if (userRole === "admin" && role === "owner") {
+    // member 역할인 경우 host 선택 불가
+    if (userRole === "member" && role === "host") {
       return;
     }
 
@@ -47,7 +47,7 @@ export default function ReadPermissionSelector({
     <div className={className}>
       <div className="mb-1 flex items-center gap-2 font-medium">
         {t("readPermission.label")}
-        {userRole === "user" && (
+        {userRole === "guest" && (
           <span className="text-xs text-gray-300">
             {t("readPermission.userOnly")}
           </span>
@@ -58,10 +58,10 @@ export default function ReadPermissionSelector({
           className={cn(
             "flex-1 py-2 transition-all active:scale-100",
             value === null && "text-white",
-            userRole === "user" && "cursor-not-allowed opacity-30",
+            userRole === "guest" && "cursor-not-allowed opacity-30",
           )}
           onClick={() => handleChangeReadPermission(null)}
-          disabled={userRole === "user"}
+          disabled={userRole === "guest"}
         >
           {t("readPermission.types.public")}
         </ButtonBase>
@@ -69,9 +69,9 @@ export default function ReadPermissionSelector({
         <ButtonBase
           className={cn(
             "flex-1 py-2 transition-all active:scale-100",
-            value === "user" && "text-white",
+            value === "guest" && "text-white",
           )}
-          onClick={() => handleChangeReadPermission("user")}
+          onClick={() => handleChangeReadPermission("guest")}
         >
           {t("readPermission.types.loggedInUser")}
         </ButtonBase>
@@ -79,11 +79,11 @@ export default function ReadPermissionSelector({
         <ButtonBase
           className={cn(
             "flex-1 py-2 transition-all active:scale-100",
-            value === "admin" && "text-white",
-            userRole === "user" && "cursor-not-allowed opacity-30",
+            value === "member" && "text-white",
+            userRole === "guest" && "cursor-not-allowed opacity-30",
           )}
-          onClick={() => handleChangeReadPermission("admin")}
-          disabled={userRole === "user"}
+          onClick={() => handleChangeReadPermission("member")}
+          disabled={userRole === "guest"}
         >
           {t("readPermission.types.admin")}
         </ButtonBase>
@@ -91,12 +91,12 @@ export default function ReadPermissionSelector({
         <ButtonBase
           className={cn(
             "flex-1 py-2 transition-all active:scale-100",
-            value === "owner" && "text-white",
-            (userRole === "user" || userRole === "admin") &&
+            value === "host" && "text-white",
+            (userRole === "guest" || userRole === "member") &&
               "cursor-not-allowed opacity-30",
           )}
-          onClick={() => handleChangeReadPermission("owner")}
-          disabled={userRole === "user" || userRole === "admin"}
+          onClick={() => handleChangeReadPermission("host")}
+          disabled={userRole === "guest" || userRole === "member"}
         >
           {t("readPermission.types.owner")}
         </ButtonBase>
@@ -106,9 +106,9 @@ export default function ReadPermissionSelector({
           className={cn(
             "absolute -z-[1] flex h-full w-1/4 bg-gray-800 transition-all",
             value === null && "translate-x-0",
-            value === "user" && "translate-x-full",
-            value === "admin" && "translate-x-[200%]",
-            value === "owner" && "translate-x-[300%]",
+            value === "guest" && "translate-x-full",
+            value === "member" && "translate-x-[200%]",
+            value === "host" && "translate-x-[300%]",
             "will-change-transform",
           )}
         />

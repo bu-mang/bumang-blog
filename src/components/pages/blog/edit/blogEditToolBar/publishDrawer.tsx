@@ -529,7 +529,7 @@ export function PublishDrawer() {
               <ReadPermissionSelector
                 value={readPermission}
                 onChange={setReadPermission}
-                userRole={(user?.role as "admin" | "user") ?? null}
+                userRole={(user?.role as "member" | "guest") ?? null}
               />
             </div>
           </div>

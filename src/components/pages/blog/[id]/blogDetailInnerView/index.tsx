@@ -313,7 +313,7 @@ export default function BlogDetailInnerView({
 
           {/* LOGGINED */}
           {(post.authorNickname === user?.nickname ||
-            user?.role === "admin") && (
+            user?.role === "member") && (
             <div className="hidden gap-2 md:flex">
               <Divider className="mx-5" />
 

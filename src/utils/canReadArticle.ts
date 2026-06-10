@@ -1,20 +1,20 @@
 import { useAuthStore } from "@/store/auth";
 import { RoleType } from "@/types";
 
-type RoleScore = Exclude<RoleType, null> & "guest";
+type RoleScore = Exclude<RoleType, null> | "anon";
 
 export const useCheckPermission = (readPermission: RoleType) => {
   const user = useAuthStore((state) => state.user);
 
   const permissionScore: Record<RoleScore, number> = {
-    guest: 0,
-    user: 1,
-    admin: 2,
-    owner: 3,
+    anon: 0,
+    guest: 1,
+    member: 2,
+    host: 3,
   };
 
   return (
-    permissionScore[(user?.role ?? "guest") as RoleScore] >=
-    permissionScore[(readPermission ?? "guest") as RoleScore]
+    permissionScore[(user?.role ?? "anon") as RoleScore] >=
+    permissionScore[(readPermission ?? "anon") as RoleScore]
   );
 };

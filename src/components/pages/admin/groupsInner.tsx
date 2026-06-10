@@ -27,7 +27,7 @@ export default function AdminGroupsInner() {
   const isAuthLoading = useAuthStore((s) => s.isAuthLoading);
 
   if (isAuthLoading) return <FullPageLoader />;
-  if (user?.role !== "owner") return <Forbidden />;
+  if (user?.role !== "host") return <Forbidden />;
 
   return <OwnerView />;
 }

@@ -94,10 +94,10 @@ export default function BlogThumbnailItem({
         <div
           className={cn(
             "w-fit flex-shrink-0 flex-nowrap rounded-md border-gray-300 text-2xs font-semibold text-gray-300",
-            authorRole === "user" && "text-red-400",
+            authorRole === "guest" && "text-red-400",
           )}
         >
-          {authorRole === "user" ? `deleted at 00:00` : formattedDate}
+          {authorRole === "guest" ? `deleted at 00:00` : formattedDate}
         </div>
 
         {/* 잠금 */}

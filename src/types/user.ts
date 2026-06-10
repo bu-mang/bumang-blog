@@ -1,4 +1,4 @@
-export type RoleType = "user" | "admin" | "owner" | null;
+export type RoleType = "guest" | "member" | "host" | null;
 
 export interface UserResponseType {
   id: number;
