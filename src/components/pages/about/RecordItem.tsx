@@ -16,7 +16,7 @@ export default function RecordItem({
 
   return (
     <SubBox className={className}>
-      <div className="col-span-1 font-semibold">{year}</div>
+      <div className="col-span-1 font-semibold whitespace-pre-line">{year}</div>
       <div className="col-span-4 flex flex-col">
         <span className="font-semibold">{t(`${translationKey}.title`)}</span>
         <span className="text-gray-300">{t(`${translationKey}.desc`)}</span>

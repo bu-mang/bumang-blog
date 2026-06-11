@@ -26,7 +26,8 @@ interface AboutInnerProps {
 
 // Configuration arrays
 const records = [
-  { year: "2024 -", key: "record.2024", className: "border-none" },
+  { year: "2026 -", key: "record.2026", className: "border-none" },
+  { year: "2024 - 2026", key: "record.2024" },
   { year: "2023", key: "record.2023" },
   { year: "2022", key: "record.2022" },
   { year: "2021", key: "record.2021" },
