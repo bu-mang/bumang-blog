@@ -177,10 +177,51 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
-  // ------------------ 토큰 검증 ------------------
-
   const accessToken = request.cookies.get("accessToken")?.value;
   const refreshToken = request.cookies.get("refreshToken")?.value;
+
+  // ------------------ 보호 경로 서버측 인가 ------------------
+  // 백엔드 API 가드가 데이터 변경의 실제 경계지만, 보호 페이지 자체의 노출도 서버에서 차단한다.
+  {
+    const locale =
+      pathname.match(/^\/(ko|en)(?=\/|$)/)?.[1] ?? routing.defaultLocale;
+    const pathWithoutLocale = pathname.replace(/^\/(ko|en)(?=\/|$)/, "") || "/";
+    const isAdminPath =
+      pathWithoutLocale === "/admin" ||
+      pathWithoutLocale.startsWith("/admin/");
+    const isEditPath =
+      pathWithoutLocale === "/blog/edit" ||
+      pathWithoutLocale.startsWith("/blog/edit");
+
+    if (isAdminPath || isEditPath) {
+      let role: string | null = null;
+      if (accessToken) {
+        try {
+          const { payload } = await jwtVerify(
+            accessToken,
+            new TextEncoder().encode(process.env.JWT_SECRET!),
+          );
+          role = (payload.role as string) ?? null;
+        } catch {
+          // 만료/위조 토큰: 미인증으로 처리(이 페이지에선 silent refresh 생략)
+          role = null;
+        }
+      }
+
+      // 미인증 → 로그인으로
+      if (!role) {
+        return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
+      }
+      // /admin은 host 전용 (그 외 역할은 홈으로)
+      if (isAdminPath && role !== "host") {
+        return NextResponse.redirect(new URL(`/${locale}`, request.url));
+      }
+      // /blog/edit는 인증된 사용자면 역할 무관 통과
+    }
+  }
+
+  // ------------------ 토큰 검증 ------------------
+
   // 토큰이 있으면 검증하고 필요시 재발급
   if (accessToken || refreshToken) {
     try {

@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { lookup } from "node:dns/promises";
+import net from "node:net";
 import {
   UploadExternalImageDto,
   UploadExternalImageResponseDto,
@@ -6,44 +8,93 @@ import {
 } from "@/types/dto/blog/edit";
 import { END_POINTS } from "@/constants/api/endpoints";
 
+// dns/net 사용을 위해 Node 런타임 강제(Edge 런타임 불가)
+export const runtime = "nodejs";
+
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 const DOWNLOAD_TIMEOUT = 8000; // 8초
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-// SSRF 방지: 블랙리스트 IP/도메인
-const BLOCKED_HOSTS = [
-  "localhost",
-  "127.0.0.1",
-  "0.0.0.0",
-  "169.254.169.254", // AWS metadata
-  "::1",
-  "10.",
-  "172.16.",
-  "192.168.",
-];
+// IPv4 문자열을 32비트 정수로 변환 (유효하지 않으면 null)
+function ipv4ToInt(ip: string): number | null {
+  const parts = ip.split(".");
+  if (parts.length !== 4) return null;
+  let n = 0;
+  for (const p of parts) {
+    if (!/^\d+$/.test(p)) return null;
+    const o = Number(p);
+    if (o < 0 || o > 255) return null;
+    n = n * 256 + o;
+  }
+  return n >>> 0;
+}
 
-function validateImageUrl(url: string): boolean {
+function isBlockedIpv4(ip: string): boolean {
+  const n = ipv4ToInt(ip);
+  if (n === null) return true; // 파싱 실패 → 보수적으로 차단
+  const inRange = (base: string, bits: number) => {
+    const b = ipv4ToInt(base)!;
+    const mask = bits === 0 ? 0 : (~0 << (32 - bits)) >>> 0;
+    return (n & mask) === (b & mask);
+  };
+  return (
+    inRange("0.0.0.0", 8) || // 현재 네트워크
+    inRange("10.0.0.0", 8) || // 사설
+    inRange("100.64.0.0", 10) || // CGNAT
+    inRange("127.0.0.0", 8) || // 루프백
+    inRange("169.254.0.0", 16) || // 링크로컬(클라우드 메타데이터 169.254.169.254 포함)
+    inRange("172.16.0.0", 12) || // 사설
+    inRange("192.0.0.0", 24) ||
+    inRange("192.168.0.0", 16) || // 사설
+    inRange("198.18.0.0", 15) || // 벤치마크
+    inRange("224.0.0.0", 4) || // 멀티캐스트
+    inRange("240.0.0.0", 4) // 예약
+  );
+}
+
+// 해석된 IP가 내부/예약 대역인지 검사 (SSRF 방지)
+function isBlockedIp(ip: string): boolean {
+  const family = net.isIP(ip);
+  if (family === 4) return isBlockedIpv4(ip);
+  if (family === 6) {
+    const lower = ip.toLowerCase();
+    // IPv4-mapped (::ffff:a.b.c.d) → 내부의 IPv4로 검사
+    const mapped = lower.match(/::ffff:(\d+\.\d+\.\d+\.\d+)$/);
+    if (mapped) return isBlockedIpv4(mapped[1]);
+    if (lower === "::1" || lower === "::") return true; // 루프백/미지정
+    if (lower.startsWith("fc") || lower.startsWith("fd")) return true; // fc00::/7 ULA
+    if (/^fe[89ab]/.test(lower)) return true; // fe80::/10 링크로컬
+    return false;
+  }
+  return true; // 유효한 IP가 아니면 차단
+}
+
+// http/https + 호스트네임을 실제 IP로 해석해 내부망 접근을 차단
+// (DNS 리바인딩의 TOCTOU는 완전 차단 불가 — redirect:"manual"과 함께 위험을 크게 낮춤)
+async function validateImageUrl(url: string): Promise<boolean> {
+  let parsedUrl: URL;
   try {
-    const parsedUrl = new URL(url);
+    parsedUrl = new URL(url);
+  } catch {
+    return false;
+  }
 
-    // http/https만 허용
-    if (!["http:", "https:"].includes(parsedUrl.protocol)) {
-      return false;
-    }
+  if (!["http:", "https:"].includes(parsedUrl.protocol)) {
+    return false;
+  }
 
-    // 블랙리스트 체크 (내부망 차단)
-    if (
-      BLOCKED_HOSTS.some(
-        (blocked) =>
-          parsedUrl.hostname === blocked ||
-          parsedUrl.hostname.startsWith(blocked),
-      )
-    ) {
-      return false;
-    }
+  const hostname = parsedUrl.hostname.replace(/^\[|\]$/g, ""); // IPv6 대괄호 제거
 
-    // 블랙리스트에 없으면 모두 허용
-    return true;
+  // 이미 IP 리터럴이면 바로 검사 (10진수/8진수 인코딩 우회 차단)
+  if (net.isIP(hostname)) {
+    return !isBlockedIp(hostname);
+  }
+
+  // 도메인은 DNS 해석 후 모든 결과 IP가 내부 대역이 아닐 때만 허용
+  try {
+    const results = await lookup(hostname, { all: true });
+    if (results.length === 0) return false;
+    return results.every((r) => !isBlockedIp(r.address));
   } catch {
     return false;
   }
@@ -59,10 +110,19 @@ async function downloadImageWithTimeout(
   try {
     const response = await fetch(url, {
       signal: controller.signal,
+      redirect: "manual", // 내부로 튕기는 3xx 리다이렉트 우회 차단
       headers: {
         "User-Agent": "Mozilla/5.0 (compatible; BlogImageProxy/1.0)",
       },
     });
+
+    // 리다이렉트(3xx/opaqueredirect)는 거부
+    if (
+      response.type === "opaqueredirect" ||
+      (response.status >= 300 && response.status < 400)
+    ) {
+      throw new Error(`Redirect not allowed: ${response.status}`);
+    }
 
     if (!response.ok) {
       throw new Error(`Failed to download: ${response.status}`);
@@ -98,8 +158,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 2. URL 검증
-    if (!validateImageUrl(imageUrl)) {
+    // 2. URL 검증 (프로토콜 + DNS 해석 후 내부망 IP 차단)
+    if (!(await validateImageUrl(imageUrl))) {
       return NextResponse.json(
         { error: "Invalid or disallowed image URL" },
         { status: 400 },
