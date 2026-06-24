@@ -78,7 +78,7 @@ export default function ArticleBody({
   }, [maskedBlockIds, isAnon, router]);
 
   return (
-    <div className="lg:-mx-[46px]">
+    <div className="max-sm:[&_.bn-editor]:px-0 lg:-mx-[46px]">
       <BlockNoteView
         editor={editor}
         theme={resolvedTheme === "dark" ? "dark" : "light"}
