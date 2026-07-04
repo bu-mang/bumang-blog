@@ -4,3 +4,4 @@ export { default as computerScience } from "./computerScience.png";
 export { default as interactive } from "./interactive.png";
 export { default as life } from "./life.png";
 export { default as projects } from "./projects.png";
+export { default as infrastructure } from "./infrastructure.png";

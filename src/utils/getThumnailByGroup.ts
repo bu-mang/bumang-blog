@@ -22,6 +22,8 @@ export function getThumbnailByGroup(
           return BlogItems.interactive;
         case "life":
           return BlogItems.life;
+        case "infra & tooling":
+          return BlogItems.infrastructure;
         default:
           return "";
       }
@@ -40,6 +42,8 @@ export function getThumbnailByGroup(
           return PostBanners.interactive;
         case "life":
           return PostBanners.life;
+        case "infra & tooling":
+          return PostBanners.infrastructure;
         default:
           return "";
       }
