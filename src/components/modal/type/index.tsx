@@ -63,7 +63,7 @@ function ContainerInner(
     <section
       ref={ref}
       className={cn(
-        "mx-5 min-w-[350px] rounded-3xl bg-white px-6 py-6 shadow-2xl",
+        "mx-5 min-w-[350px] rounded-3xl bg-background px-6 py-6 text-foreground shadow-2xl",
         className,
       )}
       onClick={(e) => {
