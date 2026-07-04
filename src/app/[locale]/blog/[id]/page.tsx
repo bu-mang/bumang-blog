@@ -47,6 +47,7 @@ export async function generateMetadata({
     "computer science": "/og/computerScience.jpg",
     interactive: "/og/interactive.jpg",
     life: "/og/life.jpg",
+    "infra & tooling": "/og/infrastructure.jpg",
   };
   const groupBannerUrl = OG_BANNER_BY_GROUP[post.group.label.toLowerCase()];
   const ogImage = post.thumbnailUrl || groupBannerUrl || "/bumangRoute53.png";
