@@ -39,7 +39,7 @@ const BlogEditorToolBar = () => {
   // i18n
   const t = useTranslations("blogEdit");
   const [mounted, setMounted] = useState(false);
-  const { resolvedTheme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -75,7 +75,9 @@ const BlogEditorToolBar = () => {
     fillStyle: LightFillStyle,
     textStyle: LightTextStyle,
     flexBoxClass,
-  } = getButtonColorStyle(resolvedTheme === "dark" ? "dark" : "light");
+    // 뒤로가기 = 은은한 서브 버튼. 시맨틱 토큰이 테마별로 자동 반전하므로
+    // resolvedTheme 로 JS 분기할 필요 없이 항상 "light"(secondary)로 둔다.
+  } = getButtonColorStyle("light");
 
   /**
    * @뒤로가기_로직

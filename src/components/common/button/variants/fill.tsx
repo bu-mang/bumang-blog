@@ -11,8 +11,10 @@ const FillButton: React.FC<ButtonProps> = ({
   colorTheme = "dark",
   ...props
 }) => {
+  // colorTheme "dark" = 메인 액션(primary), "light" = 서브/취소(secondary).
+  // 시맨틱 토큰이라 .dark 클래스에 따라 라이트/다크 색이 자동 반전된다.
   const darkClass = cn(
-    "bg-gray-600 hover:bg-gray-800 text-white px-4 h-8 rounded-md transition-colors",
+    "bg-primary text-primary-foreground hover:bg-primary/90 px-4 h-8 rounded-md transition-colors",
     {
       "cursor-not-allowed opacity-50": disabled,
       "cursor-wait": isLoading,
@@ -20,7 +22,7 @@ const FillButton: React.FC<ButtonProps> = ({
     className,
   );
   const lightClass = cn(
-    "bg-gray-50 hover:bg-gray-100 px-4 h-8 rounded-md transition-colors",
+    "bg-secondary text-secondary-foreground hover:bg-secondary/80 px-4 h-8 rounded-md transition-colors",
     {
       "cursor-not-allowed opacity-50": disabled,
       "cursor-wait": isLoading,

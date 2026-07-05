@@ -108,7 +108,7 @@ const LoginForm = () => {
         type="submit"
         isLoading={isSubmitting}
         disabled={isSubmitting}
-        className="mb-6 h-12 w-full text-white"
+        className="mb-6 h-12 w-full"
       >
         Login
       </Button>

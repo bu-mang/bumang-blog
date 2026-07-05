@@ -15,16 +15,19 @@ const getButtonColorStyle = (
   let flexBoxClass;
 
   // COLOR
+  // 시맨틱 토큰 사용 → .dark 클래스에 따라 라이트/다크 자동 반전.
+  // "light" = 서브/은은한(secondary), "dark" = 메인 액션(primary).
   switch (fillColor) {
     case "light":
-      layoutColorStyle = "bg-gray-1 border hover:bg-gray-5 transition-colors";
-      textColorStyle = "text-gray-700";
+      layoutColorStyle =
+        "bg-secondary border hover:bg-secondary/80 transition-colors";
+      textColorStyle = "text-secondary-foreground";
       break;
 
     default:
     case "dark":
-      layoutColorStyle = "bg-gray-600 hover:bg-gray-800 transition-colors";
-      textColorStyle = "text-white";
+      layoutColorStyle = "bg-primary hover:bg-primary/90 transition-colors";
+      textColorStyle = "text-primary-foreground";
       break;
   }
 

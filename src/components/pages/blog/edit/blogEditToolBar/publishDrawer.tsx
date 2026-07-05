@@ -404,7 +404,11 @@ export function PublishDrawer() {
           <span className={DarkTextStyle}>
             {queryId ? t("button.update") : t("button.publish")}
           </span>
-          {queryId && <span className="text-xs text-white">id: {queryId}</span>}
+          {queryId && (
+            <span className="text-xs text-primary-foreground">
+              id: {queryId}
+            </span>
+          )}
         </Button>
       </DrawerTrigger>
 

@@ -188,7 +188,6 @@ export default function CommonModal({
               onClick={() => handleUnmountAnimation(handleDismiss)}
               disabled={isLoading}
               colorTheme="light"
-              className="dark:bg-gray-700 dark:text-gray-50 dark:hover:bg-gray-600"
             >
               {dismissLabel ?? "Close"}
             </FillButton>
@@ -196,7 +195,6 @@ export default function CommonModal({
           <FillButton
             colorTheme="dark"
             onClick={() => handleUnmountAnimation(handleProceed)}
-            className="dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-white"
           >
             {proceedLabel ?? "Okay"}
           </FillButton>

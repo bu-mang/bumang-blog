@@ -86,10 +86,7 @@ export function BlogDetailInnerViewFallback({
           >
             ← Back to Home
           </ButtonBase>
-          <FillButton
-            className="text-white"
-            onClick={() => router.push(PATHNAME.LOGIN)}
-          >
+          <FillButton onClick={() => router.push(PATHNAME.LOGIN)}>
             Go To Login
           </FillButton>
         </div>
