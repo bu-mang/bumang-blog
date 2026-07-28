@@ -40,4 +40,8 @@ export const END_POINTS = {
   POST_USER_GROUP_MEMBER: (id: number | string) => `/user-groups/${id}/members`,
   DELETE_USER_GROUP_MEMBER: (id: number | string, userId: number | string) =>
     `/user-groups/${id}/members/${userId}`,
+
+  // AUDIT (HOST only)
+  GET_LOGIN_ATTEMPTS: (pageIndex: number, pageSize: number) =>
+    `/audit/login-attempts?pageIndex=${pageIndex}&pageSize=${pageSize}`,
 } as const;
