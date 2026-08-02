@@ -8,7 +8,13 @@ import { useState } from "react";
 import FooterBackgroundSelect from "./footerBackgroundSelect";
 
 const Footer = () => {
+  // 블로그 창립 연도(프론트 첫 커밋 2024-09). "창립–현재" 범위로 표기.
+  const FOUNDING_YEAR = 2024;
   const currentYear = new Date().getFullYear();
+  const copyrightYears =
+    currentYear > FOUNDING_YEAR
+      ? `${FOUNDING_YEAR}–${currentYear}`
+      : `${FOUNDING_YEAR}`;
 
   const pathname = usePathname();
   const isBlogEdit = pathname === "/blog/edit";
@@ -49,7 +55,7 @@ const Footer = () => {
 
         <div>
           <div className="font-medium text-gray-700 dark:text-gray-300">
-            © {currentYear}
+            © {copyrightYears}
           </div>
 
           <div className="text-gray-200">Made by Bumang</div>
