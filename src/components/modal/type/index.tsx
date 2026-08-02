@@ -29,7 +29,6 @@ interface ModalProps {
 const Modal = forwardRef<HTMLDivElement, ModalProps>(
   ({ children, className, onClose }: ModalProps, ref) => {
     const handleClick = () => {
-      console.log("🟡 DIM clicked");
       onClose();
     };
 
@@ -67,7 +66,6 @@ function ContainerInner(
         className,
       )}
       onClick={(e) => {
-        console.log("🟢 modal clicked");
         e.stopPropagation();
       }}
     >
