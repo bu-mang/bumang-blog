@@ -14,6 +14,7 @@ import {
   AlignJustifyIcon,
   Calendar,
   Edit,
+  Eye,
   FolderIcon,
   Trash2,
 } from "lucide-react";
@@ -31,6 +32,8 @@ import { useAuthStore } from "@/store/auth";
 import { useEditStore } from "@/store/edit";
 import { useMutation } from "@tanstack/react-query";
 import { deletePost } from "@/services/api/blog/edit";
+import { incrementPostView } from "@/services/api/blog/[id]";
+import { formatViewCount } from "@/utils/formatViewCount";
 import {
   AudienceMarkerSpec,
   formatAudienceLabel,
@@ -153,6 +156,7 @@ export function BlogDetailInnerViewFallback({
 
 export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
   const t = useTranslations("blogDetail");
+  const tBlog = useTranslations("blog");
 
   // 헤더 상태 초기화
   const setDefaultSetting = useHeaderStore((state) => state.setDefaultSetting);
@@ -161,10 +165,35 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
     // eslint-disable-next-line
   }, []);
 
+  // 조회수 표시값. 실제 증가는 아래(인증 확정 후, 본인 글 제외)에서 처리.
+  const [viewCount, setViewCount] = useState<number>(post.views ?? 0);
+
   /**
    * EDITOR_LOGIC
    */
   const user = useAuthStore((state) => state.user);
+  const isAuthLoading = useAuthStore((state) => state.isAuthLoading);
+
+  // 조회수 증가: 세션당 1회(sessionStorage). 인증 확정 후 판정하며, 본인 글은 세지 않는다.
+  useEffect(() => {
+    if (isAuthLoading) return; // 인증 확정 전엔 보류(본인 여부 판정 불가)
+    if (user && post.authorNickname === user.nickname) return; // 본인 글은 조회수 제외
+    const key = `viewed:${post.id}`;
+    if (sessionStorage.getItem(key)) return;
+    sessionStorage.setItem(key, "1");
+
+    const increment = async () => {
+      try {
+        const res = await incrementPostView(post.id);
+        setViewCount(res.view);
+      } catch {
+        /* 조회수 증가 실패는 UX에 영향 없으므로 조용히 무시 */
+      }
+    };
+    increment();
+    // eslint-disable-next-line
+  }, [isAuthLoading]);
+
   const setAllEditState = useEditStore((state) => state.setAllEditState);
   const router = useRouter();
   const params = useParams();
@@ -299,6 +328,14 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
           <div className="pointer-events-none flex items-center justify-center gap-2 text-sm text-gray-300">
             <Calendar size={18} />
             <span>{format(post.createdAt, "yyyy. MM. dd.")}</span>
+          </div>
+
+          <span className="mx-2 text-gray-200">•</span>
+
+          {/* VIEWS */}
+          <div className="pointer-events-none flex items-center justify-center gap-2 text-sm text-gray-300">
+            <Eye size={18} />
+            <span>{formatViewCount(viewCount, tBlog("viewsUnderTen"))}</span>
           </div>
 
           {/* LOGGINED */}

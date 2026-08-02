@@ -507,6 +507,7 @@
   "blog": {
     "noCategory": "No Category",
     "noGroup": "No Group",
+    "viewsUnderTen": "Under 10 views",
     "noPost": {
       "title": "Sorry, No Posts are here.",
       "desc": "Maybe Some Error occured, or there is no post literally."

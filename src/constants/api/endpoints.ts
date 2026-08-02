@@ -31,6 +31,7 @@ export const END_POINTS = {
   GET_BLOG_DETAIL: (id: number | string) => `/posts/${id}`,
   GET_RELATED_POSTS: (id: number | string) => `/posts/${id}/related`,
   GET_ADJACENT_POSTS: (id: number | string) => `/posts/${id}/adjacent`,
+  POST_INCREMENT_VIEW: (id: number | string) => `/posts/${id}/view`,
 
   // USER GROUPS (OWNER only)
   GET_USER_GROUPS: "/user-groups",

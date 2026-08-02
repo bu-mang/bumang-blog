@@ -5,11 +5,13 @@ import { RoleType } from "@/types";
 import { TagCompactType } from "@/types/tag";
 import { cn } from "@/utils/cn";
 import { getThumbnailByGroup } from "@/utils/getThumnailByGroup";
+import { formatViewCount } from "@/utils/formatViewCount";
+import { useTranslations } from "next-intl";
 import { format } from "date-fns";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { MouseEventHandler } from "react";
-import { LuLockKeyhole, LuMoveRight } from "react-icons/lu";
+import { LuEye, LuLockKeyhole, LuMoveRight } from "react-icons/lu";
 
 interface BlogListItemProps {
   index: number;
@@ -27,6 +29,7 @@ interface BlogListItemProps {
 
   author: string;
   authorRole: null | RoleType;
+  view?: number;
 
   isLastItem?: boolean;
 }
@@ -48,7 +51,9 @@ export default function BlogListItem({
 
   author,
   authorRole,
+  view,
 }: BlogListItemProps) {
+  const t = useTranslations("blog");
   const tagWrapperStyle = "flex flex-wrap gap-1 mt-1.5";
   const formattedDate = format(date, "yyyy. MM. dd.");
 
@@ -103,6 +108,13 @@ export default function BlogListItem({
 
           <span className="truncate text-xs font-semibold text-gray-300">
             {formattedDate}
+          </span>
+
+          <div className="mx-2.5 h-2.5 w-[1px] bg-gray-300" />
+
+          <span className="flex items-center gap-1 text-xs font-semibold text-gray-300">
+            <LuEye size={12} />
+            {formatViewCount(view, t("viewsUnderTen"))}
           </span>
 
           {readPermisson && (

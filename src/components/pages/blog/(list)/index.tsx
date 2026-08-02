@@ -127,6 +127,9 @@ function BlogListView({
                 thumbnailUrl,
                 readPermisson,
                 score,
+                view,
+                categoryId,
+                groupId,
               },
               index,
             ) => (
@@ -141,10 +144,13 @@ function BlogListView({
                 // category & group
                 groupLabel={groupLabel}
                 categoryLabel={categoryLabel}
+                groupId={groupId}
+                categoryId={categoryId}
                 tags={tags}
                 date={createdAt}
                 thumbnailUrl={thumbnailUrl}
                 readPermisson={readPermisson}
+                view={view}
                 itemViewType={itemViewType}
                 isLastItem={index === allPosts?.data?.length - 1}
               />

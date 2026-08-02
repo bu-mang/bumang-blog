@@ -17,11 +17,14 @@ export interface PostListItemType {
   previewText: string;
   createdAt: string;
   categoryLabel: string;
+  categoryId: number | null;
   groupLabel: string;
+  groupId: number | null;
   tags: TagCompactType[];
   author: string;
   authorRole: RoleType | null;
   thumbnailUrl: string | null;
   readPermisson: RoleType;
   score?: number;
+  view?: number;
 }

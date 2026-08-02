@@ -1,6 +1,6 @@
 "use client";
 
-import { LuLayoutGrid, LuLayoutList, LuPlus } from "react-icons/lu";
+import { LuLayoutGrid, LuLayoutList, LuPlus, LuUndo2 } from "react-icons/lu";
 import { Link } from "@/i18n/navigation";
 import { getButtonColorStyle } from "@/utils/styles/filButtonManager";
 import { cn } from "@/utils/cn";
@@ -49,6 +49,18 @@ const LabelWithUtil = ({
           {isTag && "Tag:"} {upperCaseCapital}
         </span>
         <span className="text-sm text-gray-200">{amount}</span>
+
+        {/* 필터가 걸려 있을 때만: 전체(All)로 리셋 (현재 뷰 유지, 필터 해제) */}
+        {title !== "All" && (
+          <Link
+            href={`/blog?view=${itemViewType}`}
+            aria-label="전체 보기"
+            title="전체 보기"
+            className="ml-1 flex h-8 w-8 items-center justify-center rounded-md text-gray-300 transition-all duration-300 hover:bg-gray-5 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-gray-100"
+          >
+            <LuUndo2 size={18} />
+          </Link>
+        )}
       </div>
 
       <div className="flex items-center gap-2">

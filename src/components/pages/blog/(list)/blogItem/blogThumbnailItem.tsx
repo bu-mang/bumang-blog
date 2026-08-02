@@ -1,15 +1,17 @@
 "use client";
 
-import { Tag } from "@/components/common";
+import { PATHNAME } from "@/constants/routes/pathnameRoutes";
 import { RoleType } from "@/types";
 import { TagCompactType } from "@/types/tag";
 import { cn } from "@/utils/cn";
 import { getThumbnailByGroup } from "@/utils/getThumnailByGroup";
+import { formatViewCount } from "@/utils/formatViewCount";
+import { useTranslations } from "next-intl";
 import { format } from "date-fns";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { MouseEventHandler } from "react";
-import { LuLockKeyhole, LuMoveRight } from "react-icons/lu";
+import { LuEye, LuLockKeyhole, LuMoveRight } from "react-icons/lu";
 
 interface BlogThumbnailItemProps {
   index: number;
@@ -17,7 +19,9 @@ interface BlogThumbnailItemProps {
   title: string;
   previewText: string;
   categoryLabel: string;
+  categoryId: number | null;
   groupLabel: string;
+  groupId: number | null;
   tags: TagCompactType[];
   date: string;
   thumbnailUrl: string | null;
@@ -27,6 +31,7 @@ interface BlogThumbnailItemProps {
 
   author: string;
   authorRole: null | RoleType;
+  view?: number;
 }
 
 export default function BlogThumbnailItem({
@@ -34,7 +39,9 @@ export default function BlogThumbnailItem({
   title,
   previewText,
   categoryLabel,
+  categoryId,
   groupLabel,
+  groupId,
   tags,
   date,
   id,
@@ -44,44 +51,67 @@ export default function BlogThumbnailItem({
   handleNavigate,
   author,
   authorRole,
+  view,
 }: BlogThumbnailItemProps) {
+  const t = useTranslations("blog");
   const contentStyle =
-    "line-clamp-1 flex-1 flex-nowrap text-sm text-gray-300 dark:text-gray-200 text-sm";
+    "line-clamp-1 flex-1 flex-nowrap text-sm text-gray-300 dark:text-gray-200";
   const tagWrapperStyle = "flex flex-wrap gap-1 mt-1.5";
   const formattedDate = format(date, "yyyy.MM.dd.");
 
   return (
-    <Link href={"/blog/" + id} className="group" onClick={handleNavigate}>
-      {/* IMAGE */}
-      <div className="relative aspect-video w-full cursor-pointer overflow-hidden rounded-lg bg-secondary">
-        <Image
-          src={thumbnailUrl || getThumbnailByGroup(groupLabel, "blogItem")}
-          alt="postImage"
-          className="object-cover object-top transition-all group-hover:scale-110"
-          sizes="(max-width: 768px) 300px, 400px"
-          priority={index <= 6}
-          fill
-        />
-      </div>
-
-      {/* TITLE */}
-      <div className="mb-1 mt-2 group-hover:text-gray-500 dark:text-gray-50 dark:group-hover:text-white">
-        <div className={"flex-1 flex-wrap text-base font-medium leading-tight"}>
-          {title}
+    <div className="group">
+      {/* 이미지·제목·본문 → 글로 이동 */}
+      <Link href={"/blog/" + id} className="block" onClick={handleNavigate}>
+        {/* IMAGE */}
+        <div className="relative aspect-video w-full cursor-pointer overflow-hidden rounded-lg bg-secondary">
+          <Image
+            src={thumbnailUrl || getThumbnailByGroup(groupLabel, "blogItem")}
+            alt="postImage"
+            className="object-cover object-top transition-all group-hover:scale-110"
+            sizes="(max-width: 768px) 300px, 400px"
+            priority={index <= 6}
+            fill
+          />
         </div>
-      </div>
 
-      {/* CONTENT */}
-      <div className={contentStyle}>{previewText}</div>
+        {/* TITLE */}
+        <div className="mb-1 mt-2 group-hover:text-gray-500 dark:text-gray-50 dark:group-hover:text-white">
+          <div
+            className={"flex-1 flex-wrap text-base font-medium leading-tight"}
+          >
+            {title}
+          </div>
+        </div>
 
-      {/* GROUP & CATEGORY */}
-      <div className="mt-1.5 flex flex-col justify-center">
-        <span
-          className={cn(
-            "line-clamp-1 flex-nowrap text-xs font-semibold text-gray-300",
+        {/* CONTENT */}
+        <div className={contentStyle}>{previewText}</div>
+      </Link>
+
+      {/* GROUP & CATEGORY → 필터 이동 (호버 언더라인) */}
+      <div className="mt-2.5 flex flex-col justify-center">
+        <span className="line-clamp-1 flex-nowrap text-xs font-semibold text-gray-300">
+          {groupId != null ? (
+            <Link
+              href={`${PATHNAME.BLOG}?groupId=${groupId}`}
+              className="hover:text-gray-500 hover:underline"
+            >
+              {groupLabel}
+            </Link>
+          ) : (
+            groupLabel
           )}
-        >
-          {groupLabel}: {categoryLabel}
+          {": "}
+          {categoryId != null ? (
+            <Link
+              href={`${PATHNAME.BLOG}?categoryId=${categoryId}`}
+              className="hover:text-gray-500 hover:underline"
+            >
+              {categoryLabel}
+            </Link>
+          ) : (
+            categoryLabel
+          )}
         </span>
       </div>
 
@@ -91,13 +121,20 @@ export default function BlogThumbnailItem({
           !readPermisson && "justify-between",
         )}
       >
-        <div
-          className={cn(
-            "w-fit flex-shrink-0 flex-nowrap rounded-md border-gray-300 text-2xs font-semibold text-gray-300",
-            authorRole === "guest" && "text-red-400",
-          )}
-        >
-          {authorRole === "guest" ? `deleted at 00:00` : formattedDate}
+        <div className="flex items-center gap-1.5">
+          <div
+            className={cn(
+              "w-fit flex-shrink-0 flex-nowrap rounded-md border-gray-300 text-2xs font-semibold text-gray-300",
+              authorRole === "guest" && "text-red-400",
+            )}
+          >
+            {authorRole === "guest" ? `deleted at 00:00` : formattedDate}
+          </div>
+
+          <span className="flex items-center gap-0.5 text-2xs font-semibold text-gray-300">
+            <LuEye size={11} />
+            {formatViewCount(view, t("viewsUnderTen"))}
+          </span>
         </div>
 
         {/* 잠금 */}
@@ -119,20 +156,18 @@ export default function BlogThumbnailItem({
         )}
       </div>
 
-      {/* TAGS */}
+      {/* TAGS → 필터 이동 (호버 배경·글자 진하게) */}
       <div className={tagWrapperStyle}>
         {tags?.map((tag) => (
-          <Tag
+          <Link
             key={tag.id}
-            id={tag.id}
-            title={tag.title}
-            size={size}
-            type="button"
-            isActivated={false}
-            className="pointer-events-none"
-          />
+            href={`${PATHNAME.BLOG}?tagIds=${tag.id}`}
+            className="h-fit shrink-0 truncate rounded-3xs bg-gray-1 px-1 py-0.5 text-2xs text-gray-200 shadow-sm transition-all hover:bg-gray-5 hover:text-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:hover:text-white"
+          >
+            {tag.title}
+          </Link>
         ))}
       </div>
-    </Link>
+    </div>
   );
 }

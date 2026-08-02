@@ -19,7 +19,9 @@ interface BlogItemProps {
   title: string;
   previewText: string;
   categoryLabel: string;
+  categoryId: number | null;
   groupLabel: string;
+  groupId: number | null;
   author: string;
   tags: TagCompactType[];
   date: string;
@@ -28,6 +30,7 @@ interface BlogItemProps {
   size?: "lg" | "sm";
   readPermisson: null | RoleType;
   authorRole: null | RoleType;
+  view?: number;
   isLastItem?: boolean;
 }
 
@@ -36,7 +39,9 @@ const BlogItem = ({
   title,
   previewText,
   categoryLabel,
+  categoryId,
   groupLabel,
+  groupId,
   author,
   authorRole,
   tags,
@@ -46,6 +51,7 @@ const BlogItem = ({
   itemViewType,
   size = "sm",
   readPermisson,
+  view,
   isLastItem,
 }: BlogItemProps) => {
   const t = useTranslations("alert");
@@ -78,7 +84,9 @@ const BlogItem = ({
     title,
     previewText,
     categoryLabel,
+    categoryId,
     groupLabel,
+    groupId,
     tags,
     date,
     thumbnailUrl,
@@ -87,6 +95,7 @@ const BlogItem = ({
     handleNavigate,
     author,
     authorRole,
+    view,
   };
 
   switch (itemViewType) {
