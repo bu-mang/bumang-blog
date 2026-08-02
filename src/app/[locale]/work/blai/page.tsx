@@ -3,6 +3,9 @@ import { BLAI_CONFIG } from "./_script";
 import { getWorkMarkdown } from "@/utils/getWorkMarkdown";
 import { Metadata } from "next";
 
+// 마스킹 토글(env WORK_UNMASK)을 재빌드 없이 런타임에 반영 — SSG로 굳지 않게.
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   alternates: {
     languages: {

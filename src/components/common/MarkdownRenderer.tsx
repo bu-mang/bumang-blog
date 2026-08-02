@@ -16,6 +16,14 @@ function getYouTubeId(url: string): string | null {
 
 const components: Components = {
   a: ({ href, children }) => {
+    // 서버(getWorkMarkdown)가 마스킹 구간을 [더미](#mask)로 내려준다 → 블러 span.
+    if (href === "#mask") {
+      return (
+        <span className="work-masked" title="비공개 (면접 시 공개)">
+          {children}
+        </span>
+      );
+    }
     if (href) {
       const ytId = getYouTubeId(href);
       if (ytId) {

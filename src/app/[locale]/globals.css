@@ -221,6 +221,19 @@ q:after {
     filter: blur(3px);
   }
 
+  /* /work 상세 마스킹 — 서버가 같은 길이 더미(lorem)로 치환한 구간에 적용되는 블러.
+     audience-blocked와 같은 톤이지만 클릭 리빌이 없어 cursor는 default. */
+  .work-masked {
+    filter: blur(5px);
+    user-select: none;
+    cursor: default;
+    transition: filter 0.15s ease;
+  }
+
+  .work-masked:hover {
+    filter: blur(4px);
+  }
+
 }
 
 /* 다크테마에서 BlockNote 본문 뒤에 깔리는 mantine 기본 패널 배경 제거.
