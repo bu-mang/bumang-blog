@@ -45,4 +45,6 @@ export const END_POINTS = {
   // AUDIT (HOST only)
   GET_LOGIN_ATTEMPTS: (pageIndex: number, pageSize: number) =>
     `/audit/login-attempts?pageIndex=${pageIndex}&pageSize=${pageSize}`,
+  GET_CONTENT_VIEWS: (pageIndex: number, pageSize: number) =>
+    `/audit/content-views?pageIndex=${pageIndex}&pageSize=${pageSize}`,
 } as const;
