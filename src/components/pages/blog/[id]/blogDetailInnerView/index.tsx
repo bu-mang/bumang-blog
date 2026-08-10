@@ -372,6 +372,8 @@ export default function BlogDetailInnerView({ post }: BlogDetailInnerProps) {
           maskedBlockIds={post.maskedBlockIds ?? []}
           isAnon={isAnon}
           audienceMarkers={audienceMarkers}
+          // blockAudienceMap은 서버가 owner(마스킹 우회)에게만 내려줌 → 인라인 하이라이트 판정.
+          isOwner={post.blockAudienceMap !== undefined}
         />
       </div>
 

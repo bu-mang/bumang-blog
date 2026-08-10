@@ -5,6 +5,7 @@ import {
   createCodeBlockSpec,
 } from "@blocknote/core";
 import { codeBlockOptions } from "@blocknote/code-block";
+import { maskedStyleSpec } from "./maskedStyle";
 
 /**
  * edit / detail에서 공유하는 BlockNote 스키마.
@@ -29,6 +30,10 @@ export const blogBlockNoteSchema = BlockNoteSchema.create().extend({
         sql: { name: "SQL", aliases: [] },
       },
     }),
+  },
+  // 인라인 마스킹 스타일. audience 그룹 기준으로 문장 중간 구간을 가린다.
+  styleSpecs: {
+    masked: maskedStyleSpec,
   },
 });
 

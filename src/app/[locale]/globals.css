@@ -234,6 +234,24 @@ q:after {
     filter: blur(4px);
   }
 
+  /* 블로그 인라인 마스킹(styles.masked). 기본(에디터·소유자) = 하이라이트로 마킹 표시.
+     권한 없는 독자의 읽기뷰에서만 진짜 블러(더미 텍스트). 권한 있는 독자는 서버가 스타일을
+     제거해 내려주므로 .masked-inline 자체가 없음. */
+  .masked-inline {
+    background: rgba(250, 204, 21, 0.2);
+    border-radius: 2px;
+    padding: 0 1px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .read-view:not(.is-owner) .masked-inline {
+    background: transparent;
+    padding: 0;
+    filter: blur(4px);
+    user-select: none;
+  }
+
 }
 
 /* 다크테마에서 BlockNote 본문 뒤에 깔리는 mantine 기본 패널 배경 제거.

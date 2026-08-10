@@ -19,6 +19,7 @@ interface ArticleBodyProps {
   maskedBlockIds: string[];
   isAnon: boolean;
   audienceMarkers: AudienceMarkerSpec[];
+  isOwner: boolean;
 }
 
 /**
@@ -32,6 +33,7 @@ export default function ArticleBody({
   maskedBlockIds,
   isAnon,
   audienceMarkers,
+  isOwner,
 }: ArticleBodyProps) {
   const router = useRouter();
   const { resolvedTheme } = useTheme();
@@ -78,7 +80,11 @@ export default function ArticleBody({
   }, [maskedBlockIds, isAnon, router]);
 
   return (
-    <div className="max-sm:[&_.bn-editor]:px-0 lg:-mx-[46px]">
+    <div
+      className={`read-view max-sm:[&_.bn-editor]:px-0 lg:-mx-[46px] ${
+        isOwner ? "is-owner" : ""
+      }`}
+    >
       <BlockNoteView
         editor={editor}
         theme={resolvedTheme === "dark" ? "dark" : "light"}

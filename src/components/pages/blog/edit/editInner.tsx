@@ -19,6 +19,7 @@ import {
 import BlockAudienceDialog from "@/components/editor/blockAudience/blockAudienceDialog";
 import BlockAudienceSideMenu from "@/components/editor/blockAudience/blockAudienceSideMenu";
 import BlockAudienceSlashMenu from "@/components/editor/blockAudience/blockAudienceSlashMenu";
+import { MaskFormattingToolbar } from "@/components/editor/maskFormattingToolbar";
 
 import { Divider } from "@/components/common";
 import { BlogEditorToolBar } from "@/components/pages";
@@ -557,6 +558,10 @@ export default function BlogEditInner({
                   editable={true}
                   sideMenu={false}
                   slashMenu={false}
+                  // 커스텀 컴포넌트를 자식으로 넣을 땐 같은 이름의 기본 메뉴를 반드시 끈다.
+                  // 안 끄면 기본 툴바와 MaskFormattingToolbar가 둘 다 마운트돼 겹치고,
+                  // 그 상태에선 "가리기" 드롭다운이 렌더되지 않는다.
+                  formattingToolbar={false}
                 >
                   <BlockAudienceSideMenu
                     onSetAudience={openBlockAudience}
@@ -570,6 +575,7 @@ export default function BlogEditInner({
                     markers={audienceMarkers}
                     onClick={openBlockAudience}
                   />
+                  <MaskFormattingToolbar />
                 </BlockNoteView>
               </div>
             </div>
