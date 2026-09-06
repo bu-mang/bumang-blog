@@ -211,8 +211,9 @@ function ContentViewsPanel() {
   return (
     <>
       <p className="mb-3 text-sm text-gray-400">
-        로그인한 유저의 글 조회를 매 접근마다 기록합니다(익명 조회는 제외).
-        보존 기간은 730일.
+        글 상세 조회를 기록합니다. 익명 방문자는 IP로 구분하며, 같은 IP가 같은
+        글을 10분 안에 다시 열면 한 줄로 접힙니다. 크롤러는 제외. 보존 기간은
+        730일(최대 300만 건).
       </p>
       <Panel
         isLoading={isLoading}
@@ -248,6 +249,19 @@ function ContentViewsPanel() {
   );
 }
 
+/**
+ * 익명 방문자 표기. 이메일이 없으니 IP를 붙여 사람을 구분한다 — "익명"만 찍히면
+ * 같은 사람의 연속 조회인지 다른 방문자들인지 표에서 알 수 없다.
+ */
+function AnonymousUser({ ip }: { ip: string | null }) {
+  return (
+    <>
+      익명
+      {ip && <span className="ml-1 text-gray-400">({ip})</span>}
+    </>
+  );
+}
+
 function ContentViewRow({ row }: { row: ContentView }) {
   // denied면 제목이 없다(권한이 없어 글을 읽지 못했으므로) — 글 번호로 대체한다.
   const postLabel = row.postTitle ?? `#${row.postId}`;
@@ -263,10 +277,18 @@ function ContentViewRow({ row }: { row: ContentView }) {
       <TableCell
         className="max-w-[180px] truncate"
         title={
-          row.userEmail ?? (row.userId === null ? "비로그인 방문자" : `userId ${row.userId}`)
+          row.userEmail ??
+          (row.userId === null
+            ? `비로그인 방문자 (IP ${row.ip ?? "미상"})`
+            : `userId ${row.userId}`)
         }
       >
-        {row.userEmail ?? (row.userId === null ? "익명" : `#${row.userId}`)}
+        {row.userEmail ??
+          (row.userId === null ? (
+            <AnonymousUser ip={row.ip} />
+          ) : (
+            `#${row.userId}`
+          ))}
       </TableCell>
       <TableCell className="max-w-[240px] truncate" title={postLabel}>
         {postLabel}
