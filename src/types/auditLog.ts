@@ -19,10 +19,11 @@ export interface LoginAttemptPage {
   pageSize: number;
 }
 
-// 로그인한 유저의 포스트 상세 조회 기록. 익명 조회는 남기지 않는다.
+// 포스트 상세 조회 기록. 익명 조회도 남는다(userId·userEmail이 null).
 export interface ContentView {
   id: number;
-  userId: number;
+  // null이면 비로그인 방문자.
+  userId: number | null;
   // 기록 시점 스냅샷 — 유저가 탈퇴·변경돼도 남는다.
   userEmail: string | null;
   postId: number;

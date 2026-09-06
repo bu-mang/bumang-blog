@@ -262,9 +262,11 @@ function ContentViewRow({ row }: { row: ContentView }) {
       </TableCell>
       <TableCell
         className="max-w-[180px] truncate"
-        title={row.userEmail ?? `userId ${row.userId}`}
+        title={
+          row.userEmail ?? (row.userId === null ? "비로그인 방문자" : `userId ${row.userId}`)
+        }
       >
-        {row.userEmail ?? `#${row.userId}`}
+        {row.userEmail ?? (row.userId === null ? "익명" : `#${row.userId}`)}
       </TableCell>
       <TableCell className="max-w-[240px] truncate" title={postLabel}>
         {postLabel}

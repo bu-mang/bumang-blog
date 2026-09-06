@@ -42,11 +42,34 @@ interface HeaderInnerProps {
   locale: string;
 }
 
+/**
+ * 헤더의 프로필 조회가 실패했을 때 인증 상태를 "비로그인으로 확정"시킨다.
+ *
+ * 프로필 조회 실패(= 비로그인)도 인증 판정이 끝난 것이다. 그런데
+ * useSuspenseQuery는 실패 시 throw하므로 HeaderInnerAuthenticated가 통째로
+ * 언마운트되고, 그 안의 useEffect는 영영 돌지 않는다. 그래서 로딩 해제를
+ * 에러가 실제로 도착하는 이 지점에서 한다. 이게 없으면 익명 방문자는
+ * isAuthLoading이 true로 굳어, 이 플래그가 풀리기를 기다리는 로직
+ * (블로그 상세의 조회수 증가 등)이 통째로 스킵된다.
+ *
+ * 컴포넌트의 props·state에 의존하지 않으므로 모듈 스코프에 둔다 —
+ * 렌더마다 새 함수가 만들어지지 않는다.
+ */
+const handleHeaderAuthError = (error: Error) => {
+  console.error("🔥 Header 에러:", error);
+
+  useAuthStore.getState().setUserAndIsAuthenticated({
+    isAuthenticated: false,
+    isAuthLoading: false,
+    user: null,
+  });
+};
+
 const HeaderInner = ({ locale }: HeaderInnerProps) => {
   return (
     <ErrorBoundary
       fallback={<HeaderFallback locale={locale} isLoading={false} />}
-      onError={(error) => console.error("🔥 Header 에러:", error)}
+      onError={handleHeaderAuthError}
     >
       <Suspense
         clientOnly
