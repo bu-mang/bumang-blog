@@ -14,8 +14,11 @@ npm run lint     # next lint
 ```
 
 환경변수(빌드 타임 주입, `NEXT_PUBLIC_*`):
-- `NEXT_PUBLIC_API_BASE_URL` — 백엔드 API (개발 시 `http://localhost:4001`)
+- `NEXT_PUBLIC_API_BASE_URL` — 백엔드 API (개발 시 `http://localhost:4001`). 브라우저와 SSR 양쪽이 URL을 만들 때 쓰는 공개 주소.
 - `NEXT_PUBLIC_S3_DOMAIN` — S3 이미지 도메인
+
+환경변수(런타임 주입, 서버 전용):
+- `API_INTERNAL_URL` — SSR(`serverFetch`)이 백엔드를 부를 때 공개 주소 대신 쓰는 내부 주소. 프로덕션은 백엔드 레포 `docker-compose.prod.yaml`의 `frontend.environment`에서 `http://app:4001`로 주입한다. 비어 있으면 공개 주소를 그대로 쓴다(로컬 개발). **공개 주소로 나갈 땐 `cf-connecting-ip`를 절대 붙이지 않는다** — Cloudflare가 403으로 튕긴다(2026-09-06 장애). 상세는 `src/services/lib/serverFetch/index.ts` 주석.
 
 ## 라우팅 (App Router)
 
