@@ -179,6 +179,96 @@ export default async function middleware(request: NextRequest) {
 
   const accessToken = request.cookies.get("accessToken")?.value;
   const refreshToken = request.cookies.get("refreshToken")?.value;
+  const jwtSecret = new TextEncoder().encode(process.env.JWT_SECRET!);
+
+  // ------------------ 토큰 검증 · 재발급 ------------------
+  // 보호 경로 인가보다 먼저 한다. 그래야 access 토큰이 만료됐어도 refresh 토큰이 살아 있으면
+  // /admin·/blog/edit가 로그인 페이지로 튕기지 않는다.
+  //
+  // 재발급에 성공하면 새 토큰을 (1) 브라우저에 Set-Cookie로 내려주는 것에 더해
+  // (2) **지금 처리 중인 요청의 쿠키에도 바꿔 끼운다**. (2)가 없으면 이번 SSR은 만료된
+  // 토큰으로 진행돼 백엔드가 익명 취급하고, 한 시간 만에 처음 여는 페이지가 로그아웃된 것처럼
+  // 깜빡였다가 다음 이동부터 정상이 되는 현상이 생긴다. next-intl 미들웨어는 request.headers를
+  // 복사해 넘기므로(NextResponse.rewrite({ request: { headers } })) 여기서 바꾼 cookie 헤더가
+  // 서버 컴포넌트의 cookies()까지 그대로 전달된다.
+  let effectiveAccessToken = accessToken;
+  let refreshedSetCookie: string | null = null;
+  let shouldClearAuthCookies = false;
+
+  if (accessToken || refreshToken) {
+    let accessTokenValid = false;
+    if (accessToken) {
+      try {
+        await jwtVerify(accessToken, jwtSecret);
+        accessTokenValid = true;
+      } catch {
+        // 만료/위조 — 아래에서 refresh 시도
+      }
+    }
+
+    if (!accessTokenValid && refreshToken) {
+      try {
+        const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+        const refreshResponse = await fetch(
+          `${apiBaseUrl}${END_POINTS.POST_RENEW_ACCESS_TOKEN}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Cookie: `refreshToken=${refreshToken}`, // 리프레시 토큰을 쿠키로 전달
+            },
+            credentials: "include",
+          },
+        );
+
+        if (refreshResponse.ok) {
+          // 백엔드는 새 accessToken을 Set-Cookie로만 내려준다(본문엔 없음).
+          const setCookieHeader = refreshResponse.headers.get("set-cookie");
+          const newAccessToken = setCookieHeader?.match(
+            /(?:^|,\s*)accessToken=([^;]+)/,
+          )?.[1];
+
+          if (setCookieHeader && newAccessToken) {
+            refreshedSetCookie = setCookieHeader;
+            effectiveAccessToken = newAccessToken;
+            // 이번 요청의 cookie 헤더를 새 토큰으로 갱신 → 이어지는 SSR이 곧바로 인증 상태
+            request.cookies.set("accessToken", newAccessToken);
+          } else {
+            console.log("토큰 재발급 응답에 accessToken 쿠키가 없음 — 이번 요청은 만료 토큰으로 진행");
+          }
+        } else if (refreshResponse.status === 401) {
+          // 쿠키를 지우는 건 백엔드가 리프레시 토큰을 명시적으로 거부(401)했을 때뿐이다.
+          // 500·502·503·429 같은 응답은 "토큰이 무효하다"가 아니라 "서버에 문제가 있다"라서,
+          // 여기서 30일짜리 리프레시 토큰을 버리면 배포 중 컨테이너 교체·nginx 재시작·
+          // 레이트리밋에 걸린 것만으로 로그아웃된다(2026-09-06 잦은 로그아웃의 원인 중 하나).
+          console.log("토큰 재발급 거부(401) — 쿠키 삭제");
+          shouldClearAuthCookies = true;
+          effectiveAccessToken = undefined;
+        } else {
+          console.log(
+            `토큰 재발급 실패(HTTP ${refreshResponse.status}) — 서버 문제로 보고 쿠키 유지`,
+          );
+        }
+      } catch (refreshError) {
+        // fetch 자체가 실패(연결 거부·타임아웃 등)한 경우도 토큰 무효가 아니다. 쿠키 유지.
+        console.log("토큰 재발급 요청 실패(네트워크) — 쿠키 유지", refreshError);
+      }
+    }
+  }
+
+  // 위에서 정한 토큰 상태를 최종 응답에 반영한다(일반 진행·리다이렉트 공통).
+  const finalize = (response: NextResponse) => {
+    if (refreshedSetCookie) {
+      // API 서버에서 받은 Set-Cookie 헤더를 그대로 전달
+      response.headers.set("set-cookie", refreshedSetCookie);
+    }
+    if (shouldClearAuthCookies) {
+      response.cookies.delete("accessToken");
+      response.cookies.delete("refreshToken");
+    }
+    return response;
+  };
 
   // ------------------ 보호 경로 서버측 인가 ------------------
   // 백엔드 API 가드가 데이터 변경의 실제 경계지만, 보호 페이지 자체의 노출도 서버에서 차단한다.
@@ -195,125 +285,33 @@ export default async function middleware(request: NextRequest) {
 
     if (isAdminPath || isEditPath) {
       let role: string | null = null;
-      if (accessToken) {
+      if (effectiveAccessToken) {
         try {
-          const { payload } = await jwtVerify(
-            accessToken,
-            new TextEncoder().encode(process.env.JWT_SECRET!),
-          );
+          const { payload } = await jwtVerify(effectiveAccessToken, jwtSecret);
           role = (payload.role as string) ?? null;
         } catch {
-          // 만료/위조 토큰: 미인증으로 처리(이 페이지에선 silent refresh 생략)
+          // 재발급까지 실패한 만료/위조 토큰: 미인증으로 처리
           role = null;
         }
       }
 
       // 미인증 → 로그인으로
       if (!role) {
-        return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
+        return finalize(
+          NextResponse.redirect(new URL(`/${locale}/login`, request.url)),
+        );
       }
       // /admin은 host 전용 (그 외 역할은 홈으로)
       if (isAdminPath && role !== "host") {
-        return NextResponse.redirect(new URL(`/${locale}`, request.url));
+        return finalize(
+          NextResponse.redirect(new URL(`/${locale}`, request.url)),
+        );
       }
       // /blog/edit는 인증된 사용자면 역할 무관 통과
     }
   }
 
-  // ------------------ 토큰 검증 ------------------
-
-  // 토큰이 있으면 검증하고 필요시 재발급
-  if (accessToken || refreshToken) {
-    try {
-      // 액세스 토큰 검증 시도
-      if (accessToken) {
-        await jwtVerify(
-          accessToken,
-          new TextEncoder().encode(process.env.JWT_SECRET!),
-        );
-        // 토큰이 유효하면 그냥 진행
-      }
-    } catch (error) {
-      // 액세스 토큰이 만료되었고 리프레시 토큰이 있으면 재발급 시도
-      if (refreshToken) {
-        try {
-          // API 서버에서 토큰 재발급 요청
-          const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-          const refreshResponse = await fetch(
-            `${apiBaseUrl}${END_POINTS.POST_RENEW_ACCESS_TOKEN}`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Cookie: `refreshToken=${refreshToken}`, // 리프레시 토큰을 쿠키로 전달
-              },
-              credentials: "include",
-            },
-          );
-
-          if (refreshResponse.ok) {
-            // Set-Cookie 헤더에서 새로운 accessToken 추출
-            const setCookieHeader = refreshResponse.headers.get("set-cookie");
-
-            if (setCookieHeader) {
-              // next-intl 미들웨어 실행
-              const response = intlMiddleware(request);
-
-              // API 서버에서 받은 Set-Cookie 헤더를 그대로 전달
-              response.headers.set("set-cookie", setCookieHeader);
-
-              return response;
-            } else {
-              // Set-Cookie 헤더가 없으면 응답에서 직접 토큰 파싱 시도
-              const data = await refreshResponse.json();
-
-              if (data.accessToken) {
-                const response = intlMiddleware(request);
-
-                // 새 토큰을 쿠키에 설정
-                response.cookies.set("accessToken", data.accessToken, {
-                  httpOnly: true,
-                  secure: process.env.NODE_ENV === "production",
-                  sameSite: "lax",
-                  path: "/",
-                  maxAge: 15 * 60, // 15분
-                });
-
-                return response;
-              }
-            }
-          }
-
-          // 쿠키를 지우는 건 백엔드가 리프레시 토큰을 명시적으로 거부(401)했을 때뿐이다.
-          // 500·502·503·429 같은 응답은 "토큰이 무효하다"가 아니라 "서버에 문제가 있다"라서,
-          // 여기서 30일짜리 리프레시 토큰을 버리면 배포 중 컨테이너 교체·nginx 재시작·
-          // 레이트리밋에 걸린 것만으로 로그아웃된다(2026-09-06 잦은 로그아웃의 원인 중 하나).
-          // 그 경우엔 쿠키를 그대로 두고 진행한다 — 이번 SSR은 익명 취급을 받을 수 있지만
-          // 다음 요청에서 다시 리프레시를 시도하므로 세션은 살아남는다.
-          if (refreshResponse.status === 401) {
-            console.log("토큰 재발급 거부(401) — 쿠키 삭제");
-            const response = intlMiddleware(request);
-            response.cookies.delete("accessToken");
-            response.cookies.delete("refreshToken");
-            return response;
-          }
-
-          console.log(
-            `토큰 재발급 실패(HTTP ${refreshResponse.status}) — 서버 문제로 보고 쿠키 유지`,
-          );
-          return intlMiddleware(request);
-        } catch (refreshError) {
-          // fetch 자체가 실패(연결 거부·타임아웃 등)한 경우도 토큰 무효가 아니다. 쿠키 유지.
-          console.log("토큰 재발급 요청 실패(네트워크) — 쿠키 유지", refreshError);
-          return intlMiddleware(request);
-        }
-      }
-    }
-  }
-
-  // 토큰이 없거나 검증 완료 후 그대로 진행
-  return intlMiddleware(request);
+  return finalize(intlMiddleware(request));
 }
 
 export const config = {
