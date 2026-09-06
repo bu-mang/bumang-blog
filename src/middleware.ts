@@ -285,18 +285,28 @@ export default async function middleware(request: NextRequest) {
             }
           }
 
-          // 토큰 재발급 실패 시 토큰들 삭제
-          console.log("토큰 재발급 실패");
-          const response = intlMiddleware(request);
-          response.cookies.delete("accessToken");
-          response.cookies.delete("refreshToken");
-          return response;
+          // 쿠키를 지우는 건 백엔드가 리프레시 토큰을 명시적으로 거부(401)했을 때뿐이다.
+          // 500·502·503·429 같은 응답은 "토큰이 무효하다"가 아니라 "서버에 문제가 있다"라서,
+          // 여기서 30일짜리 리프레시 토큰을 버리면 배포 중 컨테이너 교체·nginx 재시작·
+          // 레이트리밋에 걸린 것만으로 로그아웃된다(2026-09-06 잦은 로그아웃의 원인 중 하나).
+          // 그 경우엔 쿠키를 그대로 두고 진행한다 — 이번 SSR은 익명 취급을 받을 수 있지만
+          // 다음 요청에서 다시 리프레시를 시도하므로 세션은 살아남는다.
+          if (refreshResponse.status === 401) {
+            console.log("토큰 재발급 거부(401) — 쿠키 삭제");
+            const response = intlMiddleware(request);
+            response.cookies.delete("accessToken");
+            response.cookies.delete("refreshToken");
+            return response;
+          }
+
+          console.log(
+            `토큰 재발급 실패(HTTP ${refreshResponse.status}) — 서버 문제로 보고 쿠키 유지`,
+          );
+          return intlMiddleware(request);
         } catch (refreshError) {
-          // 리프레시 토큰도 만료됐으면 토큰들 삭제하고 진행
-          const response = intlMiddleware(request);
-          response.cookies.delete("accessToken");
-          response.cookies.delete("refreshToken");
-          return response;
+          // fetch 자체가 실패(연결 거부·타임아웃 등)한 경우도 토큰 무효가 아니다. 쿠키 유지.
+          console.log("토큰 재발급 요청 실패(네트워크) — 쿠키 유지", refreshError);
+          return intlMiddleware(request);
         }
       }
     }
