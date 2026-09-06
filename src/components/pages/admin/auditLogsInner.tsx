@@ -171,19 +171,14 @@ function AttemptRow({ row }: { row: LoginAttempt }) {
       <TableCell>
         {row.success ? <Badge tone="green">성공</Badge> : <Badge tone="red">실패</Badge>}
       </TableCell>
-      <TableCell className="max-w-[180px] truncate" title={row.email}>
-        {row.email}
-      </TableCell>
+      <TableCell className="whitespace-nowrap">{row.email}</TableCell>
       <TableCell className="whitespace-nowrap">
         {formatLocation(row.country, row.city)}
       </TableCell>
       <TableCell className="whitespace-nowrap text-gray-500">
         {row.ip ?? "—"}
       </TableCell>
-      <TableCell
-        className="max-w-[220px] truncate text-gray-500"
-        title={row.userAgent ?? undefined}
-      >
+      <TableCell className="whitespace-nowrap text-gray-500">
         {row.userAgent ?? "—"}
       </TableCell>
       <TableCell className="whitespace-nowrap text-gray-500">
@@ -274,15 +269,7 @@ function ContentViewRow({ row }: { row: ContentView }) {
       <TableCell>
         {row.denied ? <Badge tone="red">차단</Badge> : <Badge tone="green">열람</Badge>}
       </TableCell>
-      <TableCell
-        className="max-w-[180px] truncate"
-        title={
-          row.userEmail ??
-          (row.userId === null
-            ? `비로그인 방문자 (IP ${row.ip ?? "미상"})`
-            : `userId ${row.userId}`)
-        }
-      >
+      <TableCell className="whitespace-nowrap">
         {row.userEmail ??
           (row.userId === null ? (
             <AnonymousUser ip={row.ip} />
@@ -290,9 +277,7 @@ function ContentViewRow({ row }: { row: ContentView }) {
             `#${row.userId}`
           ))}
       </TableCell>
-      <TableCell className="max-w-[240px] truncate" title={postLabel}>
-        {postLabel}
-      </TableCell>
+      <TableCell className="whitespace-nowrap">{postLabel}</TableCell>
       <TableCell className="whitespace-nowrap text-gray-500">
         {row.maskedBlockCount > 0 ? `${row.maskedBlockCount}개` : "—"}
       </TableCell>
@@ -302,10 +287,7 @@ function ContentViewRow({ row }: { row: ContentView }) {
       <TableCell className="whitespace-nowrap text-gray-500">
         {row.ip ?? "—"}
       </TableCell>
-      <TableCell
-        className="max-w-[200px] truncate text-gray-500"
-        title={row.userAgent ?? undefined}
-      >
+      <TableCell className="whitespace-nowrap text-gray-500">
         {row.userAgent ?? "—"}
       </TableCell>
     </TableRow>
